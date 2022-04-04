@@ -2,23 +2,36 @@ include ../button/button.pug
 
 include ../form/form.pug
 include ../form-title/form-title.pug
-include ../form-datepick/form-datepick.pug
 
-mixin booking-card(addClasses = '')
+include ../label/label.pug
+include ../input/input.pug
+
+mixin booking-card(options = {})
   section.booking-card
     +form('booking-card__card') 
       +form-title('Найдём номера под ваши пожелания', 'form__title')
       .form__group 
-        +form-datepick({
-        type: 'date',
-        text: 'Прибытие', 
-        id: 'booking-entry', 
-        classLabel: 'form__label', 
-        classInput: 'form__booking-date'
+        +label({
+          text: 'Прибытие',
+          id: 'booking-entry',
+          classLabel: 'form__label'
         })
+        +input({
+          type: 'date',
+          id: 'booking-entry',
+          classInput: 'form__booking-date'
+        }) 
       .form__group
-        label(for="booking-out").form__label Выезд
-        input(type="date")#booking-out.form__booking-date
+        +label({
+          text: 'Выезд',
+          id: 'booking-out',
+          classLabel: 'form__label'
+        })
+        +input({
+          type: 'date',
+          id: 'booking-out',
+          classInput: 'form__booking-date'
+        }) 
      
 
       

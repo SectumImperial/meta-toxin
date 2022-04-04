@@ -10,10 +10,5 @@ require('./blocks/booking-card/booking-card.js')
 
 require('./blocks/form/form.js')
 require('./blocks/form-title/form-title.js')
-require('./blocks/form-datepick/form-datepick.js')
-
-// function requireAll(requireContext) {
-//     return requireContext.keys().map(requireContext);
-// }
-
-// requireAll(require.context('./blocks', true, /^.*\.js$/));
+require('./blocks/label/label.js')
+require('./blocks/input/input.js')
