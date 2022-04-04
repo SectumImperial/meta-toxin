@@ -1,0 +1,31 @@
+include ../nav/nav.pug
+include ../button/button.pug
+
+- var isLogged = false
+
+mixin headerIcon
+  .header__icon
+    span
+
+mixin header(options = {})
+  header.header(
+    class = options.classHeader
+    )
+    a(
+      href = options.href
+      ).logo.header__logo
+      img(src="./blocks/header/img/logo.svg" alt="Логотип Toxin" width='106' height='40')
+    +headerIcon()
+    .header__nav-wrapper 
+      +nav({classNav: 'header__nav'})
+
+      if !isLogged
+        +button({
+          classWrapper: 'header__button', 
+          content: 'Войти', 
+          classMod: 'button_white'})
+        +button({
+          classWrapper: 'header__button', 
+          content: 'Зарегистрироваться'})
+      else
+        p.header__user Юлий Цезарь

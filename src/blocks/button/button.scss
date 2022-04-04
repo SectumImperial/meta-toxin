@@ -1,0 +1,43 @@
+@use "sass:math";
+@import "../../common/functions.scss";
+@import "../../common/variables.scss";
+
+.button {
+  height: rem(30);
+  padding: 0 18px 1px 18px;
+    
+  background-color: transparent;
+  border: none;
+  border-radius: 25px;
+
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: rem(12);
+  color: $btn-secondary;
+  text-transform: uppercase;
+  vertical-align: top;
+
+  &_white {
+    background-color: white;
+    color: $btn-primary;
+  }
+
+  @media (max-width: $tablet) {
+     width: 100%;
+  }
+}
+
+.btn-wrapper {
+  display: inline-block;
+  padding: rem(2);
+  border-radius: 25px;
+  background: $gradient;
+
+  &:hover {
+    background: $gradient50;
+  }
+
+  @media (max-width: $mobile) {
+    display: block;
+ }
+}

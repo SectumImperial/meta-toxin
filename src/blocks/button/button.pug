@@ -1,0 +1,7 @@
+mixin button(options = {}) 
+  .btn-wrapper(class =
+    options.classWrapper
+    )
+    button.button(
+      class = options.classMod
+      )= options.content

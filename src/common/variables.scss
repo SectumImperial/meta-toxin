@@ -1,0 +1,28 @@
+$container: 1162px;
+$tablet: 960px;
+$mobile: 425px;
+
+:export {
+  tablet: $tablet;
+}
+
+$primary-color: #bc9cff;
+$primary-gradient: #8ba4f9;
+$primary-color50: rgba($primary-color, 0.5);
+$primary-gradient50: rgba($primary-gradient, 0.5);
+
+$secondary-color: #6fcf97;
+$secondary-color-2: white;
+
+$btn-primary: $primary-color;
+$btn-secondary: white;
+
+$gradient: linear-gradient($primary-color, $primary-gradient);
+$gradient50: linear-gradient($primary-color50, $primary-gradient50);
+
+$dark-color: #1f2041;
+$dark-color75: rgba($dark-color, 0.75);
+$dark-color50: rgba($dark-color, 0.5);
+$dark-color25: rgba($dark-color, 0.25);
+$dark-color10: rgba($dark-color, 0.1);
+$dark-color05: rgba($dark-color, 0.05);

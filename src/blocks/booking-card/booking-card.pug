@@ -1,0 +1,45 @@
+include ../button/button.pug
+
+include ../form/form.pug
+include ../form-title/form-title.pug
+include ../form-datepick/form-datepick.pug
+
+mixin booking-card(addClasses = '')
+  section.booking-card
+    +form('booking-card__card') 
+      +form-title('Найдём номера под ваши пожелания', 'form__title')
+      .form__group 
+        +form-datepick({
+        type: 'date',
+        text: 'Прибытие', 
+        id: 'booking-entry', 
+        classLabel: 'form__label', 
+        classInput: 'form__booking-date'
+        })
+      .form__group
+        label(for="booking-out").form__label Выезд
+        input(type="date")#booking-out.form__booking-date
+     
+
+      
+
+
+
+//-  .form__group
+//-         label(for="booking-entry").form__label Прибытие
+//-         input(type="date")#booking-entry.form__booking-date
+//-       .form__group
+//-         label(for="booking-out").form__label Выезд
+//-         input(type="date")#booking-out.form__booking-date
+//-       .form__group_wide
+//-         label(for="booking-guests").form__label Гости
+//-         select(name="quests-count")#booking-guests.form__booking-guests
+//-           <option  hidden>Сколько гостей</option> 
+//-           <option value="1">1</option> 
+//-           <option value="2">2</option> 
+//-           <option value="3">3</option>
+//-           <option value="4">4</option> 
+//-           <option value="5+">5+</option>
+//-           <option value="9999">9999</option>
+        
+//-       +button('form__btn_pick', 'Подобрать номер')
