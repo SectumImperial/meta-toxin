@@ -1,0 +1,21 @@
+@use 'sass:math';
+@import '../../common/functions.scss';
+
+.page {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+
+  font-family: 'Montserrat', sans-serif;
+  font-size: rem(14);
+
+  &__main {
+    flex: 1 1 auto;
+    min-height: 100%;
+  }
+
+  &__header {
+    min-height: rem(70);
+  }
+}

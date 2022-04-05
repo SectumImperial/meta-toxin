@@ -1,0 +1,9 @@
+@use 'sass:math';
+@import '../../common/functions.scss';
+@import '../../common/variables.scss';
+
+.booking-card {
+  background-color: $secondary-color-2;
+  max-width: rem(380);
+  padding: rem(40) rem(30) rem(30) rem(30);
+}

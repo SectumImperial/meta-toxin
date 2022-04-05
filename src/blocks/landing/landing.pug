@@ -1,0 +1,12 @@
+include ../booking-card/booking-card.pug
+
+mixin landing-promo(options = {})
+  .landing__promo 
+    p=text
+
+mixin landing(options = {}) 
+  main.landing(
+    class = options.classMain)
+    .container.landing__content
+      +booking-card()
+      +landing-promo('Лучшие номера для вашей работы, отдыха и просто вдохновения')

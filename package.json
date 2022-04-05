@@ -1,0 +1,33 @@
+{
+  "name": "toxin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "set NODE_ENV=development&&webpack serve",
+    "dev": "set NODE_ENV=development&&webpack",
+    "build": "set NODE_ENV=production&&webpack"
+  },
+  "keywords": [],
+  "author": "Maxim",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.17.2",
+    "@babel/preset-env": "^7.16.11",
+    "babel-loader": "^8.2.3",
+    "css-loader": "^6.6.0",
+    "html-loader": "^3.1.0",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.5.3",
+    "postcss": "^8.4.6",
+    "postcss-loader": "^6.2.1",
+    "postcss-preset-env": "^7.3.3",
+    "pug": "^3.0.2",
+    "pug-loader": "^2.4.0",
+    "sass": "^1.49.7",
+    "sass-loader": "^12.5.0",
+    "style-loader": "^3.3.1",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4"
+  }
+}

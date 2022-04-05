@@ -1,0 +1,142 @@
+@use 'sass:math';
+@import '../../common/functions.scss';
+@import '../../common/variables.scss';
+
+.header {
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: rem(10);
+
+  padding: rem(5);
+
+  &__nav-wrapper {
+    position: absolute;
+    flex: 0 1 100%;
+    left: -200%;
+
+    display: flex;
+    flex-direction: column;
+    gap: rem(10);
+
+    opacity: 0;
+
+    transition: left 0.3s ease 0s;
+
+    &._active {
+      position: relative;
+      left: 0;
+      opacity: 1;
+    }
+  }
+
+  &__logo {
+    display: inline-block;
+    margin: rem(4) 0 0 3px;
+  }
+
+  // Иконка бургера
+  &__icon {
+    display: block;
+    position: relative;
+    width: rem(30);
+    height: rem(18);
+    cursor: pointer;
+
+    & span,
+    &::before,
+    &::after {
+      position: absolute;
+      left: 0;
+      height: 10%;
+      width: 100%;
+      background-color: $primary-color;
+
+      transition: all 0.3s ease 0s;
+    }
+
+    &::before,
+    &::after {
+      content: '';
+    }
+
+    &::before {
+      top: 0;
+    }
+
+    &::after {
+      bottom: 0;
+    }
+
+    & span {
+      top: 50%;
+      transform: scale(1) translate(0px, -50%);
+    }
+
+    // Анимация при клике на иконку
+    &._active span {
+      transform: scale(0) translate(0, -50%);
+    }
+
+    &._active::before {
+      top: 50%;
+      transform: rotate(-45deg) translate(0, -50%);
+    }
+
+    &._active::after {
+      top: 50%;
+      transform: rotate(45deg) translate(0, -50%);
+    }
+  }
+
+  /* --------------- Планшет и десктоп ------------------- */
+  @media (min-width: $tablet) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: rem(20);
+    padding: 0;
+
+    &__nav {
+      margin-left: auto;
+      margin-right: 15px;
+      margin-top: 1px;
+    }
+
+    &__icon {
+      display: none;
+    }
+
+    &__nav-wrapper {
+      position: static;
+      flex: 1 1 auto;
+      left: 0;
+
+      display: flex;
+      flex-direction: row;
+      gap: rem(20);
+
+      opacity: 1;
+    }
+
+    &__button {
+      margin-right: -1px;
+
+      &:last-child {
+        margin: 0;
+      }
+    }
+
+    &__user {
+      padding: rem(9) 0 rem(8) rem(21);
+
+      height: rem(30);
+
+      border-left: 1px solid $dark-color10;
+    }
+  }
+}
