@@ -1,0 +1,13 @@
+@use 'sass:math';
+@import '../../common/functions.scss';
+@import '../../common/variables.scss';
+
+.form__group {
+  display: grid;
+}
+
+.form__label {
+  font-weight: bold;
+  font-size: rem(12);
+  text-transform: uppercase;
+}

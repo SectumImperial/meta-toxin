@@ -1,5 +1,22 @@
-mixin form(addClasses = '')
-  form(action="#" method="get")(class=`${addClasses}`).form
-    block
-    
+mixin form(options = {})
+  form(
+    action="#" 
+    method="get"
+    class=options.classForm
+    ).form
+      block
 
+mixin form-group(options = {})
+  if options.modificator
+    div(class = `form__group_${options.modificator}`)
+      block
+  else 
+    .form__group
+      block
+  
+    
+mixin label(options = {})
+  label(
+    for = options.id
+    class = options.classLabel
+  )=options.text
