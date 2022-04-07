@@ -2,12 +2,16 @@
 @import '../../common/functions.scss';
 @import '../../common/variables.scss';
 
-.form__group {
-  display: grid;
-}
+.form {
+  &__group {
+    display: grid;
+  }
 
-.form__label {
-  font-weight: bold;
-  font-size: rem(12);
-  text-transform: uppercase;
+  &__label {
+    padding-bottom: rem(4);
+
+    font-weight: bold;
+    font-size: rem(12);
+    text-transform: uppercase;
+  }
 }

@@ -9,7 +9,8 @@ include ../select/select.pug
 mixin booking-card(options = {})
   section.booking-card
     +form({
-      classForm: 'booking-card__card'
+      classForm: 'booking-card__card',
+      modificators: '_booking-grid'
       }) 
       +form-title('Найдём номера под ваши пожелания', 'form__title')
       +form-group
@@ -35,7 +36,7 @@ mixin booking-card(options = {})
           classInput: 'form__booking-date'
         }) 
       +form-group({
-        modificator: 'wide'
+        modificators: '_wide'
       })
         +label({
           text: 'Гости',
@@ -59,7 +60,6 @@ mixin booking-card(options = {})
         +button({
           content: 'Подобрать номер',
           classWrapper: 'booking-card__button',
-
         })
         
      

@@ -1,14 +1,21 @@
 mixin form(options = {})
-  form(
-    action="#" 
-    method="get"
-    class=options.classForm
-    ).form
-      block
+  if options.modificators
+    form(
+      class=`${options.classForm} form form${options.modificators}`
+      action="#" 
+      method="get")
+        block
+  else 
+    form(
+      class=`${options.classForm} form`
+      action="#" 
+      method="get"
+      )
+        block
 
 mixin form-group(options = {})
-  if options.modificator
-    div(class = `form__group_${options.modificator}`)
+  if options.modificators
+    div(class = `form__group${options.modificators}`)
       block
   else 
     .form__group
@@ -20,3 +27,13 @@ mixin label(options = {})
     for = options.id
     class = options.classLabel
   )=options.text
+
+
+//- form(
+//-     action="#" 
+//-     method="get")(
+//-     if options.modificator
+//-       class=`${options.classForm} form form_${options.modificator}`
+//-     else 
+//-       class= `${options.classForm} form`
+//-     ).form
