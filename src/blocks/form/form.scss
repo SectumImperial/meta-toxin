@@ -14,4 +14,14 @@
     font-size: rem(12);
     text-transform: uppercase;
   }
+
+  &_booking-grid {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: repeat(4, 1fr);
+  }
+
+  [class*='_grid-wide-2'] {
+    grid-column: span 2;
+  }
 }

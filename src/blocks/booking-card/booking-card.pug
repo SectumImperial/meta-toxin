@@ -1,7 +1,7 @@
 include ../button/button.pug
+include ../title/title.pug
 
 include ../form/form.pug
-include ../form-title/form-title.pug
 
 include ../input/input.pug
 include ../select/select.pug
@@ -12,7 +12,11 @@ mixin booking-card(options = {})
       classForm: 'booking-card__card',
       modificators: '_booking-grid'
       }) 
-      +form-title('Найдём номера под ваши пожелания', 'form__title')
+      +title({
+        text: 'Найдём номера под ваши пожелания',
+        classTitle: 'form__title',
+        modificators: '_grid-wide-2'
+      })
       +form-group
         +label({
           text: 'Прибытие',
@@ -36,7 +40,7 @@ mixin booking-card(options = {})
           classInput: 'form__booking-date'
         }) 
       +form-group({
-        modificators: '_wide'
+        modificators: '_grid-wide-2'
       })
         +label({
           text: 'Гости',
@@ -57,10 +61,10 @@ mixin booking-card(options = {})
                           value: 2
                         }]
         })
-        +button({
-          content: 'Подобрать номер',
-          classWrapper: 'booking-card__button',
-        })
+      +button({
+        content: 'Подобрать номер',
+        classWrapper: 'booking-card__button booking-card__button_grid-wide-2',
+      })
         
      
 

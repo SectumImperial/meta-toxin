@@ -28,12 +28,12 @@ mixin label(options = {})
     class = options.classLabel
   )=options.text
 
-
-//- form(
-//-     action="#" 
-//-     method="get")(
-//-     if options.modificator
-//-       class=`${options.classForm} form form_${options.modificator}`
-//-     else 
-//-       class= `${options.classForm} form`
-//-     ).form
+mixin form-title(options = {})
+  if options.modificators
+    h2(
+      class=`${options.classTitle} ${options.classTitle}${options.modificators}`
+      )= options.text
+  else 
+    h2(
+      class=`${options.classTitle}`
+      )= options.text
