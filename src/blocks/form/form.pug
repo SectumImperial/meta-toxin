@@ -15,7 +15,7 @@ mixin form(options = {})
 
 mixin form-group(options = {})
   if options.modificators
-    div(class = `form__group${options.modificators}`)
+    div(class = `form__group form__group${options.modificators}`)
       block
   else 
     .form__group

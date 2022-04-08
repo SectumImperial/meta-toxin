@@ -1,11 +1,11 @@
-@use "sass:math";
-@import "../../common/functions.scss";
-@import "../../common/variables.scss";
+@use 'sass:math';
+@import '../../common/functions.scss';
+@import '../../common/variables.scss';
 
 .button {
   height: rem(30);
   padding: 0 18px 1px 18px;
-    
+
   background-color: transparent;
   border: none;
   border-radius: 25px;
@@ -23,12 +23,14 @@
   }
 
   @media (max-width: $tablet) {
-     width: 100%;
+    width: 100%;
   }
 }
 
 .btn-wrapper {
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: rem(2);
   border-radius: 25px;
   background: $gradient;
@@ -39,5 +41,5 @@
 
   @media (max-width: $mobile) {
     display: block;
- }
+  }
 }

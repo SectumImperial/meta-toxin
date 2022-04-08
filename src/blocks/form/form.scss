@@ -8,20 +8,27 @@
   }
 
   &__label {
-    padding-bottom: rem(4);
-
     font-weight: bold;
     font-size: rem(12);
     text-transform: uppercase;
+
+    display: inline-block;
+    height: rem(20);
   }
 
   &_booking-grid {
     display: grid;
     grid-template-columns: auto auto;
-    grid-template-rows: repeat(4, 1fr);
+    grid-template-rows: rem(50) rem(65) rem(65) rem(45);
+    gap: rem(20);
   }
 
   [class*='_grid-wide-2'] {
     grid-column: span 2;
+  }
+
+  &__booking-date,
+  &__booking-guests {
+    height: rem(44);
   }
 }

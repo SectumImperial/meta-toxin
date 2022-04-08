@@ -1,7 +1,23 @@
+//- mixin button(options = {}) 
+//-   .btn-wrapper(class =
+//-     options.classWrapper
+//-     )
+//-     button.button(
+//-       class = options.classMod
+//-       )= options.content
+
 mixin button(options = {}) 
-  .btn-wrapper(class =
-    options.classWrapper
+  if options.modificators
+    .btn-wrapper(
+      class = options.classWrapper
+      )
+      button(
+        class = `button button${options.modificators}`
+        )= options.content
+  else 
+    .btn-wrapper(
+      class =options.classWrapper
     )
-    button.button(
-      class = options.classMod
+      button(
+        class = `button`
       )= options.content
