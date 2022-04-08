@@ -6,6 +6,8 @@ include ../form/form.pug
 include ../input/input.pug
 include ../select/select.pug
 
+//- include ../datePicker/datePicker.pug
+
 mixin booking-card(options = {})
   section.booking-card
     +form({
@@ -63,30 +65,7 @@ mixin booking-card(options = {})
         })
       +button({
         content: 'Подобрать номер',
-        classWrapper: 'booking-card__button booking-card__button_grid-wide-2',
+        classWrapper: 'form__button',
+        modificators: '_grid-wide-2'
       })
         
-     
-
-      
-
-
-
-//-  .form__group
-//-         label(for="booking-entry").form__label Прибытие
-//-         input(type="date")#booking-entry.form__booking-date
-//-       .form__group
-//-         label(for="booking-out").form__label Выезд
-//-         input(type="date")#booking-out.form__booking-date
-//-       .form__group_wide
-//-         label(for="booking-guests").form__label Гости
-//-         select(name="quests-count")#booking-guests.form__booking-guests
-//-           <option  hidden>Сколько гостей</option> 
-//-           <option value="1">1</option> 
-//-           <option value="2">2</option> 
-//-           <option value="3">3</option>
-//-           <option value="4">4</option> 
-//-           <option value="5+">5+</option>
-//-           <option value="9999">9999</option>
-        
-//-       +button('form__btn_pick', 'Подобрать номер')

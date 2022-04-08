@@ -9,15 +9,25 @@
 mixin button(options = {}) 
   if options.modificators
     .btn-wrapper(
-      class = options.classWrapper
+      class = `${options.classWrapper} ${options.classWrapper}${options.modificators}`
       )
-      button(
-        class = `button button${options.modificators}`
+      if options.modificatorsBtn
+        button(
+          class = `button button${options.modificatorsBtn}`
+          )= options.content
+      else 
+        button(
+          class = `button`
         )= options.content
   else 
     .btn-wrapper(
       class =options.classWrapper
     )
-      button(
-        class = `button`
-      )= options.content
+      if options.modificatorsBtn
+        button(
+          class = `button button${options.modificatorsBtn}`
+          )= options.content
+      else 
+        button(
+          class = `button`
+        )= options.content
