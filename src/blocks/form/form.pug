@@ -1,17 +1,10 @@
 mixin form(options = {})
-  if options.modificators
-    form(
-      class=`${options.classForm} form form${options.modificators}`
-      action="#" 
-      method="get")
-        block
-  else 
-    form(
-      class=`${options.classForm} form`
-      action="#" 
-      method="get"
-      )
-        block
+  form(
+    class=`${options.classForm} form`
+    action="#" 
+    method="get"  
+    )
+      block
 
 mixin form-group(options = {})
   if options.modificators

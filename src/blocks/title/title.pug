@@ -1,9 +1,4 @@
 mixin title(options = {})
-  if options.modificators
-    h2(
-      class=`title ${options.classTitle} ${options.classTitle}${options.modificators}`
-      )= options.text
-  else 
-     h2(
-      class= `title ${options.classTitle}`
-      )= options.text
+  h2(
+    class= `title ${options.classTitle}`
+  )= options.text
