@@ -18,7 +18,7 @@
 
   &_booking-grid {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: rem(50) rem(65) rem(65) rem(45);
     gap: rem(20);
   }
@@ -27,8 +27,30 @@
     grid-column: span 2;
   }
 
-  &__booking-date,
+  &__booking-date::-webkit-calendar-picker-indicator {
+    display: none;
+  }
+
+  &__booking-date {
+    padding: rem(12) 0 rem(15) rem(15);
+
+    border: 1px solid rgba($dark-color, 0.25);
+    color: rgba($dark-color, 0.75);
+    font-size: rem(18);
+    font-family: 'Montserrat', sans-serif;
+    background: url(../../icons/expand_more.svg) no-repeat 90% center;
+  }
+
   &__booking-guests {
-    height: rem(44);
+    padding: rem(13) 0 rem(13) rem(15);
+
+    border: 1px solid rgba($dark-color, 0.25);
+    color: rgba($dark-color, 0.75);
+    font-size: rem(14);
+    font-family: 'Montserrat', sans-serif;
+    background: url(../../icons/expand_more.svg) no-repeat 95% center;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
   }
 }

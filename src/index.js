@@ -12,5 +12,3 @@ require('./blocks/booking-card/booking-card.js')
 require('./blocks/form/form.js')
 require('./blocks/input/input.js')
 require('./blocks/select/select.js')
-
-require('./blocks/datePicker/datePicker.js')
