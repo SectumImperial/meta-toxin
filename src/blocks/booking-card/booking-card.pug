@@ -9,10 +9,11 @@ include ../select/select.pug
 include ../datePicker/datePicker.pug
 
 mixin booking-card(options = {})
-  section.booking-card
+  section(
+    class = options.classBook
+  )
     +form({
-      classForm: 'booking-card__card booking-card__card',
-      modificators: '_booking-grid'
+      classForm: 'booking-card__card form_booking-grid',
       }) 
       +title({
         text: 'Найдём номера под ваши пожелания',
@@ -22,24 +23,23 @@ mixin booking-card(options = {})
         +label({
           text: 'Прибытие',
           id: 'booking-entry',
-          classLabel: 'form__label'
         })
-        +datePicker
-        //- +input({
-        //-   type: 'date',
-        //-   id: 'booking-entry',
-        //-   classInput: 'form__booking-date'
-        //- }) 
+        +input({
+          type: 'date',
+          id: 'booking-entry',
+          classInput: 'form__booking-date',
+          datepicker: true
+        }) 
       +form-group
         +label({
           text: 'Выезд',
           id: 'booking-out',
-          classLabel: 'form__label'
         })
         +input({
           type: 'date',
           id: 'booking-out',
-          classInput: 'form__booking-date'
+          classInput: 'form__booking-date',
+          datepicker: true
         }) 
       +form-group({
         modificators: '_grid-wide-2'
@@ -47,7 +47,6 @@ mixin booking-card(options = {})
         +label({
           text: 'Гости',
           id: 'booking-guests',
-          classLabel: 'form__label'
         })
         +select({
           name: 'quests-count',

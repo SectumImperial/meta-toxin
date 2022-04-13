@@ -11,22 +11,10 @@ mixin form-group(options = {})
     div(class = `form__group form__group${options.modificators}`)
       block
   else 
-    .form__group
+    .form__group 
       block
-  
-    
-mixin label(options = {})
-  label(
-    for = options.id
-    class = options.classLabel
-  )=options.text
 
-mixin form-title(options = {})
-  if options.modificators
-    h2(
-      class=`${options.classTitle} ${options.classTitle}${options.modificators}`
-      )= options.text
-  else 
-    h2(
-      class=`${options.classTitle}`
-      )= options.text
+mixin label(options = {})
+  label.form__label(
+    for = options.id
+  )=options.text

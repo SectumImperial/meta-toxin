@@ -8,5 +8,7 @@ mixin landing(options = {})
   main.landing(
     class = options.classMain)
     .container.landing__content
-      +booking-card()
+      +booking-card({
+        classBook: 'booking-card landing__booking-card'
+      })
       +landing-promo('Лучшие номера для вашей работы, отдыха и просто вдохновения')
