@@ -1,5 +1,30 @@
-input {
+@use 'sass:math';
+@import '../../common/functions.scss';
+@import '../../common/variables.scss';
+
+.input {
   &:focus {
     outline: none;
+  }
+
+  padding: rem(13) rem(15);
+
+  border: 1px solid rgba($dark-color, 0.25);
+  border-radius: 4px;
+
+  color: rgba($dark-color, 0.75);
+  font-size: rem(14);
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  &::-webkit-calendar-picker-indicator {
+    display: none;
+  }
+
+  &__dropdown {
+    background: url(../../icons/expand_more.svg) no-repeat right center;
+    background-origin: content-box;
   }
 }

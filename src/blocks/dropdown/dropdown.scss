@@ -1,0 +1,32 @@
+@use 'sass:math';
+@import '../../common/functions.scss';
+@import '../../common/variables.scss';
+
+.dropdown {
+  position: relative;
+  padding: rem(13) rem(15);
+  border: 1px solid rgba($dark-color, 0.25);
+  border-radius: 4px;
+
+  background: url(../../icons/expand_more.svg) no-repeat right center;
+  background-origin: content-box;
+
+  &__placeholder {
+    font-size: rem(14);
+    font-family: 'Montserrat', sans-serif;
+    color: rgba($dark-color, 0.75);
+  }
+
+  &__content {
+    position: absolute;
+    left: 0;
+    top: calc(100% - 2px);
+    width: 100%;
+    padding: rem(7) rem(7) rem(14) rem(13);
+
+    background-color: white;
+
+    border: 1px solid rgba($dark-color, 0.25);
+    border-radius: 0 0 4px;
+  }
+}

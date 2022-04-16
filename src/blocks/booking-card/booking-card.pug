@@ -4,7 +4,8 @@ include ../title/title.pug
 include ../form/form.pug
 
 include ../input/input.pug
-include ../select/select.pug
+//- include ../select/select.pug
+include ../dropdown/dropdown.pug
 
 mixin booking-card(options = {})
   section(
@@ -26,7 +27,8 @@ mixin booking-card(options = {})
           type: 'date',
           id: 'booking-entry',
           classInput: 'form__booking-date',
-          datepicker: true
+          datepicker: true,
+          dropdown: true
         }) 
       +form-group
         +label({
@@ -37,7 +39,8 @@ mixin booking-card(options = {})
           type: 'date',
           id: 'booking-out',
           classInput: 'form__booking-date',
-          datepicker: true
+          datepicker: true,
+          dropdown: true
         }) 
       +form-group({
         modificators: '_grid-wide-2'
@@ -46,19 +49,10 @@ mixin booking-card(options = {})
           text: 'Гости',
           id: 'booking-guests',
         })
-        +select({
-          name: 'quests-count',
-          id: 'booking-guests',
-          classSelect: 'form__booking-guests',
-          optionValue: [{
-                          value: 'Сколько гостей', 
-                          hidden: true},
-                        {
-                          value: 1,
-                        },
-                        {
-                          value: 2
-                        }]
+        +dropdown({
+           class: 'form__dropdown',
+           placeholder: 'Сколько гостей',
+           dropdownContent: 'DropDown Content'
         })
       +button({
         content: 'Подобрать номер',

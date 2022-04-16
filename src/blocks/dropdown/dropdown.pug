@@ -1,0 +1,6 @@
+mixin dropdown(options = {})
+  div.dropdown(
+      class = options.class 
+  )
+    span.dropdown__placeholder= options.placeholder 
+    div.dropdown__content= options.dropdownContent 
