@@ -2,12 +2,12 @@ mixin input(options = {})
   - if(options.datepicker) 
     - var datepicker = 'datepicker'
   - if(options.dropdown) 
-    - var dropdown = '__dropdown'
+    - var dropdown = 'input__dropdown'
   input(
     type = options.type
     name = options.name
     id = options.id
-    class = `input input${dropdown || ''} ${options.classInput} ${datepicker || ''}`
+    class = `input ${options.classInput} ${datepicker || ''} ${dropdown || ''}`
     value = options.value 
     placeholder = options.placeholder
     datePicker = options.datepicker 
