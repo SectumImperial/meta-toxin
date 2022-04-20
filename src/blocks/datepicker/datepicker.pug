@@ -1,0 +1,50 @@
+include ../input/input.pug
+include ../form/form.pug
+
+mixin datepicker(options = {})
+  - if(options.countInuts === 2) 
+    div(
+        class=`datepick datepick_two ${options.classDatepick}`
+    )
+      .datepick__group 
+        +label({
+          text: 'Прибытие',
+          id: 'booking-entry',
+        })
+        +input({
+          type: 'date',
+          id: 'booking-entry',
+          classInput: 'form__booking-date',
+          datepicker: true,
+          arrow: true
+        }) 
+
+      .datepick__group 
+        +label({
+          text: 'Выезд',
+          id: 'booking-out',
+        })
+        +input({
+          type: 'date',
+          id: 'booking-out',
+          classInput: 'form__booking-date',
+          datepicker: true,
+          arrow: true
+        })   
+
+  - if(options.countInuts === 1)
+    div(
+        class=`datepick datepick_one ${options.classDatepick}`
+    )      
+      .datepick__group 
+        +label({
+          text: 'Прибытие',
+          id: 'booking-entry',
+        })
+        +input({
+          type: 'date',
+          id: 'booking-entry',
+          classInput: 'form__booking-date',
+          datepicker: true,
+          arrow: true
+        }) 

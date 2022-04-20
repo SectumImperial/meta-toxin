@@ -6,6 +6,7 @@ include ../form/form.pug
 include ../input/input.pug
 //- include ../select/select.pug
 include ../dropdown/dropdown.pug
+include ../datepicker/datepicker.pug
 
 mixin booking-card(options = {})
   section(
@@ -18,30 +19,10 @@ mixin booking-card(options = {})
         text: 'Найдём номера под ваши пожелания',
         classTitle: 'form__title form__title_grid-wide-2',
       })
-      +form-group
-        +label({
-          text: 'Прибытие',
-          id: 'booking-entry',
-        })
-        +input({
-          type: 'date',
-          id: 'booking-entry',
-          classInput: 'form__booking-date',
-          datepicker: true,
-          dropdown: true
-        }) 
-      +form-group
-        +label({
-          text: 'Выезд',
-          id: 'booking-out',
-        })
-        +input({
-          type: 'date',
-          id: 'booking-out',
-          classInput: 'form__booking-date',
-          datepicker: true,
-          dropdown: true
-        }) 
+      +datepicker({
+        classDatepick: 'form__datepick',
+        countInuts: 2
+      })
       +form-group({
         modificators: '_grid-wide-2'
       })

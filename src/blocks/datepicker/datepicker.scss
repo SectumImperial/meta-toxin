@@ -1,0 +1,15 @@
+@use 'sass:math';
+@import '../../common/functions.scss';
+@import '../../common/variables.scss';
+
+.datepick {
+  &__group {
+    display: grid;
+  }
+
+  &_two {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: rem(20);
+  }
+}
