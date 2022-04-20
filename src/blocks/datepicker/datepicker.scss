@@ -7,9 +7,9 @@
     display: grid;
   }
 
-  &_two {
+  &_many {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: repeat(auto-fit, minmax(rem(150), 1fr));
     gap: rem(20);
   }
 }
