@@ -1,6 +1,6 @@
 import './common/styles.scss'
 
-require('./blocks/page/page.js')
+require('./blocks/page-layout/page-layout.js')
 require('./blocks/header/header.js')
 require('./blocks/nav/nav.js')
 require('./blocks/button/button.js')

@@ -1,7 +1,6 @@
 @use 'sass:math';
 @import '../../common/functions.scss';
 @import '../../common/variables.scss';
-@import './datepicker.css';
 
 .input {
   &:focus {
@@ -27,17 +26,5 @@
   &__dropdown {
     background: url(../../icons/expand_more.svg) no-repeat right center;
     background-origin: content-box;
-  }
-}
-
-// Календарь
-.air-datepicker {
-  position: absolute;
-  left: 100%;
-  width: 100%;
-  box-shadow: none;
-
-  @media (min-width: $mobile) {
-    width: rem(320);
   }
 }

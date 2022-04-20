@@ -1,3 +1,5 @@
+block variables
+
 doctype html
 html(lang="ru")
   head
@@ -6,5 +8,6 @@ html(lang="ru")
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
     title Toxin 
     link(rel="shortcut icon" type="image/svg" href="../common/favicon.svg")
-  include blocks/page/page.pug
+  body.page
+    block content
   

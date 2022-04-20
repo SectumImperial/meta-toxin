@@ -1,8 +1,6 @@
 include ../nav/nav.pug
 include ../button/button.pug
 
-- var isLogged = false
-
 mixin headerIcon
   .header__icon
     span
@@ -19,7 +17,7 @@ mixin header(options = {})
     .header__nav-wrapper 
       +nav({classNav: 'header__nav'})
 
-      if !isLogged
+      if !options.isLogged
         +button({
           classWrapper: 'header__button header__button_white', 
           content: 'Войти', 
