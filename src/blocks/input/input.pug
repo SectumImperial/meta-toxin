@@ -1,13 +1,11 @@
 mixin input(options = {})
-  - if(options.datepicker) 
-    - var datepicker = 'datepicker'
   - if(options.arrow) 
     - var arrow = 'input_arrow'
   input(
     type = options.type
     name = options.name
     id = options.id
-    class = `input ${arrow || ''} ${options.classInput} ${datepicker || ''}`
+    class = `input ${arrow || ''} ${options.classInput}`
     value = options.value 
     placeholder = options.placeholder
   )  
