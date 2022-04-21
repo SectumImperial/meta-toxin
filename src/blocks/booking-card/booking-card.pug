@@ -16,16 +16,40 @@ mixin booking-card(options = {})
       classForm: 'booking-card__card form_booking-grid',
       }) 
       +title({
+        level: 'h2',
         text: 'Найдём номера под ваши пожелания',
         classTitle: 'form__title form__title_grid-wide-2',
       })
-      +datepicker({
-        classDatepick: 'form__datepick',
-        many: true
-      })
+
       +form-group({
-        modificators: '_grid-wide-2'
+        modificators: '_grid-2 _datepick-2 _datepick-js'
       })
+        +form-group()
+          +label({
+            text: 'Прибытие',
+            id: 'booking-enter',
+          })
+          +input({
+            type: 'date',
+            id: 'booking-enter',
+            classInput: 'form__input form_datepick-start _datepickItem',
+            datepicker: true,
+            arrow: true
+          })
+        +form-group()
+          +label({
+            text: 'Выезд',
+            id: 'booking-out',
+          })
+          +input({
+            type: 'date',
+            id: 'booking-out',
+            classInput: 'form__input form_datepick-end _datepickItem',
+            datepicker: true,
+            arrow: true
+          }) 
+      
+      +form-group()
         +label({
           text: 'Гости',
           id: 'booking-guests',
@@ -40,3 +64,19 @@ mixin booking-card(options = {})
         classWrapper: 'form__button form__button_grid-wide-2',
       })
         
+
+
+      //-   +datepicker({
+      //-   classDatepick: 'form__datepick',
+      //-   many: true,
+      //-   fields: [
+      //-     {
+      //-       id: 'booking-enter',
+      //-       text: 'Прибытие',
+      //-     },
+      //-     {
+      //-       id: 'booking-out',
+      //-       text: 'Выезд',
+      //-     },
+      //-   ]
+      //- })

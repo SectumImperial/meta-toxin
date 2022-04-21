@@ -5,6 +5,12 @@
 .form {
   &__group {
     display: grid;
+
+    &_grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: rem(20);
+    }
   }
 
   &__label {

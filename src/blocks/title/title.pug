@@ -1,4 +1,5 @@
 mixin title(options = {})
+  - if(options.level === 'h2')
   h2(
     class= `title ${options.classTitle}`
   )= options.text

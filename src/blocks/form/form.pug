@@ -14,7 +14,10 @@ mixin form-group(options = {})
     .form__group 
       block
 
+
 mixin label(options = {})
   label.form__label(
+    id = options.id
     for = options.id
+    class = options.class
   )=options.text
