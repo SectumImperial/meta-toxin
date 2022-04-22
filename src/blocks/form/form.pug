@@ -7,13 +7,8 @@ mixin form(options = {})
       block
 
 mixin form-group(options = {})
-  if options.modificators
-    div(class = `form__group form__group${options.modificators}`)
-      block
-  else 
-    .form__group 
-      block
-
+  div(class = `form__group ${options.classGroup || ''}`)
+    block
 
 mixin label(options = {})
   label.form__label(

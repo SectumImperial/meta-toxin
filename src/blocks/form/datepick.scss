@@ -1,0 +1,20 @@
+@use 'sass:math';
+@import '../../common/functions.scss';
+@import '../../common/variables.scss';
+
+.datepick_container {
+  position: absolute;
+
+  top: calc(100% + 5px);
+
+  width: rem(320);
+  height: 369px;
+
+  z-index: 10;
+
+  display: none;
+}
+
+._active {
+  display: block;
+}

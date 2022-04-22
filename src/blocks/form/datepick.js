@@ -1,4 +1,5 @@
 'use strict'
+import './datepick.scss'
 
 import AirDatepicker from 'air-datepicker'
 import 'air-datepicker/air-datepicker.css'
@@ -9,15 +10,23 @@ let item = undefined,
   firstItem = undefined,
   secondItem = undefined
 
-const inputItems = document.querySelectorAll('._datepickItem')
+if (container) {
+  let calConteiner = document.createElement('div')
+  calConteiner.className = 'datepick_container'
+  container.append(calConteiner)
+  let dp = new AirDatepicker('.datepick_container')
+  dp.show()
 
-if (container.classList.contains('_datepick-2')) {
-  firstItem = container.querySelector('.form_datepick-start')
-  secondItem = container.querySelector('.form_datepick-end')
+  if (container.classList.contains('_datepick-2')) {
+    firstItem = container.querySelector('.form_datepick-start')
+    secondItem = container.querySelector('.form_datepick-end')
+  }
+
+  if (container.classList.contains('_datepick-1'))
+    item = container.querySelector('.form_datepick-single')
+
+  container.addEventListener('click', ({ target }) => {
+    if (target.closest('.datepick_container')) return
+    calConteiner.classList.toggle('_active')
+  })
 }
-
-if (container.classList.contains('_datepick-1'))
-  item = container.querySelector('.form_datepick-single')
-
-// container.addEventListener('click', ({ target }) => {
-// })
