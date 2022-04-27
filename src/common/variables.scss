@@ -13,11 +13,13 @@ $primary-gradient50: rgba($primary-gradient, 0.5);
 
 $secondary-color: #6fcf97;
 $secondary-color-2: white;
+$secondary-gradient: #66d2ea;
 
 $btn-primary: $primary-color;
 $btn-secondary: white;
 
 $gradient: linear-gradient($primary-color, $primary-gradient);
 $gradient50: linear-gradient($primary-color50, $primary-gradient50);
+$gradientSecondary: linear-gradient($secondary-color, $secondary-gradient);
 
 $dark-color: #1f2041;

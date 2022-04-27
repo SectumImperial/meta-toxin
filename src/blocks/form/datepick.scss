@@ -4,17 +4,83 @@
 
 .datepick_container {
   position: absolute;
-
   top: calc(100% + 5px);
 
+  display: none;
   width: rem(320);
-  height: 369px;
-
   z-index: 10;
 
-  display: none;
+  padding: rem(20);
+  background-color: white;
 }
 
 ._active {
   display: block;
+}
+
+.air-datepicker {
+  width: 100%;
+}
+
+.air-datepicker {
+  font-family: 'Montserrat', sans-serif;
+  border: none;
+
+  &-cell,
+  .-selected- {
+    height: rem(40);
+    border-radius: 50%;
+    padding: 17px;
+  }
+
+  &-nav {
+    &--action {
+      background: url('../../icons/arrow_forward.svg') no-repeat center;
+      transform: rotate(180deg);
+
+      &[data-action='next'] {
+        transform: rotate(0);
+      }
+
+      &:hover {
+        background: url('../../icons/arrow_forward.svg') no-repeat center;
+      }
+      svg {
+        display: none;
+      }
+    }
+
+    &--title {
+      color: $dark-color;
+      font-weight: bold;
+      font-size: rem(19);
+    }
+  }
+
+  &-body {
+    &--day-name {
+      color: $primary-color;
+      font-weight: bold;
+      font-size: rem(12);
+    }
+
+    .-days- {
+      grid-template-columns: repeat(7, rem(40));
+    }
+
+    .-day- {
+      color: rgba($dark-color, 0.5);
+      font-size: rem(12);
+    }
+
+    .-current- {
+      color: white;
+      background: $gradientSecondary;
+    }
+
+    .-other-month- {
+      color: rgba($dark-color, 0.25);
+      font-size: rem(12);
+    }
+  }
 }

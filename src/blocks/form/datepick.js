@@ -1,16 +1,16 @@
 'use strict'
+import './datepicker.css'
 import './datepick.scss'
 
 import AirDatepicker from 'air-datepicker'
-import 'air-datepicker/air-datepicker.css'
 
-// const dp = new AirDatepicker(document.querySelector('#booking-out'))
 const container = document.querySelector('._datepick-js')
 
 if (container) {
   let item, firstItem, secondItem, currentFeild
   let formGroups = Array.from(container.querySelectorAll('.form__group'))
 
+  // Создание контейнера для календаря
   let calConteiner = document.createElement('div')
   calConteiner.className = 'datepick_container'
   container.append(calConteiner)
@@ -27,6 +27,7 @@ if (container) {
   if (container.classList.contains('_datepick-1'))
     item = container.querySelector('.form_datepick-single')
 
+  // Работа скрытия и показа календаря при кликах на поля
   container.addEventListener('click', ({ target }) => {
     if (target.closest('.datepick_container')) return
 
@@ -58,4 +59,8 @@ if (container) {
     targetContainer.classList.toggle('clicked')
     calConteiner.classList.toggle('_active')
   })
+
+  // Форматирование заголовка согласно макету
+  let title = container.querySelector('.air-datepicker-nav--title')
+  title.textContent = title.textContent.replace(', ', ' ')
 }
