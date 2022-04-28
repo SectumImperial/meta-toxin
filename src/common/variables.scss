@@ -10,6 +10,8 @@ $primary-color: #bc9cff;
 $primary-gradient: #8ba4f9;
 $primary-color50: rgba($primary-color, 0.5);
 $primary-gradient50: rgba($primary-gradient, 0.5);
+$primary-color25: rgba($primary-color, 0.25);
+$primary-gradient25: rgba($primary-gradient, 0.25);
 
 $secondary-color: #6fcf97;
 $secondary-color-2: white;
@@ -20,6 +22,7 @@ $btn-secondary: white;
 
 $gradient: linear-gradient($primary-color, $primary-gradient);
 $gradient50: linear-gradient($primary-color50, $primary-gradient50);
+$gradient25: linear-gradient($primary-color25, $primary-gradient25);
 $gradientSecondary: linear-gradient($secondary-color, $secondary-gradient);
 
 $dark-color: #1f2041;
