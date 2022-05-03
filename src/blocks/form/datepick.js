@@ -11,7 +11,8 @@ if (container) {
     let item, firstItem, secondItem, currentFeild
     let formGroups = Array.from(container.querySelectorAll('.form__group'))
 
-    // Создание контейнера для календаря
+    // --------------- Создать календарь -----------------
+    // Создание контейнер
     let calConteiner = document.createElement('div')
     calConteiner.className = 'datepick_container'
     container.append(calConteiner)
@@ -31,6 +32,7 @@ if (container) {
     // Работа скрытия и показа календаря при кликах на поля
     container.addEventListener('click', ({ target }) => {
       if (target.closest('.datepick_container')) return
+      if (target.classList.contains('air-datepicker-cell')) return
 
       let targetContainer = target.closest('.form__group')
       let sibling = [...formGroups.filter((e) => e !== targetContainer)][0]
@@ -61,38 +63,60 @@ if (container) {
       calConteiner.classList.toggle('_active')
     })
 
-    // Форматирование заголовка согласно макету
-    let title = container.querySelector('.air-datepicker-nav--title')
-    title.textContent = title.textContent.replace(', ', ' ')
+    // --------------- Настроить выделение диапазона -----------------
 
-    // Настройка выделения ячеек диапазона
-
-    let calContent = container.querySelector('.air-datepicker--content')
-    let days = [...calContent.querySelectorAll('.-day-')]
-
-    calContent.addEventListener('click', ({ targetClick }) => {
+    calConteiner.addEventListener('click', ({ target }) => {
       // Удаление старых линий диапазона при выборе нового
-      let startRangeLine = calContent.querySelector('.start-range')
-      let endRangeLine = calContent.querySelector('.end-range')
+      let startRangeLine = container.querySelector('.start-range')
+      let endRangeLine = container.querySelector('.end-range')
       if (
-        startRangeLine &&
-        !startRangeLine.classList.contains('-selected-') &&
-        endRangeLine &&
-        !endRangeLine.classList.contains('-selected-')
+        (startRangeLine && !startRangeLine.classList.contains('-selected-')) ||
+        (endRangeLine && !endRangeLine.classList.contains('-selected-'))
       ) {
         startRangeLine.classList.remove('start-range')
         endRangeLine.classList.remove('end-range')
       }
 
-      let rangeFrom = calContent.querySelector('.-range-from-')
-      let rangeTo = calContent.querySelector('.-range-to-')
+      // Настройка ячеек при смене месяца
+      let rangeFrom = container.querySelector('.-range-from-')
+      let rangeTo = container.querySelector('.-range-to-')
+      if (target.classList.contains('air-datepicker-nav--action')) {
+        if (rangeFrom && !rangeTo) {
+          rangeFrom.classList.add('start-range')
+        }
+        if (rangeTo && !rangeFrom) {
+          rangeTo.classList.add('end-range')
+        }
+      }
 
-      // Переменная для пред. дня при движении мыши во время выделения диапазона
-      let prevDay
       // Выделить диапазон при движеии мыши
-      calContent.addEventListener('mouseover', ({ target, relatedTarget }) => {
-        rangeFrom = calContent.querySelector('.-range-from-')
-        rangeTo = calContent.querySelector('.-range-to-')
+      container.addEventListener('mouseover', ({ target, relatedTarget }) => {
+        rangeFrom = container.querySelector('.-range-from-')
+        rangeTo = container.querySelector('.-range-to-')
+
+        // Переменная для пред. дня при движении мыши во время выделения диапазона
+        let prevDay
+
+        // Добавить класс выделения диапазона первому и последнему выбранному элементу
+        if (
+          rangeFrom &&
+          rangeFrom.classList.contains('-selected-') &&
+          !rangeFrom.classList.contains('start-range')
+        ) {
+          rangeFrom.classList.add('start-range')
+        }
+
+        if (
+          rangeTo &&
+          rangeTo.classList.contains('-selected-') &&
+          !rangeTo.classList.contains('end-range')
+        ) {
+          rangeTo.classList.add('end-range')
+        }
+
+        if (rangeFrom && rangeFrom.classList.contains('end-range')) {
+          rangeFrom.classList.remove('end-range')
+        }
 
         // Назначить переменной пред. дня значение
         if (relatedTarget && !relatedTarget.classList.contains('-days-')) {
@@ -102,25 +126,25 @@ if (container) {
         // Добавить выделение диапазона при движении мыши
         if (
           target.classList.contains('-range-to-') &&
-          !target.classList.contains('-range-from-')
+          !target.classList.contains('-range-from-') &&
+          !target.classList.contains('-selected-')
         ) {
           target.classList.add('end-range')
-          console.log('add class range')
           if (prevDay) prevDay.classList.remove('end-range')
         }
 
         if (
           target.classList.contains('-range-from-') &&
-          !target.classList.contains('-range-to-')
+          !target.classList.contains('-range-to-') &&
+          !target.classList.contains('-selected-')
         ) {
           target.classList.add('start-range')
-          console.log('add class range')
           if (prevDay) prevDay.classList.remove('start-range')
         }
 
         // Удаление выделения диапазона у элементов там, где это не нужно при быстром движении мыши или выход за контейнер.
-        let startRangeLines = [...calContent.querySelectorAll('.start-range')]
-        let endRangeLines = [...calContent.querySelectorAll('.end-range')]
+        let startRangeLines = [...container.querySelectorAll('.start-range')]
+        let endRangeLines = [...container.querySelectorAll('.end-range')]
         startRangeLines.forEach((e) => {
           if (
             !e.classList.contains('-range-from-') &&
@@ -141,6 +165,7 @@ if (container) {
 
         // Удалить выделение диапазона в случае возврата мыши к выбранной дате
         if (
+          rangeFrom &&
           rangeFrom.classList.contains('-focus-') &&
           rangeFrom.classList.contains('-range-to-') &&
           rangeFrom.classList.contains('-range-from-') &&
@@ -148,19 +173,13 @@ if (container) {
         ) {
           rangeFrom.classList.remove('end-range')
           rangeFrom.classList.remove('start-range')
-          console.log('remove class range')
-        }
-
-        // Добавить класс выделения диапазона первому и последнему выбранному элементу
-        if (rangeFrom && rangeFrom.classList.contains('-selected-')) {
-          rangeFrom.classList.add('start-range')
-        }
-
-        if (rangeTo && rangeTo.classList.contains('-selected-')) {
-          rangeTo.classList.add('end-range')
         }
       })
     })
+
+    // Форматирование заголовка согласно макету
+    let title = container.querySelector('.air-datepicker-nav--title')
+    title.textContent = title.textContent.replace(', ', ' ')
   } catch (err) {
     console.error(err)
   }
