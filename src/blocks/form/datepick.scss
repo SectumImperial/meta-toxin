@@ -78,9 +78,12 @@
     }
 
     .-current- {
-      color: white;
+      color: $secondary-color-2;
       background: $gradientSecondary;
       border-radius: 50%;
+      &:hover {
+        color: $secondary-color-2;
+      }
     }
 
     .-other-month- {
@@ -88,9 +91,27 @@
       font-size: rem(12);
     }
 
+    // Стили элемента при выходе курсора за пределы контейнера без выбора конечного пункта диапазона календаря
+    .-range-to-,
+    .-range-from- {
+      border: none;
+      background: $gradient25;
+    }
+
+    .-range-to- {
+      border-radius: 0 50% 50% 0;
+    }
+
+    .-range-from- {
+      border-radius: 50% 0 0 50%;
+    }
+
+    // ---------------------------------------------
+
     .-in-range- {
       background: $gradient25;
-
+      border: none;
+      border-radius: 0;
       &:hover {
         border-radius: 0;
         background: $gradient25;
@@ -104,9 +125,14 @@
         content: '';
         position: absolute;
         background: $gradient25;
+        z-index: -1;
 
         width: rem(40);
         height: rem(40);
+
+        &:hover {
+          background: $gradient25;
+        }
       }
     }
 
@@ -121,16 +147,24 @@
         border-radius: 0 50% 50% 0;
       }
     }
-
-    .-in-range- {
-      border-radius: 0;
-    }
+    // ---------------------------------------------
 
     .-selected- {
       height: rem(40);
       border-radius: 50%;
       background: $primary-gradient;
       color: $secondary-color-2;
+
+      font-weight: bold;
+
+      &:hover {
+        background: $primary-gradient;
+      }
+    }
+
+    .-focus- {
+      color: white;
+      font-weight: bold;
     }
   }
 }
