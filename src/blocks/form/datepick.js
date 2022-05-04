@@ -51,9 +51,7 @@ if (container) {
 
     // --------------- Создать календарь -----------------
     // Создать контейнер
-    let calConteiner = document.createElement('div')
-    calConteiner.className = 'datepick_container'
-    container.append(calConteiner)
+    let calConteiner = document.querySelector('.datepick_container')
     let dp = new AirDatepicker(calConteiner, {
       range: true,
     })

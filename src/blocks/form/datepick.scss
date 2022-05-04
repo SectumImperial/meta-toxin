@@ -5,6 +5,7 @@
 .datepick_container {
   position: absolute;
   top: calc(100% + 5px);
+  right: 0;
 
   display: none;
   width: rem(320);
@@ -18,7 +19,13 @@
 }
 
 ._active {
-  display: block;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.datepick_btns {
+  display: flex;
+  justify-content: space-between;
 }
 
 .air-datepicker {

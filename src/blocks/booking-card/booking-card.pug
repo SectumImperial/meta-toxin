@@ -46,7 +46,19 @@ mixin booking-card(options = {})
             classInput: 'form__input form_datepick-end _datepickItem',
             datepicker: true,
             arrow: true
-          }) 
+          })
+        .datepick_container
+          .datepick_btns
+            +button({
+              content: 'Очистить',
+              classWrapper: 'form__button',
+            })
+            +button({
+              content: 'Применить',
+              classWrapper: 'form__button',
+            })
+
+
       
       +form-group()
         +label({
