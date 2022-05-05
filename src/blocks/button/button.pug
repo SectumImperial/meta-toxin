@@ -1,20 +1,8 @@
-//- mixin button(options = {}) 
-//-   .btn-wrapper(class =
-//-     options.classWrapper
-//-     )
-//-     button.button(
-//-       class = options.classMod
-//-       )= options.content
-
 mixin button(options = {}) 
   .btn-wrapper(
     class = options.classWrapper
    )
-    if options.modificatorsBtn
       button(
-        class = `button button${options.modificatorsBtn}`
+        class = `button ${options.classBtn}`
       )= options.content
-    else 
-      button(
-        class = `button`
-      )= options.content
+

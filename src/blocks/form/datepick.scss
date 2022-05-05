@@ -2,20 +2,26 @@
 @import '../../common/functions.scss';
 @import '../../common/variables.scss';
 
-.datepick_container {
-  position: absolute;
-  top: calc(100% + 5px);
-  right: 0;
+.datepick {
+  &_container {
+    position: absolute;
+    top: calc(100% + 5px);
+    right: 0;
 
-  display: none;
-  width: rem(320);
-  z-index: 10;
+    display: none;
+    width: rem(320);
+    z-index: 10;
 
-  padding: rem(20);
-  border: 1px solid rgba($dark-color, 0.25);
-  border-radius: 4px;
+    padding: rem(20);
+    border: 1px solid rgba($dark-color, 0.25);
+    border-radius: 4px;
 
-  background-color: $secondary-color-2;
+    background-color: $secondary-color-2;
+  }
+
+  &__button {
+    margin-top: rem(20);
+  }
 }
 
 ._active {

@@ -22,6 +22,15 @@
     color: $btn-primary;
   }
 
+  &_color {
+    color: $primary-color;
+    padding: 0;
+    height: auto;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
   @media (max-width: $tablet) {
     width: 100%;
   }
@@ -41,5 +50,12 @@
 
   @media (max-width: $mobile) {
     display: block;
+  }
+
+  &_transparent {
+    background: transparent;
+    &:hover {
+      background: transparent;
+    }
   }
 }

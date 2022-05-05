@@ -31,7 +31,7 @@ mixin booking-card(options = {})
           +input({
             type: 'date',
             id: 'booking-enter',
-            classInput: 'form__input form_datepick-start _datepickItem',
+            classInput: 'datepick__input form_datepick-start _datepickItem',
             datepicker: true,
             arrow: true
           })
@@ -43,7 +43,7 @@ mixin booking-card(options = {})
           +input({
             type: 'date',
             id: 'booking-out',
-            classInput: 'form__input form_datepick-end _datepickItem',
+            classInput: 'datepick__input form_datepick-end _datepickItem',
             datepicker: true,
             arrow: true
           })
@@ -51,11 +51,13 @@ mixin booking-card(options = {})
           .datepick_btns
             +button({
               content: 'Очистить',
-              classWrapper: 'form__button',
+              classWrapper: 'datepick__button  btn-wrapper_transparent',
+              classBtn: 'button_color'
             })
             +button({
               content: 'Применить',
-              classWrapper: 'form__button',
+              classWrapper: 'datepick__button btn-wrapper_transparent',
+              classBtn: 'button_color'
             })
 
 
