@@ -1,5 +1,5 @@
 'use strict'
-import './datepicker.css'
+import './datepick.css'
 import './datepick.scss'
 
 import AirDatepicker from 'air-datepicker'

@@ -5,6 +5,7 @@ include ../form/form.pug
 
 include ../input/input.pug
 //- include ../select/select.pug
+include ../datepick/datepick.pug
 include ../dropdown/dropdown.pug
 
 mixin booking-card(options = {})
@@ -23,45 +24,7 @@ mixin booking-card(options = {})
       +form-group({
         classGroup: 'form__group_grid-2 form__group_datepick _datepick-2 _datepick-js'
       })
-        +form-group()
-          +label({
-            text: 'Прибытие',
-            id: 'booking-enter',
-          })
-          +input({
-            type: 'date',
-            id: 'booking-enter',
-            classInput: 'datepick__input form_datepick-start _datepickItem',
-            datepicker: true,
-            arrow: true
-          })
-        +form-group()
-          +label({
-            text: 'Выезд',
-            id: 'booking-out',
-          })
-          +input({
-            type: 'date',
-            id: 'booking-out',
-            classInput: 'datepick__input form_datepick-end _datepickItem',
-            datepicker: true,
-            arrow: true
-          })
-        .datepick_container
-          .datepick_btns
-            +button({
-              content: 'Очистить',
-              classWrapper: 'datepick__button  btn-wrapper_transparent',
-              classBtn: 'button_color'
-            })
-            +button({
-              content: 'Применить',
-              classWrapper: 'datepick__button btn-wrapper_transparent',
-              classBtn: 'button_color'
-            })
-
-
-      
+        +datepick_2()
       +form-group()
         +label({
           text: 'Гости',
