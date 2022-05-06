@@ -9,11 +9,13 @@ mixin datepick_2()
       id: 'booking-enter',
     })
     +input({
-      type: 'date',
+      type: 'text',
       id: 'booking-enter',
-      classInput: 'datepick__input form_datepick-start _datepickItem',
+      classInput: 'datepick__input datepick__input_readonly datepick-start _datepickItem',
       datepicker: true,
-      arrow: true
+      arrow: true,
+      placeholder: 'ДД.ММ.ГГГГ',
+      pattern: '[0-9]{2}.[0-9]{2}.[0-9]{4}'
     })
   +form-group()
     +label({
@@ -21,17 +23,19 @@ mixin datepick_2()
       id: 'booking-out',
     })
     +input({
-      type: 'date',
+      type: 'text',
       id: 'booking-out',
-      classInput: 'datepick__input form_datepick-end _datepickItem',
+      classInput: 'datepick__input datepick__input_readonly datepick-start _datepickItem',
       datepicker: true,
-      arrow: true
+      arrow: true,
+      placeholder: 'ДД.ММ.ГГГГ',
+      pattern: '[0-9]{2}.[0-9]{2}.[0-9]{4}'
     })
   .datepick_container
     .datepick_btns
       +button({
         content: 'Очистить',
-        classWrapper: 'datepick__button  btn-wrapper_transparent',
+        classWrapper: 'datepick__button btn-wrapper_transparent',
         classBtn: 'button_color'
       })
       +button({

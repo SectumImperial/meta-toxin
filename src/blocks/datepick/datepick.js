@@ -1,5 +1,4 @@
 'use strict'
-import './datepick.css'
 import './datepick.scss'
 
 import AirDatepicker from 'air-datepicker'
@@ -58,8 +57,8 @@ if (container) {
     dp.show()
 
     if (container.classList.contains('_datepick-2')) {
-      firstItem = container.querySelector('.form_datepick-start')
-      secondItem = container.querySelector('.form_datepick-end')
+      firstItem = container.querySelector('.datepick-start')
+      secondItem = container.querySelector('.datepick-end')
     }
 
     if (container.classList.contains('_datepick-1'))

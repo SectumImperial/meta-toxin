@@ -1,6 +1,7 @@
 @use 'sass:math';
 @import '../../common/functions.scss';
 @import '../../common/variables.scss';
+@import './datepick.css';
 
 .datepick {
   &_container {
@@ -22,6 +23,12 @@
   &__button {
     margin-top: rem(20);
   }
+
+  // &__input {
+  //   &_readonly {
+  //     pointer-events: none;
+  //   }
+  // }
 }
 
 ._active {
@@ -87,6 +94,7 @@
 
       &:hover {
         border-radius: 50%;
+        background-color: $primary-color;
       }
     }
 
@@ -94,14 +102,14 @@
       color: $secondary-color-2;
       background: $gradientSecondary;
       border-radius: 50%;
-      &:hover {
-        color: $secondary-color-2;
-      }
     }
 
     .-other-month- {
       color: rgba($dark-color, 0.25);
       font-size: rem(12);
+      &:hover {
+        color: $secondary-color-2;
+      }
     }
 
     // Стили элемента при выходе курсора за пределы контейнера без выбора конечного пункта диапазона календаря
