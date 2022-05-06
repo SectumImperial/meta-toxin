@@ -25,7 +25,7 @@ mixin datepick_2()
     +input({
       type: 'text',
       id: 'booking-out',
-      classInput: 'datepick__input datepick__input_readonly datepick-start _datepickItem',
+      classInput: 'datepick__input datepick__input_readonly datepick-end _datepickItem',
       datepicker: true,
       arrow: true,
       placeholder: 'ДД.ММ.ГГГГ',
@@ -35,7 +35,7 @@ mixin datepick_2()
     .datepick_btns
       +button({
         content: 'Очистить',
-        classWrapper: 'datepick__button btn-wrapper_transparent',
+        classWrapper: 'datepick__button datepick__button_clear btn-wrapper_transparent',
         classBtn: 'button_color'
       })
       +button({

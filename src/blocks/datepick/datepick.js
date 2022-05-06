@@ -7,8 +7,9 @@ const container = document.querySelector('._datepick-js')
 
 if (container) {
   try {
-    let item, firstItem, secondItem, currentFeild
+    let item, firstItem, secondItem
     let formGroups = Array.from(container.querySelectorAll('.form__group'))
+    let buttonClear = document.querySelector('.datepick__button_clear')
 
     function addPoitRange(startPoin, endPoint) {
       if (
@@ -46,6 +47,18 @@ if (container) {
           el.classList.remove(rangeLineClass)
         }
       })
+    }
+
+    function formatDate(date) {
+      let day =
+        `${date.getDate()}`.length < 2 ? `0${date.getDate()}` : date.getDate()
+      let month =
+        `${date.getMonth()}`.length < 2
+          ? `0${date.getMonth() + 1}`
+          : date.getMonth() + 1
+      let year = date.getFullYear()
+      let result = `${day}.${month}.${year}`
+      return result
     }
 
     // --------------- Создать календарь -----------------
@@ -102,9 +115,26 @@ if (container) {
     let title = container.querySelector('.air-datepicker-nav--title')
     title.textContent = title.textContent.replace(', ', ' ')
 
-    // --------------- Настроить выделение диапазона -----------------
+    // Очистка выбранных дат
+    buttonClear.addEventListener('click', (e) => {
+      e.preventDefault()
+      firstItem.value = ''
+      secondItem.value = ''
+      dp.clear()
+    })
+
+    // --------------- Настроить выделение диапазона и обработать клики-----------------
 
     calConteiner.addEventListener('click', ({ target }) => {
+      // Отображение дат в полях
+      if (dp.rangeDateFrom) {
+        firstItem.value = formatDate(dp.rangeDateFrom)
+      }
+
+      if (dp.rangeDateTo) {
+        secondItem.value = formatDate(dp.rangeDateTo)
+      }
+
       // Удаление старых линий диапазона при выборе нового
       clearRange(container, 'start-range')
       clearRange(container, 'end-range')
@@ -118,7 +148,7 @@ if (container) {
       }
 
       // Выделить диапазон при движеии мыши
-      container.addEventListener('mouseover', ({ target, relatedTarget }) => {
+      container.addEventListener('mousemove', ({ target, relatedTarget }) => {
         rangeFrom = container.querySelector('.-range-from-')
         rangeTo = container.querySelector('.-range-to-')
 
