@@ -7,7 +7,8 @@ const container = document.querySelector('._datepick-js')
 
 if (container) {
   try {
-    let item, firstItem, secondItem
+    let firstItem, secondItem, rangeFrom, rangeTo
+    let items = document.querySelectorAll('._datepickItem')
     let formGroups = Array.from(container.querySelectorAll('.form__group'))
     let buttonClear = document.querySelector('.datepick__button_clear')
 
@@ -60,6 +61,10 @@ if (container) {
       let result = `${day}.${month}.${year}`
       return result
     }
+
+    // function checkValues(elems, pattern) {
+    //   // elems.
+    // }
 
     // --------------- Создать календарь -----------------
     // Создать контейнер
@@ -123,6 +128,28 @@ if (container) {
       dp.clear()
     })
 
+    // Ручной ввод дат
+
+    items.forEach((item) => {
+      item.addEventListener('change', ({ target }) => {
+        let correctFormat = [...items].every(({ value, pattern }) => {
+          return value.match(pattern)
+        })
+
+        if (correctFormat) {
+          let dates = Array.from(
+            [...items].map((inputElement) => inputElement.value)
+          ).map((e) => e.split('.').reverse().join('.').replaceAll('.', '-'))
+          dp.selectDate(dates)
+          rangeFrom = container.querySelector('.-range-from-')
+          rangeTo = container.querySelector('.-range-to-')
+          addPoitRange(rangeFrom, rangeTo)
+          clearRange(container, 'start-range')
+          clearRange(container, 'end-range')
+        }
+      })
+    })
+
     // --------------- Настроить выделение диапазона и обработать клики-----------------
 
     calConteiner.addEventListener('click', ({ target }) => {
@@ -140,8 +167,8 @@ if (container) {
       clearRange(container, 'end-range')
 
       // Настройка ячеек при смене месяца
-      let rangeFrom = container.querySelector('.-range-from-')
-      let rangeTo = container.querySelector('.-range-to-')
+      rangeFrom = container.querySelector('.-range-from-')
+      rangeTo = container.querySelector('.-range-to-')
 
       if (target.classList.contains('air-datepicker-nav--action')) {
         addPoitRange(rangeFrom, rangeTo)
