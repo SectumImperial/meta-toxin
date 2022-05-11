@@ -12,13 +12,13 @@ if (container) {
     let formGroups = Array.from(container.querySelectorAll('.form__group'))
     let buttonClear = document.querySelector('.datepick__button_clear')
 
-    function addPoitRange(startPoin, endPoint) {
+    function addPoitRange(startPoint, endPoint) {
       if (
-        startPoin &&
-        startPoin.classList.contains('-selected-') &&
-        !startPoin.classList.contains('start-range')
+        startPoint &&
+        startPoint.classList.contains('-selected-') &&
+        !startPoint.classList.contains('start-range')
       ) {
-        startPoin.classList.add('start-range')
+        startPoint.classList.add('start-range')
       }
 
       if (
@@ -27,6 +27,17 @@ if (container) {
         !endPoint.classList.contains('end-range')
       ) {
         endPoint.classList.add('end-range')
+      }
+    }
+
+    function deletePoitRange(point) {
+      if (
+        point &&
+        point.classList.contains('end-range') &&
+        point.classList.contains('start-range')
+      ) {
+        point.classList.remove('start-range')
+        point.classList.remove('end-range')
       }
     }
 
@@ -62,9 +73,20 @@ if (container) {
       return result
     }
 
-    // function checkValues(elems, pattern) {
-    //   // elems.
-    // }
+    function addDateCal(items) {
+      let dates = Array.from(
+        [...items].map((inputElement) => inputElement.value)
+      ).map((e) => e.split('.').reverse().join('.').replaceAll('.', '-'))
+      dp.selectDate(dates)
+    }
+
+    function performRane(rangeFrom, rangeTo) {
+      clearRange(container, 'start-range')
+      clearRange(container, 'end-range')
+      deletePoitRange(rangeFrom)
+      deletePoitRange(rangeTo)
+      addPoitRange(rangeFrom, rangeTo)
+    }
 
     // --------------- Создать календарь -----------------
     // Создать контейнер
@@ -131,21 +153,44 @@ if (container) {
     // Ручной ввод дат
 
     items.forEach((item) => {
-      item.addEventListener('change', ({ target }) => {
+      item.addEventListener('input', ({ target }) => {
+        target.value = target.value.replace(/[a-zа-яё]/iu, '')
+
         let correctFormat = [...items].every(({ value, pattern }) => {
           return value.match(pattern)
         })
 
         if (correctFormat) {
-          let dates = Array.from(
-            [...items].map((inputElement) => inputElement.value)
-          ).map((e) => e.split('.').reverse().join('.').replaceAll('.', '-'))
-          dp.selectDate(dates)
+          addDateCal(items)
+
           rangeFrom = container.querySelector('.-range-from-')
           rangeTo = container.querySelector('.-range-to-')
-          addPoitRange(rangeFrom, rangeTo)
-          clearRange(container, 'start-range')
-          clearRange(container, 'end-range')
+
+          if (firstItem.value === secondItem.value) {
+            let date = secondItem.value.split('.')
+            let day = date[0]
+            day++
+            date.splice(0, 1, day)
+            secondItem.value = date.join('.')
+
+            addDateCal(items)
+            rangeFrom = container.querySelector('.-range-from-')
+            rangeTo = container.querySelector('.-range-to-')
+            performRane(rangeFrom, rangeTo)
+          }
+          if (firstItem.value > secondItem.value) {
+            ;[firstItem.value, secondItem.value] = [
+              secondItem.value,
+              firstItem.value,
+            ]
+            performRane(rangeFrom, rangeTo)
+            addDateCal(items)
+          }
+          if (firstItem.value !== secondItem.value) {
+            performRane(rangeFrom, rangeTo)
+          }
+
+          // performRane(rangeFrom, rangeTo)
         }
       })
     })
