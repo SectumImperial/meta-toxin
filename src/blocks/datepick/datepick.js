@@ -8,9 +8,10 @@ const container = document.querySelector('._datepick-js')
 if (container) {
   try {
     let firstItem, secondItem, rangeFrom, rangeTo
-    let items = document.querySelectorAll('._datepickItem')
+    let items = container.querySelectorAll('._datepickItem')
     let formGroups = Array.from(container.querySelectorAll('.form__group'))
-    let buttonClear = document.querySelector('.datepick__button_clear')
+    let buttonClear = container.querySelector('.datepick__button_clear')
+    let buttonAccept = container.querySelector('.datepick__button_accept')
 
     function addPoitRange(startPoint, endPoint) {
       if (
@@ -95,7 +96,7 @@ if (container) {
       range: true,
     })
     dp.show()
-
+    console.log(dp)
     if (container.classList.contains('_datepick-2')) {
       firstItem = container.querySelector('.datepick-start')
       secondItem = container.querySelector('.datepick-end')
@@ -150,6 +151,15 @@ if (container) {
       dp.clear()
     })
 
+    // Клик по кнопке принять
+    buttonAccept.addEventListener('click', (e) => {
+      e.preventDefault()
+      console.log('work')
+      if (dp.rangeDateFrom || dp.rangeDateTo) {
+        calConteiner.classList.remove('_active')
+      }
+    })
+
     // Ручной ввод дат
 
     items.forEach((item) => {
@@ -189,8 +199,6 @@ if (container) {
           if (firstItem.value !== secondItem.value) {
             performRane(rangeFrom, rangeTo)
           }
-
-          // performRane(rangeFrom, rangeTo)
         }
       })
     })
