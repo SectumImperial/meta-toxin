@@ -13,4 +13,6 @@ require('./blocks/form/form.js')
 require('./blocks/datepick/datepick.js')
 require('./blocks/input/input.js')
 require('./blocks/select/select.js')
+
 require('./blocks/dropdown/dropdown.js')
+require('./blocks/counter/counter.js')

@@ -1,8 +1,12 @@
 mixin button(options = {}) 
+  - 
+    const classWrapper = options.classWrapper ? options.classWrapper : ''
+    const classBtn = options.classBtn ? options.classBtn : ''
+    const modificators = options.modificators ? `button_${options.modificators}` : ''
   .btn-wrapper(
-    class = options.classWrapper
+    class = classWrapper
    )
       button(
-        class = `button ${options.classBtn}`
+        class = `button ${classBtn} ${modificators}`
       )= options.content
 

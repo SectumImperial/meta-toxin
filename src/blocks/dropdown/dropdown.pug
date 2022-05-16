@@ -1,6 +1,12 @@
+include ../counter/counter.pug
+
 mixin dropdown(options = {})
   div.dropdown(
       class = options.class 
   )
     span.dropdown__placeholder= options.placeholder 
-    div.dropdown__content= options.dropdownContent 
+    div.dropdown__content
+      +counter({
+        class: 'dropdown__counter',
+        text: 'Взрослые'
+      })

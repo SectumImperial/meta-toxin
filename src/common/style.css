@@ -1,17 +1,16 @@
 @font-face {
   font-family: 'icomoon';
-  src: url('../fonts/icon/icomoon.eot?xr6l7v');
-  src: url('../fonts/icon/icomoon.eot?xr6l7v#iefix') format('embedded-opentype'),
-    url('../fonts/icon/icomoon.ttf?xr6l7v') format('truetype'),
-    url('../fonts/icon/icomoon.woff?xr6l7v') format('woff'),
-    url('../fonts/icon/icomoon.svg?xr6l7v#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?tshlzk');
+  src:  url('fonts/icomoon.eot?tshlzk#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?tshlzk') format('truetype'),
+    url('fonts/icomoon.woff?tshlzk') format('woff'),
+    url('fonts/icomoon.svg?tshlzk#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
 }
 
-[class^="__icon-"]::before,
-[class*=" __icon-"]::before {
+[class^="icon-"], [class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icomoon' !important;
   speak: never;
@@ -26,22 +25,18 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-._arrow_forward:before {
+.icon-arrow_forward:before {
   content: "\e900";
 }
-
-._checkbox:before {
+.icon-checkbox:before {
   content: "\e901";
 }
-
-._countMinus:before {
+.icon-countMinus:before {
   content: "\e902";
 }
-
-._countPlus:before {
+.icon-countPlus:before {
   content: "\e903";
 }
-
-._expand_more:before {
+.icon-expand_more:before {
   content: "\e904";
 }
