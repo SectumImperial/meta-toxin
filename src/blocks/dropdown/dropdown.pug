@@ -8,5 +8,16 @@ mixin dropdown(options = {})
     div.dropdown__content
       +counter({
         class: 'dropdown__counter',
-        text: 'Взрослые'
+        items: ['Взрослые', 'Дети', 'Младенцы']
       })
+      .dropdown__nav
+        +button({
+          content: 'Очистить',
+          classWrapper: 'datepick__button datepick__button_clear btn-wrapper_transparent',
+          classBtn: 'button_color'
+        })
+        +button({
+          content: 'Применить',
+          classWrapper: 'datepick__button datepick__button_accept btn-wrapper_transparent',
+          classBtn: 'button_color'
+        })
