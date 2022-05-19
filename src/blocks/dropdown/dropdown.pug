@@ -4,7 +4,7 @@ mixin dropdown(options = {})
   div.dropdown(
       class = options.class 
   )
-    span.dropdown__placeholder= options.placeholder 
+    span.dropdown__text= options.text 
     div.dropdown__content
       +counter({
         class: 'dropdown__counter',

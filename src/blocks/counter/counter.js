@@ -4,6 +4,11 @@ const counter = document.querySelector('.counter')
 const btnDecrement = counter.querySelectorAll('.counter__btn_decrement')
 const btnIncrement = counter.querySelectorAll('.counter__btn_increment')
 
+function checkLimits(countEl) {
+  if (Number(countEl.innerText) > 999) countEl.innerText = 999
+  if (Number(countEl.innerText) < 0) countEl.innerText = 0
+}
+
 btnDecrement.forEach((item) => {
   item.addEventListener('click', (e) => {
     e.preventDefault()
@@ -11,6 +16,13 @@ btnDecrement.forEach((item) => {
     let container = e.target.closest('.counter__item')
     let count = container.querySelector('.counter__count')
 
+    checkLimits(count)
+
+    if (
+      Number(count.innerText) > 0 &&
+      e.target.classList.contains('counter__btn_disabled')
+    )
+      e.target.classList.remove('counter__btn_disabled')
     if (e.target.classList.contains('counter__btn_disabled')) return
     count.innerText = Number(count.innerText) - 1
 
@@ -26,6 +38,8 @@ btnIncrement.forEach((item) => {
     let container = e.target.closest('.counter__item')
     let count = container.querySelector('.counter__count')
     let decrement = container.querySelector('.counter__btn_decrement')
+
+    checkLimits(count)
 
     if (Number(count.innerText) === 999) return
     count.innerText = Number(count.innerText) + 1
