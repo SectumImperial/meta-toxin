@@ -33,7 +33,10 @@ mixin booking-card(options = {})
         +dropdown({
            class: 'form__dropdown',
            text: 'Сколько гостей',
-           mod: 'guests'
+           mod: 'guests',
+           items: [
+             'Взрослые', 'Дети', 'Младенцы'
+           ]
         })
       +button({
         content: 'Подобрать номер',

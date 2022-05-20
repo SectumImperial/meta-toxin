@@ -1,23 +1,35 @@
-include ../counter/counter.pug
+include ../button/button.pug
 
 mixin dropdown(options = {})
+  - const items = options.items ? options.items : []
   div.dropdown(
       class = options.class 
   )
     span.dropdown__text= options.text 
     div.dropdown__content
-      +counter({
-        class: 'dropdown__counter',
-        items: ['Взрослые', 'Дети', 'Младенцы']
-      })
+      .dropdown__counter 
+        ul.dropdown__items
+          each item in items
+            li.dropdown__item
+              span.dropdown__item-text= item
+              .dropdown__items-nav
+                button(
+                 class = "dropdown__btn dropdown__btn_disabled dropdown__btn_decrement"
+                )= '-'
+                span.dropdown__count(
+                  data-item=item
+                ) 0
+                button(
+                  class = "dropdown__btn dropdown__btn_increment"
+                )= '+'
       .dropdown__nav
         +button({
           content: 'Очистить',
-          classWrapper: 'datepick__button datepick__button_clear btn-wrapper_transparent',
+          classWrapper: 'dropdown__button dropdown__button_clear btn-wrapper_transparent',
           classBtn: 'button_color'
         })
         +button({
           content: 'Применить',
-          classWrapper: 'datepick__button datepick__button_accept btn-wrapper_transparent',
+          classWrapper: 'dropdown__button dropdown__button_accept btn-wrapper_transparent',
           classBtn: 'button_color'
         })

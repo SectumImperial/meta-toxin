@@ -96,7 +96,7 @@ if (container) {
       range: true,
     })
     dp.show()
-    console.log(dp)
+
     if (container.classList.contains('_datepick-2')) {
       firstItem = container.querySelector('.datepick-start')
       secondItem = container.querySelector('.datepick-end')

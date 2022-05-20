@@ -37,6 +37,55 @@
   }
 
   ._active {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    gap: 19px;
+  }
+
+  // Каунтер
+  &__btn {
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    border: 1px solid rgba($dark-color, 0.5);
+    border-radius: 50%;
+
+    color: rgba($dark-color, 0.5);
+
+    &_disabled {
+      border-color: rgba($dark-color, 0.25);
+    }
+  }
+
+  &__item-text {
+    font-size: rem(12);
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  &__count {
+    font-weight: bold;
+    font-size: rem(12);
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+
+    list-style: none;
+  }
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__items-nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    justify-items: center;
   }
 }
