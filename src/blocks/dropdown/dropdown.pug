@@ -1,11 +1,25 @@
 include ../button/button.pug
+include ../input/input.pug
 
 mixin dropdown(options = {})
-  - const items = options.items ? options.items : []
+  - 
+    const items = options.items ? options.items : []
+    const typeItem = options.typeItem ? options.typeItem : 'guests'
+    const placeholder = typeItem === 'guests' ? 'Сколько гостей' : 'Сколько кроватей'
+    const id = options.idInput ? options.idInput : ''
+    
   div.dropdown(
       class = options.class 
   )
-    span.dropdown__text= options.text 
+    +input({
+      type: 'text',
+      name: typeItem,
+      classInput: 'dropdown__input',
+      readonly: true,
+      arrow: true,
+      placeholder: placeholder,
+      id: id
+    })
     div.dropdown__content
       .dropdown__counter 
         ul.dropdown__items

@@ -4,14 +4,14 @@
 
 .dropdown {
   position: relative;
-  padding: rem(13) rem(15);
-  border: 1px solid rgba($dark-color, 0.25);
-  border-radius: 4px;
+  // padding: rem(13) rem(15);
+  // border: 1px solid rgba($dark-color, 0.25);
+  // border-radius: 4px;
 
-  background: url(../../icons/expand_more.svg) no-repeat right center;
-  background-origin: content-box;
+  // background: url(../../icons/expand_more.svg) no-repeat right center;
+  // background-origin: content-box;
 
-  &__placeholder {
+  &__input {
     font-size: rem(14);
     font-family: 'Montserrat', sans-serif;
     color: rgba($dark-color, 0.75);

@@ -1,11 +1,12 @@
 mixin input(options = {})
-  - if(options.arrow) 
-    - const arrow = 'input_arrow'
+  - 
+    const arrow = options.arrow ? 'input_arrow' : ''
+    const classInput = options.classInput ? options.classInput : ''
   input(
     type = options.type
     name = options.name
     id = options.id
-    class = `input ${arrow || ''} ${options.classInput}`
+    class = `input ${arrow || ''} ${classInput}`
     value = options.value 
     placeholder = options.placeholder
     readonly = options.readonly

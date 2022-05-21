@@ -1,10 +1,10 @@
 import './dropdown.scss'
 
 let dropdown = document.querySelector('.dropdown')
+let dropdownInput = dropdown.querySelector('.dropdown__input')
 let dropdownContent = dropdown.querySelector('.dropdown__content')
 
-dropdown.addEventListener('click', (e) => {
-  if (!e.target.classList.contains('dropdown')) return
+dropdownInput.addEventListener('click', (e) => {
   dropdownContent.classList.toggle('_active')
 })
 
@@ -14,12 +14,16 @@ const counter = dropdown.querySelector('.dropdown__counter')
 const btnDecrement = counter.querySelectorAll('.dropdown__btn_decrement')
 const btnIncrement = counter.querySelectorAll('.dropdown__btn_increment')
 
-const counts = document.querySelectorAll('.dropdown__count')
-console.log(counts)
-
 function checkLimits(countEl) {
   if (Number(countEl.innerText) > 999) countEl.innerText = 999
   if (Number(countEl.innerText) < 0) countEl.innerText = 0
+}
+
+function checkCounts() {
+  const [...countItems] = document.querySelectorAll('.dropdown__count')
+  let counts = countItems.map((e) => Number(e.innerText))
+  let sum = counts.reduce((prev, curr) => prev + curr, 0)
+  console.log(sum)
 }
 
 btnDecrement.forEach((item) => {
@@ -42,7 +46,7 @@ btnDecrement.forEach((item) => {
     if (Number(count.innerText) === 0)
       e.target.classList.add('dropdown__btn_disabled')
 
-    console.log(counts)
+    checkCounts()
   })
 })
 
@@ -61,5 +65,9 @@ btnIncrement.forEach((item) => {
 
     if (Number(count.innerText) > 0)
       decrement.classList.remove('dropdown__btn_disabled')
+
+    checkCounts()
   })
 })
+
+// Отображение количества в поле инпута
