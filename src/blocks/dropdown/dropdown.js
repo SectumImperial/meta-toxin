@@ -23,7 +23,7 @@ function checkCounts() {
   const [...countItems] = document.querySelectorAll('.dropdown__count')
   let counts = countItems.map((e) => Number(e.innerText))
   let sum = counts.reduce((prev, curr) => prev + curr, 0)
-  console.log(sum)
+  dropdownInput.value = `${sum} гостей`
 }
 
 btnDecrement.forEach((item) => {
