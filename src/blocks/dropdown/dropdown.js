@@ -1,8 +1,15 @@
 import './dropdown.scss'
 
-let dropdown = document.querySelector('.dropdown')
-let dropdownInput = dropdown.querySelector('.dropdown__input')
-let dropdownContent = dropdown.querySelector('.dropdown__content')
+const dropdown = document.querySelector('.dropdown')
+const dropdownInput = dropdown.querySelector('.dropdown__input')
+const dropdownContent = dropdown.querySelector('.dropdown__content')
+
+let options
+try {
+  options = JSON.parse(dropdownInput.dataset.options)
+} catch (err) {
+  console.log('Something wrong with input data')
+}
 
 dropdownInput.addEventListener('click', (e) => {
   dropdownContent.classList.toggle('_active')
@@ -19,11 +26,31 @@ function checkLimits(countEl) {
   if (Number(countEl.innerText) < 0) countEl.innerText = 0
 }
 
+function createString(count, word) {
+  return `${count} ${word}`
+}
+
+// function createValueInput(sum, arrayWords) {
+// }
+
 function checkCounts() {
   const [...countItems] = document.querySelectorAll('.dropdown__count')
-  let counts = countItems.map((e) => Number(e.innerText))
+
+  let infants = countItems.filter((e) => e.dataset.separate === 'true')
+  console.log(infants)
+  let infantsCounts = infants.map((e) => Number(e.innerText))
+  let infantsSum = infantsCounts.reduce((prev, curr) => prev + curr, 0)
+  console.log(infantsSum)
+
+  let restCounts = countItems.filter((e) => e.dataset.separate === 'false')
+  let counts = restCounts.map((e) => Number(e.innerText))
   let sum = counts.reduce((prev, curr) => prev + curr, 0)
-  dropdownInput.value = `${sum} гостей`
+
+  let result = `${createString(sum, 'Гостей')}, ${createString(
+    infantsSum,
+    'Младенцев'
+  )}`
+  dropdownInput.value = result
 }
 
 btnDecrement.forEach((item) => {

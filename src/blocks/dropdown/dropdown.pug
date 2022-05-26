@@ -8,7 +8,6 @@ mixin dropdown(options = {})
     const placeholder = typeItem === 'guests' ? 'Сколько гостей' : 'Сколько кроватей'
     const id = options.idInput ? options.idInput : ''
     const separate = options.separateCount ? options.separateCount : null
-    
   div.dropdown(
       class = options.class 
   )
@@ -19,11 +18,17 @@ mixin dropdown(options = {})
       readonly: true,
       arrow: true,
       placeholder: placeholder,
-      id: id
+      id: id,
+      dataOptions: {
+        allCounts: ['гость', 'гостя', 'гостей'],
+        infantCounts: ['младенец', 'младенца', 'младенцев']
+      }
     })
     div.dropdown__content
       .dropdown__counter 
-        ul.dropdown__items
+        ul.dropdown__items(
+          data-type = typeItem
+        )
           each item in items
             li.dropdown__item
               span.dropdown__item-text= item
@@ -33,7 +38,7 @@ mixin dropdown(options = {})
                 )= '-'
                 span.dropdown__count(
                   data-item= item
-                  data-separate = separate === item ? 'true' : 'false'
+                  data-separate = separate.includes(item) ? 'true' : 'false'
                 ) 0
                 button(
                   class = "dropdown__btn dropdown__btn_increment"
