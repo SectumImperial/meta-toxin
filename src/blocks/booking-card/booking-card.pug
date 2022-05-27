@@ -38,7 +38,17 @@ mixin booking-card(options = {})
            items: [
              'Взрослые', 'Дети', 'Младенцы'
            ],
-           separateCount: ['Младенцы']
+           dataOptions: [
+             {
+               allCounts: ['гость', 'гостя', 'гостей']
+               },
+             {
+               infantCounts: {
+               item: 'Младенцы',
+               arr: ['младенец', 'младенца', 'младенцев']
+             }
+             }
+           ]
         })
       +button({
         content: 'Подобрать номер',

@@ -8,7 +8,7 @@ let options
 try {
   options = JSON.parse(dropdownInput.dataset.options)
 } catch (err) {
-  console.log('Something wrong with input data')
+  console.error('Something wrong with input data')
 }
 
 dropdownInput.addEventListener('click', (e) => {
@@ -30,27 +30,18 @@ function createString(count, word) {
   return `${count} ${word}`
 }
 
-// function createValueInput(sum, arrayWords) {
-// }
+function checkItems(item, allItems) {
+  console.log(allItems[1].infantCounts)
+}
 
 function checkCounts() {
   const [...countItems] = document.querySelectorAll('.dropdown__count')
-
-  let infants = countItems.filter((e) => e.dataset.separate === 'true')
-  console.log(infants)
-  let infantsCounts = infants.map((e) => Number(e.innerText))
-  let infantsSum = infantsCounts.reduce((prev, curr) => prev + curr, 0)
-  console.log(infantsSum)
-
-  let restCounts = countItems.filter((e) => e.dataset.separate === 'false')
-  let counts = restCounts.map((e) => Number(e.innerText))
-  let sum = counts.reduce((prev, curr) => prev + curr, 0)
-
-  let result = `${createString(sum, 'Гостей')}, ${createString(
-    infantsSum,
-    'Младенцев'
-  )}`
-  dropdownInput.value = result
+  countItems.forEach((e) => {
+    if (Number(e.innerText) > 0) {
+      checkItems(e.dataset.item, options)
+    }
+  })
+  // let sum = counts.reduce((prev, curr) => prev + curr, 0)
 }
 
 btnDecrement.forEach((item) => {
