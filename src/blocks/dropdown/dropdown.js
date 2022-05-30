@@ -1,4 +1,6 @@
 import './dropdown.scss'
+import ValidationError from './error.js'
+import DEFAULT_KEY from './constants.js'
 
 const dropdown = document.querySelector('.dropdown')
 const dropdownInput = dropdown.querySelector('.dropdown__input')
@@ -8,7 +10,7 @@ let options
 try {
   options = JSON.parse(dropdownInput.dataset.options)
 } catch (err) {
-  console.error('Something wrong with input data')
+  throw new ValidationError('Ошибка в чтении options', err)
 }
 
 dropdownInput.addEventListener('click', (e) => {
@@ -42,44 +44,154 @@ function chooseWord(count, words) {
   return words[2]
 }
 
-function createString(count, words, input) {
+function createString(count, word, input) {
   input.value = `${count} ${word}`
 }
 
-function checkUnique(e, allItems) {
-  let { item } = e.dataset
-  let itemsUnique = []
-
-  allItems.forEach((obj) => {
-    for (let key in obj) {
-      if (obj[key] === item) {
-        itemsUnique.push(e)
-      }
+/**
+ * Превращает объект в Map
+ *
+ * @param {object} obj - массив объектов с переданными данными для создани Map
+ * @return Map
+ */
+function createObjectMap(arrObj) {
+  let optMap = new Map()
+  for (let obj of arrObj) {
+    for (const [key, value] of Object.entries(obj)) {
+      optMap.set(key, value)
     }
-  })
+  }
 
-  if (itemsUnique.length === 1) return itemsUnique[0]
-  return itemsUnique
+  return optMap
 }
 
-function checkCounts() {
-  let arrUnique = []
-  let arrOverall = []
-  const [...countItems] = document.querySelectorAll('.dropdown__count')
-
-  countItems.forEach((e) => {
-    if (Number(e.innerText)) {
-      let elemsUnique = checkUnique(e, options)
-      if (elemsUnique.length > 0 || !Array.isArray(elemsUnique))
-        arrUnique.push(elemsUnique)
+/**
+ * Находит все элементы по селектору с element.innerText > 0 и создаёт Map, где key: data-attr, value: element.innerText
+ *
+ * @param {string} selector - строка селектора counter
+ * @return Map
+ */
+function createCountsMap(selector) {
+  const countMap = new Map()
+  const counts = [...document.querySelectorAll(selector)].filter(
+    (e) => Number(e.innerText) > 0
+  )
+  for (let count of counts) {
+    if (Number.isNaN(Number(count.innerText))) {
+      throw new ValidationError('Ошибка в чтении значения counter', err)
     }
-  })
-
-  if (arrUnique.length === 1) {
-    let itemUnique = arrUnique[0]
-    arrOverall = countItems.filter((item) => item !== itemUnique)
+    countMap.set(count.dataset.item, Number(count.innerText))
   }
-  // let sum = counts.reduce((prev, curr) => prev + curr, 0)
+
+  return countMap
+}
+
+/**
+ * Суммирует нужные значения counter и возвращает число.
+ *
+ * @param {Map} countsMap - Map counter
+ * @param indicator - признак, по которому определяются НЕ нужные числа counter
+ * @return {number} число
+ */
+function sumCounts(countsMap, wordsMap, indicator) {
+  let arrKyes = []
+  for (let [key, value] of countsMap) {
+    if (key !== indicator && !wordsMap.has(key)) {
+      arrKyes.push(value)
+    }
+  }
+  let reusult = arrKyes.reduce((prev, curr) => Number(prev) + Number(curr), 0)
+  return reusult
+}
+
+function isEqual(firstArr, secondArr) {
+  if (!Array.isArray(firstArr) || !Array.isArray(secondArr)) {
+    throw new ValidationError(
+      'В сравнение массивов isEqual() передан НЕ массив'
+    )
+  }
+  return (
+    firstArr.length == secondArr.length &&
+    firstArr.every((v, i) => v === secondArr[i])
+  )
+}
+function hasIsEqualKey(compareMap, arr) {
+  for (let [key] of compareMap) {
+    if (isEqual(key, arr)) return true
+  }
+
+  return false
+}
+
+/**
+ * Объединяет Map объекта слов и Map counter в новый Map, где key: массив слов опций,
+ * value: сумма element.innerText совпадающео атрибута
+ *
+ * @param {Map} wordsMap - Map слов
+ * @param {Map} countsMap - Map counter
+ */
+function joinMap(wordsMap, countsMap) {
+  const synthMap = new Map()
+  for (let [key, value] of countsMap) {
+    // Если в карте массива слов есть отдельный массив для ключа
+    if (wordsMap.has(key)) {
+      // Если создаваемая карта не имеет такого ключа
+      if (!hasIsEqualKey(synthMap, wordsMap.get(key))) {
+        synthMap.set(wordsMap.get(key), value)
+      }
+    }
+
+    // Если в карте массива слов нет отдельного массива для ключа
+    if (!wordsMap.has(key)) {
+      // Если создаваемая карта уже имеет нужный массив слов
+      if (synthMap.has(wordsMap.get(DEFAULT_KEY))) {
+        // перебрать и суммировать подходящие ключи countsMap, после установить в качестве value
+        const value = sumCounts(countsMap, wordsMap, DEFAULT_KEY)
+        synthMap.set(wordsMap.get(DEFAULT_KEY), value)
+      }
+
+      // Если создаваемая карта ещё не имеет нужный массив слов
+      if (!synthMap.has(wordsMap.get(DEFAULT_KEY))) {
+        synthMap.set(wordsMap.get(DEFAULT_KEY), value)
+      }
+    }
+  }
+
+  return synthMap
+}
+
+/**
+ * Прохиодит по Map и создёт строку согласно ключу и значению всего Map
+ *
+ * @param {Map} map - Map с массивами слов и значениями
+ * @return {[string]} Массив строк
+ */
+function createStrMap(map) {
+  let arrStrings = []
+  for (let [key, value] of map) {
+    arrStrings.push(`${value} ${chooseWord(value, key)}`)
+  }
+
+  let result = arrStrings.join(', ')
+  return result
+}
+
+function addInputValue(input, value) {
+  input.value = value
+}
+
+/**
+ * Обрабатывает данные counter и переданного объекта
+ *
+ * @param {string} selector - строка селектора counter
+ * @param {Array} data - массив объектов с переданными данными для создани строки
+ */
+function performData(selector, data) {
+  const wordsMap = createObjectMap(data)
+  const countsMap = createCountsMap(selector)
+  const synthMap = joinMap(wordsMap, countsMap)
+  const string = createStrMap(synthMap)
+  addInputValue(dropdownInput, string)
 }
 
 btnDecrement.forEach((item) => {
@@ -102,7 +214,7 @@ btnDecrement.forEach((item) => {
     if (Number(count.innerText) === 0)
       e.target.classList.add('dropdown__btn_disabled')
 
-    checkCounts()
+    performData('.dropdown__count', options)
   })
 })
 
@@ -122,7 +234,7 @@ btnIncrement.forEach((item) => {
     if (Number(count.innerText) > 0)
       decrement.classList.remove('dropdown__btn_disabled')
 
-    checkCounts()
+    performData('.dropdown__count', options)
   })
 })
 

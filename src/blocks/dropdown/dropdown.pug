@@ -7,7 +7,7 @@ mixin dropdown(options = {})
     const typeItem = options.typeItem ? options.typeItem : 'guests'
     const placeholder = typeItem === 'guests' ? 'Сколько гостей' : 'Сколько кроватей'
     const id = options.idInput ? options.idInput : ''
-    const dataOptions = options.dataOptions ? options.dataOptions : ''
+    const dataOptions = options.plurals ? options.plurals : ''
   div.dropdown(
       class = options.class 
   )
