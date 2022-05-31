@@ -7,20 +7,24 @@
   width: 100%;
   padding: 0 18px 1px 18px;
 
-  background-color: transparent;
   border: none;
   border-radius: 25px;
 
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
   font-size: rem(12);
-  color: $btn-secondary;
+
   text-transform: uppercase;
   vertical-align: top;
 
   &_white {
     background-color: white;
     color: $btn-primary;
+  }
+
+  &_violet {
+    background-color: transparent;
+    color: $btn-secondary;
   }
 
   &_color {
@@ -30,6 +34,10 @@
     &:hover {
       cursor: pointer;
     }
+  }
+
+  &_arrow {
+    background: url('../../icons/arrow_forward.svg') no-repeat 97% center;
   }
 
   @media (max-width: $tablet) {

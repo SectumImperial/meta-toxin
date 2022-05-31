@@ -1,12 +1,27 @@
 mixin button(options = {}) 
   - 
-    const classWrapper = options.classWrapper ? options.classWrapper : ''
-    const classBtn = options.classBtn ? options.classBtn : ''
-    const modificators = options.modificators ? `button_${options.modificators}` : ''
+    const {
+      classWrapper = '',
+      classBtn = '',
+      btnMod = '',
+      btnColor = '',
+    } = options 
+
+    const colorBtn = {
+      white: 'button_white',
+      violet: 'button_violet'
+    }
+
+
+    const modificators = {
+      arrow: 'button_arrow'
+    }
+    const mod = btnMod === '' ? '' : modificators[btnMod]
+
   .btn-wrapper(
     class = classWrapper
    )
       button(
-        class = `button ${classBtn} ${modificators}`
+        class = `button ${colorBtn[btnColor]} ${mod}`
       )= options.content
 
