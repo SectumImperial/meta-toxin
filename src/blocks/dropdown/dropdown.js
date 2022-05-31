@@ -1,5 +1,8 @@
 import './dropdown.scss'
-import ValidationError from './error.js'
+import ValidationError from './helpers/error.js'
+import chooseWord from './helpers/chooseWord'
+import isEqual from './helpers/isEqual'
+import cutString from './helpers/cutString'
 import DEFAULT_KEY from './constants.js'
 
 const dropdown = document.querySelector('.dropdown')
@@ -26,26 +29,6 @@ const btnIncrement = counter.querySelectorAll('.dropdown__btn_increment')
 function checkLimits(countEl) {
   if (Number(countEl.innerText) > 999) countEl.innerText = 999
   if (Number(countEl.innerText) < 0) countEl.innerText = 0
-}
-
-function chooseWord(count, words) {
-  const count100 = count % 100
-  const count10 = count % 10
-
-  if (count100 > 10 && count100 < 20) {
-    return words[2]
-  }
-  if (count10 > 1 && count10 < 5) {
-    return words[1]
-  }
-  if (count10 === 1) {
-    return words[0]
-  }
-  return words[2]
-}
-
-function createString(count, word, input) {
-  input.value = `${count} ${word}`
 }
 
 /**
@@ -104,17 +87,6 @@ function sumCounts(countsMap, wordsMap, indicator) {
   return reusult
 }
 
-function isEqual(firstArr, secondArr) {
-  if (!Array.isArray(firstArr) || !Array.isArray(secondArr)) {
-    throw new ValidationError(
-      'В сравнение массивов isEqual() передан НЕ массив'
-    )
-  }
-  return (
-    firstArr.length == secondArr.length &&
-    firstArr.every((v, i) => v === secondArr[i])
-  )
-}
 function hasIsEqualKey(compareMap, arr) {
   for (let [key] of compareMap) {
     if (isEqual(key, arr)) return true
@@ -177,7 +149,7 @@ function createStrMap(map) {
 }
 
 function addInputValue(input, value) {
-  input.value = value
+  input.value = cutString(value, 20)
 }
 
 /**

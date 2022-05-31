@@ -1,7 +1,7 @@
 @use 'sass:math';
 @import '../../common/functions.scss';
 @import '../../common/variables.scss';
-@import './datepick.css';
+@import './datepick_loaded.scss';
 
 .datepick {
   &_container {
