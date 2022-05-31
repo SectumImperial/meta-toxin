@@ -3,13 +3,30 @@
 @import '../../common/variables.scss';
 
 .landing {
+  display: flex;
+
+  padding: rem(70) rem(134) rem(20) rem(140);
+
   background-image: url(./img/landBakc.png);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
 
+  &__content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__booking-card {
+    align-self: flex-start;
+  }
+
   &__text {
     max-width: rem(297);
+    align-self: flex-end;
+    justify-self: flex-end;
+
     text-align: right;
   }
 }
