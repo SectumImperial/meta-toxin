@@ -1,3 +1,4 @@
+include ../logo/logo.pug
 include ../nav/nav.pug
 include ../button/button.pug
 
@@ -9,10 +10,11 @@ mixin header(options = {})
   header.header(
     class = options.classHeader
     )
-    a(
-      href = options.href
-      ).logo.header__logo
-      img(src="./blocks/header/img/logo.svg" alt="Логотип Toxin" width='106' height='40')
+
+    +logo({
+      classLogo: 'header__logo',
+      href: '#'
+    })
     +headerIcon()
     .header__nav-wrapper 
       +nav({classNav: 'header__nav'})

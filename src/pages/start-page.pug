@@ -2,9 +2,10 @@ extends ../blocks/page-layout/page-layout.pug
 
 include ../blocks/header/header.pug
 include ../blocks/landing/landing.pug
+include ../blocks/footer/footer.pug
 
 block variables 
-  - var isLogged = false
+  - const isLogged = false
 
 block content
   +header({
@@ -12,4 +13,4 @@ block content
       href: '#',
       isLogged})
   +landing({classMain: 'page__main'})
-  footer.page__footer.footer
+  +footer({classFooter: 'page__footer'})

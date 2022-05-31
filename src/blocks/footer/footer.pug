@@ -1,0 +1,35 @@
+include ../logo/logo.pug
+include ../text-element/text-element.pug
+include ../social/social.pug
+
+mixin footer(options = {})
+  - 
+    const {
+      classFooter = '',
+    } = options 
+
+  footer(
+    class= `footer ${classFooter}`
+  )
+    +logo({
+      classLogo: 'footer__logo',
+      href: '#'
+    })
+    +text-element({
+      classText: 'footer__text',
+      contentText: 'Copyright © 2018 Toxin отель. Все права защищены.'
+    })
+    +social([
+        {
+        name: 'twitter',
+        link: 'twitter.com',
+        icon: '../blocks/social/icons/twitter.svg'},
+        {
+        name: 'facebook',
+        link: 'facebook.com',
+        icon: '../blocks/social/icons/facebook.svg'},
+        {
+        name: 'instagram',
+        link: 'instagram.com',
+        icon: '../blocks/social/icons/instagram.svg'}
+    ])

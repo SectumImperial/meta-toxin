@@ -1,0 +1,10 @@
+mixin social(options = {})
+
+  ul.social-links 
+    each obj in options 
+      li.social-links__item 
+        a(
+            href= obj.link
+            class = `social-links__item_${obj.name}`
+        )
+          img(src=`${obj.icon}` alt=`${obj.name} link` width='24' height='24')

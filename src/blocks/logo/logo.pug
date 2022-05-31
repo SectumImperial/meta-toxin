@@ -1,0 +1,12 @@
+mixin logo(options = {})
+  - 
+    const {
+      classLogo = '',
+      href = '',
+    } = options 
+
+  a(
+      class=`logo ${classLogo}`
+      href = '#'
+  )
+    img(src="./blocks/logo/img/logo.svg" alt="Логотип Toxin" width='106' height='40')

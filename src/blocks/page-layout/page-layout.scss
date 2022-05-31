@@ -11,11 +11,15 @@
   font-size: rem(14);
 
   &__main {
-    flex: 1 1 auto;
-    min-height: 100%;
+    flex: 1 0 auto;
+    min-height: rem(830);
   }
 
   &__header {
     min-height: rem(70);
+  }
+
+  &__footer {
+    min-height: rem(367);
   }
 }
