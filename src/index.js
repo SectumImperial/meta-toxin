@@ -5,6 +5,7 @@ require('./blocks/header/header.js')
 require('./blocks/nav/nav.js')
 require('./blocks/button/button.js')
 require('./blocks/title/title.js')
+require('./blocks/text-element/text-element.js')
 
 require('./blocks/landing/landing.js')
 require('./blocks/booking-card/booking-card.js')

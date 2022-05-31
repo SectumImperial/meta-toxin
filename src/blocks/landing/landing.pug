@@ -1,14 +1,18 @@
 include ../booking-card/booking-card.pug
-
-mixin landing-promo(options = {})
-  .landing__promo 
-    p=text
+include ../text-element/text-element.pug
 
 mixin landing(options = {}) 
-  main.landing(
-    class = options.classMain)
+  -
+    const {
+      classMain = ''
+    } = options
+  main(
+    class = `landing ${classMain}`)
     .container.landing__content
       +booking-card({
         classBook: 'booking-card landing__booking-card'
       })
-      +landing-promo('Лучшие номера для вашей работы, отдыха и просто вдохновения')
+      +text-element({
+        classText: 'landing__text',
+        contentText: 'Лучшие номера для вашей работы, отдыха и просто вдохновения'
+      })

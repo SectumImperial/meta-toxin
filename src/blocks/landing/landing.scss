@@ -1,16 +1,15 @@
-@use "sass:math";
-@import "../../common/functions.scss";
-@import "../../common/variables.scss";
+@use 'sass:math';
+@import '../../common/functions.scss';
+@import '../../common/variables.scss';
 
 .landing {
-    background-image: url(./img/landBakc.png);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+  background-image: url(./img/landBakc.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 
-
-    &__promo {
-        max-width: rem(297);
-        text-align: right;
-    }
+  &__text {
+    max-width: rem(297);
+    text-align: right;
+  }
 }

@@ -1,0 +1,10 @@
+mixin text-element(options = {}) 
+  - 
+    const {
+      classText = '',
+      contentText = '',
+    } = options 
+
+  p(
+    class= `text-element ${classText}`
+  )= contentText
