@@ -1,6 +1,9 @@
 include ../logo/logo.pug
 include ../text-element/text-element.pug
 include ../social/social.pug
+include ../title/title.pug
+
+include ../nav/nav.pug
 
 mixin footer(options = {})
   - 
@@ -11,15 +14,112 @@ mixin footer(options = {})
   footer(
     class= `footer ${classFooter}`
   )
-    +logo({
-      classLogo: 'footer__logo',
-      href: '#'
-    })
-    +text-element({
-      classText: 'footer__text',
-      contentText: 'Copyright © 2018 Toxin отель. Все права защищены.'
-    })
-    +social([
+    .footer__blocks
+      .footer__block
+        +logo({
+          classLogo: 'footer__logo',
+          href: '#'
+        })
+        +text-element({
+          classText: 'footer__promo',
+          contentText: 'Бронирование номеров в лучшем отеле 2019 года по версии ассоциации «Отельные взгляды»'
+        })
+
+      .footer__navigation
+        .footer__navigation-item
+         +title({
+           level: 'h3',
+           text: 'Навигация',
+           classTitle: 'footer__title'
+         })
+         +nav({
+           classNav: 'footer__nav',
+           mod: 'vertical',
+           items: [{
+           content: 'О нас',
+           href: '#',
+           },
+           {
+           content: 'Новости',
+           href: '#',
+           },
+           {
+           content: 'Служба поддержки',
+           href: '#',
+           },
+           {
+           content: 'Услуги',
+           href: '#',
+           }
+           ]
+         })
+        .footer__navigation-item
+         +title({
+           level: 'h3',
+           text: 'О нас',
+           classTitle: 'footer__title'
+         })
+         +nav({
+           classNav: 'footer__nav',
+           mod: 'vertical',
+           items: [{
+           content: 'О сервисе',
+           href: '#',
+           },
+           {
+           content: 'Наша команда',
+           href: '#',
+           },
+           {
+           content: 'Вакансии',
+           href: '#',
+           },
+           {
+           content: 'Инвесторы',
+           href: '#',
+           }
+           ]
+         })
+        .footer__navigation-item
+         +title({
+           level: 'h3',
+           text: 'Служба поддержки',
+           classTitle: 'footer__title'
+         })
+         +nav({
+           classNav: 'footer__nav',
+           mod: 'vertical',
+           items: [{
+           content: 'Соглашения',
+           href: '#',
+           },
+           {
+           content: 'Сообщества',
+           href: '#',
+           },
+           {
+           content: 'Связь с нами',
+           href: '#',
+           },
+           ]
+         })
+        .footer__navigation-item
+          +title({
+           level: 'h3',
+           text: 'Подписка',
+           classTitle: 'footer__title'
+         })
+          +text-element({
+           classText: 'footer__email-text',
+           contentText: 'Получайте специальные предложения и новости сервиса'
+         })
+
+    .footer__horizontal
+      +text-element({
+        classText: 'footer__copyright',
+        contentText: 'Copyright © 2018 Toxin отель. Все права защищены.'
+      })
+      +social([
         {
         name: 'twitter',
         link: 'twitter.com',
@@ -33,3 +133,4 @@ mixin footer(options = {})
         link: 'instagram.com',
         icon: '../blocks/social/icons/instagram.svg'}
     ])
+

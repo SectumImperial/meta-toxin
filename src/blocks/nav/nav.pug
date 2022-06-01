@@ -27,8 +27,15 @@ mixin navSub(items = [])
         classLink: 'nav__sublink',
         href: item.href}) 
 
-mixin navList(items = [], classList = 'nav__items') 
-  ul(class = classList)
+mixin navList(options = {}) 
+  - 
+    const {
+      items = [], 
+      classList = 'nav__items', 
+      mod = 'horizontal'
+    } = options
+
+  ul(class = `${classList} nav__items_${mod}`)
     each item in items
       -
         const subItems = item.subItems ? item.subItems : ''
@@ -36,7 +43,8 @@ mixin navList(items = [], classList = 'nav__items')
           content = '',
           link = '#',
           classLi = subItems === '' ? 'nav__item' : 'nav__item nav__subitem',
-          classLink = subItems === '' ? 'nav__link' : 'nav__link nav__link_sub __icon-expand'
+          classLink = subItems === '' ? 'nav__link' : 'nav__link nav__link_sub __icon-expand',
+          
         } = item
       +navItem({
         content: content,
@@ -50,13 +58,14 @@ mixin navList(items = [], classList = 'nav__items')
 mixin nav(options = {})
   - 
     const { items = [], 
-    classNav = ''
+    classNav = '',
+    mod = 'horizontal'
     } = options
   
   nav(
     class = `nav ${classNav}`
     )
-      +navList(items)
+      +navList({items, mod})
     
 
 

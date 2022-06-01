@@ -3,7 +3,6 @@
 @import '../../common/variables.scss';
 
 .nav {
-  padding: 2px 0 2px 5px;
   font-size: rem(20);
   display: flex;
 
@@ -13,6 +12,11 @@
     flex-direction: column;
     flex-wrap: wrap;
     gap: 15px;
+
+    &_vertical {
+      font-size: rem(14);
+      gap: 0;
+    }
   }
 
   &__item {
@@ -108,6 +112,10 @@
 
       margin-right: rem(7);
       padding-top: rem(5);
+
+      &_vertical {
+        flex-direction: column;
+      }
     }
 
     &__item {

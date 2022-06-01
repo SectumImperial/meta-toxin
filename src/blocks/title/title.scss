@@ -3,7 +3,14 @@
 @import '../../common/variables.scss';
 
 .title {
-  font-size: rem(24);
   font-weight: bold;
   color: $dark-color;
+
+  &_h2 {
+    font-size: rem(24);
+  }
+
+  &_h3 {
+    font-size: rem(12);
+  }
 }

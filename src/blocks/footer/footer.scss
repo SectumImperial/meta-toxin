@@ -6,7 +6,73 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 25px;
+  gap: 20px;
 
   padding: rem(120) rem(104);
+
+  &__block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  &__horizontal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  &__promo,
+  &__navigation {
+    display: none;
+  }
+
+  @media (min-width: $mobile) {
+    padding: 0;
+    justify-content: space-between;
+
+    &__blocks {
+      display: flex;
+      justify-content: space-between;
+
+      padding: rem(100) rem(140) rem(140) rem(140);
+    }
+
+    &__block {
+      align-items: flex-start;
+    }
+
+    &__promo {
+      width: rem(260);
+    }
+
+    &__promo {
+      display: block;
+    }
+
+    &__navigation {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    &__title {
+      padding-left: rem(5);
+      padding-bottom: rem(10);
+    }
+
+    &__horizontal {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      width: 100%;
+
+      padding: rem(26) rem(140);
+
+      border-top: 1px solid #e5e5e5;
+    }
+  }
 }
