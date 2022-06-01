@@ -1,8 +1,12 @@
+@use 'sass:math';
+@import '../../common/functions.scss';
+@import '../../common/variables.scss';
+
 .footer {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 25px;
 
-  padding: 120px 104px;
+  padding: rem(120) rem(104);
 }

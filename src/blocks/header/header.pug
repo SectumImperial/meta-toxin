@@ -17,7 +17,64 @@ mixin header(options = {})
     })
     +headerIcon()
     .header__nav-wrapper 
-      +nav({classNav: 'header__nav'})
+      +nav({classNav: 'header__nav',
+      items: [
+        {
+          content: 'О нас',
+          href: '#'},
+        {
+          content: 'Услуги',
+          href: '#',
+          subItems: [
+            {
+              content: 'Пункт меню',
+              href: '#'
+            },
+            {
+              content: 'Пункт меню 1',
+              href: '#'
+            },
+            {
+              content: 'Пункт меню 2',
+              href: '#'
+            },
+            {
+              content: 'Пункт меню 3',
+              href: '#'
+            }
+          ]
+        },
+        {
+          content: 'Вакансии',
+          href: '#'
+        },
+        {
+          content: 'Новости',
+          href: '#'
+        },
+        {
+          content: 'Соглашения',
+          href: '#',
+          subItems: [
+            {
+              content: 'Пункт меню',
+              href: '#'
+            },
+            {
+              content: 'Пункт меню 1',
+              href: '#'
+            },
+            {
+              content: 'Пункт меню 2',
+              href: '#'
+            },
+            {
+              content: 'Пункт меню 3',
+              href: '#'
+            }
+          ]
+        }
+      ]})
 
       if !options.isLogged
         +button({

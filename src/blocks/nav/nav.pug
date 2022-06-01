@@ -1,76 +1,63 @@
 mixin navItem(options = {}) 
+  - 
+    const {
+      classLi = '',
+      href = '',
+      classLink = '',
+      content = '',
+    } = options 
+
+
   li(
-    class = options.classLi
-    )
-    a(
-      href = options.href
-      class = options.classLink
-    )= options.content
-    - if (options.classLi?.includes('nav__subitem'))
-      +navSub({href: "#"})
+    class = classLi
+  )
+   a(
+      href = href
+      class = classLink
+    )= content
+   if options.subItems !== ''
+    +navSub(options.subItems)
 
-mixin navSub(options = {})
+
+mixin navSub(items = [])
   ul.nav__sublist
-    +navItem({
-      content: 'Пункт меню',
-      classLink: 'nav__sublink',
-      href: '#'}) 
-    +navItem({
-      content: 'Пункт меню 1',
-      classLink: 'nav__sublink',
-      href: '#'})
-     +navItem({
-      content: 'Пункт меню 2',
-      classLink: 'nav__sublink',
-      href: '#'})
-    +navItem({
-      content: 'Пункт меню 3',
-      classLink: 'nav__sublink',
-      href: '#'})
-    +navItem({
-      content: 'Пункт меню 4',
-      classLink: 'nav__sublink',
-      href: '#'})
+    each item in items
+      +navItem({
+        content: item.content,
+        classLink: 'nav__sublink',
+        href: item.href}) 
 
-mixin navList 
-  ul.nav__items
-    +navItem({
-      content: 'О нас',
-      classLi: 'nav__item',
-      classLink: 'nav__link',
-      href: '#'
-              })
-    +navItem({
-      content: 'Услуги', 
-      classLi: 'nav__item nav__subitem',
-      classLink: 'nav__link nav__link_sub __icon-expand',
-      href: '#'
-      })
-    +navItem({
-      content: 'Вакансии',
-      classLi: 'nav__item',
-      classLink: 'nav__link',
-      href: '#'
-      })
-    +navItem({
-      content: 'Новости',
-      classLi: 'nav__item',
-      classLink: 'nav__link',
-      href: '#'
-      })
-    +navItem({
-      content: 'Соглашения', 
-      classLi: 'nav__item nav__subitem', 
-      classLink: 'nav__link nav__link_sub __icon-expand',
-      href: '#'
-      })
-
+mixin navList(items = [], classList = 'nav__items') 
+  ul(class = classList)
+    each item in items
+      -
+        const subItems = item.subItems ? item.subItems : ''
+        const {
+          content = '',
+          link = '#',
+          classLi = subItems === '' ? 'nav__item' : 'nav__item nav__subitem',
+          classLink = subItems === '' ? 'nav__link' : 'nav__link nav__link_sub __icon-expand'
+        } = item
+      +navItem({
+        content: content,
+        classLink: classLink,
+        classLi: classLi,
+        href: link,
+        subItems
+        })
+       
 
 mixin nav(options = {})
-  nav.nav(
-    class = `${options.classNav}`
+  - 
+    const { items = [], 
+    classNav = ''
+    } = options
+  
+  nav(
+    class = `nav ${classNav}`
     )
-    +navList()
+      +navList(items)
+    
 
 
 
