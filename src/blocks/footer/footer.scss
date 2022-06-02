@@ -42,6 +42,7 @@
 
     &__block {
       align-items: flex-start;
+      gap: 13px;
     }
 
     &__promo {
@@ -61,10 +62,12 @@
       flex-direction: column;
       gap: 20px;
       max-width: rem(260);
+      margin-bottom: 4px;
     }
 
     &__title {
-      padding-left: rem(5);
+      text-transform: uppercase;
+      margin-top: 4px;
     }
 
     &__horizontal {
