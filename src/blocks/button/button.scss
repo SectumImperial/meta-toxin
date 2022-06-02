@@ -3,9 +3,9 @@
 @import '../../common/variables.scss';
 
 .button {
-  height: rem(30);
+  min-height: rem(30);
+  max-height: 100%;
   width: 100%;
-  padding: 0 18px 1px 18px;
 
   border: none;
   border-radius: 25px;
@@ -17,22 +17,26 @@
   text-transform: uppercase;
   vertical-align: top;
 
+  &_medium {
+    padding: 0 18px 1px 18px;
+  }
+
   &_white {
-    background-color: white;
-    color: $btn-primary;
+    color: white;
+    background-color: transparent;
   }
 
   &_violet {
-    background-color: transparent;
-    color: $btn-secondary;
-  }
-
-  &_color {
+    background-color: white;
     color: $primary-color;
-    padding: 0;
-    height: auto;
     &:hover {
       cursor: pointer;
+    }
+  }
+
+  &_no-border {
+    &:hover {
+      color: rgba($dark-color, 0.5);
     }
   }
 
@@ -59,6 +63,10 @@
 
   @media (max-width: $mobile) {
     display: block;
+  }
+
+  &_transparent {
+    background: $primary-color;
   }
 
   &_transparent {

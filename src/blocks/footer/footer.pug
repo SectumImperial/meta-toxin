@@ -2,7 +2,7 @@ include ../logo/logo.pug
 include ../text-element/text-element.pug
 include ../social/social.pug
 include ../title/title.pug
-
+include ../input/input.pug
 include ../nav/nav.pug
 
 mixin footer(options = {})
@@ -113,6 +113,14 @@ mixin footer(options = {})
            classText: 'footer__email-text',
            contentText: 'Получайте специальные предложения и новости сервиса'
          })
+          +input({
+            type: 'email',
+            name: 'footer-mail',
+            id: 'footer-mail',
+            placeholder: 'Email',
+            arrow: 'violet',
+            pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+          })
 
     .footer__horizontal
       +text-element({

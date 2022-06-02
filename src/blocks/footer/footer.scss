@@ -35,8 +35,8 @@
 
     &__blocks {
       display: flex;
-      justify-content: space-between;
-
+      gap: rem(40);
+      width: 100%;
       padding: rem(100) rem(140) rem(140) rem(140);
     }
 
@@ -45,22 +45,26 @@
     }
 
     &__promo {
-      width: rem(260);
-    }
-
-    &__promo {
       display: block;
+      width: rem(260);
     }
 
     &__navigation {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+      width: 100%;
+    }
+
+    &__navigation-item {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: rem(260);
     }
 
     &__title {
       padding-left: rem(5);
-      padding-bottom: rem(10);
     }
 
     &__horizontal {

@@ -80,11 +80,14 @@ mixin header(options = {})
         +button({
           classWrapper: 'header__button', 
           content: 'Войти', 
-          btnColor: 'white'
+          btnColor: 'violet',
+          btnSize: 'medium'
           })
         +button({
           classWrapper: 'header__button', 
-          btnColor: 'violet',
-          content: 'Зарегистрироваться'})
+          btnColor: 'white',
+          btnWrapperColor: 'violet',
+          content: 'Зарегистрироваться',
+          btnSize: 'medium'})
       else
         p.header__user Юлий Цезарь
