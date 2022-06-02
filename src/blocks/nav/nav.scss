@@ -3,7 +3,6 @@
 @import '../../common/variables.scss';
 
 .nav {
-  font-size: rem(20);
   display: flex;
 
   &__items {
@@ -55,7 +54,7 @@
     &::before {
       position: absolute;
       top: 58%;
-      left: 103%;
+      right: -21px;
       transform: translateY(-50%);
       font-size: rem(8);
       color: rgba($dark-color, 0.5);
@@ -108,19 +107,21 @@
       justify-content: space-between;
       flex-direction: row;
       flex-wrap: wrap;
-      gap: 20px;
+      gap: 22px;
 
       margin-right: rem(7);
       padding-top: rem(5);
 
       &_vertical {
         flex-direction: column;
+        gap: 20px;
       }
     }
 
     &__item {
       position: relative;
       list-style: none;
+      padding: 0;
     }
 
     &__subitem:not(:last-child) {
@@ -129,7 +130,7 @@
 
     &__link {
       margin: 0;
-      padding: 0 5px;
+      padding: 0;
     }
 
     &__link_active {

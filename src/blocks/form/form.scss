@@ -27,10 +27,6 @@
   }
 
   &_booking-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: rem(50) rem(65) rem(65) rem(45);
-    gap: rem(20);
   }
 
   // [class*='_grid-wide-2'] {

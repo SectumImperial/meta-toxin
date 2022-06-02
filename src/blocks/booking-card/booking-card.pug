@@ -18,11 +18,11 @@ mixin booking-card(options = {})
       +title({
         level: 'h2',
         text: 'Найдём номера под ваши пожелания',
-        classTitle: 'form__title form__title_grid-wide-2',
+        classTitle: 'booking-card__title form__title_grid-wide-2',
       })
 
       +form-group({
-        classGroup: 'form__group_grid-2 form__group_datepick _datepick-2 _datepick-js'
+        classGroup: 'form__group_grid-2 booking-card__group_datepick _datepick-2 _datepick-js'
       })
         +datepick_2()
       +form-group()
@@ -53,6 +53,6 @@ mixin booking-card(options = {})
         btnColor: 'white',
         btnWrapperColor: 'violet',
         btnMod: 'arrow',
-        classWrapper: 'form__button form__button_grid-wide-2',
+        classWrapper: 'booking-card__button form__button form__button_grid-wide-2',
       })
       
