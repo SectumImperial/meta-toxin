@@ -43,6 +43,10 @@
     &:hover {
       color: $primary-color;
     }
+
+    &_active {
+      font-weight: bold;
+    }
   }
 
   //   Подменю мобилное и по-умолчанию

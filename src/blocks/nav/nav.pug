@@ -5,15 +5,17 @@ mixin navItem(options = {})
       href = '',
       classLink = '',
       content = '',
+      linkActive = ''
     } = options 
 
+    const isActive = linkActive === 'true' ? 'nav__link_active' : `${linkActive}` 
 
   li(
     class = classLi
   )
    a(
       href = href
-      class = classLink
+      class = `${classLink} ${isActive}`
     )= content
    if options.subItems !== ''
     +navSub(options.subItems)
@@ -31,11 +33,10 @@ mixin navList(options = {})
   - 
     const {
       items = [], 
-      classList = 'nav__items', 
-      mod = 'horizontal'
+      mod = 'horizontal',
     } = options
 
-  ul(class = `${classList} nav__items_${mod}`)
+  ul(class = `nav__items nav__items_${mod}`)
     each item in items
       -
         const subItems = item.subItems ? item.subItems : ''
@@ -44,28 +45,29 @@ mixin navList(options = {})
           link = '#',
           classLi = subItems === '' ? 'nav__item' : 'nav__item nav__subitem',
           classLink = subItems === '' ? 'nav__link' : 'nav__link nav__link_sub __icon-expand',
-          
+          linkActive = ''
         } = item
       +navItem({
         content: content,
         classLink: classLink,
         classLi: classLi,
         href: link,
+        isActive: isActive,
+        linkActive: linkActive,
         subItems
         })
        
 
 mixin nav(options = {})
   - 
-    const { items = [], 
+    const {
     classNav = '',
-    mod = 'horizontal'
     } = options
   
   nav(
     class = `nav ${classNav}`
     )
-      +navList({items, mod})
+      +navList(options)
     
 
 
