@@ -16,7 +16,7 @@
 
   &__nav-wrapper {
     position: absolute;
-    flex: 0 1 100%;
+    width: 100%;
     left: -200%;
 
     display: flex;
@@ -36,7 +36,8 @@
 
   &__logo {
     display: inline-block;
-    margin: rem(4) 0 0 3px;
+    padding-top: 2px;
+    padding-left: 2px;
   }
 
   // Иконка бургера
@@ -99,14 +100,7 @@
     justify-content: space-between;
     align-items: center;
     gap: rem(20);
-    padding: 0;
-
-    &__nav {
-      margin-left: auto;
-      margin-right: 22px;
-      margin-top: 1px;
-      padding: 2px 0 2px 5px;
-    }
+    padding: rem(13) 0;
 
     &__icon {
       display: none;
@@ -114,14 +108,18 @@
 
     &__nav-wrapper {
       position: static;
-      flex: 1 1 auto;
       left: 0;
+      width: auto;
 
       display: flex;
       flex-direction: row;
       gap: rem(20);
 
       opacity: 1;
+    }
+
+    &__nav {
+      margin-right: 27px;
     }
 
     &__button {

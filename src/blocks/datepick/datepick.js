@@ -117,7 +117,7 @@ if (container) {
       if (
         !targetContainer.classList.contains('clicked') &&
         sibling.classList.contains('clicked') &&
-        calConteiner.classList.contains('_active')
+        calConteiner.classList.contains('_active-dp')
       ) {
         targetContainer.classList.toggle('clicked')
         return
@@ -127,16 +127,16 @@ if (container) {
       if (
         targetContainer.classList.contains('clicked') &&
         sibling.classList.contains('clicked') &&
-        calConteiner.classList.contains('_active')
+        calConteiner.classList.contains('_active-dp')
       ) {
         targetContainer.classList.remove('clicked')
         sibling.classList.remove('clicked')
-        calConteiner.classList.remove('_active')
+        calConteiner.classList.remove('_active-dp')
         return
       }
 
       targetContainer.classList.toggle('clicked')
-      calConteiner.classList.toggle('_active')
+      calConteiner.classList.toggle('_active-dp')
     })
 
     // Форматирование заголовка согласно макету
@@ -156,7 +156,7 @@ if (container) {
       e.preventDefault()
       console.log('work')
       if (dp.rangeDateFrom || dp.rangeDateTo) {
-        calConteiner.classList.remove('_active')
+        calConteiner.classList.remove('_active-dp')
       }
     })
 

@@ -111,10 +111,7 @@
       justify-content: space-between;
       flex-direction: row;
       flex-wrap: wrap;
-      gap: 22px;
-
-      margin-right: rem(7);
-      padding-top: rem(5);
+      gap: 20px;
 
       &_vertical {
         flex-direction: column;
@@ -124,12 +121,13 @@
 
     &__item {
       position: relative;
+      justify-content: center;
       list-style: none;
       padding: 0;
     }
 
     &__subitem:not(:last-child) {
-      margin-right: 21px;
+      padding-right: 30px;
     }
 
     &__link {
