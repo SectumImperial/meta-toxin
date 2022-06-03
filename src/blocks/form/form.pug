@@ -7,12 +7,31 @@ mixin form(options = {})
       block
 
 mixin form-group(options = {})
-  div(class = `form__group ${options.classGroup || ''}`)
+  -
+    const {
+      classGroup = '',
+      gridColumn = '1',
+      datepick = 'false'
+    } = options 
+
+    const gridCol = {
+     1: 'form__group_grid',
+     2: 'form__group_grid-2',
+    }
+
+  div(class = `form__group ${classGroup} ${gridCol[gridColumn]} ${datepick ? 'form__group_datepick' : ''}`)
     block
 
 mixin label(options = {})
+  - 
+    const {
+      id = '',
+      classLabel = '',
+      text = ''
+    } = options
+
   label.form__label(
-    id = options.id
-    for = options.id
-    class = options.class
-  )=options.text
+    id = id
+    for = id
+    classLabel = classLabel
+  )=text

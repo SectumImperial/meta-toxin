@@ -3,7 +3,9 @@ include ../input/input.pug
 include ../button/button.pug
 
 mixin datepick_2() 
-  +form-group()
+  +form-group({
+    classGroup: 'datepick__group'
+  })
     +label({
       text: 'Прибытие',
       id: 'booking-enter',
@@ -17,7 +19,9 @@ mixin datepick_2()
       placeholder: 'ДД.ММ.ГГГГ',
       pattern: '[0-9]{2}.[0-9]{2}.[0-9]{4}'
     })
-  +form-group()
+  +form-group({
+    classGroup: 'datepick__group'
+  })
     +label({
       text: 'Выезд',
       id: 'booking-out',

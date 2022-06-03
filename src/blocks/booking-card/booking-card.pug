@@ -4,7 +4,6 @@ include ../title/title.pug
 include ../form/form.pug
 
 include ../input/input.pug
-//- include ../select/select.pug
 include ../datepick/datepick.pug
 include ../dropdown/dropdown.pug
 
@@ -13,16 +12,18 @@ mixin booking-card(options = {})
     class = options.classBook
   )
     +form({
-      classForm: 'booking-card__card form_booking-grid',
+      classForm: 'booking-card__card booking-card_grid',
       }) 
       +title({
         level: 'h2',
         text: 'Найдём номера под ваши пожелания',
-        classTitle: 'booking-card__title form__title_grid-wide-2',
+        classTitle: 'booking-card__title',
       })
 
       +form-group({
-        classGroup: 'form__group_grid-2 booking-card__group_datepick form__group_datepick _datepick-2 _datepick-js'
+        classGroup: 'booking-card__group_datepick _datepick-2 _datepick-js',
+        gridColumn: '2',
+        datepick: true
       })
         +datepick_2()
       +form-group()
@@ -31,7 +32,7 @@ mixin booking-card(options = {})
           id: 'booking-guests',
         })
         +dropdown({
-           class: 'form__dropdown',
+           class: 'booking-card__dropdown',
            idInput: 'booking-guests',
            text: 'Сколько гостей',
            mod: 'guests',
@@ -53,6 +54,6 @@ mixin booking-card(options = {})
         btnColor: 'white',
         btnWrapperColor: 'violet',
         btnMod: 'arrow',
-        classWrapper: 'booking-card__button form__button form__button_grid-wide-2',
+        classWrapper: 'booking-card__button',
       })
       

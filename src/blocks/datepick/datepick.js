@@ -9,7 +9,7 @@ if (container) {
   try {
     let firstItem, secondItem, rangeFrom, rangeTo
     let items = container.querySelectorAll('._datepickItem')
-    let formGroups = Array.from(container.querySelectorAll('.form__group'))
+    let formGroups = Array.from(container.querySelectorAll('.datepick__group'))
     let buttonClear = container.querySelector('.datepick__button_clear')
     let buttonAccept = container.querySelector('.datepick__button_accept')
 
@@ -110,7 +110,7 @@ if (container) {
       if (target.closest('.datepick_container')) return
       if (target.classList.contains('air-datepicker-cell')) return
 
-      let targetContainer = target.closest('.form__group')
+      let targetContainer = target.closest('.datepick__group')
       let sibling = [...formGroups.filter((e) => e !== targetContainer)][0]
 
       // Клик по сосденему инпуту после клика на первый, календарь не закрывается
