@@ -6,8 +6,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
-
   padding: rem(120) rem(104);
 
   &__block {
@@ -21,11 +19,15 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+  }
+
+  &__copyright {
+    padding: 14px 31px 21px 20px;
   }
 
   &__promo,
-  &__navigation {
+  &__navigation,
+  &__email {
     display: none;
   }
 
@@ -35,9 +37,7 @@
 
     &__blocks {
       display: flex;
-      gap: rem(40);
-      width: 100%;
-      padding: rem(100) rem(140) rem(140) rem(140);
+      padding: 98px 140px 75px 140px;
     }
 
     &__block {
@@ -53,21 +53,41 @@
     &__navigation {
       display: flex;
       flex-direction: row;
-      justify-content: space-between;
-      width: 100%;
+      margin-left: 40px;
+      min-width: 560px;
+
+      @media (max-width: 1300px) {
+        display: none;
+      }
     }
 
     &__navigation-item {
       display: flex;
       flex-direction: column;
-      gap: 20px;
-      max-width: rem(260);
-      margin-bottom: 4px;
+      gap: 21px;
+      padding-bottom: 4px;
+
+      margin-right: 63px;
+      &:last-child {
+        margin-right: 0;
+        margin-left: 31px;
+      }
     }
 
     &__title {
       text-transform: uppercase;
       margin-top: 4px;
+    }
+
+    &__email {
+      display: block;
+      width: 100%;
+      max-width: rem(260);
+      margin-left: 39px;
+    }
+
+    &__email-text {
+      margin: 17px 0px 23px;
     }
 
     &__horizontal {
@@ -77,9 +97,12 @@
 
       width: 100%;
 
-      padding: rem(26) rem(140);
+      padding: rem(22) rem(140);
 
       border-top: 1px solid #e5e5e5;
+    }
+
+    &__copyright {
     }
   }
 }

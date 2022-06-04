@@ -5,11 +5,9 @@
 .landing {
   display: flex;
 
-  padding: rem(70) rem(134) rem(20) rem(140);
+  padding: rem(70) rem(134) rem(21) rem(140);
 
   background: 50% 102% url(./img/landBakc.png) no-repeat;
-  // background-repeat: no-repeat;
-  // background-position: center;
   background-size: cover;
 
   &__content {
@@ -23,6 +21,8 @@
   }
 
   &__text {
+    padding: 0 3px 2px 0;
+
     max-width: rem(297);
     align-self: flex-end;
     justify-self: flex-end;

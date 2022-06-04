@@ -21,18 +21,20 @@ mixin booking-card(options = {})
       })
 
       +form-group({
-        classGroup: 'booking-card__group_datepick _datepick-2 _datepick-js',
+        classGroup: 'booking-card__datepick _datepick-2 _datepick-js',
         gridColumn: '2',
         datepick: true
       })
         +datepick_2()
-      +form-group()
+      +form-group({
+        classGroup: 'booking-card__dropdown'
+      })
         +label({
           text: 'Гости',
           id: 'booking-guests',
         })
         +dropdown({
-           class: 'booking-card__dropdown',
+           class: 'booking-card__dropdown-input',
            idInput: 'booking-guests',
            text: 'Сколько гостей',
            mod: 'guests',
@@ -55,5 +57,6 @@ mixin booking-card(options = {})
         btnWrapperColor: 'violet',
         btnMod: 'arrow',
         classWrapper: 'booking-card__button',
+        btnSize: 'large'
       })
       

@@ -15,7 +15,7 @@ mixin footer(options = {})
     class= `footer ${classFooter}`
   )
     .footer__blocks
-      .footer__block
+      section.footer__block
         +logo({
           classLogo: 'footer__logo',
           href: '#'
@@ -25,7 +25,7 @@ mixin footer(options = {})
           contentText: 'Бронирование номеров в лучшем отеле 2019 года по версии ассоциации «Отельные взгляды»'
         })
 
-      .footer__navigation
+      section.footer__navigation
         .footer__navigation-item
          +title({
            level: 'h3',
@@ -102,18 +102,18 @@ mixin footer(options = {})
            href: '#',
            },
            ]
-         })
-        .footer__navigation-item
-          +title({
+         })          
+      section.footer__email
+        +title({
            level: 'h3',
            text: 'Подписка',
            classTitle: 'footer__title'
          })
-          +text-element({
+        +text-element({
            classText: 'footer__email-text',
            contentText: 'Получайте специальные предложения и новости сервиса'
          })
-          +input({
+        +input({
             type: 'email',
             name: 'footer-mail',
             id: 'footer-mail',

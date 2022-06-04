@@ -7,7 +7,6 @@ mixin button(options = {})
       btnColor = '',
       btnWrapperColor = 'violet',
       btnSize = 'small',
-      border = 'true'
     } = options 
 
     const colorBtn = {
@@ -23,12 +22,13 @@ mixin button(options = {})
     const sizeBtn = {
       small: 'button_small',
       medium: 'button_medium',
+      large: 'button_large'
     }
 
 
     const modificators = {
       arrow: 'button_arrow',
-      false: 'button_no-border'
+      noBorder: 'button_no-border'
     }
     const mod = btnMod === '' ? '' : modificators[btnMod]
 
@@ -36,6 +36,7 @@ mixin button(options = {})
     class = `${classWrapper} ${wrapperColor[btnWrapperColor]}`
    )
       button(
-        class = `button ${colorBtn[btnColor]} ${mod} ${sizeBtn[btnSize]} ${modificators[border]}`
-      )= options.content
+        class = `button ${colorBtn[btnColor]} ${mod} ${sizeBtn[btnSize]}`
+      )
+        span.button__content= options.content
 

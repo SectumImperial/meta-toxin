@@ -3,9 +3,9 @@
 @import '../../common/variables.scss';
 
 .button {
-  min-height: rem(30);
-  max-height: 100%;
   width: 100%;
+  display: flex;
+  justify-content: center;
 
   border: none;
   border-radius: 25px;
@@ -15,10 +15,19 @@
   font-size: rem(12);
 
   text-transform: uppercase;
-  vertical-align: top;
+  // vertical-align: top;
+  text-align: center;
+
+  &_small {
+    padding: 7px 18px 8px;
+  }
 
   &_medium {
     padding: 0 18px 1px 18px;
+  }
+
+  &_large {
+    padding: 13px 50px 12px 46px;
   }
 
   &_white {
