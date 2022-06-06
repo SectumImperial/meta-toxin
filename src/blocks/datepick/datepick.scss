@@ -12,8 +12,6 @@
     display: none;
     width: rem(320);
     z-index: 10;
-
-    padding: rem(20);
     border: 1px solid rgba($dark-color, 0.25);
     border-radius: 4px;
 
@@ -21,7 +19,7 @@
   }
 
   &__button {
-    margin-top: rem(20);
+    padding: 1px 20px 20px 19px;
   }
 }
 
@@ -46,8 +44,10 @@
   // Навигация календаря, кнопки и год/месяц
   &-nav {
     border: none;
+    padding: 14px 16px 32px 16px;
+
     &--action {
-      background: url('../../icons/arrow_forward.svg') no-repeat center;
+      background: url('../../icons/arrow_forward-violet.svg') no-repeat center;
       transform: rotate(180deg);
 
       &[data-action='next'] {
@@ -55,7 +55,7 @@
       }
 
       &:hover {
-        background: url('../../icons/arrow_forward.svg') no-repeat center;
+        background: url('../../icons/arrow_forward-violet.svg') no-repeat center;
       }
       svg {
         display: none;
@@ -69,12 +69,22 @@
     }
   }
 
+  &--content {
+    padding: 0 20px 20px 20px;
+  }
+
   // Тело календаря, дни недели и даты
   &-body {
     &--day-name {
       color: $primary-color;
       font-weight: bold;
       font-size: rem(12);
+
+      text-transform: capitalize;
+    }
+
+    &--day-names {
+      margin: 8px 0 12px;
     }
 
     .-days- {

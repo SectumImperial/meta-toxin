@@ -89,6 +89,12 @@ if (container) {
       addPoitRange(rangeFrom, rangeTo)
     }
 
+    function deleteComma(elem) {
+      let text = elem.innerText
+      text = text.replace(',', '').replace('\n', ' ')
+      return text
+    }
+
     // --------------- Создать календарь -----------------
     // Создать контейнер
     let calConteiner = document.querySelector('.datepick_container')
@@ -140,8 +146,8 @@ if (container) {
     })
 
     // Форматирование заголовка согласно макету
-    let title = container.querySelector('.air-datepicker-nav--title')
-    title.textContent = title.textContent.replace(', ', ' ')
+    let navTitle = document.querySelector('.air-datepicker-nav--title')
+    navTitle.innerText = deleteComma(navTitle)
 
     // Очистка выбранных дат
     buttonClear.addEventListener('click', (e) => {
@@ -206,6 +212,9 @@ if (container) {
     // --------------- Настроить выделение диапазона и обработать клики-----------------
 
     calConteiner.addEventListener('click', ({ target }) => {
+      navTitle = document.querySelector('.air-datepicker-nav--title')
+      navTitle.innerText = deleteComma(navTitle)
+
       // Отображение дат в полях
       if (dp.rangeDateFrom) {
         firstItem.value = formatDate(dp.rangeDateFrom)
