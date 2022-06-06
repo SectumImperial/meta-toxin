@@ -4,12 +4,6 @@
 
 .dropdown {
   position: relative;
-  // padding: rem(13) rem(15);
-  // border: 1px solid rgba($dark-color, 0.25);
-  // border-radius: 4px;
-
-  // background: url(../../icons/expand_more.svg) no-repeat right center;
-  // background-origin: content-box;
 
   &__input {
     font-size: rem(14);
@@ -20,26 +14,29 @@
   &__content {
     display: none;
     position: absolute;
-    left: -1px;
+    width: 100%;
+    left: 0;
     top: calc(100% - 2px);
-    width: 100.5%;
-    padding: rem(7) rem(7) rem(14) rem(13);
-
     background-color: white;
 
     border: 1px solid rgba($dark-color, 0.25);
     border-radius: 0 0 4px;
   }
 
+  &__counter {
+    padding: 4px 6px 0 13px;
+  }
+
   &__nav {
     display: flex;
     justify-content: space-between;
+    padding: 0 4px 11px 11px;
   }
 
   ._active {
     display: flex;
     flex-direction: column;
-    gap: 19px;
+    gap: 17px;
   }
 
   // Каунтер
@@ -83,6 +80,7 @@
   }
 
   &__items-nav {
+    padding-top: 1px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     align-items: center;
