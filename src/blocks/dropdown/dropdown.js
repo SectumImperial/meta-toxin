@@ -9,9 +9,14 @@ const dropdown = document.querySelector('.dropdown')
 const dropdownInput = dropdown.querySelector('.dropdown__input')
 const dropdownContent = dropdown.querySelector('.dropdown__content')
 
+let btnClear = dropdown.querySelector('.dropdown__button_clear')
+let btnAccept = dropdown.querySelector('.dropdown__button_accept')
+
+btnClear.style.visibility = 'hidden'
+
 let options
 try {
-  options = JSON.parse(dropdownInput.dataset.options)
+  options = JSON.parse(dropdownInput.dataset.inputoptions)
 } catch (err) {
   throw new ValidationError('Ошибка в чтении options', err)
 }
@@ -29,6 +34,19 @@ const btnIncrement = counter.querySelectorAll('.dropdown__btn_increment')
 function checkLimits(countEl) {
   if (Number(countEl.innerText) > 999) countEl.innerText = 999
   if (Number(countEl.innerText) < 0) countEl.innerText = 0
+}
+
+function checkBtnVisibility(container, selector) {
+  const [...counts] = container.querySelectorAll(selector)
+  const countValues = []
+  counts.forEach((e) => countValues.push(Number(e.innerText)))
+  const sum = countValues.reduce(
+    (previousValue, currentValue) => previousValue + currentValue,
+    0
+  )
+
+  if (sum > 0) btnClear.style.visibility = 'visible'
+  if (sum === 0) btnClear.style.visibility = 'hidden'
 }
 
 /**
@@ -187,6 +205,7 @@ btnDecrement.forEach((item) => {
       e.target.classList.add('dropdown__btn_disabled')
 
     performData('.dropdown__count', options)
+    checkBtnVisibility(dropdown, '.dropdown__count')
   })
 })
 
@@ -207,7 +226,18 @@ btnIncrement.forEach((item) => {
       decrement.classList.remove('dropdown__btn_disabled')
 
     performData('.dropdown__count', options)
+    checkBtnVisibility(dropdown, '.dropdown__count')
   })
 })
 
-// Отображение количества в поле инпута
+btnClear.addEventListener('click', (e) => {
+  e.preventDefault()
+  dropdownInput.value = ''
+
+  const [...counts] = dropdown.querySelectorAll('.dropdown__count')
+  counts.forEach((e) => (e.innerText = 0))
+})
+
+btnAccept.addEventListener('click', (e) => {
+  dropdownContent.classList.remove('_active')
+})

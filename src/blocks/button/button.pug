@@ -3,10 +3,13 @@ mixin button(options = {})
     const {
       classWrapper = '',
       classBtn = '',
-      btnMod = '',
+      btnType = 'button',
+      type = 'submit',
+      btnMod = [],
       btnColor = '',
       btnWrapperColor = 'violet',
       btnSize = 'small',
+      href = '#'
     } = options 
 
     const colorBtn = {
@@ -36,8 +39,17 @@ mixin button(options = {})
   .btn-wrapper(
     class = `${classWrapper} ${wrapperColor[btnWrapperColor]}`
    )
-      button(
-        class = `button ${colorBtn[btnColor]} ${mod} ${sizeBtn[btnSize]}`
+    - if(btnType === 'button')
+     button(
+       class = `button ${colorBtn[btnColor]} ${mod} ${sizeBtn[btnSize]}`
+       type = type
       )
-        span.button__content= options.content
+       span.button__content= options.content
+    - if(btnType === 'link')
+     a(
+       class = `button button_link ${colorBtn[btnColor]} ${mod} ${sizeBtn[btnSize]}`
+       href = href
+      )
+       span.button__content= options.content
+
 

@@ -15,7 +15,6 @@
   font-size: rem(12);
 
   text-transform: uppercase;
-  // vertical-align: top;
   text-align: center;
 
   &_tiny {
@@ -55,6 +54,11 @@
 
   &_arrow {
     background: url('../../icons/arrow_forward.svg') no-repeat 97% center;
+  }
+
+  &_link {
+    display: block;
+    text-decoration: none;
   }
 
   @media (max-width: $tablet) {

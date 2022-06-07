@@ -13,6 +13,14 @@ if (container) {
     let buttonClear = container.querySelector('.datepick__button_clear')
     let buttonAccept = container.querySelector('.datepick__button_accept')
 
+    buttonClear.style.visibility = 'hidden'
+
+    function checkBtnVisibility(items) {
+      let addedValue = items.every((e) => e.value !== '')
+      if (addedValue) buttonClear.style.visibility = 'visible'
+      if (!addedValue) buttonClear.style.visibility = 'hidden'
+    }
+
     function addPoitRange(startPoint, endPoint) {
       if (
         startPoint &&
@@ -160,7 +168,6 @@ if (container) {
     // Клик по кнопке принять
     buttonAccept.addEventListener('click', (e) => {
       e.preventDefault()
-      console.log('work')
       if (dp.rangeDateFrom || dp.rangeDateTo) {
         calConteiner.classList.remove('_active-dp')
       }
@@ -290,6 +297,8 @@ if (container) {
           rangeFrom.classList.remove('start-range')
         }
       })
+
+      checkBtnVisibility([firstItem, secondItem])
     })
   } catch (err) {
     console.error(err)

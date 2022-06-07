@@ -3,11 +3,15 @@ include ../input/input.pug
 
 mixin dropdown(options = {})
   - 
-    const items = options.items ? options.items : []
-    const typeItem = options.typeItem ? options.typeItem : 'guests'
-    const placeholder = typeItem === 'guests' ? 'Сколько гостей' : 'Сколько кроватей'
-    const id = options.idInput ? options.idInput : ''
-    const dataOptions = options.plurals ? options.plurals : ''
+    const {
+      items = [],
+      mod = 'guests',
+      id = '',
+      dataOptions = '',
+      placeholder = '',
+      plurals = {}
+    } = options
+
   div.dropdown(
       class = options.class 
   )
@@ -19,7 +23,7 @@ mixin dropdown(options = {})
       arrow: true,
       placeholder: placeholder,
       id: id,
-      dataOptions
+      inputOptions: plurals
     })
     div.dropdown__content
       .dropdown__counter 
@@ -47,6 +51,7 @@ mixin dropdown(options = {})
           btnColor: 'violet',
           border: 'false',
           btnSize: 'tiny',
+          btnMod: ['noBorder'],
         })
         +button({
           content: 'Применить',
@@ -55,4 +60,5 @@ mixin dropdown(options = {})
           btnColor: 'violet',
           border: 'false',
           btnSize: 'tiny',
+          btnMod: ['noBorder']
         })
