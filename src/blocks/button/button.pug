@@ -34,7 +34,12 @@ mixin button(options = {})
       arrow: 'button_arrow',
       noBorder: 'button_no-border'
     }
-    const mod = btnMod === '' ? '' : modificators[btnMod]
+
+    let mod = ''
+    for(let item in btnMod) {
+      mod += modificators[btnMod]
+    }
+
 
   .btn-wrapper(
     class = `${classWrapper} ${wrapperColor[btnWrapperColor]}`
