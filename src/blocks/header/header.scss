@@ -100,7 +100,7 @@
     justify-content: space-between;
     align-items: center;
     gap: rem(20);
-    padding: rem(13) 0;
+    padding: 13px 5px;
 
     &__icon {
       display: none;
@@ -137,5 +137,9 @@
 
       border-left: 1px solid rgba($dark-color, 0.1);
     }
+  }
+
+  @media (min-width: $container) {
+    padding: 13px 0;
   }
 }

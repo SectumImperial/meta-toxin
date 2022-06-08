@@ -10,7 +10,7 @@
     right: 0;
 
     display: none;
-    width: rem(320);
+    max-width: rem(320);
     z-index: 10;
     border: 1px solid rgba($dark-color, 0.25);
     border-radius: 4px;
@@ -47,6 +47,10 @@
     border: none;
     padding: 14px 16px 32px 16px;
 
+    @media (max-width: 400px) {
+      padding: 10px 12px 28px 12px;
+    }
+
     &--action {
       background: url('../../icons/arrow_forward-violet.svg') no-repeat center;
       transform: rotate(180deg);
@@ -72,6 +76,9 @@
 
   &--content {
     padding: 0 20px 20px 20px;
+    @media (max-width: 400px) {
+      padding: 0 10px 10px 10px;
+    }
   }
 
   // Тело календаря, дни недели и даты
@@ -91,6 +98,11 @@
     .-days- {
       grid-template-columns: repeat(7, rem(40));
       grid-auto-rows: rem(40);
+
+      @media (max-width: 400px) {
+        grid-template-columns: repeat(7, rem(32));
+        grid-auto-rows: rem(32);
+      }
     }
 
     .-day- {

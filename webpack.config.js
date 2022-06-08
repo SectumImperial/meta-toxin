@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const path = require('path')
 
 let mode = 'development'
 if (process.env.NODE_ENV === 'production') {
@@ -26,6 +27,7 @@ module.exports = {
       directory: './src',
       watch: true,
     },
+    open: '/start-page.html',
   },
   devtool: 'source-map',
   optimization: {
@@ -37,8 +39,15 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css',
     }),
+
     new HtmlWebpackPlugin({
-      template: './src/pages/start-page.pug',
+      filename: 'start-page.html',
+      template: 'src/pages/start-page/start-page.pug',
+    }),
+
+    new HtmlWebpackPlugin({
+      filename: 'landing-page.html',
+      template: 'src/pages/landing-page/landing-page.pug',
     }),
   ],
   module: {

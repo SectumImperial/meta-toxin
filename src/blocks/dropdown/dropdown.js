@@ -239,5 +239,6 @@ btnClear.addEventListener('click', (e) => {
 })
 
 btnAccept.addEventListener('click', (e) => {
+  e.preventDefault()
   dropdownContent.classList.remove('_active')
 })
