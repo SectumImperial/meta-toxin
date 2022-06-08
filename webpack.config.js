@@ -1,16 +1,22 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const path = require('path')
+const fs = require('fs')
 
-let mode = 'development'
+let MODE = 'development'
 if (process.env.NODE_ENV === 'production') {
-  mode = 'production'
+  MODE = 'production'
 }
 
-console.log(`mode: ${mode}`)
+console.log(`mode: ${MODE}`)
+
+const PAGES_DIR = path.resolve(__dirname, 'src/pages')
+const PAGES = fs.readdirSync(PAGES_DIR).map((filename) => filename)
+
+console.log(PAGES)
 
 module.exports = {
-  mode: mode,
+  mode: MODE,
 
   entry: {
     scripts: './src/index.js',
@@ -22,7 +28,6 @@ module.exports = {
     clean: true,
   },
   devServer: {
-    open: true,
     static: {
       directory: './src',
       watch: true,
@@ -40,15 +45,13 @@ module.exports = {
       filename: '[name].[contenthash].css',
     }),
 
-    new HtmlWebpackPlugin({
-      filename: 'start-page.html',
-      template: 'src/pages/start-page/start-page.pug',
-    }),
-
-    new HtmlWebpackPlugin({
-      filename: 'landing-page.html',
-      template: 'src/pages/landing-page/landing-page.pug',
-    }),
+    ...PAGES.map(
+      (page) =>
+        new HtmlWebpackPlugin({
+          template: `${PAGES_DIR}/${page}/${page}.pug`,
+          filename: `./${page}.html`,
+        })
+    ),
   ],
   module: {
     rules: [
@@ -59,7 +62,7 @@ module.exports = {
       {
         test: /\.(sa|sc|c)ss$/i,
         use: [
-          mode === 'development' ? 'style-loader' : MiniCssExtractPlugin.loader,
+          MODE === 'development' ? 'style-loader' : MiniCssExtractPlugin.loader,
           'css-loader',
           {
             loader: 'postcss-loader',
