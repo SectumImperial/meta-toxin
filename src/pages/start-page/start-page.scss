@@ -1,0 +1,41 @@
+.start-page {
+  background-color: red;
+  &__main {
+    display: flex;
+
+    min-width: 100vw;
+    min-height: 100vh;
+
+    justify-content: center;
+    align-items: center;
+
+    background: radial-gradient(
+      circle,
+      rgba(10, 0, 162, 1) 0%,
+      rgba(166, 0, 255, 1) 100%
+    );
+  }
+
+  &__types {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  &__title {
+    color: white;
+    font-size: 35px;
+    text-decoration: underline;
+  }
+
+  &__pages-item {
+    list-style: none;
+  }
+
+  &__pages-link {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
+  }
+}
