@@ -15,7 +15,7 @@ mixin button(options = {})
     const colorBtn = {
       white: 'button_white',
       violet: 'button_violet',
-    }
+    } 
 
     const wrapperColor = {
       transparent: 'btn-wrapper_transparent',
@@ -36,7 +36,7 @@ mixin button(options = {})
     }
 
     let mod = ''
-    for(let item in btnMod) {
+    if(btnMod.length > 0) {
       mod += modificators[btnMod]
     }
 
@@ -46,13 +46,13 @@ mixin button(options = {})
    )
     - if(btnType === 'button')
      button(
-       class = `button ${colorBtn[btnColor]} ${mod} ${sizeBtn[btnSize]}`
+       class = `button ${colorBtn[btnColor]} ${sizeBtn[btnSize]} ${mod}`
        type = type
       )
        span.button__content= options.content
     - if(btnType === 'link')
      a(
-       class = `button button_link ${colorBtn[btnColor]} ${mod} ${sizeBtn[btnSize]}`
+       class = `button button_link ${colorBtn[btnColor]} ${sizeBtn[btnSize]} ${mod}`
        href = href
       )
        span.button__content= options.content

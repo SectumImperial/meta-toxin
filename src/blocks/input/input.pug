@@ -1,16 +1,43 @@
 mixin input(options = {})
   - 
-    const arrow = options.arrow === 'violet' ? 'input_arrow-violet' : 'input_arrow'
-    const classInput = options.classInput ? options.classInput : ''
+    const {
+      type = 'text',
+      name = '',
+      id = '',
+      classInput = '',
+      value = '',
+      placeholder = '',
+      readonly = 'false',
+      pattern = '',
+      inputMod = [],
+      inputOptions = '',
+    } = options
+
+  
+
+    const modificators = {
+      arrow: 'input_arrow',
+    }
+
+    let mod = ''
+    if(inputMod.length > 0) {
+      mod += modificators[inputMod]
+    }
+
   input(
-    type = options.type
-    name = options.name
-    id = options.id
-    class = `input ${arrow || ''} ${classInput}`
-    value = options.value 
-    placeholder = options.placeholder
-    readonly = options.readonly
-    pattern = options.pattern
-    data-inputOptions = options.inputOptions ? options.inputOptions : ''
+    type = type
+    name = name
+    id = id
+    class = `input ${classInput} ${mod}`
+    value = value 
+    placeholder = placeholder
+    readonly = readonly
+    pattern = pattern
+    data-inputOptions = inputOptions
   )  
+   
+
+
+
+  
   

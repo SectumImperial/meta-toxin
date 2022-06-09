@@ -3,4 +3,13 @@
 
 .registration {
   min-height: 684px;
+
+  background: 50% 102% url(./img/registration.png) no-repeat;
+  background-size: cover;
+
+  &__card {
+    background-color: white;
+    max-width: rem(380);
+    padding: 40px 30px 30px 30px;
+  }
 }

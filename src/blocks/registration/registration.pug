@@ -7,7 +7,29 @@ mixin registration(options = {})
   main(
       class = `registration ${options.classMain}`
   )
-    section.registration 
-      +form({
-        classForm: 'registration__card',
-      }) 
+    .registration__container.container
+      section.registration 
+        +form({
+          classForm: 'registration__card',
+        })
+          +title({
+            level: 'h2',
+            text: 'Регистрация аккаунта',
+            classTitle: 'registration__title',
+        })
+
+          +form-group({
+            classGroup: 'registration__name'
+          })
+            +input({
+              type: 'text',
+              name: 'registration-name',
+              id: 'registration-name',
+              placeholder: 'Имя',
+            })
+            +input({
+              type: 'text',
+              name: 'registration-surname',
+              id: 'registration-surname',
+              placeholder: 'Фамилия',
+            })
