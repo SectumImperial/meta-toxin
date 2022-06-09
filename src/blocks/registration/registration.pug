@@ -1,0 +1,13 @@
+include ../button/button.pug
+include ../title/title.pug
+include ../form/form.pug
+include ../input/input.pug
+
+mixin registration(options = {})
+  main(
+      class = `registration ${options.classMain}`
+  )
+    section.registration 
+      +form({
+        classForm: 'registration__card',
+      }) 

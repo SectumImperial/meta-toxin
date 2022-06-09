@@ -1,0 +1,13 @@
+extends ../../blocks/page-layout/page-layout.pug
+
+block variables 
+  - 
+    const title = '404. Ничего нет.'
+block content
+  body.error-page
+    main.error-page__main 
+      p.error-page__message= 'Больше ничего нет('
+      a(
+        class= 'error-page__link'
+        href= 'landing-page.html'
+      )= 'Вернуться на главную страницу'

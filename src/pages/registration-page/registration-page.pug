@@ -1,17 +1,16 @@
 extends ../../blocks/page-layout/page-layout.pug
 
 include ../../blocks/header/header.pug
-include ../../blocks/landing/landing.pug
+include ../../blocks/registration/registration.pug
 include ../../blocks/footer/footer.pug
 
 block variables 
   - 
-    const isLogged = false
-    const title = 'Стартовая страница Toxin'
+    const title = 'Регистрация в Toxin'
 
 block content
   +header({
       classHeader: 'page__header container',
       isLogged})
-  +landing({classMain: 'page__main'})
+  +registration({classMain: 'page__main'})
   +footer({classFooter: 'page__footer'})

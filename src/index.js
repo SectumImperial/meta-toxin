@@ -1,6 +1,8 @@
 import './common/styles.scss'
 
 require('./pages/start-page/start-page.js')
+require('./pages/error-page/error-page.js')
+require('./blocks/registration/registration.js')
 
 require('./blocks/landing/landing.js')
 

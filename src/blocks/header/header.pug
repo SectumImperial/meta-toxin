@@ -13,7 +13,7 @@ mixin header(options = {})
 
     +logo({
       classLogo: 'header__logo',
-      href: '#'
+      href: 'landing-page.html'
     })
     +headerIcon()
     .header__nav-wrapper 
@@ -21,58 +21,58 @@ mixin header(options = {})
       items: [
         {
           content: 'О нас',
-          href: '#',
+          href: 'error-page.html',
           linkActive: 'true'
           },
         {
           content: 'Услуги',
-          href: '#',
+          href: 'error-page.html',
           subItems: [
             {
               content: 'Пункт меню',
-              href: '#'
+              href: 'error-page.html'
             },
             {
               content: 'Пункт меню 1',
-              href: '#'
+              href: 'error-page.html'
             },
             {
               content: 'Пункт меню 2',
-              href: '#'
+              href: 'error-page.html'
             },
             {
               content: 'Пункт меню 3',
-              href: '#'
+              href: 'error-page.html'
             }
           ]
         },
         {
           content: 'Вакансии',
-          href: '#'
+          href: 'error-page.html'
         },
         {
           content: 'Новости',
-          href: '#'
+          href: 'error-page.html'
         },
         {
           content: 'Соглашения',
-          href: '#',
+          href: 'error-page.html',
           subItems: [
             {
               content: 'Пункт меню',
-              href: '#'
+              href: 'error-page.html'
             },
             {
               content: 'Пункт меню 1',
-              href: '#'
+              href: 'error-page.html'
             },
             {
               content: 'Пункт меню 2',
-              href: '#'
+              href: 'error-page.html'
             },
             {
               content: 'Пункт меню 3',
-              href: '#'
+              href: 'error-page.html'
             }
           ]
         }
@@ -84,7 +84,8 @@ mixin header(options = {})
           content: 'Войти', 
           btnColor: 'violet',
           btnSize: 'small',
-          btnType: 'link'
+          btnType: 'link',
+          href: 'registration-page.html'
           })
         +button({
           classWrapper: 'header__button', 
@@ -92,6 +93,6 @@ mixin header(options = {})
           btnWrapperColor: 'violet',
           content: 'Зарегистрироваться',
           btnSize: 'small',
-          btnType: 'link'})
+          btnType: 'link',})
       else
         p.header__user Юлий Цезарь

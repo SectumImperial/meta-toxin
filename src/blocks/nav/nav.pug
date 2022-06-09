@@ -2,7 +2,7 @@ mixin navItem(options = {})
   - 
     const {
       classLi = '',
-      href = '',
+      href = 'error-page.html',
       classLink = '',
       content = '',
       linkActive = ''
@@ -42,7 +42,7 @@ mixin navList(options = {})
         const subItems = item.subItems ? item.subItems : ''
         const {
           content = '',
-          link = '#',
+          href = 'error-page.html',
           classLi = subItems === '' ? 'nav__item' : 'nav__item nav__subitem',
           classLink = subItems === '' ? 'nav__link' : 'nav__link nav__link_sub __icon-expand',
           linkActive = ''
@@ -51,7 +51,7 @@ mixin navList(options = {})
         content: content,
         classLink: classLink,
         classLi: classLi,
-        href: link,
+        href: href,
         isActive: isActive,
         linkActive: linkActive,
         subItems
