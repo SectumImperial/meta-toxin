@@ -10,28 +10,23 @@ mixin form-group(options = {})
   -
     const {
       classGroup = '',
-      gridColumn = '1',
-      datepick = 'false'
+      datepick = false
     } = options 
 
-    const gridCol = {
-     1: 'form__group_grid',
-     2: 'form__group_grid-2',
-    }
-
-  div(class = `form__group ${classGroup} ${gridCol[gridColumn]} ${datepick ? 'form__group_datepick' : ''}`)
+  div(class = `form__group ${classGroup} ${datepick ? 'form__group_datepick' : ''}`)
     block
 
 mixin label(options = {})
   - 
     const {
       id = '',
+      forInput = '',
       classLabel = '',
       text = ''
     } = options
 
-  label.form__label(
+  label(
     id = id
-    for = id
-    classLabel = classLabel
+    for = forInput
+    class = `form__label ${classLabel}`
   )=text

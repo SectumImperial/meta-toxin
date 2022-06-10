@@ -11,6 +11,7 @@ mixin input(options = {})
       pattern = '',
       inputMod = [],
       inputOptions = '',
+      checked = false
     } = options
 
   
@@ -33,7 +34,8 @@ mixin input(options = {})
     placeholder = placeholder
     readonly = readonly
     pattern = pattern
-    data-inputOptions = inputOptions
+    data-inputOptions = inputOptions,
+    checked = checked
   )  
    
 

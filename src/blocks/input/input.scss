@@ -7,7 +7,9 @@
     outline: none;
   }
 
-  width: 100%;
+  &:not([type='radio']):not([type='checkbox']) {
+    width: 100%;
+  }
 
   padding: rem(12) rem(15);
 
@@ -18,8 +20,6 @@
   font-size: rem(14);
   font-family: 'Montserrat', sans-serif;
 
-  -webkit-appearance: none;
-  -moz-appearance: none;
   &::-webkit-calendar-picker-indicator {
     display: none;
   }

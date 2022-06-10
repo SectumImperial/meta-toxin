@@ -37,5 +37,9 @@
     text-decoration: none;
     font-weight: bold;
     font-size: 20px;
+
+    &:hover {
+      text-shadow: red 1px 0 10px;
+    }
   }
 }

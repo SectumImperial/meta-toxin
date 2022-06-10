@@ -26,10 +26,48 @@ mixin registration(options = {})
               name: 'registration-name',
               id: 'registration-name',
               placeholder: 'Имя',
+              classInput: 'registration-name'
             })
             +input({
               type: 'text',
               name: 'registration-surname',
               id: 'registration-surname',
               placeholder: 'Фамилия',
+              classInput: 'registration-surname'
             })
+
+            +form-group({
+              classGroup: 'registration__sex',
+              gridColumn: '2',
+            })
+              +form-group({
+                classGroup: 'registration__sex-group',
+              })
+                label(
+                  class = "registration__radio-label"
+                )
+                  +input({
+                    type: 'radio',
+                    name: 'registration-sex',
+                    id: 'registration-male',
+                    classInput: 'registration__radio-input visually-hidden',
+                    checked: true
+                  })
+                  span.registration__radio
+                  span.registration__radio-title Мужчина
+
+              +form-group({
+                classGroup: 'registration__sex-group',
+              })
+
+                label(
+                  class = "registration__radio-label"
+                )
+                  +input({
+                    type: 'radio',
+                    name: 'registration-sex',
+                    id: 'registration-female',
+                    classInput: 'registration__radio-input visually-hidden',
+                  })
+                  span.registration__radio
+                  span.registration__radio-title Женщина

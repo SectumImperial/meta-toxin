@@ -31,7 +31,8 @@ mixin booking-card(options = {})
       })
         +label({
           text: 'Гости',
-          id: 'booking-guests',
+          forInput: 'booking-guests',
+          classLabel: 'booking-card__label'
         })
         +dropdown({
            class: 'booking-card__dropdown-input',

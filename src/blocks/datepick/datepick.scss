@@ -4,6 +4,19 @@
 @import './datepick_loaded.scss';
 
 .datepick {
+  &__fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: rem(20);
+  }
+
+  &__label {
+    font-weight: bold;
+    font-size: rem(12);
+    text-transform: uppercase;
+    padding-bottom: 5px;
+  }
+
   &_container {
     position: absolute;
     top: calc(100% + 5px);
