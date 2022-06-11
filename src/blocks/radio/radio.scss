@@ -1,0 +1,37 @@
+@use 'sass:math';
+@import '../../common/functions.scss';
+@import '../../common/variables.scss';
+
+.radio {
+  &__label {
+    display: inline-block;
+  }
+
+  &__new-input {
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    border: 1px solid rgba($dark-color, 0.25);
+    border-radius: 100%;
+
+    cursor: pointer;
+  }
+
+  &__input:checked + &__new-input {
+    border: 1px solid $primary-color;
+    &::before {
+      content: '';
+      position: absolute;
+
+      width: 12px;
+      height: 12px;
+      top: calc(50% - 6px);
+      left: calc(50% - 6px);
+
+      border-radius: 100%;
+      background: $gradient;
+    }
+  }
+}

@@ -2,6 +2,7 @@ include ../button/button.pug
 include ../title/title.pug
 include ../form/form.pug
 include ../input/input.pug
+include ../radio/radio.pug
 
 mixin registration(options = {})
   main(
@@ -16,58 +17,85 @@ mixin registration(options = {})
             level: 'h2',
             text: 'Регистрация аккаунта',
             classTitle: 'registration__title',
-        })
+          })
 
           +form-group({
-            classGroup: 'registration__name'
+            classGroup: 'registration__name-group'
           })
             +input({
               type: 'text',
               name: 'registration-name',
               id: 'registration-name',
               placeholder: 'Имя',
-              classInput: 'registration-name'
+              classInput: 'registration__name'
             })
             +input({
               type: 'text',
               name: 'registration-surname',
               id: 'registration-surname',
               placeholder: 'Фамилия',
-              classInput: 'registration-surname'
+              classInput: 'registration__surname'
             })
 
+          +form-group({
+            classGroup: 'registration__sex',
+            gridColumn: '2',
+          })
             +form-group({
-              classGroup: 'registration__sex',
-              gridColumn: '2',
+              classGroup: 'registration__sex-group',
             })
-              +form-group({
-                classGroup: 'registration__sex-group',
+              +radio({
+                name: 'registration-sex',
+                id: 'registration-male',
+                checked: true,
+                text: 'Мужчина'
               })
-                label(
-                  class = "registration__radio-label"
-                )
-                  +input({
-                    type: 'radio',
-                    name: 'registration-sex',
-                    id: 'registration-male',
-                    classInput: 'registration__radio-input visually-hidden',
-                    checked: true
-                  })
-                  span.registration__radio
-                  span.registration__radio-title Мужчина
-
-              +form-group({
-                classGroup: 'registration__sex-group',
+            +form-group({
+              classGroup: 'registration__sex-group',
+            })
+              +radio({
+                name: 'registration-sex',
+                id: 'registration-female',
+                text: 'Женщина'
               })
-
-                label(
-                  class = "registration__radio-label"
-                )
-                  +input({
-                    type: 'radio',
-                    name: 'registration-sex',
-                    id: 'registration-female',
-                    classInput: 'registration__radio-input visually-hidden',
-                  })
-                  span.registration__radio
-                  span.registration__radio-title Женщина
+                
+          +form-group({
+            classGroup: 'registration__birth-group',
+          })
+            +label({
+              forInput: 'registration-birth',
+              classLabel: 'registration__label',
+              text: 'Дата рождения'
+            })
+            +input({
+              type: 'text',
+              id: 'registration-birth',
+              classInput: 'registration__birth',
+              placeholder: 'ДД.ММ.ГГГГ',
+              pattern: '[0-9]{2}.[0-9]{2}.[0-9]{4}',
+            })
+          
+          +form-group({
+            classGroup: 'registration__login-group',
+          })
+            +label({
+              classLabel: 'registration__label',
+              text: 'Данные для входа в сервис',
+              forInput: 'registration-email'
+            })
+            +input({
+              type: 'email',
+              name: 'registration-email',
+              id: 'registration-email',
+              placeholder: 'Email',
+              classInput: 'registration__email'
+            })
+            +input({
+              type: 'password',
+              name: 'registration-password',
+              id: 'registration-password',
+              placeholder: 'Пароль',
+              classInput: 'password'
+            })
+                
+        

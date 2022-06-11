@@ -1,0 +1,27 @@
+include ../input/input.pug
+
+mixin radio (options = {})
+  - 
+    const {
+      name = '',
+      id = '',
+      checked = false,
+      text = '',
+    } = options 
+
+  label(
+    class = "radio__label"
+  )
+    +input({
+      type: 'radio',
+      name: name,
+      id: id,
+      classInput: 'radio__input visually-hidden',
+      checked: checked
+      })
+    span.radio__new-input
+    span.registration__radio-title= text
+
+
+
+    

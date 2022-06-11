@@ -10,13 +10,6 @@
     gap: rem(20);
   }
 
-  &__label {
-    font-weight: bold;
-    font-size: rem(12);
-    text-transform: uppercase;
-    padding-bottom: 5px;
-  }
-
   &_container {
     position: absolute;
     top: calc(100% + 5px);

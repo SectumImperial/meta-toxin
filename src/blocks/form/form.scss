@@ -19,6 +19,10 @@
 
   &__label {
     display: inline-block;
+    font-weight: bold;
+    font-size: rem(12);
+    text-transform: uppercase;
+    padding-bottom: 5px;
   }
 
   // [class*='_grid-wide-2'] {
