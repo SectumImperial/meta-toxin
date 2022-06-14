@@ -3,15 +3,17 @@ include ../title/title.pug
 include ../form/form.pug
 include ../input/input.pug
 include ../radio/radio.pug
+include ../toggle/toggle.pug
+include ../text-element/text-element.pug
 
 mixin registration(options = {})
   main(
       class = `registration ${options.classMain}`
   )
     .registration__container.container
-      section.registration 
+      section.registration__card 
         +form({
-          classForm: 'registration__card',
+          classForm: 'registration__form',
         })
           +title({
             level: 'h2',
@@ -97,5 +99,37 @@ mixin registration(options = {})
               placeholder: 'Пароль',
               classInput: 'password'
             })
-                
+          +form-group({
+            classGroup: 'registration__mailing',
+          })
+            +toggle({
+              name: 'registration-mailing',
+              id: 'registration-mailing',
+              text: 'Получать спецпредложения',
+            })
+          +button({
+            content: 'Зарегистрироваться',
+            btnColor: 'white',
+            btnWrapperColor: 'violet',
+            btnMod: ['arrow'],
+            classWrapper: 'booking-card__button',
+            btnSize: 'large'
+          })
+
+          +form-group({
+            classGroup: 'registration__login-group',
+          })
+            +text-element({
+              classText:'registration__login-text',
+              contentText: 'Уже есть аккаунт на Toxin',
+             })
+            +button({
+              classWrapper: 'registration__login-button', 
+              content: 'Войти', 
+              btnColor: 'violet',
+              btnSize: 'small',
+              btnType: 'link',
+            })
+            
+      
         

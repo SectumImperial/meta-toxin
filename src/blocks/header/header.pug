@@ -85,7 +85,6 @@ mixin header(options = {})
           btnColor: 'violet',
           btnSize: 'small',
           btnType: 'link',
-          href: 'registration-page.html'
           })
         +button({
           classWrapper: 'header__button', 
@@ -93,6 +92,8 @@ mixin header(options = {})
           btnWrapperColor: 'violet',
           content: 'Зарегистрироваться',
           btnSize: 'small',
-          btnType: 'link',})
+          btnType: 'link',
+          href: 'registration-page.html'
+          })
       else
         p.header__user Юлий Цезарь

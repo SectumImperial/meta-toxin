@@ -8,7 +8,7 @@
   background: 50% 102% url(./img/registration.png) no-repeat;
   background-size: cover;
 
-  &__card {
+  &__form  {
     background-color: white;
     max-width: rem(380);
     padding: 40px 30px 30px 30px;
@@ -23,37 +23,5 @@
   &__sex-group {
     display: grid;
     grid-template-columns: auto 1fr;
-  }
-
-  &__radio-label {
-    display: inline-block;
-  }
-
-  &__radio {
-    position: relative;
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    background-color: #fff;
-    border: 1px solid rgba($dark-color, 0.25);
-    border-radius: 100%;
-
-    cursor: pointer;
-  }
-
-  &__radio-input:checked + &__radio {
-    border: 1px solid $primary-color;
-    &::before {
-      content: '';
-      position: absolute;
-
-      width: 12px;
-      height: 12px;
-      top: calc(50% - 6px);
-      left: calc(50% - 6px);
-
-      border-radius: 100%;
-      background: $gradient;
-    }
   }
 }

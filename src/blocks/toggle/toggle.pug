@@ -1,0 +1,20 @@
+include ../input/input.pug
+
+mixin toggle(options = {})
+  - 
+    const {
+      name = '',
+      id = '',
+      checked = false,
+      text = '',
+    } = options
+
+  label.toggle__label
+    +input({
+      type: 'checkbox',
+      name: name,
+      id: id,
+      classInput: 'toggle__input visually-hidden',
+      })
+    span.toggle__new-input
+    span.toggle__title= text  

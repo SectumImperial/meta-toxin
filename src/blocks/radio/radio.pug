@@ -9,9 +9,7 @@ mixin radio (options = {})
       text = '',
     } = options 
 
-  label(
-    class = "radio__label"
-  )
+  label.radio__label
     +input({
       type: 'radio',
       name: name,
@@ -20,7 +18,7 @@ mixin radio (options = {})
       checked: checked
       })
     span.radio__new-input
-    span.registration__radio-title= text
+    span.radio__title= text
 
 
 
