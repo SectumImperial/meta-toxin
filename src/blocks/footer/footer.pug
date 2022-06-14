@@ -34,24 +34,26 @@ mixin footer(options = {})
          })
          +nav({
            classNav: 'footer__nav',
-           mod: 'vertical',
-           items: [{
-           content: 'О нас',
-           href: '#',
-           },
-           {
-           content: 'Новости',
-           href: '#',
-           },
-           {
-           content: 'Служба поддержки',
-           href: '#',
-           },
-           {
-           content: 'Услуги',
-           href: '#',
+           navigation: {
+            mod: 'vertical',
+            items: [{
+            content: 'О нас',
+            href: '#',
+            },
+            {
+            content: 'Новости',
+            href: '#',
+            },
+            {
+            content: 'Служба поддержки',
+            href: '#',
+            },
+            {
+            content: 'Услуги',
+            href: '#',
+            }]
            }
-           ]
+           
          })
         .footer__navigation-item
          +title({
@@ -61,24 +63,25 @@ mixin footer(options = {})
          })
          +nav({
            classNav: 'footer__nav',
-           mod: 'vertical',
-           items: [{
-           content: 'О сервисе',
-           href: '#',
-           },
-           {
-           content: 'Наша команда',
-           href: '#',
-           },
-           {
-           content: 'Вакансии',
-           href: '#',
-           },
-           {
-           content: 'Инвесторы',
-           href: '#',
+           navigation: {
+            mod: 'vertical',
+            items: [{
+            content: 'О сервисе',
+            href: '#',
+            },
+            {
+            content: 'Наша команда',
+            href: '#',
+            },
+            {
+            content: 'Вакансии',
+            href: '#',
+            },
+            {
+            content: 'Инвесторы',
+            href: '#',
+            }]
            }
-           ]
          })
         .footer__navigation-item
          +title({
@@ -88,20 +91,22 @@ mixin footer(options = {})
          })
          +nav({
            classNav: 'footer__nav',
-           mod: 'vertical',
-           items: [{
-           content: 'Соглашения',
-           href: '#',
-           },
+           navigation: {
+            mod: 'vertical',
+            items: [{
+            content: 'Соглашения',
+            href: '#'
+            },
            {
-           content: 'Сообщества',
-           href: '#',
-           },
+            content: 'Сообщества',
+            href: '#'
+            },
            {
-           content: 'Связь с нами',
-           href: '#',
-           },
-           ]
+            content: 'Связь с нами',
+            href: '#',
+            }]
+           }
+           
          })          
       section.footer__email
         +title({
