@@ -7,6 +7,13 @@ mixin headerIcon
     span
 
 mixin header(options = {})
+  -
+   const {
+    classHeader = '',
+    navigation = {}
+   } = options
+
+
   header.header(
     class = options.classHeader
     )
@@ -17,66 +24,9 @@ mixin header(options = {})
     })
     +headerIcon()
     .header__nav-wrapper 
-      +nav({classNav: 'header__nav',
-      items: [
-        {
-          content: 'О нас',
-          href: 'error-page.html',
-          linkActive: 'true'
-          },
-        {
-          content: 'Услуги',
-          href: 'error-page.html',
-          subItems: [
-            {
-              content: 'Пункт меню',
-              href: 'error-page.html'
-            },
-            {
-              content: 'Пункт меню 1',
-              href: 'error-page.html'
-            },
-            {
-              content: 'Пункт меню 2',
-              href: 'error-page.html'
-            },
-            {
-              content: 'Пункт меню 3',
-              href: 'error-page.html'
-            }
-          ]
-        },
-        {
-          content: 'Вакансии',
-          href: 'error-page.html'
-        },
-        {
-          content: 'Новости',
-          href: 'error-page.html'
-        },
-        {
-          content: 'Соглашения',
-          href: 'error-page.html',
-          subItems: [
-            {
-              content: 'Пункт меню',
-              href: 'error-page.html'
-            },
-            {
-              content: 'Пункт меню 1',
-              href: 'error-page.html'
-            },
-            {
-              content: 'Пункт меню 2',
-              href: 'error-page.html'
-            },
-            {
-              content: 'Пункт меню 3',
-              href: 'error-page.html'
-            }
-          ]
-        }
-      ]})
+      +nav({
+        classNav: 'header__nav',
+        navigation: navigation})
 
       if !options.isLogged
         +button({

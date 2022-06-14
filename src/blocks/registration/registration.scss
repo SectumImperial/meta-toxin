@@ -8,9 +8,20 @@
   background: 50% 102% url(./img/registration.png) no-repeat;
   background-size: cover;
 
+  &__container {
+    display: flex;
+    justify-content: center;
+    padding: 19px 0;
+  }
+
+  &__card {
+    // Для PP
+    margin-left: 11px;
+  }
+
   &__form {
     background-color: white;
-    max-width: rem(380);
+    min-width: 380px;
     padding: 40px 30px 30px 30px;
   }
 
@@ -33,7 +44,7 @@
   }
 
   &__birth-group {
-    margin-top: 20px;
+    margin-top: 24px;
   }
 
   &__data-group {
@@ -41,7 +52,6 @@
   }
 
   &__email {
-    margin-top: 5px;
     margin-bottom: 10px;
   }
 
@@ -50,7 +60,7 @@
   }
 
   &__button {
-    margin-top: 20px;
+    margin-top: 24px;
   }
 
   &__login-group {

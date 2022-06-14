@@ -12,6 +12,67 @@ block variables
 block content
   +header({
       classHeader: 'page__header container',
-      isLogged})
+      isLogged,
+      navigation: {
+      items: [
+        {
+          content: 'О нас',
+          href: 'error-page.html',
+          linkActive: 'true'
+          },
+        {
+          content: 'Услуги',
+          href: 'error-page.html',
+          subItems: [
+            {
+              content: 'Пункт меню',
+              href: 'error-page.html'
+            },
+            {
+              content: 'Пункт меню 1',
+              href: 'error-page.html'
+            },
+            {
+              content: 'Пункт меню 2',
+              href: 'error-page.html'
+            },
+            {
+              content: 'Пункт меню 3',
+              href: 'error-page.html'
+            }
+          ]
+        },
+        {
+          content: 'Вакансии',
+          href: 'error-page.html'
+        },
+        {
+          content: 'Новости',
+          href: 'error-page.html'
+        },
+        {
+          content: 'Соглашения',
+          href: 'error-page.html',
+          subItems: [
+            {
+              content: 'Пункт меню',
+              href: 'error-page.html'
+            },
+            {
+              content: 'Пункт меню 1',
+              href: 'error-page.html'
+            },
+            {
+              content: 'Пункт меню 2',
+              href: 'error-page.html'
+            },
+            {
+              content: 'Пункт меню 3',
+              href: 'error-page.html'
+            }
+          ]
+        }
+      ]} 
+      })
   +landing({classMain: 'page__main'})
   +footer({classFooter: 'page__footer'})
