@@ -3,9 +3,9 @@
 @import '../../common/variables.scss';
 
 .radio {
-  &__label {
-    display: inline-block;
-  }
+  display: flex;
+  align-items: center;
+  gap: 10px;
 
   &__new-input {
     position: relative;
