@@ -8,10 +8,11 @@ mixin input(options = {})
       value = '',
       placeholder = '',
       readonly = false,
-      pattern = '',
+      pattern = '.*',
       inputMod = [],
       inputOptions = '',
-      checked = false
+      checked = false,
+      required = false
     } = options
 
   
@@ -35,7 +36,8 @@ mixin input(options = {})
     readonly = readonly
     pattern = pattern
     data-inputOptions = inputOptions,
-    checked = checked
+    checked = checked,
+    required = required
   )  
    
 

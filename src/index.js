@@ -2,8 +2,9 @@ import './common/styles.scss'
 
 require('./pages/start-page/start-page.js')
 require('./pages/error-page/error-page.js')
-require('./blocks/registration/registration.js')
 
+require('./blocks/registration/registration.js')
+require('./blocks/login/login.js')
 require('./blocks/landing/landing.js')
 
 require('./blocks/page-layout/page-layout.js')

@@ -1,8 +1,15 @@
 mixin form(options = {})
+  -
+    const {
+      classForm = '',
+      action = 'error-page.html',
+      method = 'get'
+    } = options 
+
   form(
-    class=`${options.classForm} form`
-    action="#" 
-    method="get"  
+    class = `${classForm} form`
+    action = action 
+    method = method  
     )
       block
 

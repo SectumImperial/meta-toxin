@@ -28,6 +28,12 @@
     text-decoration: underline;
   }
 
+  &__pages-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
   &__pages-item {
     list-style: none;
   }

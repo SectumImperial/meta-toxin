@@ -1,0 +1,67 @@
+include ../button/button.pug
+include ../title/title.pug
+include ../form/form.pug
+include ../input/input.pug
+include ../radio/radio.pug
+include ../toggle/toggle.pug
+include ../text-element/text-element.pug
+
+mixin login(options = {})
+  main(
+      class = `login ${options.classMain}`
+  )
+    .login__container.container
+      section.login__card
+        +form({
+          classForm: 'login__form',
+          action: 'login-page.html'
+        })
+          +title({
+            level: 'h2',
+            text: 'Войти',
+            classTitle: 'login__title',
+          })
+          +form-group({
+            classGroup: 'login__data-group',
+          })
+            +input({
+              type: 'email',
+              name: 'login-email',
+              id: 'login-email',
+              placeholder: 'Email',
+              classInput: 'login__email',
+              required: true
+            })
+            +input({
+              type: 'password',
+              name: 'login-password',
+              id: 'login-password',
+              placeholder: 'Пароль',
+              classInput: 'password',
+              required: true
+            })
+          +button({
+            content: 'Войти',
+            btnColor: 'white',
+            btnWrapperColor: 'violet',
+            btnMod: ['arrow'],
+            classWrapper: 'login__button',
+            btnSize: 'large'
+          })
+          +form-group({
+            classGroup: 'login__create-group',
+          })
+            +text-element({
+              classText:'login__create-text',
+              contentText: 'Нет аккаунта на Toxin',
+             })
+            +button({
+              classWrapper: 'login__create-button', 
+              content: 'Создать', 
+              btnColor: 'violet',
+              btnSize: 'medium',
+              btnType: 'link',
+              href: 'registration-page.html'
+            })
+
+          
