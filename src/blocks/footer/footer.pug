@@ -9,6 +9,8 @@ mixin footer(options = {})
   - 
     const {
       classFooter = '',
+      contentPromo = '',
+      navItems = [],
     } = options 
 
   footer(
@@ -18,96 +20,35 @@ mixin footer(options = {})
       section.footer__block
         +logo({
           classLogo: 'footer__logo',
-          href: '#'
+          href: 'landing-page.html'
         })
         +text-element({
           classText: 'footer__promo',
-          contentText: 'Бронирование номеров в лучшем отеле 2019 года по версии ассоциации «Отельные взгляды»'
+          contentText: contentPromo,
         })
 
       section.footer__navigation
-        .footer__navigation-item
-         +title({
-           level: 'h3',
-           text: 'Навигация',
-           classTitle: 'footer__title'
-         })
-         +nav({
-           classNav: 'footer__nav',
-           navigation: {
-            mod: 'vertical',
-            items: [{
-            content: 'О нас',
-            href: '#',
-            },
-            {
-            content: 'Новости',
-            href: '#',
-            },
-            {
-            content: 'Служба поддержки',
-            href: '#',
-            },
-            {
-            content: 'Услуги',
-            href: '#',
-            }]
-           }
-           
-         })
-        .footer__navigation-item
-         +title({
-           level: 'h3',
-           text: 'О нас',
-           classTitle: 'footer__title'
-         })
-         +nav({
-           classNav: 'footer__nav',
-           navigation: {
-            mod: 'vertical',
-            items: [{
-            content: 'О сервисе',
-            href: '#',
-            },
-            {
-            content: 'Наша команда',
-            href: '#',
-            },
-            {
-            content: 'Вакансии',
-            href: '#',
-            },
-            {
-            content: 'Инвесторы',
-            href: '#',
-            }]
-           }
-         })
-        .footer__navigation-item
-         +title({
-           level: 'h3',
-           text: 'Служба поддержки',
-           classTitle: 'footer__title'
-         })
-         +nav({
-           classNav: 'footer__nav',
-           navigation: {
-            mod: 'vertical',
-            items: [{
-            content: 'Соглашения',
-            href: '#'
-            },
-           {
-            content: 'Сообщества',
-            href: '#'
-            },
-           {
-            content: 'Связь с нами',
-            href: '#',
-            }]
-           }
-           
-         })          
+        each item in navItems
+          -
+           const {
+             titleItem = '',
+             items = [],
+           } = item
+
+          .footer__navigation-item
+            +title({
+              level: 'h3',
+              text: titleItem,
+              classTitle: 'footer__title'
+            })
+            +nav({
+              classNav: 'footer__nav',
+              navigation: {
+              mod: 'vertical',
+              items: items
+              }
+            })
+
       section.footer__email
         +title({
            level: 'h3',
@@ -146,4 +87,3 @@ mixin footer(options = {})
         link: 'https://instagram.com/',
         icon: '../blocks/social/icons/instagram.svg'}
     ])
-

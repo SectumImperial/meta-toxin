@@ -11,18 +11,30 @@
   &__container {
     display: flex;
     justify-content: center;
-    padding: 19px 0;
+    padding: 19px 5px;
   }
 
   &__card {
     // Для PP
-    margin-left: 11px;
+    margin-left: 7px;
+
+    @media (max-width: $mobile) {
+      margin-left: 0;
+    }
   }
 
   &__form {
     background-color: white;
     min-width: 380px;
-    padding: 40px 30px 30px 30px;
+    padding: 37px 30px 30px 28px;
+
+    border: 1px solid rgba(#000000, 0.12);
+    border-radius: 4px;
+
+    @media (max-width: $mobile) {
+      min-width: auto;
+      padding: 10px;
+    }
   }
 
   &__name-group {
