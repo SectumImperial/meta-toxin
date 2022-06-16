@@ -176,9 +176,7 @@ if (container) {
     // Ручной ввод дат
 
     items.forEach((item) => {
-      item.addEventListener('input', ({ target }) => {
-        target.value = target.value.replace(/[a-zа-яё]/iu, '')
-
+      item.addEventListener('input', () => {
         let correctFormat = [...items].every(({ value, pattern }) => {
           return value.match(pattern)
         })
