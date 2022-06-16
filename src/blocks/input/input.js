@@ -1,7 +1,7 @@
 import './input.scss'
 import Inputmask from 'inputmask'
 
-let inputDates = document.querySelectorAll('._datepickItem')
+let inputDates = document.querySelectorAll('._dateInput')
 
 if (inputDates) {
   inputDates.forEach((e) => {
