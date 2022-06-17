@@ -6,6 +6,7 @@ require('./pages/error-page/error-page.js')
 require('./blocks/registration/registration.js')
 require('./blocks/login/login.js')
 require('./blocks/landing/landing.js')
+require('./blocks/search-room/search-room.js')
 
 require('./blocks/page-layout/page-layout.js')
 require('./blocks/header/header.js')

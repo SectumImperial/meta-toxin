@@ -1,0 +1,14 @@
+.search-room {
+  display: flex;
+  gap: 60px;
+  width: 100%;
+
+  &__filters {
+    max-width: 246px;
+    min-width: 246px;
+  }
+
+  &__rooms {
+    max-width: 834px;
+  }
+}

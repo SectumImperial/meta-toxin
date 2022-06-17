@@ -38,9 +38,12 @@ mixin dropdown(options = {})
                 button(
                  class = "dropdown__btn dropdown__btn_disabled dropdown__btn_decrement"
                 )= '-'
-                span.dropdown__count(
+                input.dropdown__count(
+                  name= item
                   data-item= item
-                ) 0
+                  value= 0
+                  readonly                 
+                  )
                 button(
                   class = "dropdown__btn dropdown__btn_increment"
                 )= '+'

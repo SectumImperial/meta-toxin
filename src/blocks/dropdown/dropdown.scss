@@ -63,8 +63,16 @@
   }
 
   &__count {
+    width: 9px;
+
+    font-family: 'Montserrat', sans-serif;
     font-weight: bold;
     font-size: rem(12);
+    border: none;
+
+    &:focus {
+      outline: none;
+    }
   }
 
   &__items {

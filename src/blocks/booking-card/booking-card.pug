@@ -13,7 +13,7 @@ mixin booking-card(options = {})
   )
     +form({
       classForm: 'booking-card__card',
-      action: 'search-room.html'
+      action: 'search-page.html'
       }) 
       +title({
         level: 'h2',
@@ -23,7 +23,6 @@ mixin booking-card(options = {})
 
       +form-group({
         classGroup: 'booking-card__datepick _datepick-2 _datepick-js',
-        gridColumn: '2',
         datepick: true
       })
         +datepick_2()

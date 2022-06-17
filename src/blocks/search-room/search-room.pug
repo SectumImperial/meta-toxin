@@ -1,0 +1,17 @@
+include ../datepick/datepick.pug
+
+
+mixin search-room(options = {}) 
+  -
+    const {
+        classMain = ''
+    } = options
+
+  main(
+    class = `search-room ${classMain} container`
+  )
+    section.search-room__filters 
+      .search-room__filter-item._datepick-js._datepick-1
+        +datepick_1()
+
+    section.search-room__rooms

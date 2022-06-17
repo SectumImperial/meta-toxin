@@ -33,14 +33,14 @@ if (dropdown) {
   const btnIncrement = counter.querySelectorAll('.dropdown__btn_increment')
 
   function checkLimits(countEl) {
-    if (Number(countEl.innerText) > 999) countEl.innerText = 999
-    if (Number(countEl.innerText) < 0) countEl.innerText = 0
+    if (Number(countEl.value) > 999) countEl.value = 999
+    if (Number(countEl.value) < 0) countEl.value = 0
   }
 
   function checkBtnVisibility(container, selector) {
     const [...counts] = container.querySelectorAll(selector)
     const countValues = []
-    counts.forEach((e) => countValues.push(Number(e.innerText)))
+    counts.forEach((e) => countValues.push(Number(e.value)))
     const sum = countValues.reduce(
       (previousValue, currentValue) => previousValue + currentValue,
       0
@@ -68,7 +68,7 @@ if (dropdown) {
   }
 
   /**
-   * Находит все элементы по селектору с element.innerText > 0 и создаёт Map, где key: data-attr, value: element.innerText
+   * Находит все элементы по селектору с element.value > 0 и создаёт Map, где key: data-attr, value: element.value
    *
    * @param {string} selector - строка селектора counter
    * @return Map
@@ -76,13 +76,13 @@ if (dropdown) {
   function createCountsMap(selector) {
     const countMap = new Map()
     const counts = [...document.querySelectorAll(selector)].filter(
-      (e) => Number(e.innerText) > 0
+      (e) => Number(e.value) > 0
     )
     for (let count of counts) {
-      if (Number.isNaN(Number(count.innerText))) {
+      if (Number.isNaN(Number(count.value))) {
         throw new ValidationError('Ошибка в чтении значения counter', err)
       }
-      countMap.set(count.dataset.item, Number(count.innerText))
+      countMap.set(count.dataset.item, Number(count.value))
     }
 
     return countMap
@@ -116,7 +116,7 @@ if (dropdown) {
 
   /**
    * Объединяет Map объекта слов и Map counter в новый Map, где key: массив слов опций,
-   * value: сумма element.innerText совпадающео атрибута
+   * value: сумма element.value совпадающео атрибута
    *
    * @param {Map} wordsMap - Map слов
    * @param {Map} countsMap - Map counter
@@ -195,14 +195,14 @@ if (dropdown) {
       checkLimits(count)
 
       if (
-        Number(count.innerText) > 0 &&
+        Number(count.value) > 0 &&
         e.target.classList.contains('dropdown__btn_disabled')
       )
         e.target.classList.remove('dropdown__btn_disabled')
       if (e.target.classList.contains('dropdown__btn_disabled')) return
-      count.innerText = Number(count.innerText) - 1
+      count.value = Number(count.value) - 1
 
-      if (Number(count.innerText) === 0)
+      if (Number(count.value) === 0)
         e.target.classList.add('dropdown__btn_disabled')
 
       performData('.dropdown__count', options)
@@ -220,10 +220,10 @@ if (dropdown) {
 
       checkLimits(count)
 
-      if (Number(count.innerText) === 999) return
-      count.innerText = Number(count.innerText) + 1
+      if (Number(count.value) === 999) return
+      count.value = Number(count.value) + 1
 
-      if (Number(count.innerText) > 0)
+      if (Number(count.value) > 0)
         decrement.classList.remove('dropdown__btn_disabled')
 
       performData('.dropdown__count', options)
@@ -236,7 +236,7 @@ if (dropdown) {
     dropdownInput.value = ''
 
     const [...counts] = dropdown.querySelectorAll('.dropdown__count')
-    counts.forEach((e) => (e.innerText = 0))
+    counts.forEach((e) => (e.value = 0))
   })
 
   btnAccept.addEventListener('click', (e) => {
