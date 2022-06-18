@@ -153,12 +153,12 @@ if (container) {
     const queryString = window.location.search
     const urlParams = new URLSearchParams(queryString)
 
-    const startDateString = urlParams.get('datepick-input-start')
-    const endDateString = urlParams.get('datepick-input-end')
+    const startUrlDateString = urlParams.get('datepick-input-start')
+    const endUrlDateString = urlParams.get('datepick-input-end')
 
-    if ((startDateString, endDateString)) {
-      const [firstDay, firstmonth, firstyear] = startDateString.split('.')
-      const [secondDay, secondmonth, secondyear] = endDateString.split('.')
+    if ((startUrlDateString, endUrlDateString)) {
+      const [firstDay, firstmonth, firstyear] = startUrlDateString.split('.')
+      const [secondDay, secondmonth, secondyear] = endUrlDateString.split('.')
 
       const startDate = new Date(firstyear, firstmonth, firstDay)
       const endDate = new Date(secondyear, secondmonth, secondDay)

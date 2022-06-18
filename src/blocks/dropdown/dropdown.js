@@ -243,4 +243,29 @@ if (dropdown) {
     e.preventDefault()
     dropdownContent.classList.remove('_active')
   })
+
+  // Добавить значение из строки url, если они есть
+  const queryString = window.location.search
+  const urlParams = new URLSearchParams(queryString)
+  const dropdownUrlContent = urlParams.get('dropdown')
+
+  if (dropdownUrlContent) {
+    addInputValue(dropdownInput, dropdownUrlContent)
+
+    let params = window.location.search
+      .replace('?', '')
+      .split('&')
+      .reduce(function (p, e) {
+        let a = e.split('=')
+        p[decodeURIComponent(a[0])] = decodeURIComponent(a[1])
+        return p
+      }, {})
+
+    let allCounts = dropdown.querySelectorAll('.dropdown__count')
+    allCounts.forEach((e) => {
+      e.value = params[e.dataset.item]
+    })
+
+    checkBtnVisibility(dropdown, '.dropdown__count')
+  }
 }
