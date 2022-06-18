@@ -6,19 +6,27 @@ import AirDatepicker from 'air-datepicker'
 const container = document.querySelector('._datepick-js')
 
 if (container) {
-  let firstItem, secondItem, item, rangeFrom, rangeTo
+  let firstItem, secondItem, singleItem, rangeFrom, rangeTo
   let items = container.querySelectorAll('._datepickItem')
   let formGroups = Array.from(container.querySelectorAll('.datepick__group'))
   let buttonClear = container.querySelector('.datepick__button_clear')
   let buttonAccept = container.querySelector('.datepick__button_accept')
 
-  console.log(items)
-  console.log(container)
+  const singleInputMod = container.classList.contains('_datepick-1')
+  const twoInputMod = container.classList.contains('_datepick-2')
 
   buttonClear.style.visibility = 'hidden'
 
   function checkBtnVisibility(items) {
-    let addedValue = items.every((e) => e.value !== '')
+    let addedValue
+    if (twoInputMod) {
+      addedValue = items.every((e) => e.value !== '')
+    }
+
+    if (singleInputMod) {
+      addedValue = singleItem.value !== ''
+    }
+
     if (addedValue) buttonClear.style.visibility = 'visible'
     if (!addedValue) buttonClear.style.visibility = 'hidden'
   }
@@ -72,16 +80,34 @@ if (container) {
     })
   }
 
-  function formatDate(date) {
-    let day =
-      `${date.getDate()}`.length < 2 ? `0${date.getDate()}` : date.getDate()
-    let month =
-      `${date.getMonth()}`.length < 2
-        ? `0${date.getMonth() + 1}`
-        : date.getMonth() + 1
-    let year = date.getFullYear()
-    let result = `${day}.${month}.${year}`
-    return result
+  function formatDate(firstDate, secondDate = '') {
+    if (secondDate !== '' && singleInputMod) {
+      let firstDay = firstDate.getDate()
+      let secondDay = secondDate.getDate()
+      let fistMonth = firstDate
+        .toLocaleString('default', { month: 'long' })
+        .substring(0, 3)
+      let secondMonth = secondDate
+        .toLocaleString('default', { month: 'long' })
+        .substring(0, 3)
+
+      let result = `${firstDay} ${fistMonth} - ${secondDay} ${secondMonth}`
+      return result
+    }
+
+    if (secondDate === '' && twoInputMod) {
+      let day =
+        `${firstDate.getDate()}`.length < 2
+          ? `0${firstDate.getDate()}`
+          : firstDate.getDate()
+      let month =
+        `${firstDate.getMonth()}`.length < 2
+          ? `0${firstDate.getMonth() + 1}`
+          : firstDate.getMonth() + 1
+      let year = firstDate.getFullYear()
+      let result = `${day}.${month}.${year}`
+      return result
+    }
   }
 
   function addDateCal(items) {
@@ -91,7 +117,7 @@ if (container) {
     dp.selectDate(dates)
   }
 
-  function performRane(rangeFrom, rangeTo) {
+  function performRange(rangeFrom, rangeTo) {
     clearRange(container, 'start-range')
     clearRange(container, 'end-range')
     deletePoitRange(rangeFrom)
@@ -107,28 +133,44 @@ if (container) {
 
   // --------------- Создать календарь -----------------
   // Создать контейнер
-  let calConteiner = document.querySelector('.datepick_container')
+  let calConteiner = document.querySelector('.datepick__container')
   let dp = new AirDatepicker(calConteiner, {
     range: true,
   })
   dp.show()
 
-  if (container.classList.contains('_datepick-2')) {
+  if (twoInputMod) {
     firstItem = container.querySelector('.datepick-start')
     secondItem = container.querySelector('.datepick-end')
   }
 
-  if (container.classList.contains('_datepick-1')) {
-    item = container.querySelector('.datepick-dates')
+  if (singleInputMod) {
+    singleItem = container.querySelector('.datepick-dates')
+  }
+
+  // Получить данные из строки url и установить их в значение одного поля
+  if (singleInputMod) {
+    const queryString = window.location.search
+    const urlParams = new URLSearchParams(queryString)
+
+    const startDateString = urlParams.get('datepick-input-start')
+    const endDateString = urlParams.get('datepick-input-end')
+
+    const [firstDay, firstmonth, firstyear] = startDateString.split('.')
+    const [secondDay, secondmonth, secondyear] = endDateString.split('.')
+
+    const startDate = new Date(firstyear, firstmonth, firstDay)
+    const endDate = new Date(secondyear, secondmonth, secondDay)
+
+    if (startDate && endDate) singleItem.value = formatDate(startDate, endDate)
   }
 
   // Работа скрытия и показа календаря при кликах на поля
   container.addEventListener('click', ({ target }) => {
-    if (container.classList.contains('_datepick-2')) {
-      if (target.closest('.datepick_container')) return
-      if (target.classList.contains('air-datepicker-cell')) return
+    let targetContainer = target.closest('.datepick__group')
+    if (!targetContainer) return
 
-      let targetContainer = target.closest('.datepick__group')
+    if (twoInputMod) {
       let sibling = [...formGroups.filter((e) => e !== targetContainer)][0]
 
       // Клик по сосденему инпуту после клика на первый, календарь не закрывается
@@ -157,8 +199,7 @@ if (container) {
       calConteiner.classList.toggle('_active-dp')
     }
 
-    if (container.classList.contains('_datepick-1')) {
-      console.log(targetContainer)
+    if (singleInputMod) {
       targetContainer.classList.toggle('clicked')
       calConteiner.classList.toggle('_active-dp')
     }
@@ -171,8 +212,14 @@ if (container) {
   // Очистка выбранных дат
   buttonClear.addEventListener('click', (e) => {
     e.preventDefault()
-    firstItem.value = ''
-    secondItem.value = ''
+    if (twoInputMod) {
+      firstItem.value = ''
+      secondItem.value = ''
+    }
+
+    if (singleInputMod) {
+      singleItem.value = ''
+    }
     dp.clear()
   })
 
@@ -186,7 +233,7 @@ if (container) {
 
   // Ручной ввод дат
 
-  if (container.classList.contains('_datepick-2')) {
+  if (twoInputMod) {
     items.forEach((item) => {
       item.addEventListener('input', () => {
         let correctFormat = [...items].every(({ value, pattern }) => {
@@ -209,18 +256,18 @@ if (container) {
             addDateCal(items)
             rangeFrom = container.querySelector('.-range-from-')
             rangeTo = container.querySelector('.-range-to-')
-            performRane(rangeFrom, rangeTo)
+            performRange(rangeFrom, rangeTo)
           }
           if (firstItem.value > secondItem.value) {
             ;[firstItem.value, secondItem.value] = [
               secondItem.value,
               firstItem.value,
             ]
-            performRane(rangeFrom, rangeTo)
+            performRange(rangeFrom, rangeTo)
             addDateCal(items)
           }
           if (firstItem.value !== secondItem.value) {
-            performRane(rangeFrom, rangeTo)
+            performRange(rangeFrom, rangeTo)
           }
         }
       })
@@ -235,7 +282,7 @@ if (container) {
 
     // Отображение дат в полях
 
-    if (container.classList.contains('_datepick-2')) {
+    if (twoInputMod) {
       if (dp.rangeDateFrom) {
         firstItem.value = formatDate(dp.rangeDateFrom)
       }
@@ -243,6 +290,10 @@ if (container) {
       if (dp.rangeDateTo) {
         secondItem.value = formatDate(dp.rangeDateTo)
       }
+    }
+
+    if (singleInputMod && dp.rangeDateFrom && dp.rangeDateTo) {
+      singleItem.value = formatDate(dp.rangeDateFrom, dp.rangeDateTo)
     }
 
     // Удаление старых линий диапазона при выборе нового

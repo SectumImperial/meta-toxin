@@ -4,13 +4,15 @@
 @import './datepick_loaded.scss';
 
 .datepick {
+  position: relative;
+
   &__fields {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: rem(20);
   }
 
-  &_container {
+  &__container {
     position: absolute;
     top: calc(100% + 5px);
     right: 0;

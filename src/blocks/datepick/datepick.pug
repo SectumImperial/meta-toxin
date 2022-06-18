@@ -3,7 +3,7 @@ include ../input/input.pug
 include ../button/button.pug
 
 mixin datepick_2() 
-  .datepick
+  .datepick._datepick-2._datepick-js
     .datepick__fields
       +form-group({
         classGroup: 'datepick__group'
@@ -43,72 +43,70 @@ mixin datepick_2()
           inputMod: ['arrow'],
           required: true,
         })
-  .datepick_container
-    .datepick_btns
-      +button({
-        content: 'Очистить',
-        classWrapper: 'datepick__button datepick__button_clear btn-wrapper_transparent',
-        classBtn: 'button_color',
-        btnColor: 'violet',
-        btnWrapperColor: 'transparent',
-        border: 'false',
-        btnSize: 'tiny',
-        btnMod: ['noBorder'],
-      })
-      +button({
-        content: 'Применить',
-        classWrapper: 'datepick__button datepick__button_accept btn-wrapper_transparent',
-        classBtn: 'button_color',
-        btnColor: 'violet',
-        btnWrapperColor: 'transparent',
-        border: 'false',
-        btnSize: 'tiny',
-        btnMod: ['noBorder'],
-      })
 
-mixin datepick_1(options = {})
-  .datepick
-    +form-group({
-        classGroup: 'datepick__group'
-      })
-      +form-group({
-        classGroup: 'datepick__group'
-      })
-        +label({
-          text: 'даты пребывания в отеле',
-          forInput: 'booking-dates',
-          classLabel: 'datepick__label'
-         })
-        +input({
-          type: 'text',
-          id: 'booking-dates',
-          classInput: 'datepick__input datepick__input_readonly datepick-dates _datepickItem __icon-expand _dateInput',
-          name: 'datepick-input-dates',
-          datepicker: true,
-          placeholder: 'дд.мм - дд.мм',
-          inputMod: ['arrow'],
-          readonly: true
+    .datepick__container
+      .datepick_btns
+        +button({
+          content: 'Очистить',
+          classWrapper: 'datepick__button datepick__button_clear btn-wrapper_transparent',
+          classBtn: 'button_color',
+          btnColor: 'violet',
+          btnWrapperColor: 'transparent',
+          border: 'false',
+          btnSize: 'tiny',
+          btnMod: ['noBorder'],
+        })
+        +button({
+          content: 'Применить',
+          classWrapper: 'datepick__button datepick__button_accept btn-wrapper_transparent',
+          classBtn: 'button_color',
+          btnColor: 'violet',
+          btnWrapperColor: 'transparent',
+          border: 'false',
+          btnSize: 'tiny',
+          btnMod: ['noBorder'],
         })
 
-  .datepick_container
-    .datepick_btns
-      +button({
-        content: 'Очистить',
-        classWrapper: 'datepick__button datepick__button_clear btn-wrapper_transparent',
-        classBtn: 'button_color',
-        btnColor: 'violet',
-        btnWrapperColor: 'transparent',
-        border: 'false',
-        btnSize: 'tiny',
-        btnMod: ['noBorder'],
+mixin datepick_1(options = {})
+  .datepick._datepick-1._datepick-js
+    +form-group({
+      classGroup: 'datepick__group'
+    })
+      +label({
+        text: 'даты пребывания в отеле',
+        forInput: 'booking-dates',
+        classLabel: 'datepick__label'
+        })
+      +input({
+        type: 'text',
+        id: 'booking-dates',
+        classInput: 'datepick__input datepick__input_readonly datepick-dates _datepickItem __icon-expand',
+        name: 'datepick-input-dates',
+        datepicker: true,
+        placeholder: 'дд.мм - дд.мм',
+        inputMod: ['arrow'],
+        readonly: true
       })
-      +button({
-        content: 'Применить',
-        classWrapper: 'datepick__button datepick__button_accept btn-wrapper_transparent',
-        classBtn: 'button_color',
-        btnColor: 'violet',
-        btnWrapperColor: 'transparent',
-        border: 'false',
-        btnSize: 'tiny',
-        btnMod: ['noBorder'],
-      })
+
+    .datepick__container.datepick_small
+      .datepick_btns
+        +button({
+          content: 'Очистить',
+          classWrapper: 'datepick__button datepick__button_clear btn-wrapper_transparent',
+          classBtn: 'button_color',
+          btnColor: 'violet',
+          btnWrapperColor: 'transparent',
+          border: 'false',
+          btnSize: 'tiny',
+          btnMod: ['noBorder'],
+        })
+        +button({
+          content: 'Применить',
+          classWrapper: 'datepick__button datepick__button_accept btn-wrapper_transparent',
+          classBtn: 'button_color',
+          btnColor: 'violet',
+          btnWrapperColor: 'transparent',
+          border: 'false',
+          btnSize: 'tiny',
+          btnMod: ['noBorder'],
+        })
