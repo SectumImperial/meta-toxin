@@ -9,7 +9,7 @@ mixin dropdown(options = {})
       id = '',
       dataOptions = '',
       placeholder = '',
-      plurals = {}
+      plurals = {},
     } = options
 
   div.dropdown(
@@ -17,20 +17,19 @@ mixin dropdown(options = {})
   )
     +input({
       type: 'text',
-      name: typeItem,
+      name: 'dropdown',
       classInput: 'dropdown__input',
       readonly: true,
       arrow: true,
       placeholder: placeholder,
       id: id,
       inputOptions: plurals,
-      inputMod: ['arrow']
+      inputMod: ['arrow'],
+      required: true,
     })
     div.dropdown__content
       .dropdown__counter 
-        ul.dropdown__items(
-          data-type = typeItem
-        )
+        ul.dropdown__items
           each item in items
             li.dropdown__item
               span.dropdown__item-text= item

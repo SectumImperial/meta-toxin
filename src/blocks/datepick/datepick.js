@@ -156,13 +156,15 @@ if (container) {
     const startDateString = urlParams.get('datepick-input-start')
     const endDateString = urlParams.get('datepick-input-end')
 
-    const [firstDay, firstmonth, firstyear] = startDateString.split('.')
-    const [secondDay, secondmonth, secondyear] = endDateString.split('.')
+    if ((startDateString, endDateString)) {
+      const [firstDay, firstmonth, firstyear] = startDateString.split('.')
+      const [secondDay, secondmonth, secondyear] = endDateString.split('.')
 
-    const startDate = new Date(firstyear, firstmonth, firstDay)
-    const endDate = new Date(secondyear, secondmonth, secondDay)
+      const startDate = new Date(firstyear, firstmonth, firstDay)
+      const endDate = new Date(secondyear, secondmonth, secondDay)
 
-    if (startDate && endDate) singleItem.value = formatDate(startDate, endDate)
+      singleItem.value = formatDate(startDate, endDate)
+    }
   }
 
   // Работа скрытия и показа календаря при кликах на поля

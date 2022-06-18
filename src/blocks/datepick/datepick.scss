@@ -37,6 +37,30 @@
   box-shadow: 0 4px 4px 0 rgba(#0000, 0.25);
 }
 
+// Стили маленького календаря для страниы поиска
+.datepick_small {
+  .air-datepicker--content {
+    padding: 0 7px 7px 7px;
+
+    .-days- {
+      grid-template-columns: repeat(7, 35px);
+      grid-auto-rows: 35px;
+
+      .-selected- {
+        height: 35px;
+      }
+
+      .start-range,
+      .end-range {
+        &::before {
+          width: 35px;
+          height: 35px;
+        }
+      }
+    }
+  }
+}
+
 .datepick_btns {
   display: flex;
   justify-content: space-between;
@@ -104,12 +128,12 @@
     }
 
     .-days- {
-      grid-template-columns: repeat(7, rem(40));
-      grid-auto-rows: rem(40);
+      grid-template-columns: repeat(7, 40px);
+      grid-auto-rows: 40px;
 
       @media (max-width: 400px) {
-        grid-template-columns: repeat(7, rem(32));
-        grid-auto-rows: rem(32);
+        grid-template-columns: repeat(7, 32px);
+        grid-auto-rows: 32px;
       }
     }
 
@@ -173,11 +197,16 @@
         background: $gradient25;
         z-index: -1;
 
-        width: rem(40);
-        height: rem(40);
+        width: 40px;
+        height: 40px;
 
         &:hover {
           background: $gradient25;
+        }
+
+        @media (max-width: 400px) {
+          height: 32px;
+          width: 32px;
         }
       }
     }
@@ -196,7 +225,7 @@
     // ---------------------------------------------
 
     .-selected- {
-      height: rem(40);
+      height: 40px;
       border-radius: 50%;
       background: $primary-gradient;
       color: $secondary-color-2;
@@ -205,6 +234,10 @@
 
       &:hover {
         background: $primary-gradient;
+      }
+
+      @media (max-width: 400px) {
+        height: 32px;
       }
     }
 

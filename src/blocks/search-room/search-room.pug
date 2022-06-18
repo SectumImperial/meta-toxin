@@ -1,4 +1,6 @@
 include ../datepick/datepick.pug
+include ../dropdown/dropdown.pug
+
 
 
 mixin search-room(options = {}) 
@@ -13,5 +15,29 @@ mixin search-room(options = {})
     section.search-room__filters 
       .search-room__filter-item._datepick-js._datepick-1
         +datepick_1()
+
+      .search-room__filter-item
+        label.serch-room__label(
+          for('search-room-guests')
+        ) Гости
+        +dropdown({
+           class: '`search-room__dropdown-input',
+           idInput: 'search-room-guests',
+           placeholder: 'Сколько гостей',
+           mod: 'guests',
+           items: [
+             'Взрослые', 'Дети', 'Младенцы'
+           ],
+           plurals: [
+             {
+               'default': ['гость', 'гостя', 'гостей']
+              },
+             {
+               'Младенцы': ['младенец', 'младенца', 'младенцев']
+             }
+             
+           ]
+        })
+
 
     section.search-room__rooms
