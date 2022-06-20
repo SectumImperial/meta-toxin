@@ -1,0 +1,20 @@
+@use 'sass:math';
+@import '../../common/functions.scss';
+@import '../../common/variables.scss';
+
+.range-slider {
+  &__range {
+    position: relative;
+    height: 6px;
+    border-radius: 3px;
+    border: 2px solid rgba($dark-color, 0.25);
+  }
+
+  &__progress {
+    position: absolute;
+    height: 100%;
+    left: 25px;
+    right: 25px;
+    background: $gradientSecondary;
+  }
+}

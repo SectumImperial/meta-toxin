@@ -1,0 +1,53 @@
+mixin range-slider(options = {})
+  - 
+    const {
+      rangeClass = '',
+      min = 0,
+      max = 15000,
+      step = 100,
+     } = options
+
+  div(
+    class = `range-slider ${rangeClass}` 
+  )
+    .range-slider__fields
+      .range-slider__field
+        input(
+          type = "number"
+          class = 'range-slider__max'
+          value = min
+          min = min
+          name = 'range-slider-min'
+        )
+      span.range-slider__separator - 
+      .range-slider__field
+        input(
+          type = "number"
+          class = 'range-slider__min'
+          value = max
+          max = max
+          name = 'range-slider-max'
+        )
+
+  .range-slider__range
+    .range-slider__progress
+  .range-slider__range
+    input(
+      type = "range"
+      class = 'range-slider__input_min'
+      value = min
+      max = max
+      name = 'range-slider-input-min'
+      step = step
+    )
+    input(
+      type = "range"
+      class = 'range-slider__input_max'
+      value = max
+      max = max
+      name = 'range-slider-input-max'
+      step = step
+    )
+   
+    
+    
