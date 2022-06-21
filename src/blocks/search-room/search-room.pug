@@ -42,7 +42,7 @@ mixin search-room(options = {})
 
       .search-room__filter-item
         label.serch-room__label(
-          for('search-room-range')
+          for = 'search-room-range'
         ) Диапазон цены
         +range-slider({
           rangeClass: 'search-room__range',
