@@ -2,18 +2,33 @@ mixin range-slider(options = {})
   - 
     const {
       rangeClass = '',
-      min = 0,
-      max = 15000,
-      step = 100,
+      rangeOptions = {},
+      name = 'Range slider'
      } = options
 
   div(
-    class = `range-slider ${rangeClass}` 
+    class = `range-slider _js-range-slider ${rangeClass}` 
+    data-rangeOptions = rangeOptions
   )
-    .range-slider__slider 
-    .range-slider__progress 
-    .range-slider__min 
-    .range-slider__max 
+    .range-slider__fields
+      .range-slider__name= name
+        input(
+          type="text"
+          name="range-slider-min"
+          class="range-slider__input_min range-slider__input"
+          readonly
+        )
+        input(
+          type="text"
+          name="range-slider-max"
+          class="range-slider__input_max range-slider__input"
+          readonly
+        )
+      .range-slider__slider 
+        .range-slider__slider-body
+        .range-slider__progress 
+        .range-slider__min 
+        .range-slider__max 
     
    
     

@@ -3,8 +3,8 @@
 @import '../../common/variables.scss';
 
 .range-slider {
-  position: relative;
   &__slider {
+    position: relative;
     height: 6px;
     border: 1px solid rgba($dark-color, 0.25);
     border-radius: 3px;
@@ -13,7 +13,7 @@
   &__progress {
     position: absolute;
     z-index: 5;
-    top: 0;
+    top: -1px;
     left: 25px;
     right: 25px;
     height: 6px;
@@ -34,12 +34,12 @@
   }
 
   &__min {
-    top: -4px;
-    left: 18px;
+    top: -120%;
+    left: 12px;
   }
 
   &__max {
-    top: -4px;
-    right: 18px;
+    top: -120%;
+    right: 12px;
   }
 }

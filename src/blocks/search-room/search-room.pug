@@ -46,8 +46,12 @@ mixin search-room(options = {})
         ) Диапазон цены
         +range-slider({
           rangeClass: 'search-room__range',
-          min: 0,
-          max: 15000
+          rangeOptions: {
+            step: 100,
+            min: 0,
+            max: 15000,
+            name: 'Диапазон цены'
+          }
         })
 
 
