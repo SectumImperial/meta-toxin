@@ -2,6 +2,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const path = require('path')
 const fs = require('fs')
+const webpack = require('webpack')
 
 let MODE = 'development'
 if (process.env.NODE_ENV === 'production') {

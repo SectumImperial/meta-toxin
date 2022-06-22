@@ -10,12 +10,11 @@ mixin range-slider(options = {})
   div(
     class = `range-slider ${rangeClass}` 
   )
-    input(
-      type = text 
-      name = 'range-price'
-      class = 'range-slider__input _range-slider-js'
-      value = ''
-    )
+    .range-slider__slider 
+    .range-slider__progress 
+    .range-slider__min 
+    .range-slider__max 
+    
    
     
     
