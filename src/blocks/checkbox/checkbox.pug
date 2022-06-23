@@ -1,0 +1,25 @@
+mixin checkbox(options = {}) 
+  - 
+    const {
+      classCheckox = '',
+      labelText = '',
+      checked = false,
+      name = 'checkbox',
+      id = '',
+    } = options 
+  
+  label(
+    class = `checkbox ${classCheckox}`
+  )
+    input(
+      type = 'checkbox'
+      name = name
+      ckecked = checked
+      id = id
+      class = "checkbox__input visually-hidden"
+      )
+    span.checkbox__new-checkbox
+    span.checkbox__text= labelText
+
+
+  

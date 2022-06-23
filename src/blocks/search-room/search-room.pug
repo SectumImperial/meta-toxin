@@ -1,7 +1,8 @@
 include ../datepick/datepick.pug
 include ../dropdown/dropdown.pug
 include ../range-slider/range-slider.pug
-
+include ../title/title.pug
+include ../checkbox/checkbox.pug
 
 
 mixin search-room(options = {}) 
@@ -18,9 +19,11 @@ mixin search-room(options = {})
         +datepick_1()
 
       .search-room__filter-item
-        label.serch-room__label(
-          for('search-room-guests')
-        ) Гости
+        +title({
+          level: 'h3',
+          classTitle: 'search-room__title',
+          text: 'Гости'
+        })
         +dropdown({
            class: '`search-room__dropdown-input',
            idInput: 'search-room-guests',
@@ -55,8 +58,20 @@ mixin search-room(options = {})
           }
         })
 
+      .search-room__rules-item
+        +title({
+          level: 'h3',
+          classTitle: 'search-room__title',
+          text: 'Правила дома'
+        })
+        +checkbox({
+          classCheckox: 'search-room__checkbox_smoke',
+          labelText: 'Можно курить',
+          name: 'search-room-smoke',
+          id: 'search-room-smoke',
+        })
 
-        
 
 
     section.search-room__rooms
+      

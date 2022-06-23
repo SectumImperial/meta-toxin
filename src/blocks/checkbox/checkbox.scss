@@ -1,0 +1,27 @@
+@use 'sass:math';
+@import '../../common/functions.scss';
+@import '../../common/variables.scss';
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  &__text {
+    color: rgba($dark-color, 0.25);
+  }
+  &__new-checkbox {
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid rgba($dark-color, 0.25);
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  &__input:checked + &__new-checkbox {
+    border: 1px solid $primary-color;
+    background: url('./icons/checkMark.svg') no-repeat center;
+  }
+}
