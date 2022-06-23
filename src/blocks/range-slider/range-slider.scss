@@ -5,51 +5,80 @@
 .range-slider {
   &__slider {
     position: relative;
-    width: 100%;
-    height: 6px;
+  }
 
+  &__track {
+    position: absolute;
+    height: 6px;
+    width: 100%;
     border: 1px solid rgba($dark-color, 0.25);
     border-radius: 3px;
-    background: white;
   }
 
   &__progress {
     position: absolute;
-    z-index: 5;
-    top: -1px;
-    left: 25px;
-    right: 25px;
-
-    display: inline-block;
     height: 6px;
-
     background: $gradientSecondary;
+    border-radius: 3px;
   }
+  &__input {
+    position: absolute;
+    width: 100%;
+    height: 6px;
+    top: -4px;
+    z-index: 1;
 
-  &__toggle {
-    position: relative;
-    left: 10px;
-    top: -5px;
-    z-index: 10;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none;
+    background-color: transparent;
 
-    width: 14px;
-    height: 14px;
-    display: inline-block;
+    &[type='range']::-webkit-slider-runnable-track {
+      -webkit-appearance: none;
+      height: 6px;
+    }
 
-    border: 2px solid white;
-    border-radius: 50%;
+    &[type='range']::-moz-range-track {
+      -webkit-appearance: none;
+      height: 6px;
+    }
 
-    background: $gradientSecondary;
-    cursor: pointer;
+    &[type='range']::-ms-track {
+      -webkit-appearance: none;
+      height: 6px;
+    }
+
+    &[type='range']::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      height: 14px;
+      width: 14px;
+      border: 2px solid white;
+      border-radius: 50%;
+      background: $gradientSecondary;
+      cursor: pointer;
+      pointer-events: auto;
+    }
+
+    [type='range']::-moz-range-thumb {
+      -webkit-appearance: none;
+      height: 14px;
+      width: 14px;
+      border: 2px solid white;
+      border-radius: 50%;
+      background: $gradientSecondary;
+      cursor: pointer;
+      pointer-events: auto;
+    }
+
+    [type='range']::-ms-thumb {
+      -webkit-appearance: none;
+      height: 14px;
+      width: 14px;
+      border: 2px solid white;
+      border-radius: 50%;
+      background: $gradientSecondary;
+      cursor: pointer;
+    }
   }
-
-  // &__min {
-  //   top: 0;
-  //   left: 12px;
-  // }
-
-  // &__max {
-  //   top: 0;
-  //   left: 100%;
-  // }
 }
