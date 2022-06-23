@@ -4,8 +4,8 @@ mixin range-slider(options = {})
       rangeClass = '',
       rangeOptions = {},
       name = 'Range slider',
-      min = 0,
-      max = 15000,
+      min = rangeOptions.min ? rangeOptions.min : 0,
+      max = rangeOptions.max ? rangeOptions.max : 15000,
       step = rangeOptions.step ? rangeOptions.step : '100',
      } = options
 
