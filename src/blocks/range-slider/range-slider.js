@@ -3,8 +3,7 @@ import './range-slider.scss'
 const slider = document.querySelector('._js-range-slider')
 
 if (slider) {
-  const fieldMin = slider.querySelector('.range-slider__amount_min')
-  const fieldMax = slider.querySelector('.range-slider__amount_max')
+  const field = slider.querySelector('.range-slider__amount')
   const toggleOne = slider.querySelector('.range-slider__input_min')
   const toggleTwo = slider.querySelector('.range-slider__input_max')
   const rangeProgress = slider.querySelector('.range-slider__progress')
@@ -18,11 +17,15 @@ if (slider) {
 
   const min = options.min ? options.min : 0
   const max = options.max ? options.max : 15000
+  const addedText = options.addedText ? options.addedText : ''
 
   toggleOne.value = options.initialStart ? options.initialStart : min
   toggleTwo.value = options.initialEnd ? options.initialEnd : max
-  fieldMin.value = toggleOne.value
-  fieldMax.value = toggleTwo.value
+
+  function setValues() {
+    field.value = `${toggleOne.value}${addedText} - ${toggleTwo.value}${addedText}`
+  }
+  setValues()
 
   rangeProgress.style.left = (toggleOne.value / max) * 100 + '%'
   rangeProgress.style.right = 100 - (toggleTwo.value / max) * 100 + '%'
@@ -37,7 +40,7 @@ if (slider) {
       toggleOne.value = Number(toggleTwo.value) - min
     }
 
-    fieldMin.value = toggleOne.value
+    setValues()
     colorRange()
 
     if (Number(toggleOne.value) === max && Number(toggleTwo.value) === max) {
@@ -52,7 +55,7 @@ if (slider) {
       toggleTwo.value = Number(toggleOne.value) + min
     }
 
-    fieldMax.value = toggleTwo.value
+    setValues()
     colorRange()
   })
 }
