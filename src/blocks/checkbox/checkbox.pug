@@ -3,9 +3,12 @@ mixin checkbox(options = {})
     const {
       classCheckox = '',
       labelText = '',
+      checkboxTitle = '',
+      checkboxDescription = '',
       checked = false,
       name = 'checkbox',
       id = '',
+      mod = 'simple'
     } = options 
   
   label(
@@ -14,12 +17,19 @@ mixin checkbox(options = {})
     input(
       type = 'checkbox'
       name = name
-      ckecked = checked
+      checked = checked
       id = id
       class = "checkbox__input visually-hidden"
       )
     span.checkbox__new-checkbox
-    span.checkbox__text= labelText
+    if mod === 'simple' 
+      span.checkbox__text= labelText
+    if mod === 'rich'
+      .checkbox__rich-content
+        span.checkbox__title= checkboxTitle
+        span.checkbox__description= checkboxDescription
+
+      
 
 
   

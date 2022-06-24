@@ -15,10 +15,10 @@ mixin search-room(options = {})
     class = `search-room ${classMain} container`
   )
     section.search-room__filters 
-      .search-room__filter-item._datepick-js._datepick-1
+      .search-room__datepick._datepick-js._datepick-1
         +datepick_1()
 
-      .search-room__filter-item
+      .search-room__guests
         +title({
           level: 'h3',
           classTitle: 'search-room__title',
@@ -43,7 +43,7 @@ mixin search-room(options = {})
            ]
         })
 
-      .search-room__filter-item
+      .search-room__filter
         +range-slider({
           rangeClass: 'search-room__range',
           name: 'Диапазон цены',   
@@ -58,18 +58,80 @@ mixin search-room(options = {})
           }
         })
 
-      .search-room__rules-item
+      .search-room__rules
         +title({
           level: 'h3',
           classTitle: 'search-room__title',
           text: 'Правила дома'
         })
         +checkbox({
-          classCheckox: 'search-room__checkbox_smoke',
+          classCheckox: 'search-room__checkbox search-room__checkbox_smoke',
           labelText: 'Можно курить',
           name: 'search-room-smoke',
           id: 'search-room-smoke',
         })
+        +checkbox({
+          classCheckox: 'search-room__checkbox search-room__checkbox_pets',
+          labelText: 'Можно с питомцами',
+          name: 'search-room-pets',
+          id: 'search-room-pets',
+          checked: true
+        })
+        +checkbox({
+          classCheckox: 'search-room__checkbox search-room__checkbox_guests',
+          labelText: 'Можно пригласить гостей (до 10 человек)',
+          name: 'search-room-guests',
+          id: 'search-room-guests',
+          checked: true
+        })
+
+      .search-room__available
+        +title({
+          level: 'h3',
+          classTitle: 'search-room__title',
+          text: 'Доступность'
+        })
+        +checkbox({
+          classCheckox: 'search-room__checkbox search-room__checkbox_wide-corr',
+          mod: 'rich',
+          checkboxTitle: 'Широкий коридор',
+          checkboxDescription: 'Ширина коридоров в номере не менее 91 см.',
+          name: 'search-room-wide-corr',
+          id: 'search-room-wide-corr',
+        })
+        +checkbox({
+          classCheckox: 'search-room__checkbox search-room__checkbox_inv-help',
+          mod: 'rich',
+          checkboxTitle: 'Помощник для инвалидов',
+          checkboxDescription: 'На 1 этаже вас встретит специалист и проводит до номера.',
+          name: 'search-room-inv-help',
+          id: 'search-room-inv-help',
+        })
+
+
+      .search-room__facilities
+        +dropdown({
+           class: 'search-room__dropdown-input',
+           idInput: 'search-room-facilities',
+           placeholder: 'Удобства номера',
+           items: [
+             'Cпальни', 'Кровати', 'Ванные комнаты'
+           ],
+           plurals: [
+             {
+               'Cпальни': ['спальня', 'спальни', 'спален']
+              },
+             {
+               'Кровати': ['кровать', 'кровати', 'кроватей']
+             },
+             {
+               'Ванные комнаты': ['ванная комната', 'ванных комнаты', 'ванных комнат']
+             }
+             
+           ]
+        })
+        
+
 
 
 
