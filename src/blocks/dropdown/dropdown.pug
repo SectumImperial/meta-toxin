@@ -11,8 +11,9 @@ mixin dropdown(options = {})
       plurals = {},
     } = options
 
-  div.dropdown(
+  div.dropdown._js-dropdown(
       class = options.class 
+      data-options = plurals
   )
     +input({
       type: 'text',
@@ -22,7 +23,6 @@ mixin dropdown(options = {})
       arrow: true,
       placeholder: placeholder,
       id: id,
-      inputOptions: plurals,
       inputMod: ['arrow'],
       required: true,
     })
