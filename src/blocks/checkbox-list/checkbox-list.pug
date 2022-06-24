@@ -1,0 +1,32 @@
+include ../checkbox/checkbox.pug
+
+mixin checkbox-list(options = {})
+  -
+    const {
+        classList = '',
+        titleList = '',
+        items = []
+    } = options
+
+
+  div(
+    class = `checkbox-list ${classList}`
+  ) 
+    span.checkbox-list__title= titleList
+    ul.checkbox-list__items
+      each item in items 
+        - 
+          const {
+            labelText = '',
+            name = '',
+            checked = false
+          } = item
+            
+        li.checkbox-list__item
+          +checkbox({
+            classCheckox: `checkbox-list__checkbox`,
+            labelText: labelText,
+            name: name,
+            id: id,
+            checked: checked
+          })

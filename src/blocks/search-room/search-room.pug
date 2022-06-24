@@ -3,6 +3,7 @@ include ../dropdown/dropdown.pug
 include ../range-slider/range-slider.pug
 include ../title/title.pug
 include ../checkbox/checkbox.pug
+include ../checkbox-list/checkbox-list.pug
 
 
 mixin search-room(options = {}) 
@@ -130,6 +131,49 @@ mixin search-room(options = {})
              
            ]
         })
+
+      .search-room__add-facilities
+        +checkbox-list({
+          classList: 'search-room__add-facilities-list',
+          titleList: 'Дополнительные удобства',
+          items: [
+            {
+              labelText: 'Завтрак',
+              name: 'search-room-lunch',
+              id: 'search-room-lunch',
+            },
+            {
+              labelText: 'Письменный стол',
+              name: 'search-room-table',
+              id: 'search-room-table',
+              checked: true,
+            },
+            {
+              labelText: 'Стул для кормления',
+              name: 'search-room-chair',
+              id: 'search-room-chair',
+              checked: true,
+            },
+            {
+              labelText: 'Кроватка',
+              name: 'search-room-small-bed',
+              id: 'search-room-small-bed',
+              checked: true,
+            },
+            {
+              labelText: 'Телевизор',
+              name: 'search-room-tv',
+              id: 'search-room-tv',
+            },
+            {
+              labelText: 'Шампунь',
+              name: 'search-room-shampoo',
+              id: 'search-room-shampoo',
+            },
+          ]
+        })
+
+      
         
 
 
