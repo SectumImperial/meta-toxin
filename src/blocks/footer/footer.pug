@@ -60,11 +60,12 @@ mixin footer(options = {})
            contentText: 'Получайте специальные предложения и новости сервиса'
          })
         +input({
+            classInput: 'footer__input',
             type: 'email',
             name: 'footer-mail',
             id: 'footer-mail',
             placeholder: 'Email',
-            arrow: 'violet',
+            arrow: 'forward',
             pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
           })
 

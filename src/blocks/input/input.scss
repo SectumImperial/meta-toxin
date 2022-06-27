@@ -3,34 +3,56 @@
 @import '../../common/variables.scss';
 
 .input {
-  &:focus {
-    outline: none;
-  }
+  position: relative;
+  &__field {
+    padding: rem(12) rem(15);
 
-  &:not([type='radio']):not([type='checkbox']) {
-    width: 100%;
-  }
+    border: 1px solid rgba($dark-color, 0.25);
+    border-radius: 4px;
 
-  padding: rem(12) rem(15);
+    color: rgba($dark-color, 0.75);
+    font-size: rem(14);
+    font-family: 'Montserrat', sans-serif;
 
-  border: 1px solid rgba($dark-color, 0.25);
-  border-radius: 4px;
+    &::-webkit-calendar-picker-indicator {
+      display: none;
+    }
 
-  color: rgba($dark-color, 0.75);
-  font-size: rem(14);
-  font-family: 'Montserrat', sans-serif;
+    &:hover,
+    &:focus {
+      border-color: rgba($dark-color, 0.5);
+    }
 
-  &::-webkit-calendar-picker-indicator {
-    display: none;
-  }
+    &:focus {
+      outline: none;
+    }
 
-  &:hover,
-  &:focus {
-    border-color: rgba($dark-color, 0.5);
+    &:not([type='radio']):not([type='checkbox']) {
+      width: 100%;
+    }
   }
 
   &_arrow {
-    background: url(../../icons/expand_more.svg) no-repeat right center;
-    background-origin: content-box;
+    position: absolute;
+    top: 36%;
+    right: 15px;
+    font-size: 12px;
+    &::before {
+      color: rgba($dark-color, 0.5);
+    }
+  }
+
+  &_arrow-forward {
+    position: absolute;
+    top: 35%;
+    right: 13px;
+    font-size: 16px;
+    &::before {
+      color: $primary-color;
+    }
+  }
+
+  &_oppened-js {
+    transform: rotate(180deg);
   }
 }

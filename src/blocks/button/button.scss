@@ -3,19 +3,55 @@
 @import '../../common/variables.scss';
 
 .button {
-  width: 100%;
   display: flex;
+  align-items: center;
   justify-content: center;
-
-  border: none;
+  padding: rem(2);
   border-radius: 25px;
+  background: $gradient;
+  position: relative;
 
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  font-size: rem(12);
+  &:hover {
+    background: $gradient50;
+  }
 
-  text-transform: uppercase;
-  text-align: center;
+  @media (max-width: $mobile) {
+    display: block;
+  }
+
+  &_transparent {
+    background: $primary-color;
+  }
+
+  &_transparent {
+    background: transparent;
+    &:hover {
+      background: transparent;
+    }
+  }
+
+  &_counter {
+    background: transparent;
+    &:hover {
+      background: transparent;
+    }
+  }
+
+  &__button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    border: none;
+    border-radius: 25px;
+
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: rem(12);
+
+    text-transform: uppercase;
+    text-align: center;
+  }
 
   &_tiny {
     padding: 0;
@@ -53,7 +89,11 @@
   }
 
   &_arrow {
-    background: url('../../icons/arrow_forward.svg') no-repeat 97% center;
+    position: absolute;
+    top: 33%;
+    right: 13px;
+    color: white;
+    font-size: 16px;
   }
 
   &_link {
@@ -63,40 +103,5 @@
 
   @media (max-width: $tablet) {
     width: 100%;
-  }
-}
-
-.btn-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: rem(2);
-  border-radius: 25px;
-  background: $gradient;
-
-  &:hover {
-    background: $gradient50;
-  }
-
-  @media (max-width: $mobile) {
-    display: block;
-  }
-
-  &_transparent {
-    background: $primary-color;
-  }
-
-  &_transparent {
-    background: transparent;
-    &:hover {
-      background: transparent;
-    }
-  }
-
-  &_counter {
-    background: transparent;
-    &:hover {
-      background: transparent;
-    }
   }
 }

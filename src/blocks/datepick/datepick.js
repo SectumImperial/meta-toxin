@@ -3,6 +3,10 @@ import './datepick.scss'
 
 import AirDatepicker from 'air-datepicker'
 
+class Dtepicker {
+  constructor(selector) {}
+}
+
 const container = document.querySelector('._datepick-js')
 
 if (container) {

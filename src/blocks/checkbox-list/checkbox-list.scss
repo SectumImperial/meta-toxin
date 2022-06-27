@@ -1,5 +1,37 @@
+@use 'sass:math';
+@import '../../common/functions.scss';
+@import '../../common/variables.scss';
+
 .checkbox-list {
   &__item {
     list-style: none;
+  }
+
+  &__title {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+
+    font-size: rem(12);
+    text-transform: uppercase;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    &::before {
+      position: absolute;
+      color: rgba($dark-color, 0.5);
+
+      right: 15px;
+      top: calc(50% - 4px);
+      font-size: rem(8);
+    }
+  }
+
+  ._active {
+    &::before {
+      transform: rotate(180deg);
+      color: red;
+    }
   }
 }

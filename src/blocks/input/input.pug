@@ -9,39 +9,34 @@ mixin input(options = {})
       placeholder = '',
       readonly = false,
       pattern = '.*',
-      inputMod = [],
+      arrow = false,
       inputOptions = '',
       checked = false,
-      required = false
+      required = false,
     } = options
 
-  
-
-    const modificators = {
-      arrow: 'input_arrow',
+    const arrows = {
+      expandMore: 'icon__expand_more',
+      forward: 'icon__arrow_forward input_arrow-forward',
     }
 
-    let mod = ''
-    if(inputMod.length > 0) {
-      mod += modificators[inputMod]
-    }
-
-  input(
-    type = type
-    name = name
-    id = id
-    class = `input ${classInput} ${mod}`
-    value = value 
-    placeholder = placeholder
-    readonly = readonly
-    pattern = pattern
-    data-inputOptions = inputOptions,
-    checked = checked,
-    required = required
-  )  
-   
-
-
-
-  
-  
+  div(
+    class = `input ${classInput}`
+  )
+    input(
+      type = type
+      name = name
+      id = id
+      class = `input__field`
+      value = value 
+      placeholder = placeholder
+      readonly = readonly
+      pattern = pattern
+      data-inputOptions = inputOptions,
+      checked = checked,
+      required = required
+    )  
+    - if(arrow && arrows[arrow])
+      div(
+        class = `input_arrow _input_arrow-js ${arrows[arrow]}` 
+      )

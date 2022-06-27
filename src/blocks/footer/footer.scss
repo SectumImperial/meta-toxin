@@ -37,7 +37,7 @@
 
     &__blocks {
       display: flex;
-      padding: 98px 140px 75px 140px;
+      padding: 100px 140px 75px 140px;
     }
 
     &__block {
@@ -68,10 +68,10 @@
       padding-bottom: 4px;
 
       // Для PP
-      margin-right: 59px;
+      margin-right: 58px;
       &:last-child {
         margin-right: 0;
-        margin-left: 31px;
+        margin-left: 33px;
       }
     }
 

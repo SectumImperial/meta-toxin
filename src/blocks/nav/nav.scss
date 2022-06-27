@@ -104,6 +104,11 @@
 
   @media (min-width: $tablet) {
     font-size: rem(14);
+    &__link_sub {
+      &::before {
+        font-size: 12px;
+      }
+    }
 
     // Элементы навигации
     &__items {

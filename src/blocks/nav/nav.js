@@ -48,7 +48,8 @@ mediaQueryList.addEventListener('change', () => {
 
 if (subItems.length > 0 && page.classList.contains('_touch')) {
   subItems.forEach((element) => {
-    element.addEventListener('click', () => {
+    element.addEventListener('click', (e) => {
+      e.preventDefault()
       element.classList.toggle('_active')
     })
   })
