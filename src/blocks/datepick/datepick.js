@@ -3,8 +3,184 @@ import './datepick.scss'
 
 import AirDatepicker from 'air-datepicker'
 
-class Dtepicker {
-  constructor(selector) {}
+class Datepicker {
+  constructor(element) {
+    this.datepick = element
+    this.init()
+  }
+
+  init() {
+    this.createElems(this.datepick)
+    this.createDatepicker()
+    this.checkBtnVisibility(this.items)
+    this.addListeners()
+  }
+
+  createElems(datepick) {
+    this.items = datepick.querySelectorAll('._datepickItem')
+    this.formGroups = Array.from(datepick.querySelectorAll('.datepick__group'))
+    this.buttonClear = datepick.querySelector('.datepick__button_clear')
+    this.buttonAccept = datepick.querySelector('.datepick__button_accept')
+
+    if (datepick.classList.contains('_datepick-1')) this.singleInputMod = true
+    if (datepick.classList.contains('_datepick-2')) this.twoInputMod = true
+  }
+
+  createDatepicker() {
+    this.calConteiner = datepick.querySelector('.datepick__container')
+    this.dp = new AirDatepicker(calConteiner, {
+      range: true,
+    })
+    this.dp.show()
+
+    if (this.woInputMod) {
+      this.firstItem = datepick.querySelector('.datepick-start')
+      this.secondItem = datepick.querySelector('.datepick-end')
+    }
+
+    if (this.singleInputMod) {
+      this.singleItem = datepick.querySelector('.datepick-dates')
+    }
+
+    this.getUrlValues()
+  }
+
+  getUrlValues() {
+    if (this.singleInputMod) {
+      const queryString = window.location.search
+      const urlParams = new URLSearchParams(queryString)
+
+      const startUrlDateString = urlParams.get('datepick-input-start')
+      const endUrlDateString = urlParams.get('datepick-input-end')
+
+      if ((startUrlDateString, endUrlDateString)) {
+        const [firstDay, firstmonth, firstyear] = startUrlDateString.split('.')
+        const [secondDay, secondmonth, secondyear] = endUrlDateString.split('.')
+
+        const startDate = new Date(firstyear, firstmonth, firstDay)
+        const endDate = new Date(secondyear, secondmonth, secondDay)
+
+        this.singleItem.value = this.formatDate(startDate, endDate)
+      }
+    }
+  }
+
+  checkBtnVisibility(items) {
+    let addedValue
+    if (this.twoInputMod) {
+      addedValue = items.every((e) => e.value !== '')
+    }
+
+    if (this.singleInputMod) {
+      addedValue = singleItem.value !== ''
+    }
+
+    if (addedValue) buttonClear.style.visibility = 'visible'
+    if (!addedValue) buttonClear.style.visibility = 'hidden'
+  }
+
+  // Методы выделения диапазона
+  performRange(rangeFrom, rangeTo) {
+    clearRange(container, 'start-range')
+    clearRange(container, 'end-range')
+    deletePoitRange(rangeFrom)
+    deletePoitRange(rangeTo)
+    addPoitRange(rangeFrom, rangeTo)
+  }
+
+  addPoitRange(startPoint, endPoint) {
+    if (
+      startPoint &&
+      startPoint.classList.contains('-selected-') &&
+      !startPoint.classList.contains('start-range')
+    ) {
+      startPoint.classList.add('start-range')
+    }
+
+    if (
+      endPoint &&
+      endPoint.classList.contains('-selected-') &&
+      !endPoint.classList.contains('end-range')
+    ) {
+      endPoint.classList.add('end-range')
+    }
+  }
+
+  deletePoitRange(point) {
+    if (
+      point &&
+      point.classList.contains('end-range') &&
+      point.classList.contains('start-range')
+    ) {
+      point.classList.remove('start-range')
+      point.classList.remove('end-range')
+    }
+  }
+
+  clearRange(container, rangeLineClass) {
+    let elems = [...container.querySelectorAll(`.${rangeLineClass}`)]
+    if (elems.length === 0) return
+    elems.forEach((el) => {
+      if (
+        !el.classList.contains(rangeLineClass) &&
+        !el.classList.contains('-selected-')
+      ) {
+        el.classList.remove(rangeLineClass)
+      }
+
+      if (
+        !el.classList.contains('-selected-') &&
+        !el.classList.contains('-focus-')
+      ) {
+        el.classList.remove(rangeLineClass)
+      }
+    })
+  }
+
+  // Конец методов выделения диапазона
+
+  formatDate(firstDate, secondDate = '') {
+    if (secondDate !== '' && singleInputMod) {
+      let firstDay = firstDate.getDate()
+      let secondDay = secondDate.getDate()
+      let fistMonth = firstDate
+        .toLocaleString('default', { month: 'long' })
+        .substring(0, 3)
+      let secondMonth = secondDate
+        .toLocaleString('default', { month: 'long' })
+        .substring(0, 3)
+
+      let result = `${firstDay} ${fistMonth} - ${secondDay} ${secondMonth}`
+      return result
+    }
+
+    if (secondDate === '' && twoInputMod) {
+      let day =
+        `${firstDate.getDate()}`.length < 2
+          ? `0${firstDate.getDate()}`
+          : firstDate.getDate()
+      let month =
+        `${firstDate.getMonth()}`.length < 2
+          ? `0${firstDate.getMonth() + 1}`
+          : firstDate.getMonth() + 1
+      let year = firstDate.getFullYear()
+      let result = `${day}.${month}.${year}`
+      return result
+    }
+  }
+
+  addDateCal(items) {
+    let dates = Array.from(
+      [...items].map((inputElement) => inputElement.value)
+    ).map((e) => e.split('.').reverse().join('.').replaceAll('.', '-'))
+    dp.selectDate(dates)
+  }
+
+  deleteComma(elem) {
+    let text = elem.innerText
+    text = text.replace(',', '').replace('\n', ' ')
+    return text
+  }
 }
 
 const container = document.querySelector('._datepick-js')

@@ -28,3 +28,14 @@ require('./blocks/toggle/toggle.js')
 require('./blocks/range-slider/range-slider.js')
 require('./blocks/checkbox/checkbox.js')
 require('./blocks/checkbox-list/checkbox-list.js')
+
+import Dropdown from './blocks/dropdown/dropdown.js'
+import CheckboxList from './blocks/checkbox-list/checkbox-list'
+
+document.querySelectorAll('._js-dropdown').forEach((e) => {
+  new Dropdown(e)
+})
+
+document.querySelectorAll('._js-checkbox-list').forEach((e) => {
+  new CheckboxList(e)
+})
