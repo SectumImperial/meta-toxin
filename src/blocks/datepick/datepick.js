@@ -12,37 +12,52 @@ class Datepicker {
   init() {
     this.createElems(this.datepick)
     this.createDatepicker()
-    this.checkBtnVisibility(this.items)
+    this.addButtonsArrow()
+    this.checkBtnVisibility([...this.items])
     this.addListeners()
   }
 
-  createElems(datepick) {
-    this.items = datepick.querySelectorAll('._datepickItem')
-    this.formGroups = Array.from(datepick.querySelectorAll('.datepick__group'))
-    this.buttonClear = datepick.querySelector('.datepick__button_clear')
-    this.buttonAccept = datepick.querySelector('.datepick__button_accept')
+  createElems(container) {
+    this.items = container.querySelectorAll('._datepickItem')
+    this.formGroups = Array.from(container.querySelectorAll('.datepick__group'))
+    this.buttonClear = container.querySelector('.datepick__button_clear')
+    this.buttonAccept = container.querySelector('.datepick__button_accept')
 
-    if (datepick.classList.contains('_datepick-1')) this.singleInputMod = true
-    if (datepick.classList.contains('_datepick-2')) this.twoInputMod = true
+    if (container.classList.contains('_datepick-1')) this.singleInputMod = true
+    if (container.classList.contains('_datepick-2')) this.twoInputMod = true
+
+    this.rangeFrom
+    this.rangeTo
   }
 
   createDatepicker() {
-    this.calConteiner = datepick.querySelector('.datepick__container')
-    this.dp = new AirDatepicker(calConteiner, {
+    this.calConteiner = this.datepick.querySelector('.datepick__container')
+    this.dp = new AirDatepicker(this.calConteiner, {
       range: true,
     })
     this.dp.show()
 
-    if (this.woInputMod) {
-      this.firstItem = datepick.querySelector('.datepick-start')
-      this.secondItem = datepick.querySelector('.datepick-end')
+    if (this.twoInputMod) {
+      this.firstItem = this.datepick.querySelector('.datepick-start')
+      this.secondItem = this.datepick.querySelector('.datepick-end')
     }
 
     if (this.singleInputMod) {
-      this.singleItem = datepick.querySelector('.datepick-dates')
+      this.singleItem = this.datepick.querySelector('.datepick-dates')
     }
 
+    this.formatTitle()
     this.getUrlValues()
+  }
+
+  addListeners() {
+    this.datepick.addEventListener('click', this.clickInputOpen.bind(this))
+    this.buttonClear.addEventListener('click', this.clear.bind(this))
+    this.buttonAccept.addEventListener('click', this.accept.bind(this))
+    this.items.forEach((item) => {
+      item.addEventListener('input', this.inputDate.bind(this))
+    })
+    this.calConteiner.addEventListener('click', this.checkRange.bind(this))
   }
 
   getUrlValues() {
@@ -65,27 +80,27 @@ class Datepicker {
     }
   }
 
-  checkBtnVisibility(items) {
+  checkBtnVisibility(itemsArr) {
     let addedValue
     if (this.twoInputMod) {
-      addedValue = items.every((e) => e.value !== '')
+      addedValue = itemsArr.every((e) => e.value !== '')
     }
 
     if (this.singleInputMod) {
-      addedValue = singleItem.value !== ''
+      addedValue = this.singleItem.value !== ''
     }
 
-    if (addedValue) buttonClear.style.visibility = 'visible'
-    if (!addedValue) buttonClear.style.visibility = 'hidden'
+    if (addedValue) this.buttonClear.style.visibility = 'visible'
+    if (!addedValue) this.buttonClear.style.visibility = 'hidden'
   }
 
   // Методы выделения диапазона
   performRange(rangeFrom, rangeTo) {
-    clearRange(container, 'start-range')
-    clearRange(container, 'end-range')
-    deletePoitRange(rangeFrom)
-    deletePoitRange(rangeTo)
-    addPoitRange(rangeFrom, rangeTo)
+    this.clearRange(this.datepick, 'start-range')
+    this.clearRange(this.datepick, 'end-range')
+    this.deletePoitRange(rangeFrom)
+    this.deletePoitRange(rangeTo)
+    this.addPoitRange(rangeFrom, rangeTo)
   }
 
   addPoitRange(startPoint, endPoint) {
@@ -140,7 +155,7 @@ class Datepicker {
   // Конец методов выделения диапазона
 
   formatDate(firstDate, secondDate = '') {
-    if (secondDate !== '' && singleInputMod) {
+    if (secondDate !== '' && this.singleInputMod) {
       let firstDay = firstDate.getDate()
       let secondDay = secondDate.getDate()
       let fistMonth = firstDate
@@ -154,7 +169,7 @@ class Datepicker {
       return result
     }
 
-    if (secondDate === '' && twoInputMod) {
+    if (secondDate === '' && this.twoInputMod) {
       let day =
         `${firstDate.getDate()}`.length < 2
           ? `0${firstDate.getDate()}`
@@ -173,7 +188,7 @@ class Datepicker {
     let dates = Array.from(
       [...items].map((inputElement) => inputElement.value)
     ).map((e) => e.split('.').reverse().join('.').replaceAll('.', '-'))
-    dp.selectDate(dates)
+    this.dp.selectDate(dates)
   }
 
   deleteComma(elem) {
@@ -181,185 +196,33 @@ class Datepicker {
     text = text.replace(',', '').replace('\n', ' ')
     return text
   }
-}
 
-const container = document.querySelector('._datepick-js')
-
-if (container) {
-  let firstItem, secondItem, singleItem, rangeFrom, rangeTo
-  let items = container.querySelectorAll('._datepickItem')
-  let formGroups = Array.from(container.querySelectorAll('.datepick__group'))
-  let buttonClear = container.querySelector('.datepick__button_clear')
-  let buttonAccept = container.querySelector('.datepick__button_accept')
-
-  const singleInputMod = container.classList.contains('_datepick-1')
-  const twoInputMod = container.classList.contains('_datepick-2')
-
-  buttonClear.style.visibility = 'hidden'
-
-  function checkBtnVisibility(items) {
-    let addedValue
-    if (twoInputMod) {
-      addedValue = items.every((e) => e.value !== '')
-    }
-
-    if (singleInputMod) {
-      addedValue = singleItem.value !== ''
-    }
-
-    if (addedValue) buttonClear.style.visibility = 'visible'
-    if (!addedValue) buttonClear.style.visibility = 'hidden'
-  }
-
-  function addPoitRange(startPoint, endPoint) {
-    if (
-      startPoint &&
-      startPoint.classList.contains('-selected-') &&
-      !startPoint.classList.contains('start-range')
-    ) {
-      startPoint.classList.add('start-range')
-    }
-
-    if (
-      endPoint &&
-      endPoint.classList.contains('-selected-') &&
-      !endPoint.classList.contains('end-range')
-    ) {
-      endPoint.classList.add('end-range')
-    }
-  }
-
-  function deletePoitRange(point) {
-    if (
-      point &&
-      point.classList.contains('end-range') &&
-      point.classList.contains('start-range')
-    ) {
-      point.classList.remove('start-range')
-      point.classList.remove('end-range')
-    }
-  }
-
-  function clearRange(container, rangeLineClass) {
-    let elems = [...container.querySelectorAll(`.${rangeLineClass}`)]
-    if (elems.length === 0) return
-    elems.forEach((el) => {
-      if (
-        !el.classList.contains(rangeLineClass) &&
-        !el.classList.contains('-selected-')
-      ) {
-        el.classList.remove(rangeLineClass)
-      }
-
-      if (
-        !el.classList.contains('-selected-') &&
-        !el.classList.contains('-focus-')
-      ) {
-        el.classList.remove(rangeLineClass)
-      }
+  addButtonsArrow() {
+    let navButtons = this.datepick.querySelectorAll(
+      '.air-datepicker-nav--action'
+    )
+    navButtons.forEach((e) => {
+      e.classList.add('icon__arrow_forward')
     })
   }
 
-  function formatDate(firstDate, secondDate = '') {
-    if (secondDate !== '' && singleInputMod) {
-      let firstDay = firstDate.getDate()
-      let secondDay = secondDate.getDate()
-      let fistMonth = firstDate
-        .toLocaleString('default', { month: 'long' })
-        .substring(0, 3)
-      let secondMonth = secondDate
-        .toLocaleString('default', { month: 'long' })
-        .substring(0, 3)
-
-      let result = `${firstDay} ${fistMonth} - ${secondDay} ${secondMonth}`
-      return result
-    }
-
-    if (secondDate === '' && twoInputMod) {
-      let day =
-        `${firstDate.getDate()}`.length < 2
-          ? `0${firstDate.getDate()}`
-          : firstDate.getDate()
-      let month =
-        `${firstDate.getMonth()}`.length < 2
-          ? `0${firstDate.getMonth() + 1}`
-          : firstDate.getMonth() + 1
-      let year = firstDate.getFullYear()
-      let result = `${day}.${month}.${year}`
-      return result
-    }
+  formatTitle() {
+    let navTitle = this.datepick.querySelector('.air-datepicker-nav--title')
+    navTitle.innerText = this.deleteComma(navTitle)
   }
 
-  function addDateCal(items) {
-    let dates = Array.from(
-      [...items].map((inputElement) => inputElement.value)
-    ).map((e) => e.split('.').reverse().join('.').replaceAll('.', '-'))
-    dp.selectDate(dates)
-  }
-
-  function performRange(rangeFrom, rangeTo) {
-    clearRange(container, 'start-range')
-    clearRange(container, 'end-range')
-    deletePoitRange(rangeFrom)
-    deletePoitRange(rangeTo)
-    addPoitRange(rangeFrom, rangeTo)
-  }
-
-  function deleteComma(elem) {
-    let text = elem.innerText
-    text = text.replace(',', '').replace('\n', ' ')
-    return text
-  }
-
-  // --------------- Создать календарь -----------------
-  // Создать контейнер
-  let calConteiner = document.querySelector('.datepick__container')
-  let dp = new AirDatepicker(calConteiner, {
-    range: true,
-  })
-  dp.show()
-
-  if (twoInputMod) {
-    firstItem = container.querySelector('.datepick-start')
-    secondItem = container.querySelector('.datepick-end')
-  }
-
-  if (singleInputMod) {
-    singleItem = container.querySelector('.datepick-dates')
-  }
-
-  // Получить данные из строки url и установить их в значение одного поля
-  if (singleInputMod) {
-    const queryString = window.location.search
-    const urlParams = new URLSearchParams(queryString)
-
-    const startUrlDateString = urlParams.get('datepick-input-start')
-    const endUrlDateString = urlParams.get('datepick-input-end')
-
-    if ((startUrlDateString, endUrlDateString)) {
-      const [firstDay, firstmonth, firstyear] = startUrlDateString.split('.')
-      const [secondDay, secondmonth, secondyear] = endUrlDateString.split('.')
-
-      const startDate = new Date(firstyear, firstmonth, firstDay)
-      const endDate = new Date(secondyear, secondmonth, secondDay)
-
-      singleItem.value = formatDate(startDate, endDate)
-    }
-  }
-
-  // Работа скрытия и показа календаря при кликах на поля
-  container.addEventListener('click', ({ target }) => {
+  clickInputOpen({ target }) {
     let targetContainer = target.closest('.datepick__group')
     if (!targetContainer) return
 
-    if (twoInputMod) {
-      let sibling = [...formGroups.filter((e) => e !== targetContainer)][0]
+    if (this.twoInputMod) {
+      let sibling = [...this.formGroups.filter((e) => e !== targetContainer)][0]
 
       // Клик по сосденему инпуту после клика на первый, календарь не закрывается
       if (
         !targetContainer.classList.contains('clicked') &&
         sibling.classList.contains('clicked') &&
-        calConteiner.classList.contains('_active-dp')
+        this.calConteiner.classList.contains('_active-dp')
       ) {
         targetContainer.classList.toggle('clicked')
         return
@@ -369,139 +232,129 @@ if (container) {
       if (
         targetContainer.classList.contains('clicked') &&
         sibling.classList.contains('clicked') &&
-        calConteiner.classList.contains('_active-dp')
+        this.calConteiner.classList.contains('_active-dp')
       ) {
         targetContainer.classList.remove('clicked')
         sibling.classList.remove('clicked')
-        calConteiner.classList.remove('_active-dp')
+        this.calConteiner.classList.remove('_active-dp')
         return
       }
 
       targetContainer.classList.toggle('clicked')
-      calConteiner.classList.toggle('_active-dp')
+      this.calConteiner.classList.toggle('_active-dp')
     }
 
-    if (singleInputMod) {
+    if (this.singleInputMod) {
       targetContainer.classList.toggle('clicked')
-      calConteiner.classList.toggle('_active-dp')
+      this.calConteiner.classList.toggle('_active-dp')
     }
-  })
-
-  // Форматирование заголовка согласно макету
-  let navTitle = document.querySelector('.air-datepicker-nav--title')
-  navTitle.innerText = deleteComma(navTitle)
-
-  // Очистка выбранных дат
-  buttonClear.addEventListener('click', (e) => {
-    e.preventDefault()
-    if (twoInputMod) {
-      firstItem.value = ''
-      secondItem.value = ''
-    }
-
-    if (singleInputMod) {
-      singleItem.value = ''
-    }
-    dp.clear()
-  })
-
-  // Клик по кнопке принять
-  buttonAccept.addEventListener('click', (e) => {
-    e.preventDefault()
-    if (dp.rangeDateFrom || dp.rangeDateTo) {
-      calConteiner.classList.remove('_active-dp')
-    }
-  })
-
-  // Ручной ввод дат
-
-  if (twoInputMod) {
-    items.forEach((item) => {
-      item.addEventListener('input', () => {
-        let correctFormat = [...items].every(({ value, pattern }) => {
-          return value.match(pattern)
-        })
-
-        if (correctFormat) {
-          addDateCal(items)
-
-          rangeFrom = container.querySelector('.-range-from-')
-          rangeTo = container.querySelector('.-range-to-')
-
-          if (firstItem.value === secondItem.value) {
-            let date = secondItem.value.split('.')
-            let day = date[0]
-            day++
-            date.splice(0, 1, day)
-            secondItem.value = date.join('.')
-
-            addDateCal(items)
-            rangeFrom = container.querySelector('.-range-from-')
-            rangeTo = container.querySelector('.-range-to-')
-            performRange(rangeFrom, rangeTo)
-          }
-          if (firstItem.value > secondItem.value) {
-            ;[firstItem.value, secondItem.value] = [
-              secondItem.value,
-              firstItem.value,
-            ]
-            performRange(rangeFrom, rangeTo)
-            addDateCal(items)
-          }
-          if (firstItem.value !== secondItem.value) {
-            performRange(rangeFrom, rangeTo)
-          }
-        }
-      })
-    })
   }
 
-  // --------------- Настроить выделение диапазона и обработать клики-----------------
+  clear(e) {
+    e.preventDefault()
+    if (this.twoInputMod) {
+      this.firstItem.value = ''
+      this.secondItem.value = ''
+    }
 
-  calConteiner.addEventListener('click', ({ target }) => {
-    navTitle = document.querySelector('.air-datepicker-nav--title')
-    navTitle.innerText = deleteComma(navTitle)
+    if (this.singleInputMod) {
+      this.singleItem.value = ''
+    }
+    this.dp.clear()
+  }
+
+  accept(e) {
+    e.preventDefault()
+
+    if (this.dp.rangeDateFrom || this.dp.rangeDateTo) {
+      this.calConteiner.classList.remove('_active-dp')
+    }
+  }
+
+  inputDate() {
+    let correctFormat = [...this.items].every(({ value, pattern }) => {
+      return value.match(pattern)
+    })
+
+    if (correctFormat) {
+      this.addDateCal(this.items)
+
+      this.rangeFrom = this.datepick.querySelector('.-range-from-')
+      this.rangeTo = this.datepick.querySelector('.-range-to-')
+
+      if (this.firstItem.value === this.secondItem.value) {
+        let date = secondItem.value.split('.')
+        let day = date[0]
+        day++
+        date.splice(0, 1, day)
+        this.secondItem.value = date.join('.')
+
+        this.addDateCal(items)
+        this.rangeFrom = this.datepick.querySelector('.-range-from-')
+        this.rangeTo = this.datepick.querySelector('.-range-to-')
+        this.performRange(this.rangeFrom, this.rangeTo)
+      }
+      if (this.firstItem.value > this.secondItem.value) {
+        ;[this.firstItem.value, sthis.econdItem.value] = [
+          this.secondItem.value,
+          this.firstItem.value,
+        ]
+        this.performRange(this.rangeFrom, this.rangeTo)
+        this.addDateCal(items)
+      }
+      if (this.firstItem.value !== this.secondItem.value) {
+        this.performRange(this.rangeFrom, this.rangeTo)
+      }
+    }
+  }
+
+  checkRange({ target }) {
+    let navTitle = this.datepick.querySelector('.air-datepicker-nav--title')
+    navTitle.innerText = this.deleteComma(navTitle)
 
     // Отображение дат в полях
 
-    if (twoInputMod) {
-      if (dp.rangeDateFrom) {
-        firstItem.value = formatDate(dp.rangeDateFrom)
+    if (this.twoInputMod) {
+      if (this.dp.rangeDateFrom) {
+        this.firstItem.value = this.formatDate(this.dp.rangeDateFrom)
       }
 
-      if (dp.rangeDateTo) {
-        secondItem.value = formatDate(dp.rangeDateTo)
+      if (this.dp.rangeDateTo) {
+        this.secondItem.value = this.formatDate(this.dp.rangeDateTo)
       }
     }
 
-    if (singleInputMod && dp.rangeDateFrom && dp.rangeDateTo) {
-      singleItem.value = formatDate(dp.rangeDateFrom, dp.rangeDateTo)
+    if (this.singleInputMod && this.dp.rangeDateFrom && this.dp.rangeDateTo) {
+      this.singleItem.value = this.formatDate(
+        this.dp.rangeDateFrom,
+        this.dp.rangeDateTo
+      )
     }
 
     // Удаление старых линий диапазона при выборе нового
-    clearRange(container, 'start-range')
-    clearRange(container, 'end-range')
+    this.clearRange(this.datepick, 'start-range')
+    this.clearRange(this.datepick, 'end-range')
 
     // Настройка ячеек при смене месяца
-    rangeFrom = container.querySelector('.-range-from-')
-    rangeTo = container.querySelector('.-range-to-')
+    this.rangeFrom = this.datepick.querySelector('.-range-from-')
+    this.rangeTo = this.datepick.querySelector('.-range-to-')
 
     if (target.classList.contains('air-datepicker-nav--action')) {
-      addPoitRange(rangeFrom, rangeTo)
+      this.addPoitRange(this.rangeFrom, this.rangeTo)
     }
 
     // Выделить диапазон при движеии мыши
-    container.addEventListener('mousemove', ({ target, relatedTarget }) => {
-      rangeFrom = container.querySelector('.-range-from-')
-      rangeTo = container.querySelector('.-range-to-')
+    this.datepick.addEventListener('mousemove', ({ target, relatedTarget }) => {
+      this.rangeFrom = this.datepick.querySelector('.-range-from-')
+      this.rangeTo = this.datepick.querySelector('.-range-to-')
 
       // Переменная для пред. дня при движении мыши во время выделения диапазона
       let prevDay
 
-      addPoitRange(rangeFrom, rangeTo)
+      this.addPoitRange(this.rangeFrom, this.rangeTo)
 
-      if (rangeFrom && rangeFrom.classList.contains('end-range')) {
-        rangeFrom.classList.remove('end-range')
+      if (this.rangeFrom && this.rangeFrom.classList.contains('end-range')) {
+        this.rangeFrom.classList.remove('end-range')
       }
 
       // Назначить переменной пред. дня значение
@@ -529,22 +382,390 @@ if (container) {
       }
 
       // Удаление выделения диапазона у элементов там, где это не нужно при быстром движении мыши или выход за контейнер.
-      clearRange(container, 'start-range')
-      clearRange(container, 'end-range')
+      this.clearRange(this.datepick, 'start-range')
+      this.clearRange(this.datepick, 'end-range')
 
       // Удалить выделение диапазона в случае возврата мыши к выбранной дате
       if (
-        rangeFrom &&
-        rangeFrom.classList.contains('-focus-') &&
-        rangeFrom.classList.contains('-range-to-') &&
-        rangeFrom.classList.contains('-range-from-') &&
-        rangeFrom.classList.contains('-selected-')
+        this.rangeFrom &&
+        this.rangeFrom.classList.contains('-focus-') &&
+        this.rangeFrom.classList.contains('-range-to-') &&
+        this.rangeFrom.classList.contains('-range-from-') &&
+        this.rangeFrom.classList.contains('-selected-')
       ) {
-        rangeFrom.classList.remove('end-range')
-        rangeFrom.classList.remove('start-range')
+        this.rangeFrom.classList.remove('end-range')
+        this.rangeFrom.classList.remove('start-range')
       }
     })
 
-    checkBtnVisibility([firstItem, secondItem])
-  })
+    this.checkBtnVisibility([this.firstItem, this.secondItem])
+  }
 }
+
+export default Datepicker
+
+// const container = document.querySelector('._datepick-js')
+
+// if (container) {
+//   let firstItem, secondItem, singleItem, rangeFrom, rangeTo
+//   let items = container.querySelectorAll('._datepickItem')
+//   let formGroups = Array.from(container.querySelectorAll('.datepick__group'))
+//   let buttonClear = container.querySelector('.datepick__button_clear')
+//   let buttonAccept = container.querySelector('.datepick__button_accept')
+
+//   const singleInputMod = container.classList.contains('_datepick-1')
+//   const twoInputMod = container.classList.contains('_datepick-2')
+
+//   buttonClear.style.visibility = 'hidden'
+
+//   function checkBtnVisibility(items) {
+//     let addedValue
+//     if (twoInputMod) {
+//       addedValue = items.every((e) => e.value !== '')
+//     }
+
+//     if (singleInputMod) {
+//       addedValue = singleItem.value !== ''
+//     }
+
+//     if (addedValue) buttonClear.style.visibility = 'visible'
+//     if (!addedValue) buttonClear.style.visibility = 'hidden'
+//   }
+
+//   function addPoitRange(startPoint, endPoint) {
+//     if (
+//       startPoint &&
+//       startPoint.classList.contains('-selected-') &&
+//       !startPoint.classList.contains('start-range')
+//     ) {
+//       startPoint.classList.add('start-range')
+//     }
+
+//     if (
+//       endPoint &&
+//       endPoint.classList.contains('-selected-') &&
+//       !endPoint.classList.contains('end-range')
+//     ) {
+//       endPoint.classList.add('end-range')
+//     }
+//   }
+
+//   function deletePoitRange(point) {
+//     if (
+//       point &&
+//       point.classList.contains('end-range') &&
+//       point.classList.contains('start-range')
+//     ) {
+//       point.classList.remove('start-range')
+//       point.classList.remove('end-range')
+//     }
+//   }
+
+//   function clearRange(container, rangeLineClass) {
+//     let elems = [...container.querySelectorAll(`.${rangeLineClass}`)]
+//     if (elems.length === 0) return
+//     elems.forEach((el) => {
+//       if (
+//         !el.classList.contains(rangeLineClass) &&
+//         !el.classList.contains('-selected-')
+//       ) {
+//         el.classList.remove(rangeLineClass)
+//       }
+
+//       if (
+//         !el.classList.contains('-selected-') &&
+//         !el.classList.contains('-focus-')
+//       ) {
+//         el.classList.remove(rangeLineClass)
+//       }
+//     })
+//   }
+
+//   function formatDate(firstDate, secondDate = '') {
+//     if (secondDate !== '' && singleInputMod) {
+//       let firstDay = firstDate.getDate()
+//       let secondDay = secondDate.getDate()
+//       let fistMonth = firstDate
+//         .toLocaleString('default', { month: 'long' })
+//         .substring(0, 3)
+//       let secondMonth = secondDate
+//         .toLocaleString('default', { month: 'long' })
+//         .substring(0, 3)
+
+//       let result = `${firstDay} ${fistMonth} - ${secondDay} ${secondMonth}`
+//       return result
+//     }
+
+//     if (secondDate === '' && twoInputMod) {
+//       let day =
+//         `${firstDate.getDate()}`.length < 2
+//           ? `0${firstDate.getDate()}`
+//           : firstDate.getDate()
+//       let month =
+//         `${firstDate.getMonth()}`.length < 2
+//           ? `0${firstDate.getMonth() + 1}`
+//           : firstDate.getMonth() + 1
+//       let year = firstDate.getFullYear()
+//       let result = `${day}.${month}.${year}`
+//       return result
+//     }
+//   }
+
+//   function addDateCal(items) {
+//     let dates = Array.from(
+//       [...items].map((inputElement) => inputElement.value)
+//     ).map((e) => e.split('.').reverse().join('.').replaceAll('.', '-'))
+//     dp.selectDate(dates)
+//   }
+
+//   function performRange(rangeFrom, rangeTo) {
+//     clearRange(container, 'start-range')
+//     clearRange(container, 'end-range')
+//     deletePoitRange(rangeFrom)
+//     deletePoitRange(rangeTo)
+//     addPoitRange(rangeFrom, rangeTo)
+//   }
+
+//   function deleteComma(elem) {
+//     let text = elem.innerText
+//     text = text.replace(',', '').replace('\n', ' ')
+//     return text
+//   }
+
+//   // --------------- Создать календарь -----------------
+//   // Создать контейнер
+//   let calConteiner = document.querySelector('.datepick__container')
+//   let dp = new AirDatepicker(calConteiner, {
+//     range: true,
+//   })
+//   dp.show()
+
+//   if (twoInputMod) {
+//     firstItem = container.querySelector('.datepick-start')
+//     secondItem = container.querySelector('.datepick-end')
+//   }
+
+//   if (singleInputMod) {
+//     singleItem = container.querySelector('.datepick-dates')
+//   }
+
+//   // Получить данные из строки url и установить их в значение одного поля
+//   if (singleInputMod) {
+//     const queryString = window.location.search
+//     const urlParams = new URLSearchParams(queryString)
+
+//     const startUrlDateString = urlParams.get('datepick-input-start')
+//     const endUrlDateString = urlParams.get('datepick-input-end')
+
+//     if ((startUrlDateString, endUrlDateString)) {
+//       const [firstDay, firstmonth, firstyear] = startUrlDateString.split('.')
+//       const [secondDay, secondmonth, secondyear] = endUrlDateString.split('.')
+
+//       const startDate = new Date(firstyear, firstmonth, firstDay)
+//       const endDate = new Date(secondyear, secondmonth, secondDay)
+
+//       singleItem.value = formatDate(startDate, endDate)
+//     }
+//   }
+
+//   // Работа скрытия и показа календаря при кликах на поля
+//   container.addEventListener('click', ({ target }) => {
+//     let targetContainer = target.closest('.datepick__group')
+//     if (!targetContainer) return
+
+//     if (twoInputMod) {
+//       let sibling = [...formGroups.filter((e) => e !== targetContainer)][0]
+
+//       // Клик по сосденему инпуту после клика на первый, календарь не закрывается
+//       if (
+//         !targetContainer.classList.contains('clicked') &&
+//         sibling.classList.contains('clicked') &&
+//         calConteiner.classList.contains('_active-dp')
+//       ) {
+//         targetContainer.classList.toggle('clicked')
+//         return
+//       }
+
+//       // Закрыть календарь и снять все clicked на элементах в случае повторонго клика по любому элементу при открытом календаре
+//       if (
+//         targetContainer.classList.contains('clicked') &&
+//         sibling.classList.contains('clicked') &&
+//         calConteiner.classList.contains('_active-dp')
+//       ) {
+//         targetContainer.classList.remove('clicked')
+//         sibling.classList.remove('clicked')
+//         calConteiner.classList.remove('_active-dp')
+//         return
+//       }
+
+//       targetContainer.classList.toggle('clicked')
+//       calConteiner.classList.toggle('_active-dp')
+//     }
+
+//     if (singleInputMod) {
+//       targetContainer.classList.toggle('clicked')
+//       calConteiner.classList.toggle('_active-dp')
+//     }
+//   })
+
+//   // Форматирование заголовка согласно макету
+//   let navTitle = document.querySelector('.air-datepicker-nav--title')
+//   navTitle.innerText = deleteComma(navTitle)
+
+//   // Очистка выбранных дат
+//   buttonClear.addEventListener('click', (e) => {
+//     e.preventDefault()
+//     if (twoInputMod) {
+//       firstItem.value = ''
+//       secondItem.value = ''
+//     }
+
+//     if (singleInputMod) {
+//       singleItem.value = ''
+//     }
+//     dp.clear()
+//   })
+
+//   // Клик по кнопке принять
+//   buttonAccept.addEventListener('click', (e) => {
+//     e.preventDefault()
+//     if (dp.rangeDateFrom || dp.rangeDateTo) {
+//       calConteiner.classList.remove('_active-dp')
+//     }
+//   })
+
+//   // Ручной ввод дат
+
+//   if (twoInputMod) {
+//     items.forEach((item) => {
+//       item.addEventListener('input', () => {
+//         let correctFormat = [...items].every(({ value, pattern }) => {
+//           return value.match(pattern)
+//         })
+
+//         if (correctFormat) {
+//           addDateCal(items)
+
+//           rangeFrom = container.querySelector('.-range-from-')
+//           rangeTo = container.querySelector('.-range-to-')
+
+//           if (firstItem.value === secondItem.value) {
+//             let date = secondItem.value.split('.')
+//             let day = date[0]
+//             day++
+//             date.splice(0, 1, day)
+//             secondItem.value = date.join('.')
+
+//             addDateCal(items)
+//             rangeFrom = container.querySelector('.-range-from-')
+//             rangeTo = container.querySelector('.-range-to-')
+//             performRange(rangeFrom, rangeTo)
+//           }
+//           if (firstItem.value > secondItem.value) {
+//             ;[firstItem.value, secondItem.value] = [
+//               secondItem.value,
+//               firstItem.value,
+//             ]
+//             performRange(rangeFrom, rangeTo)
+//             addDateCal(items)
+//           }
+//           if (firstItem.value !== secondItem.value) {
+//             performRange(rangeFrom, rangeTo)
+//           }
+//         }
+//       })
+//     })
+//   }
+
+//   // --------------- Настроить выделение диапазона и обработать клики-----------------
+
+//   calConteiner.addEventListener('click', ({ target }) => {
+//     navTitle = document.querySelector('.air-datepicker-nav--title')
+//     navTitle.innerText = deleteComma(navTitle)
+
+//     // Отображение дат в полях
+
+//     if (twoInputMod) {
+//       if (dp.rangeDateFrom) {
+//         firstItem.value = formatDate(dp.rangeDateFrom)
+//       }
+
+//       if (dp.rangeDateTo) {
+//         secondItem.value = formatDate(dp.rangeDateTo)
+//       }
+//     }
+
+//     if (singleInputMod && dp.rangeDateFrom && dp.rangeDateTo) {
+//       singleItem.value = formatDate(dp.rangeDateFrom, dp.rangeDateTo)
+//     }
+
+//     // Удаление старых линий диапазона при выборе нового
+//     clearRange(container, 'start-range')
+//     clearRange(container, 'end-range')
+
+//     // Настройка ячеек при смене месяца
+//     rangeFrom = container.querySelector('.-range-from-')
+//     rangeTo = container.querySelector('.-range-to-')
+
+//     if (target.classList.contains('air-datepicker-nav--action')) {
+//       addPoitRange(rangeFrom, rangeTo)
+//     }
+
+//     // Выделить диапазон при движеии мыши
+//     container.addEventListener('mousemove', ({ target, relatedTarget }) => {
+//       rangeFrom = container.querySelector('.-range-from-')
+//       rangeTo = container.querySelector('.-range-to-')
+
+//       // Переменная для пред. дня при движении мыши во время выделения диапазона
+//       let prevDay
+
+//       addPoitRange(rangeFrom, rangeTo)
+
+//       if (rangeFrom && rangeFrom.classList.contains('end-range')) {
+//         rangeFrom.classList.remove('end-range')
+//       }
+
+//       // Назначить переменной пред. дня значение
+//       if (relatedTarget && !relatedTarget.classList.contains('-days-')) {
+//         prevDay = relatedTarget
+//       }
+
+//       // Добавить выделение диапазона при движении мыши
+//       if (
+//         target.classList.contains('-range-to-') &&
+//         !target.classList.contains('-range-from-') &&
+//         !target.classList.contains('-selected-')
+//       ) {
+//         target.classList.add('end-range')
+//         if (prevDay) prevDay.classList.remove('end-range')
+//       }
+
+//       if (
+//         target.classList.contains('-range-from-') &&
+//         !target.classList.contains('-range-to-') &&
+//         !target.classList.contains('-selected-')
+//       ) {
+//         target.classList.add('start-range')
+//         if (prevDay) prevDay.classList.remove('start-range')
+//       }
+
+//       // Удаление выделения диапазона у элементов там, где это не нужно при быстром движении мыши или выход за контейнер.
+//       clearRange(container, 'start-range')
+//       clearRange(container, 'end-range')
+
+//       // Удалить выделение диапазона в случае возврата мыши к выбранной дате
+//       if (
+//         rangeFrom &&
+//         rangeFrom.classList.contains('-focus-') &&
+//         rangeFrom.classList.contains('-range-to-') &&
+//         rangeFrom.classList.contains('-range-from-') &&
+//         rangeFrom.classList.contains('-selected-')
+//       ) {
+//         rangeFrom.classList.remove('end-range')
+//         rangeFrom.classList.remove('start-range')
+//       }
+//     })
+
+//     checkBtnVisibility([firstItem, secondItem])
+//   })
+// }

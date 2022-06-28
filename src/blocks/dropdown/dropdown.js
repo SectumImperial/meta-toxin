@@ -11,9 +11,14 @@ class Dropdown {
 
     try {
       this.options = JSON.parse(this.dropdown.dataset.options)
-      this.init()
     } catch (err) {
       throw new ValidationError('Ошибка в чтении options', err)
+    }
+
+    try {
+      this.init()
+    } catch (err) {
+      throw new Error('Ошибка инициализации класса', err)
     }
   }
 
@@ -32,6 +37,31 @@ class Dropdown {
     )
 
     this.addListeners()
+    this.checkUrlDates()
+  }
+
+  checkUrlDates() {
+    const queryString = window.location.search
+    const urlParams = new URLSearchParams(queryString)
+    const dropdownUrlContent = urlParams.get('dropdown')
+
+    if (dropdownUrlContent) {
+      this.addInputValue(this.dropdownInput, dropdownUrlContent)
+
+      let params = window.location.search
+        .replace('?', '')
+        .split('&')
+        .reduce(function (p, e) {
+          let a = e.split('=')
+          p[decodeURIComponent(a[0])] = decodeURIComponent(a[1])
+          return p
+        }, {})
+
+      let allCounts = this.dropdown.querySelectorAll('.dropdown__count')
+      allCounts.forEach((e) => {
+        e.value = params[e.dataset.item]
+      })
+    }
   }
 
   performData(selector, data) {

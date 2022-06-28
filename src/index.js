@@ -30,7 +30,8 @@ require('./blocks/checkbox/checkbox.js')
 require('./blocks/checkbox-list/checkbox-list.js')
 
 import Dropdown from './blocks/dropdown/dropdown.js'
-import CheckboxList from './blocks/checkbox-list/checkbox-list'
+import CheckboxList from './blocks/checkbox-list/checkbox-list.js'
+import Datepicker from './blocks/datepick/datepick.js'
 
 document.querySelectorAll('._js-dropdown').forEach((e) => {
   new Dropdown(e)
@@ -38,4 +39,8 @@ document.querySelectorAll('._js-dropdown').forEach((e) => {
 
 document.querySelectorAll('._js-checkbox-list').forEach((e) => {
   new CheckboxList(e)
+})
+
+document.querySelectorAll('._datepick-js').forEach((e) => {
+  new Datepicker(e)
 })
