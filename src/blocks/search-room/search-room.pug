@@ -4,6 +4,7 @@ include ../range-slider/range-slider.pug
 include ../title/title.pug
 include ../checkbox/checkbox.pug
 include ../checkbox-list/checkbox-list.pug
+include ../room-card/room-card.pug
 
 
 mixin search-room(options = {}) 
@@ -22,7 +23,7 @@ mixin search-room(options = {})
       .search-room__guests
         +title({
           level: 'h3',
-          classTitle: 'search-room__title',
+          classTitle: 'search-room__subtitle',
           text: 'Гости'
         })
         +dropdown({
@@ -62,7 +63,7 @@ mixin search-room(options = {})
       .search-room__rules
         +title({
           level: 'h3',
-          classTitle: 'search-room__title',
+          classTitle: 'search-room__subtitle',
           text: 'Правила дома'
         })
         +checkbox({
@@ -89,7 +90,7 @@ mixin search-room(options = {})
       .search-room__available
         +title({
           level: 'h3',
-          classTitle: 'search-room__title',
+          classTitle: 'search-room__subtitle',
           text: 'Доступность'
         })
         +checkbox({
@@ -173,11 +174,12 @@ mixin search-room(options = {})
           ]
         })
 
-      
-        
-
-
-
-
     section.search-room__rooms
+      +title({
+          level: 'h2',
+          classTitle: 'search-room__section-title',
+          text: 'Номера, которые мы для вас подобрали'
+        })
+        .search-room__rooms-contents 
+          +room-card()
       

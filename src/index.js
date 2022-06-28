@@ -28,6 +28,7 @@ require('./blocks/toggle/toggle.js')
 require('./blocks/range-slider/range-slider.js')
 require('./blocks/checkbox/checkbox.js')
 require('./blocks/checkbox-list/checkbox-list.js')
+require('./blocks/room-card/room-card.js')
 
 import Dropdown from './blocks/dropdown/dropdown.js'
 import CheckboxList from './blocks/checkbox-list/checkbox-list.js'

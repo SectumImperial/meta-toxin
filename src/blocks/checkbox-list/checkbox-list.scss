@@ -7,8 +7,11 @@
     list-style: none;
   }
 
-  &__title {
+  &__head {
     position: relative;
+  }
+
+  &__title {
     display: inline-block;
     width: 100%;
 
@@ -17,21 +20,23 @@
     font-weight: bold;
 
     cursor: pointer;
-
-    &::before {
-      position: absolute;
-      color: rgba($dark-color, 0.5);
-
-      right: 15px;
-      top: calc(50% - 4px);
-      font-size: rem(8);
-    }
   }
 
-  ._active {
-    &::before {
-      transform: rotate(180deg);
-      color: red;
-    }
+  &__arrow {
+    position: absolute;
+    right: 15px;
+    top: calc(50% - 6px);
+    font-size: rem(12);
+    color: rgba($dark-color, 0.5);
+  }
+
+  &__items {
+    display: none;
+  }
+}
+
+._active {
+  .checkbox-list__arrow {
+    transform: rotate(180deg);
   }
 }

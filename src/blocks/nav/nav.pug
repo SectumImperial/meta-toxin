@@ -5,7 +5,8 @@ mixin navItem(options = {})
       href = 'error-page.html',
       classLink = '',
       content = '',
-      linkActive = ''
+      linkActive = '',
+      subItems
     } = options 
 
     const isActive = linkActive === 'true' ? 'nav__link_active' : `${linkActive}` 
@@ -17,17 +18,19 @@ mixin navItem(options = {})
       href = href
       class = `${classLink} ${isActive}`
     )= content
-   if options.subItems !== ''
+   if subItems !== false
     +navSub(options.subItems)
 
 
 mixin navSub(items = [])
   ul.nav__sublist
     each item in items
-      +navItem({
-        content: item.content,
-        classLink: 'nav__sublink',
-        href: item.href}) 
+      li.nav__sub-item
+        a(
+          href = item.href
+          class = 'nav__sublink'
+        )= item.content
+        
 
 mixin navList(options = {}) 
   - 
@@ -39,12 +42,12 @@ mixin navList(options = {})
   ul(class = `nav__items nav__items_${mod}`)
     each item in items
       -
-        const subItems = item.subItems ? item.subItems : ''
+        const subItems = item.subItems ? item.subItems : false
         const {
           content = '',
           href = 'error-page.html',
-          classLi = subItems === '' ? 'nav__item' : 'nav__item nav__subitem',
-          classLink = subItems === '' ? 'nav__link' : 'nav__link nav__link_sub  icon__expand_more',
+          classLi = subItems === false ? 'nav__item' : 'nav__item nav__subitem',
+          classLink = subItems === false ? 'nav__link' : 'nav__link nav__link_sub  icon__expand_more',
           linkActive = ''
         } = item
       +navItem({
@@ -54,7 +57,7 @@ mixin navList(options = {})
         href: href,
         isActive: isActive,
         linkActive: linkActive,
-        subItems
+        subItems: subItems
         })
        
 

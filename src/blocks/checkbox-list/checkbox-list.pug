@@ -12,7 +12,9 @@ mixin checkbox-list(options = {})
   div(
     class = `checkbox-list _js-checkbox-list ${classList}`
   ) 
-    span.checkbox-list__title.__icon-expand= titleList
+    .checkbox-list__head 
+      span.checkbox-list__title= titleList
+      span.checkbox-list__arrow.icon__expand_more
     ul.checkbox-list__items
       each item in items 
         - 
