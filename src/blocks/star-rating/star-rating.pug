@@ -1,0 +1,17 @@
+mixin star-rating(options = {})
+  -
+    const {
+        classRating = '',
+        stars = 5,
+        rating,
+    } = options
+  div(
+    class = `star-rating ${classRating}`,
+    data-rating = rating
+  )
+    .star-rating__items 
+      - for(let i = 0; i < stars; i++)
+          span(
+            class = 'star-rating__star icon__star_empty'
+            data-rateсount = i + 1
+          )

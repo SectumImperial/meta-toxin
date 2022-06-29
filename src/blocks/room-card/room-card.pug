@@ -1,12 +1,28 @@
 include ../carousel/carousel.pug
+include ../star-rating/star-rating.pug
 
 mixin room-card(options = {})
   - 
     const {
-      images = []
+      images = [],
+      number = '000',
+      luxe = false,
+      price = '666',
+      rating = 0,
+      reviews = 0,
+      stars = 5
     } = options
 
   article.room-card
     +carousel(images)
+    span.room-card__number= `№${number}`
+    if luxe
+      span.room-card__luxe Люкс
+    span.room-card__price= `${price}₽ в сутки`
+    +star-rating({
+      classRating: 'room-card__rating',
+      rating: rating,
+      stars
+    })
 
     

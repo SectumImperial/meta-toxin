@@ -1,0 +1,12 @@
+@use 'sass:math';
+@import '../../common/functions.scss';
+@import '../../common/variables.scss';
+
+.star-rating {
+  &__star {
+    position: relative;
+    font-size: 24px;
+
+    color: $primary-color;
+  }
+}
