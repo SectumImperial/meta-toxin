@@ -1,0 +1,118 @@
+@use 'sass:math';
+@import '../../common/functions.scss';
+@import '../../common/variables.scss';
+
+.carousel {
+  position: relative;
+  max-width: 270px;
+
+  &:hover::before {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 42px;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.5) 0%,
+      rgba(0, 0, 0, 0) 99.99%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+
+  &:hover::after {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    transform: rotate(180deg);
+    top: 0;
+    right: 0;
+    width: 42px;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.5) 0%,
+      rgba(0, 0, 0, 0) 99.99%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+
+  &__images {
+    overflow: hidden;
+  }
+
+  &__items {
+    height: 152px;
+    width: 9999px;
+  }
+
+  &__item {
+    position: relative;
+    display: inline-block;
+    list-style: none;
+  }
+
+  //   Кнопки переключения
+  &__prev,
+  &__next {
+    visibility: hidden;
+    position: absolute;
+    width: 44px;
+    height: 44px;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    background: transparent;
+    z-index: 2;
+
+    cursor: pointer;
+
+    &::before {
+      color: white;
+    }
+  }
+
+  &:hover {
+    .carousel__prev,
+    .carousel__next {
+      visibility: visible;
+    }
+  }
+
+  &__prev {
+    top: calc(50% - 22px);
+    left: 0;
+    transform: rotate(90deg);
+  }
+
+  &__next {
+    top: calc(50% - 22px);
+    right: 0;
+    transform: rotate(-90deg);
+  }
+
+  //   Переключатели
+  &__toggles {
+    position: absolute;
+    z-index: 4;
+    display: flex;
+    gap: 3px;
+    top: 130px;
+    right: 15px;
+  }
+
+  &__toggle {
+    list-style: none;
+  }
+  &__toggle-button {
+    width: 7px;
+    height: 7px;
+    border: 1px solid white;
+    background-color: transparent;
+    border-radius: 50%;
+    outline: none;
+    cursor: pointer;
+  }
+}

@@ -180,6 +180,13 @@ mixin search-room(options = {})
           classTitle: 'search-room__section-title',
           text: 'Номера, которые мы для вас подобрали'
         })
-        .search-room__rooms-contents 
-          +room-card()
+      .search-room__rooms-contents 
+        +room-card({
+          images: [
+            'room-image-1.png',
+            'room-image-2.png',
+            'room-image-3.png',
+            'room-image-4.png'
+          ]
+        })
       

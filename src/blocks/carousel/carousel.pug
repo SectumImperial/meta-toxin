@@ -1,0 +1,22 @@
+mixin carousel(images) 
+  .carousel
+    button.carousel__prev.icon__expand_more
+    .carousel__images 
+      ul.carousel__items
+        each image in images
+          li.carousel__item
+            a(
+                href = 'error-page.html',
+                class = 'carousel__link'
+            )
+              img(
+                  class = 'carousel__image'
+                  alt = 'Фотография номера'
+                  src = `./blocks/search-room/img/${image}`
+              )
+            ul.carousel__toggles 
+              each toggle in images
+                li.carousel__toggle
+                  button.carousel__toggle-button
+    button.carousel__next.icon__expand_more
+            

@@ -231,6 +231,7 @@ class Dropdown {
     this.dropdownInput.value = ''
     const [...counts] = this.dropdown.querySelectorAll('.dropdown__count')
     counts.forEach((e) => (e.value = 0))
+    this.checkBtnVisibility(this.dropdown, '.dropdown__count')
   }
 
   accept(e) {

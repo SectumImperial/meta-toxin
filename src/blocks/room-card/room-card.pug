@@ -1,3 +1,12 @@
+include ../carousel/carousel.pug
+
 mixin room-card(options = {})
-  section.room-card
+  - 
+    const {
+      images = []
+    } = options
+
+  article.room-card
+    +carousel(images)
+
     
