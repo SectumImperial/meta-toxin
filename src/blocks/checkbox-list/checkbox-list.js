@@ -12,7 +12,6 @@ class CheckboxList {
   }
 
   addListeners() {
-    console.log(this.checkboxList)
     this.checkboxList.addEventListener('click', this.toggle.bind(this))
   }
 
