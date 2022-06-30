@@ -44,7 +44,7 @@
   //  Группы формы
 
   &__data-group {
-    margin-top: 20px;
+    margin-top: 22px;
     gap: 10px;
   }
 
@@ -58,5 +58,9 @@
     display: grid;
     grid-template-columns: 1fr auto;
     align-items: center;
+  }
+
+  &__create-text {
+    padding-right: 5px;
   }
 }

@@ -6,7 +6,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: rem(120) rem(104);
+  padding: rem(120) rem(15);
 
   &__block {
     display: flex;
@@ -23,6 +23,7 @@
 
   &__copyright {
     padding: 14px 31px 21px 20px;
+    text-align: center;
   }
 
   &__promo,
@@ -31,13 +32,13 @@
     display: none;
   }
 
-  @media (min-width: $mobile) {
+  @media (min-width: $tablet) {
     padding: 0;
     justify-content: space-between;
 
     &__blocks {
       display: flex;
-      padding: 100px 140px 75px 140px;
+      padding: 100px 140px 96px 140px;
     }
 
     &__block {
@@ -53,10 +54,11 @@
     &__navigation {
       display: flex;
       flex-direction: row;
+      justify-content: space-between;
       margin-left: 40px;
       min-width: 560px;
 
-      @media (max-width: 1300px) {
+      @media (max-width: $pc) {
         display: none;
       }
     }
@@ -68,10 +70,10 @@
       padding-bottom: 4px;
 
       // Для PP
-      margin-right: 58px;
+
       &:last-child {
-        margin-right: 0;
-        margin-left: 33px;
+        padding-right: 13px;
+        padding-left: 35px;
       }
     }
 
@@ -98,12 +100,9 @@
 
       width: 100%;
 
-      padding: rem(22) rem(140);
+      padding: 9px 140px 22px 119px;
 
       border-top: 1px solid #e5e5e5;
-    }
-
-    &__copyright {
     }
   }
 }

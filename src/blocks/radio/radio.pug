@@ -1,5 +1,3 @@
-include ../input/input.pug
-
 mixin radio (options = {})
   - 
     const {
@@ -10,13 +8,13 @@ mixin radio (options = {})
     } = options 
 
   label.radio
-    +input({
-      type: 'radio',
-      name: name,
-      id: id,
-      classInput: 'radio__input visually-hidden',
-      checked: checked
-      })
+    input(
+      type = 'radio',
+      name = name,
+      id = id,
+      class = 'radio__input visually-hidden',
+      checked = checked
+      )
     span.radio__new-input
     span.radio__title= text
 

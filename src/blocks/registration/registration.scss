@@ -29,7 +29,7 @@
   &__form {
     background-color: white;
     min-width: 380px;
-    padding: 37px 30px 30px 28px;
+    padding: 40px 30px 25px 28px;
 
     border: 1px solid rgba(#000000, 0.12);
     border-radius: 4px;
@@ -45,17 +45,17 @@
     margin-top: 20px;
   }
 
-  &__sex-group {
-    margin-top: 10px;
-
-    display: grid;
-    grid-template-columns: auto 1fr;
-  }
-
   &__sex {
+    margin-top: 9px;
+
     display: grid;
     grid-template-columns: auto 1fr;
     gap: 20px;
+  }
+
+  &__sex-group {
+    display: grid;
+    grid-template-columns: auto 1fr;
   }
 
   &__birth-group {

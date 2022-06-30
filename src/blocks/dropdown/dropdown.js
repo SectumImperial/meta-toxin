@@ -23,6 +23,7 @@ class Dropdown {
   }
 
   init() {
+    this.field = this.dropdown.querySelector('.dropdown__input-field')
     this.dropdownInput = this.dropdown.querySelector('.dropdown__input')
     this.dropdownContent = this.dropdown.querySelector('.dropdown__content')
     this.btnClear = this.dropdown.querySelector('.dropdown__button_clear')
@@ -36,6 +37,8 @@ class Dropdown {
       '.dropdown__btn_increment'
     )
 
+    this.type = this.dropdown.querySelector('._dropdown__type').value
+
     this.addListeners()
     this.checkUrlDates()
   }
@@ -44,8 +47,9 @@ class Dropdown {
     const queryString = window.location.search
     const urlParams = new URLSearchParams(queryString)
     const dropdownUrlContent = urlParams.get('dropdown')
+    const type = urlParams.get('type')
 
-    if (dropdownUrlContent) {
+    if (dropdownUrlContent && type === this.type) {
       this.addInputValue(this.dropdownInput, dropdownUrlContent)
 
       let params = window.location.search
@@ -64,16 +68,9 @@ class Dropdown {
     }
   }
 
-  performData(selector, data) {
-    this.wordsMap = this.createObjectMap(data)
-    this.countsMap = this.createCountsMap(selector)
-    this.synthMap = this.joinMap(this.wordsMap, this.countsMap)
-    this.string = this.createStrMap(this.synthMap)
-    this.addInputValue(this.dropdownInput, this.string)
-  }
-
   addListeners() {
-    this.dropdownInput.addEventListener('click', (e) => {
+    this.field.addEventListener('click', this.toggleClass.bind(this))
+    this.field.addEventListener('click', (e) => {
       this.dropdownContent.classList.toggle('_active')
     })
 
@@ -86,6 +83,14 @@ class Dropdown {
 
     this.btnClear.addEventListener('click', this.clear.bind(this))
     this.btnAccept.addEventListener('click', this.accept.bind(this))
+  }
+
+  performData(selector, data) {
+    this.wordsMap = this.createObjectMap(data)
+    this.countsMap = this.createCountsMap(selector)
+    this.synthMap = this.joinMap(this.wordsMap, this.countsMap)
+    this.string = this.createStrMap(this.synthMap)
+    this.addInputValue(this.dropdownInput, this.string)
   }
 
   createObjectMap(arrObj) {
@@ -237,6 +242,10 @@ class Dropdown {
   accept(e) {
     e.preventDefault()
     this.dropdownContent.classList.remove('_active')
+  }
+
+  toggleClass() {
+    this.field.classList.toggle('_opened')
   }
 }
 

@@ -28,7 +28,7 @@ mixin search-room(options = {})
         })
         +dropdown({
            class: '`search-room__dropdown-input',
-           idInput: 'search-room-guests',
+           type: 'guests',
            placeholder: 'Сколько гостей',
            mod: 'guests',
            items: [
@@ -114,7 +114,7 @@ mixin search-room(options = {})
       .search-room__facilities
         +dropdown({
            class: 'search-room__dropdown-input',
-           idInput: 'search-room-facilities',
+           type: 'facilities',
            placeholder: 'Удобства номера',
            items: [
              'Cпальни', 'Кровати', 'Ванные комнаты'

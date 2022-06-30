@@ -1,49 +1,40 @@
-include ../form/form.pug
-include ../input/input.pug
 include ../button/button.pug
 
 mixin datepick_2() 
   .datepick._datepick-2._datepick-js
     .datepick__fields
-      +form-group({
-        classGroup: 'datepick__group'
-      })
-        +label({
-          text: 'Прибытие',
-          forInput: 'booking-enter',
-          classLabel: 'datepick__label'
-        })
-        +input({
-          type: 'text',
-          id: 'booking-enter',
-          classInput: 'datepick__input',
-          classInputField: 'datepick__field_readonly datepick-start _datepickItem _dateInput',
-          name: 'datepick-input-start',
-          placeholder: 'ДД.ММ.ГГГГ',
-          pattern: '[0-9]{2}.[0-9]{2}.[0-9]{4}',
-          arrow: 'expandMore',
-          required: true,
-        })
-      +form-group({
-        classGroup: 'datepick__group'
-      })
-        +label({
-          text: 'Выезд',
-          forInput: 'booking-out',
-          classLabel: 'datepick__label'
-        })
-        +input({
-          type: 'text',
-          id: 'booking-out',
-          classInput: 'datepick__input',
-          classInputField: 'datepick__field_readonly datepick-end _datepickItem _dateInput',
-          name: 'datepick-input-end',
-          placeholder: 'ДД.ММ.ГГГГ',
-          pattern: '[0-9]{2}.[0-9]{2}.[0-9]{4}',
-          arrow: 'expandMore',
-          required: true,
-        })
-
+      .datepick__group
+        label(
+          forInput = 'booking-enter',
+          class = 'datepick__label'
+        ) Прибытие
+        .datepick__input
+          input(
+            type = 'text',
+            id = 'booking-enter',
+            class = 'datepick__field datepick__field_readonly datepick-start _datepickItem _dateInput',
+            name = 'datepick-input-start',
+            placeholder = 'ДД.ММ.ГГГГ',
+            pattern = '[0-9]{2}.[0-9]{2}.[0-9]{4}',
+            required
+          )
+          .datepick__arrow.icon__expand_more 
+      .datepick__group
+        label(
+          for = 'booking-out',
+          class = 'datepick__label'
+        ) Выезд
+        .datepick__input
+          input(
+            type = 'text',
+            id = 'booking-out',
+            class = 'datepick__field datepick__field_readonly datepick-end _datepickItem _dateInput',
+            name = 'datepick-input-end',
+            placeholder = 'ДД.ММ.ГГГГ',
+            pattern = '[0-9]{2}.[0-9]{2}.[0-9]{4}',
+            required
+            )
+          .datepick__arrow.icon__expand_more       
     .datepick__container
       .datepick_btns
         +button({
@@ -69,25 +60,22 @@ mixin datepick_2()
 
 mixin datepick_1()
   .datepick._datepick-1._datepick-js
-    +form-group({
-      classGroup: 'datepick__group'
-    })
-      +label({
-        text: 'даты пребывания в отеле',
-        forInput: 'booking-dates',
-        classLabel: 'datepick__label'
-        })
-      +input({
-        type: 'text',
-        id: 'booking-dates',
-        classInput: 'datepick__input',
-        classInputField: 'datepick__field_readonly datepick-dates _datepickItem __icon-expand',
-        name: 'datepick-input-dates',
-        datepicker: true,
-        placeholder: 'дд.мм - дд.мм',
-        inputMod: ['arrow'],
-        readonly: true
-      })
+    .datepick__group
+      label(
+        for = 'booking-dates',
+        class = 'datepick__label'
+        ) Даты пребывания в отеле
+      .datepick__input
+        input(
+          type = 'text',
+          id = 'booking-dates',
+          class = 'datepick__field datepick__field_readonly datepick-dates _datepickItem __icon-expand',
+          name = 'datepick-input-dates',
+          placeholder = 'дд.мм - дд.мм',
+          pattern = '[0-9]{2}.[0-9]{2}.[0-9]{4}',
+          readonly
+        )
+        .datepick__arrow.icon__expand_more 
 
     .datepick__container.datepick_small
       .datepick_btns

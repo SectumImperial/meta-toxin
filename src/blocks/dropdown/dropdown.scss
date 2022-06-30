@@ -5,11 +5,48 @@
 .dropdown {
   position: relative;
 
+  &__input-field {
+    position: relative;
+    cursor: pointer;
+  }
   &__input {
+    width: 100%;
+    padding: rem(12) rem(15);
+
+    border: 1px solid rgba($dark-color, 0.25);
+    color: rgba($dark-color, 0.75);
+    border-radius: 4px;
+
     font-size: rem(14);
     font-family: 'Montserrat', sans-serif;
-    color: rgba($dark-color, 0.75);
-    cursor: pointer;
+
+    &::placeholder {
+      color: rgba($dark-color, 0.75);
+    }
+    &:hover,
+    &:focus {
+      border-color: rgba($dark-color, 0.5);
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__arrow {
+    position: absolute;
+    top: 36%;
+    right: 15px;
+    font-size: 12px;
+    &::before {
+      color: rgba($dark-color, 0.5);
+    }
+  }
+
+  ._opened {
+    .dropdown__arrow {
+      transform: rotate(180deg);
+    }
   }
 
   &__content {

@@ -12,7 +12,7 @@
   flex-wrap: wrap;
   gap: rem(10);
 
-  padding: rem(5);
+  padding: 0 rem(5);
 
   &__nav-wrapper {
     position: absolute;
@@ -100,7 +100,7 @@
     justify-content: space-between;
     align-items: center;
     gap: rem(20);
-    padding: 13px 5px;
+    padding: 11px 10px 11px 10px;
 
     &__icon {
       display: none;
@@ -139,7 +139,7 @@
     }
   }
 
-  @media (min-width: $container) {
-    padding: 11px 0 11px 0;
+  @media (min-width: $pc) {
+    padding: 11px 139px 11px 140px;
   }
 }

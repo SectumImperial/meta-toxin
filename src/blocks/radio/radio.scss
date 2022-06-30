@@ -5,9 +5,9 @@
 .radio {
   display: flex;
   align-items: center;
-  gap: 10px;
 
   &__new-input {
+    margin-right: 10px;
     position: relative;
     display: inline-block;
     width: 20px;

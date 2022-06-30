@@ -19,8 +19,6 @@ if (inputDates) {
 let inputs = document.querySelectorAll('.input')
 
 inputs.forEach((element) => {
-  if (element.querySelector('._datepickItem')) return
-  if (element.querySelector('input[type="email"]')) return
   element.addEventListener('click', () => {
     let arrow = element.querySelector('._input_arrow-js')
     if (!arrow) return

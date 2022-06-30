@@ -36,8 +36,7 @@ mixin booking-card(options = {})
         })
         +dropdown({
            class: 'booking-card__dropdown-input',
-           idInput: 'booking-guests',
-           
+           type: 'guests',
            placeholder: 'Сколько гостей',
            items: [
              'Взрослые', 'Дети', 'Младенцы'
@@ -49,7 +48,6 @@ mixin booking-card(options = {})
              {
                'Младенцы': ['младенец', 'младенца', 'младенцев']
              }
-             
            ]
         })
       +button({

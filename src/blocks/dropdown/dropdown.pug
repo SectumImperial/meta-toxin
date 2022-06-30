@@ -1,5 +1,4 @@
 include ../button/button.pug
-include ../input/input.pug
 
 mixin dropdown(options = {})
   - 
@@ -9,23 +8,24 @@ mixin dropdown(options = {})
       dataOptions = '',
       placeholder = '',
       plurals = {},
+      classDp = '',
+      type = 'guests'
     } = options
 
-  div.dropdown._js-dropdown(
-      class = options.class 
-      data-options = plurals
+  div(
+    class = `dropdown _js-dropdown ${classDp}` 
+    data-options = plurals
   )
-    +input({
-      type: 'text',
-      name: 'dropdown',
-      classInput: 'dropdown__input-field',
-      classInputField: 'dropdown__input',
-      readonly: true,
-      placeholder: placeholder,
-      id: id,
-      arrow: 'expandMore',
-      required: true,
-    })
+    .dropdown__input-field
+      input(
+        type = 'text',
+        id = id,
+        class = 'dropdown__input',
+        name = 'dropdown',
+        placeholder = placeholder,
+        readonly,
+      )
+      .dropdown__arrow.icon__expand_more._arrow-js 
     div.dropdown__content
       .dropdown__counter 
         ul.dropdown__items
@@ -45,6 +45,13 @@ mixin dropdown(options = {})
                 button(
                   class = "dropdown__btn dropdown__btn_increment"
                 )= '+'
+        input(
+          type="text"
+          class='visually-hidden _dropdown__type',
+          name = 'type',
+          value = type,
+          readonly
+          )
       .dropdown__nav
         +button({
           content: 'Очистить',
