@@ -10,11 +10,18 @@
     min-width: 200px;
   }
 
-  &__rooms {
-    max-width: 834px;
-  }
+  // Основное содержимое с комнатами
+  // &__rooms {
+  //   max-width: 834px;
+  // }
 
   &__subtitle {
     text-transform: uppercase;
+  }
+
+  &__rooms-content {
+    display: flex;
+    gap: 20px 12px;
+    flex-wrap: wrap;
   }
 }
