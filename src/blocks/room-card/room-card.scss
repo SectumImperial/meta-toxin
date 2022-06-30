@@ -1,0 +1,74 @@
+@use 'sass:math';
+@import '../../common/functions.scss';
+@import '../../common/variables.scss';
+
+.room-card {
+  max-width: 270px;
+  display: grid;
+  grid-template-rows: 1fr auto auto;
+  border-radius: 4px;
+  background-color: white;
+  box-shadow: 0px 10px 20px 0px rgba($dark-color, 0.05);
+
+  &__information {
+    padding: 20px 17px 16px 20px;
+  }
+
+  &__details,
+  &__feedback {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__details {
+    border-bottom: 1px solid rgba($dark-color, 0.1);
+    padding-bottom: 10px;
+  }
+
+  &__feedback {
+    padding: 11px 0 0 1px;
+  }
+
+  &__number {
+    padding-top: 1px;
+    font-size: rem(14);
+    font-weight: bold;
+  }
+
+  &__number-count {
+    color: $dark-color;
+    font-size: rem(19);
+    font-weight: bold;
+  }
+
+  &__luxe {
+    color: $primary-color;
+    font-size: rem(12);
+    text-transform: uppercase;
+    padding-top: 2px;
+  }
+
+  &__price,
+  &__reviews {
+    color: rgba($dark-color, 0.5);
+  }
+
+  &__reviews {
+    font-size: rem(14);
+    padding: 3px 3px 0 0;
+  }
+
+  &__price {
+    padding-top: 5px;
+  }
+
+  &__price-count,
+  &__reviews-count {
+    font-size: rem(14);
+    font-weight: bold;
+  }
+
+  &__price-word {
+    font-size: rem(12);
+  }
+}

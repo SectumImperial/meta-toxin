@@ -3,9 +3,13 @@
 @import '../../common/variables.scss';
 
 .star-rating {
+  &__items {
+    display: flex;
+    gap: 3px;
+  }
   &__star {
     position: relative;
-    font-size: 24px;
+    font-size: rem(19);
 
     color: $primary-color;
   }

@@ -56,6 +56,10 @@
     list-style: none;
   }
 
+  &__image {
+    border-radius: 4px 4px 0 0;
+  }
+
   //   Кнопки переключения
   &__prev,
   &__next {
@@ -100,9 +104,9 @@
     position: absolute;
     z-index: 4;
     display: flex;
-    gap: 3px;
-    top: 130px;
-    right: 15px;
+    gap: 4px;
+    top: 123px;
+    right: 16px;
   }
 
   &__toggle {

@@ -180,7 +180,7 @@ mixin search-room(options = {})
           classTitle: 'search-room__section-title',
           text: 'Номера, которые мы для вас подобрали'
         })
-      .search-room__rooms-contents 
+      .search-room__rooms-content
         +room-card({
           images: [
             'room-image-1.png',
@@ -188,5 +188,10 @@ mixin search-room(options = {})
             'room-image-3.png',
             'room-image-4.png'
           ],
+          number: 888,
+          luxe: true,
+          price: '9 990',
+          rating: 5,
+          reviews: 145,
         })
       
