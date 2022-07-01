@@ -16,7 +16,6 @@ class Paginator {
 
   init() {
     this.options
-    this.content = this.paginator.querySelector('.paginator__content')
     this.itemsPaginator = this.paginator.querySelector('.paginator__items')
     this.btnPrev = this.paginator.querySelector('.paginator__button_prev')
     this.btnNext = this.paginator.querySelector('.paginator__button_next')
@@ -51,6 +50,7 @@ class Paginator {
     this.itemsPaginator.addEventListener('click', this.changePage.bind(this))
   }
 
+  //   Методы создания и отображения страниц
   createPaginator() {
     let end = Number(this.currentPage)
     let start = Number(this.currentPage)
@@ -144,6 +144,8 @@ class Paginator {
     this.itemsPaginator.prepend(firstLi)
   }
 
+  //   Конец методов создания и отображения страниц
+
   /**
    *
    * @param {string} className
@@ -162,14 +164,8 @@ class Paginator {
     }
     return el
   }
-  removePaginator() {
-    this.itemsPaginator.innerHTML = ''
-  }
 
-  createText() {
-    let string = ''
-  }
-
+  //   Проверить видимость кнопок переключения
   checkVisibilityBtn() {
     const activeItem = this.itemsPaginator.querySelector(`.${ACTIVE_JS}`)
     // Скрыть и показать пред. кнопку
@@ -195,6 +191,7 @@ class Paginator {
     }
   }
 
+  //   Клик по кнопке назад
   decrementPage() {
     if (this.currentPage !== 1) {
       this.removePage()
@@ -205,6 +202,7 @@ class Paginator {
     }
   }
 
+  //   Клик по кнопке вперёд
   incrementPage() {
     if (this.currentPage !== this.pageCount) {
       this.removePage()
@@ -215,6 +213,7 @@ class Paginator {
     }
   }
 
+  //   Клик по номеру страницы
   changePage({ target }) {
     if (!target.classList.contains('paginator__item')) return
     if (target.dataset.dots) return
@@ -225,6 +224,7 @@ class Paginator {
     this.setCurrentPage()
   }
 
+  //   Установить тек. страницу
   setCurrentPage() {
     let page = this.itemsPaginator.querySelector(
       `.paginator__item[data-number="${this.currentPage}"]`
@@ -234,14 +234,31 @@ class Paginator {
     page.classList.add(ACTIVE_JS)
 
     this.checkVisibilityBtn()
+    this.createText()
   }
 
+  //   Удалить классы тек. страницы
   removePage() {
     let current = this.itemsPaginator.querySelector(
       `.paginator__item[data-number="${this.currentPage}"]`
     )
     current.classList.remove(ACTIVE_LI)
     current.classList.remove(ACTIVE_JS)
+  }
+
+  //   Создать строку описания
+  createText() {
+    let string = ''
+    let lastCount = this.currentPage * this.itemsPerPage
+    let firstCount = lastCount - this.itemsPerPage + 1
+    let from = ''
+    if (this.allItems > 100) {
+      from = '100+'
+    } else {
+      from = this.allItems
+    }
+    string = `${firstCount} - ${lastCount} из ${from} ${this.text}`
+    this.textElement.innerText = string
   }
 }
 
