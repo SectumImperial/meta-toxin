@@ -37,15 +37,13 @@ import CheckboxList from './blocks/checkbox-list/checkbox-list.js'
 import Datepicker from './blocks/datepick/datepick.js'
 import Carousel from './blocks/carousel/carousel'
 import StarRating from './blocks/star-rating/star-rating'
+import Paginator from './blocks/paginator/paginator.js'
 
-document.querySelectorAll('._js-dropdown').forEach((e) => {
-  new Dropdown(e)
-})
-document.querySelectorAll('._js-checkbox-list').forEach((e) => {
-  new CheckboxList(e)
-})
-document.querySelectorAll('._datepick-js').forEach((e) => {
-  new Datepicker(e)
-})
+document.querySelectorAll('._js-dropdown').forEach((e) => new Dropdown(e))
+document
+  .querySelectorAll('._js-checkbox-list')
+  .forEach((e) => new CheckboxList(e))
+document.querySelectorAll('._datepick-js').forEach((e) => new Datepicker(e))
 document.querySelectorAll('.carousel').forEach((e) => new Carousel(e))
 document.querySelectorAll('.star-rating').forEach((e) => new StarRating(e))
+document.querySelectorAll('.paginator').forEach((e) => new Paginator(e))

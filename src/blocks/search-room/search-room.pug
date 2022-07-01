@@ -330,6 +330,12 @@ mixin search-room(options = {})
           reviews: 55,
         })
       .search-room__paginator 
-       +paginator()
+       +paginator({
+        paginatorOptions: {
+          itemsPerPage: 12,
+          allItems: 180,
+          text: 'вариантов аренды'
+        }
+       })
       
       

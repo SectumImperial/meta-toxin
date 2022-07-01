@@ -7,6 +7,8 @@
   flex-direction: column;
   gap: 11px;
 
+  padding-top: 100px;
+
   &__content {
     display: flex;
     justify-content: center;
@@ -28,6 +30,12 @@
     border-radius: 50%;
     outline: none;
 
+    cursor: pointer;
+
+    &:hover {
+      text-shadow: 1px 0 5px;
+    }
+
     &::before {
       position: absolute;
       color: white;
@@ -43,6 +51,7 @@
 
   &__items {
     display: flex;
+    padding: 0 1px;
   }
 
   &__item {
@@ -64,6 +73,20 @@
       color: $secondary-color-2;
       font-weight: 700;
       background: $gradient;
+
+      &:hover {
+        text-shadow: 1px 0 5px;
+      }
+    }
+
+    &:hover {
+      font-weight: 700;
+    }
+
+    &_dots {
+      &:hover {
+        font-weight: normal;
+      }
     }
   }
 

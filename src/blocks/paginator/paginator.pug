@@ -1,25 +1,25 @@
 mixin paginator(options = {})
   -
     const {
-      paginatorOpt = {},
+      paginatorOptions = {},
     } = options
 
   div(
     class = 'paginator _js-paginator'
-    data-paginator = paginatorOpt
+    data-paginator = paginatorOptions
   )
     .paginator__content
-      //- button(
-      //-   class='paginator__button paginator__button_prev icon__arrow_forward'
-      //- )
+      button(
+        class='paginator__button paginator__button_prev icon__arrow_forward'
+      )
       ul.paginator__items 
-        li.paginator__item.paginator__item_active 1
-        li.paginator__item 2
-        li.paginator__item 3
-        li.paginator__item ...
-        li.paginator__item 15
+        //- li.paginator__item.paginator__item_active._active-js 1
+        //- li.paginator__item 2
+        //- li.paginator__item 3
+        //- li.paginator__item.paginator__item ...
+        //- li.paginator__item 15
       button(
         class='paginator__button paginator__button_next icon__arrow_forward'
       )
     .paginator__description 
-      span 1 – 12 из 100+ вариантов аренды
+      span.paginator__text 1 – 12 из 100+ вариантов аренды
