@@ -60,6 +60,7 @@ class Paginator {
   addListeners() {
     this.btnPrev.addEventListener('click', this.decrementPage.bind(this))
     this.btnNext.addEventListener('click', this.incrementPage.bind(this))
+    this.itemsPaginator.addEventListener('click', this.changePage.bind(this))
   }
 
   createText() {
@@ -127,6 +128,21 @@ class Paginator {
 
       this.checkVisibilityBtn()
     }
+  }
+
+  changePage({ target }) {
+    if (!target.classList.contains('paginator__item')) return
+    let current = this.itemsPaginator.querySelector(
+      `.paginator__item[data-number="${this.currentPage}"]`
+    )
+    current.classList.remove(ACTIVE_LI)
+    current.classList.remove(ACTIVE_JS)
+
+    this.currentPage = target.dataset.number
+    target.classList.add(ACTIVE_LI)
+    target.classList.add(ACTIVE_JS)
+
+    this.checkVisibilityBtn()
   }
 }
 
