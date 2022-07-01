@@ -23,7 +23,7 @@ class Paginator {
     this.liClass = LI_CLASS
     this.textElement = this.paginator.querySelector('.paginator__text')
     this.count = COUNT_PAGE
-    this.currentPage = 6
+    this.currentPage = 1
     this.startPage = 1
 
     try {
@@ -45,47 +45,109 @@ class Paginator {
     this.createText()
   }
 
+  addListeners() {
+    this.btnPrev.addEventListener('click', this.decrementPage.bind(this))
+    this.btnNext.addEventListener('click', this.incrementPage.bind(this))
+    this.itemsPaginator.addEventListener('click', this.changePage.bind(this))
+  }
+
   createPaginator() {
     let end = Number(this.currentPage)
     let start = Number(this.currentPage)
     end++
     start--
 
-    if (
+    // Если на 4 или если на 12 или если в середине
+    if (this.currentPage === this.startPage) {
+      this.createBegining()
+    } else if (
+      this.currentPage === COUNT_PAGE + 1 ||
+      this.currentPage <= COUNT_PAGE
+    ) {
+      this.createStart(end)
+    } else if (
+      this.currentPage === this.pageCount - COUNT_PAGE ||
+      (this.currentPage >= this.pageCount - COUNT_PAGE &&
+        this.currentPage !== this.pageCount)
+    ) {
+      this.createEnd(start)
+    } else if (this.currentPage === this.pageCount) {
+      this.createEnding()
+    } else if (
       this.currentPage > COUNT_PAGE &&
       this.currentPage < this.pageCount - COUNT_PAGE
     ) {
-      for (let i = start; i <= end; i++) {
-        // let li = document.createElement('li')
-        // li.className = this.liClass
-
-        // li.innerText = i
-        // li.dataset.number = i
-        // this.itemsPaginator.append(li)
-
-        let li = this.createLiElement(this.liClass, i)
-        this.itemsPaginator.append(li)
-      }
-
-      //   Добавить точки
-      let li = this.createLiElement(this.liClass, '...', true)
-      this.itemsPaginator.append(li)
-      this.itemsPaginator.prepend(li.cloneNode(true))
-
-      //   Добавить первую страницу
-      let startLi = this.createLiElement(this.liClass, this.startPage)
-      this.itemsPaginator.prepend(startLi)
-
-      // Добавить последнюю страницу
-      let lastLi = this.createLiElement(this.liClass, this.pageCount)
-      this.itemsPaginator.append(lastLi)
+      this.createMiddle(start, end)
     }
+  }
+
+  createMiddle(start, end) {
+    for (let i = start; i <= end; i++) {
+      let li = this.createLiElement(this.liClass, i)
+      this.itemsPaginator.append(li)
+    }
+    this.addFirstPage()
+    this.addLastPage()
+  }
+
+  createBegining() {
+    for (let i = this.startPage; i <= COUNT_PAGE; i++) {
+      let li = this.createLiElement(this.liClass, i)
+      this.itemsPaginator.append(li)
+    }
+
+    this.addLastPage()
+  }
+
+  createStart(end) {
+    for (let i = this.startPage; i <= end; i++) {
+      let li = this.createLiElement(this.liClass, i)
+      this.itemsPaginator.append(li)
+    }
+    this.addLastPage()
+  }
+
+  createEnd(start) {
+    for (let i = start; i <= this.pageCount; i++) {
+      let li = this.createLiElement(this.liClass, i)
+      this.itemsPaginator.append(li)
+    }
+    this.addFirstPage()
+  }
+
+  createEnding() {
+    for (let i = this.pageCount - (COUNT_PAGE - 1); i <= this.pageCount; i++) {
+      let li = this.createLiElement(this.liClass, i)
+      this.itemsPaginator.append(li)
+    }
+
+    this.addFirstPage()
+  }
+
+  addLastPage() {
+    // Добавить точки
+    let dots = this.createLiElement(this.liClass, '...', true)
+    this.itemsPaginator.append(dots)
+
+    // Добавить последнюю страницу
+    let lastLi = this.createLiElement(this.liClass, this.pageCount)
+    this.itemsPaginator.append(lastLi)
+  }
+
+  addFirstPage() {
+    // Добавить точки
+    let dots = this.createLiElement(this.liClass, '...', true)
+    this.itemsPaginator.prepend(dots)
+
+    // Добавить последнюю страницу
+    let firstLi = this.createLiElement(this.liClass, this.startPage)
+    this.itemsPaginator.prepend(firstLi)
   }
 
   /**
    *
    * @param {string} className
-   * @param {number or string} number
+   * @param {number or string} content of li
    * @param {boolean} dot
    */
   createLiElement(className, content, dots = false) {
@@ -102,12 +164,6 @@ class Paginator {
   }
   removePaginator() {
     this.itemsPaginator.innerHTML = ''
-  }
-
-  addListeners() {
-    this.btnPrev.addEventListener('click', this.decrementPage.bind(this))
-    this.btnNext.addEventListener('click', this.incrementPage.bind(this))
-    this.itemsPaginator.addEventListener('click', this.changePage.bind(this))
   }
 
   createText() {
