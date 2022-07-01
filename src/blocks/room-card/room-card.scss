@@ -32,13 +32,13 @@
   &__number {
     padding-top: 1px;
     font-size: rem(14);
-    font-weight: bold;
+    font-weight: 700;
   }
 
   &__number-count {
     color: $dark-color;
     font-size: rem(19);
-    font-weight: bold;
+    font-weight: 700;
   }
 
   &__luxe {
@@ -70,6 +70,6 @@
   &__price-count,
   &__reviews-count {
     font-size: rem(14);
-    font-weight: bold;
+    font-weight: 700;
   }
 }

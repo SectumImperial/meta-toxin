@@ -5,6 +5,8 @@ include ../title/title.pug
 include ../checkbox/checkbox.pug
 include ../checkbox-list/checkbox-list.pug
 include ../room-card/room-card.pug
+include ../paginator/paginator.pug
+
 
 
 mixin search-room(options = {}) 
@@ -327,4 +329,7 @@ mixin search-room(options = {})
           rating: 3,
           reviews: 55,
         })
+      .search-room__paginator 
+       +paginator()
+      
       

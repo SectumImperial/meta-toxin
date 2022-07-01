@@ -147,6 +147,7 @@
     // Подменю
     &__sublist {
       position: absolute;
+      z-index: 20;
       display: block;
       top: 100%;
       left: 4%;
