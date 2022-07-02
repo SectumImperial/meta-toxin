@@ -52,13 +52,11 @@
   //   Подменю мобилное и по-умолчанию
   &__link_sub {
     position: relative;
-    margin-right: em(5);
-    padding-right: 0;
 
     &::before {
       position: absolute;
-      top: 58%;
-      right: -21px;
+      top: 50%;
+      right: -19px;
       transform: translateY(-50%);
       font-size: rem(8);
       color: rgba($dark-color, 0.5);

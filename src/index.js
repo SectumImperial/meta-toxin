@@ -38,6 +38,7 @@ import Datepicker from './blocks/datepick/datepick.js'
 import Carousel from './blocks/carousel/carousel'
 import StarRating from './blocks/star-rating/star-rating'
 import Paginator from './blocks/paginator/paginator.js'
+import Slider from './blocks/range-slider/range-slider.js'
 
 document.querySelectorAll('._js-dropdown').forEach((e) => new Dropdown(e))
 document
@@ -47,3 +48,4 @@ document.querySelectorAll('._datepick-js').forEach((e) => new Datepicker(e))
 document.querySelectorAll('.carousel').forEach((e) => new Carousel(e))
 document.querySelectorAll('.star-rating').forEach((e) => new StarRating(e))
 document.querySelectorAll('.paginator').forEach((e) => new Paginator(e))
+document.querySelectorAll('._js-range-slider').forEach((e) => new Slider(e))

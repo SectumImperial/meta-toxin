@@ -5,23 +5,30 @@
 .range-slider {
   &__fields {
     display: flex;
+    justify-content: space-between;
+    padding-bottom: 22px;
   }
 
   &__name {
+    font-size: rem(12);
     font-weight: bold;
+    text-transform: uppercase;
   }
 
   &__amount {
+    font-family: 'Montserrat', sans-serif;
     max-width: 50%;
     text-align: right;
     border: none;
     outline: none;
     color: rgba($dark-color, 0.5);
+    font-size: rem(12);
   }
 
   &__description {
     font-size: rem(12);
     color: rgba($dark-color, 0.5);
+    padding-top: 10px;
   }
 
   &__slider {
@@ -46,7 +53,7 @@
     position: absolute;
     width: 100%;
     height: 6px;
-    top: -4px;
+    top: -5px;
     z-index: 1;
 
     appearance: none;
@@ -72,8 +79,8 @@
 
     &[type='range']::-webkit-slider-thumb {
       -webkit-appearance: none;
-      height: 14px;
-      width: 14px;
+      height: 16px;
+      width: 16px;
       border: 2px solid white;
       border-radius: 50%;
       background: $gradientSecondary;
@@ -83,8 +90,8 @@
 
     [type='range']::-moz-range-thumb {
       -webkit-appearance: none;
-      height: 14px;
-      width: 14px;
+      height: 16px;
+      width: 16px;
       border: 2px solid white;
       border-radius: 50%;
       background: $gradientSecondary;
@@ -94,8 +101,8 @@
 
     [type='range']::-ms-thumb {
       -webkit-appearance: none;
-      height: 14px;
-      width: 14px;
+      height: 16px;
+      width: 16px;
       border: 2px solid white;
       border-radius: 50%;
       background: $gradientSecondary;

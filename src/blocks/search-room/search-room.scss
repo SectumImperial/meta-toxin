@@ -2,18 +2,29 @@
   display: flex;
   gap: 60px;
   width: 100%;
-
-  padding: 0 128px 0 136px;
+  padding: 30px 123px 0 141px;
 
   &__filters {
     max-width: 266px;
-    min-width: 200px;
   }
 
-  // Основное содержимое с комнатами
-  // &__rooms {
-  //   max-width: 834px;
-  // }
+  &__subtitle {
+    padding-bottom: 5px;
+  }
+
+  &__guests {
+    margin-top: 21px;
+  }
+
+  &__range {
+    margin-top: 30px;
+  }
+
+  // Секция комнат
+
+  &__rooms {
+    width: 100%;
+  }
 
   &__subtitle {
     text-transform: uppercase;

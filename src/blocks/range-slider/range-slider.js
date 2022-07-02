@@ -1,61 +1,101 @@
 import './range-slider.scss'
 
-const slider = document.querySelector('._js-range-slider')
+class Slider {
+  constructor(element) {
+    this.slider = element
 
-if (slider) {
-  const field = slider.querySelector('.range-slider__amount')
-  const toggleOne = slider.querySelector('.range-slider__input_min')
-  const toggleTwo = slider.querySelector('.range-slider__input_max')
-  const rangeProgress = slider.querySelector('.range-slider__progress')
-
-  let options
-  try {
-    options = JSON.parse(slider.dataset.rangeoptions)
-  } catch (err) {
-    throw new Error('Ошибка в чтении options')
-  }
-
-  const min = options.min ? options.min : 0
-  const max = options.max ? options.max : 15000
-  const addedText = options.addedText ? options.addedText : ''
-
-  toggleOne.value = options.initialStart ? options.initialStart : min
-  toggleTwo.value = options.initialEnd ? options.initialEnd : max
-
-  function setValues() {
-    field.value = `${toggleOne.value}${addedText} - ${toggleTwo.value}${addedText}`
-  }
-  setValues()
-
-  rangeProgress.style.left = (toggleOne.value / max) * 100 + '%'
-  rangeProgress.style.right = 100 - (toggleTwo.value / max) * 100 + '%'
-
-  function colorRange() {
-    rangeProgress.style.left = (toggleOne.value / max) * 100 + '%'
-    rangeProgress.style.right = 100 - (toggleTwo.value / max) * 100 + '%'
-  }
-
-  toggleOne.addEventListener('input', (e) => {
-    if (Number(toggleTwo.value) - Number(toggleOne.value) <= min) {
-      toggleOne.value = Number(toggleTwo.value) - min
+    this.options
+    try {
+      this.options = JSON.parse(this.slider.dataset.rangeoptions)
+    } catch (err) {
+      throw new Error('Ошибка в чтении options')
     }
 
-    setValues()
-    colorRange()
+    this.init()
+  }
 
-    if (Number(toggleOne.value) === max && Number(toggleTwo.value) === max) {
-      toggleTwo.style.display = 'none'
+  init() {
+    this.field = this.slider.querySelector('.range-slider__amount')
+    this.toggleOne = this.slider.querySelector('.range-slider__input_min')
+    this.toggleTwo = this.slider.querySelector('.range-slider__input_max')
+    this.rangeProgress = this.slider.querySelector('.range-slider__progress')
+
+    this.min = this.options.min ? this.options.min : 0
+    this.max = this.options.max ? this.options.max : 15000
+    this.addedText = this.options.addedText ? this.options.addedText : ''
+
+    this.toggleOne.value = this.options.initialStart
+      ? this.options.initialStart
+      : this.min
+    this.toggleTwo.value = this.options.initialEnd
+      ? this.options.initialEnd
+      : this.max
+
+    this.rangeProgress.style.left =
+      (this.toggleOne.value / this.max) * 100 + '%'
+    this.rangeProgress.style.right =
+      100 - (this.toggleTwo.value / this.max) * 100 + '%'
+
+    this.setValues()
+    this.addListeners()
+  }
+
+  addListeners() {
+    this.toggleOne.addEventListener('input', this.changeFirstToggle.bind(this))
+    this.toggleTwo.addEventListener('input', this.changeSecondToggle.bind(this))
+  }
+
+  setValues() {
+    let fitstVal = this.performValue(this.toggleOne.value)
+    let secondVal = this.performValue(this.toggleTwo.value)
+    console.log(fitstVal)
+    this.field.value = `${fitstVal}${this.addedText} - ${secondVal}${this.addedText}`
+  }
+
+  performValue(val) {
+    let [_, num, suffix] = val.match(/^(.*?)((?:[,.]\d+)?|)$/)
+    return `${num.replace(/\B(?=(?:\d{3})*$)/g, ' ')}${suffix}`
+  }
+
+  colorRange() {
+    this.rangeProgress.style.left =
+      (this.toggleOne.value / this.max) * 100 + '%'
+    this.rangeProgress.style.right =
+      100 - (this.toggleTwo.value / this.max) * 100 + '%'
+  }
+
+  changeFirstToggle() {
+    if (
+      Number(this.toggleTwo.value) - Number(this.toggleOne.value) <=
+      this.min
+    ) {
+      this.toggleOne.value = Number(this.toggleTwo.value) - this.min
+    }
+
+    this.setValues()
+    this.colorRange()
+
+    if (
+      Number(this.toggleOne.value) === this.max &&
+      Number(this.toggleTwo.value) === this.max
+    ) {
+      this.toggleTwo.style.display = 'none'
     } else {
-      toggleTwo.style.display = 'block'
+      this.toggleTwo.style.display = 'block'
     }
-  })
+  }
 
-  toggleTwo.addEventListener('input', (e) => {
-    if (Number(toggleTwo.value) - Number(toggleOne.value) <= min) {
-      toggleTwo.value = Number(toggleOne.value) + min
+  changeSecondToggle() {
+    if (
+      Number(this.toggleTwo.value) - Number(this.toggleOne.value) <=
+      this.min
+    ) {
+      this.toggleTwo.value = Number(this.toggleOne.value) + this.min
     }
 
-    setValues()
-    colorRange()
-  })
+    this.setValues()
+    this.colorRange()
+  }
 }
+
+export default Slider
