@@ -6,7 +6,7 @@ include ../checkbox/checkbox.pug
 include ../checkbox-list/checkbox-list.pug
 include ../room-card/room-card.pug
 include ../paginator/paginator.pug
-
+include ../button/button.pug
 
 
 mixin search-room(options = {}) 
@@ -182,7 +182,13 @@ mixin search-room(options = {})
               },
             ]
           })
-
+      +button({
+        content: 'Раскрыть фильтры',
+        btnColor: 'white',
+        btnWrapperColor: 'violet',
+        classWrapper: 'search-room__button',
+        btnSize: 'large'
+      })
       section.search-room__rooms
         +title({
             level: 'h2',

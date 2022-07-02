@@ -10,11 +10,28 @@
     gap: 59px;
     padding: 30px 5px 75px 5px;
     margin: 0 auto;
+
+    @media (max-width: $pc) {
+      flex-direction: column;
+      gap: 45px;
+    }
   }
 
   // Фильтры
   &__filters {
     max-width: 267px;
+
+    @media (max-width: $pc) {
+      position: absolute;
+      transform: translate(-9999px);
+      max-width: 100%;
+      transition: all 0.3s ease-in;
+    }
+  }
+
+  ._active {
+    position: static;
+    transform: translate(0);
   }
 
   &__subtitle {
@@ -53,10 +70,24 @@
   &__add-facilities {
     margin-top: 28px;
   }
-  // Секция комнат
 
+  // Кнопка
+  &__button {
+    display: none;
+    @media (max-width: $pc) {
+      display: block;
+    }
+  }
+
+  // Секция комнат
   &__rooms {
     width: 100%;
+  }
+
+  &__section-title {
+    @media (max-width: $pc) {
+      text-align: center;
+    }
   }
 
   &__subtitle {
@@ -68,10 +99,22 @@
     display: flex;
     gap: 20px 12px;
     flex-wrap: wrap;
+
+    @media (max-width: $pc) {
+      justify-content: center;
+    }
   }
 
   &__paginator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding-top: 44px;
     padding-left: 17px;
+
+    @media (max-width: $mobile) {
+      justify-content: center;
+      padding: 25px 5px;
+    }
   }
 }
