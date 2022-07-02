@@ -7,12 +7,13 @@
   flex-direction: column;
   gap: 11px;
 
-  padding-top: 100px;
-
   &__content {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    // PP
+    padding-right: 72px;
   }
 
   &__button {
@@ -92,9 +93,11 @@
   }
 
   &__description {
-    color: rgba($dark-color, 0.75);
     display: flex;
     justify-content: center;
     align-items: center;
+
+    padding-right: 31px;
+    color: rgba($dark-color, 0.75);
   }
 }

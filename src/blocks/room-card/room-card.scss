@@ -46,7 +46,7 @@
     font-size: rem(12);
     text-transform: uppercase;
     padding-top: 2px;
-    padding-left: 2px;
+    padding-left: 8px;
   }
 
   &__price,
@@ -56,11 +56,12 @@
 
   &__reviews {
     font-size: rem(14);
-    padding: 3px 3px 0 0;
+    padding: 1px 2px 0 0;
   }
 
   &__price {
-    padding-top: 5px;
+    padding-top: 4px;
+    padding-right: 1px;
   }
 
   &__price-word {

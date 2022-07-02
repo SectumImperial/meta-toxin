@@ -2,7 +2,7 @@
   display: flex;
   gap: 60px;
   width: 100%;
-  padding: 30px 123px 0 139px;
+  padding: 30px 123px 75px 139px;
 
   // Фильтры
   &__filters {
@@ -56,8 +56,13 @@
   }
 
   &__rooms-content {
+    padding-top: 21px;
     display: flex;
     gap: 20px 12px;
     flex-wrap: wrap;
+  }
+
+  &__paginator {
+    padding-top: 44px;
   }
 }
