@@ -1,8 +1,16 @@
+@use 'sass:math';
+@import '../../common/functions.scss';
+@import '../../common/variables.scss';
+
 .search-room {
   display: flex;
-  gap: 60px;
-  width: 100%;
-  padding: 30px 123px 75px 139px;
+  &__content {
+    max-width: 1170px;
+    display: flex;
+    gap: 59px;
+    padding: 30px 5px 75px 5px;
+    margin: 0 auto;
+  }
 
   // Фильтры
   &__filters {
@@ -64,5 +72,6 @@
 
   &__paginator {
     padding-top: 44px;
+    padding-left: 17px;
   }
 }
