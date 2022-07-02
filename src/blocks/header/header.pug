@@ -10,41 +10,49 @@ mixin header(options = {})
   -
    const {
     classHeader = '',
+    shadow = false,
+    isLogged = false,
     navigation = {}
    } = options
 
 
+  -
+    let mod = ''
+    if (shadow) {
+      mod = `header_shadow`
+    }
+
   header.header(
-    class =  classHeader
+    class =  `${classHeader} ${mod}`
     )
+    .header__content.container
+      +logo({
+        classLogo: 'header__logo',
+        href: 'landing-page.html'
+      })
+      +headerIcon()
+      .header__nav-wrapper 
+        +nav({
+          classNav: 'header__nav',
+          navigation: navigation})
 
-    +logo({
-      classLogo: 'header__logo',
-      href: 'landing-page.html'
-    })
-    +headerIcon()
-    .header__nav-wrapper 
-      +nav({
-        classNav: 'header__nav',
-        navigation: navigation})
-
-      if !options.isLogged
-        +button({
-          classWrapper: 'header__button', 
-          content: 'Войти', 
-          btnColor: 'violet',
-          btnSize: 'small',
-          btnType: 'link',
-           href: 'login-page.html'
-          })
-        +button({
-          classWrapper: 'header__button', 
-          btnColor: 'white',
-          btnWrapperColor: 'violet',
-          content: 'Зарегистрироваться',
-          btnSize: 'small',
-          btnType: 'link',
-          href: 'registration-page.html'
-          })
-      else
-        p.header__user Юлий Цезарь
+        if !options.isLogged
+          +button({
+            classWrapper: 'header__button', 
+            content: 'Войти', 
+            btnColor: 'violet',
+            btnSize: 'small',
+            btnType: 'link',
+            href: 'login-page.html'
+            })
+          +button({
+            classWrapper: 'header__button', 
+            btnColor: 'white',
+            btnWrapperColor: 'violet',
+            content: 'Зарегистрироваться',
+            btnSize: 'small',
+            btnType: 'link',
+            href: 'registration-page.html'
+            })
+        else
+          p.header__user Юлий Цезарь

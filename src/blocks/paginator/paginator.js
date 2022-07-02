@@ -260,6 +260,10 @@ class Paginator {
     string = `${firstCount} - ${lastCount} из ${from} ${this.text}`
     this.textElement.innerText = string
   }
+
+  removePaginator() {
+    this.itemsPaginator.innerHTML = ''
+  }
 }
 
 export default Paginator

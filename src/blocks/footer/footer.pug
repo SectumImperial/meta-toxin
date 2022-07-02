@@ -11,10 +11,18 @@ mixin footer(options = {})
       classFooter = '',
       contentPromo = '',
       navItems = [],
+      border = false
     } = options 
 
+  -
+    let mod = ''
+    if(border) {
+      mod = 'footer_bordered'
+    }
+
+
   footer(
-    class= `footer ${classFooter}`
+    class= `footer ${classFooter} ${mod}`
   )
     .footer__blocks
       section.footer__block

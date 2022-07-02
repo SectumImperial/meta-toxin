@@ -105,4 +105,8 @@
       border-top: 1px solid #e5e5e5;
     }
   }
+
+  &_bordered {
+    border-top: 1px solid rgba($dark-color, 0.25);
+  }
 }
