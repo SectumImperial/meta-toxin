@@ -3,6 +3,7 @@
 @import '../../common/variables.scss';
 
 .checkbox-list {
+  overflow: hidden;
   &__item {
     list-style: none;
   }
@@ -32,11 +33,18 @@
 
   &__items {
     display: none;
+    padding-top: 19px;
   }
 }
 
 ._active {
   .checkbox-list__arrow {
     transform: rotate(180deg);
+  }
+
+  ._opened-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
 }

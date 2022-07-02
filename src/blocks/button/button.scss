@@ -11,6 +11,8 @@
   background: $gradient;
   position: relative;
 
+  cursor: pointer;
+
   &:hover {
     background: $gradient50;
   }
@@ -51,6 +53,8 @@
 
     text-transform: uppercase;
     text-align: center;
+
+    cursor: pointer;
   }
 
   &_tiny {

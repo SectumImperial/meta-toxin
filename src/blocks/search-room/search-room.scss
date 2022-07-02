@@ -2,10 +2,11 @@
   display: flex;
   gap: 60px;
   width: 100%;
-  padding: 30px 123px 0 141px;
+  padding: 30px 123px 0 139px;
 
+  // Фильтры
   &__filters {
-    max-width: 266px;
+    max-width: 267px;
   }
 
   &__subtitle {
@@ -17,9 +18,33 @@
   }
 
   &__range {
+    margin-top: 29px;
+  }
+
+  &__rules {
     margin-top: 30px;
   }
 
+  &__checkboxes {
+    padding-top: 2px;
+    padding-right: 17px;
+  }
+
+  &__checkbox {
+    padding-top: 10px;
+  }
+
+  &__available {
+    margin-top: 32px;
+  }
+
+  &__facilities {
+    margin-top: 28px;
+  }
+
+  &__add-facilities {
+    margin-top: 28px;
+  }
   // Секция комнат
 
   &__rooms {

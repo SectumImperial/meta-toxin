@@ -18,10 +18,10 @@ class CheckboxList {
   toggle() {
     if (this.checkboxList.classList.contains('_active')) {
       this.checkboxList.classList.remove('_active')
-      this.list.style.display = 'none'
+      this.list.classList.remove('_opened-list')
     } else {
       this.checkboxList.classList.add('_active')
-      this.list.style.display = 'block'
+      this.list.classList.add('_opened-list')
     }
   }
 }

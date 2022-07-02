@@ -12,6 +12,10 @@
     gap: rem(20);
   }
 
+  &__field {
+    cursor: pointer;
+  }
+
   &__group {
     display: grid;
     position: relative;

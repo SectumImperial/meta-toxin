@@ -48,7 +48,6 @@ class Slider {
   setValues() {
     let fitstVal = this.performValue(this.toggleOne.value)
     let secondVal = this.performValue(this.toggleTwo.value)
-    console.log(fitstVal)
     this.field.value = `${fitstVal}${this.addedText} - ${secondVal}${this.addedText}`
   }
 

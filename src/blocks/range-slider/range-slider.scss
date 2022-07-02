@@ -16,6 +16,7 @@
   }
 
   &__amount {
+    padding-right: 2px;
     font-family: 'Montserrat', sans-serif;
     max-width: 50%;
     text-align: right;
@@ -28,7 +29,10 @@
   &__description {
     font-size: rem(12);
     color: rgba($dark-color, 0.5);
-    padding-top: 10px;
+    padding-top: 21px;
+
+    // Для PP
+    white-space: nowrap;
   }
 
   &__slider {
