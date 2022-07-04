@@ -8,6 +8,8 @@ $content: 1170px;
   tablet: $tablet;
 }
 
+$dark-color: #1f2041;
+
 $primary-color: #bc9cff;
 $primary-gradient: #8ba4f9;
 $primary-color50: rgba($primary-color, 0.5);
@@ -22,9 +24,14 @@ $secondary-gradient: #66d2ea;
 $btn-primary: $primary-color;
 $btn-secondary: white;
 
+// Цвета диаграммы
+$color-canvas-great: linear-gradient(180deg, #ffe39c 0%, #ffba9c 100%);
+$color-canvas-good: linear-gradient(180deg, #bc9cff 0%, #8ba4f9 100%);
+$color-canvas-satisfy: linear-gradient(180deg, #6fcf97 0%, #66d2ea 100%);
+$color-canvas-bad: linear-gradient(180deg, #919191 0%, #3d4975 100%);
+
+// Градиенты
 $gradient: linear-gradient($primary-color, $primary-gradient);
 $gradient50: linear-gradient($primary-color50, $primary-gradient50);
 $gradient25: linear-gradient($primary-color25, $primary-gradient25);
 $gradientSecondary: linear-gradient($secondary-color, $secondary-gradient);
-
-$dark-color: #1f2041;

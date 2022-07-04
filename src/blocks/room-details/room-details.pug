@@ -1,5 +1,6 @@
 include ../title/title.pug
 include ../room-data/room-data.pug
+include ../canvas/canvas.pug
 
 mixin room-details(options= {})
   -
@@ -57,6 +58,10 @@ mixin room-details(options= {})
               icon: 'fire',
             }
           ]
+        })
+      .room-details__feedback
+        +canvas({
+
         })
     
   

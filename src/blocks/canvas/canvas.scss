@@ -1,0 +1,15 @@
+@use 'sass:math';
+@import '../../common/functions.scss';
+@import '../../common/variables.scss';
+
+.canvas {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 120px;
+
+  &__unit {
+    fill: none;
+    stroke-width: 4;
+  }
+}
