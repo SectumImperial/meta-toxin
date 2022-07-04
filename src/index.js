@@ -32,6 +32,7 @@ require('./blocks/room-card/room-card.js')
 require('./blocks/carousel/carousel.js')
 require('./blocks/star-rating/star-rating.js')
 require('./blocks/paginator/paginator.js')
+require('./blocks/room-data/room-data.js')
 
 import Dropdown from './blocks/dropdown/dropdown.js'
 import CheckboxList from './blocks/checkbox-list/checkbox-list.js'

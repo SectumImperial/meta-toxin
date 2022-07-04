@@ -36,4 +36,11 @@
     height: 100%;
     width: 100%;
   }
+
+  // Информация
+  &__information {
+    max-width: $content;
+    padding: 0 5px;
+    margin: 0 auto;
+  }
 }

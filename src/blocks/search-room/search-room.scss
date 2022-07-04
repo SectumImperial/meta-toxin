@@ -5,7 +5,7 @@
 .search-room {
   display: flex;
   &__content {
-    max-width: 1170px;
+    max-width: $content;
     display: flex;
     gap: 59px;
     padding: 30px 5px 75px 5px;

@@ -1,4 +1,5 @@
 include ../title/title.pug
+include ../room-data/room-data.pug
 
 mixin room-details(options= {})
   -
@@ -9,7 +10,7 @@ mixin room-details(options= {})
   main(
     class = `room-details ${classMain}`
   )
-    .room-details__content
+    .room-details__content.container
       .room-details__photos
         .room-details__photos-big
           img(
@@ -32,6 +33,30 @@ mixin room-details(options= {})
             )
 
     .room-details__information
-      
+      .room-details__details 
+        +title({
+          level: 'h2',
+          classTitle: 'room-details__subtitle',
+          text: 'Сведения о номере'
+        })
+        +room-data({
+          items: [
+            {
+              title: 'Комфорт',
+              text: 'Шумопоглощающие стены',
+              icon: 'smile',
+            },
+            {
+              title: 'Удобство',
+              text: 'Окно в каждой из спален',
+              icon: 'city',
+            },
+            {
+              title: 'Уют',
+              text: 'Номер оснащён камином',
+              icon: 'fire',
+            }
+          ]
+        })
     
   
