@@ -61,7 +61,37 @@ mixin room-details(options= {})
         })
       .room-details__feedback
         +canvas({
-
+        canvasClass: 'room-details__canvas',
+        canvas: [
+          {
+            count: 520,
+            id: 'great',
+            name: 'Великолепено',
+            stopFirst: '#ffe39c',
+            stopSecond: '#ffba9c'
+          },
+          {
+            count: 260,
+            id: 'good',
+            name: 'Хорошо',
+            stopFirst: '#bc9cff',
+            stopSecond: '#8ba4f9'
+          },
+          {
+            count: 260,
+            id: 'satisfy',
+            name: 'Удовлетворительно',
+            stopFirst: '#6fcf97',
+            stopSecond: '#66d2ea'
+          },
+          {
+            count: 0,
+            id: 'bad',
+            name: 'Разочрован',
+            stopFirst: '#919191',
+            stopSecond: '#3d4975'
+          }
+        ]
         })
     
   

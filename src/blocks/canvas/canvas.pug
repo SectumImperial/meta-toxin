@@ -1,3 +1,11 @@
 mixin canvas(options = {})
-  .canvas 
+  -
+    const {
+      canvasClass = '',
+      canvas = {}
+    } = options
+  div(
+    class = `canvas ${canvasClass}`
+    data-canvas = canvas
+  ) 
    

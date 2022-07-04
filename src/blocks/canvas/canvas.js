@@ -1,5 +1,24 @@
 import './canvas.scss'
 
+class Canvas {
+  constructor(element) {
+    this.canvas = element
+
+    this.options
+    try {
+      this.options = JSON.parse(this.canvas.dataset.canvas)
+    } catch (err) {
+      throw new Error('Ошибка в опциях', err)
+    }
+
+    this.init()
+  }
+
+  init() {}
+}
+
+export default Canvas
+
 const canvas = document.querySelector('.canvas')
 const canvasTemplate = `
 <svg class="chart" width="120" height="120" viewBox="0 0 50 50">
@@ -31,4 +50,4 @@ const canvasTemplate = `
     <circle class="canvas__unit canvas__unit_bad" r="15.9" cx="50%" cy="50%" stroke="url(#bad)" stroke-dasharray="11 100" stroke-dashoffset="-33"></circle>
   </svg>`
 
-canvas.insertAdjacentHTML('beforeend', canvasTemplate)
+if (canvas) canvas.insertAdjacentHTML('beforeend', canvasTemplate)
