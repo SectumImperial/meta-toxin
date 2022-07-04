@@ -1,20 +1,18 @@
 .start-page {
-  background-color: red;
-  &__main {
-    display: flex;
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
 
-    min-width: 100vw;
-    min-height: 100vh;
+  min-width: 100vw;
+  min-height: 100vh;
 
-    justify-content: center;
-    align-items: center;
+  justify-content: center;
+  align-items: center;
 
-    background: radial-gradient(
-      circle,
-      rgba(10, 0, 162, 1) 0%,
-      rgba(166, 0, 255, 1) 100%
-    );
-  }
+  background: radial-gradient(
+    circle,
+    rgba(10, 0, 162, 1) 0%,
+    rgba(166, 0, 255, 1) 100%
+  );
 
   &__types {
     display: flex;

@@ -1,0 +1,39 @@
+@use 'sass:math';
+@import '../../common/functions.scss';
+@import '../../common/variables.scss';
+
+.room-details {
+  // Изрображения
+  &__photos {
+    margin: 0 auto;
+    max-width: $container;
+    max-height: 485px;
+
+    display: flex;
+  }
+
+  &__photos-big {
+    flex: 1 0 981px;
+  }
+
+  &__photos-small {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__photos-top {
+    transform: scaleX(-1);
+  }
+
+  &__photos-top,
+  &__photos-bottom {
+    height: 50%;
+  }
+
+  &__image {
+    object-fit: cover;
+    vertical-align: middle;
+    height: 100%;
+    width: 100%;
+  }
+}

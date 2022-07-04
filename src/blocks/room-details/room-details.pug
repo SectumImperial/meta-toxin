@@ -1,0 +1,37 @@
+include ../title/title.pug
+
+mixin room-details(options= {})
+  -
+    const {
+      classMain = ''
+    } = options
+
+  main(
+    class = `room-details ${classMain}`
+  )
+    .room-details__content
+      .room-details__photos
+        .room-details__photos-big
+          img(
+            src = './blocks/room-details/img/room-big.png',
+            alt = 'Большое фото номера',
+            class = 'room-details__image'
+          )
+        .room-details__photos-small
+          .room-details__photos-top
+            img(
+              src = './blocks/room-details/img/room-small-1.png',
+              alt = 'Малое фото номера',
+              class = 'room-details__image room-details__image_small'
+          )
+          .room-details__photos-bottom
+            img(
+              src = './blocks/room-details/img/room-small-2.png',
+              alt = 'Малое фото номера',
+              class = 'room-details__image room-details__image_small'
+            )
+
+    .room-details__information
+      
+    
+  

@@ -1,7 +1,6 @@
 extends ../../blocks/page-layout/page-layout.pug
 block content
-  body.start-page
-    main.start-page__main
+    main.start-page
       .start-page__pages
         .start-page__types.start-page__types_website
          h2.start-page__title= 'Website pages'
@@ -26,4 +25,9 @@ block content
              class = 'start-page__pages-link'
              href ='search-page.html'
            ) Search room Page
+          li.start-page__pages-item 
+           a(
+             class = 'start-page__pages-link'
+             href ='room-page.html'
+           ) Room details Page
 

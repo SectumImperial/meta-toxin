@@ -1,0 +1,127 @@
+extends ../../blocks/page-layout/page-layout.pug
+
+include ../../blocks/header/header.pug
+include ../../blocks/room-details/room-details.pug
+include ../../blocks/footer/footer.pug
+
+block variables 
+  - 
+    const title = 'Поиск номеров Toxin'
+
+block content
+  +header({
+      shadow: true,
+      classHeader: 'page__header',
+      navigation: {
+      items: [
+        {
+          content: 'О нас',
+          href: 'error-page.html',
+          },
+        {
+          content: 'Услуги',
+          href: 'error-page.html',
+          subItems: [
+            {
+              content: 'Пункт меню',
+              href: 'error-page.html'
+            },
+            {
+              content: 'Пункт меню 1',
+              href: 'error-page.html'
+            },
+            {
+              content: 'Пункт меню 2',
+              href: 'error-page.html'
+            },
+            {
+              content: 'Пункт меню 3',
+              href: 'error-page.html'
+            }
+          ]
+        },
+        {
+          content: 'Вакансии',
+          href: 'error-page.html'
+        },
+        {
+          content: 'Новости',
+          href: 'error-page.html'
+        },
+        {
+          content: 'Соглашения',
+          href: 'error-page.html',
+          subItems: [
+            {
+              content: 'Пункт меню',
+              href: 'error-page.html'
+            },
+            {
+              content: 'Пункт меню 1',
+              href: 'error-page.html'
+            },
+            {
+              content: 'Пункт меню 2',
+              href: 'error-page.html'
+            },
+            {
+              content: 'Пункт меню 3',
+              href: 'error-page.html'
+            }
+          ]
+        }
+      ]}})
+  +room-details({
+    classMain: 'page__main'
+  })
+  +footer({
+    classFooter: 'page__footer',
+    border: true,
+    contentPromo: 'Бронирование номеров в лучшем отеле 2019 года по версии ассоциации «Отельные взгляды»',
+    navItems: [{
+      titleItem: 'Навигация',
+      items: [
+        {
+        content: 'О нас',
+        },
+        {
+        content: 'Новости',
+        },
+        {
+        content: 'Служба поддержки',
+        },
+        {
+        content: 'Услуги',
+        }
+      ]
+    },
+    {
+      titleItem: 'О нас',
+      items: [{
+        content: 'О нас',
+        },
+        {
+        content: 'Наша команда',
+        },
+        {
+        content: 'Вакансии',
+        },
+        {
+        content: 'Инвесторы'
+        }
+      ]
+    },
+    {
+      titleItem: 'Служба поддержки',
+      items: [{
+        content: 'Соглашения',
+        },
+        {
+        content: 'Сообщества',
+        },
+        {
+        content: 'Связь с нами',
+        },
+      ]
+    }]
+  })
