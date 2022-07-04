@@ -18,9 +18,11 @@ class Carousel {
     this.next = this.carousel.querySelector('.carousel__next')
     this.toggles = this.carousel.querySelectorAll('.carousel__toggle-button')
 
+    this.xDown = null
+
     this.markToggless()
     this.checkActive()
-    this.addListners()
+    this.addListeners()
   }
 
   markToggless() {
@@ -31,13 +33,18 @@ class Carousel {
     }
   }
 
-  addListners() {
+  addListeners() {
     this.prev.addEventListener('click', this.moveLeft.bind(this))
     this.next.addEventListener('click', this.moveRight.bind(this))
 
     this.toggles.forEach((element) => {
       element.addEventListener('click', this.moveToggle.bind(this))
     })
+    this.carousel.addEventListener(
+      'touchstart',
+      this.handleTouchStart.bind(this)
+    )
+    this.carousel.addEventListener('touchmove', this.handleTouchMove.bind(this))
   }
 
   moveLeft() {
@@ -74,6 +81,30 @@ class Carousel {
     this.position += move
     this.list.style.marginLeft = this.position + 'px'
     this.checkActive()
+  }
+
+  getTouches(evt) {
+    return evt.touches
+  }
+
+  handleTouchStart(evt) {
+    const firstTouch = this.getTouches(evt)[0]
+    this.xDown = firstTouch.clientX
+  }
+
+  handleTouchMove(evt) {
+    if (!this.xDown) {
+      return
+    }
+    const xUp = evt.touches[0].clientX
+    const xDiff = this.xDown - xUp
+
+    if (xDiff && xDiff > 0) {
+      this.moveRight()
+    } else {
+      this.moveLeft()
+    }
+    this.xDown = null
   }
 }
 

@@ -1,4 +1,4 @@
-mixin carousel(images) 
+mixin carousel(images, href) 
   .carousel
     button.carousel__prev.icon__expand_more
     .carousel__images 
@@ -6,7 +6,7 @@ mixin carousel(images)
         each image in images
           li.carousel__item
             a(
-                href = 'error-page.html',
+                href = href,
                 class = 'carousel__link'
             )
               img(
