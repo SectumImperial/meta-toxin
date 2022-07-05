@@ -8,13 +8,59 @@
   align-items: center;
   max-width: 120px;
 
+  &__chart {
+    min-width: 120px;
+    min-height: 120px;
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    color: rgba($dark-color, 0.75);
+    list-style: none;
+
+    cursor: pointer;
+
+    // Для PP
+    &_great {
+      order: 1;
+    }
+
+    &_good {
+      order: 2;
+    }
+
+    &_satisfy {
+      order: 3;
+    }
+
+    &_bad {
+      order: 4;
+    }
+  }
+
+  &__item-mark {
+    order: -1;
+  }
+  // SVG styles
   &__unit {
     fill: none;
     // stroke-width: 1;
   }
 
-  .chart {
+  &__svg {
     width: 100%;
     height: 100%;
+  }
+
+  &__number {
+    font-size: 7px;
   }
 }

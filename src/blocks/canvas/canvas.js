@@ -18,18 +18,24 @@ class Canvas {
     this.allCounts = this.sumCount()
     this.dashoffsets = []
 
+    this.svgBlock = this.canvas.querySelector('.canvas__chart')
+    this.legendBlock = this.canvas.querySelector('.canvas__legend')
+
     this.defs = this.createDefs()
     this.circles = this.createCircles()
-    console.log(this.circles)
+    this.text = this.createText()
     this.svg = this.createSvg()
 
     this.addSvg()
+
+    this.legendBlock.append(this.createList())
   }
 
   sumCount() {
     let sum = 0
     for (let option of this.options) {
-      sum += option.count
+      if (option.count) sum += option.count
+      if (!option.count) sum += 0
     }
 
     if (isNaN(sum)) throw new Error('Ошибка в подсчёте суммы голосов')
@@ -37,7 +43,7 @@ class Canvas {
   }
 
   createSvg() {
-    let svgTemp = `<svg class="chart" width="120" height="120" viewBox="0 0 35 30">
+    let svgTemp = `<svg class="canvas__svg" width="120" height="120" viewBox="0 0 35 30">
     ${this.defs}
     ${this.circles.join('')}
     </svg>`
@@ -45,7 +51,7 @@ class Canvas {
   }
 
   addSvg() {
-    this.canvas.insertAdjacentHTML('beforeend', this.svg)
+    this.svgBlock.insertAdjacentHTML('beforeend', this.svg)
   }
 
   createDefs() {
@@ -110,39 +116,54 @@ class Canvas {
     if (dashoffsetVal !== 0) dashoffsetVal *= -1
     return `stroke-dashoffset="${dashoffsetVal}"`
   }
+
+  // Creat the text
+  createText() {
+    return 'test'
+  }
+
+  // create the list
+  createList() {
+    let ul = this.createUl()
+    let items = []
+    this.options.forEach((option) => {
+      items.push(this.createLi(option))
+    })
+    items.forEach((e) => {
+      ul.append(e)
+    })
+
+    return ul
+  }
+
+  createUl() {
+    let ul = document.createElement('ul')
+    ul.className = 'canvas__items'
+    return ul
+  }
+
+  createLi({
+    id = 'default',
+    name = 'Мёртвые голоса',
+    stopFirst = '#6b0000',
+    stopSecond = '#1a0000',
+  }) {
+    let li = document.createElement('li')
+    let className = `canvas__item canvas__item_${id}`
+    li.className = className
+    li.innerText = name
+
+    let mark = document.createElement('div')
+    mark.className = `canvas__item-mark canvas__item-mark_${id}`
+    mark.style.width = '10px'
+    mark.style.height = '10px'
+    mark.style.background = `linear-gradient(${stopFirst}, ${stopSecond})`
+    mark.style.borderRadius = '50%'
+
+    li.append(mark)
+
+    return li
+  }
 }
 
 export default Canvas
-
-const canvas = document.querySelector('.canvas')
-const canvasTemplate = `
-<svg class="chart" width="120" height="120" viewBox="0 0 35 30">
-    <defs>
-        <linearGradient id="great" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%"   stop-color="#ffe39c"/>
-            <stop offset="100%" stop-color="#ffba9c"/>
-        </linearGradient>
-
-        <linearGradient id="good" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%"   stop-color="#bc9cff"/>
-            <stop offset="100%" stop-color="#8ba4f9"/>
-        </linearGradient>
-
-        <linearGradient id="satisfy" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%"   stop-color="#6fcf97"/>
-            <stop offset="100%" stop-color="#66d2ea"/>
-        </linearGradient>
-
-        <linearGradient id="bad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%"   stop-color="#919191"/>
-            <stop offset="100%" stop-color="#3d4975"/>
-        </linearGradient>
-    </defs>
-
-    <circle class="canvas__unit canvas__unit_bad" r="15.9" cx="50%" cy="50%" stroke="url(#bad)" stroke-dasharray="0 100" stroke-dashoffset="0"></circle>
-    <circle class="canvas__unit canvas__unit_satisfy" r="15.9" cx="50%" cy="50%" stroke="url(#satisfy)" stroke-dasharray="24 100" stroke-dashoffset="0"></circle>
-    <circle class="canvas__unit canvas__unit_great" r="15.9" cx="50%" cy="50%" stroke="url(#great)" stroke-dasharray="49 100" stroke-dashoffset="-25"></circle>
-    <circle class="canvas__unit canvas__unit_good" r="15.9" cx="50%" cy="50%" stroke="url(#good)" stroke-dasharray="24 100" stroke-dashoffset="-76"></circle>
-    
-    
-  </svg>`
