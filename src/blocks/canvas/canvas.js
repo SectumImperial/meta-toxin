@@ -34,6 +34,7 @@ class Canvas {
     this.items = this.list.querySelectorAll('.canvas__item')
     this.legendBlock.append(this.list)
 
+    this.circles = this.canvas.querySelectorAll('.canvas__unit')
     this.addListeners()
   }
 
@@ -41,6 +42,11 @@ class Canvas {
     this.items.forEach((item) => {
       item.addEventListener('mouseover', this.performText.bind(this))
       item.addEventListener('mouseout', this.resetText.bind(this))
+    })
+
+    this.circles.forEach((circle) => {
+      circle.addEventListener('mouseover', this.performText.bind(this))
+      circle.addEventListener('mouseout', this.resetText.bind(this))
     })
   }
 
@@ -106,7 +112,7 @@ class Canvas {
       ? `canvas__unit_${option.id}`
       : 'canvas__unit_default'
 
-    let circle = `<circle class='canvas__unit ${className}' r="15.9" cx="50%" cy="50%" ${url} ${dasharray} ${dashoffset}></circle>`
+    let circle = `<circle class="canvas__unit ${className}" data-line="${option.id}" r="15.9" cx="50%" cy="50%" ${url} ${dasharray} ${dashoffset}></circle>`
     return circle
   }
 
@@ -196,8 +202,8 @@ class Canvas {
   performText({ target }) {
     let line = target.dataset.line
 
-    for (let { count, stopFirst, id } of this.options) {
-      if (id && id === line) {
+    for (let { count, stopFirst, id = 'default' } of this.options) {
+      if (id === line) {
         this.text = this.createText(stopFirst, count)
         this.deleteText()
         this.addText()
