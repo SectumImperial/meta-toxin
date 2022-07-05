@@ -24,11 +24,24 @@ class Canvas {
     this.defs = this.createDefs()
     this.circles = this.createCircles()
     this.text = this.createText()
-    this.svg = this.createSvg()
+    this.svgTmp = this.createSvg()
 
     this.addSvg()
+    this.chart = document.querySelector('.canvas__svg')
+    this.addText()
 
-    this.legendBlock.append(this.createList())
+    this.list = this.createList()
+    this.items = this.list.querySelectorAll('.canvas__item')
+    this.legendBlock.append(this.list)
+
+    this.addListeners()
+  }
+
+  addListeners() {
+    this.items.forEach((item) => {
+      item.addEventListener('mouseover', this.performText.bind(this))
+      item.addEventListener('mouseout', this.resetText.bind(this))
+    })
   }
 
   sumCount() {
@@ -51,7 +64,7 @@ class Canvas {
   }
 
   addSvg() {
-    this.svgBlock.insertAdjacentHTML('beforeend', this.svg)
+    this.svgBlock.insertAdjacentHTML('beforeend', this.svgTmp)
   }
 
   createDefs() {
@@ -118,8 +131,11 @@ class Canvas {
   }
 
   // Creat the text
-  createText() {
-    return 'test'
+  createText(fill = '#1F2041', count = this.allCounts) {
+    let textNum = `<text text-anchor="middle" class="canvas__number" x="50%" y="48%" fill="${fill}">${count}</text>`
+    let description = `<text text-anchor="middle" class="canvas__descr" x="50%" y="65%" fill="${fill}">Голосов</text>`
+    let group = `<g class="canvas__text-group" fill="${fill}">${textNum}${description}</g>`
+    return group
   }
 
   // create the list
@@ -150,6 +166,7 @@ class Canvas {
   }) {
     let li = document.createElement('li')
     let className = `canvas__item canvas__item_${id}`
+    li.dataset.line = id
     li.className = className
     li.innerText = name
 
@@ -163,6 +180,47 @@ class Canvas {
     li.append(mark)
 
     return li
+  }
+
+  // Mouse events and perform the text
+
+  addText() {
+    this.chart.insertAdjacentHTML('beforeend', this.text)
+  }
+
+  deleteText() {
+    let text = this.canvas.querySelector('.canvas__text-group')
+    if (text) text.remove()
+  }
+
+  performText({ target }) {
+    let line = target.dataset.line
+
+    for (let { count, stopFirst, id } of this.options) {
+      if (id && id === line) {
+        this.text = this.createText(stopFirst, count)
+        this.deleteText()
+        this.addText()
+        this.boldLine(id)
+      }
+    }
+  }
+
+  resetText() {
+    this.deleteText()
+    this.text = this.createText()
+    this.addText()
+    this.resetLine()
+  }
+
+  boldLine(id) {
+    let circleLine = this.canvas.querySelector(`.canvas__unit_${id}`)
+    if (circleLine) circleLine.classList.add('canvas__unit_hovered')
+  }
+
+  resetLine() {
+    let hoveredLine = this.canvas.querySelector(`.canvas__unit_hovered`)
+    if (hoveredLine) hoveredLine.classList.remove('canvas__unit_hovered')
   }
 }
 

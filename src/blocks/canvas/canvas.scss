@@ -16,17 +16,21 @@
   &__items {
     display: flex;
     flex-direction: column;
-    gap: 7px;
   }
   &__item {
     display: flex;
     align-items: center;
     gap: 5px;
 
+    padding: 3px 0;
+
     color: rgba($dark-color, 0.75);
     list-style: none;
 
     cursor: pointer;
+    &:hover {
+      color: rgba($primary-color, 0.75);
+    }
 
     // Для PP
     &_great {
@@ -52,7 +56,17 @@
   // SVG styles
   &__unit {
     fill: none;
-    // stroke-width: 1;
+    cursor: pointer;
+
+    &_hovered {
+      stroke-width: 2;
+    }
+
+    &:hover {
+      stroke-width: 2;
+    }
+
+    transition: all 0.2s ease-in;
   }
 
   &__svg {
@@ -61,6 +75,12 @@
   }
 
   &__number {
-    font-size: 7px;
+    font-size: 8px;
   }
+
+  &__descr {
+    font-size: 5px;
+  }
+
+  transition: all 0.2s ease-in;
 }
