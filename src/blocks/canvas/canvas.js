@@ -15,16 +15,28 @@ class Canvas {
   }
 
   init() {
+    this.allCounts = this.sumCount()
+
     this.defs = this.createDefs()
-    console.log(this.defs)
+    this.circles = this.createCircles()
     this.svg = this.createSvg()
     this.addSvg()
+  }
+
+  sumCount() {
+    let sum = 0
+    for (let option of this.options) {
+      sum += option.count
+    }
+
+    if (isNaN(sum)) throw new Error('Ошибка в подсчёте суммы голосов')
+    return sum
   }
 
   createSvg() {
     let svgTemp = `<svg class="chart" width="120" height="120" viewBox="0 0 35 30">
     ${this.defs}
-    ${this.circle}
+    ${this.circles}
     </svg>`
     return svgTemp
   }
@@ -44,13 +56,24 @@ class Canvas {
     return defs
   }
 
-  createDef(option) {
-    let {
-      id = 'default',
-      stopFirst = '#6b0000',
-      stopSecond = '#1a0000',
-    } = option
+  createDef({ id = 'default', stopFirst = '#6b0000', stopSecond = '#1a0000' }) {
     return `<linearGradient id="${id}" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="${stopFirst}"/><stop offset="100%" stop-color="${stopSecond}"/></linearGradient>`
+  }
+
+  createCircles() {
+    let circles = ''
+    let dasharrays = []
+    this.options.forEach((option) => {
+      dasharrays.push(this.computeDash(option, this.allCounts))
+    })
+
+    console.log(dasharrays)
+  }
+
+  computeDash({ count = 0 }, allCounts) {
+    let dash = (count / allCounts) * 100
+    if (dash !== 0) dash--
+    return dash
   }
 }
 
