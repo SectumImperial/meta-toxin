@@ -64,6 +64,20 @@ mixin room-details(options= {})
         canvasClass: 'room-details__canvas',
         canvas: [
           {
+            count: 0,
+            id: 'bad',
+            name: 'Разочарован',
+            stopFirst: '#919191',
+            stopSecond: '#3d4975'
+          },
+          {
+            count: 260,
+            id: 'satisfy',
+            name: 'Удовлетворительно',
+            stopFirst: '#6fcf97',
+            stopSecond: '#66d2ea'
+          },
+          {
             count: 520,
             id: 'great',
             name: 'Великолепено',
@@ -77,20 +91,6 @@ mixin room-details(options= {})
             stopFirst: '#bc9cff',
             stopSecond: '#8ba4f9'
           },
-          {
-            count: 260,
-            id: 'satisfy',
-            name: 'Удовлетворительно',
-            stopFirst: '#6fcf97',
-            stopSecond: '#66d2ea'
-          },
-          {
-            count: 0,
-            id: 'bad',
-            name: 'Разочрован',
-            stopFirst: '#919191',
-            stopSecond: '#3d4975'
-          }
         ]
         })
     

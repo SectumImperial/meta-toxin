@@ -33,7 +33,7 @@ require('./blocks/carousel/carousel.js')
 require('./blocks/star-rating/star-rating.js')
 require('./blocks/paginator/paginator.js')
 require('./blocks/room-data/room-data.js')
-require('./blocks/canvas/canvas.js')
+require('./blocks/canvas/index.js')
 
 import Dropdown from './blocks/dropdown/dropdown.js'
 import CheckboxList from './blocks/checkbox-list/checkbox-list.js'
@@ -42,7 +42,6 @@ import Carousel from './blocks/carousel/carousel'
 import StarRating from './blocks/star-rating/star-rating'
 import Paginator from './blocks/paginator/paginator.js'
 import Slider from './blocks/range-slider/range-slider.js'
-import Canvas from './blocks/canvas/canvas.js'
 
 document.querySelectorAll('._js-dropdown').forEach((e) => new Dropdown(e))
 document
@@ -53,4 +52,3 @@ document.querySelectorAll('.carousel').forEach((e) => new Carousel(e))
 document.querySelectorAll('.star-rating').forEach((e) => new StarRating(e))
 document.querySelectorAll('.paginator').forEach((e) => new Paginator(e))
 document.querySelectorAll('._js-range-slider').forEach((e) => new Slider(e))
-document.querySelectorAll('.canvas').forEach((e) => new Canvas(e))
