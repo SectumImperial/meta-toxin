@@ -16,10 +16,13 @@ class Canvas {
 
   init() {
     this.allCounts = this.sumCount()
+    this.dashoffsets = []
 
     this.defs = this.createDefs()
     this.circles = this.createCircles()
+    console.log(this.circles)
     this.svg = this.createSvg()
+
     this.addSvg()
   }
 
@@ -36,7 +39,7 @@ class Canvas {
   createSvg() {
     let svgTemp = `<svg class="chart" width="120" height="120" viewBox="0 0 35 30">
     ${this.defs}
-    ${this.circles}
+    ${this.circles.join('')}
     </svg>`
     return svgTemp
   }
@@ -61,19 +64,51 @@ class Canvas {
   }
 
   createCircles() {
-    let circles = ''
-    let dasharrays = []
+    let circles = []
     this.options.forEach((option) => {
-      dasharrays.push(this.computeDash(option, this.allCounts))
+      circles.push(this.createCircle(option))
     })
 
-    console.log(dasharrays)
+    return circles
+  }
+
+  createCircle(option) {
+    // create dashoffsets
+    let dash = this.computeDash(option, this.allCounts)
+    let dashoffsetVal = this.dashoffsets.reduce((curr, prev) => curr + prev, 0)
+    this.dashoffsets.push(dash)
+
+    // create rest params
+    let dasharray = this.createDash(dash)
+    let url = this.createUrl(option)
+    let dashoffset = this.createDashOffset(dashoffsetVal)
+
+    let className = option.id
+      ? `canvas__unit_${option.id}`
+      : 'canvas__unit_default'
+
+    let circle = `<circle class='canvas__unit ${className}' r="15.9" cx="50%" cy="50%" ${url} ${dasharray} ${dashoffset}></circle>`
+    return circle
   }
 
   computeDash({ count = 0 }, allCounts) {
     let dash = (count / allCounts) * 100
-    if (dash !== 0) dash--
     return dash
+  }
+
+  createDash(dash) {
+    if (dash !== 0) dash--
+    let dasharray = `stroke-dasharray="${dash} 100"`
+    return dasharray
+  }
+
+  createUrl({ id = 'default' }) {
+    return `stroke="url(#${id})"`
+  }
+
+  createDashOffset(dashoffsetVal = 0) {
+    if (dashoffsetVal !== 0) dashoffsetVal *= -1
+    return `stroke-dashoffset="${dashoffsetVal}"`
   }
 }
 
@@ -105,8 +140,8 @@ const canvasTemplate = `
     </defs>
 
     <circle class="canvas__unit canvas__unit_bad" r="15.9" cx="50%" cy="50%" stroke="url(#bad)" stroke-dasharray="0 100" stroke-dashoffset="0"></circle>
-    <circle class="canvas__unit canvas__unit_satisfy" r="15.9" cx="50%" cy="50%" stroke="url(#satisfy)" stroke-dasharray="24 100" stroke-dashoffset="-1"></circle>
-    <circle class="canvas__unit canvas__unit_great" r="15.9" cx="50%" cy="50%" stroke="url(#great)" stroke-dasharray="49 100" stroke-dashoffset="-26"></circle>
+    <circle class="canvas__unit canvas__unit_satisfy" r="15.9" cx="50%" cy="50%" stroke="url(#satisfy)" stroke-dasharray="24 100" stroke-dashoffset="0"></circle>
+    <circle class="canvas__unit canvas__unit_great" r="15.9" cx="50%" cy="50%" stroke="url(#great)" stroke-dasharray="49 100" stroke-dashoffset="-25"></circle>
     <circle class="canvas__unit canvas__unit_good" r="15.9" cx="50%" cy="50%" stroke="url(#good)" stroke-dasharray="24 100" stroke-dashoffset="-76"></circle>
     
     
