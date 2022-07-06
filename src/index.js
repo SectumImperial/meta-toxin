@@ -32,6 +32,8 @@ const files = [
   'paginator',
   'room-data',
   'canvas',
+  'room-review',
+  'like',
 ]
 
 pages.forEach((e) => require(`./pages/${e}/index.js`))

@@ -1,0 +1,35 @@
+import {
+  LIKED__HEART,
+  UNLIKED__HEART,
+  LIKED_COUNT,
+  LIKED_BUTTON,
+} from './constants'
+
+class Like {
+  constructor(element) {
+    this.like = element
+    this.init()
+  }
+
+  init() {
+    this.heart = this.like.querySelector('.like__heart')
+    this.count = this.like.querySelector('.like__count')
+    this.button = this.like.querySelector('.like__button')
+    console.log(this.button)
+
+    this.addListeners()
+  }
+
+  addListeners() {
+    this.like.addEventListener('click', this.toggleLike.bind(this))
+  }
+
+  toggleLike() {
+    this.button.classList.toggle(LIKED_BUTTON)
+    this.heart.classList.toggle(LIKED__HEART)
+    this.heart.classList.toggle(UNLIKED__HEART)
+    this.count.classList.toggle(LIKED_COUNT)
+  }
+}
+
+export default Like

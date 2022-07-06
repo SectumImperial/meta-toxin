@@ -1,0 +1,32 @@
+include ../like/like.pug
+
+mixin room-review(options = {})
+  -
+    const {
+      src = 'blocks/room-review/img/default-author.jpg',
+      name = 'Джек Торранс',
+      date = '40 лет назад',
+    } = options
+    let {text = ''} = options
+
+  -      
+    if (text === '') 
+      for (let i = 0; i < 7; i++)
+        text += 'Одна работа, никакого безделья — бедняга Джек не знает веселья. '
+  
+  section.room-review
+    .room-review__author 
+      img(
+        src = src 
+        alt = "Фото автора"
+        width = 48
+        height - 48
+        )
+      .room-review__author-details 
+        span.room-review__author-name= name
+        span.room-review__author-date= date
+      .room-review__author-comment 
+        .room-review__author-like
+          +like()
+        .room-review__author-text= text
+        

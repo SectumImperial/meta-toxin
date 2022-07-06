@@ -18,3 +18,7 @@ mixin title(options = {})
   h3(
     class= `title title_h3 ${classTitle}`
   )= text
+  - if(level === 'h4')
+  h4(
+    class= `title title_h4 ${classTitle}`
+  )= text
