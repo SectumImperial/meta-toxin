@@ -28,28 +28,6 @@
   &__feedback {
     padding: 11px 0 0 1px;
   }
-
-  &__number {
-    padding-top: 1px;
-    font-size: rem(14);
-    font-weight: 700;
-  }
-
-  &__number-count {
-    color: $dark-color;
-    font-size: rem(19);
-    font-weight: 700;
-  }
-
-  &__luxe {
-    color: $primary-color;
-    font-size: rem(12);
-    text-transform: uppercase;
-    padding-top: 2px;
-    padding-left: 8px;
-  }
-
-  &__price,
   &__reviews {
     color: rgba($dark-color, 0.5);
   }
@@ -58,17 +36,6 @@
     font-size: rem(14);
     padding: 1px 2px 0 0;
   }
-
-  &__price {
-    padding-top: 4px;
-    padding-right: 1px;
-  }
-
-  &__price-word {
-    font-size: rem(12);
-  }
-
-  &__price-count,
   &__reviews-count {
     font-size: rem(14);
     font-weight: 700;

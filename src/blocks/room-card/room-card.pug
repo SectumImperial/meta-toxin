@@ -1,5 +1,7 @@
 include ../carousel/carousel.pug
 include ../star-rating/star-rating.pug
+include ../room-number/room-number.pug
+include ../room-price/room-price.pug
 
 mixin room-card(options = {})
   - 
@@ -19,14 +21,13 @@ mixin room-card(options = {})
     href)
     .room-card__information
       .room-card__details
-        span.room-card__number
-          span= '№ '
-          span.room-card__number-count= `${number}`
-          if luxe
-            span.room-card__luxe Люкс
-        span.room-card__price
-          span.room-card__price-count= `${price}₽ `
-          span.room-card__price-word в сутки
+        .room-card__number
+          +room-number({
+            number,
+            luxe
+          })
+        .room-card__price  
+          +room-price(price)
       .room-card__feedback
         +star-rating({
           classRating: 'room-card__rating',

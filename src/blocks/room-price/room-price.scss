@@ -1,0 +1,18 @@
+@use 'sass:math';
+@import '../../common/functions.scss';
+@import '../../common/variables.scss';
+
+.room-price {
+  padding-top: 4px;
+  padding-right: 1px;
+
+  color: rgba($dark-color, 0.5);
+  &__price {
+    font-size: rem(14);
+    font-weight: 700;
+  }
+
+  &__word {
+    font-size: rem(12);
+  }
+}

@@ -1,0 +1,27 @@
+@use 'sass:math';
+@import '../../common/functions.scss';
+@import '../../common/variables.scss';
+
+.room-number {
+  padding-top: 1px;
+  font-size: rem(14);
+  font-weight: 700;
+
+  &__count {
+    color: $dark-color;
+    font-size: rem(19);
+    font-weight: 700;
+
+    &_big {
+      font-size: rem(24);
+    }
+  }
+
+  &__luxe {
+    color: $primary-color;
+    font-size: rem(12);
+    text-transform: uppercase;
+    padding-top: 2px;
+    padding-left: 8px;
+  }
+}

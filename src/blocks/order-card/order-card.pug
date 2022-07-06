@@ -1,0 +1,13 @@
+include ../room-number/room-number.pug
+include ../room-price/room-price.pug
+
+mixin order-card(options = {})
+  .order-card 
+    .order-card__form 
+      .order-card__room-info
+        +room-number({
+            number: '888',
+            luxe: true,
+            big: true
+        }) 
+        +room-price('9 990')
