@@ -1,4 +1,3 @@
-import './carousel.scss'
 import { WIDTH, COUNT } from './constants.js'
 
 class Carousel {

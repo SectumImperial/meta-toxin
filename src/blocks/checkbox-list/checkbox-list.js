@@ -1,5 +1,3 @@
-import './checkbox-list.scss'
-
 class CheckboxList {
   constructor(selector) {
     this.checkboxList = selector

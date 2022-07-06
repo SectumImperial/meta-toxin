@@ -1,4 +1,3 @@
-import './star-rating.scss'
 import { EMPTY_STAR, FILL_STAR } from './constants.js'
 
 class StarRating {

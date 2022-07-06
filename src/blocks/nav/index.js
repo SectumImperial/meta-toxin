@@ -1,10 +1,9 @@
 import './nav.scss'
-import variables from '../../common/variables.scss'
 
 const page = document.querySelector('.page')
 const subItems = document.querySelectorAll('.nav__subitem')
 const iconMenu = document.querySelector('.header__icon')
-const navWrapper = document.querySelector('.header__nav-wrapper ')
+const navWrapper = document.querySelector('.header__nav-wrapper')
 
 const mediaQueryList = window.matchMedia('(min-width: 960px)')
 

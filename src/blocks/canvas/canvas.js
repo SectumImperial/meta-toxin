@@ -1,5 +1,3 @@
-import './canvas.scss'
-
 class Canvas {
   constructor(element) {
     this.canvas = element

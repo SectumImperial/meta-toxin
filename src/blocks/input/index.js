@@ -1,4 +1,5 @@
 import './input.scss'
+
 import Inputmask from 'inputmask'
 
 let inputDates = document.querySelectorAll('._dateInput')

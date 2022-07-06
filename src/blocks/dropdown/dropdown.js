@@ -1,4 +1,3 @@
-import './dropdown.scss'
 import ValidationError from './helpers/error.js'
 import chooseWord from './helpers/chooseWord'
 import isEqual from './helpers/isEqual'

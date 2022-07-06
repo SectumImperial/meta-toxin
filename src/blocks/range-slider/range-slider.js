@@ -1,5 +1,3 @@
-import './range-slider.scss'
-
 class Slider {
   constructor(element) {
     this.slider = element

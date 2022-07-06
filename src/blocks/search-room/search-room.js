@@ -1,5 +1,3 @@
-import './search-room.scss'
-
 const filtersBtn = document.querySelector('.search-room__button')
 const filters = document.querySelector('.search-room__filters')
 

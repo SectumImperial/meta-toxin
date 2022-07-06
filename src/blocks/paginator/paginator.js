@@ -1,5 +1,3 @@
-import './paginator.scss'
-
 import {
   ACTIVE_JS,
   ACTIVE_LI,
