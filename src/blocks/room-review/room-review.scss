@@ -1,0 +1,49 @@
+@use 'sass:math';
+@import '../../common/functions.scss';
+@import '../../common/variables.scss';
+
+.room-review {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    'a d'
+    'l t';
+
+  gap: 10px 12px;
+
+  font-size: 14px;
+  color: rgba($dark-color, 0.75);
+
+  &__author {
+    grid-area: a;
+  }
+
+  &__author-details {
+    grid-area: d;
+  }
+
+  &__author-like {
+    grid-area: l;
+  }
+
+  &__author-text {
+    grid-area: t;
+  }
+
+  &__author-photo {
+    border-radius: 50%;
+    border: 2px solid $secondary-color-2;
+    box-shadow: 0px 10px 20px 0px rgba($dark-color, 0.1);
+  }
+
+  &__author-details {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  &__author-name {
+    font-weight: 700;
+  }
+}

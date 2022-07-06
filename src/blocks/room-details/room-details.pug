@@ -107,7 +107,22 @@ mixin room-details(options= {})
             text: 'Отзывы посетителей номера'
           })
           .room-details__review
-            +room-review()
+            +room-review({
+              src: 'blocks/room-details/img-comment/tesak.png',
+              name: 'Мурад Сарафанов',
+              date: '5 дней назад',
+              liked: true,
+              counts: 12,
+              text: 'Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.'
+            })
+            +room-review({
+              src: 'blocks/room-details/img-comment/steklo.png',
+              name: 'Патрисия Стёклышкова',
+              date: 'Неделю назад',
+              liked: false,
+              counts: 2,
+              text: 'Обслуживание на высоте! Всё аккуратно, чисто. Завтраки в номер советую заказать, каждый день новое блюдо и десерт как комплимент.'
+            })
          
           
 

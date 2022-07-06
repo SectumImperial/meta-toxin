@@ -6,6 +6,8 @@ mixin room-review(options = {})
       src = 'blocks/room-review/img/default-author.jpg',
       name = 'Джек Торранс',
       date = '40 лет назад',
+      liked = false,
+      counts = 0,
     } = options
     let {text = ''} = options
 
@@ -19,14 +21,17 @@ mixin room-review(options = {})
       img(
         src = src 
         alt = "Фото автора"
+        class = 'room-review__author-photo'
         width = 48
-        height - 48
+        height = 48
         )
-      .room-review__author-details 
-        span.room-review__author-name= name
-        span.room-review__author-date= date
-      .room-review__author-comment 
-        .room-review__author-like
-          +like()
-        .room-review__author-text= text
+    .room-review__author-details 
+      span.room-review__author-name= name
+      span.room-review__author-date= date
+    .room-review__author-like
+      +like({
+        liked,
+        counts
+      })
+    .room-review__author-text= text
         
