@@ -47,8 +47,7 @@ class Datepicker {
     }
 
     this.formatTitle()
-
-    if (this.getUrlValues()) {
+    if (this.getUrlParams()) {
       this.getUrlValues()
     } else {
       this.setPrev()
@@ -80,7 +79,6 @@ class Datepicker {
   getUrlValues() {
     if (this.singleInputMod) {
       const queryString = window.location.search
-      const urlParams = new URLSearchParams(queryString)
 
       const [startUrlDateString, endUrlDateString] = this.getUrlParams()
 
@@ -91,7 +89,10 @@ class Datepicker {
         const startDate = new Date(firstyear, firstmonth, firstDay)
         const endDate = new Date(secondyear, secondmonth, secondDay)
 
+        this.dp.selectDate([startDate, endDate])
         this.singleItem.value = this.formatDate(startDate, endDate)
+        this.setPointRange()
+        this.performRange(this.rangeFrom, this.rangeTo)
       }
     }
   }
