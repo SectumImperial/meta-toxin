@@ -1,0 +1,32 @@
+@use 'sass:math';
+@import '../../common/functions.scss';
+@import '../../common/variables.scss';
+
+.room-rules {
+  font-size: rem(14);
+  color: rgba($dark-color, 0.75);
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  &__item {
+    position: relative;
+    list-style: none;
+
+    padding-left: 20px;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 0;
+      width: 10px;
+      height: 10px;
+      background-color: rgba($dark-color, 0.25);
+      border-radius: 50%;
+    }
+  }
+}

@@ -34,6 +34,8 @@ const files = [
   'canvas',
   'room-review',
   'like',
+  'room-rules',
+  'order-card',
 ]
 
 pages.forEach((e) => require(`./pages/${e}/index.js`))

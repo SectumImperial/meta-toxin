@@ -2,6 +2,8 @@ include ../title/title.pug
 include ../room-data/room-data.pug
 include ../canvas/canvas.pug
 include ../room-review/room-review.pug
+include ../room-rules/room-rules.pug
+include ../order-card/order-card.pug
 
 mixin room-details(options= {})
   -
@@ -123,7 +125,29 @@ mixin room-details(options= {})
               counts: 2,
               text: 'Обслуживание на высоте! Всё аккуратно, чисто. Завтраки в номер советую заказать, каждый день новое блюдо и десерт как комплимент.'
             })
-         
+        .room-details__rules
+          .room-details__subtitle
+            +title({
+              level: 'h3',
+              text: 'Правила'
+            })
+          +room-rules({
+            rules: [
+              'Нельзя с питомцами',
+              'Без вечеринок и мероприятий',
+              'Время прибытия — после 13:00 а выезд до 12:00'
+            ]
+          })
+        .room-details__cancel
+          .room-details__subtitle
+            +title({
+              level: 'h3',
+              text: 'Правила'
+            })
+            p.room-details__cancel-text Бесплатная отмена в течение 48 ч. После этого при отмене не позднее чем за 5 дн. до прибытия вы получите полный возврат за вычетом сбора за услуги.
           
 
-      section.room-details__card  
+      section.room-details__order 
+        .room-details__card   
+          +order-card()
+        
