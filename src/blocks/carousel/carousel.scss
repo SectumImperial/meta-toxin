@@ -6,7 +6,8 @@
   position: relative;
   max-width: 270px;
 
-  &:hover::before {
+  &:hover::before,
+  &:focus::before {
     content: '';
     position: absolute;
     z-index: 1;
@@ -22,7 +23,8 @@
     );
   }
 
-  &:hover::after {
+  &:hover::after,
+  &:focus::after {
     content: '';
     position: absolute;
     z-index: 1;

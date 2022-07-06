@@ -41,9 +41,14 @@ class Carousel {
     })
     this.carousel.addEventListener(
       'touchstart',
-      this.handleTouchStart.bind(this)
+      this.handleTouchStart.bind(this),
+      { passive: true }
     )
-    this.carousel.addEventListener('touchmove', this.handleTouchMove.bind(this))
+    this.carousel.addEventListener(
+      'touchmove',
+      this.handleTouchMove.bind(this),
+      { passive: true }
+    )
   }
 
   moveLeft() {

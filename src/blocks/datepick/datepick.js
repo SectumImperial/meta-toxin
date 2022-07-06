@@ -1,6 +1,7 @@
 'use strict'
 
 import AirDatepicker from 'air-datepicker'
+import { MONTS } from './constants'
 
 class Datepicker {
   constructor(element) {
@@ -46,7 +47,12 @@ class Datepicker {
     }
 
     this.formatTitle()
-    this.getUrlValues()
+
+    if (this.getUrlValues()) {
+      this.getUrlValues()
+    } else {
+      this.setPrev()
+    }
   }
 
   addListeners() {
@@ -59,13 +65,24 @@ class Datepicker {
     this.calConteiner.addEventListener('click', this.checkRange.bind(this))
   }
 
+  getUrlParams() {
+    const queryString = window.location.search
+    const urlParams = new URLSearchParams(queryString)
+
+    const startUrlDateString = urlParams.get('datepick-input-start')
+    const endUrlDateString = urlParams.get('datepick-input-end')
+
+    if ((startUrlDateString, endUrlDateString))
+      return [startUrlDateString, endUrlDateString]
+    else return false
+  }
+
   getUrlValues() {
     if (this.singleInputMod) {
       const queryString = window.location.search
       const urlParams = new URLSearchParams(queryString)
 
-      const startUrlDateString = urlParams.get('datepick-input-start')
-      const endUrlDateString = urlParams.get('datepick-input-end')
+      const [startUrlDateString, endUrlDateString] = this.getUrlParams()
 
       if ((startUrlDateString, endUrlDateString)) {
         const [firstDay, firstmonth, firstyear] = startUrlDateString.split('.')
@@ -184,10 +201,31 @@ class Datepicker {
   }
 
   addDateCal(items) {
-    let dates = Array.from(
-      [...items].map((inputElement) => inputElement.value)
-    ).map((e) => e.split('.').reverse().join('.').replaceAll('.', '-'))
-    this.dp.selectDate(dates)
+    if (this.twoInputMod) {
+      let dates = Array.from(
+        [...items].map((inputElement) => inputElement.value)
+      ).map((e) => e.split('.').reverse().join('.').replaceAll('.', '-'))
+      this.dp.selectDate(dates)
+    }
+
+    if (this.singleInputMod) {
+      let dates = this.singleItem.value.split(' - ')
+      let [firstValue, secondValue] = dates
+
+      let firstDate = this.recreateDate(firstValue)
+      let secondDate = this.recreateDate(secondValue)
+
+      this.dp.selectDate([firstDate, secondDate])
+    }
+  }
+
+  recreateDate(invalidDate) {
+    let [day, month] = invalidDate.split(' ')
+    month = month.charAt(0).toUpperCase() + month.slice(1)
+    month = MONTS.indexOf(month)
+
+    let date = new Date(2022, month, day)
+    return date
   }
 
   deleteComma(elem) {
@@ -278,8 +316,7 @@ class Datepicker {
     if (correctFormat) {
       this.addDateCal(this.items)
 
-      this.rangeFrom = this.datepick.querySelector('.-range-from-')
-      this.rangeTo = this.datepick.querySelector('.-range-to-')
+      this.setPointRange()
 
       if (this.firstItem.value === this.secondItem.value) {
         let date = secondItem.value.split('.')
@@ -289,8 +326,7 @@ class Datepicker {
         this.secondItem.value = date.join('.')
 
         this.addDateCal(items)
-        this.rangeFrom = this.datepick.querySelector('.-range-from-')
-        this.rangeTo = this.datepick.querySelector('.-range-to-')
+        this.setPointRange()
         this.performRange(this.rangeFrom, this.rangeTo)
       }
       if (this.firstItem.value > this.secondItem.value) {
@@ -335,8 +371,7 @@ class Datepicker {
     this.clearRange(this.datepick, 'end-range')
 
     // Настройка ячеек при смене месяца
-    this.rangeFrom = this.datepick.querySelector('.-range-from-')
-    this.rangeTo = this.datepick.querySelector('.-range-to-')
+    this.setPointRange()
 
     if (target.classList.contains('air-datepicker-nav--action')) {
       this.addPoitRange(this.rangeFrom, this.rangeTo)
@@ -344,8 +379,7 @@ class Datepicker {
 
     // Выделить диапазон при движеии мыши
     this.datepick.addEventListener('mousemove', ({ target, relatedTarget }) => {
-      this.rangeFrom = this.datepick.querySelector('.-range-from-')
-      this.rangeTo = this.datepick.querySelector('.-range-to-')
+      this.setPointRange()
 
       // Переменная для пред. дня при движении мыши во время выделения диапазона
       let prevDay
@@ -398,6 +432,36 @@ class Datepicker {
     })
 
     this.checkBtnVisibility([this.firstItem, this.secondItem])
+  }
+
+  setPointRange() {
+    this.rangeFrom = this.datepick.querySelector('.-range-from-')
+    this.rangeTo = this.datepick.querySelector('.-range-to-')
+  }
+
+  setPrev() {
+    const current = new Date()
+    let year = current.getFullYear()
+    let month = current.getMonth()
+    let day = current.getDate()
+
+    let tommorow = new Date(year, month, day + 1)
+    let fourAfer = new Date(year, month, day + 5)
+
+    if (this.twoInputMod) {
+      this.firstItem.value = this.formatDate(tommorow)
+      this.secondItem.value = this.formatDate(fourAfer)
+      this.addDateCal(this.items)
+      this.setPointRange()
+    }
+
+    if (this.singleInputMod) {
+      this.singleItem.value = this.formatDate(tommorow, fourAfer)
+      this.addDateCal(this.items)
+      this.setPointRange()
+    }
+
+    this.performRange(this.rangeFrom, this.rangeTo)
   }
 }
 

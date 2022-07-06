@@ -1,5 +1,7 @@
 include ../room-number/room-number.pug
 include ../room-price/room-price.pug
+include ../datepick/datepick.pug
+include ../dropdown/dropdown.pug
 
 mixin order-card(options = {})
   .order-card 
@@ -11,3 +13,31 @@ mixin order-card(options = {})
             big: true
         }) 
         +room-price('9 990')
+      .order-card__datepick 
+       +datepick_2()
+      .order-card__dropdown 
+        +dropdown({
+           class: 'booking-card__dropdown-input',
+           type: 'guests',
+           placeholder: 'Сколько гостей',
+           items: [
+             'Взрослые', 'Дети', 'Младенцы'
+           ],
+           plurals: [
+             {
+               'default': ['гость', 'гостя', 'гостей']
+              },
+             {
+               'Младенцы': ['младенец', 'младенца', 'младенцев']
+             }
+           ]
+        })
+      .order-card__details 
+        .order-card__price 
+          span.order-card__price-counting 9 990₽ х 4 суток
+          span.order-card__price-result 39 960₽
+        .order-card__fee
+          .order-card__fee-counting Сбор за услуги: скидка 2 179₽
+          .order-card__fee-mark
+        
+    
