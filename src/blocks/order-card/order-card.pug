@@ -2,6 +2,7 @@ include ../room-number/room-number.pug
 include ../room-price/room-price.pug
 include ../datepick/datepick.pug
 include ../dropdown/dropdown.pug
+include ../order-counting/order-counting.pug
 
 mixin order-card(options = {})
   .order-card 
@@ -33,11 +34,26 @@ mixin order-card(options = {})
            ]
         })
       .order-card__details 
-        .order-card__price 
-          span.order-card__price-counting 9 990₽ х 4 суток
-          span.order-card__price-result 39 960₽
-        .order-card__fee
-          .order-card__fee-counting Сбор за услуги: скидка 2 179₽
-          .order-card__fee-mark
+        .order-card__couting 
+          +order-counting({
+            fees: {
+              addFee: {
+                count: 300,
+              },
+              fee: {
+                count: 0,
+                message: 'Доп. услуги включают в себя помощь с доставкой багажа'
+              }
+            },
+
+            discounts: {
+              feeDisc: {
+                count: 2179,
+                message: 'Какое-нибудь важное сообщение'
+              },
+            },
+            price: 9990,
+            days: 4 
+          })
         
     

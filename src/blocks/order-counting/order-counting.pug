@@ -1,0 +1,18 @@
+mixin order-counting(options = {})
+  section(
+    class = 'order-counting'
+    data-count = options
+  )
+    .order-counting__days 
+      p.order-counting__days-compute 
+      span.order-counting__days-computed 
+    .order-counting__fee 
+      p.order-counting__fee-compute 
+      span.order-counting__fee-computed 
+    .order-counting__add-fee 
+      p.order-counting__add-fee-compute 
+      span.order-counting__add-fee-computed 
+    .order-counting__all 
+      p.order-counting__word Итого
+      .order-counting__decorarion 
+      span.order-counting__sum

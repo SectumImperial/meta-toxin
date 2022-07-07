@@ -38,6 +38,7 @@ const files = [
   'order-card',
   'room-number',
   'room-price',
+  'order-counting',
 ]
 
 pages.forEach((e) => require(`./pages/${e}/index.js`))

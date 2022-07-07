@@ -15,7 +15,6 @@ class Like {
     this.heart = this.like.querySelector('.like__heart')
     this.count = this.like.querySelector('.like__count')
     this.button = this.like.querySelector('.like__button')
-    console.log(this.button)
 
     this.addListeners()
   }
