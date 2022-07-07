@@ -44,6 +44,7 @@
     margin: 0 auto;
 
     display: flex;
+    gap: 70px;
   }
 
   &__subtitle {
@@ -98,6 +99,15 @@
   }
   &__cancel {
     grid-area: cancel;
+  }
+
+  &__reviews-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__reviews-count {
+    color: rgba($dark-color, 0.5);
   }
 
   &__cancel-text {

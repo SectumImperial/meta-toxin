@@ -1,5 +1,5 @@
 import ValidationError from './helpers/error.js'
-import chooseWord from './helpers/chooseWord'
+import chooseWord from '../../helpers/chooseWord'
 import isEqual from './helpers/isEqual'
 import cutString from './helpers/cutString'
 import DEFAULT_KEY from './constants.js'

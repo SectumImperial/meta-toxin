@@ -106,11 +106,13 @@ mixin room-details(options= {})
             })
         
           .room-details__reviews
-            +title({
-              level: 'h3',
-              classTitle: 'room-details__subtitle',
-              text: 'Отзывы посетителей номера'
-            })
+            .room-details__reviews-heading
+              +title({
+                level: 'h3',
+                classTitle: 'room-details__subtitle',
+                text: 'Отзывы посетителей номера'
+              })
+              span.room-details__reviews-count 0 отзывов
             +room-review({
               src: 'blocks/room-details/img-comment/tesak.png',
               name: 'Мурад Сарафанов',
