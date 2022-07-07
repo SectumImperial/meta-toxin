@@ -60,7 +60,7 @@ class Canvas {
   }
 
   createSvg() {
-    let svgTemp = `<svg class="canvas__svg" width="120" height="120" viewBox="0 0 35 30">
+    let svgTemp = `<svg class="canvas__svg" width="120" height="121" viewBox="0 0 33 32">
     ${this.defs}
     ${this.circles.join('')}
     </svg>`
@@ -135,7 +135,7 @@ class Canvas {
   }
 
   // Creat the text
-  createText(fill = '#1F2041', count = this.allCounts) {
+  createText(fill = '#000000', count = this.allCounts) {
     let textNum = `<text text-anchor="middle" class="canvas__number" x="50%" y="48%" fill="${fill}">${count}</text>`
     let description = `<text text-anchor="middle" class="canvas__descr" x="50%" y="65%" fill="${fill}">Голосов</text>`
     let group = `<g class="canvas__text-group" fill="${fill}">${textNum}${description}</g>`

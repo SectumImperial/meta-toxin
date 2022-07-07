@@ -40,14 +40,14 @@
   // Информация
   &__main {
     max-width: $content;
-    padding: 65px 5px 70px 5px;
+    padding: 70px 5px 70px 5px;
     margin: 0 auto;
 
     display: flex;
   }
 
   &__subtitle {
-    padding-bottom: 10px;
+    padding-bottom: 11px;
   }
 
   &__reviews {
@@ -70,7 +70,7 @@
   &__information {
     display: grid;
     grid-template-columns: 300px auto;
-    gap: 30px 70px;
+    gap: 0 60px;
     grid-template-areas:
       'details feedback'
       'reviews reviews'
@@ -79,6 +79,10 @@
 
   &__details {
     grid-area: details;
+  }
+
+  &__data {
+    max-width: 280px;
   }
 
   &__feedback {

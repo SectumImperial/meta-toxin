@@ -4,7 +4,10 @@
 
 .room-data {
   color: rgba($dark-color, 0.75);
-  font-size: rem(14);
+  font-size: 14px;
+
+  display: flex;
+  flex-direction: column;
 
   &__item {
     display: grid;
@@ -16,7 +19,7 @@
       's t'
       's d';
 
-    padding: 15px 0;
+    padding: 20px 0 21px 0;
 
     &:nth-child(2) {
       border-top: 1px solid rgba($dark-color, 0.25);
