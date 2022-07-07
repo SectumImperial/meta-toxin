@@ -4,9 +4,8 @@
 
 .canvas {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  max-width: 120px;
+  gap: 30px;
 
   &__chart {
     min-width: 120px;
@@ -58,11 +57,8 @@
     fill: none;
     cursor: pointer;
 
+    &:hover,
     &_hovered {
-      stroke-width: 2;
-    }
-
-    &:hover {
       stroke-width: 2;
     }
 

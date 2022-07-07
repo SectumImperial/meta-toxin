@@ -38,9 +38,66 @@
   }
 
   // Информация
-  &__information {
+  &__main {
     max-width: $content;
-    padding: 0 5px;
+    padding: 65px 5px 70px 5px;
     margin: 0 auto;
+
+    display: flex;
+  }
+
+  &__subtitle {
+    padding-bottom: 10px;
+  }
+
+  &__reviews {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  &__order {
+    display: flex;
+    flex-basis: 390px;
+    padding: 5px;
+  }
+
+  &__card {
+    min-width: 320px;
+    max-width: 380px;
+  }
+
+  &__information {
+    display: grid;
+    grid-template-columns: 300px auto;
+    gap: 30px 70px;
+    grid-template-areas:
+      'details feedback'
+      'reviews reviews'
+      'rules cancel';
+  }
+
+  &__details {
+    grid-area: details;
+  }
+
+  &__feedback {
+    grid-area: feedback;
+  }
+
+  &__reviews {
+    grid-area: reviews;
+  }
+
+  &__rules {
+    grid-area: rules;
+  }
+  &__cancel {
+    grid-area: cancel;
+  }
+
+  &__cancel-text {
+    padding-top: 10px;
+    color: rgba($dark-color, 0.75);
   }
 }

@@ -36,79 +36,80 @@ mixin room-details(options= {})
               class = 'room-details__image room-details__image_small'
             )
 
-      section.room-details__information
-        .room-details__details 
-          +title({
-            level: 'h3',
-            classTitle: 'room-details__subtitle',
-            text: 'Сведения о номере'
-          })
-          +room-data({
-            items: [
+      .room-details__main
+        section.room-details__information
+          .room-details__details 
+            .room-details__subtitle
+              +title({
+                level: 'h3',
+                text: 'Сведения о номере'
+              })
+            +room-data({
+              items: [
+                {
+                  title: 'Комфорт',
+                  text: 'Шумопоглощающие стены',
+                  icon: 'smile',
+                },
+                {
+                  title: 'Удобство',
+                  text: 'Окно в каждой из спален',
+                  icon: 'city',
+                },
+                {
+                  title: 'Уют',
+                  text: 'Номер оснащён камином',
+                  icon: 'fire',
+                }
+              ]
+            })
+          .room-details__feedback
+            .room-details__subtitle
+              +title({
+                level: 'h3',
+                classTitle: 'room-details__subtitle',
+                text: 'Впечатления от номера'
+              })
+            +canvas({
+              canvasClass: 'room-details__canvas',
+              canvas: [
               {
-                title: 'Комфорт',
-                text: 'Шумопоглощающие стены',
-                icon: 'smile',
+                count: 0,
+                id: 'bad',
+                name: 'Разочарован',
+                stopFirst: '#919191',
+                stopSecond: '#3d4975'
               },
               {
-                title: 'Удобство',
-                text: 'Окно в каждой из спален',
-                icon: 'city',
+                count: 260,
+                id: 'satisfy',
+                name: 'Удовлетворительно',
+                stopFirst: '#bc9cff',
+                stopSecond: '#8ba4f9'
               },
               {
-                title: 'Уют',
-                text: 'Номер оснащён камином',
-                icon: 'fire',
-              }
-            ]
-          })
-        .room-details__feedback
-          +title({
-            level: 'h3',
-            classTitle: 'room-details__subtitle',
-            text: 'Впечатления от номера'
-          })
-          +canvas({
-          canvasClass: 'room-details__canvas',
-          canvas: [
-            {
-              count: 0,
-              id: 'bad',
-              name: 'Разочарован',
-              stopFirst: '#919191',
-              stopSecond: '#3d4975'
-            },
-            {
-              count: 260,
-              id: 'satisfy',
-              name: 'Удовлетворительно',
-              stopFirst: '#6fcf97',
-              stopSecond: '#66d2ea'
-            },
-            {
-              count: 520,
-              id: 'great',
-              name: 'Великолепено',
-              stopFirst: '#ffe39c',
-              stopSecond: '#ffba9c'
-            },
-            {
-              count: 260,
-              id: 'good',
-              name: 'Хорошо',
-              stopFirst: '#bc9cff',
-              stopSecond: '#8ba4f9'
-            },
-          ]
-          })
-      
-        .room-details__reviews
-          +title({
-            level: 'h3',
-            classTitle: 'room-details__subtitle',
-            text: 'Отзывы посетителей номера'
-          })
-          .room-details__review
+                count: 520,
+                id: 'great',
+                name: 'Великолепено',
+                stopFirst: '#ffe39c',
+                stopSecond: '#ffba9c'
+              },
+              {
+                count: 260,
+                id: 'good',
+                name: 'Хорошо',
+                stopFirst: '#6fcf97',
+                stopSecond: '#66d2ea'
+              },
+              ]
+            })
+        
+          .room-details__reviews
+            +title({
+              level: 'h3',
+              classTitle: 'room-details__subtitle',
+              text: 'Отзывы посетителей номера'
+            })
             +room-review({
               src: 'blocks/room-details/img-comment/tesak.png',
               name: 'Мурад Сарафанов',
@@ -125,29 +126,29 @@ mixin room-details(options= {})
               counts: 2,
               text: 'Обслуживание на высоте! Всё аккуратно, чисто. Завтраки в номер советую заказать, каждый день новое блюдо и десерт как комплимент.'
             })
-        .room-details__rules
-          .room-details__subtitle
-            +title({
-              level: 'h3',
-              text: 'Правила'
+          .room-details__rules
+            .room-details__subtitle
+              +title({
+                level: 'h3',
+                text: 'Правила'
+              })
+            +room-rules({
+              rules: [
+                'Нельзя с питомцами',
+                'Без вечеринок и мероприятий',
+                'Время прибытия — после 13:00 а выезд до 12:00'
+              ]
             })
-          +room-rules({
-            rules: [
-              'Нельзя с питомцами',
-              'Без вечеринок и мероприятий',
-              'Время прибытия — после 13:00 а выезд до 12:00'
-            ]
-          })
-        .room-details__cancel
-          .room-details__subtitle
-            +title({
-              level: 'h3',
-              text: 'Правила'
-            })
+          .room-details__cancel
+            .room-details__subtitle
+              +title({
+                level: 'h3',
+                text: 'Отмена'
+              })
             p.room-details__cancel-text Бесплатная отмена в течение 48 ч. После этого при отмене не позднее чем за 5 дн. до прибытия вы получите полный возврат за вычетом сбора за услуги.
-          
+            
 
-      section.room-details__order 
-        .room-details__card   
-          +order-card()
-        
+        section.room-details__order 
+          .room-details__card   
+            +order-card()
+          

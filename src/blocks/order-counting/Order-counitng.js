@@ -93,7 +93,8 @@ class OrderCount {
   }
 
   createAddFeeString() {
-    let string = 'Сбор за дополнительные услуги'
+    let string = `Сбор за дополнительные 
+    услуги`
     this.count.querySelector('.order-counting__add-fee-compute').innerText =
       string
 

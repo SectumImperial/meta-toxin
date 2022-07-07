@@ -4,8 +4,42 @@
 
 .order-card {
   max-width: 380px;
+  min-width: 380px;
   border: 1px solid rgba(0, 0, 0, 0.12);
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
   box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.2);
+
+  padding: 40px 30px 30px 30px;
+
+  &__room-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  &__datepick {
+    margin-top: 20px;
+  }
+
+  &__dropdown {
+    margin-top: 20px;
+  }
+
+  &__subtitle {
+    display: block;
+    color: $dark-color;
+    font-size: rem(12);
+    text-transform: uppercase;
+    font-weight: 700;
+    padding-bottom: 5px;
+  }
+
+  &__details {
+    margin-top: 20px;
+  }
+
+  &__button {
+    margin-top: 20px;
+  }
 }

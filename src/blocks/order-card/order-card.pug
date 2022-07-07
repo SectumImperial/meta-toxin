@@ -6,7 +6,11 @@ include ../order-counting/order-counting.pug
 
 mixin order-card(options = {})
   .order-card 
-    .order-card__form 
+    form(
+      class = 'order-card__form'
+      method = 'GET'
+      action = 'error-page.html'
+    )
       .order-card__room-info
         +room-number({
             number: '888',
@@ -17,6 +21,7 @@ mixin order-card(options = {})
       .order-card__datepick 
        +datepick_2()
       .order-card__dropdown 
+        span.order-card__subtitle Гости
         +dropdown({
            class: 'booking-card__dropdown-input',
            type: 'guests',
