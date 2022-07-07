@@ -97,7 +97,7 @@ class OrderCount {
     this.count.querySelector('.order-counting__add-fee-compute').innerText =
       string
 
-    let tip = this.createTip(this.fees.feeMessage)
+    let tip = this.createTip(this.fees.fee.message)
     if (tip)
       this.count.querySelector('.order-counting__add-fee-compute').append(tip)
 

@@ -55,5 +55,13 @@ mixin order-card(options = {})
             price: 9990,
             days: 4 
           })
+        .order-card__button
+         +button({
+          content: 'Забронировать',
+          btnColor: 'white',
+          btnWrapperColor: 'violet',
+          arrow: true,
+          btnSize: 'large'
+         })
         
     
