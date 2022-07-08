@@ -10,8 +10,8 @@ block variables
     const title = 'Стартовая страница Toxin'
 
 block content
-  +header({
-      classHeader: 'page__header',
+  header.page__header
+    +header({
       isLogged,
       navigation: {
       items: [

@@ -2,23 +2,16 @@ mixin title(options = {})
   - 
     const {
       level = 'h2',
-      classTitle = '',
       text = '',
     } = options 
-  - if(options.level === 'h2')
+
   - if(options.level === 'h1')
-  h1(
-    class= `title title_h1 ${classTitle}`
-  )= text
+  h1.title= text
   - if(level === 'h2')
-  h2(
-    class= `title title_h2 ${classTitle}`
-  )= text
+  h2.title.title_h2= text
   - if(level === 'h3')
-  h3(
-    class= `title title_h3 ${classTitle}`
-  )= text
+  h3.title.title_h3= text
   - if(level === 'h4')
-  h4(
-    class= `title title_h4 ${classTitle}`
-  )= text
+  h4.title.title_h4= text
+   - if(level === 'h5')
+  h4.title.title_h5= text

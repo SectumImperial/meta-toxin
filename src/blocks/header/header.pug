@@ -2,57 +2,50 @@ include ../logo/logo.pug
 include ../nav/nav.pug
 include ../button/button.pug
 
-mixin headerIcon
-  .header__icon
-    span
-
 mixin header(options = {})
   -
    const {
-    classHeader = '',
     shadow = false,
     isLogged = false,
     navigation = {}
    } = options
-
-
   -
     let mod = ''
     if (shadow) {
       mod = `header_shadow`
     }
 
-  header.header(
-    class =  `${classHeader} ${mod}`
+  .header(
+      class =  `${mod}`
     )
     .header__content.container
-      +logo({
-        classLogo: 'header__logo',
-        href: 'landing-page.html'
-      })
-      +headerIcon()
-      .header__nav-wrapper 
-        +nav({
-          classNav: 'header__nav',
-          navigation: navigation})
+      .header__logo
+        +logo({
+          href: 'landing-page.html'
+        })
+      .header__nav-wrapper
+        .header__nav 
+          +nav({
+            navigation: navigation}
+            )
 
         if !options.isLogged
-          +button({
-            classWrapper: 'header__button', 
-            content: 'Войти', 
-            btnColor: 'violet',
-            btnSize: 'small',
-            btnType: 'link',
-            href: 'login-page.html'
-            })
-          +button({
-            classWrapper: 'header__button', 
-            btnColor: 'white',
-            btnWrapperColor: 'violet',
-            content: 'Зарегистрироваться',
-            btnSize: 'small',
-            btnType: 'link',
-            href: 'registration-page.html'
-            })
+          .header__button
+            +button({
+              content: 'Войти', 
+              btnColor: 'violet',
+              btnSize: 'small',
+              btnType: 'link',
+              href: 'login-page.html'
+              })
+          .header__button
+            +button({
+              btnColor: 'white',
+              btnWrapperColor: 'violet',
+              content: 'Зарегистрироваться',
+              btnSize: 'small',
+              btnType: 'link',
+              href: 'registration-page.html'
+              })
         else
           p.header__user Юлий Цезарь

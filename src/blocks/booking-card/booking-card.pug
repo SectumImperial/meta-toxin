@@ -1,9 +1,7 @@
 include ../button/button.pug
 include ../title/title.pug
+include ../text-element/text-element.pug
 
-include ../form/form.pug
-
-include ../input/input.pug
 include ../datepick/datepick.pug
 include ../dropdown/dropdown.pug
 
@@ -11,51 +9,46 @@ mixin booking-card(options = {})
   section(
     class = options.classBook
   )
-    +form({
-      classForm: 'booking-card__card',
-      action: 'search-page.html'
-      }) 
-      +title({
-        level: 'h2',
-        text: 'Найдём номера под ваши пожелания',
-        classTitle: 'booking-card__title',
-      })
-
-      +form-group({
-        classGroup: 'booking-card__datepick',
-        datepick: true
-      })
+    form.booking-card__card(
+      action = 'search-page.html'
+      method = GET
+    )
+      .booking-card__title
+        +title({
+          level: 'h2',
+          text: 'Найдём номера под ваши пожелания',
+        })
+      .booking-card__datepick
         +datepick_2()
-      +form-group({
-        classGroup: 'booking-card__dropdown'
-      })
-        +label({
-          text: 'Гости',
-          forInput: 'booking-guests',
-          classLabel: 'booking-card__label'
+      .booking-card__dropdown
+        .booking-card__subtitle
+          +title({
+            text: 'Гости',
+            level: 'h5'
+          }) 
+        .booking-card__dropdown-input
+          +dropdown({
+            type: 'guests',
+            id: 'booking-guests',
+            placeholder: 'Сколько гостей',
+            items: [
+              'Взрослые', 'Дети', 'Младенцы'
+            ],
+            plurals: [
+              {
+                'default': ['гость', 'гостя', 'гостей']
+                },
+              {
+                'Младенцы': ['младенец', 'младенца', 'младенцев']
+              }
+            ]
+          })
+      .booking-card__button
+        +button({
+          content: 'Подобрать номер',
+          btnColor: 'white',
+          btnWrapperColor: 'violet',
+          arrow: true,
+          btnSize: 'large'
         })
-        +dropdown({
-           class: 'booking-card__dropdown-input',
-           type: 'guests',
-           placeholder: 'Сколько гостей',
-           items: [
-             'Взрослые', 'Дети', 'Младенцы'
-           ],
-           plurals: [
-             {
-               'default': ['гость', 'гостя', 'гостей']
-              },
-             {
-               'Младенцы': ['младенец', 'младенца', 'младенцев']
-             }
-           ]
-        })
-      +button({
-        content: 'Подобрать номер',
-        btnColor: 'white',
-        btnWrapperColor: 'violet',
-        arrow: true,
-        classWrapper: 'booking-card__button',
-        btnSize: 'large'
-      })
       

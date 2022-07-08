@@ -26,14 +26,12 @@ mixin footer(options = {})
   )
     .footer__blocks
       section.footer__block
+        .footer__logo
         +logo({
-          classLogo: 'footer__logo',
           href: 'landing-page.html'
         })
-        +text-element({
-          classText: 'footer__promo',
-          contentText: contentPromo,
-        })
+        .footer__promo
+          +text-element(contentPromo)
 
       section.footer__navigation
         each item in navItems
@@ -44,11 +42,11 @@ mixin footer(options = {})
            } = item
 
           .footer__navigation-item
-            +title({
-              level: 'h4',
-              text: titleItem,
-              classTitle: 'footer__title'
-            })
+            .footer__title
+              +title({
+                level: 'h5',
+                text: titleItem,
+              })
             +nav({
               classNav: 'footer__nav',
               navigation: {
@@ -58,15 +56,13 @@ mixin footer(options = {})
             })
 
       section.footer__email
-        +title({
-           level: 'h4',
-           text: 'Подписка',
-           classTitle: 'footer__title'
-         })
-        +text-element({
-           classText: 'footer__email-text',
-           contentText: 'Получайте специальные предложения и новости сервиса'
-         })
+        .footer__title
+          +title({
+              level: 'h5',
+              text: 'Подписка',
+            })
+        .footer__email-text
+          +text-element('Получайте специальные предложения и новости сервиса')
         +input({
             classInput: 'footer__input',
             type: 'email',
