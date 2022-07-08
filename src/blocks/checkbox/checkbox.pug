@@ -1,7 +1,6 @@
 mixin checkbox(options = {}) 
   - 
     const {
-      classCheckox = '',
       labelText = '',
       checkboxTitle = '',
       checkboxDescription = '',
@@ -11,9 +10,7 @@ mixin checkbox(options = {})
       mod = 'simple'
     } = options 
   
-  label(
-    class = `checkbox ${classCheckox}`
-  )
+  label.checkbox
     input(
       type = 'checkbox'
       name = name

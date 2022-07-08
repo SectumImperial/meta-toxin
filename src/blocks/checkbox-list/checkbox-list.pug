@@ -3,15 +3,12 @@ include ../checkbox/checkbox.pug
 mixin checkbox-list(options = {})
   -
     const {
-        classList = '',
         titleList = '',
         items = []
     } = options
 
 
-  div(
-    class = `checkbox-list _js-checkbox-list ${classList}`
-  ) 
+  div.checkbox-list._js-checkbox-list
     .checkbox-list__head 
       span.checkbox-list__title= titleList
       span.checkbox-list__arrow.icon__expand_more
@@ -25,10 +22,10 @@ mixin checkbox-list(options = {})
           } = item
             
         li.checkbox-list__item
-          +checkbox({
-            classCheckox: `checkbox-list__checkbox`,
-            labelText: labelText,
-            name: name,
-            id: id,
-            checked: checked
-          })
+          .checkbox-list__checkbox
+            +checkbox({
+              labelText,
+              name,
+              id,
+              checked
+            })

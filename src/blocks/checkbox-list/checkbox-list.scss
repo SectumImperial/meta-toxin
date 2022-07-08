@@ -37,12 +37,12 @@
   }
 }
 
-._active {
+.js_active {
   .checkbox-list__arrow {
     transform: rotate(180deg);
   }
 
-  ._opened-list {
+  .js_opened_list {
     display: flex;
     flex-direction: column;
     gap: 10px;

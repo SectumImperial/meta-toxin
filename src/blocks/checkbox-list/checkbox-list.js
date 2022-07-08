@@ -13,13 +13,14 @@ class CheckboxList {
     this.checkboxList.addEventListener('click', this.toggle.bind(this))
   }
 
-  toggle() {
-    if (this.checkboxList.classList.contains('_active')) {
-      this.checkboxList.classList.remove('_active')
-      this.list.classList.remove('_opened-list')
+  toggle({ target }) {
+    if (target.closest('.js_opened')) return
+    if (this.checkboxList.classList.contains('js_active')) {
+      this.checkboxList.classList.remove('js_active')
+      this.list.classList.remove('js_opened_list')
     } else {
-      this.checkboxList.classList.add('_active')
-      this.list.classList.add('_opened-list')
+      this.checkboxList.classList.add('js_active')
+      this.list.classList.add('js_opened_list')
     }
   }
 }
