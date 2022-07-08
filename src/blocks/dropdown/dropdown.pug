@@ -4,7 +4,6 @@ mixin dropdown(options = {})
   - 
     const {
       items = [],
-      id = '',
       dataOptions = '',
       placeholder = '',
       plurals = {},
@@ -17,7 +16,6 @@ mixin dropdown(options = {})
     .dropdown__input-field
       input(
         type = 'text',
-        id = id,
         class = 'dropdown__input',
         name = 'dropdown',
         placeholder = placeholder,

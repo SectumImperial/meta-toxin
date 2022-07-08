@@ -10,27 +10,19 @@ include ../button/button.pug
 
 
 mixin search-room(options = {}) 
-  -
-    const {
-        classMain = ''
-    } = options
-
-  main(
-    class = `search-room ${classMain} container`
-  )
+  section.search-room.container
     .search-room__content
       section.search-room__filters 
         .search-room__datepick
           +datepick_1()
 
         .search-room__guests
-          +title({
-            level: 'h4',
-            classTitle: 'search-room__subtitle',
-            text: 'Гости'
-          })
+          .search-room__subtitle
+            +title({
+              level: 'h5',
+              text: 'Гости'
+            })
           +dropdown({
-            class: '`search-room__dropdown-input',
             type: 'guests',
             placeholder: 'Сколько гостей',
             mod: 'guests',
@@ -49,19 +41,19 @@ mixin search-room(options = {})
           })
 
         .search-room__filter
-          +range-slider({
-            rangeClass: 'search-room__range',
-            name: 'Диапазон цены',   
-            description: 'Стоимость за сутки пребывания в номере',
-            step: 100,
-            rangeOptions: {
-              min: 0,
-              max: 15000,
-              initialStart: 5000,
-              initialEnd: 10000,
-              addedText: '₽',
-            }
-          })
+          .search-room__range
+            +range-slider({
+              name: 'Диапазон цены',   
+              description: 'Стоимость за сутки пребывания в номере',
+              step: 100,
+              rangeOptions: {
+                min: 0,
+                max: 15000,
+                initialStart: 5000,
+                initialEnd: 10000,
+                addedText: '₽',
+              }
+            })
 
         .search-room__rules
           .search-room__subtitle 
@@ -70,27 +62,27 @@ mixin search-room(options = {})
               text: 'Правила дома'
             })
           .search-room__checkboxes
-            +checkbox({
-              classCheckox: 'search-room__checkbox search-room__checkbox_smoke',
-              labelText: 'Можно курить',
-              name: 'search-room-smoke',
-              id: 'search-room-smoke',
-            })
-            +checkbox({
-              classCheckox: 'search-room__checkbox search-room__checkbox_pets',
-              labelText: 'Можно с питомцами',
-              name: 'search-room-pets',
-              id: 'search-room-pets',
-              checked: true
-            })
-            +checkbox({
-              classCheckox: 'search-room__checkbox search-room__checkbox_guests',
-              labelText: `Можно пригласить гостей 
-              (до 10 человек)`,
-              name: 'search-room-guests',
-              id: 'search-room-guests',
-              checked: true
-            })
+            .search-room__checkbox.search-room__checkbox_smoke
+              +checkbox({
+                labelText: 'Можно курить',
+                name: 'search-room-smoke',
+                id: 'search-room-smoke',
+              })
+            .search-room__checkbox.search-room__checkbox_pets
+              +checkbox({
+                labelText: 'Можно с питомцами',
+                name: 'search-room-pets',
+                id: 'search-room-pets',
+                checked: true
+              })
+            .search-room__checkbox.search-room__checkbox_guests
+              +checkbox({
+                labelText: `Можно пригласить гостей 
+                (до 10 человек)`,
+                name: 'search-room-guests',
+                id: 'search-room-guests',
+                checked: true
+              })
 
         .search-room__available
           .search-room__subtitle
@@ -98,24 +90,24 @@ mixin search-room(options = {})
               level: 'h5',
               text: 'Доступность'
             })
-          +checkbox({
-            classCheckox: 'search-room__checkbox search-room__checkbox_wide-corr',
-            mod: 'rich',
-            checkboxTitle: 'Широкий коридор',
-            checkboxDescription: `Ширина коридоров в номере 
-            не менее 91 см.`,
-            name: 'search-room-wide-corr',
-            id: 'search-room-wide-corr',
-          })
-          +checkbox({
-            classCheckox: 'search-room__checkbox search-room__checkbox_inv-help',
-            mod: 'rich',
-            checkboxTitle: 'Помощник для инвалидов',
-            checkboxDescription: `На 1 этаже вас встретит специалист 
-            и проводит до номера.`,
-            name: 'search-room-inv-help',
-            id: 'search-room-inv-help',
-          })
+          .search-room__checkbox.search-room__checkbox_wide-corr
+            +checkbox({
+              mod: 'rich',
+              checkboxTitle: 'Широкий коридор',
+              checkboxDescription: `Ширина коридоров в номере 
+              не менее 91 см.`,
+              name: 'search-room-wide-corr',
+              id: 'search-room-wide-corr',
+            })
+          .search-room__checkbox.search-room__checkbox_inv-help
+            +checkbox({
+              mod: 'rich',
+              checkboxTitle: 'Помощник для инвалидов',
+              checkboxDescription: `На 1 этаже вас встретит специалист 
+              и проводит до номера.`,
+              name: 'search-room-inv-help',
+              id: 'search-room-inv-help',
+            })
 
 
         .search-room__facilities
@@ -146,58 +138,58 @@ mixin search-room(options = {})
             })
 
         .search-room__add-facilities
-          +checkbox-list({
-            classList: 'search-room__add-facilities-list',
-            titleList: 'Дополнительные удобства',
-            items: [
-              {
-                labelText: 'Завтрак',
-                name: 'search-room-lunch',
-                id: 'search-room-lunch',
-              },
-              {
-                labelText: 'Письменный стол',
-                name: 'search-room-table',
-                id: 'search-room-table',
-                checked: true,
-              },
-              {
-                labelText: 'Стул для кормления',
-                name: 'search-room-chair',
-                id: 'search-room-chair',
-                checked: true,
-              },
-              {
-                labelText: 'Кроватка',
-                name: 'search-room-small-bed',
-                id: 'search-room-small-bed',
-                checked: true,
-              },
-              {
-                labelText: 'Телевизор',
-                name: 'search-room-tv',
-                id: 'search-room-tv',
-              },
-              {
-                labelText: 'Шампунь',
-                name: 'search-room-shampoo',
-                id: 'search-room-shampoo',
-              },
-            ]
-          })
-      +button({
-        content: 'Раскрыть фильтры',
-        btnColor: 'white',
-        btnWrapperColor: 'violet',
-        classWrapper: 'search-room__button',
-        btnSize: 'large'
-      })
+          .search-room__add-facilities-list
+            +checkbox-list({
+              titleList: 'Дополнительные удобства',
+              items: [
+                {
+                  labelText: 'Завтрак',
+                  name: 'search-room-lunch',
+                  id: 'search-room-lunch',
+                },
+                {
+                  labelText: 'Письменный стол',
+                  name: 'search-room-table',
+                  id: 'search-room-table',
+                  checked: true,
+                },
+                {
+                  labelText: 'Стул для кормления',
+                  name: 'search-room-chair',
+                  id: 'search-room-chair',
+                  checked: true,
+                },
+                {
+                  labelText: 'Кроватка',
+                  name: 'search-room-small-bed',
+                  id: 'search-room-small-bed',
+                  checked: true,
+                },
+                {
+                  labelText: 'Телевизор',
+                  name: 'search-room-tv',
+                  id: 'search-room-tv',
+                },
+                {
+                  labelText: 'Шампунь',
+                  name: 'search-room-shampoo',
+                  id: 'search-room-shampoo',
+                },
+              ]
+            })
+      .search-room__button
+        +button({
+          content: 'Раскрыть фильтры',
+          btnColor: 'white',
+          btnWrapperColor: 'violet',
+          btnSize: 'large'
+        })
       section.search-room__rooms
-        +title({
-            level: 'h2',
-            classTitle: 'search-room__section-title',
-            text: 'Номера, которые мы для вас подобрали'
-          })
+        .search-room__section-title
+          +title({
+              level: 'h2',
+              text: 'Номера, которые мы для вас подобрали'
+            })
         .search-room__rooms-content
           +room-card({
             images: [

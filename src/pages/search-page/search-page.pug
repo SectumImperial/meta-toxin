@@ -9,9 +9,9 @@ block variables
     const title = 'Поиск номеров Toxin'
 
 block content
-  +header({
+  header.page__header
+    +header({
       shadow: true,
-      classHeader: 'page__header',
       navigation: {
       items: [
         {
@@ -71,57 +71,56 @@ block content
           ]
         }
       ]}})
-  +search-room({
-    classMain: 'page__main'
-  })
-  +footer({
-    classFooter: 'page__footer',
-    border: true,
-    contentPromo: 'Бронирование номеров в лучшем отеле 2019 года по версии ассоциации «Отельные взгляды»',
-    navItems: [{
-      titleItem: 'Навигация',
-      items: [
-        {
-        content: 'О нас',
-        },
-        {
-        content: 'Новости',
-        },
-        {
-        content: 'Служба поддержки',
-        },
-        {
-        content: 'Услуги',
-        }
-      ]
-    },
-    {
-      titleItem: 'О нас',
-      items: [{
-        content: 'О сервисе',
-        },
-        {
-        content: 'Наша команда',
-        },
-        {
-        content: 'Вакансии',
-        },
-        {
-        content: 'Инвесторы'
-        }
-      ]
-    },
-    {
-      titleItem: 'Служба поддержки',
-      items: [{
-        content: 'Соглашения',
-        },
-        {
-        content: 'Сообщества',
-        },
-        {
-        content: 'Связь с нами',
-        },
-      ]
-    }]
-  })
+  main.page__main
+    +search-room()
+  footer.page__footer
+    +footer({
+      border: true,
+      contentPromo: 'Бронирование номеров в лучшем отеле 2019 года по версии ассоциации «Отельные взгляды»',
+      navItems: [{
+        titleItem: 'Навигация',
+        items: [
+          {
+          content: 'О нас',
+          },
+          {
+          content: 'Новости',
+          },
+          {
+          content: 'Служба поддержки',
+          },
+          {
+          content: 'Услуги',
+          }
+        ]
+      },
+      {
+        titleItem: 'О нас',
+        items: [{
+          content: 'О сервисе',
+          },
+          {
+          content: 'Наша команда',
+          },
+          {
+          content: 'Вакансии',
+          },
+          {
+          content: 'Инвесторы'
+          }
+        ]
+      },
+      {
+        titleItem: 'Служба поддержки',
+        items: [{
+          content: 'Соглашения',
+          },
+          {
+          content: 'Сообщества',
+          },
+          {
+          content: 'Связь с нами',
+          },
+        ]
+      }]
+    })
