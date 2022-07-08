@@ -1,8 +1,8 @@
 include ../title/title.pug
 include ../room-data/room-data.pug
 include ../canvas/canvas.pug
-include ../room-review/room-review.pug
-include ../room-rules/room-rules.pug
+include ../review/review.pug
+include ../rules/rules.pug
 include ../order-card/order-card.pug
 
 mixin room-details(options= {})
@@ -113,37 +113,41 @@ mixin room-details(options= {})
                 text: 'Отзывы посетителей номера'
               })
               span.room-details__reviews-count 0 отзывов
-            +room-review({
-              src: 'blocks/room-details/img-comment/tesak.png',
-              name: 'Мурад Сарафанов',
-              date: '5 дней назад',
-              liked: true,
-              counts: 12,
-              text: 'Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.'
-            })
-            +room-review({
-              src: 'blocks/room-details/img-comment/steklo.png',
-              name: 'Патрисия Стёклышкова',
-              date: 'Неделю назад',
-              liked: false,
-              counts: 2,
-              text: 'Обслуживание на высоте! Всё аккуратно, чисто. Завтраки в номер советую заказать, каждый день новое блюдо и десерт как комплимент.'
-            })
+            .room-details__reviews-content    
+              +review({
+                src: 'blocks/room-details/img-comment/tesak.png',
+                name: 'Мурад Сарафанов',
+                date: '5 дней назад',
+                liked: true,
+                counts: 12,
+                text: `Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий.\n
+                И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто\n
+                не жаловался из соседей.`
+              })
+              +review({
+                src: 'blocks/room-details/img-comment/steklo.png',
+                name: 'Патрисия Стёклышкова',
+                date: 'Неделю назад',
+                liked: false,
+                counts: 2,
+                text: 'Обслуживание на высоте! Всё аккуратно, чисто. Завтраки в номер советую заказать, каждый день новое блюдо и десерт как комплимент.'
+              })
           .room-details__rules
-            .room-details__subtitle
+            .room-details__subtitle.room-details__subtitle_rules
               +title({
                 level: 'h3',
                 text: 'Правила'
               })
-            +room-rules({
-              rules: [
-                'Нельзя с питомцами',
-                'Без вечеринок и мероприятий',
-                'Время прибытия — после 13:00 а выезд до 12:00'
-              ]
-            })
+            .room-details__rules-items
+              +rules({
+                rules: [
+                  'Нельзя с питомцами',
+                  'Без вечеринок и мероприятий',
+                  'Время прибытия — после 13:00 а выезд до 12:00'
+                ]
+              })
           .room-details__cancel
-            .room-details__subtitle
+            .room-details__subtitle.room-details__subtitle_cancel
               +title({
                 level: 'h3',
                 text: 'Отмена'

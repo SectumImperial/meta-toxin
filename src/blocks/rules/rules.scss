@@ -2,9 +2,10 @@
 @import '../../common/functions.scss';
 @import '../../common/variables.scss';
 
-.room-rules {
+.rules {
   font-size: rem(14);
   color: rgba($dark-color, 0.75);
+  line-height: 24px;
 
   &__items {
     display: flex;
@@ -20,8 +21,7 @@
     &::before {
       content: '';
       position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
+      top: 7px;
       left: 0;
       width: 10px;
       height: 10px;

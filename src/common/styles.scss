@@ -5,11 +5,11 @@
 
 @font-face {
   font-family: 'Montserrat';
-  src: url('../fonts/Montserrat-Medium.eot');
-  src: local('☺'), url('../fonts/Montserrat-Medium.woff') format('woff'),
-    url('../fonts/Montserrat-Medium.ttf') format('truetype'),
-    url('../fonts/Montserrat-Medium.svg') format('svg');
-  font-weight: 500;
+  src: url('../fonts/Montserrat-Regular.eot');
+  src: local('☺'), url('../fonts/Montserrat-Regular.woff') format('woff'),
+    url('../fonts/Montserrat-Regular.ttf') format('truetype'),
+    url('../fonts/Montserrat-Regular.svg') format('svg');
+  font-weight: 400;
   font-style: normal;
 }
 
@@ -32,7 +32,6 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
 }
 
 .visually-hidden {

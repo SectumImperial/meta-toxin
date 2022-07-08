@@ -39,28 +39,29 @@
 
   // Информация
   &__main {
-    max-width: $content;
-    padding: 70px 5px 70px 5px;
+    padding: 70px 140px 71px;
     margin: 0 auto;
 
     display: flex;
-    gap: 70px;
+    gap: 66px;
   }
 
   &__subtitle {
     padding-bottom: 11px;
-  }
 
-  &__reviews {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+    &_rules {
+      padding-left: 20px;
+      padding-top: 1px;
+    }
+
+    &_cancel {
+      padding-top: 11px;
+    }
   }
 
   &__order {
     display: flex;
     flex-basis: 390px;
-    padding: 5px;
   }
 
   &__card {
@@ -68,10 +69,14 @@
     max-width: 380px;
   }
 
+  &__data {
+    max-width: 280px;
+  }
+
   &__information {
     display: grid;
-    grid-template-columns: 300px auto;
-    gap: 0 60px;
+    grid-template-columns: 259px auto;
+    gap: 0 102px;
     grid-template-areas:
       'details feedback'
       'reviews reviews'
@@ -82,23 +87,37 @@
     grid-area: details;
   }
 
-  &__data {
-    max-width: 280px;
-  }
-
   &__feedback {
     grid-area: feedback;
   }
 
   &__reviews {
     grid-area: reviews;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 3px;
+    padding-bottom: 22px;
   }
 
   &__rules {
     grid-area: rules;
+    padding-top: 10px;
   }
+
   &__cancel {
     grid-area: cancel;
+  }
+
+  &__rules-items {
+    padding-top: 7px;
+  }
+
+  &__reviews-content {
+    display: flex;
+    flex-direction: column;
+    gap: 23px;
   }
 
   &__reviews-heading {
@@ -106,12 +125,15 @@
     justify-content: space-between;
     align-items: center;
   }
+
   &__reviews-count {
     color: rgba($dark-color, 0.5);
+    padding: 0 4px 6px 0;
   }
 
   &__cancel-text {
-    padding-top: 10px;
+    padding: 7px 10px 0 0;
+    line-height: 24px;
     color: rgba($dark-color, 0.75);
   }
 }

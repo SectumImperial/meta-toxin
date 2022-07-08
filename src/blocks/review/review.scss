@@ -2,46 +2,56 @@
 @import '../../common/functions.scss';
 @import '../../common/variables.scss';
 
-.room-review {
+.review {
+  width: 100%;
+
   display: grid;
-  grid-template-columns: 44px 1fr;
-  grid-template-rows: auto auto;
   grid-template-areas:
     'a d'
     'l t';
 
-  gap: 10px 12px;
-
   font-size: 14px;
   color: rgba($dark-color, 0.75);
+
+  &__head {
+    display: flex;
+  }
 
   &__author {
     grid-area: a;
   }
 
-  &__author-details {
+  &__details {
     grid-area: d;
 
     display: flex;
     flex-direction: column;
     gap: 6px;
+
+    padding: 3px 0 0 9px;
   }
 
-  &__author-like {
+  &__like {
     grid-area: l;
+    padding: 8px 0 0 2px;
   }
 
-  &__author-text {
+  &__text {
     grid-area: t;
+    padding: 6px 3px 0 9px;
   }
 
-  &__author-photo {
+  &__photo {
     border-radius: 50%;
     border: 2px solid $secondary-color-2;
     box-shadow: 0px 10px 20px 0px rgba($dark-color, 0.1);
   }
 
-  &__author-name {
+  &__name {
     font-weight: 700;
+  }
+
+  &__text {
+    line-height: 24px;
   }
 }

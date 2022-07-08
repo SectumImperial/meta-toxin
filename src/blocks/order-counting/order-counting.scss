@@ -5,7 +5,7 @@
 .order-counting {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
   font-size: rem(14);
   color: rgba($dark-color, 0.75);
 
@@ -22,17 +22,32 @@
   &__add-fee-compute {
     display: flex;
     align-items: center;
-    gap: 5px;
+  }
+
+  &__fee-compute {
+    gap: 11px;
   }
 
   &__add-fee-compute {
-    gap: 29px;
+    gap: 34px;
+    align-items: flex-start;
+  }
+
+  &__add-fee-computed {
+    padding-bottom: 16px;
+    padding-right: 1px;
+  }
+
+  &__fee-computed {
+    padding-right: 2px;
   }
 
   &__all {
-    font-weight: 700;
+    font-weight: bold;
     font-size: rem(19);
     color: $dark-color;
+    padding-top: 16px;
+    padding-right: 3px;
   }
 
   &__decorarion {
@@ -68,5 +83,9 @@
       border-radius: 4px;
       font-size: 12px;
     }
+  }
+
+  &__days-computed {
+    padding-right: 2px;
   }
 }

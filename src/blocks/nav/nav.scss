@@ -34,8 +34,6 @@
     padding: 5px;
     margin-right: 2px;
 
-    font-weight: 500;
-
     &::before {
       font-size: rem(7);
     }
@@ -55,7 +53,7 @@
 
     &::before {
       position: absolute;
-      top: 50%;
+      top: 60%;
       right: -19px;
       transform: translateY(-50%);
       font-size: rem(8);

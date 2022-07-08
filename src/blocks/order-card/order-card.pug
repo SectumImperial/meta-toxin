@@ -17,7 +17,8 @@ mixin order-card(options = {})
             luxe: true,
             big: true
         }) 
-        +room-price('9 990')
+        .order-card__price
+          +room-price('9 990')
       .order-card__datepick 
        +datepick_2()
       .order-card__dropdown 

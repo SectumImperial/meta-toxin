@@ -21,7 +21,6 @@ class OrderCount {
     this.sumRent = this.sumRnet()
     this.allSum = this.sumAll(this.sumRent)
     this.finalSum = this.computeFinal(this.allSum)
-    console.log(this.finalSum)
 
     this.createRentString()
     this.createFeeString()
@@ -54,7 +53,6 @@ class OrderCount {
       }
     }
 
-    console.log(sumDisc)
     return sumDisc
   }
 
@@ -108,7 +106,6 @@ class OrderCount {
   }
 
   insertFinalSum() {
-    console.log(this.finalSum)
     this.count.querySelector(
       '.order-counting__sum'
     ).innerText = `${this.finalSum.toLocaleString('ru-RU')}₽`

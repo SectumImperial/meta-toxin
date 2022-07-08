@@ -1,9 +1,9 @@
 include ../like/like.pug
 
-mixin room-review(options = {})
+mixin review(options = {})
   -
     const {
-      src = 'blocks/room-review/img/default-author.jpg',
+      src = 'blocks/review/img/default-author.jpg',
       name = 'Джек Торранс',
       date = '40 лет назад',
       liked = false,
@@ -16,22 +16,22 @@ mixin room-review(options = {})
       for (let i = 0; i < 7; i++)
         text += 'Одна работа, никакого безделья — бедняга Джек не знает веселья. '
   
-  section.room-review
-    .room-review__author 
+  section.review
+    .review__image  
       img(
         src = src 
-        alt = "Фото автора"
-        class = 'room-review__author-photo'
+        alt = `Фото ${name}`
+        class = 'review__photo'
         width = 48
         height = 48
         )
-    .room-review__author-details 
-      span.room-review__author-name= name
-      span.room-review__author-date= date
-    .room-review__author-like
+    .review__details 
+      p.review__name= name
+      p.review__date= date
+    .review__like
       +like({
         liked,
         counts
       })
-    .room-review__author-text= text
-        
+    p.review__text= text
+      
