@@ -85,7 +85,8 @@ mixin search-room(options = {})
             })
             +checkbox({
               classCheckox: 'search-room__checkbox search-room__checkbox_guests',
-              labelText: `Можно пригласить гостей (до 10 человек)`,
+              labelText: `Можно пригласить гостей 
+              (до 10 человек)`,
               name: 'search-room-guests',
               id: 'search-room-guests',
               checked: true
@@ -101,7 +102,8 @@ mixin search-room(options = {})
             classCheckox: 'search-room__checkbox search-room__checkbox_wide-corr',
             mod: 'rich',
             checkboxTitle: 'Широкий коридор',
-            checkboxDescription: 'Ширина коридоров в номере не менее 91 см.',
+            checkboxDescription: `Ширина коридоров в номере 
+            не менее 91 см.`,
             name: 'search-room-wide-corr',
             id: 'search-room-wide-corr',
           })
@@ -109,7 +111,8 @@ mixin search-room(options = {})
             classCheckox: 'search-room__checkbox search-room__checkbox_inv-help',
             mod: 'rich',
             checkboxTitle: 'Помощник для инвалидов',
-            checkboxDescription: 'На 1 этаже вас встретит специалист и проводит до номера.',
+            checkboxDescription: `На 1 этаже вас встретит специалист 
+            и проводит до номера.`,
             name: 'search-room-inv-help',
             id: 'search-room-inv-help',
           })

@@ -62,6 +62,16 @@ class Datepicker {
       item.addEventListener('input', this.inputDate.bind(this))
     })
     this.calConteiner.addEventListener('click', this.checkRange.bind(this))
+    document.addEventListener('click', this.closeOuterClick.bind(this))
+  }
+
+  closeOuterClick({ target }) {
+    if (target.closest('._datepick-js')) return
+    this.datepick.querySelectorAll('.datepick__group').forEach((e) => {
+      if (e.classList.contains('clicked')) e.classList.remove('clicked')
+      if (this.calConteiner.classList.contains('_active-dp'))
+        this.calConteiner.classList.remove('_active-dp')
+    })
   }
 
   getUrlParams() {

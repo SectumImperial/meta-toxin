@@ -7,7 +7,7 @@
   &__content {
     max-width: $content;
     display: flex;
-    gap: 59px;
+    gap: 61px;
     padding: 30px 5px 75px 5px;
     margin: 0 auto;
 
@@ -19,7 +19,7 @@
 
   // Фильтры
   &__filters {
-    max-width: 267px;
+    max-width: 266px;
 
     @media (max-width: $pc) {
       position: absolute;
@@ -57,6 +57,14 @@
 
   &__checkbox {
     padding-top: 10px;
+
+    &_wide-corr {
+      max-width: 234px;
+    }
+
+    &_inv-help {
+      max-width: 253px;
+    }
   }
 
   &__available {

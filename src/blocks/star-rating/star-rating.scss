@@ -11,6 +11,11 @@
     position: relative;
     font-size: rem(19);
 
-    color: $primary-color;
+    &::before {
+      background-image: linear-gradient(180deg, #bc9cff 0%, #8ba4f9 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
   }
 }

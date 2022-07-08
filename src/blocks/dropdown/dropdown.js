@@ -82,6 +82,16 @@ class Dropdown {
 
     this.btnClear.addEventListener('click', this.clear.bind(this))
     this.btnAccept.addEventListener('click', this.accept.bind(this))
+
+    document.addEventListener('click', this.closeOuterClick.bind(this))
+  }
+
+  closeOuterClick({ target }) {
+    if (target.closest('.dropdown')) return
+    if (this.field.classList.contains('_opened'))
+      this.field.classList.remove('_opened')
+    if (this.dropdownContent.classList.contains('_active'))
+      this.dropdownContent.classList.remove('_active')
   }
 
   performData(selector, data) {

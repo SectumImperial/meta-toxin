@@ -132,7 +132,7 @@
   // Навигация календаря, кнопки и год/месяц
   &-nav {
     border: none;
-    padding: 16px 18px 32px 14px;
+    padding: 16px 18px 30px 14px;
 
     @media (max-width: 400px) {
       padding: 10px 12px 28px 12px;
@@ -176,7 +176,7 @@
     }
 
     &--day-names {
-      margin: 8px 0 12px;
+      margin: 6px 2px 12px 0px;
     }
 
     .-days- {
