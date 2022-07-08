@@ -37,26 +37,8 @@ mixin datepick_2()
           .datepick__arrow.icon__expand_more       
     .datepick__container
       .datepick_btns
-        +button({
-          content: 'Очистить',
-          classWrapper: 'datepick__button datepick__button_clear btn-wrapper_transparent',
-          classBtn: 'button_color',
-          btnColor: 'violet',
-          btnWrapperColor: 'transparent',
-          border: 'false',
-          btnSize: 'tiny',
-          btnMod: ['noBorder'],
-        })
-        +button({
-          content: 'Применить',
-          classWrapper: 'datepick__button datepick__button_accept btn-wrapper_transparent',
-          classBtn: 'button_color',
-          btnColor: 'violet',
-          btnWrapperColor: 'transparent',
-          border: 'false',
-          btnSize: 'tiny',
-          btnMod: ['noBorder'],
-        })
+        +datepickBtns()
+        
 
 mixin datepick_1()
   .datepick._datepick-1._datepick-js
@@ -79,23 +61,25 @@ mixin datepick_1()
 
     .datepick__container.datepick_small
       .datepick_btns
-        +button({
-          content: 'Очистить',
-          classWrapper: 'datepick__button datepick__button_clear btn-wrapper_transparent',
-          classBtn: 'button_color',
-          btnColor: 'violet',
-          btnWrapperColor: 'transparent',
-          border: 'false',
-          btnSize: 'tiny',
-          btnMod: ['noBorder'],
-        })
-        +button({
-          content: 'Применить',
-          classWrapper: 'datepick__button datepick__button_accept btn-wrapper_transparent',
-          classBtn: 'button_color',
-          btnColor: 'violet',
-          btnWrapperColor: 'transparent',
-          border: 'false',
-          btnSize: 'tiny',
-          btnMod: ['noBorder'],
-        })
+        +datepickBtns()
+
+
+mixin datepickBtns()
+  .datepick__button.datepick__button_clear
+    +button({
+      content: 'Очистить',
+      btnColor: 'violet',
+      btnWrapperColor: 'transparent',
+      border: 'false',
+      btnSize: 'tiny',
+      btnMod: ['noBorder'],
+    })
+  .datepick__button.datepick__button_accept
+    +button({
+      content: 'Применить',
+      btnColor: 'violet',
+      btnWrapperColor: 'transparent',
+      border: 'false',
+      btnSize: 'tiny',
+      btnMod: ['noBorder'],
+    })

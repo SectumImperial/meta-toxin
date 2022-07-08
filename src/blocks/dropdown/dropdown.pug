@@ -8,12 +8,10 @@ mixin dropdown(options = {})
       dataOptions = '',
       placeholder = '',
       plurals = {},
-      classDp = '',
       type = 'guests'
     } = options
 
-  div(
-    class = `dropdown _js-dropdown ${classDp}` 
+  section.dropdown._js-dropdown(
     data-options = plurals
   )
     .dropdown__input-field
@@ -53,24 +51,22 @@ mixin dropdown(options = {})
           readonly
           )
       .dropdown__nav
-        +button({
-          content: 'Очистить',
-          classWrapper: 'dropdown__button dropdown__button_clear btn-wrapper_transparent',
-          classBtn: 'button_color',
-          btnColor: 'violet',
-          btnWrapperColor: 'transparent',
-          border: 'false',
-          btnSize: 'tiny',
-          btnMod: ['noBorder'],
-          
-        })
-        +button({
-          content: 'Применить',
-          classWrapper: 'dropdown__button dropdown__button_accept btn-wrapper_transparent',
-          classBtn: 'button_color',
-          btnColor: 'violet',
-          btnWrapperColor: 'transparent',
-          border: 'false',
-          btnSize: 'tiny',
-          btnMod: ['noBorder'],
-        })
+        .dropdown__button.dropdown__button_clear
+          +button({
+            content: 'Очистить',
+            btnColor: 'violet',
+            btnWrapperColor: 'transparent',
+            border: 'false',
+            btnSize: 'tiny',
+            btnMod: ['noBorder'],         
+          })
+
+        .dropdown__button.dropdown__button_accept
+          +button({
+            content: 'Применить',
+            btnColor: 'violet',
+            btnWrapperColor: 'transparent',
+            border: 'false',
+            btnSize: 'tiny',
+            btnMod: ['noBorder'],
+          })

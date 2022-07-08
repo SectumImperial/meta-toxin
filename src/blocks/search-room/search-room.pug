@@ -64,11 +64,11 @@ mixin search-room(options = {})
           })
 
         .search-room__rules
-          +title({
-            level: 'h4',
-            classTitle: 'search-room__subtitle',
-            text: 'Правила дома'
-          })
+          .search-room__subtitle 
+            +title({
+              level: 'h5',
+              text: 'Правила дома'
+            })
           .search-room__checkboxes
             +checkbox({
               classCheckox: 'search-room__checkbox search-room__checkbox_smoke',
@@ -93,11 +93,11 @@ mixin search-room(options = {})
             })
 
         .search-room__available
-          +title({
-            level: 'h4',
-            classTitle: 'search-room__subtitle',
-            text: 'Доступность'
-          })
+          .search-room__subtitle
+            +title({
+              level: 'h5',
+              text: 'Доступность'
+            })
           +checkbox({
             classCheckox: 'search-room__checkbox search-room__checkbox_wide-corr',
             mod: 'rich',
@@ -119,31 +119,31 @@ mixin search-room(options = {})
 
 
         .search-room__facilities
-          +title({
-            level: 'h4',
-            classTitle: 'search-room__subtitle',
-            text: 'Удобства номера'
+          .search-room__subtitle
+            +title({
+              level: 'h5',
+              text: 'Удобства номера'
             })
-          +dropdown({
-            class: 'search-room__dropdown-input',
-            type: 'facilities',
-            placeholder: 'Удобства номера',
-            items: [
-              'Cпальни', 'Кровати', 'Ванные комнаты'
-            ],
-            plurals: [
-              {
-                'Cпальни': ['спальня', 'спальни', 'спален']
+          .search-room__dropdown
+            +dropdown({
+              type: 'facilities',
+              placeholder: 'Удобства номера',
+              items: [
+                'Cпальни', 'Кровати', 'Ванные комнаты'
+              ],
+              plurals: [
+                {
+                  'Cпальни': ['спальня', 'спальни', 'спален']
+                  },
+                {
+                  'Кровати': ['кровать', 'кровати', 'кроватей']
                 },
-              {
-                'Кровати': ['кровать', 'кровати', 'кроватей']
-              },
-              {
-                'Ванные комнаты': ['ванная комната', 'ванных комнаты', 'ванных комнат']
-              }
-              
-            ]
-          })
+                {
+                  'Ванные комнаты': ['ванная комната', 'ванных комнаты', 'ванных комнат']
+                }
+                
+              ]
+            })
 
         .search-room__add-facilities
           +checkbox-list({
@@ -365,5 +365,3 @@ mixin search-room(options = {})
               text: 'вариантов аренды'
             }
           })
-        
-        
