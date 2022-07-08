@@ -8,7 +8,6 @@ include ../nav/nav.pug
 mixin footer(options = {})
   - 
     const {
-      classFooter = '',
       contentPromo = '',
       navItems = [],
       border = false
@@ -21,8 +20,8 @@ mixin footer(options = {})
     }
 
 
-  footer(
-    class= `footer ${classFooter} ${mod}`
+  .footer(
+    class= `${mod}`
   )
     .footer__blocks
       section.footer__block
@@ -47,13 +46,11 @@ mixin footer(options = {})
                 level: 'h5',
                 text: titleItem,
               })
-            +nav({
-              classNav: 'footer__nav',
-              navigation: {
-              mod: 'vertical',
-              items: items
-              }
-            })
+            .footer__nav 
+              +nav({
+                mod: 'vertical',
+                items: items
+              })
 
       section.footer__email
         .footer__title
@@ -74,10 +71,8 @@ mixin footer(options = {})
           })
 
     .footer__horizontal
-      +text-element({
-        classText: 'footer__copyright',
-        contentText: 'Copyright © 2018 Toxin отель. Все права защищены.'
-      })
+      .footer__copyright
+        +text-element('Copyright © 2018 Toxin отель. Все права защищены.')
       +social([
         {
         name: 'twitter',

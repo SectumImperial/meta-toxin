@@ -6,9 +6,7 @@ include ../datepick/datepick.pug
 include ../dropdown/dropdown.pug
 
 mixin booking-card(options = {})
-  section(
-    class = options.classBook
-  )
+  section.booking-card
     form.booking-card__card(
       action = 'search-page.html'
       method = GET

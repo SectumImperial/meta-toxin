@@ -2,18 +2,10 @@ include ../booking-card/booking-card.pug
 include ../text-element/text-element.pug
 include ../footer/footer.pug
 
-mixin landing(options = {}) 
-  -
-    const {
-      classMain = ''
-    } = options
-  main(
-    class = `landing ${classMain}`)
+mixin landing() 
+  .landing
     .container.landing__content
-      +booking-card({
-        classBook: 'booking-card landing__booking-card'
-      })
-      +text-element({
-        classText: 'landing__text',
-        contentText: 'Лучшие номера для вашей работы, отдыха и просто вдохновения'
-      })
+      .landing__booking-card
+        +booking-card()
+      .landing__text
+        +text-element('Лучшие номера для вашей работы, отдыха и просто вдохновения')

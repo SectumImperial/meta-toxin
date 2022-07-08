@@ -61,17 +61,9 @@ mixin navList(options = {})
         })
        
 
-mixin nav(options = {})
-  - 
-    const {
-    classNav = '',
-    navigation = {}
-    } = options
-  
-  nav(
-    class = `nav ${classNav}`
-    )
-      +navList(navigation)
+mixin nav(options = {})  
+  nav.nav
+    +navList(options)
     
 
 

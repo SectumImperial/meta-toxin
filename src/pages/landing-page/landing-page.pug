@@ -74,57 +74,58 @@ block content
         }
       ]} 
       })
-  +landing({classMain: 'page__main'})
-  +footer({
-    classFooter: 'page__footer',
-    contentPromo: 'Бронирование номеров в лучшем отеле 2019 года по версии ассоциации «Отельные взгляды»',
-    navItems: [{
-      titleItem: 'Навигация',
-      items: [
-        {
-        content: 'О нас',
-        },
-        {
-        content: 'Новости',
-        },
-        {
-        content: 'Служба поддержки',
-        },
-        {
-        content: 'Услуги',
-        }
-      ]
-    },
-    {
-      titleItem: 'О нас',
-      items: [{
-        content: 'О сервисе',
-        },
-        {
-        content: 'Наша команда',
-        },
-        {
-        content: 'Вакансии',
-        },
-        {
-        content: 'Инвесторы'
-        }
-      ]
-    },
-    {
-      titleItem: 'Служба поддержки',
-      items: [{
-        content: 'Соглашения',
-        },
-        {
-        content: 'Сообщества',
-        },
-        {
-        content: 'Связь с нами',
-        },
-      ]
-    }]
-  })
+  main.page__main
+    +landing()
+  footer.page__footer
+    +footer({
+      contentPromo: 'Бронирование номеров в лучшем отеле 2019 года по версии ассоциации «Отельные взгляды»',
+      navItems: [{
+        titleItem: 'Навигация',
+        items: [
+          {
+          content: 'О нас',
+          },
+          {
+          content: 'Новости',
+          },
+          {
+          content: 'Служба поддержки',
+          },
+          {
+          content: 'Услуги',
+          }
+        ]
+      },
+      {
+        titleItem: 'О нас',
+        items: [{
+          content: 'О сервисе',
+          },
+          {
+          content: 'Наша команда',
+          },
+          {
+          content: 'Вакансии',
+          },
+          {
+          content: 'Инвесторы'
+          }
+        ]
+      },
+      {
+        titleItem: 'Служба поддержки',
+        items: [{
+          content: 'Соглашения',
+          },
+          {
+          content: 'Сообщества',
+          },
+          {
+          content: 'Связь с нами',
+          },
+        ]
+      }]
+    })
 
 
 

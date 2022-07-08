@@ -25,10 +25,7 @@ mixin header(options = {})
         })
       .header__nav-wrapper
         .header__nav 
-          +nav({
-            navigation: navigation}
-            )
-
+          +nav(navigation)
         if !options.isLogged
           .header__button
             +button({
