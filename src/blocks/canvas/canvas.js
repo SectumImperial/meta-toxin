@@ -1,6 +1,10 @@
 /* eslint-disable no-restricted-syntax */
 import {
-  CHART, LEGEND, SVG, ITEM, UNIT,
+  CHART,
+  LEGEND,
+  SVG,
+  ITEM,
+  UNIT,
 } from './constants';
 
 class Canvas {
