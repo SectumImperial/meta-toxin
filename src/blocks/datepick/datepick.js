@@ -1,5 +1,18 @@
 import AirDatepicker from 'air-datepicker';
-import { MONTS } from './constants';
+import {
+  MONTS,
+  ITEM,
+  DATEPICK_2,
+  DATEPICK_1,
+  START,
+  END,
+  ACCEPT,
+  CLEAR,
+  GROUP,
+  CONTAINER,
+  DATES,
+  DATEPICK,
+} from './constants';
 
 class Datepicker {
   constructor(element) {
@@ -16,36 +29,37 @@ class Datepicker {
   }
 
   createElems(container) {
-    this.items = container.querySelectorAll('._datepickItem');
-    this.formGroups = Array.from(container.querySelectorAll('.datepick__group'));
-    this.buttonClear = container.querySelector('.datepick__button_clear');
-    this.buttonAccept = container.querySelector('.datepick__button_accept');
+    this.items = container.querySelectorAll(`.${ITEM}`);
+    this.formGroups = Array.from(
+      container.querySelectorAll(`.${GROUP}`),
+    );
+    this.buttonClear = container.querySelector(`.${CLEAR}`);
+    this.buttonAccept = container.querySelector(`.${ACCEPT}`);
 
-    if (container.classList.contains('_datepick-1')) this.singleInputMod = true;
-    if (container.classList.contains('_datepick-2')) this.twoInputMod = true;
-
-    this.rangeFrom;
-    this.rangeTo;
+    if (container.classList.contains(DATEPICK_1)) this.singleInputMod = true;
+    if (container.classList.contains(DATEPICK_2)) this.twoInputMod = true;
+    this.rangeFrom = null;
+    this.rangeTo = null;
   }
 
   createDatepicker() {
-    this.calConteiner = this.datepick.querySelector('.datepick__container');
+    this.calConteiner = this.datepick.querySelector(`.${CONTAINER}`);
     this.dp = new AirDatepicker(this.calConteiner, {
       range: true,
     });
     this.dp.show();
 
     if (this.twoInputMod) {
-      this.firstItem = this.datepick.querySelector('.datepick-start');
-      this.secondItem = this.datepick.querySelector('.datepick-end');
+      this.firstItem = this.datepick.querySelector(`.${START}`);
+      this.secondItem = this.datepick.querySelector(`.${END}`);
     }
 
     if (this.singleInputMod) {
-      this.singleItem = this.datepick.querySelector('.datepick-dates');
+      this.singleItem = this.datepick.querySelector(`.${DATES}`);
     }
 
     this.formatTitle();
-    if (this.getUrlParams()) {
+    if (Datepicker.getUrlParams()) {
       this.getUrlValues();
     } else {
       this.setPrev();
@@ -64,29 +78,31 @@ class Datepicker {
   }
 
   closeOuterClick({ target }) {
-    if (target.closest('._datepick-js')) return;
-    this.datepick.querySelectorAll('.datepick__group').forEach((e) => {
+    if (target.closest(`.${DATEPICK}`)) return;
+    this.datepick.querySelectorAll(`.${GROUP}`).forEach((e) => {
       if (e.classList.contains('clicked')) e.classList.remove('clicked');
-      if (this.calConteiner.classList.contains('_active-dp')) { this.calConteiner.classList.remove('_active-dp'); }
+      if (this.calConteiner.classList.contains('_active-dp')) {
+        this.calConteiner.classList.remove('_active-dp');
+      }
     });
   }
 
-  getUrlParams() {
+  static getUrlParams() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
 
     const startUrlDateString = urlParams.get('datepick-input-start');
     const endUrlDateString = urlParams.get('datepick-input-end');
 
-    if ((startUrlDateString, endUrlDateString)) { return [startUrlDateString, endUrlDateString]; }
+    if ((startUrlDateString, endUrlDateString)) {
+      return [startUrlDateString, endUrlDateString];
+    }
     return false;
   }
 
   getUrlValues() {
     if (this.singleInputMod) {
-      const queryString = window.location.search;
-
-      const [startUrlDateString, endUrlDateString] = this.getUrlParams();
+      const [startUrlDateString, endUrlDateString] = Datepicker.getUrlParams();
 
       if ((startUrlDateString, endUrlDateString)) {
         const [firstDay, firstmonth, firstyear] = startUrlDateString.split('.');
@@ -96,7 +112,7 @@ class Datepicker {
         const endDate = new Date(secondyear, secondmonth, secondDay);
 
         this.dp.selectDate([startDate, endDate]);
-        this.singleItem.value = this.formatDate(startDate, endDate);
+        this.singleItem.value = Datepicker.formatDate(startDate, endDate);
         this.setPointRange();
         this.performRange(this.rangeFrom, this.rangeTo);
       }
@@ -119,14 +135,14 @@ class Datepicker {
 
   // Методы выделения диапазона
   performRange(rangeFrom, rangeTo) {
-    this.clearRange(this.datepick, 'start-range');
-    this.clearRange(this.datepick, 'end-range');
-    this.deletePoitRange(rangeFrom);
-    this.deletePoitRange(rangeTo);
-    this.addPoitRange(rangeFrom, rangeTo);
+    Datepicker.clearRange(this.datepick, 'start-range');
+    Datepicker.clearRange(this.datepick, 'end-range');
+    Datepicker.deletePoitRange(rangeFrom);
+    Datepicker.deletePoitRange(rangeTo);
+    Datepicker.addPoitRange(rangeFrom, rangeTo);
   }
 
-  addPoitRange(startPoint, endPoint) {
+  static addPoitRange(startPoint, endPoint) {
     if (
       startPoint
       && startPoint.classList.contains('-selected-')
@@ -144,7 +160,7 @@ class Datepicker {
     }
   }
 
-  deletePoitRange(point) {
+  static deletePoitRange(point) {
     if (
       point
       && point.classList.contains('end-range')
@@ -155,7 +171,7 @@ class Datepicker {
     }
   }
 
-  clearRange(container, rangeLineClass) {
+  static clearRange(container, rangeLineClass) {
     const elems = [...container.querySelectorAll(`.${rangeLineClass}`)];
     if (elems.length === 0) return;
     elems.forEach((el) => {
@@ -176,9 +192,9 @@ class Datepicker {
   }
 
   // Конец методов выделения диапазона
-
-  formatDate(firstDate, secondDate = '') {
-    if (secondDate !== '' && this.singleInputMod) {
+  static formatDate({ firstDate, secondDate = '', mod = 'twoInputMod' }) {
+    let result;
+    if (secondDate !== '' && mod === 'singleInputMod') {
       const firstDay = firstDate.getDate();
       const secondDay = secondDate.getDate();
       const fistMonth = firstDate
@@ -188,11 +204,9 @@ class Datepicker {
         .toLocaleString('default', { month: 'long' })
         .substring(0, 3);
 
-      const result = `${firstDay} ${fistMonth} - ${secondDay} ${secondMonth}`;
-      return result;
+      result = `${firstDay} ${fistMonth} - ${secondDay} ${secondMonth}`;
     }
-
-    if (secondDate === '' && this.twoInputMod) {
+    if (secondDate === '' && mod === 'twoInputMod') {
       const day = `${firstDate.getDate()}`.length < 2
         ? `0${firstDate.getDate()}`
         : firstDate.getDate();
@@ -200,9 +214,9 @@ class Datepicker {
         ? `0${firstDate.getMonth() + 1}`
         : firstDate.getMonth() + 1;
       const year = firstDate.getFullYear();
-      const result = `${day}.${month}.${year}`;
-      return result;
+      result = `${day}.${month}.${year}`;
     }
+    return result;
   }
 
   addDateCal(items) {
@@ -217,14 +231,15 @@ class Datepicker {
       const dates = this.singleItem.value.split(' - ');
       const [firstValue, secondValue] = dates;
 
-      const firstDate = this.recreateDate(firstValue);
-      const secondDate = this.recreateDate(secondValue);
+      const firstDate = Datepicker.recreateDate(firstValue);
+      const secondDate = Datepicker.recreateDate(secondValue);
 
       this.dp.selectDate([firstDate, secondDate]);
     }
   }
 
-  recreateDate(invalidDate) {
+  static recreateDate(invalidDate) {
+    // eslint-disable-next-line prefer-const
     let [day, month] = invalidDate.split(' ');
     month = month.charAt(0).toUpperCase() + month.slice(1);
     month = MONTS.indexOf(month);
@@ -233,7 +248,7 @@ class Datepicker {
     return date;
   }
 
-  deleteComma(elem) {
+  static deleteComma(elem) {
     let text = elem.innerText;
     text = text.replace(',', '').replace('\n', ' ');
     return text;
@@ -250,7 +265,7 @@ class Datepicker {
 
   formatTitle() {
     const navTitle = this.datepick.querySelector('.air-datepicker-nav--title');
-    navTitle.innerText = this.deleteComma(navTitle);
+    navTitle.innerText = Datepicker.deleteComma(navTitle);
   }
 
   clickInputOpen({ target }) {
@@ -258,7 +273,9 @@ class Datepicker {
     if (!targetContainer) return;
 
     if (this.twoInputMod) {
-      const sibling = [...this.formGroups.filter((e) => e !== targetContainer)][0];
+      const sibling = [
+        ...this.formGroups.filter((e) => e !== targetContainer),
+      ][0];
 
       // Клик по сосденему инпуту после клика на первый, календарь не закрывается
       if (
@@ -270,7 +287,8 @@ class Datepicker {
         return;
       }
 
-      // Закрыть календарь и снять все clicked на элементах в случае повторонго клика по любому элементу при открытом календаре
+      // Закрыть календарь и снять все clicked на элементах
+      // в случае повторонго клика по любому элементу при открытом календаре
       if (
         targetContainer.classList.contains('clicked')
         && sibling.classList.contains('clicked')
@@ -322,23 +340,23 @@ class Datepicker {
       this.setPointRange();
 
       if (this.firstItem.value === this.secondItem.value) {
-        const date = secondItem.value.split('.');
+        const date = this.secondItem.value.split('.');
         let day = date[0];
-        day++;
+        day += 1;
         date.splice(0, 1, day);
         this.secondItem.value = date.join('.');
 
-        this.addDateCal(items);
+        this.addDateCal(this.items);
         this.setPointRange();
         this.performRange(this.rangeFrom, this.rangeTo);
       }
       if (this.firstItem.value > this.secondItem.value) {
-        [this.firstItem.value, sthis.econdItem.value] = [
+        [this.firstItem.value, this.econdItem.value] = [
           this.secondItem.value,
           this.firstItem.value,
         ];
         this.performRange(this.rangeFrom, this.rangeTo);
-        this.addDateCal(items);
+        this.addDateCal(this.items);
       }
       if (this.firstItem.value !== this.secondItem.value) {
         this.performRange(this.rangeFrom, this.rangeTo);
@@ -348,46 +366,54 @@ class Datepicker {
 
   checkRange({ target }) {
     const navTitle = this.datepick.querySelector('.air-datepicker-nav--title');
-    navTitle.innerText = this.deleteComma(navTitle);
+    navTitle.innerText = Datepicker.deleteComma(navTitle);
 
     // Отображение дат в полях
 
     if (this.twoInputMod) {
       if (this.dp.rangeDateFrom) {
-        this.firstItem.value = this.formatDate(this.dp.rangeDateFrom);
+        this.firstItem.value = Datepicker.formatDate({
+          firstDate: this.dp.rangeDateFrom,
+          mod: 'twoInputMod',
+        });
       }
 
       if (this.dp.rangeDateTo) {
-        this.secondItem.value = this.formatDate(this.dp.rangeDateTo);
+        this.secondItem.value = Datepicker.formatDate({
+          firstDate: this.dp.rangeDateTo,
+          mod: 'twoInputMod',
+        });
       }
     }
 
     if (this.singleInputMod && this.dp.rangeDateFrom && this.dp.rangeDateTo) {
-      this.singleItem.value = this.formatDate(
-        this.dp.rangeDateFrom,
-        this.dp.rangeDateTo,
-      );
+      this.singleItem.value = Datepicker.formatDate({
+        firstDate: this.dp.rangeDateFrom,
+        secondDate: this.dp.rangeDateTo,
+        mod: 'singleInputMod',
+      });
     }
 
     // Удаление старых линий диапазона при выборе нового
-    this.clearRange(this.datepick, 'start-range');
-    this.clearRange(this.datepick, 'end-range');
+    Datepicker.clearRange(this.datepick, 'start-range');
+    Datepicker.clearRange(this.datepick, 'end-range');
 
     // Настройка ячеек при смене месяца
     this.setPointRange();
 
     if (target.classList.contains('air-datepicker-nav--action')) {
-      this.addPoitRange(this.rangeFrom, this.rangeTo);
+      Datepicker.addPoitRange(this.rangeFrom, this.rangeTo);
     }
 
     // Выделить диапазон при движеии мыши
+    // eslint-disable-next-line no-shadow
     this.datepick.addEventListener('mousemove', ({ target, relatedTarget }) => {
       this.setPointRange();
 
       // Переменная для пред. дня при движении мыши во время выделения диапазона
       let prevDay;
 
-      this.addPoitRange(this.rangeFrom, this.rangeTo);
+      Datepicker.addPoitRange(this.rangeFrom, this.rangeTo);
 
       if (this.rangeFrom && this.rangeFrom.classList.contains('end-range')) {
         this.rangeFrom.classList.remove('end-range');
@@ -417,9 +443,10 @@ class Datepicker {
         if (prevDay) prevDay.classList.remove('start-range');
       }
 
-      // Удаление выделения диапазона у элементов там, где это не нужно при быстром движении мыши или выход за контейнер.
-      this.clearRange(this.datepick, 'start-range');
-      this.clearRange(this.datepick, 'end-range');
+      // Удаление выделения диапазона у элементов там, где это не нужно при быстром
+      // движении мыши или выход за контейнер.
+      Datepicker.clearRange(this.datepick, 'start-range');
+      Datepicker.clearRange(this.datepick, 'end-range');
 
       // Удалить выделение диапазона в случае возврата мыши к выбранной дате
       if (
@@ -452,14 +479,24 @@ class Datepicker {
     const fourAfer = new Date(year, month, day + 5);
 
     if (this.twoInputMod) {
-      this.firstItem.value = this.formatDate(tommorow);
-      this.secondItem.value = this.formatDate(fourAfer);
+      this.firstItem.value = Datepicker.formatDate({
+        firstDate: tommorow,
+        mod: 'twoInputMod',
+      });
+      this.secondItem.value = Datepicker.formatDate({
+        firstDate: fourAfer,
+        mod: 'twoInputMod',
+      });
       this.addDateCal(this.items);
       this.setPointRange();
     }
 
     if (this.singleInputMod) {
-      this.singleItem.value = this.formatDate(tommorow, fourAfer);
+      this.singleItem.value = Datepicker.formatDate({
+        firstDate: tommorow,
+        secondDate: fourAfer,
+        mod: 'singleInputMod',
+      });
       this.addDateCal(this.items);
       this.setPointRange();
     }

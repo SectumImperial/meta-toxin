@@ -84,8 +84,12 @@ class Dropdown {
 
   closeOuterClick({ target }) {
     if (target.closest('.dropdown')) return;
-    if (this.field.classList.contains('_opened')) { this.field.classList.remove('_opened'); }
-    if (this.dropdownContent.classList.contains('_active')) { this.dropdownContent.classList.remove('_active'); }
+    if (this.field.classList.contains('_opened')) {
+      this.field.classList.remove('_opened');
+    }
+    if (this.dropdownContent.classList.contains('_active')) {
+      this.dropdownContent.classList.remove('_active');
+    }
   }
 
   performData(selector, data) {
@@ -180,7 +184,10 @@ class Dropdown {
         arrKyes.push(value);
       }
     }
-    const reusult = arrKyes.reduce((prev, curr) => Number(prev) + Number(curr), 0);
+    const reusult = arrKyes.reduce(
+      (prev, curr) => Number(prev) + Number(curr),
+      0,
+    );
     return reusult;
   }
 
@@ -205,10 +212,14 @@ class Dropdown {
     if (
       Number(count.value) > 0
       && e.target.classList.contains('dropdown__btn_disabled')
-    ) { e.target.classList.remove('dropdown__btn_disabled'); }
+    ) {
+      e.target.classList.remove('dropdown__btn_disabled');
+    }
     if (e.target.classList.contains('dropdown__btn_disabled')) return;
     count.value = Number(count.value) - 1;
-    if (Number(count.value) === 0) { e.target.classList.add('dropdown__btn_disabled'); }
+    if (Number(count.value) === 0) {
+      e.target.classList.add('dropdown__btn_disabled');
+    }
     this.performData('.dropdown__count', this.options);
     this.checkBtnVisibility(this.dropdown, '.dropdown__count');
   }
@@ -221,7 +232,9 @@ class Dropdown {
     this.checkLimits(count);
     if (Number(count.value) === 999) return;
     count.value = Number(count.value) + 1;
-    if (Number(count.value) > 0) { decrement.classList.remove('dropdown__btn_disabled'); }
+    if (Number(count.value) > 0) {
+      decrement.classList.remove('dropdown__btn_disabled');
+    }
     this.performData('.dropdown__count', this.options);
     this.checkBtnVisibility(this.dropdown, '.dropdown__count');
   }

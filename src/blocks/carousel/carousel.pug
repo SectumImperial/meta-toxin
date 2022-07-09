@@ -1,10 +1,10 @@
 mixin carousel(images, href) 
   .carousel
-    button.carousel__prev.icon__expand_more
+    button.carousel__prev.icon__expand_more.js-carousel__prev
     .carousel__images 
-      ul.carousel__items
+      ul.carousel__items.js-carousel__items
         each image in images
-          li.carousel__item
+          li.carousel__item.js-carousel__item
             a(
                 href = href,
                 class = 'carousel__link'
@@ -17,6 +17,6 @@ mixin carousel(images, href)
         ul.carousel__toggles 
           each toggle in images
             li.carousel__toggle
-              button.carousel__toggle-button
-    button.carousel__next.icon__expand_more
+              button.carousel__toggle-button.js-carousel__toggle-button
+    button.carousel__next.icon__expand_more.js-carousel__next
             

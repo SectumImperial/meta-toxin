@@ -94,7 +94,9 @@ class OrderCount {
     this.count.querySelector('.order-counting__add-fee-compute').innerText = string;
 
     const tip = this.createTip(this.fees.fee.message);
-    if (tip) { this.count.querySelector('.order-counting__add-fee-compute').append(tip); }
+    if (tip) {
+      this.count.querySelector('.order-counting__add-fee-compute').append(tip);
+    }
 
     this.count.querySelector(
       '.order-counting__add-fee-computed',

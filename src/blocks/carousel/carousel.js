@@ -1,4 +1,13 @@
-import { WIDTH, COUNT } from './constants.js';
+import {
+  WIDTH,
+  COUNT,
+  ITEMS,
+  ITEM,
+  PREV,
+  NEXT,
+  TOGGLE,
+  ACTIVE,
+} from './constants';
 
 class Carousel {
   constructor(element) {
@@ -11,11 +20,11 @@ class Carousel {
     this.count = COUNT;
     this.position = 0;
 
-    this.list = this.carousel.querySelector('.carousel__items');
-    this.listElems = this.carousel.querySelectorAll('.carousel__item');
-    this.prev = this.carousel.querySelector('.carousel__prev');
-    this.next = this.carousel.querySelector('.carousel__next');
-    this.toggles = this.carousel.querySelectorAll('.carousel__toggle-button');
+    this.list = this.carousel.querySelector(`.${ITEMS}`);
+    this.listElems = this.carousel.querySelectorAll(`.${ITEM}`);
+    this.prev = this.carousel.querySelector(`.${PREV}`);
+    this.next = this.carousel.querySelector(`.${NEXT}`);
+    this.toggles = this.carousel.querySelectorAll(`.${TOGGLE}`);
 
     this.xDown = null;
 
@@ -72,9 +81,9 @@ class Carousel {
     const countImage = this.position / -this.width;
     this.toggles.forEach((toggle) => {
       if (Number(toggle.dataset.toggleCount) === countImage) {
-        toggle.classList.add('_active');
+        toggle.classList.add(ACTIVE);
       } else {
-        toggle.classList.remove('_active');
+        toggle.classList.remove(ACTIVE);
       }
     });
   }

@@ -5,6 +5,10 @@ import {
   LI_CLASS,
   HIDE,
   COUNT_PAGE,
+  ITEMS,
+  BTN_PREV,
+  BTN_NEXT,
+  TEXT,
 } from './constants';
 
 class Paginator {
@@ -14,11 +18,11 @@ class Paginator {
   }
 
   init() {
-    this.itemsPaginator = this.paginator.querySelector('.paginator__items');
-    this.btnPrev = this.paginator.querySelector('.paginator__button_prev');
-    this.btnNext = this.paginator.querySelector('.paginator__button_next');
+    this.itemsPaginator = this.paginator.querySelector(`.${ITEMS}`);
+    this.btnPrev = this.paginator.querySelector(`.${BTN_PREV}`);
+    this.btnNext = this.paginator.querySelector(`.${BTN_NEXT}`);
     this.liClass = LI_CLASS;
-    this.textElement = this.paginator.querySelector('.paginator__text');
+    this.textElement = this.paginator.querySelector(`.${TEXT}`);
     this.count = COUNT_PAGE;
     this.currentPage = 1;
     this.startPage = 1;
@@ -216,7 +220,7 @@ class Paginator {
 
   //   Клик по номеру страницы
   changePage({ target }) {
-    if (!target.classList.contains('paginator__item')) return;
+    if (!target.classList.contains(LI_CLASS)) return;
     if (target.dataset.dots) return;
     this.removePage();
     this.currentPage = target.dataset.number;
@@ -228,7 +232,7 @@ class Paginator {
   //   Установить тек. страницу
   setCurrentPage() {
     const page = this.itemsPaginator.querySelector(
-      `.paginator__item[data-number="${this.currentPage}"]`,
+      `.${LI_CLASS}[data-number="${this.currentPage}"]`,
     );
 
     page.classList.add(ACTIVE_LI);
@@ -241,7 +245,7 @@ class Paginator {
   //   Удалить классы тек. страницы
   removePage() {
     const current = this.itemsPaginator.querySelector(
-      `.paginator__item[data-number="${this.currentPage}"]`,
+      `.${LI_CLASS}[data-number="${this.currentPage}"]`,
     );
     current.classList.remove(ACTIVE_LI);
     current.classList.remove(ACTIVE_JS);

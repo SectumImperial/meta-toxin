@@ -1,10 +1,6 @@
 /* eslint-disable no-restricted-syntax */
 import {
-  CHART,
-  LEGEND,
-  SVG,
-  ITEM,
-  UNIT,
+  CHART, LEGEND, SVG, ITEM, UNIT,
 } from './constants';
 
 class Canvas {
@@ -85,7 +81,11 @@ class Canvas {
     return defs;
   }
 
-  static createDef({ id = 'default', stopFirst = '#6b0000', stopSecond = '#1a0000' }) {
+  static createDef({
+    id = 'default',
+    stopFirst = '#6b0000',
+    stopSecond = '#1a0000',
+  }) {
     return `<linearGradient id="${id}" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="${stopFirst}"/>
       <stop offset="100%" stop-color="${stopSecond}"/>

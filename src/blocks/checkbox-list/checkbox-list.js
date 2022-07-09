@@ -1,7 +1,9 @@
-const ITEMS = 'js-checkbox-list__items';
-const OPENED = 'js_opened';
-const OPENED_LIST = 'js_opened_list';
-const ACTIVE = `${ACTIVE}`;
+import {
+  ITEMS,
+  OPENED,
+  OPENED_LIST,
+  ACTIVE,
+} from './constants';
 
 class CheckboxList {
   constructor(selector) {

@@ -29,8 +29,12 @@ class Slider {
       ? this.options.initialEnd
       : this.max;
 
-    this.rangeProgress.style.left = `${(this.toggleOne.value / this.max) * 100}%`;
-    this.rangeProgress.style.right = `${100 - (this.toggleTwo.value / this.max) * 100}%`;
+    this.rangeProgress.style.left = `${
+      (this.toggleOne.value / this.max) * 100
+    }%`;
+    this.rangeProgress.style.right = `${
+      100 - (this.toggleTwo.value / this.max) * 100
+    }%`;
 
     this.setValues();
     this.addListeners();
@@ -38,7 +42,10 @@ class Slider {
 
   addListeners() {
     this.toggleOne.addEventListener('input', this.changeFirstToggle.bind(this));
-    this.toggleTwo.addEventListener('input', this.changeSecondToggle.bind(this));
+    this.toggleTwo.addEventListener(
+      'input',
+      this.changeSecondToggle.bind(this),
+    );
   }
 
   setValues() {
@@ -53,8 +60,12 @@ class Slider {
   }
 
   colorRange() {
-    this.rangeProgress.style.left = `${(this.toggleOne.value / this.max) * 100}%`;
-    this.rangeProgress.style.right = `${100 - (this.toggleTwo.value / this.max) * 100}%`;
+    this.rangeProgress.style.left = `${
+      (this.toggleOne.value / this.max) * 100
+    }%`;
+    this.rangeProgress.style.right = `${
+      100 - (this.toggleTwo.value / this.max) * 100
+    }%`;
   }
 
   changeFirstToggle() {
