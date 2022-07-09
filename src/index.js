@@ -1,6 +1,6 @@
-import './common/styles.scss'
+import './common/styles.scss';
 
-const pages = ['start-page', 'error-page']
+const pages = ['start-page', 'error-page'];
 
 const files = [
   'registration',
@@ -39,7 +39,7 @@ const files = [
   'room-number',
   'room-price',
   'order-counting',
-]
+];
 
-pages.forEach((e) => require(`./pages/${e}/index.js`))
-files.forEach((e) => require(`./blocks/${e}/index.js`))
+pages.forEach((e) => require(`./pages/${e}/index.js`));
+files.forEach((e) => require(`./blocks/${e}/index.js`));

@@ -3,52 +3,52 @@ import {
   UNLIKED__HEART,
   LIKED_COUNT,
   LIKED_BUTTON,
-} from './constants'
+} from './constants';
 
 class Like {
   constructor(element) {
-    this.like = element
-    this.init()
+    this.like = element;
+    this.init();
   }
 
   init() {
-    this.heart = this.like.querySelector('.like__heart')
-    this.count = this.like.querySelector('.like__count')
-    this.button = this.like.querySelector('.like__button')
+    this.heart = this.like.querySelector('.like__heart');
+    this.count = this.like.querySelector('.like__count');
+    this.button = this.like.querySelector('.like__button');
 
-    this.addListeners()
+    this.addListeners();
   }
 
   addListeners() {
-    this.like.addEventListener('click', this.toggleLike.bind(this))
+    this.like.addEventListener('click', this.toggleLike.bind(this));
   }
 
   toggleLike() {
     if (this.button.classList.contains(LIKED_BUTTON)) {
-      this.decrementLike()
+      this.decrementLike();
     }
 
     if (!this.button.classList.contains(LIKED_BUTTON)) {
-      this.incrementLike()
+      this.incrementLike();
     }
 
-    this.button.classList.toggle(LIKED_BUTTON)
-    this.heart.classList.toggle(LIKED__HEART)
-    this.heart.classList.toggle(UNLIKED__HEART)
-    this.count.classList.toggle(LIKED_COUNT)
+    this.button.classList.toggle(LIKED_BUTTON);
+    this.heart.classList.toggle(LIKED__HEART);
+    this.heart.classList.toggle(UNLIKED__HEART);
+    this.count.classList.toggle(LIKED_COUNT);
   }
 
   decrementLike() {
-    let val = this.count.innerText
-    val--
-    this.count.innerText = val
+    let val = this.count.innerText;
+    val--;
+    this.count.innerText = val;
   }
 
   incrementLike() {
-    let val = this.count.innerText
-    val++
-    this.count.innerText = val
+    let val = this.count.innerText;
+    val++;
+    this.count.innerText = val;
   }
 }
 
-export default Like
+export default Like;

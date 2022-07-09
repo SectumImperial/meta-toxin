@@ -10,6 +10,6 @@ const MONTS = [
   'Сен',
   'Ноя',
   'Дек',
-]
+];
 
-export { MONTS }
+export { MONTS };

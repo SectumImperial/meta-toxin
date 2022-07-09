@@ -1,8 +1,6 @@
 mixin button(options = {}) 
   - 
     const {
-      classWrapper = '',
-      classBtn = '',
       btnType = 'button',
       type = 'submit',
       btnMod = [],
@@ -10,7 +8,8 @@ mixin button(options = {})
       btnColor = '',
       btnWrapperColor = 'violet',
       btnSize = 'small',
-      href = 'error-page.html'
+      href = 'error-page.html',
+      content = ''
     } = options 
 
     const colorBtn = {
@@ -43,21 +42,21 @@ mixin button(options = {})
 
 
   .button(
-    class = `${classWrapper} ${wrapperColor[btnWrapperColor]}`
+    class = `${wrapperColor[btnWrapperColor]}`
    )
     - if(btnType === 'button')
-     button(
-       class = `button__button ${colorBtn[btnColor]} ${sizeBtn[btnSize]} ${mod}`
+     button.button__button(
+       class = `${colorBtn[btnColor]} ${sizeBtn[btnSize]} ${mod}`
        type = type
       )
-       span.button__content= options.content
+       span.button__content= content
      - if (arrow) 
        .button_arrow.icon__arrow_forward
     - if(btnType === 'link')
-     a(
-       class = `button__button button_link ${colorBtn[btnColor]} ${sizeBtn[btnSize]} ${mod}`
+     a.button__button(
+       class = `button_link ${colorBtn[btnColor]} ${sizeBtn[btnSize]} ${mod}`
        href = href
       )
-       span.button__content= options.content
+       span.button__content= content
 
 

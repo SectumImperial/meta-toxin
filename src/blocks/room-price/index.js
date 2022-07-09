@@ -1,1 +1,1 @@
-import './room-price.scss'
+import './room-price.scss';

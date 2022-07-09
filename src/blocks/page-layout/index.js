@@ -1,1 +1,1 @@
-import './page-layout.scss'
+import './page-layout.scss';

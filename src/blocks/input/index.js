@@ -1,8 +1,8 @@
-import './input.scss'
+import './input.scss';
 
-import Inputmask from 'inputmask'
+import Inputmask from 'inputmask';
 
-let inputDates = document.querySelectorAll('._dateInput')
+const inputDates = document.querySelectorAll('._dateInput');
 
 if (inputDates) {
   inputDates.forEach((e) => {
@@ -13,17 +13,17 @@ if (inputDates) {
       showMaskOnHover: false,
       showMaskOnFocus: false,
       greedy: false,
-    }).mask(e)
-  })
+    }).mask(e);
+  });
 }
 
-let inputs = document.querySelectorAll('.input')
+const inputs = document.querySelectorAll('.input');
 
 inputs.forEach((element) => {
-  if (element.querySelector('input[type="email"]')) return
+  if (element.querySelector('input[type="email"]')) return;
   element.addEventListener('click', () => {
-    let arrow = element.querySelector('._input_arrow-js')
-    if (!arrow) return
-    arrow.classList.toggle('input_oppened-js')
-  })
-})
+    const arrow = element.querySelector('._input_arrow-js');
+    if (!arrow) return;
+    arrow.classList.toggle('input_oppened-js');
+  });
+});

@@ -12,7 +12,7 @@ mixin checkbox-list(options = {})
     .checkbox-list__head 
       span.checkbox-list__title= titleList
       span.checkbox-list__arrow.icon__expand_more
-    ul.checkbox-list__items
+    ul.checkbox-list__items.js-checkbox-list__items
       each item in items 
         - 
           const {

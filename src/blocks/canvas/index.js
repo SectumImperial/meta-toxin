@@ -1,5 +1,5 @@
-import './canvas.scss'
+import './canvas.scss';
 
-import Canvas from './Canvas'
+import Canvas from './Canvas';
 
-document.querySelectorAll('.canvas').forEach((e) => new Canvas(e))
+document.querySelectorAll('.canvas').forEach((e) => new Canvas(e));

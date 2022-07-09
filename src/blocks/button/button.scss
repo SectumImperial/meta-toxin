@@ -1,9 +1,8 @@
 @use 'sass:math';
-@import '../../common/functions.scss';
 @import '../../common/variables.scss';
 
 .button {
-  padding: rem(2);
+  padding: 2px;
   border-radius: 25px;
   background: $gradient;
   position: relative;
@@ -46,7 +45,7 @@
 
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: rem(12);
+    font-size: $fontTiny;
 
     text-transform: uppercase;
     text-align: center;

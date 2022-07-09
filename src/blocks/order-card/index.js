@@ -1,1 +1,1 @@
-import './order-card.scss'
+import './order-card.scss';

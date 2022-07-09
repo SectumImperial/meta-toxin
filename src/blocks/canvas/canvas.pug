@@ -1,11 +1,9 @@
 mixin canvas(options = {})
   -
     const {
-      canvasClass = '',
       canvas = {}
     } = options
-  div(
-    class = `canvas ${canvasClass}`
+  div.canvas(
     data-canvas = canvas
   ) 
     .canvas__chart

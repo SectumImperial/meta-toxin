@@ -1,4 +1,4 @@
-import './like.scss'
-import Like from './Like'
+import './like.scss';
+import Like from './Like';
 
-document.querySelectorAll('.like').forEach((e) => new Like(e))
+document.querySelectorAll('.like').forEach((e) => new Like(e));

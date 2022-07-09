@@ -1,1 +1,1 @@
-import './error-page.scss'
+import './error-page.scss';

@@ -1,231 +1,237 @@
+/* eslint-disable no-restricted-syntax */
+import {
+  CHART, LEGEND, SVG, ITEM, UNIT,
+} from './constants';
+
 class Canvas {
   constructor(element) {
-    this.canvas = element
-
-    this.options
+    this.canvas = element;
     try {
-      this.options = JSON.parse(this.canvas.dataset.canvas)
+      this.options = JSON.parse(this.canvas.dataset.canvas);
     } catch (err) {
-      throw new Error('Ошибка в опциях', err)
+      throw new Error('Ошибка в опциях', err);
     }
 
-    this.init()
+    this.init();
   }
 
   init() {
-    this.allCounts = this.sumCount()
-    this.dashoffsets = []
+    this.allCounts = this.sumCount();
+    this.dashoffsets = [];
+    this.svgBlock = this.canvas.querySelector(`.${CHART}`);
+    this.legendBlock = this.canvas.querySelector(`.${LEGEND}`);
+    this.defs = this.createDefs();
+    this.circles = this.createCircles();
+    this.text = this.createText();
+    this.svgTmp = this.createSvg();
+    this.addSvg();
+    this.chart = document.querySelector(`.${SVG}`);
+    this.addText();
+    this.list = this.createList();
+    this.items = this.list.querySelectorAll(`.${ITEM}`);
+    this.legendBlock.append(this.list);
 
-    this.svgBlock = this.canvas.querySelector('.canvas__chart')
-    this.legendBlock = this.canvas.querySelector('.canvas__legend')
-
-    this.defs = this.createDefs()
-    this.circles = this.createCircles()
-    this.text = this.createText()
-    this.svgTmp = this.createSvg()
-
-    this.addSvg()
-    this.chart = document.querySelector('.canvas__svg')
-    this.addText()
-
-    this.list = this.createList()
-    this.items = this.list.querySelectorAll('.canvas__item')
-    this.legendBlock.append(this.list)
-
-    this.circles = this.canvas.querySelectorAll('.canvas__unit')
-    this.addListeners()
+    this.circles = this.canvas.querySelectorAll(`.${UNIT}`);
+    this.addListeners();
   }
 
   addListeners() {
     this.items.forEach((item) => {
-      item.addEventListener('mouseover', this.performText.bind(this))
-      item.addEventListener('mouseout', this.resetText.bind(this))
-    })
+      item.addEventListener('mouseover', this.performText.bind(this));
+      item.addEventListener('mouseout', this.resetText.bind(this));
+    });
 
     this.circles.forEach((circle) => {
-      circle.addEventListener('mouseover', this.performText.bind(this))
-      circle.addEventListener('mouseout', this.resetText.bind(this))
-    })
+      circle.addEventListener('mouseover', this.performText.bind(this));
+      circle.addEventListener('mouseout', this.resetText.bind(this));
+    });
   }
 
   sumCount() {
-    let sum = 0
-    for (let option of this.options) {
-      if (option.count) sum += option.count
-      if (!option.count) sum += 0
+    let sum = 0;
+    for (const option of this.options) {
+      if (option.count) sum += option.count;
+      if (!option.count) sum += 0;
     }
 
-    if (isNaN(sum)) throw new Error('Ошибка в подсчёте суммы голосов')
-    return sum
+    if (Number.isNaN(sum)) throw new Error('Ошибка в подсчёте суммы голосов');
+    return sum;
   }
 
   createSvg() {
-    let svgTemp = `<svg class="canvas__svg" width="120" height="121" viewBox="0 0 33 32">
+    const svgTemp = `<svg class="${SVG}" width="120" height="121" viewBox="0 0 33 32">
     ${this.defs}
     ${this.circles.join('')}
-    </svg>`
-    return svgTemp
+    </svg>`;
+    return svgTemp;
   }
 
   addSvg() {
-    this.svgBlock.insertAdjacentHTML('beforeend', this.svgTmp)
+    this.svgBlock.insertAdjacentHTML('beforeend', this.svgTmp);
   }
 
   createDefs() {
-    let items = ''
+    let items = '';
     this.options.forEach((option) => {
-      items += this.createDef(option)
-    })
-    if (items.length === 0) throw new Error('Нет опций для defs')
+      items += Canvas.createDef(option);
+    });
+    if (items.length === 0) throw new Error('Нет опций для defs');
 
-    let defs = `<defs>${items}</defs>`
-    return defs
+    const defs = `<defs>${items}</defs>`;
+    return defs;
   }
 
-  createDef({ id = 'default', stopFirst = '#6b0000', stopSecond = '#1a0000' }) {
-    return `<linearGradient id="${id}" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="${stopFirst}"/><stop offset="100%" stop-color="${stopSecond}"/></linearGradient>`
+  static createDef({ id = 'default', stopFirst = '#6b0000', stopSecond = '#1a0000' }) {
+    return `<linearGradient id="${id}" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="${stopFirst}"/>
+      <stop offset="100%" stop-color="${stopSecond}"/>
+    </linearGradient>`;
   }
 
   createCircles() {
-    let circles = []
+    const circles = [];
     this.options.forEach((option) => {
-      circles.push(this.createCircle(option))
-    })
+      circles.push(this.createCircle(option));
+    });
 
-    return circles
+    return circles;
   }
 
   createCircle(option) {
     // create dashoffsets
-    let dash = this.computeDash(option, this.allCounts)
-    let dashoffsetVal = this.dashoffsets.reduce((curr, prev) => curr + prev, 0)
-    this.dashoffsets.push(dash)
+    const dash = Canvas.computeDash(option, this.allCounts);
+    const dashoffsetVal = this.dashoffsets.reduce(
+      (curr, prev) => curr + prev,
+      0,
+    );
+    this.dashoffsets.push(dash);
 
     // create rest params
-    let dasharray = this.createDash(dash)
-    let url = this.createUrl(option)
-    let dashoffset = this.createDashOffset(dashoffsetVal)
+    const dasharray = Canvas.createDash(dash);
+    const url = Canvas.createUrl(option);
+    const dashoffset = Canvas.createDashOffset(dashoffsetVal);
 
-    let className = option.id
-      ? `canvas__unit_${option.id}`
-      : 'canvas__unit_default'
+    const className = option.id ? `${UNIT}_${option.id}` : `${UNIT}_default`;
 
-    let circle = `<circle class="canvas__unit ${className}" data-line="${option.id}" r="15.9" cx="50%" cy="50%" ${url} ${dasharray} ${dashoffset}></circle>`
-    return circle
+    const circle = `<circle class="${UNIT} ${className}" data-line="${option.id}" 
+    r="15.9" cx="50%" cy="50%" ${url} ${dasharray} ${dashoffset}></circle>`;
+    return circle;
   }
 
-  computeDash({ count = 0 }, allCounts) {
-    let dash = (count / allCounts) * 100
-    return dash
+  static computeDash({ count = 0 }, allCounts) {
+    const dash = (count / allCounts) * 100;
+    return dash;
   }
 
-  createDash(dash) {
-    if (dash !== 0) dash--
-    let dasharray = `stroke-dasharray="${dash} 100"`
-    return dasharray
+  static createDash(dash = 0) {
+    let strokeDasharray = dash;
+    if (dash !== 0) strokeDasharray -= 1;
+    const dasharray = `stroke-dasharray="${strokeDasharray} 100"`;
+    return dasharray;
   }
 
-  createUrl({ id = 'default' }) {
-    return `stroke="url(#${id})"`
+  static createUrl({ id = 'default' }) {
+    return `stroke="url(#${id})"`;
   }
 
-  createDashOffset(dashoffsetVal = 0) {
-    if (dashoffsetVal !== 0) dashoffsetVal *= -1
-    return `stroke-dashoffset="${dashoffsetVal}"`
+  static createDashOffset(dashoffsetVal = 0) {
+    let strokeDashoffset = dashoffsetVal;
+    if (dashoffsetVal !== 0) strokeDashoffset *= -1;
+    return `stroke-dashoffset="${strokeDashoffset}"`;
   }
 
   // Creat the text
   createText(fill = '#000000', count = this.allCounts) {
-    let textNum = `<text text-anchor="middle" class="canvas__number" x="50%" y="48%" fill="${fill}">${count}</text>`
-    let description = `<text text-anchor="middle" class="canvas__descr" x="50%" y="65%" fill="${fill}">Голосов</text>`
-    let group = `<g class="canvas__text-group" fill="${fill}">${textNum}${description}</g>`
-    return group
+    const textNum = `<text text-anchor="middle" class="canvas__number" x="50%" y="48%" fill="${fill}">${count}</text>`;
+    const description = `<text text-anchor="middle" class="canvas__descr" x="50%" y="65%" fill="${fill}">Голосов</text>`;
+    const group = `<g class="canvas__text-group" fill="${fill}">${textNum}${description}</g>`;
+    return group;
   }
 
   // create the list
   createList() {
-    let ul = this.createUl()
-    let items = []
+    const ul = Canvas.createUl();
+    const items = [];
     this.options.forEach((option) => {
-      items.push(this.createLi(option))
-    })
+      items.push(Canvas.createLi(option));
+    });
     items.forEach((e) => {
-      ul.append(e)
-    })
+      ul.append(e);
+    });
 
-    return ul
+    return ul;
   }
 
-  createUl() {
-    let ul = document.createElement('ul')
-    ul.className = 'canvas__items'
-    return ul
+  static createUl() {
+    const ul = document.createElement('ul');
+    ul.className = 'canvas__items';
+    return ul;
   }
 
-  createLi({
+  static createLi({
     id = 'default',
     name = 'Мёртвые голоса',
     stopFirst = '#6b0000',
     stopSecond = '#1a0000',
   }) {
-    let li = document.createElement('li')
-    let className = `canvas__item canvas__item_${id}`
-    li.dataset.line = id
-    li.className = className
-    li.innerText = name
+    const li = document.createElement('li');
+    const className = `${ITEM} ${ITEM}_${id}`;
+    li.dataset.line = id;
+    li.className = className;
+    li.innerText = name;
 
-    let mark = document.createElement('div')
-    mark.className = `canvas__item-mark canvas__item-mark_${id}`
-    mark.style.width = '10px'
-    mark.style.height = '10px'
-    mark.style.background = `linear-gradient(${stopFirst}, ${stopSecond})`
-    mark.style.borderRadius = '50%'
+    const mark = document.createElement('div');
+    mark.className = `${ITEM}-mark ${ITEM}-mark_${id}`;
+    mark.style.width = '10px';
+    mark.style.height = '10px';
+    mark.style.background = `linear-gradient(${stopFirst}, ${stopSecond})`;
+    mark.style.borderRadius = '50%';
 
-    li.append(mark)
+    li.append(mark);
 
-    return li
+    return li;
   }
 
   // Mouse events and perform the text
 
   addText() {
-    this.chart.insertAdjacentHTML('beforeend', this.text)
+    this.chart.insertAdjacentHTML('beforeend', this.text);
   }
 
   deleteText() {
-    let text = this.canvas.querySelector('.canvas__text-group')
-    if (text) text.remove()
+    const text = this.canvas.querySelector('.canvas__text-group');
+    if (text) text.remove();
   }
 
   performText({ target }) {
-    let line = target.dataset.line
+    const { line } = target.dataset;
 
-    for (let { count, stopFirst, id = 'default' } of this.options) {
+    for (const { count, stopFirst, id = 'default' } of this.options) {
       if (id === line) {
-        this.text = this.createText(stopFirst, count)
-        this.deleteText()
-        this.addText()
-        this.boldLine(id)
+        this.text = this.createText(stopFirst, count);
+        this.deleteText();
+        this.addText();
+        this.boldLine(id);
       }
     }
   }
 
   resetText() {
-    this.deleteText()
-    this.text = this.createText()
-    this.addText()
-    this.resetLine()
+    this.deleteText();
+    this.text = this.createText();
+    this.addText();
+    this.resetLine();
   }
 
   boldLine(id) {
-    let circleLine = this.canvas.querySelector(`.canvas__unit_${id}`)
-    if (circleLine) circleLine.classList.add('canvas__unit_hovered')
+    const circleLine = this.canvas.querySelector(`.${UNIT}_${id}`);
+    if (circleLine) circleLine.classList.add(`.${UNIT}_hovered`);
   }
 
   resetLine() {
-    let hoveredLine = this.canvas.querySelector(`.canvas__unit_hovered`)
-    if (hoveredLine) hoveredLine.classList.remove('canvas__unit_hovered')
+    const hoveredLine = this.canvas.querySelector(`.${UNIT}_hovered`);
+    if (hoveredLine) hoveredLine.classList.remove(`${UNIT}_hovered`);
   }
 }
 
-export default Canvas
+export default Canvas;

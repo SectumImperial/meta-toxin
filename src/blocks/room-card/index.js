@@ -1,1 +1,1 @@
-import './room-card.scss'
+import './room-card.scss';

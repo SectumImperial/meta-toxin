@@ -1,4 +1,4 @@
-const WIDTH = 270
-const COUNT = 1
+const WIDTH = 270;
+const COUNT = 1;
 
-export { WIDTH, COUNT }
+export { WIDTH, COUNT };

@@ -1,20 +1,20 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const path = require('path')
-const fs = require('fs')
-const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const path = require('path');
+const fs = require('fs');
+const webpack = require('webpack');
 
-let MODE = 'development'
+let MODE = 'development';
 if (process.env.NODE_ENV === 'production') {
-  MODE = 'production'
+  MODE = 'production';
 }
 
-console.log(`mode: ${MODE}`)
+console.log(`mode: ${MODE}`);
 
-const PAGES_DIR = path.resolve(__dirname, 'src/pages')
-const PAGES = fs.readdirSync(PAGES_DIR).map((filename) => filename)
+const PAGES_DIR = path.resolve(__dirname, 'src/pages');
+const PAGES = fs.readdirSync(PAGES_DIR).map((filename) => filename);
 
-console.log(PAGES)
+console.log(PAGES);
 
 module.exports = {
   mode: MODE,
@@ -47,11 +47,10 @@ module.exports = {
     }),
 
     ...PAGES.map(
-      (page) =>
-        new HtmlWebpackPlugin({
-          template: `${PAGES_DIR}/${page}/${page}.pug`,
-          filename: `./${page}.html`,
-        })
+      (page) => new HtmlWebpackPlugin({
+        template: `${PAGES_DIR}/${page}/${page}.pug`,
+        filename: `./${page}.html`,
+      }),
     ),
   ],
   module: {
@@ -108,4 +107,4 @@ module.exports = {
       },
     ],
   },
-}
+};

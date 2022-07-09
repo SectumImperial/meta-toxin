@@ -6,7 +6,8 @@
   "scripts": {
     "start": "set NODE_ENV=development&&webpack serve",
     "dev": "set NODE_ENV=development&&webpack",
-    "build": "set NODE_ENV=production&&webpack"
+    "build": "set NODE_ENV=production&&webpack",
+    "lint": "eslint . --ext js,jsx,ts,tsx --fix"
   },
   "keywords": [],
   "author": "Maxim",
@@ -16,6 +17,10 @@
     "@babel/preset-env": "^7.16.11",
     "babel-loader": "^8.2.3",
     "css-loader": "^6.6.0",
+    "eslint": "^8.19.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-pug": "^1.2.4",
     "html-loader": "^3.1.0",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.5.3",

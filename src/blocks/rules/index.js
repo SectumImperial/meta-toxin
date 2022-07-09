@@ -1,1 +1,1 @@
-import './rules.scss'
+import './rules.scss';
