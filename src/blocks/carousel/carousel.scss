@@ -82,7 +82,8 @@
     }
   }
 
-  &:hover {
+  &:hover,
+  &:focus {
     .carousel__prev,
     .carousel__next {
       visibility: visible;

@@ -35,10 +35,11 @@ class Carousel {
 
   markToggless() {
     let i = 0;
-    for (const toggle of this.toggles) {
+    this.toggles.forEach((toggle) => {
+      // eslint-disable-next-line no-param-reassign
       toggle.dataset.toggleCount = i;
-      i++;
-    }
+      i += 1;
+    });
   }
 
   addListeners() {
@@ -96,12 +97,12 @@ class Carousel {
     this.checkActive();
   }
 
-  getTouches(evt) {
+  static getTouches(evt) {
     return evt.touches;
   }
 
   handleTouchStart(evt) {
-    const firstTouch = this.getTouches(evt)[0];
+    const firstTouch = Carousel.getTouches(evt)[0];
     this.xDown = firstTouch.clientX;
   }
 

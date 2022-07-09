@@ -12,19 +12,18 @@ const TYPE = 'js-dropdown__type';
 const ITEM = 'js-dropdown__item';
 const DISABLED = 'js-dropdown__btn_disabled';
 
-
 export {
-    DEFAULT_KEY,
-    FIELD,
-    INPUT,
-    CONTENT,
-    BTN_CLEAR,
-    BTN_ACCEPT,
-    COUNT,
-    COUTER,
-    BTNS_DEC,
-    BTNS_INC,
-    TYPE,
-    ITEM,
-    DISABLED,
-}
+  DEFAULT_KEY,
+  FIELD,
+  INPUT,
+  CONTENT,
+  BTN_CLEAR,
+  BTN_ACCEPT,
+  COUNT,
+  COUTER,
+  BTNS_DEC,
+  BTNS_INC,
+  TYPE,
+  ITEM,
+  DISABLED,
+};
