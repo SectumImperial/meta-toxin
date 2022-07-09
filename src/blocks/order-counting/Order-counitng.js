@@ -1,8 +1,8 @@
+// Just imitation of counting
 class OrderCount {
   constructor(element) {
     this.count = element;
 
-    this.options;
     try {
       this.options = JSON.parse(this.count.dataset.count);
     } catch (err) {
@@ -36,22 +36,22 @@ class OrderCount {
 
   sumAll(sumRent) {
     let sumFees = sumRent;
-    for (const fee in this.fees) {
+    Object.keys(this.fees).forEach((fee) => {
       if (this.fees[fee].count) {
         sumFees += this.fees[fee].count;
       }
-    }
+    });
 
     return sumFees;
   }
 
   computeFinal(sum) {
     let sumDisc = sum;
-    for (const discount in this.discounts) {
+    Object.keys(this.discounts).forEach((discount) => {
       if (this.discounts[discount].count) {
         sumDisc -= this.discounts[discount].count;
       }
-    }
+    });
 
     return sumDisc;
   }
@@ -75,7 +75,7 @@ class OrderCount {
         'ru-RU',
       )}₽`;
 
-      tip = this.createTip(this.discounts.feeDisc.message);
+      tip = OrderCount.createTip(this.discounts.feeDisc.message);
     }
 
     this.count.querySelector('.order-counting__fee-compute').innerText = discountStr;
@@ -93,7 +93,7 @@ class OrderCount {
     услуги`;
     this.count.querySelector('.order-counting__add-fee-compute').innerText = string;
 
-    const tip = this.createTip(this.fees.fee.message);
+    const tip = OrderCount.createTip(this.fees.fee.message);
     if (tip) {
       this.count.querySelector('.order-counting__add-fee-compute').append(tip);
     }
@@ -109,7 +109,7 @@ class OrderCount {
     ).innerText = `${this.finalSum.toLocaleString('ru-RU')}₽`;
   }
 
-  createTip(information) {
+  static createTip(information) {
     const el = document.createElement('div');
     el.className = 'order-counting__tip';
     el.innerText = 'i';

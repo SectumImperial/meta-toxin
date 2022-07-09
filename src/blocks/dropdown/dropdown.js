@@ -1,8 +1,23 @@
-import ValidationError from './helpers/error.js';
+import ValidationError from './helpers/error';
 import chooseWord from '../../helpers/chooseWord';
 import isEqual from './helpers/isEqual';
 import cutString from './helpers/cutString';
-import DEFAULT_KEY from './constants.js';
+
+import {
+  DEFAULT_KEY,
+  FIELD,
+  INPUT,
+  CONTENT,
+  BTN_CLEAR,
+  BTN_ACCEPT,
+  COUNT,
+  COUTER,
+  BTNS_DEC,
+  BTNS_INC,
+  TYPE,
+  ITEM,
+  DISABLED,
+} from './constants';
 
 class Dropdown {
   constructor(element) {
@@ -22,21 +37,21 @@ class Dropdown {
   }
 
   init() {
-    this.field = this.dropdown.querySelector('.dropdown__input-field');
-    this.dropdownInput = this.dropdown.querySelector('.dropdown__input');
-    this.dropdownContent = this.dropdown.querySelector('.dropdown__content');
-    this.btnClear = this.dropdown.querySelector('.dropdown__button_clear');
-    this.btnAccept = this.dropdown.querySelector('.dropdown__button_accept');
-    this.checkBtnVisibility(this.dropdown, '.dropdown__count');
-    this.counter = this.dropdown.querySelector('.dropdown__counter');
+    this.field = this.dropdown.querySelector(`.${FIELD}`);
+    this.dropdownInput = this.dropdown.querySelector(`.${INPUT}`);
+    this.dropdownContent = this.dropdown.querySelector(`.${CONTENT}`);
+    this.btnClear = this.dropdown.querySelector(`.${BTN_CLEAR}`);
+    this.btnAccept = this.dropdown.querySelector(`.${BTN_ACCEPT}`);
+    this.checkBtnVisibility(this.dropdown, `.${COUNT}`);
+    this.counter = this.dropdown.querySelector(`.${COUTER}`);
     this.btnsDecrement = this.counter.querySelectorAll(
-      '.dropdown__btn_decrement',
+      `.${BTNS_DEC}`,
     );
     this.btnsIncrement = this.counter.querySelectorAll(
-      '.dropdown__btn_increment',
+      `.${BTNS_INC}`,
     );
 
-    this.type = this.dropdown.querySelector('._dropdown__type').value;
+    this.type = this.dropdown.querySelector(`.${TYPE}`).value;
 
     this.addListeners();
     this.checkUrlDates();
@@ -49,18 +64,19 @@ class Dropdown {
     const type = urlParams.get('type');
 
     if (dropdownUrlContent && type === this.type) {
-      this.addInputValue(this.dropdownInput, dropdownUrlContent);
+      Dropdown.addInputValue(this.dropdownInput, dropdownUrlContent);
 
       const params = window.location.search
         .replace('?', '')
         .split('&')
         .reduce((p, e) => {
           const a = e.split('=');
+          // eslint-disable-next-line no-param-reassign
           p[decodeURIComponent(a[0])] = decodeURIComponent(a[1]);
           return p;
         }, {});
 
-      const allCounts = this.dropdown.querySelectorAll('.dropdown__count');
+      const allCounts = this.dropdown.querySelectorAll(`.${COUNT}`);
       allCounts.forEach((e) => {
         e.value = params[e.dataset.item];
       });
@@ -69,7 +85,7 @@ class Dropdown {
 
   addListeners() {
     this.field.addEventListener('click', this.toggleClass.bind(this));
-    this.field.addEventListener('click', (e) => {
+    this.field.addEventListener('click', () => {
       this.dropdownContent.classList.toggle('_active');
     });
 
@@ -93,20 +109,21 @@ class Dropdown {
   }
 
   performData(selector, data) {
-    this.wordsMap = this.createObjectMap(data);
+    this.wordsMap = Dropdown.createObjectMap(data);
     this.countsMap = this.createCountsMap(selector);
-    this.synthMap = this.joinMap(this.wordsMap, this.countsMap);
-    this.string = this.createStrMap(this.synthMap);
-    this.addInputValue(this.dropdownInput, this.string);
+    this.synthMap = Dropdown.joinMap(this.wordsMap, this.countsMap);
+    this.string = Dropdown.createStrMap(this.synthMap);
+    Dropdown.addInputValue(this.dropdownInput, this.string);
   }
 
-  createObjectMap(arrObj) {
+  static createObjectMap(arrObj) {
     const optMap = new Map();
-    for (const obj of arrObj) {
-      for (const [key, value] of Object.entries(obj)) {
+    arrObj.forEach((e) => {
+      Object.entries(e).forEach((arr) => {
+        const [key, value] = arr;
         optMap.set(key, value);
-      }
-    }
+      });
+    });
 
     return optMap;
   }
@@ -116,79 +133,15 @@ class Dropdown {
     const counts = [...this.dropdown.querySelectorAll(selector)].filter(
       (e) => Number(e.value) > 0,
     );
-    for (const count of counts) {
+
+    counts.forEach((count) => {
       if (Number.isNaN(Number(count.value))) {
-        throw new ValidationError('Ошибка в чтении значения counter', err);
+        throw new ValidationError('Ошибка в чтении значения counter');
       }
       countMap.set(count.dataset.item, Number(count.value));
-    }
+    });
+
     return countMap;
-  }
-
-  joinMap(wordsMap, countsMap) {
-    const synthMap = new Map();
-    for (const [key, value] of countsMap) {
-      // Если в карте массива слов есть отдельный массив для ключа
-      if (wordsMap.has(key)) {
-        // Если создаваемая карта не имеет такого ключа
-        if (!this.hasIsEqualKey(synthMap, wordsMap.get(key))) {
-          synthMap.set(wordsMap.get(key), value);
-        }
-      }
-
-      // Если в карте массива слов нет отдельного массива для ключа
-      if (!wordsMap.has(key)) {
-        // Если создаваемая карта уже имеет нужный массив слов
-        if (synthMap.has(wordsMap.get(DEFAULT_KEY))) {
-          // перебрать и суммировать подходящие ключи countsMap, после установить в качестве value
-          const value = this.sumCounts(countsMap, wordsMap, DEFAULT_KEY);
-          synthMap.set(wordsMap.get(DEFAULT_KEY), value);
-        }
-
-        // Если создаваемая карта ещё не имеет нужный массив слов
-        if (!synthMap.has(wordsMap.get(DEFAULT_KEY))) {
-          synthMap.set(wordsMap.get(DEFAULT_KEY), value);
-        }
-      }
-    }
-
-    return synthMap;
-  }
-
-  createStrMap(map) {
-    const arrStrings = [];
-    for (const [key, value] of map) {
-      arrStrings.push(`${value} ${chooseWord(value, key)}`);
-    }
-
-    const result = arrStrings.join(', ');
-    return result;
-  }
-
-  addInputValue(input, value) {
-    input.value = cutString(value, 20);
-  }
-
-  hasIsEqualKey(compareMap, arr) {
-    for (const [key] of compareMap) {
-      if (isEqual(key, arr)) return true;
-    }
-
-    return false;
-  }
-
-  sumCounts(countsMap, wordsMap, indicator) {
-    const arrKyes = [];
-    for (const [key, value] of countsMap) {
-      if (key !== indicator && !wordsMap.has(key)) {
-        arrKyes.push(value);
-      }
-    }
-    const reusult = arrKyes.reduce(
-      (prev, curr) => Number(prev) + Number(curr),
-      0,
-    );
-    return reusult;
   }
 
   checkBtnVisibility(container, selector) {
@@ -206,50 +159,46 @@ class Dropdown {
 
   btnDecrement(e) {
     e.preventDefault();
-    const container = e.target.closest('.dropdown__item');
-    const count = container.querySelector('.dropdown__count');
-    this.checkLimits(count);
+    const container = e.target.closest(`.${ITEM}`);
+    const count = container.querySelector(`.${COUNT}`);
+    Dropdown.checkLimits(count);
     if (
       Number(count.value) > 0
-      && e.target.classList.contains('dropdown__btn_disabled')
+      && e.target.classList.contains(DISABLED)
     ) {
-      e.target.classList.remove('dropdown__btn_disabled');
+      e.target.classList.remove(DISABLED);
     }
-    if (e.target.classList.contains('dropdown__btn_disabled')) return;
+    if (e.target.classList.contains(DISABLED)) return;
     count.value = Number(count.value) - 1;
     if (Number(count.value) === 0) {
-      e.target.classList.add('dropdown__btn_disabled');
+      e.target.classList.add(DISABLED);
     }
-    this.performData('.dropdown__count', this.options);
-    this.checkBtnVisibility(this.dropdown, '.dropdown__count');
+    this.performData(`.${COUNT}`, this.options);
+    this.checkBtnVisibility(this.dropdown, `.${COUNT}`);
   }
 
   btnIncrement(e) {
     e.preventDefault();
-    const container = e.target.closest('.dropdown__item');
-    const count = container.querySelector('.dropdown__count');
-    const decrement = container.querySelector('.dropdown__btn_decrement');
-    this.checkLimits(count);
+    const container = e.target.closest(`.${ITEM}`);
+    const count = container.querySelector(`.${COUNT}`);
+    const decrement = container.querySelector(`.${BTNS_DEC}`);
+    Dropdown.checkLimits(count);
     if (Number(count.value) === 999) return;
     count.value = Number(count.value) + 1;
     if (Number(count.value) > 0) {
-      decrement.classList.remove('dropdown__btn_disabled');
+      decrement.classList.remove(DISABLED);
     }
-    this.performData('.dropdown__count', this.options);
-    this.checkBtnVisibility(this.dropdown, '.dropdown__count');
-  }
-
-  checkLimits(countEl) {
-    if (Number(countEl.value) > 999) countEl.value = 999;
-    if (Number(countEl.value) < 0) countEl.value = 0;
+    this.performData(`.${COUNT}`, this.options);
+    this.checkBtnVisibility(this.dropdown, `.${COUNT}`);
   }
 
   clear(e) {
     e.preventDefault();
     this.dropdownInput.value = '';
-    const [...counts] = this.dropdown.querySelectorAll('.dropdown__count');
+    const [...counts] = this.dropdown.querySelectorAll(`.${COUNT}`);
+    // eslint-disable-next-line no-return-assign, no-shadow
     counts.forEach((e) => (e.value = 0));
-    this.checkBtnVisibility(this.dropdown, '.dropdown__count');
+    this.checkBtnVisibility(this.dropdown, `.${COUNT}`);
   }
 
   accept(e) {
@@ -259,6 +208,75 @@ class Dropdown {
 
   toggleClass() {
     this.field.classList.toggle('_opened');
+  }
+
+  static joinMap(wordsMap, countsMap) {
+    const synthMap = new Map();
+
+    countsMap.forEach((key, value) => {
+      if (wordsMap.has(value) && !Dropdown.hasIsEqualKey(synthMap, wordsMap.get(value))) {
+        // Если создаваемая карта не имеет такого ключа
+        synthMap.set(wordsMap.get(value), key);
+      }
+
+      // Если в карте массива слов нет отдельного массива для ключа
+      if (!wordsMap.has(value) && synthMap.has(wordsMap.get(DEFAULT_KEY))) {
+        // Если создаваемая карта уже имеет нужный массив слов
+        // перебрать и суммировать подходящие ключи countsMap, после установить в качестве value
+        const newValue = Dropdown.sumCounts(countsMap, wordsMap, DEFAULT_KEY);
+        synthMap.set(wordsMap.get(DEFAULT_KEY), newValue);
+      }
+
+      // Если создаваемая карта ещё не имеет нужный массив слов
+      if (!wordsMap.has(value) && !synthMap.has(wordsMap.get(DEFAULT_KEY))) {
+        synthMap.set(wordsMap.get(DEFAULT_KEY), key);
+      }
+    });
+    return synthMap;
+  }
+
+  static createStrMap(map) {
+    const arrStrings = [];
+    map.forEach((key, value) => {
+      arrStrings.push(`${key} ${chooseWord(key, value)}`);
+    });
+
+    const result = arrStrings.join(', ');
+    return result;
+  }
+
+  static addInputValue(input, value) {
+    // eslint-disable-next-line no-param-reassign
+    input.value = cutString(value, 20);
+  }
+
+  static hasIsEqualKey(compareMap, arr) {
+    // eslint-disable-next-line consistent-return
+    compareMap.forEach((_, value) => {
+      if (isEqual(value, arr)) return true;
+    });
+    return false;
+  }
+
+  static sumCounts(countsMap, wordsMap, indicator) {
+    const arrKyes = [];
+    countsMap.forEach((key, value) => {
+      if (value !== indicator && !wordsMap.has(value)) {
+        arrKyes.push(key);
+      }
+    });
+    const reusult = arrKyes.reduce(
+      (prev, curr) => Number(prev) + Number(curr),
+      0,
+    );
+    return reusult;
+  }
+
+  static checkLimits(countEl) {
+    // eslint-disable-next-line no-param-reassign
+    if (Number(countEl.value) > 999) countEl.value = 999;
+    // eslint-disable-next-line no-param-reassign
+    if (Number(countEl.value) < 0) countEl.value = 0;
   }
 }
 

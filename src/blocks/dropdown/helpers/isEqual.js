@@ -7,7 +7,7 @@ function isEqual(firstArr, secondArr) {
     );
   }
   return (
-    firstArr.length == secondArr.length
+    firstArr.length === secondArr.length
     && firstArr.every((v, i) => v === secondArr[i])
   );
 }

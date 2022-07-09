@@ -1,4 +1,4 @@
-import { EMPTY_STAR, FILL_STAR } from './constants.js';
+import { EMPTY_STAR, FILL_STAR } from './constants';
 
 class StarRating {
   constructor(element) {

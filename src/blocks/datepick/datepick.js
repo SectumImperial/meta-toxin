@@ -112,7 +112,11 @@ class Datepicker {
         const endDate = new Date(secondyear, secondmonth, secondDay);
 
         this.dp.selectDate([startDate, endDate]);
-        this.singleItem.value = Datepicker.formatDate(startDate, endDate);
+        this.singleItem.value = Datepicker.formatDate({
+          firstDate: startDate,
+          secondDate: endDate,
+          mod: 'singleInputMod',
+        });
         this.setPointRange();
         this.performRange(this.rangeFrom, this.rangeTo);
       }

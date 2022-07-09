@@ -10,6 +10,7 @@ module.exports = {
   },
 
   // plugins: ['pug'],
+  ignorePatterns: ['webpack.config.js', './dist/', './node_modules'],
   rules: {
   },
 };

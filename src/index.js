@@ -41,5 +41,7 @@ const files = [
   'order-counting',
 ];
 
+// eslint-disable-next-line global-require, import/no-dynamic-require
 pages.forEach((e) => require(`./pages/${e}/index.js`));
+// eslint-disable-next-line global-require, import/no-dynamic-require
 files.forEach((e) => require(`./blocks/${e}/index.js`));

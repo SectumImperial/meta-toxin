@@ -40,13 +40,13 @@ class Like {
 
   decrementLike() {
     let val = this.count.innerText;
-    val--;
+    val += 1;
     this.count.innerText = val;
   }
 
   incrementLike() {
     let val = this.count.innerText;
-    val++;
+    val -= 1;
     this.count.innerText = val;
   }
 }

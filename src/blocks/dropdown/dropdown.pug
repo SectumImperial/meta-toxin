@@ -10,46 +10,46 @@ mixin dropdown(options = {})
       type = 'guests'
     } = options
 
-  section.dropdown._js-dropdown(
+  section.dropdown.js-dropdown(
     data-options = plurals
   )
-    .dropdown__input-field
+    .dropdown__input-field.js-dropdown__input-field
       input(
         type = 'text',
-        class = 'dropdown__input',
+        class = 'dropdown__input js-dropdown__input',
         name = 'dropdown',
         placeholder = placeholder,
         readonly,
       )
       .dropdown__arrow.icon__expand_more._arrow-js 
-    div.dropdown__content
-      .dropdown__counter 
+    div.dropdown__content.js-dropdown__content
+      .dropdown__counter.js-dropdown__counter
         ul.dropdown__items
           each item in items
-            li.dropdown__item
+            li.dropdown__item.js-dropdown__item
               span.dropdown__item-text= item
               .dropdown__items-nav
                 button(
-                 class = "dropdown__btn dropdown__btn_disabled dropdown__btn_decrement"
+                 class = "dropdown__btn dropdown__btn_disabled js-dropdown__btn_disabled dropdown__btn_decrement js-dropdown__btn_decrement"
                 )= '-'
-                input.dropdown__count(
+                input.dropdown__count.js-dropdown__count(
                   name= item
                   data-item= item
                   value= 0
                   readonly                 
                   )
                 button(
-                  class = "dropdown__btn dropdown__btn_increment"
+                  class = "dropdown__btn dropdown__btn_increment js-dropdown__btn_increment"
                 )= '+'
         input(
           type="text"
-          class='visually-hidden _dropdown__type',
+          class='visually-hidden js-dropdown__type',
           name = 'type',
           value = type,
           readonly
           )
       .dropdown__nav
-        .dropdown__button.dropdown__button_clear
+        .dropdown__button.dropdown__button_clear.js-dropdown__button_clear
           +button({
             content: 'Очистить',
             btnColor: 'violet',
@@ -59,7 +59,7 @@ mixin dropdown(options = {})
             btnMod: ['noBorder'],         
           })
 
-        .dropdown__button.dropdown__button_accept
+        .dropdown__button.dropdown__button_accept.js-dropdown__button_accept
           +button({
             content: 'Применить',
             btnColor: 'violet',

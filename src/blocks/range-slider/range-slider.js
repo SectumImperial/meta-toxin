@@ -1,8 +1,6 @@
 class Slider {
   constructor(element) {
     this.slider = element;
-
-    this.options;
     try {
       this.options = JSON.parse(this.slider.dataset.rangeoptions);
     } catch (err) {
@@ -49,14 +47,13 @@ class Slider {
   }
 
   setValues() {
-    const fitstVal = this.performValue(this.toggleOne.value);
-    const secondVal = this.performValue(this.toggleTwo.value);
+    const fitstVal = Slider.performValue(this.toggleOne.value);
+    const secondVal = Slider.performValue(this.toggleTwo.value);
     this.field.value = `${fitstVal}${this.addedText} - ${secondVal}${this.addedText}`;
   }
 
-  performValue(val) {
-    const [_, num, suffix] = val.match(/^(.*?)((?:[,.]\d+)?|)$/);
-    return `${num.replace(/\B(?=(?:\d{3})*$)/g, ' ')}${suffix}`;
+  static performValue(val) {
+    return Number(val).toLocaleString('ru-RU');
   }
 
   colorRange() {
