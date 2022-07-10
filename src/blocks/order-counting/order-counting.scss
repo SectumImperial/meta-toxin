@@ -6,7 +6,7 @@
   display: flex;
   flex-direction: column;
   gap: 15px;
-  font-size: rem(14);
+  font-size: $fontSmall;
   color: rgba($dark-color, 0.75);
 
   &__days,
@@ -18,33 +18,37 @@
     align-items: center;
   }
 
-  &__fee-compute,
-  &__add-fee-compute {
+  &__days_computed {
+    padding: 0 2px 0 0;
+  }
+
+  &__fee_compute,
+  &__add-fee_compute {
     display: flex;
     align-items: center;
   }
 
-  &__fee-compute {
-    gap: 11px;
+  &__fee_compute {
+    gap: 6px;
   }
 
-  &__add-fee-compute {
+  &__add-fee_compute {
     gap: 34px;
     align-items: flex-start;
   }
 
-  &__add-fee-computed {
+  &__add-fee_computed {
     padding-bottom: 16px;
     padding-right: 1px;
   }
 
-  &__fee-computed {
+  &__fee_computed {
     padding-right: 2px;
   }
 
   &__all {
     font-weight: bold;
-    font-size: rem(19);
+    font-size: $fontMedium;
     color: $dark-color;
     padding-top: 16px;
     padding-right: 3px;
@@ -54,7 +58,7 @@
     width: 100%;
     border-bottom: 1px dashed rgba($dark-color, 0.25);
     align-self: flex-end;
-    margin-bottom: 4px;
+    margin-bottom: 5px;
   }
 
   &__tip {
@@ -81,11 +85,7 @@
       color: $secondary-color-2;
 
       border-radius: 4px;
-      font-size: 12px;
+      font-size: $fontTiny;
     }
-  }
-
-  &__days-computed {
-    padding-right: 2px;
   }
 }

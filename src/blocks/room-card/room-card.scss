@@ -21,7 +21,7 @@
   }
 
   &__price {
-    padding: 5px 0 0 0;
+    padding: 0px 3px 1px 0;
   }
 
   &__details {
@@ -37,11 +37,11 @@
   }
 
   &__reviews {
-    font-size: rem(14);
+    font-size: $fontSmall;
     padding: 1px 2px 0 0;
   }
   &__reviews-count {
-    font-size: rem(14);
+    font-size: $fontSmall;
     font-weight: 700;
   }
 }

@@ -4,16 +4,12 @@ mixin input(options = {})
       type = 'text',
       name = '',
       id = '',
-      classInput = '',
-      classInputField = '',
       value = '',
       placeholder = '',
       readonly = false,
       pattern = '.*',
       arrow = false,
-      inputOptions = '',
-      checked = false,
-      required = false,
+      isRequired = false,
     } = options
 
     const arrows = {
@@ -21,21 +17,17 @@ mixin input(options = {})
       forward: 'icon__arrow_forward input_arrow-forward',
     }
 
-  div(
-    class = `input ${classInput}`
-  )
+  .input
     input(
       type = type
       name = name
       id = id
-      class = `input__field ${classInputField}`
+      class = `input__field`
       value = value 
       placeholder = placeholder
       readonly = readonly
       pattern = pattern
-      data-inputOptions = inputOptions,
-      checked = checked,
-      required = required
+      required = isRequired
     )  
     - if(arrow && arrows[arrow])
       div(

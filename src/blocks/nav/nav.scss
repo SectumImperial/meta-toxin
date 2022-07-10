@@ -13,7 +13,7 @@
     gap: 15px;
 
     &_vertical {
-      font-size: rem(14);
+      font-size: $fontSmall;
       gap: 0;
     }
   }
@@ -99,10 +99,10 @@
   /* ------------------------------------------ */
 
   @media (min-width: $tablet) {
-    font-size: rem(14);
+    font-size: $fontSmall;
     &__link_sub {
       &::before {
-        font-size: 12px;
+        font-size: $fontTiny;
       }
     }
 

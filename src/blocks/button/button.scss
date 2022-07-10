@@ -18,17 +18,6 @@
   }
 
   &_transparent {
-    background: $primary-color;
-  }
-
-  &_transparent {
-    background: transparent;
-    &:hover {
-      background: transparent;
-    }
-  }
-
-  &_counter {
     background: transparent;
     &:hover {
       background: transparent;
@@ -66,7 +55,7 @@
   }
 
   &_big {
-    padding: 15px 23px 15px 24px;
+    padding: 10px 23px 13px 24px;
   }
 
   &_large {

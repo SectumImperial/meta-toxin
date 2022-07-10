@@ -31,7 +31,10 @@ class Like {
     if (!this.button.classList.contains(LIKED_BUTTON)) {
       this.incrementLike();
     }
+    this.toggleClasses();
+  }
 
+  toggleClasses() {
     this.button.classList.toggle(LIKED_BUTTON);
     this.heart.classList.toggle(LIKED__HEART);
     this.heart.classList.toggle(UNLIKED__HEART);
@@ -39,13 +42,21 @@ class Like {
   }
 
   decrementLike() {
-    let val = this.count.innerText;
+    let val = Number(this.count.innerText);
+    if (Number.isNaN(val)) {
+      this.count.innerText = 0;
+      throw new Error('The like value MUST be number.');
+    }
     val += 1;
     this.count.innerText = val;
   }
 
   incrementLike() {
-    let val = this.count.innerText;
+    let val = Number(this.count.innerText);
+    if (Number.isNaN(val)) {
+      this.count.innerText = 0;
+      throw new Error('The like value MUST be number.');
+    }
     val -= 1;
     this.count.innerText = val;
   }

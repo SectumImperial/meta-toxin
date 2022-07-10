@@ -1,10 +1,6 @@
-mixin canvas(options = {})
-  -
-    const {
-      canvas = {}
-    } = options
+mixin canvas(options = [])
   div.canvas(
-    data-canvas = canvas
+    data-canvas = options
   ) 
     .canvas__chart
     .canvas__legend

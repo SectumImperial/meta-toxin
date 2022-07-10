@@ -10,7 +10,7 @@
   }
 
   &__name {
-    font-size: rem(12);
+    font-size: $fontTiny;
     font-weight: bold;
     text-transform: uppercase;
   }
@@ -23,11 +23,11 @@
     border: none;
     outline: none;
     color: rgba($dark-color, 0.5);
-    font-size: rem(12);
+    font-size: $fontTiny;
   }
 
   &__description {
-    font-size: rem(12);
+    font-size: $fontTiny;
     color: rgba($dark-color, 0.5);
     padding-top: 21px;
 

@@ -71,47 +71,45 @@ mixin room-details(options= {})
                 classTitle: 'room-details__subtitle',
                 text: 'Впечатления от номера'
               })
-            +canvas({
-              canvasClass: 'room-details__canvas',
-              canvas: [
-              {
-                count: 0,
-                id: 'bad',
-                name: 'Разочарован',
-                stopFirst: '#919191',
-                stopSecond: '#3d4975'
-              },
-              {
-                count: 260,
-                id: 'satisfy',
-                name: 'Удовлетворительно',
-                stopFirst: '#bc9cff',
-                stopSecond: '#8ba4f9'
-              },
-              {
-                count: 520,
-                id: 'great',
-                name: 'Великолепно',
-                stopFirst: '#ffe39c',
-                stopSecond: '#ffba9c'
-              },
-              {
-                count: 260,
-                id: 'good',
-                name: 'Хорошо',
-                stopFirst: '#6fcf97',
-                stopSecond: '#66d2ea'
-              },
-              ]
-            })
-        
+            .room-details__canvas
+              +canvas([
+                {
+                  count: 0,
+                  id: 'bad',
+                  name: 'Разочарован',
+                  stopFirst: '#919191',
+                  stopSecond: '#3d4975'
+                },
+                {
+                  count: 260,
+                  id: 'satisfy',
+                  name: 'Удовлетворительно',
+                  stopFirst: '#bc9cff',
+                  stopSecond: '#8ba4f9'
+                },
+                {
+                  count: 520,
+                  id: 'great',
+                  name: 'Великолепно',
+                  stopFirst: '#ffe39c',
+                  stopSecond: '#ffba9c'
+                },
+                {
+                  count: 260,
+                  id: 'good',
+                  name: 'Хорошо',
+                  stopFirst: '#6fcf97',
+                  stopSecond: '#66d2ea'
+                },
+              ])
+          
           .room-details__reviews
             .room-details__reviews-heading
-              +title({
-                level: 'h3',
-                classTitle: 'room-details__subtitle',
-                text: 'Отзывы посетителей номера'
-              })
+              .room-details__subtitle
+                +title({
+                  level: 'h3',
+                  text: 'Отзывы посетителей номера'
+                })
               span.room-details__reviews-count 0 отзывов
             .room-details__reviews-content    
               +review({

@@ -17,7 +17,6 @@ const files = [
   'text-element',
   'social',
   'booking-card',
-  'form',
   'datepick',
   'input',
   'dropdown',
@@ -39,6 +38,8 @@ const files = [
   'room-number',
   'room-price',
   'order-counting',
+  'registration-card',
+  'login-card',
 ];
 
 // eslint-disable-next-line global-require, import/no-dynamic-require

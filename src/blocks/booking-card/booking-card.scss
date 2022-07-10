@@ -2,13 +2,14 @@
 @import '../../common/variables.scss';
 
 .booking-card {
-  background-color: $secondary-color-2;
+  @include boxes;
+
   max-width: 380px;
   padding: 40px 29px 30px 29px;
-
-  border: 1px solid rgba(#000000, 0.12);
-  border-radius: 4px;
-  box-shadow: 0 0 25px 0 rgba(#000000, 0.2);
+  
+  @media (max-width: $mobile) {
+    padding: 40px 15px 30px 15px;
+  }
 
   &__card {
     display: grid;

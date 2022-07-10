@@ -4,7 +4,7 @@
 
 .room-number {
   padding-top: 1px;
-  font-size: rem(14);
+  font-size: $fontSmall;
   font-weight: 700;
 
   &__count {
@@ -13,13 +13,13 @@
     font-weight: 700;
 
     &_big {
-      font-size: rem(24);
+      font-size: $fontBig;
     }
   }
 
   &__luxe {
     color: $primary-color;
-    font-size: rem(12);
+    font-size: $fontTiny;
     text-transform: uppercase;
     padding-top: 2px;
     padding-left: 8px;

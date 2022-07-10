@@ -36,8 +36,8 @@ class Datepicker {
     this.buttonClear = container.querySelector(`.${CLEAR}`);
     this.buttonAccept = container.querySelector(`.${ACCEPT}`);
 
-    if (container.classList.contains(DATEPICK_1)) this.singleInputMod = true;
-    if (container.classList.contains(DATEPICK_2)) this.twoInputMod = true;
+    if (container.classList.contains(DATEPICK_1)) this.isSingleInput = true;
+    if (container.classList.contains(DATEPICK_2)) this.isTwoInputs = true;
     this.rangeFrom = null;
     this.rangeTo = null;
   }
@@ -49,12 +49,12 @@ class Datepicker {
     });
     this.dp.show();
 
-    if (this.twoInputMod) {
+    if (this.isTwoInputs) {
       this.firstItem = this.datepick.querySelector(`.${START}`);
       this.secondItem = this.datepick.querySelector(`.${END}`);
     }
 
-    if (this.singleInputMod) {
+    if (this.isSingleInput) {
       this.singleItem = this.datepick.querySelector(`.${DATES}`);
     }
 
@@ -101,7 +101,7 @@ class Datepicker {
   }
 
   getUrlValues() {
-    if (this.singleInputMod) {
+    if (this.isSingleInput) {
       const [startUrlDateString, endUrlDateString] = Datepicker.getUrlParams();
 
       if ((startUrlDateString, endUrlDateString)) {
@@ -125,11 +125,11 @@ class Datepicker {
 
   checkBtnVisibility(itemsArr) {
     let addedValue;
-    if (this.twoInputMod) {
+    if (this.isTwoInputs) {
       addedValue = itemsArr.every((e) => e.value !== '');
     }
 
-    if (this.singleInputMod) {
+    if (this.isSingleInput) {
       addedValue = this.singleItem.value !== '';
     }
 
@@ -224,14 +224,14 @@ class Datepicker {
   }
 
   addDateCal(items) {
-    if (this.twoInputMod) {
+    if (this.isTwoInputs) {
       const dates = Array.from(
         [...items].map((inputElement) => inputElement.value),
       ).map((e) => e.split('.').reverse().join('.').replaceAll('.', '-'));
       this.dp.selectDate(dates);
     }
 
-    if (this.singleInputMod) {
+    if (this.isSingleInput) {
       const dates = this.singleItem.value.split(' - ');
       const [firstValue, secondValue] = dates;
 
@@ -276,7 +276,7 @@ class Datepicker {
     const targetContainer = target.closest('.datepick__group');
     if (!targetContainer) return;
 
-    if (this.twoInputMod) {
+    if (this.isTwoInputs) {
       const sibling = [
         ...this.formGroups.filter((e) => e !== targetContainer),
       ][0];
@@ -308,7 +308,7 @@ class Datepicker {
       this.calConteiner.classList.toggle('_active-dp');
     }
 
-    if (this.singleInputMod) {
+    if (this.isSingleInput) {
       targetContainer.classList.toggle('clicked');
       this.calConteiner.classList.toggle('_active-dp');
     }
@@ -316,12 +316,12 @@ class Datepicker {
 
   clear(e) {
     e.preventDefault();
-    if (this.twoInputMod) {
+    if (this.isTwoInputs) {
       this.firstItem.value = '';
       this.secondItem.value = '';
     }
 
-    if (this.singleInputMod) {
+    if (this.isSingleInput) {
       this.singleItem.value = '';
     }
     this.dp.clear();
@@ -374,7 +374,7 @@ class Datepicker {
 
     // Отображение дат в полях
 
-    if (this.twoInputMod) {
+    if (this.isTwoInputs) {
       if (this.dp.rangeDateFrom) {
         this.firstItem.value = Datepicker.formatDate({
           firstDate: this.dp.rangeDateFrom,
@@ -390,7 +390,7 @@ class Datepicker {
       }
     }
 
-    if (this.singleInputMod && this.dp.rangeDateFrom && this.dp.rangeDateTo) {
+    if (this.isSingleInput && this.dp.rangeDateFrom && this.dp.rangeDateTo) {
       this.singleItem.value = Datepicker.formatDate({
         firstDate: this.dp.rangeDateFrom,
         secondDate: this.dp.rangeDateTo,
@@ -482,7 +482,7 @@ class Datepicker {
     const tommorow = new Date(year, month, day + 1);
     const fourAfer = new Date(year, month, day + 5);
 
-    if (this.twoInputMod) {
+    if (this.isTwoInputs) {
       this.firstItem.value = Datepicker.formatDate({
         firstDate: tommorow,
         mod: 'twoInputMod',
@@ -495,7 +495,7 @@ class Datepicker {
       this.setPointRange();
     }
 
-    if (this.singleInputMod) {
+    if (this.isSingleInput) {
       this.singleItem.value = Datepicker.formatDate({
         firstDate: tommorow,
         secondDate: fourAfer,

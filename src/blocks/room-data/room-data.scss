@@ -4,7 +4,7 @@
 
 .room-data {
   color: rgba($dark-color, 0.75);
-  font-size: 14px;
+  font-size: $fontSmall;
 
   display: flex;
   flex-direction: column;

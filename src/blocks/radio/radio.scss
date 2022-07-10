@@ -5,6 +5,7 @@
 .radio {
   display: flex;
   align-items: center;
+  cursor: pointer;
 
   &__new-input {
     margin-right: 10px;
@@ -15,8 +16,6 @@
     background-color: #fff;
     border: 1px solid rgba($dark-color, 0.25);
     border-radius: 100%;
-
-    cursor: pointer;
   }
 
   &__input:checked + &__new-input {
@@ -27,8 +26,9 @@
 
       width: 12px;
       height: 12px;
-      top: calc(50% - 6px);
-      left: calc(50% - 6px);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
 
       border-radius: 100%;
       background: $gradient;

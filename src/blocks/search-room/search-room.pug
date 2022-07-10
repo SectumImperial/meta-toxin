@@ -73,7 +73,7 @@ mixin search-room(options = {})
                 labelText: 'Можно с питомцами',
                 name: 'search-room-pets',
                 id: 'search-room-pets',
-                checked: true
+                isChecked: true
               })
             .search-room__checkbox.search-room__checkbox_guests
               +checkbox({
@@ -81,7 +81,7 @@ mixin search-room(options = {})
                 (до 10 человек)`,
                 name: 'search-room-guests',
                 id: 'search-room-guests',
-                checked: true
+                isChecked: true
               })
 
         .search-room__available
@@ -151,19 +151,19 @@ mixin search-room(options = {})
                   labelText: 'Письменный стол',
                   name: 'search-room-table',
                   id: 'search-room-table',
-                  checked: true,
+                  isChecked: true,
                 },
                 {
                   labelText: 'Стул для кормления',
                   name: 'search-room-chair',
                   id: 'search-room-chair',
-                  checked: true,
+                  isChecked: true,
                 },
                 {
                   labelText: 'Кроватка',
                   name: 'search-room-small-bed',
                   id: 'search-room-small-bed',
-                  checked: true,
+                  isChecked: true,
                 },
                 {
                   labelText: 'Телевизор',
@@ -177,7 +177,7 @@ mixin search-room(options = {})
                 },
               ]
             })
-      .search-room__button
+      .search-room__button.js-search-room__button
         +button({
           content: 'Раскрыть фильтры',
           btnColor: 'white',

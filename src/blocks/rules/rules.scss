@@ -3,7 +3,7 @@
 @import '../../common/variables.scss';
 
 .rules {
-  font-size: rem(14);
+  font-size: $fontSmall;
   color: rgba($dark-color, 0.75);
   line-height: 24px;
 

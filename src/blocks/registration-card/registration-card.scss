@@ -1,0 +1,68 @@
+@use 'sass:math';
+@import '../../common/functions.scss';
+@import '../../common/variables.scss';
+
+.registration-card {
+  @include boxes;
+  
+  min-width: 380px;
+  padding: 39px 30px 30px 28px;
+
+  @media (max-width: $mobile) {
+    margin-left: 0;
+    padding: 10px;
+    min-width: auto;
+  }
+
+  &__subtitle {
+    text-transform: uppercase;
+    padding-bottom: 5px;
+  }
+  &__name-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 22px;
+  }
+
+  &__sex {
+    margin-top: 9px;
+
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 20px;
+  }
+
+  &__sex-group {
+    display: grid;
+    grid-template-columns: auto 1fr;
+  }
+
+  &__birth-group {
+    margin-top: 24px;
+  }
+
+  &__data-group {
+    margin-top: 20px;
+  }
+
+  &__email {
+    margin-bottom: 10px;
+  }
+
+  &__mailing {
+    margin-top: 10px;
+  }
+
+  &__button {
+    margin-top: 24px;
+  }
+
+  &__login-group {
+    margin-top: 31px;
+
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+  }
+}

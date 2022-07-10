@@ -7,18 +7,18 @@
   color: $dark-color;
 
   &_h2 {
-    font-size: rem(24);
+    font-size: $fontBig;
   }
 
   &_h3 {
-    font-size: rem(19);
+    font-size: $fontMedium;
   }
 
   &_h4 {
-    font-size: rem(14);
+    font-size: $fontSmall;
   }
 
   &_h5 {
-    font-size: rem(12);
+    font-size: $fontTiny;
   }
 }

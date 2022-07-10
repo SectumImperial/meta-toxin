@@ -63,12 +63,12 @@ class OrderCount {
     const sumRentFrmt = this.sumRent.toLocaleString('ru-RU');
     const sumString = `${sumRentFrmt}₽`;
 
-    this.count.querySelector('.order-counting__days-compute').innerText = string;
-    this.count.querySelector('.order-counting__days-computed').innerText = sumString;
+    this.count.querySelector('.order-counting__days_compute').innerText = string;
+    this.count.querySelector('.order-counting__days_computed').innerText = sumString;
   }
 
   createFeeString() {
-    let discountStr = 'Сбор за услуги';
+    let discountStr = 'Сбор за услуги:';
     let tip = null;
     if (this.discounts.feeDisc.count) {
       discountStr += ` скидка ${this.discounts.feeDisc.count.toLocaleString(
@@ -78,28 +78,28 @@ class OrderCount {
       tip = OrderCount.createTip(this.discounts.feeDisc.message);
     }
 
-    this.count.querySelector('.order-counting__fee-compute').innerText = discountStr;
+    this.count.querySelector('.order-counting__fee_compute').innerText = discountStr;
     if (tip) {
-      this.count.querySelector('.order-counting__fee-compute').append(tip);
+      this.count.querySelector('.order-counting__fee_compute').append(tip);
     }
 
     this.count.querySelector(
-      '.order-counting__fee-computed',
+      '.order-counting__fee_computed',
     ).innerText = `${this.fees.fee.count}₽`;
   }
 
   createAddFeeString() {
     const string = `Сбор за дополнительные 
     услуги`;
-    this.count.querySelector('.order-counting__add-fee-compute').innerText = string;
+    this.count.querySelector('.order-counting__add-fee_compute').innerText = string;
 
     const tip = OrderCount.createTip(this.fees.fee.message);
     if (tip) {
-      this.count.querySelector('.order-counting__add-fee-compute').append(tip);
+      this.count.querySelector('.order-counting__add-fee_compute').append(tip);
     }
 
     this.count.querySelector(
-      '.order-counting__add-fee-computed',
+      '.order-counting__add-fee_computed',
     ).innerText = `${this.fees.addFee.count}₽`;
   }
 

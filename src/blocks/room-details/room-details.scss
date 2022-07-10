@@ -3,7 +3,7 @@
 @import '../../common/variables.scss';
 
 .room-details {
-  // Изрображения
+  // Images
   &__photos {
     margin: 0 auto;
     max-width: $container;
@@ -14,11 +14,19 @@
 
   &__photos-big {
     flex: 1 0 981px;
+
+    @media (max-width: $pc) {
+      flex: 1 1 auto
+    }
   }
 
   &__photos-small {
     display: flex;
     flex-direction: column;
+
+    @media (max-width: $pc) {
+      display: none;
+    }
   }
 
   &__photos-top {
@@ -37,13 +45,22 @@
     width: 100%;
   }
 
-  // Информация
+  // Information
   &__main {
     padding: 70px 140px 71px;
     margin: 0 auto;
 
     display: flex;
     gap: 66px;
+
+    @media (max-width: $pc) {
+      padding: 60px 30px 60px;
+      flex-direction: column;
+    }
+
+    @media (max-width: $mobile) {
+      padding: 60px 5px 60px;
+    }
   }
 
   &__subtitle {
@@ -52,21 +69,14 @@
     &_rules {
       padding-left: 20px;
       padding-top: 1px;
+      @media (max-width: 699px) {
+        padding: 1px;
+      }
     }
 
     &_cancel {
       padding-top: 11px;
     }
-  }
-
-  &__order {
-    display: flex;
-    flex-basis: 390px;
-  }
-
-  &__card {
-    min-width: 320px;
-    max-width: 380px;
   }
 
   &__data {
@@ -81,6 +91,21 @@
       'details feedback'
       'reviews reviews'
       'rules cancel';
+
+    padding-top: 1px;
+
+    @media (max-width: $pc) {
+      grid-template-columns: 1fr 1fr;
+      justify-items: center;
+      gap: 0 10px;
+    }
+    @media (max-width: 699px) {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center
+    }
+    
   }
 
   &__details {
@@ -89,6 +114,10 @@
 
   &__feedback {
     grid-area: feedback;
+  }
+
+  &__canvas {
+    margin-top: 12px;
   }
 
   &__reviews {
@@ -104,6 +133,9 @@
   &__rules {
     grid-area: rules;
     padding-top: 10px;
+    @media (max-width: 699px) {
+      align-self: flex-start;
+    }
   }
 
   &__cancel {
@@ -129,11 +161,34 @@
   &__reviews-count {
     color: rgba($dark-color, 0.5);
     padding: 0 4px 6px 0;
+
+    @media (max-width: 699px) {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      border: 0;
+      padding: 0;
+      white-space: nowrap;
+      clip-path: inset(100%);
+      clip: rect(0 0 0 0);
+      overflow: hidden;
+    }
   }
 
   &__cancel-text {
     padding: 7px 10px 0 0;
     line-height: 24px;
     color: rgba($dark-color, 0.75);
+  }
+
+  // The order-card
+  &__order {
+    display: flex;
+    flex-basis: 390px;
+
+    @media (max-width: $pc) {
+      justify-content: center;
+    }
   }
 }

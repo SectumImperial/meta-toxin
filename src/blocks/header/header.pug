@@ -2,20 +2,24 @@ include ../logo/logo.pug
 include ../nav/nav.pug
 include ../button/button.pug
 
+mixin headerIcon
+  .header__icon
+    span
+
 mixin header(options = {})
   -
    const {
-    shadow = false,
+    isShadow = false,
     isLogged = false,
     navigation = {}
    } = options
   -
     let mod = ''
-    if (shadow) {
+    if (isShadow) {
       mod = `header_shadow`
     }
 
-  .header(
+  section.header(
       class =  `${mod}`
     )
     .header__content.container
@@ -23,6 +27,7 @@ mixin header(options = {})
         +logo({
           href: 'landing-page.html'
         })
+      +headerIcon()
       .header__nav-wrapper
         .header__nav 
           +nav(navigation)

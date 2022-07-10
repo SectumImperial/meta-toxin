@@ -4,7 +4,7 @@ mixin checkbox(options = {})
       labelText = '',
       checkboxTitle = '',
       checkboxDescription = '',
-      checked = false,
+      isChecked = false,
       name = 'checkbox',
       id = '',
       mod = 'simple'
@@ -14,7 +14,7 @@ mixin checkbox(options = {})
     input(
       type = 'checkbox'
       name = name
-      checked = checked
+      checked = isChecked
       id = id
       class = "checkbox__input visually-hidden"
       )

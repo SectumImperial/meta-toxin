@@ -89,8 +89,8 @@ class Dropdown {
       this.dropdownContent.classList.toggle('_active');
     });
 
-    this.btnsDecrement.forEach((item) => item.addEventListener('click', this.btnDecrement.bind(this)));
-    this.btnsIncrement.forEach((item) => item.addEventListener('click', this.btnIncrement.bind(this)));
+    this.btnsDecrement.forEach((item) => item.addEventListener('click', this.decrementBtn.bind(this)));
+    this.btnsIncrement.forEach((item) => item.addEventListener('click', this.incrementBtn.bind(this)));
 
     this.btnClear.addEventListener('click', this.clear.bind(this));
     this.btnAccept.addEventListener('click', this.accept.bind(this));
@@ -157,7 +157,7 @@ class Dropdown {
     if (sum === 0) this.btnClear.style.visibility = 'hidden';
   }
 
-  btnDecrement(e) {
+  decrementBtn(e) {
     e.preventDefault();
     const container = e.target.closest(`.${ITEM}`);
     const count = container.querySelector(`.${COUNT}`);
@@ -177,7 +177,7 @@ class Dropdown {
     this.checkBtnVisibility(this.dropdown, `.${COUNT}`);
   }
 
-  btnIncrement(e) {
+  incrementBtn(e) {
     e.preventDefault();
     const container = e.target.closest(`.${ITEM}`);
     const count = container.querySelector(`.${COUNT}`);
@@ -215,19 +215,18 @@ class Dropdown {
 
     countsMap.forEach((key, value) => {
       if (wordsMap.has(value) && !Dropdown.hasIsEqualKey(synthMap, wordsMap.get(value))) {
-        // Если создаваемая карта не имеет такого ключа
+        // If new map hasn't kthe key
         synthMap.set(wordsMap.get(value), key);
       }
-
-      // Если в карте массива слов нет отдельного массива для ключа
+      // If the map of array hasn't separate array for the key
       if (!wordsMap.has(value) && synthMap.has(wordsMap.get(DEFAULT_KEY))) {
-        // Если создаваемая карта уже имеет нужный массив слов
-        // перебрать и суммировать подходящие ключи countsMap, после установить в качестве value
+        // If there is correct array of words
+        // sum all keys countsMap and set in value
         const newValue = Dropdown.sumCounts(countsMap, wordsMap, DEFAULT_KEY);
         synthMap.set(wordsMap.get(DEFAULT_KEY), newValue);
       }
 
-      // Если создаваемая карта ещё не имеет нужный массив слов
+      // If there is not array of words
       if (!wordsMap.has(value) && !synthMap.has(wordsMap.get(DEFAULT_KEY))) {
         synthMap.set(wordsMap.get(DEFAULT_KEY), key);
       }

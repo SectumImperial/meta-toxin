@@ -3,8 +3,7 @@ mixin button(options = {})
     const {
       btnType = 'button',
       type = 'submit',
-      btnMod = [],
-      arrow = false,
+      isArrow = false,
       btnColor = '',
       btnWrapperColor = 'violet',
       btnSize = 'small',
@@ -35,26 +34,20 @@ mixin button(options = {})
       noBorder: 'button_no-border'
     }
 
-    let mod = ''
-    if(btnMod.length > 0) {
-      mod += modificators[btnMod]
-    }
-
-
   .button(
     class = `${wrapperColor[btnWrapperColor]}`
    )
     - if(btnType === 'button')
      button.button__button(
-       class = `${colorBtn[btnColor]} ${sizeBtn[btnSize]} ${mod}`
+       class = `${colorBtn[btnColor]} ${sizeBtn[btnSize]}`
        type = type
       )
        span.button__content= content
-     - if (arrow) 
+     - if (isArrow) 
        .button_arrow.icon__arrow_forward
     - if(btnType === 'link')
      a.button__button(
-       class = `button_link ${colorBtn[btnColor]} ${sizeBtn[btnSize]} ${mod}`
+       class = `button_link ${colorBtn[btnColor]} ${sizeBtn[btnSize]}`
        href = href
       )
        span.button__content= content

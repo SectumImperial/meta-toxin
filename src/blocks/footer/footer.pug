@@ -10,7 +10,7 @@ mixin footer(options = {})
     const {
       contentPromo = '',
       navItems = [],
-      border = false
+      isBorder = false
     } = options 
 
   -
@@ -20,19 +20,19 @@ mixin footer(options = {})
     }
 
 
-  .footer(
-    class= `${mod}`
+  section.footer(
+    class= mod
   )
     .footer__blocks
-      section.footer__block
+      .footer__block
         .footer__logo
-        +logo({
-          href: 'landing-page.html'
-        })
+          +logo({
+            href: 'landing-page.html'
+          })
         .footer__promo
           +text-element(contentPromo)
 
-      section.footer__navigation
+      .footer__navigation
         each item in navItems
           -
            const {
@@ -52,7 +52,7 @@ mixin footer(options = {})
                 items: items
               })
 
-      section.footer__email
+      .footer__email
         .footer__title
           +title({
               level: 'h5',

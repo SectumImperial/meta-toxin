@@ -11,7 +11,7 @@
     color: rgba($dark-color, 0.75);
     border-radius: 4px;
 
-    font-size: rem(14);
+    font-size: $fontSmall;
     font-family: 'Montserrat', sans-serif;
 
     &::placeholder {
@@ -40,7 +40,7 @@
     position: absolute;
     top: 36%;
     right: 15px;
-    font-size: 12px;
+    font-size: $fontTiny;
     &::before {
       color: rgba($dark-color, 0.5);
     }

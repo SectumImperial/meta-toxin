@@ -3,7 +3,7 @@ mixin radio (options = {})
     const {
       name = '',
       id = '',
-      checked = false,
+      isChecked = false,
       text = '',
     } = options 
 
@@ -13,7 +13,7 @@ mixin radio (options = {})
       name = name,
       id = id,
       class = 'radio__input visually-hidden',
-      checked = checked
+      checked = isChecked
       )
     span.radio__new-input
     span.radio__title= text

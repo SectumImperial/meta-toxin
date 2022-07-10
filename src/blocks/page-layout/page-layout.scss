@@ -10,17 +10,11 @@
 
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
   font-weight: 400;
-  font-size: rem(14);
+  font-size: $fontSmall;
+  color: $dark-color;
+  background: $secondary-color-2;
 
   &__main {
     flex: 1 0 auto;
-  }
-
-  &__header {
-    min-height: rem(70);
-  }
-
-  &__footer {
-    min-height: rem(367);
   }
 }
