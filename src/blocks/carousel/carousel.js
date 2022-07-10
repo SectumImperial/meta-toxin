@@ -16,21 +16,26 @@ class Carousel {
   }
 
   init() {
-    this.width = WIDTH;
-    this.count = COUNT;
-    this.position = 0;
+    this.findElems();
+    this.createVars();
+    this.markToggless();
+    this.checkActive();
+    this.addListeners();
+  }
 
+  findElems() {
     this.list = this.carousel.querySelector(`.${ITEMS}`);
     this.listElems = this.carousel.querySelectorAll(`.${ITEM}`);
     this.prev = this.carousel.querySelector(`.${PREV}`);
     this.next = this.carousel.querySelector(`.${NEXT}`);
     this.toggles = this.carousel.querySelectorAll(`.${TOGGLE}`);
+  }
 
+  createVars() {
+    this.width = WIDTH;
+    this.count = COUNT;
+    this.position = 0;
     this.xDown = null;
-
-    this.markToggless();
-    this.checkActive();
-    this.addListeners();
   }
 
   markToggless() {

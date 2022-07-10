@@ -1,3 +1,10 @@
+import {
+  AMOUNT,
+  TOGGLE_MIN,
+  TOGGLE_MAX,
+  RANGE_PROGRESS,
+} from './constants';
+
 class Slider {
   constructor(element) {
     this.slider = element;
@@ -11,44 +18,50 @@ class Slider {
   }
 
   init() {
-    this.field = this.slider.querySelector('.range-slider__amount');
-    this.toggleOne = this.slider.querySelector('.range-slider__input_min');
-    this.toggleTwo = this.slider.querySelector('.range-slider__input_max');
-    this.rangeProgress = this.slider.querySelector('.range-slider__progress');
-
-    this.min = this.options.min ? this.options.min : 0;
-    this.max = this.options.max ? this.options.max : 15000;
-    this.addedText = this.options.addedText ? this.options.addedText : '';
-
-    this.toggleOne.value = this.options.initialStart
-      ? this.options.initialStart
-      : this.min;
-    this.toggleTwo.value = this.options.initialEnd
-      ? this.options.initialEnd
-      : this.max;
-
-    this.rangeProgress.style.left = `${
-      (this.toggleOne.value / this.max) * 100
-    }%`;
-    this.rangeProgress.style.right = `${
-      100 - (this.toggleTwo.value / this.max) * 100
-    }%`;
-
+    this.findElems();
+    this.createVars();
     this.setValues();
     this.addListeners();
   }
 
+  findElems() {
+    this.field = this.slider.querySelector(`.${AMOUNT}`);
+    this.toggleMin = this.slider.querySelector(`.${TOGGLE_MIN}`);
+    this.toggleMax = this.slider.querySelector(`.${TOGGLE_MAX}`);
+    this.rangeProgress = this.slider.querySelector(`.${RANGE_PROGRESS}`);
+  }
+
+  createVars() {
+    this.min = this.options.min ? this.options.min : 0;
+    this.max = this.options.max ? this.options.max : 15000;
+    this.addedText = this.options.addedText ? this.options.addedText : '';
+
+    this.toggleMin.value = this.options.initialStart
+      ? this.options.initialStart
+      : this.min;
+    this.toggleMax.value = this.options.initialEnd
+      ? this.options.initialEnd
+      : this.max;
+
+    this.rangeProgress.style.left = `${
+      (this.toggleMin.value / this.max) * 100
+    }%`;
+    this.rangeProgress.style.right = `${
+      100 - (this.toggleMax.value / this.max) * 100
+    }%`;
+  }
+
   addListeners() {
-    this.toggleOne.addEventListener('input', this.changeFirstToggle.bind(this));
-    this.toggleTwo.addEventListener(
+    this.toggleMin.addEventListener('input', this.changeFirstToggle.bind(this));
+    this.toggleMax.addEventListener(
       'input',
       this.changeSecondToggle.bind(this),
     );
   }
 
   setValues() {
-    const fitstVal = Slider.performValue(this.toggleOne.value);
-    const secondVal = Slider.performValue(this.toggleTwo.value);
+    const fitstVal = Slider.performValue(this.toggleMin.value);
+    const secondVal = Slider.performValue(this.toggleMax.value);
     this.field.value = `${fitstVal}${this.addedText} - ${secondVal}${this.addedText}`;
   }
 
@@ -58,40 +71,40 @@ class Slider {
 
   colorRange() {
     this.rangeProgress.style.left = `${
-      (this.toggleOne.value / this.max) * 100
+      (this.toggleMin.value / this.max) * 100
     }%`;
     this.rangeProgress.style.right = `${
-      100 - (this.toggleTwo.value / this.max) * 100
+      100 - (this.toggleMax.value / this.max) * 100
     }%`;
   }
 
   changeFirstToggle() {
     if (
-      Number(this.toggleTwo.value) - Number(this.toggleOne.value)
+      Number(this.toggleMax.value) - Number(this.toggleMin.value)
       <= this.min
     ) {
-      this.toggleOne.value = Number(this.toggleTwo.value) - this.min;
+      this.toggleMin.value = Number(this.toggleMax.value) - this.min;
     }
 
     this.setValues();
     this.colorRange();
 
     if (
-      Number(this.toggleOne.value) === this.max
-      && Number(this.toggleTwo.value) === this.max
+      Number(this.toggleMin.value) === this.max
+      && Number(this.toggleMax.value) === this.max
     ) {
-      this.toggleTwo.style.display = 'none';
+      this.toggleMax.style.display = 'none';
     } else {
-      this.toggleTwo.style.display = 'block';
+      this.toggleMax.style.display = 'block';
     }
   }
 
   changeSecondToggle() {
     if (
-      Number(this.toggleTwo.value) - Number(this.toggleOne.value)
+      Number(this.toggleMax.value) - Number(this.toggleMin.value)
       <= this.min
     ) {
-      this.toggleTwo.value = Number(this.toggleOne.value) + this.min;
+      this.toggleMax.value = Number(this.toggleMin.value) + this.min;
     }
 
     this.setValues();

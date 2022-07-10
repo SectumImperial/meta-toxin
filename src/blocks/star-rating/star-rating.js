@@ -1,10 +1,11 @@
-import { EMPTY_STAR, FILL_STAR } from './constants';
+import {
+  EMPTY_STAR,
+  FILL_STAR,
+} from './constants';
 
 class StarRating {
   constructor(element) {
     this.rating = element;
-    this.stars = element.querySelectorAll('.star-rating__star');
-
     try {
       this.rateNum = JSON.parse(this.rating.dataset.rating);
     } catch (err) {
@@ -15,6 +16,7 @@ class StarRating {
   }
 
   init() {
+    this.stars = this.rating.querySelectorAll('.star-rating__star');
     this.setRating();
   }
 

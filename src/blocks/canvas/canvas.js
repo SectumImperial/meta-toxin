@@ -20,15 +20,21 @@ class Canvas {
   }
 
   init() {
+    // There is NO findElems method BECAUSE OF
+    // IT'S IMPOSSIBLE TO FIND ELEMENTS BEFORE THIS ELEMS WAS CREATED!!!
+    // All elems created by JS because of the SVG MUST BE dynamic and accept different options
     this.allCounts = this.sumCount();
     this.dashoffsets = [];
+
     this.svgBlock = this.canvas.querySelector(`.${CHART}`);
     this.legendBlock = this.canvas.querySelector(`.${LEGEND}`);
+
     this.defs = this.createDefs();
     this.circles = this.createCircles();
     this.text = this.createText();
     this.svgTmp = this.createSvg();
     this.addSvg();
+
     this.chart = document.querySelector(`.${SVG}`);
     this.addText();
     this.list = this.createList();
@@ -54,11 +60,11 @@ class Canvas {
   sumCount() {
     let sum = 0;
     for (const option of this.options) {
-      if (option.count) sum += option.count;
-      if (!option.count) sum += 0;
+      if (!Number.isNaN(option.count)) sum += option.count;
+      if (Number.isNaN(option.count)) sum += 0;
     }
 
-    if (Number.isNaN(sum)) throw new Error('Ошибка в подсчёте суммы голосов');
+    if (Number.isNaN(sum)) throw new Error('Ошибка в подсчёте суммы голосов Canvas');
     return sum;
   }
 
@@ -208,7 +214,7 @@ class Canvas {
 
   deleteText() {
     const text = this.canvas.querySelector('.canvas__text-group');
-    if (text) text.remove();
+    if (text !== '') text.remove();
   }
 
   performText({ target }) {
@@ -233,7 +239,7 @@ class Canvas {
 
   boldLine(id) {
     const circleLine = this.canvas.querySelector(`.${UNIT}_${id}`);
-    if (circleLine) circleLine.classList.add(`.${UNIT}_hovered`);
+    if (circleLine) circleLine.classList.add(`${UNIT}_hovered`);
   }
 
   resetLine() {

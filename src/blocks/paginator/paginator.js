@@ -14,30 +14,17 @@ import {
 class Paginator {
   constructor(element) {
     this.paginator = element;
-    this.init();
-  }
-
-  init() {
-    this.itemsPaginator = this.paginator.querySelector(`.${ITEMS}`);
-    this.btnPrev = this.paginator.querySelector(`.${BTN_PREV}`);
-    this.btnNext = this.paginator.querySelector(`.${BTN_NEXT}`);
-    this.liClass = LI_CLASS;
-    this.textElement = this.paginator.querySelector(`.${TEXT}`);
-    this.count = COUNT_PAGE;
-    this.currentPage = 1;
-    this.startPage = 1;
-
     try {
       this.options = JSON.parse(this.paginator.dataset.paginator);
     } catch (err) {
       throw new Error(`Ошибка в чтении данных опций ${err}`);
     }
+    this.init();
+  }
 
-    this.itemsPerPage = this.options.itemsPerPage;
-    this.allItems = this.options.allItems;
-    this.text = this.options.text;
-
-    this.pageCount = Math.ceil(this.allItems / this.itemsPerPage);
+  init() {
+    this.findElems();
+    this.createVars();
     this.createPaginator();
     this.setCurrentPage();
     this.checkVisibilityBtn();
@@ -45,10 +32,46 @@ class Paginator {
     this.createText();
   }
 
+  findElems() {
+    this.itemsPaginator = this.paginator.querySelector(`.${ITEMS}`);
+    this.btnPrev = this.paginator.querySelector(`.${BTN_PREV}`);
+    this.btnNext = this.paginator.querySelector(`.${BTN_NEXT}`);
+    this.liClass = LI_CLASS;
+    this.textElement = this.paginator.querySelector(`.${TEXT}`);
+  }
+
+  createVars() {
+    this.count = COUNT_PAGE;
+    this.currentPage = 1;
+    this.startPage = 1;
+
+    this.itemsPerPage = this.options.itemsPerPage;
+    this.allItems = this.options.allItems;
+    this.text = this.options.text;
+
+    this.pageCount = Math.ceil(this.allItems / this.itemsPerPage);
+  }
+
   addListeners() {
     this.btnPrev.addEventListener('click', this.decrementPage.bind(this));
     this.btnNext.addEventListener('click', this.incrementPage.bind(this));
     this.itemsPaginator.addEventListener('click', this.changePage.bind(this));
+  }
+
+  static isInStart(currentPage) {
+    return currentPage === COUNT_PAGE + 1
+    || currentPage <= COUNT_PAGE;
+  }
+
+  static isInEnd(currentPage, pageCount) {
+    return currentPage === pageCount - COUNT_PAGE
+    || (currentPage >= pageCount - COUNT_PAGE
+      && currentPage !== pageCount);
+  }
+
+  static isInMiddle(currentPage, pageCount) {
+    return currentPage > COUNT_PAGE
+    && currentPage < pageCount - COUNT_PAGE;
   }
 
   //   Методы создания и отображения страниц
@@ -61,23 +84,14 @@ class Paginator {
     // Если на 4 или если на 12 или если в середине
     if (this.currentPage === this.startPage) {
       this.createBegining();
-    } else if (
-      this.currentPage === COUNT_PAGE + 1
-      || this.currentPage <= COUNT_PAGE
-    ) {
+    } else if (Paginator.isInStart(this.currentPage)) {
       this.createStart(end);
-    } else if (
-      this.currentPage === this.pageCount - COUNT_PAGE
-      || (this.currentPage >= this.pageCount - COUNT_PAGE
-        && this.currentPage !== this.pageCount)
+    } else if (Paginator.isInEnd(this.currentPage, this.pageCount)
     ) {
       this.createEnd(start);
     } else if (this.currentPage === this.pageCount) {
       this.createEnding();
-    } else if (
-      this.currentPage > COUNT_PAGE
-      && this.currentPage < this.pageCount - COUNT_PAGE
-    ) {
+    } else if (Paginator.isInMiddle(this.currentPage, this.pageCount)) {
       this.createMiddle(start, end);
     }
   }

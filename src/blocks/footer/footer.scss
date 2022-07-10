@@ -48,7 +48,7 @@
 
     &__promo {
       display: block;
-      width: rem(260);
+      max-width: 260px;
     }
 
     &__navigation {

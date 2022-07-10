@@ -13,19 +13,25 @@ class OrderCount {
   }
 
   init() {
-    this.fees = this.options.fees;
-    this.days = this.options.days;
-    this.price = this.options.price;
-    this.discounts = this.options.discounts;
-
-    this.sumRent = this.sumRnet();
-    this.allSum = this.sumAll(this.sumRent);
-    this.finalSum = this.computeFinal(this.allSum);
-
+    this.createVars();
+    this.computeVars();
     this.createRentString();
     this.createFeeString();
     this.createAddFeeString();
     this.insertFinalSum();
+  }
+
+  createVars() {
+    this.fees = this.options.fees;
+    this.days = this.options.days;
+    this.price = this.options.price;
+    this.discounts = this.options.discounts;
+  }
+
+  computeVars() {
+    this.sumRent = this.sumRnet();
+    this.allSum = this.sumAll(this.sumRent);
+    this.finalSum = this.computeFinal(this.allSum);
   }
 
   sumRnet() {

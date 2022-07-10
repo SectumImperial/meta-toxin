@@ -16,7 +16,7 @@ mixin room-card(options = {})
       href = 'error-page.html'
     } = options
 
-  article.room-card
+  article.room-card.js-room-card
     +carousel(images,
     href)
     .room-card__information
@@ -35,7 +35,7 @@ mixin room-card(options = {})
           stars
         })
         span.room-card__reviews 
-          span.room-card__reviews-count= `${reviews} `
-          span.room-card__reviews-word Отзывов
+          span.room-card__reviews-count.js-room-card__reviews-count= `${reviews} `
+          span.room-card__reviews-word.js-room-card__reviews-word Отзывов
 
     

@@ -12,11 +12,14 @@ class Like {
   }
 
   init() {
+    this.findElems();
+    this.addListeners();
+  }
+
+  findElems() {
     this.heart = this.like.querySelector('.like__heart');
     this.count = this.like.querySelector('.like__count');
     this.button = this.like.querySelector('.like__button');
-
-    this.addListeners();
   }
 
   addListeners() {

@@ -29,20 +29,24 @@ class Dropdown {
       throw new ValidationError('Ошибка в чтении options', err);
     }
 
-    try {
-      this.init();
-    } catch (err) {
-      throw new Error('Ошибка инициализации класса', err);
-    }
+    this.init();
   }
 
   init() {
+    this.findElems();
+    this.checkBtnVisibility(this.dropdown, `.${COUNT}`);
+    this.type = this.dropdown.querySelector(`.${TYPE}`).value;
+
+    this.addListeners();
+    this.checkUrlDates();
+  }
+
+  findElems() {
     this.field = this.dropdown.querySelector(`.${FIELD}`);
     this.dropdownInput = this.dropdown.querySelector(`.${INPUT}`);
     this.dropdownContent = this.dropdown.querySelector(`.${CONTENT}`);
     this.btnClear = this.dropdown.querySelector(`.${BTN_CLEAR}`);
     this.btnAccept = this.dropdown.querySelector(`.${BTN_ACCEPT}`);
-    this.checkBtnVisibility(this.dropdown, `.${COUNT}`);
     this.counter = this.dropdown.querySelector(`.${COUTER}`);
     this.btnsDecrement = this.counter.querySelectorAll(
       `.${BTNS_DEC}`,
@@ -50,11 +54,6 @@ class Dropdown {
     this.btnsIncrement = this.counter.querySelectorAll(
       `.${BTNS_INC}`,
     );
-
-    this.type = this.dropdown.querySelector(`.${TYPE}`).value;
-
-    this.addListeners();
-    this.checkUrlDates();
   }
 
   checkUrlDates() {

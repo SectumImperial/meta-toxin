@@ -21,14 +21,14 @@ class Datepicker {
   }
 
   init() {
-    this.createElems(this.datepick);
+    this.findElems(this.datepick);
     this.createDatepicker();
     this.addButtonsArrow();
     this.checkBtnVisibility([...this.items]);
     this.addListeners();
   }
 
-  createElems(container) {
+  findElems(container) {
     this.items = container.querySelectorAll(`.${ITEM}`);
     this.formGroups = Array.from(
       container.querySelectorAll(`.${GROUP}`),
@@ -74,6 +74,7 @@ class Datepicker {
       item.addEventListener('input', this.inputDate.bind(this));
     });
     this.calConteiner.addEventListener('click', this.checkRange.bind(this));
+    this.datepick.addEventListener('mousemove', this.setRange.bind(this));
     document.addEventListener('click', this.closeOuterClick.bind(this));
   }
 
@@ -146,29 +147,33 @@ class Datepicker {
     Datepicker.addPoitRange(rangeFrom, rangeTo);
   }
 
+  static isRangeSelecting(point, classRange) {
+    return point
+      && point.classList.contains('-selected-')
+      && !point.classList.contains(classRange);
+  }
+
   static addPoitRange(startPoint, endPoint) {
-    if (
-      startPoint
-      && startPoint.classList.contains('-selected-')
-      && !startPoint.classList.contains('start-range')
-    ) {
+    if (this.isRangeSelecting(startPoint, 'start-range')) {
       startPoint.classList.add('start-range');
     }
 
     if (
-      endPoint
-      && endPoint.classList.contains('-selected-')
-      && !endPoint.classList.contains('end-range')
+      this.isRangeSelecting(endPoint, 'end-range')
     ) {
       endPoint.classList.add('end-range');
     }
   }
 
+  static isRangeSelected(point) {
+    return point
+      && point.classList.contains('end-range')
+      && point.classList.contains('start-range');
+  }
+
   static deletePoitRange(point) {
     if (
-      point
-      && point.classList.contains('end-range')
-      && point.classList.contains('start-range')
+      this.isRangeSelected(point)
     ) {
       point.classList.remove('start-range');
       point.classList.remove('end-range');
@@ -272,71 +277,127 @@ class Datepicker {
     navTitle.innerText = Datepicker.deleteComma(navTitle);
   }
 
+  static isOneInputClicked({ targetContainer, sibling, container }) {
+    return !targetContainer.classList.contains('clicked')
+      && sibling.classList.contains('clicked')
+      && container.classList.contains('_active-dp');
+  }
+
+  static isAllInputClicked({ targetContainer, sibling, container }) {
+    return targetContainer.classList.contains('clicked')
+    && sibling.classList.contains('clicked')
+    && container.classList.contains('_active-dp');
+  }
+
+  static returnInputSibling(targetContainer, formGroups) {
+    const sibling = [
+      ...formGroups.filter((e) => e !== targetContainer),
+    ][0];
+
+    return sibling;
+  }
+
+  static closeDpOnInpitCLick(targetContainer, sibling, calConteiner) {
+    targetContainer.classList.remove('clicked');
+    sibling.classList.remove('clicked');
+    calConteiner.classList.remove('_active-dp');
+  }
+
+  static toggleDp(targetContainer, calConteiner) {
+    targetContainer.classList.toggle('clicked');
+    calConteiner.classList.toggle('_active-dp');
+  }
+
   clickInputOpen({ target }) {
-    const targetContainer = target.closest('.datepick__group');
+    const targetContainer = target.closest(`.${GROUP}`);
     if (!targetContainer) return;
 
     if (this.isTwoInputs) {
-      const sibling = [
-        ...this.formGroups.filter((e) => e !== targetContainer),
-      ][0];
+      const sibling = Datepicker.returnInputSibling(targetContainer, this.formGroups);
 
       // Клик по сосденему инпуту после клика на первый, календарь не закрывается
-      if (
-        !targetContainer.classList.contains('clicked')
-        && sibling.classList.contains('clicked')
-        && this.calConteiner.classList.contains('_active-dp')
-      ) {
+      const oneInpClick = Datepicker.isOneInputClicked({
+        targetContainer,
+        sibling,
+        container: this.calConteiner,
+      });
+
+      if (oneInpClick) {
         targetContainer.classList.toggle('clicked');
         return;
       }
 
       // Закрыть календарь и снять все clicked на элементах
       // в случае повторонго клика по любому элементу при открытом календаре
-      if (
-        targetContainer.classList.contains('clicked')
-        && sibling.classList.contains('clicked')
-        && this.calConteiner.classList.contains('_active-dp')
-      ) {
-        targetContainer.classList.remove('clicked');
-        sibling.classList.remove('clicked');
-        this.calConteiner.classList.remove('_active-dp');
-        return;
-      }
+      const allClicked = Datepicker.isAllInputClicked({
+        targetContainer,
+        sibling,
+        container: this.calConteiner,
+      });
 
-      targetContainer.classList.toggle('clicked');
-      this.calConteiner.classList.toggle('_active-dp');
+      if (allClicked) {
+        Datepicker.closeDpOnInpitCLick(targetContainer, sibling, this.calConteiner);
+      }
+      Datepicker.toggleDp(targetContainer, this.calConteiner);
     }
 
     if (this.isSingleInput) {
-      targetContainer.classList.toggle('clicked');
-      this.calConteiner.classList.toggle('_active-dp');
+      Datepicker.toggleDp(targetContainer, this.calConteiner);
     }
+  }
+
+  static resetValue(input) {
+    // eslint-disable-next-line no-param-reassign
+    input.value = '';
   }
 
   clear(e) {
     e.preventDefault();
     if (this.isTwoInputs) {
-      this.firstItem.value = '';
-      this.secondItem.value = '';
+      Datepicker.resetValue(this.firstItem);
+      Datepicker.resetValue(this.secondItem);
     }
 
     if (this.isSingleInput) {
-      this.singleItem.value = '';
+      Datepicker.resetValue(this.singleItem);
     }
     this.dp.clear();
+  }
+
+  static closeDp(calConteiner) {
+    calConteiner.classList.remove('_active-dp');
   }
 
   accept(e) {
     e.preventDefault();
 
     if (this.dp.rangeDateFrom || this.dp.rangeDateTo) {
-      this.calConteiner.classList.remove('_active-dp');
+      Datepicker.closeDp(this.calConteiner);
     }
   }
 
+  static correctFormat(items) {
+    return items.every(({ value, pattern }) => value.match(pattern));
+  }
+
+  static changeSameData(secondItem) {
+    const date = secondItem.value.split('.');
+    let day = date[0];
+    day += 1;
+    date.splice(0, 1, day);
+    // eslint-disable-next-line no-param-reassign
+    secondItem.value = date.join('.');
+  }
+
+  swapDates() {
+    [this.firstItem.value, this.econdItem.value] = [
+      this.secondItem.value,
+      this.firstItem.value,
+    ];
+  }
+
   inputDate() {
-    const correctFormat = [...this.items].every(({ value, pattern }) => value.match(pattern));
+    const correctFormat = Datepicker.correctFormat([...this.items]);
 
     if (correctFormat) {
       this.addDateCal(this.items);
@@ -344,21 +405,13 @@ class Datepicker {
       this.setPointRange();
 
       if (this.firstItem.value === this.secondItem.value) {
-        const date = this.secondItem.value.split('.');
-        let day = date[0];
-        day += 1;
-        date.splice(0, 1, day);
-        this.secondItem.value = date.join('.');
-
+        Datepicker.changeSameData(this.secondItem);
         this.addDateCal(this.items);
         this.setPointRange();
         this.performRange(this.rangeFrom, this.rangeTo);
       }
       if (this.firstItem.value > this.secondItem.value) {
-        [this.firstItem.value, this.econdItem.value] = [
-          this.secondItem.value,
-          this.firstItem.value,
-        ];
+        this.swapDates();
         this.performRange(this.rangeFrom, this.rangeTo);
         this.addDateCal(this.items);
       }
@@ -366,6 +419,16 @@ class Datepicker {
         this.performRange(this.rangeFrom, this.rangeTo);
       }
     }
+  }
+
+  static isSelectedDates({ isSingleInput, rangeDateFrom, rangeDateTo }) {
+    return isSingleInput && rangeDateFrom && rangeDateTo;
+  }
+
+  static isNotRange({ target, to, from }) {
+    return target.classList.contains(to)
+    && !target.classList.contains(from)
+    && !target.classList.contains('-selected-');
   }
 
   checkRange({ target }) {
@@ -390,7 +453,14 @@ class Datepicker {
       }
     }
 
-    if (this.isSingleInput && this.dp.rangeDateFrom && this.dp.rangeDateTo) {
+    const isSelDate = Datepicker.isSelectedDates({
+      isSingleInput: this.isSingleInput,
+      rangeDateFrom: this.dp.rangeDateFrom,
+      rangeDateTo: this.dp.rangeDateTo,
+
+    });
+
+    if (isSelDate) {
       this.singleItem.value = Datepicker.formatDate({
         firstDate: this.dp.rangeDateFrom,
         secondDate: this.dp.rangeDateTo,
@@ -409,63 +479,74 @@ class Datepicker {
       Datepicker.addPoitRange(this.rangeFrom, this.rangeTo);
     }
 
-    // Выделить диапазон при движеии мыши
-    // eslint-disable-next-line no-shadow
-    this.datepick.addEventListener('mousemove', ({ target, relatedTarget }) => {
-      this.setPointRange();
+    this.checkBtnVisibility([this.firstItem, this.secondItem]);
+  }
 
-      // Переменная для пред. дня при движении мыши во время выделения диапазона
-      let prevDay;
+  static isSameDateHover(rangeFrom) {
+    return rangeFrom
+      && rangeFrom.classList.contains('-focus-')
+      && rangeFrom.classList.contains('-range-to-')
+      && rangeFrom.classList.contains('-range-from-')
+      && rangeFrom.classList.contains('-selected-');
+  }
 
-      Datepicker.addPoitRange(this.rangeFrom, this.rangeTo);
+  // Selecting tha range while mousemoving
+  setRange({ target, relatedTarget }) {
+    this.setPointRange();
 
-      if (this.rangeFrom && this.rangeFrom.classList.contains('end-range')) {
-        this.rangeFrom.classList.remove('end-range');
-      }
+    // Переменная для пред. дня при движении мыши во время выделения диапазона
+    let prevDay;
 
-      // Назначить переменной пред. дня значение
-      if (relatedTarget && !relatedTarget.classList.contains('-days-')) {
-        prevDay = relatedTarget;
-      }
+    Datepicker.addPoitRange(this.rangeFrom, this.rangeTo);
 
-      // Добавить выделение диапазона при движении мыши
-      if (
-        target.classList.contains('-range-to-')
-        && !target.classList.contains('-range-from-')
-        && !target.classList.contains('-selected-')
-      ) {
-        target.classList.add('end-range');
-        if (prevDay) prevDay.classList.remove('end-range');
-      }
+    if (this.rangeFrom && this.rangeFrom.classList.contains('end-range')) {
+      this.rangeFrom.classList.remove('end-range');
+    }
 
-      if (
-        target.classList.contains('-range-from-')
-        && !target.classList.contains('-range-to-')
-        && !target.classList.contains('-selected-')
-      ) {
-        target.classList.add('start-range');
-        if (prevDay) prevDay.classList.remove('start-range');
-      }
+    // Назначить переменной пред. дня значение
+    if (relatedTarget && !relatedTarget.classList.contains('-days-')) {
+      prevDay = relatedTarget;
+    }
 
-      // Удаление выделения диапазона у элементов там, где это не нужно при быстром
-      // движении мыши или выход за контейнер.
-      Datepicker.clearRange(this.datepick, 'start-range');
-      Datepicker.clearRange(this.datepick, 'end-range');
-
-      // Удалить выделение диапазона в случае возврата мыши к выбранной дате
-      if (
-        this.rangeFrom
-        && this.rangeFrom.classList.contains('-focus-')
-        && this.rangeFrom.classList.contains('-range-to-')
-        && this.rangeFrom.classList.contains('-range-from-')
-        && this.rangeFrom.classList.contains('-selected-')
-      ) {
-        this.rangeFrom.classList.remove('end-range');
-        this.rangeFrom.classList.remove('start-range');
-      }
+    // Добавить выделение диапазона при движении мыши
+    const isRangeStart = Datepicker.isNotRange({
+      target,
+      to: '-range-to-',
+      from: '-range-from-',
     });
 
-    this.checkBtnVisibility([this.firstItem, this.secondItem]);
+    if (isRangeStart) {
+      target.classList.add('end-range');
+      if (prevDay) prevDay.classList.remove('end-range');
+    }
+
+    const isRangeEnd = Datepicker.isNotRange({
+      target,
+      to: '-range-from-',
+      from: '-range-to-',
+    });
+
+    if (isRangeEnd) {
+      target.classList.add('start-range');
+      if (prevDay) prevDay.classList.remove('start-range');
+    }
+
+    // Удаление выделения диапазона у элементов там, где это не нужно при быстром
+    // движении мыши или выход за контейнер.
+    Datepicker.clearRange(this.datepick, 'start-range');
+    Datepicker.clearRange(this.datepick, 'end-range');
+
+    // Удалить выделение диапазона в случае возврата мыши к выбранной дате
+    if (
+      Datepicker.isSameDateHover(this.rangeFrom)
+    ) {
+      Datepicker.removeRange();
+    }
+  }
+
+  static removeRange(rangeFrom) {
+    rangeFrom.classList.remove('end-range');
+    rangeFrom.classList.remove('start-range');
   }
 
   setPointRange() {
