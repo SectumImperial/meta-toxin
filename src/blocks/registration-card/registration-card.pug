@@ -8,107 +8,107 @@ include ../text-element/text-element.pug
 mixin registration-card()
   section.registration-card
     form(
-      classForm = 'registration-card__form',
-      action = 'registration-card-page.html',
-      method = 'GET'
+      classForm = "registration-card__form",
+      action = "registration-card-page.html",
+      method = "GET"
     )
       .registration-card__title
         +title({
-          level: 'h2',
-          text: 'Регистрация аккаунта',
+          level: "h2",
+          text: "Регистрация аккаунта",
         })
       .registration-card__name-group
         +input({
-          type: 'text',
-          name: 'registration-card-name',
-          id: 'registration-card-name',
-          placeholder: 'Имя',
+          type: "text",
+          name: "registration-card-name",
+          id: "registration-card-name",
+          placeholder: "Имя",
           isRequired: true
         })
         +input({
-          type: 'text',
-          name: 'registration-card-surname',
-          id: 'registration-card-surname',
-          placeholder: 'Фамилия',
+          type: "text",
+          name: "registration-card-surname",
+          id: "registration-card-surname",
+          placeholder: "Фамилия",
           isRequired: true
         })
 
       .registration-card__sex
         .registration-card__sex-group
           +radio({
-            name: 'registration-card-sex',
-            id: 'registration-card-male',
+            name: "registration-card-sex",
+            id: "registration-card-male",
             isChecked: true,
-            text: 'Мужчина'
+            text: "Мужчина"
         })
         .registration-card__sex-group
           +radio({
-            name: 'registration-card-sex',
-            id: 'registration-card-female',
-            text: 'Женщина'
+            name: "registration-card-sex",
+            id: "registration-card-female",
+            text: "Женщина"
           })
             
       .registration-card__birth-group
         .registration-card__subtitle
           +title({
-            text: 'Дата рождения',
-            level: 'h5',
+            text: "Дата рождения",
+            level: "h5",
           })
         +input({
-            type: 'text',
-            id: 'registration-card-birth',
-            classInput: 'registration-card__birth',
-            classInputField: '_dateInput',
-            placeholder: 'ДД.ММ.ГГГГ',
-            pattern: '[0-9]{2}.[0-9]{2}.[0-9]{4}',
+            type: "text",
+            id: "registration-card-birth",
+            classInput: "registration-card__birth",
+            classInputField: "_dateInput",
+            placeholder: "ДД.ММ.ГГГГ",
+            pattern: "[0-9]{2}.[0-9]{2}.[0-9]{4}",
             isRequired: true,
         })
         
         .registration-card__data-group
           .registration-card__subtitle
             +title({
-              text: 'Данные для входа в сервис',
-              level: 'h5',
+              text: "Данные для входа в сервис",
+              level: "h5",
             })
         .registration-card__email
           +input({
-            type: 'email',
-            name: 'registration-card-email',
-            id: 'registration-card-email',
-            placeholder: 'Email',
+            type: "email",
+            name: "registration-card-email",
+            id: "registration-card-email",
+            placeholder: "Email",
             isRequired: true
           })
         .registrtion__password
           +input({
-            type: 'password',
-            name: 'registration-card-password',
-            id: 'registration-card-password',
-            placeholder: 'Пароль',
+            type: "password",
+            name: "registration-card-password",
+            id: "registration-card-password",
+            placeholder: "Пароль",
             isRequired: true
           })
         .registration-card__mailing
           +toggle({
-            name: 'registration-card-mailing',
-            id: 'registration-card-mailing',
-            text: 'Получать спецпредложения',
+            name: "registration-card-mailing",
+            id: "registration-card-mailing",
+            text: "Получать спецпредложения",
           })
         .registration-card__button  
           +button({
-            content: 'Зарегистрироваться',
-            btnColor: 'white',
-            btnWrapperColor: 'violet',
+            content: "Зарегистрироваться",
+            btnColor: "white",
+            btnWrapperColor: "violet",
             isArrow: true,
-            btnSize: 'large'
+            btnSize: "large"
           })
 
         .registration-card__login-group
           .registration-card__login-text
-            +text-element('Уже есть аккаунт на Toxin')
+            +text-element("Уже есть аккаунт на Toxin")
           .registration-card__login-button
             +button({
-              href: 'login-page.html',
-              content: 'Войти', 
-              btnColor: 'violet',
-              btnSize: 'big',
-              btnType: 'link',
+              href: "login-page.html",
+              content: "Войти", 
+              btnColor: "violet",
+              btnSize: "big",
+              btnType: "link",
             })

@@ -5,47 +5,47 @@ include ../text-element/text-element.pug
 mixin login-card()
   section.login-card
     form(
-      class ='login-card__form',
-      action = 'login-page.html',
-      method = 'GET',
+      class ="login-card__form",
+      action = "login-page.html",
+      method = "GET",
     )
       .login-card__title
         +title({
-          level: 'h2',
-          text: 'Войти',
+          level: "h2",
+          text: "Войти",
           })
       .login-card__data-group
         +input({
-          type: 'email',
-          name: 'login-email',
-          id: 'login-email',
-          placeholder: 'Email',
+          type: "email",
+          name: "login-email",
+          id: "login-email",
+          placeholder: "Email",
           required: true
         })
         +input({
-          type: 'password',
-          name: 'login-password',
-          id: 'login-password',
-          placeholder: 'Пароль',
-          classInput: 'password',
+          type: "password",
+          name: "login-password",
+          id: "login-password",
+          placeholder: "Пароль",
+          classInput: "password",
           required: true
         })
       .login-card__button
         +button({
-          content: 'Войти',
-          btnColor: 'white',
-          btnWrapperColor: 'violet',
+          content: "Войти",
+          btnColor: "white",
+          btnWrapperColor: "violet",
           isArrow: true,
-          btnSize: 'large'
+          btnSize: "large"
         })
       .login-card__create-group
         .login-card__create-text
-          +text-element('Нет аккаунта на Toxin?')
+          +text-element("Нет аккаунта на Toxin?")
         .login-card__create-button
           +button({
-            content: 'Создать', 
-            btnColor: 'violet',
-            btnSize: 'medium',
-            btnType: 'link',
-            href: 'registration-page.html'
+            content: "Создать", 
+            btnColor: "violet",
+            btnSize: "medium",
+            btnType: "link",
+            href: "registration-page.html"
         })

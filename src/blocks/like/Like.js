@@ -26,12 +26,13 @@ class Like {
     this.like.addEventListener('click', this.toggleLike.bind(this));
   }
 
-  toggleLike() {
-    if (this.button.classList.contains(LIKED_BUTTON)) {
+  toggleLike({ target }) {
+    const btn = target.closest('.like__button');
+    if (btn.classList.contains(LIKED_BUTTON)) {
       this.decrementLike();
     }
 
-    if (!this.button.classList.contains(LIKED_BUTTON)) {
+    if (!btn.classList.contains(LIKED_BUTTON)) {
       this.incrementLike();
     }
     this.toggleClasses();
@@ -50,7 +51,7 @@ class Like {
       this.count.innerText = 0;
       throw new Error('The like value MUST be number.');
     }
-    val += 1;
+    val -= 1;
     this.count.innerText = val;
   }
 
@@ -60,7 +61,7 @@ class Like {
       this.count.innerText = 0;
       throw new Error('The like value MUST be number.');
     }
-    val -= 1;
+    val += 1;
     this.count.innerText = val;
   }
 }

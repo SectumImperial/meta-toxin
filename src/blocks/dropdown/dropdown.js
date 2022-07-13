@@ -1,4 +1,3 @@
-import ValidationError from './helpers/error';
 import chooseWord from '../../helpers/chooseWord';
 import isEqual from './helpers/isEqual';
 import cutString from './helpers/cutString';
@@ -10,13 +9,16 @@ import {
   CONTENT,
   BTN_CLEAR,
   BTN_ACCEPT,
-  COUNT,
+  COUNT_ELEM,
   COUTER,
   BTNS_DEC,
   BTNS_INC,
   TYPE,
   ITEM,
   DISABLED,
+  ACTIVE,
+  OPENED,
+  HIDDEN,
 } from './constants';
 
 class Dropdown {
@@ -26,7 +28,7 @@ class Dropdown {
     try {
       this.options = JSON.parse(this.dropdown.dataset.options);
     } catch (err) {
-      throw new ValidationError('Ошибка в чтении options', err);
+      throw new Error('Ошибка в чтении options', err);
     }
 
     this.init();
@@ -34,11 +36,11 @@ class Dropdown {
 
   init() {
     this.findElems();
-    this.checkBtnVisibility(this.dropdown, `.${COUNT}`);
+    this.checkBtnVisibility();
     this.type = this.dropdown.querySelector(`.${TYPE}`).value;
 
     this.addListeners();
-    this.checkUrlDates();
+    this.addUrlValues();
   }
 
   findElems() {
@@ -56,14 +58,14 @@ class Dropdown {
     );
   }
 
-  checkUrlDates() {
+  addUrlValues() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const dropdownUrlContent = urlParams.get('dropdown');
     const type = urlParams.get('type');
 
     if (dropdownUrlContent && type === this.type) {
-      Dropdown.addInputValue(this.dropdownInput, dropdownUrlContent);
+      this.addInputValue(dropdownUrlContent);
 
       const params = window.location.search
         .replace('?', '')
@@ -75,11 +77,13 @@ class Dropdown {
           return p;
         }, {});
 
-      const allCounts = this.dropdown.querySelectorAll(`.${COUNT}`);
+      const allCounts = this.dropdown.querySelectorAll(`.${COUNT_ELEM}`);
       allCounts.forEach((e) => {
         e.value = params[e.dataset.item];
       });
     }
+
+    this.checkBtnVisibility();
   }
 
   addListeners() {
@@ -99,25 +103,25 @@ class Dropdown {
 
   closeOuterClick({ target }) {
     if (target.closest('.dropdown')) return;
-    if (this.field.classList.contains('_opened')) {
-      this.field.classList.remove('_opened');
+    if (this.field.classList.contains(OPENED)) {
+      this.field.classList.remove(OPENED);
     }
-    if (this.dropdownContent.classList.contains('_active')) {
-      this.dropdownContent.classList.remove('_active');
+    if (this.dropdownContent.classList.contains(ACTIVE)) {
+      this.dropdownContent.classList.remove(ACTIVE);
     }
   }
 
-  performData(selector, data) {
-    this.wordsMap = Dropdown.createObjectMap(data);
-    this.countsMap = this.createCountsMap(selector);
-    this.synthMap = Dropdown.joinMap(this.wordsMap, this.countsMap);
-    this.string = Dropdown.createStrMap(this.synthMap);
-    Dropdown.addInputValue(this.dropdownInput, this.string);
+  performData() {
+    this.wordsMap = this.createObjectMap();
+    this.countsMap = this.createCountsMap();
+    this.synthMap = this.joinMap();
+    this.string = this.createStrMap();
+    this.addInputValue(this.string);
   }
 
-  static createObjectMap(arrObj) {
+  createObjectMap() {
     const optMap = new Map();
-    arrObj.forEach((e) => {
+    this.options.forEach((e) => {
       Object.entries(e).forEach((arr) => {
         const [key, value] = arr;
         optMap.set(key, value);
@@ -127,15 +131,15 @@ class Dropdown {
     return optMap;
   }
 
-  createCountsMap(selector) {
+  createCountsMap() {
     const countMap = new Map();
-    const counts = [...this.dropdown.querySelectorAll(selector)].filter(
+    const counts = [...this.dropdown.querySelectorAll(`.${COUNT_ELEM}`)].filter(
       (e) => Number(e.value) > 0,
     );
 
     counts.forEach((count) => {
       if (Number.isNaN(Number(count.value))) {
-        throw new ValidationError('Ошибка в чтении значения counter');
+        throw new Error('Error in reading counter value');
       }
       countMap.set(count.dataset.item, Number(count.value));
     });
@@ -143,8 +147,8 @@ class Dropdown {
     return countMap;
   }
 
-  checkBtnVisibility(container, selector) {
-    const [...counts] = container.querySelectorAll(selector);
+  checkBtnVisibility() {
+    const [...counts] = this.dropdown.querySelectorAll(`.${COUNT_ELEM}`);
     const countValues = [];
     counts.forEach((e) => countValues.push(Number(e.value)));
     const sum = countValues.reduce(
@@ -152,14 +156,14 @@ class Dropdown {
       0,
     );
 
-    if (sum > 0) this.btnClear.style.visibility = 'visible';
-    if (sum === 0) this.btnClear.style.visibility = 'hidden';
+    if (sum > 0) this.btnClear.classList.remove(HIDDEN);
+    if (sum === 0) this.btnClear.classList.add(HIDDEN);
   }
 
   decrementBtn(e) {
     e.preventDefault();
     const container = e.target.closest(`.${ITEM}`);
-    const count = container.querySelector(`.${COUNT}`);
+    const count = container.querySelector(`.${COUNT_ELEM}`);
     Dropdown.checkLimits(count);
     if (
       Number(count.value) > 0
@@ -172,14 +176,14 @@ class Dropdown {
     if (Number(count.value) === 0) {
       e.target.classList.add(DISABLED);
     }
-    this.performData(`.${COUNT}`, this.options);
-    this.checkBtnVisibility(this.dropdown, `.${COUNT}`);
+    this.performData(`.${COUNT_ELEM}`, this.options);
+    this.checkBtnVisibility();
   }
 
   incrementBtn(e) {
     e.preventDefault();
     const container = e.target.closest(`.${ITEM}`);
-    const count = container.querySelector(`.${COUNT}`);
+    const count = container.querySelector(`.${COUNT_ELEM}`);
     const decrement = container.querySelector(`.${BTNS_DEC}`);
     Dropdown.checkLimits(count);
     if (Number(count.value) === 999) return;
@@ -187,55 +191,55 @@ class Dropdown {
     if (Number(count.value) > 0) {
       decrement.classList.remove(DISABLED);
     }
-    this.performData(`.${COUNT}`, this.options);
-    this.checkBtnVisibility(this.dropdown, `.${COUNT}`);
+    this.performData(`.${COUNT_ELEM}`, this.options);
+    this.checkBtnVisibility();
   }
 
   clear(e) {
     e.preventDefault();
     this.dropdownInput.value = '';
-    const [...counts] = this.dropdown.querySelectorAll(`.${COUNT}`);
+    const [...counts] = this.dropdown.querySelectorAll(`.${COUNT_ELEM}`);
     // eslint-disable-next-line no-return-assign, no-shadow
     counts.forEach((e) => (e.value = 0));
-    this.checkBtnVisibility(this.dropdown, `.${COUNT}`);
+    this.checkBtnVisibility();
   }
 
   accept(e) {
     e.preventDefault();
-    this.dropdownContent.classList.remove('_active');
+    this.dropdownContent.classList.remove(ACTIVE);
   }
 
   toggleClass() {
-    this.field.classList.toggle('_opened');
+    this.field.classList.toggle(OPENED);
   }
 
-  static joinMap(wordsMap, countsMap) {
+  joinMap() {
     const synthMap = new Map();
 
-    countsMap.forEach((key, value) => {
-      if (wordsMap.has(value) && !Dropdown.hasIsEqualKey(synthMap, wordsMap.get(value))) {
+    this.countsMap.forEach((key, value) => {
+      if (this.wordsMap.has(value) && !Dropdown.hasIsEqualKey(synthMap, this.wordsMap.get(value))) {
         // If new map hasn't kthe key
-        synthMap.set(wordsMap.get(value), key);
+        synthMap.set(this.wordsMap.get(value), key);
       }
       // If the map of array hasn't separate array for the key
-      if (!wordsMap.has(value) && synthMap.has(wordsMap.get(DEFAULT_KEY))) {
+      if (!this.wordsMap.has(value) && synthMap.has(this.wordsMap.get(DEFAULT_KEY))) {
         // If there is correct array of words
         // sum all keys countsMap and set in value
-        const newValue = Dropdown.sumCounts(countsMap, wordsMap, DEFAULT_KEY);
-        synthMap.set(wordsMap.get(DEFAULT_KEY), newValue);
+        const newValue = Dropdown.sumCounts(this.countsMap, this.wordsMap, DEFAULT_KEY);
+        synthMap.set(this.wordsMap.get(DEFAULT_KEY), newValue);
       }
 
       // If there is not array of words
-      if (!wordsMap.has(value) && !synthMap.has(wordsMap.get(DEFAULT_KEY))) {
-        synthMap.set(wordsMap.get(DEFAULT_KEY), key);
+      if (!this.wordsMap.has(value) && !synthMap.has(this.wordsMap.get(DEFAULT_KEY))) {
+        synthMap.set(this.wordsMap.get(DEFAULT_KEY), key);
       }
     });
     return synthMap;
   }
 
-  static createStrMap(map) {
+  createStrMap() {
     const arrStrings = [];
-    map.forEach((key, value) => {
+    this.synthMap.forEach((key, value) => {
       arrStrings.push(`${key} ${chooseWord(key, value)}`);
     });
 
@@ -243,9 +247,8 @@ class Dropdown {
     return result;
   }
 
-  static addInputValue(input, value) {
-    // eslint-disable-next-line no-param-reassign
-    input.value = cutString(value, 20);
+  addInputValue(str) {
+    this.dropdownInput.value = cutString(str, 20);
   }
 
   static hasIsEqualKey(compareMap, arr) {

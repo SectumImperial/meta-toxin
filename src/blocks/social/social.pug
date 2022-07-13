@@ -6,6 +6,7 @@ mixin social(options = {})
         a(
             href= obj.link
             class = `social-links__item_${obj.name}`
-            target = '_blank'
+            target = "_blank"
+            rel = "noopener noreferrer"
         )
-          img(src=`${obj.icon}` alt=`${obj.name} link` width='24' height='24')
+          img(src=`${obj.icon}` alt=`${obj.name} link` width="24" height="24")

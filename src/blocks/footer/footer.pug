@@ -8,15 +8,15 @@ include ../nav/nav.pug
 mixin footer(options = {})
   - 
     const {
-      contentPromo = '',
+      contentPromo = "",
       navItems = [],
       isBorder = false
     } = options 
 
   -
-    let mod = ''
+    let mod = ""
     if(border) {
-      mod = 'footer_bordered'
+      mod = "footer_bordered"
     }
 
 
@@ -27,7 +27,7 @@ mixin footer(options = {})
       .footer__block
         .footer__logo
           +logo({
-            href: 'landing-page.html'
+            href: "landing-page.html"
           })
         .footer__promo
           +text-element(contentPromo)
@@ -36,54 +36,54 @@ mixin footer(options = {})
         each item in navItems
           -
            const {
-             titleItem = '',
+             titleItem = "",
              items = [],
            } = item
 
           .footer__navigation-item
             .footer__title
               +title({
-                level: 'h5',
+                level: "h5",
                 text: titleItem,
               })
             .footer__nav 
               +nav({
-                mod: 'vertical',
+                mod: "vertical",
                 items: items
               })
 
       .footer__email
         .footer__title
           +title({
-              level: 'h5',
-              text: 'Подписка',
+              level: "h5",
+              text: "Подписка",
             })
         .footer__email-text
-          +text-element('Получайте специальные предложения и новости сервиса')
+          +text-element("Получайте специальные предложения и новости сервиса")
         +input({
-            classInput: 'footer__input',
-            type: 'email',
-            name: 'footer-mail',
-            id: 'footer-mail',
-            placeholder: 'Email',
-            arrow: 'forward',
+            classInput: "footer__input",
+            type: "email",
+            name: "footer-mail",
+            id: "footer-mail",
+            placeholder: "Email",
+            arrow: "forward",
             pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
           })
 
     .footer__horizontal
       .footer__copyright
-        +text-element('Copyright © 2018 Toxin отель. Все права защищены.')
+        +text-element("Copyright © 2018 Toxin отель. Все права защищены.")
       +social([
         {
-        name: 'twitter',
-        link: 'https://twitter.com/',
-        icon: '../blocks/social/icons/twitter.svg'},
+        name: "twitter",
+        link: "https://twitter.com/",
+        icon: "../blocks/social/icons/twitter.svg"},
         {
-        name: 'facebook',
-        link: 'https://facebook.com/',
-        icon: '../blocks/social/icons/facebook.svg'},
+        name: "facebook",
+        link: "https://facebook.com/",
+        icon: "../blocks/social/icons/facebook.svg"},
         {
-        name: 'instagram',
-        link: 'https://instagram.com/',
-        icon: '../blocks/social/icons/instagram.svg'}
+        name: "instagram",
+        link: "https://instagram.com/",
+        icon: "../blocks/social/icons/instagram.svg"}
     ])

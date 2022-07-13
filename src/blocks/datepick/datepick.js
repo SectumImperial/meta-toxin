@@ -118,7 +118,7 @@ class Datepicker {
           secondDate: endDate,
           mod: 'singleInputMod',
         });
-        this.setPointRange();
+        this.#setPointRange();
         this.performRange(this.rangeFrom, this.rangeTo);
       }
     }
@@ -138,50 +138,17 @@ class Datepicker {
     if (!addedValue) this.buttonClear.style.visibility = 'hidden';
   }
 
-  // Методы выделения диапазона
+  // Methods of selecting range
   performRange(rangeFrom, rangeTo) {
-    Datepicker.clearRange(this.datepick, 'start-range');
-    Datepicker.clearRange(this.datepick, 'end-range');
+    this.clearRange('start-range');
+    this.clearRange('end-range');
     Datepicker.deletePoitRange(rangeFrom);
     Datepicker.deletePoitRange(rangeTo);
-    Datepicker.addPoitRange(rangeFrom, rangeTo);
+    this.addPoitRange(rangeFrom, rangeTo);
   }
 
-  static isRangeSelecting(point, classRange) {
-    return point
-      && point.classList.contains('-selected-')
-      && !point.classList.contains(classRange);
-  }
-
-  static addPoitRange(startPoint, endPoint) {
-    if (this.isRangeSelecting(startPoint, 'start-range')) {
-      startPoint.classList.add('start-range');
-    }
-
-    if (
-      this.isRangeSelecting(endPoint, 'end-range')
-    ) {
-      endPoint.classList.add('end-range');
-    }
-  }
-
-  static isRangeSelected(point) {
-    return point
-      && point.classList.contains('end-range')
-      && point.classList.contains('start-range');
-  }
-
-  static deletePoitRange(point) {
-    if (
-      this.isRangeSelected(point)
-    ) {
-      point.classList.remove('start-range');
-      point.classList.remove('end-range');
-    }
-  }
-
-  static clearRange(container, rangeLineClass) {
-    const elems = [...container.querySelectorAll(`.${rangeLineClass}`)];
+  clearRange(rangeLineClass) {
+    const elems = [...this.datepick.querySelectorAll(`.${rangeLineClass}`)];
     if (elems.length === 0) return;
     elems.forEach((el) => {
       if (
@@ -200,7 +167,224 @@ class Datepicker {
     });
   }
 
-  // Конец методов выделения диапазона
+  #removeRange() {
+    this.rangeFrom.classList.remove('end-range');
+    this.rangeFrom.classList.remove('start-range');
+  }
+
+  #setPointRange() {
+    this.rangeFrom = this.datepick.querySelector('.-range-from-');
+    this.rangeTo = this.datepick.querySelector('.-range-to-');
+  }
+
+  addPoitRange() {
+    if (Datepicker.isRangeSelecting(this.rangeFrom, 'start-range')) {
+      this.rangeFrom.classList.add('start-range');
+    }
+
+    if (
+      Datepicker.isRangeSelecting(this.rangeTo, 'end-range')
+    ) {
+      this.rangeTo.classList.add('end-range');
+    }
+  }
+
+  #isSameDateHover() {
+    return this.rangeFrom
+      && this.rangeFrom.classList.contains('-focus-')
+      && this.rangeFrom.classList.contains('-range-to-')
+      && this.rangeFrom.classList.contains('-range-from-')
+      && this.rangeFrom.classList.contains('-selected-');
+  }
+
+  checkRange({ target }) {
+    const navTitle = this.datepick.querySelector('.air-datepicker-nav--title');
+    navTitle.innerText = Datepicker.deleteComma(navTitle);
+
+    // Отображение дат в полях
+
+    if (this.isTwoInputs) {
+      if (this.dp.rangeDateFrom) {
+        this.firstItem.value = Datepicker.formatDate({
+          firstDate: this.dp.rangeDateFrom,
+          mod: 'twoInputMod',
+        });
+      }
+
+      if (this.dp.rangeDateTo) {
+        this.secondItem.value = Datepicker.formatDate({
+          firstDate: this.dp.rangeDateTo,
+          mod: 'twoInputMod',
+        });
+      }
+    }
+
+    const isSelDate = Datepicker.isSelectedDates({
+      isSingleInput: this.isSingleInput,
+      rangeDateFrom: this.dp.rangeDateFrom,
+      rangeDateTo: this.dp.rangeDateTo,
+
+    });
+
+    if (isSelDate) {
+      this.singleItem.value = Datepicker.formatDate({
+        firstDate: this.dp.rangeDateFrom,
+        secondDate: this.dp.rangeDateTo,
+        mod: 'singleInputMod',
+      });
+    }
+
+    // Удаление старых линий диапазона при выборе нового
+    this.clearRange('start-range');
+    this.clearRange('end-range');
+
+    // Настройка ячеек при смене месяца
+    this.#setPointRange();
+
+    if (target.classList.contains('air-datepicker-nav--action')) {
+      this.addPoitRange();
+    }
+
+    this.checkBtnVisibility([this.firstItem, this.secondItem]);
+  }
+
+  static isRangeSelecting(point, classRange) {
+    return point
+      && point.classList.contains('-selected-')
+      && !point.classList.contains(classRange);
+  }
+
+  static isRangeSelected(point) {
+    return point
+      && point.classList.contains('end-range')
+      && point.classList.contains('start-range');
+  }
+
+  static deletePoitRange(point) {
+    if (
+      Datepicker.isRangeSelected(point)
+    ) {
+      point.classList.remove('start-range');
+      point.classList.remove('end-range');
+    }
+  }
+
+  static isNotRange({ target, to, from }) {
+    return target.classList.contains(to)
+    && !target.classList.contains(from)
+    && !target.classList.contains('-selected-');
+  }
+
+  // Selecting tha range while mousemoving
+  setRange({ target, relatedTarget }) {
+    this.#setPointRange();
+
+    // Переменная для пред. дня при движении мыши во время выделения диапазона
+    let prevDay;
+
+    this.addPoitRange();
+
+    if (this.rangeFrom && this.rangeFrom.classList.contains('end-range')) {
+      this.rangeFrom.classList.remove('end-range');
+    }
+
+    // Назначить переменной пред. дня значение
+    if (relatedTarget && !relatedTarget.classList.contains('-days-')) {
+      prevDay = relatedTarget;
+    }
+
+    // Добавить выделение диапазона при движении мыши
+    const isRangeStart = Datepicker.isNotRange({
+      target,
+      to: '-range-to-',
+      from: '-range-from-',
+    });
+
+    if (isRangeStart) {
+      target.classList.add('end-range');
+      if (prevDay) prevDay.classList.remove('end-range');
+    }
+
+    const isRangeEnd = Datepicker.isNotRange({
+      target,
+      to: '-range-from-',
+      from: '-range-to-',
+    });
+
+    if (isRangeEnd) {
+      target.classList.add('start-range');
+      if (prevDay) prevDay.classList.remove('start-range');
+    }
+
+    // Удаление выделения диапазона у элементов там, где это не нужно при быстром
+    // движении мыши или выход за контейнер.
+    this.clearRange('start-range');
+    this.clearRange('end-range');
+
+    // Удалить выделение диапазона в случае возврата мыши к выбранной дате
+    if (
+      this.#isSameDateHover()
+    ) {
+      this.#removeRange();
+    }
+  }
+
+  // End methods of range
+
+  // Date selection methods
+  addDateCal(items) {
+    if (this.isTwoInputs) {
+      const arrItems = Array.from(items, (inputElement) => inputElement.value);
+      const isCorrectDateFormat = arrItems.map((e) => e.split('.').reverse().join('.').replaceAll('.', '-'));
+      this.dp.selectDate(isCorrectDateFormat);
+    }
+
+    if (this.isSingleInput) {
+      const dates = this.singleItem.value.split(' - ');
+      const [firstValue, secondValue] = dates;
+
+      const firstDate = Datepicker.recreateDate(firstValue);
+      const secondDate = Datepicker.recreateDate(secondValue);
+
+      this.dp.selectDate([firstDate, secondDate]);
+    }
+  }
+
+  static recreateDate(invalidDate) {
+    // eslint-disable-next-line prefer-const
+    let [day, month] = invalidDate.split(' ');
+    month = month.charAt(0).toUpperCase() + month.slice(1);
+    month = MONTS.indexOf(month);
+
+    const date = new Date(2022, month, day);
+    return date;
+  }
+
+  inputDate() {
+    const isCorrectDateFormat = Datepicker.isCorrectDateFormat([...this.items]);
+
+    if (isCorrectDateFormat) {
+      this.addDateCal(this.items);
+
+      this.#setPointRange();
+
+      if (this.firstItem.value === this.secondItem.value) {
+        Datepicker.changeSameData(this.secondItem);
+        this.addDateCal(this.items);
+        this.#setPointRange();
+        this.performRange(this.rangeFrom, this.rangeTo);
+      }
+      if (this.firstItem.value > this.secondItem.value) {
+        this.swapDates();
+        this.performRange(this.rangeFrom, this.rangeTo);
+        this.addDateCal(this.items);
+      }
+      if (this.firstItem.value !== this.secondItem.value) {
+        this.performRange(this.rangeFrom, this.rangeTo);
+      }
+    }
+  }
+
   static formatDate({ firstDate, secondDate = '', mod = 'twoInputMod' }) {
     let result;
     if (secondDate !== '' && mod === 'singleInputMod') {
@@ -228,34 +412,16 @@ class Datepicker {
     return result;
   }
 
-  addDateCal(items) {
-    if (this.isTwoInputs) {
-      const dates = Array.from(
-        [...items].map((inputElement) => inputElement.value),
-      ).map((e) => e.split('.').reverse().join('.').replaceAll('.', '-'));
-      this.dp.selectDate(dates);
-    }
-
-    if (this.isSingleInput) {
-      const dates = this.singleItem.value.split(' - ');
-      const [firstValue, secondValue] = dates;
-
-      const firstDate = Datepicker.recreateDate(firstValue);
-      const secondDate = Datepicker.recreateDate(secondValue);
-
-      this.dp.selectDate([firstDate, secondDate]);
-    }
+  static changeSameData(secondItem) {
+    const date = secondItem.value.split('.');
+    let day = date[0];
+    day += 1;
+    date.splice(0, 1, day);
+    // eslint-disable-next-line no-param-reassign
+    secondItem.value = date.join('.');
   }
 
-  static recreateDate(invalidDate) {
-    // eslint-disable-next-line prefer-const
-    let [day, month] = invalidDate.split(' ');
-    month = month.charAt(0).toUpperCase() + month.slice(1);
-    month = MONTS.indexOf(month);
-
-    const date = new Date(2022, month, day);
-    return date;
-  }
+  // End the date selection methods
 
   static deleteComma(elem) {
     let text = elem.innerText;
@@ -315,7 +481,7 @@ class Datepicker {
     if (this.isTwoInputs) {
       const sibling = Datepicker.returnInputSibling(targetContainer, this.formGroups);
 
-      // Клик по сосденему инпуту после клика на первый, календарь не закрывается
+      // Click on sthe ibling
       const oneInpClick = Datepicker.isOneInputClicked({
         targetContainer,
         sibling,
@@ -327,8 +493,7 @@ class Datepicker {
         return;
       }
 
-      // Закрыть календарь и снять все clicked на элементах
-      // в случае повторонго клика по любому элементу при открытом календаре
+      // Close the calendar and remove all clicked fro the inputs
       const allClicked = Datepicker.isAllInputClicked({
         targetContainer,
         sibling,
@@ -364,29 +529,16 @@ class Datepicker {
     this.dp.clear();
   }
 
-  static closeDp(calConteiner) {
-    calConteiner.classList.remove('_active-dp');
+  closeDp() {
+    this.calConteiner.classList.remove('_active-dp');
   }
 
   accept(e) {
     e.preventDefault();
 
     if (this.dp.rangeDateFrom || this.dp.rangeDateTo) {
-      Datepicker.closeDp(this.calConteiner);
+      this.closeDp();
     }
-  }
-
-  static correctFormat(items) {
-    return items.every(({ value, pattern }) => value.match(pattern));
-  }
-
-  static changeSameData(secondItem) {
-    const date = secondItem.value.split('.');
-    let day = date[0];
-    day += 1;
-    date.splice(0, 1, day);
-    // eslint-disable-next-line no-param-reassign
-    secondItem.value = date.join('.');
   }
 
   swapDates() {
@@ -396,162 +548,8 @@ class Datepicker {
     ];
   }
 
-  inputDate() {
-    const correctFormat = Datepicker.correctFormat([...this.items]);
-
-    if (correctFormat) {
-      this.addDateCal(this.items);
-
-      this.setPointRange();
-
-      if (this.firstItem.value === this.secondItem.value) {
-        Datepicker.changeSameData(this.secondItem);
-        this.addDateCal(this.items);
-        this.setPointRange();
-        this.performRange(this.rangeFrom, this.rangeTo);
-      }
-      if (this.firstItem.value > this.secondItem.value) {
-        this.swapDates();
-        this.performRange(this.rangeFrom, this.rangeTo);
-        this.addDateCal(this.items);
-      }
-      if (this.firstItem.value !== this.secondItem.value) {
-        this.performRange(this.rangeFrom, this.rangeTo);
-      }
-    }
-  }
-
   static isSelectedDates({ isSingleInput, rangeDateFrom, rangeDateTo }) {
     return isSingleInput && rangeDateFrom && rangeDateTo;
-  }
-
-  static isNotRange({ target, to, from }) {
-    return target.classList.contains(to)
-    && !target.classList.contains(from)
-    && !target.classList.contains('-selected-');
-  }
-
-  checkRange({ target }) {
-    const navTitle = this.datepick.querySelector('.air-datepicker-nav--title');
-    navTitle.innerText = Datepicker.deleteComma(navTitle);
-
-    // Отображение дат в полях
-
-    if (this.isTwoInputs) {
-      if (this.dp.rangeDateFrom) {
-        this.firstItem.value = Datepicker.formatDate({
-          firstDate: this.dp.rangeDateFrom,
-          mod: 'twoInputMod',
-        });
-      }
-
-      if (this.dp.rangeDateTo) {
-        this.secondItem.value = Datepicker.formatDate({
-          firstDate: this.dp.rangeDateTo,
-          mod: 'twoInputMod',
-        });
-      }
-    }
-
-    const isSelDate = Datepicker.isSelectedDates({
-      isSingleInput: this.isSingleInput,
-      rangeDateFrom: this.dp.rangeDateFrom,
-      rangeDateTo: this.dp.rangeDateTo,
-
-    });
-
-    if (isSelDate) {
-      this.singleItem.value = Datepicker.formatDate({
-        firstDate: this.dp.rangeDateFrom,
-        secondDate: this.dp.rangeDateTo,
-        mod: 'singleInputMod',
-      });
-    }
-
-    // Удаление старых линий диапазона при выборе нового
-    Datepicker.clearRange(this.datepick, 'start-range');
-    Datepicker.clearRange(this.datepick, 'end-range');
-
-    // Настройка ячеек при смене месяца
-    this.setPointRange();
-
-    if (target.classList.contains('air-datepicker-nav--action')) {
-      Datepicker.addPoitRange(this.rangeFrom, this.rangeTo);
-    }
-
-    this.checkBtnVisibility([this.firstItem, this.secondItem]);
-  }
-
-  static isSameDateHover(rangeFrom) {
-    return rangeFrom
-      && rangeFrom.classList.contains('-focus-')
-      && rangeFrom.classList.contains('-range-to-')
-      && rangeFrom.classList.contains('-range-from-')
-      && rangeFrom.classList.contains('-selected-');
-  }
-
-  // Selecting tha range while mousemoving
-  setRange({ target, relatedTarget }) {
-    this.setPointRange();
-
-    // Переменная для пред. дня при движении мыши во время выделения диапазона
-    let prevDay;
-
-    Datepicker.addPoitRange(this.rangeFrom, this.rangeTo);
-
-    if (this.rangeFrom && this.rangeFrom.classList.contains('end-range')) {
-      this.rangeFrom.classList.remove('end-range');
-    }
-
-    // Назначить переменной пред. дня значение
-    if (relatedTarget && !relatedTarget.classList.contains('-days-')) {
-      prevDay = relatedTarget;
-    }
-
-    // Добавить выделение диапазона при движении мыши
-    const isRangeStart = Datepicker.isNotRange({
-      target,
-      to: '-range-to-',
-      from: '-range-from-',
-    });
-
-    if (isRangeStart) {
-      target.classList.add('end-range');
-      if (prevDay) prevDay.classList.remove('end-range');
-    }
-
-    const isRangeEnd = Datepicker.isNotRange({
-      target,
-      to: '-range-from-',
-      from: '-range-to-',
-    });
-
-    if (isRangeEnd) {
-      target.classList.add('start-range');
-      if (prevDay) prevDay.classList.remove('start-range');
-    }
-
-    // Удаление выделения диапазона у элементов там, где это не нужно при быстром
-    // движении мыши или выход за контейнер.
-    Datepicker.clearRange(this.datepick, 'start-range');
-    Datepicker.clearRange(this.datepick, 'end-range');
-
-    // Удалить выделение диапазона в случае возврата мыши к выбранной дате
-    if (
-      Datepicker.isSameDateHover(this.rangeFrom)
-    ) {
-      Datepicker.removeRange();
-    }
-  }
-
-  static removeRange(rangeFrom) {
-    rangeFrom.classList.remove('end-range');
-    rangeFrom.classList.remove('start-range');
-  }
-
-  setPointRange() {
-    this.rangeFrom = this.datepick.querySelector('.-range-from-');
-    this.rangeTo = this.datepick.querySelector('.-range-to-');
   }
 
   setPrev() {
@@ -573,7 +571,7 @@ class Datepicker {
         mod: 'twoInputMod',
       });
       this.addDateCal(this.items);
-      this.setPointRange();
+      this.#setPointRange();
     }
 
     if (this.isSingleInput) {
@@ -583,10 +581,14 @@ class Datepicker {
         mod: 'singleInputMod',
       });
       this.addDateCal(this.items);
-      this.setPointRange();
+      this.#setPointRange();
     }
 
     this.performRange(this.rangeFrom, this.rangeTo);
+  }
+
+  static isCorrectDateFormat(items) {
+    return items.every(({ value, pattern }) => value.match(pattern));
   }
 }
 

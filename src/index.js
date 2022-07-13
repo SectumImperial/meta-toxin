@@ -8,7 +8,6 @@ const files = [
   'landing',
   'search-room',
   'room-details',
-  'page-layout',
   'header',
   'footer',
   'nav',
@@ -43,6 +42,8 @@ const files = [
 ];
 
 // eslint-disable-next-line global-require, import/no-dynamic-require
-pages.forEach((e) => require(`./pages/${e}/index.js`));
+pages.forEach((e) => require(`./pages/${e}/index`));
 // eslint-disable-next-line global-require, import/no-dynamic-require
-files.forEach((e) => require(`./blocks/${e}/index.js`));
+files.forEach((e) => require(`./blocks/${e}/index`));
+// eslint-disable-next-line global-require, import/no-dynamic-require
+require('./layouts/page-layout/index');

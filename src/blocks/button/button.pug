@@ -1,43 +1,38 @@
 mixin button(options = {}) 
   - 
     const {
-      btnType = 'button',
-      type = 'submit',
+      btnType = "button",
+      type = "submit",
       isArrow = false,
-      btnColor = '',
-      btnWrapperColor = 'violet',
-      btnSize = 'small',
-      href = 'error-page.html',
-      content = ''
+      btnColor = "",
+      btnWrapperColor = "violet",
+      btnSize = "small",
+      href = "error-page.html",
+      content = ""
     } = options 
 
     const colorBtn = {
-      white: 'button_white',
-      violet: 'button_violet',
+      white: "button_white",
+      violet: "button_violet",
     } 
 
     const wrapperColor = {
-      transparent: 'button_transparent',
-      violet: 'button_violet',
+      transparent: "button_transparent",
+      violet: "button_violet",
     }
 
     const sizeBtn = {
-      tiny: 'button_tiny',
-      small: 'button_small',
-      medium: 'button_medium',
-      big: 'button_big',
-      large: 'button_large'
-    }
-
-
-    const modificators = {
-      noBorder: 'button_no-border'
+      tiny: "button_tiny",
+      small: "button_small",
+      medium: "button_medium",
+      big: "button_big",
+      large: "button_large"
     }
 
   .button(
     class = `${wrapperColor[btnWrapperColor]}`
    )
-    - if(btnType === 'button')
+    - if(btnType === "button")
      button.button__button(
        class = `${colorBtn[btnColor]} ${sizeBtn[btnSize]}`
        type = type
@@ -45,7 +40,7 @@ mixin button(options = {})
        span.button__content= content
      - if (isArrow) 
        .button_arrow.icon__arrow_forward
-    - if(btnType === 'link')
+    - if(btnType === "link")
      a.button__button(
        class = `button_link ${colorBtn[btnColor]} ${sizeBtn[btnSize]}`
        href = href

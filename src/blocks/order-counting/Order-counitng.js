@@ -1,4 +1,14 @@
 // Just imitation of counting
+import {
+  DAYS_COMPUTE,
+  DAYS_COMPUTED,
+  FEE_COMPUTE,
+  FEE_COMPUTED,
+  ADD_FEE_COMPUTE,
+  ADD_FEE_COMPUTED,
+  SUM,
+} from './constnts';
+
 class OrderCount {
   constructor(element) {
     this.count = element;
@@ -69,8 +79,8 @@ class OrderCount {
     const sumRentFrmt = this.sumRent.toLocaleString('ru-RU');
     const sumString = `${sumRentFrmt}₽`;
 
-    this.count.querySelector('.order-counting__days_compute').innerText = string;
-    this.count.querySelector('.order-counting__days_computed').innerText = sumString;
+    this.count.querySelector(`.${DAYS_COMPUTE}`).innerText = string;
+    this.count.querySelector(`.${DAYS_COMPUTED}`).innerText = sumString;
   }
 
   createFeeString() {
@@ -84,40 +94,40 @@ class OrderCount {
       tip = OrderCount.createTip(this.discounts.feeDisc.message);
     }
 
-    this.count.querySelector('.order-counting__fee_compute').innerText = discountStr;
+    this.count.querySelector(`.${FEE_COMPUTE}`).innerText = discountStr;
     if (tip) {
-      this.count.querySelector('.order-counting__fee_compute').append(tip);
+      this.count.querySelector(`.${FEE_COMPUTE}`).append(tip);
     }
 
     this.count.querySelector(
-      '.order-counting__fee_computed',
+      `.${FEE_COMPUTED}`,
     ).innerText = `${this.fees.fee.count}₽`;
   }
 
   createAddFeeString() {
     const string = `Сбор за дополнительные 
     услуги`;
-    this.count.querySelector('.order-counting__add-fee_compute').innerText = string;
+    this.count.querySelector(`.${ADD_FEE_COMPUTE}`).innerText = string;
 
     const tip = OrderCount.createTip(this.fees.fee.message);
     if (tip) {
-      this.count.querySelector('.order-counting__add-fee_compute').append(tip);
+      this.count.querySelector(`.${ADD_FEE_COMPUTE}`).append(tip);
     }
 
     this.count.querySelector(
-      '.order-counting__add-fee_computed',
+      `.${ADD_FEE_COMPUTED}`,
     ).innerText = `${this.fees.addFee.count}₽`;
   }
 
   insertFinalSum() {
     this.count.querySelector(
-      '.order-counting__sum',
+      `.${SUM}`,
     ).innerText = `${this.finalSum.toLocaleString('ru-RU')}₽`;
   }
 
   static createTip(information) {
     const el = document.createElement('div');
-    el.className = 'order-counting__tip';
+    el.className = 'order-counting__tip js-order-counting__tip';
     el.innerText = 'i';
 
     el.style.width = '20px';

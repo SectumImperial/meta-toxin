@@ -7,35 +7,35 @@ include ../order-counting/order-counting.pug
 mixin order-card(options = {})
   .order-card 
     form(
-      class = 'order-card__form'
-      method = 'GET'
-      action = 'error-page.html'
+      class = "order-card__form"
+      method = "GET"
+      action = "error-page.html"
     )
       .order-card__room-info
         +room-number({
-            number: '888',
+            number: "888",
             luxe: true,
             big: true
         }) 
         .order-card__price
-          +room-price('9 990')
+          +room-price("9 990")
       .order-card__datepick 
        +datepick_2()
       .order-card__dropdown 
         span.order-card__subtitle Гости
         +dropdown({
-           class: 'booking-card__dropdown-input',
-           type: 'guests',
-           placeholder: 'Сколько гостей',
+           class: "booking-card__dropdown-input",
+           type: "guests",
+           placeholder: "Сколько гостей",
            items: [
-             'Взрослые', 'Дети', 'Младенцы'
+             "Взрослые", "Дети", "Младенцы"
            ],
            plurals: [
              {
-               'default': ['гость', 'гостя', 'гостей']
+               "default": ["гость", "гостя", "гостей"]
               },
              {
-               'Младенцы': ['младенец', 'младенца', 'младенцев']
+               "Младенцы": ["младенец", "младенца", "младенцев"]
              }
            ]
         })
@@ -48,14 +48,14 @@ mixin order-card(options = {})
               },
               fee: {
                 count: 0,
-                message: 'Доп. услуги включают в себя помощь с доставкой багажа'
+                message: "Доп. услуги включают в себя помощь с доставкой багажа"
               }
             },
 
             discounts: {
               feeDisc: {
                 count: 2179,
-                message: 'Какое-нибудь важное сообщение'
+                message: "Какое-нибудь важное сообщение"
               },
             },
             price: 9990,
@@ -63,11 +63,11 @@ mixin order-card(options = {})
           })
         .order-card__button
          +button({
-          content: 'Забронировать',
-          btnColor: 'white',
-          btnWrapperColor: 'violet',
+          content: "Забронировать",
+          btnColor: "white",
+          btnWrapperColor: "violet",
           arrow: true,
-          btnSize: 'large'
+          btnSize: "large"
          })
         
     

@@ -1,4 +1,4 @@
-extends ../../blocks/page-layout/page-layout.pug
+extends ../../layouts/page-layout/page-layout.pug
 
 include ../../blocks/header/header.pug
 include ../../blocks/room-details/room-details.pug
@@ -6,7 +6,9 @@ include ../../blocks/footer/footer.pug
 
 block variables 
   - 
-    const title = 'Поиск номеров Toxin'
+    const title = "Поиск номеров Toxin"
+    const description = "Страница номера отеля Toxin"
+    const keywords = "Отель, Toxin, детали номера"
 
 block content
   header.page__header
@@ -15,48 +17,48 @@ block content
       navigation: {
       items: [
         {
-          content: 'О нас',
+          content: "О нас",
           },
         {
-          content: 'Услуги',
+          content: "Услуги",
           subItems: [
             {
-              content: 'Пункт меню',
+              content: "Пункт меню",
             },
             {
-              content: 'Пункт меню 1',
+              content: "Пункт меню 1",
             },
             {
-              content: 'Пункт меню 2',
+              content: "Пункт меню 2",
             },
             {
-              content: 'Пункт меню 3',
+              content: "Пункт меню 3",
             }
           ]
         },
         {
-          content: 'Вакансии',
-          href: 'error-page.html'
+          content: "Вакансии",
+          href: "error-page.html"
         },
         {
-          content: 'Новости',
-          href: 'error-page.html'
+          content: "Новости",
+          href: "error-page.html"
         },
         {
-          content: 'Соглашения',
-          href: 'error-page.html',
+          content: "Соглашения",
+          href: "error-page.html",
           subItems: [
             {
-              content: 'Пункт меню',
+              content: "Пункт меню",
             },
             {
-              content: 'Пункт меню 1',
+              content: "Пункт меню 1",
             },
             {
-              content: 'Пункт меню 2',
+              content: "Пункт меню 2",
             },
             {
-              content: 'Пункт меню 3',
+              content: "Пункт меню 3",
             }
           ]
         }
@@ -66,50 +68,50 @@ block content
   footer.page__footer 
     +footer({
       isBorder: true,
-      contentPromo: 'Бронирование номеров в лучшем отеле 2019 года по версии ассоциации «Отельные взгляды»',
+      contentPromo: "Бронирование номеров в лучшем отеле 2019 года по версии ассоциации «Отельные взгляды»",
       navItems: [{
-        titleItem: 'Навигация',
+        titleItem: "Навигация",
         items: [
           {
-          content: 'О нас',
+          content: "О нас",
           },
           {
-          content: 'Новости',
+          content: "Новости",
           },
           {
-          content: 'Служба поддержки',
+          content: "Служба поддержки",
           },
           {
-          content: 'Услуги',
+          content: "Услуги",
           }
         ]
       },
       {
-        titleItem: 'О нас',
+        titleItem: "О нас",
         items: [{
-          content: 'О сервисе',
+          content: "О сервисе",
           },
           {
-          content: 'Наша команда',
+          content: "Наша команда",
           },
           {
-          content: 'Вакансии',
+          content: "Вакансии",
           },
           {
-          content: 'Инвесторы'
+          content: "Инвесторы"
           }
         ]
       },
       {
-        titleItem: 'Служба поддержки',
+        titleItem: "Служба поддержки",
         items: [{
-          content: 'Соглашения',
+          content: "Соглашения",
           },
           {
-          content: 'Сообщества',
+          content: "Сообщества",
           },
           {
-          content: 'Связь с нами',
+          content: "Связь с нами",
           },
         ]
       }]

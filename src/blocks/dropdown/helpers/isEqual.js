@@ -1,8 +1,6 @@
-import ValidationError from './error';
-
 function isEqual(firstArr, secondArr) {
   if (!Array.isArray(firstArr) || !Array.isArray(secondArr)) {
-    throw new ValidationError(
+    throw new Error(
       'В сравнение массивов isEqual() передан НЕ массив',
     );
   }

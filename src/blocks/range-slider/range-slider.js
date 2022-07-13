@@ -89,6 +89,10 @@ class Slider {
     this.setValues();
     this.colorRange();
 
+    this.checkVisibilityToggle();
+  }
+
+  checkVisibilityToggle() {
     if (
       Number(this.toggleMin.value) === this.max
       && Number(this.toggleMax.value) === this.max

@@ -3,7 +3,7 @@ include ../checkbox/checkbox.pug
 mixin checkbox-list(options = {})
   -
     const {
-        titleList = '',
+        titleList = "",
         items = []
     } = options
 
@@ -16,8 +16,8 @@ mixin checkbox-list(options = {})
       each item in items 
         - 
           const {
-            labelText = '',
-            name = '',
+            labelText = "",
+            name = "",
             checked = false
           } = item
             

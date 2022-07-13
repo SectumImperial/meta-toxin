@@ -10,16 +10,16 @@ mixin room-data(options = {})
     each item in items 
       -
         const {
-          title = 'Название пункта',
-          text = 'Текс пункта',
-          icon = 'default'
+          title = "Название пункта",
+          text = "Текс пункта",
+          icon = "default"
         } = item 
 
         const icons = {
-          default: 'room-data__icon_smile',
-          smile: 'room-data__icon_smile',
-          city: 'room-data__icon_city',
-          fire: 'room-data__icon_fire'
+          default: "room-data__icon_smile",
+          smile: "room-data__icon_smile",
+          city: "room-data__icon_city",
+          fire: "room-data__icon_fire"
         }
       .room-data__item 
         div(

@@ -5,13 +5,13 @@ mixin room-number(options = {})
         luxe = false,
         big = false,
     } = options
-    const numClass = big ? 'room-number__count room-number__count_big' : 'room-number__count'
-    const luxeClass = big ? 'room-number__luxe room-number__luxe_big' : 'room-number__luxe'
+    const numClass = big ? "room-number__count room-number__count_big" : "room-number__count"
+    const luxeClass = big ? "room-number__luxe room-number__luxe_big" : "room-number__luxe"
 
     
   .room-number 
     span.room-number__number
-    span= '№ '
+    span= "№ "
     span(class = numClass)= `${number}`
     if luxe
       span(class = luxeClass) Люкс

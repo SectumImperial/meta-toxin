@@ -14,18 +14,16 @@ mixin header(options = {})
     navigation = {}
    } = options
   -
-    let mod = ''
-    if (isShadow) {
-      mod = `header_shadow`
-    }
+    let shadow = isShadow ? "header_shadow" : ""
+
 
   section.header(
-      class =  `${mod}`
+      class =  `${shadow}`
     )
     .header__content.container
       .header__logo
         +logo({
-          href: 'landing-page.html'
+          href: "landing-page.html"
         })
       +headerIcon()
       .header__nav-wrapper
@@ -34,20 +32,20 @@ mixin header(options = {})
         if !options.isLogged
           .header__button
             +button({
-              content: 'Войти', 
-              btnColor: 'violet',
-              btnSize: 'small',
-              btnType: 'link',
-              href: 'login-page.html'
+              content: "Войти", 
+              btnColor: "violet",
+              btnSize: "small",
+              btnType: "link",
+              href: "login-page.html"
               })
           .header__button
             +button({
-              btnColor: 'white',
-              btnWrapperColor: 'violet',
-              content: 'Зарегистрироваться',
-              btnSize: 'small',
-              btnType: 'link',
-              href: 'registration-page.html'
+              btnColor: "white",
+              btnWrapperColor: "violet",
+              content: "Зарегистрироваться",
+              btnSize: "small",
+              btnType: "link",
+              href: "registration-page.html"
               })
         else
           p.header__user Юлий Цезарь

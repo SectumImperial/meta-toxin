@@ -20,14 +20,22 @@ class CheckboxList {
     this.checkboxList.addEventListener('click', this.toggle.bind(this));
   }
 
+  removeClasses() {
+    this.checkboxList.classList.remove(ACTIVE);
+    this.list.classList.remove(OPENED_LIST);
+  }
+
+  addClasses() {
+    this.checkboxList.classList.add(ACTIVE);
+    this.list.classList.add(OPENED_LIST);
+  }
+
   toggle({ target }) {
     if (target.closest(`.${OPENED}`)) return;
     if (this.checkboxList.classList.contains(ACTIVE)) {
-      this.checkboxList.classList.remove(ACTIVE);
-      this.list.classList.remove(OPENED_LIST);
+      this.removeClasses();
     } else {
-      this.checkboxList.classList.add(ACTIVE);
-      this.list.classList.add(OPENED_LIST);
+      this.addClasses();
     }
   }
 }

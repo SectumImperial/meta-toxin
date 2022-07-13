@@ -7,13 +7,13 @@ mixin room-card(options = {})
   - 
     const {
       images = [],
-      number = '000',
+      number = "000",
       luxe = false,
-      price = '666',
+      price = "666",
       rating = 0,
       reviews = 0,
       stars = 5,
-      href = 'error-page.html'
+      href = "error-page.html"
     } = options
 
   article.room-card.js-room-card
@@ -30,7 +30,7 @@ mixin room-card(options = {})
           +room-price(price)
       .room-card__feedback
         +star-rating({
-          classRating: 'room-card__rating',
+          classRating: "room-card__rating",
           rating,
           stars
         })

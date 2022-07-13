@@ -137,4 +137,10 @@
     align-items: center;
     justify-items: center;
   }
+
+  &__button {
+    &_hidden {
+      visibility: hidden;
+    }
+  }
 }

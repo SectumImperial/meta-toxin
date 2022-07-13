@@ -2,36 +2,36 @@ include ../button/button.pug
 
 mixin datepick_2() 
   .datepick.js-datepick-2.js-datepick
-    .datepick__fields
+    form.datepick__fields
       .datepick__group.js-datepick__group
         label(
-          forInput = 'booking-enter',
-          class = 'datepick__label'
+          forInput = "booking-enter",
+          class = "datepick__label",
         ) Прибытие
         .datepick__input
           input(
-            type = 'text',
-            id = 'booking-enter',
-            class = 'datepick__field datepick__field_readonly js-datepick-start js-datepick-item js-date-input',
-            name = 'datepick-input-start',
-            placeholder = 'ДД.ММ.ГГГГ',
-            pattern = '[0-9]{2}.[0-9]{2}.[0-9]{4}',
+            type = "text",
+            id = "booking-enter",
+            class = "datepick__field datepick__field_readonly js-datepick-start js-datepick-item js-date-input",
+            name = "datepick-input-start",
+            placeholder = "ДД.ММ.ГГГГ",
+            pattern = "[0-9]{2}.[0-9]{2}.[0-9]{4}",
             required
           )
           .datepick__arrow.icon__expand_more 
       .datepick__group.js-datepick__group
         label(
-          for = 'booking-out',
-          class = 'datepick__label'
+          for = "booking-out",
+          class = "datepick__label"
         ) Выезд
         .datepick__input
           input(
-            type = 'text',
-            id = 'booking-out',
-            class = 'datepick__field datepick__field_readonly js-datepick-end js-datepick-item js-dateInput',
-            name = 'datepick-input-end',
-            placeholder = 'ДД.ММ.ГГГГ',
-            pattern = '[0-9]{2}.[0-9]{2}.[0-9]{4}',
+            type = "text",
+            id = "booking-out",
+            class = "datepick__field datepick__field_readonly js-datepick-end js-datepick-item js-dateInput",
+            name = "datepick-input-end",
+            placeholder = "ДД.ММ.ГГГГ",
+            pattern = "[0-9]{2}.[0-9]{2}.[0-9]{4}",
             required
             )
           .datepick__arrow.icon__expand_more       
@@ -44,17 +44,17 @@ mixin datepick_1()
   .datepick.js-datepick-1.js-datepick
     .datepick__group.js-datepick__group
       label(
-        for = 'booking-dates',
-        class = 'datepick__label'
+        for = "booking-dates",
+        class = "datepick__label"
         ) Даты пребывания в отеле
       .datepick__input
         input(
-          type = 'text',
-          id = 'booking-dates',
-          class = 'datepick__field datepick__field_readonly datepick-dates js-datepick-dates js-datepick-item __icon-expand',
-          name = 'datepick-input-dates',
-          placeholder = 'дд.мм - дд.мм',
-          pattern = '[0-9]{2}.[0-9]{2}.[0-9]{4}',
+          type = "text",
+          id = "booking-dates",
+          class = "datepick__field datepick__field_readonly datepick-dates js-datepick-dates js-datepick-item __icon-expand",
+          name = "datepick-input-dates",
+          placeholder = "дд.мм - дд.мм",
+          pattern = "[0-9]{2}.[0-9]{2}.[0-9]{4}",
           readonly
         )
         .datepick__arrow.icon__expand_more 
@@ -67,19 +67,19 @@ mixin datepick_1()
 mixin datepickBtns()
   .datepick__button.datepick__button_clear.js-datepick__button_clear
     +button({
-      content: 'Очистить',
-      btnColor: 'violet',
-      btnWrapperColor: 'transparent',
-      border: 'false',
-      btnSize: 'tiny',
-      btnMod: ['noBorder'],
+      content: "Очистить",
+      btnColor: "violet",
+      btnWrapperColor: "transparent",
+      border: "false",
+      btnSize: "tiny",
+      btnMod: ["noBorder"],
     })
   .datepick__button.datepick__button_accept.js-datepick__button_accept
     +button({
-      content: 'Применить',
-      btnColor: 'violet',
-      btnWrapperColor: 'transparent',
-      border: 'false',
-      btnSize: 'tiny',
-      btnMod: ['noBorder'],
+      content: "Применить",
+      btnColor: "violet",
+      btnWrapperColor: "transparent",
+      border: "false",
+      btnSize: "tiny",
+      btnMod: ["noBorder"],
     })

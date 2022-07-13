@@ -17,7 +17,7 @@ class Paginator {
     try {
       this.options = JSON.parse(this.paginator.dataset.paginator);
     } catch (err) {
-      throw new Error(`Ошибка в чтении данных опций ${err}`);
+      throw new Error(`Error in reading options ${err}`);
     }
     this.init();
   }
@@ -243,12 +243,17 @@ class Paginator {
     this.setCurrentPage();
   }
 
-  //   Установить тек. страницу
-  setCurrentPage() {
+  findCurrentPage() {
     const page = this.itemsPaginator.querySelector(
       `.${LI_CLASS}[data-number="${this.currentPage}"]`,
     );
+    if (!page) throw new Error('Current page has not found');
+    return page;
+  }
 
+  //   Установить тек. страницу
+  setCurrentPage() {
+    const page = this.findCurrentPage();
     page.classList.add(ACTIVE_LI);
     page.classList.add(ACTIVE_JS);
 
@@ -258,9 +263,7 @@ class Paginator {
 
   //   Удалить классы тек. страницы
   removePage() {
-    const current = this.itemsPaginator.querySelector(
-      `.${LI_CLASS}[data-number="${this.currentPage}"]`,
-    );
+    const current = this.findCurrentPage();
     current.classList.remove(ACTIVE_LI);
     current.classList.remove(ACTIVE_JS);
   }
