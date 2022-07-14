@@ -56,6 +56,8 @@ class Dropdown {
     this.btnsIncrement = this.counter.querySelectorAll(
       `.${BTNS_INC}`,
     );
+
+    this.counts = this.dropdown.querySelectorAll(`.${COUNT_ELEM}`);
   }
 
   addUrlValues() {
@@ -77,8 +79,7 @@ class Dropdown {
           return p;
         }, {});
 
-      const allCounts = this.dropdown.querySelectorAll(`.${COUNT_ELEM}`);
-      allCounts.forEach((e) => {
+      this.counts.forEach((e) => {
         e.value = params[e.dataset.item];
       });
     }
@@ -133,7 +134,7 @@ class Dropdown {
 
   createCountsMap() {
     const countMap = new Map();
-    const counts = [...this.dropdown.querySelectorAll(`.${COUNT_ELEM}`)].filter(
+    const counts = [...this.counts].filter(
       (e) => Number(e.value) > 0,
     );
 
@@ -148,9 +149,8 @@ class Dropdown {
   }
 
   checkBtnVisibility() {
-    const [...counts] = this.dropdown.querySelectorAll(`.${COUNT_ELEM}`);
     const countValues = [];
-    counts.forEach((e) => countValues.push(Number(e.value)));
+    this.counts.forEach((e) => countValues.push(Number(e.value)));
     const sum = countValues.reduce(
       (previousValue, currentValue) => previousValue + currentValue,
       0,
@@ -176,7 +176,9 @@ class Dropdown {
     if (Number(count.value) === 0) {
       e.target.classList.add(DISABLED);
     }
-    this.performData(`.${COUNT_ELEM}`, this.options);
+
+    if (this.type === 'guests') this.checkInfants();
+    this.performData();
     this.checkBtnVisibility();
   }
 
@@ -191,6 +193,8 @@ class Dropdown {
     if (Number(count.value) > 0) {
       decrement.classList.remove(DISABLED);
     }
+
+    if (this.type === 'guests') this.checkInfants();
     this.performData(`.${COUNT_ELEM}`, this.options);
     this.checkBtnVisibility();
   }
@@ -198,15 +202,24 @@ class Dropdown {
   clear(e) {
     e.preventDefault();
     this.dropdownInput.value = '';
-    const [...counts] = this.dropdown.querySelectorAll(`.${COUNT_ELEM}`);
     // eslint-disable-next-line no-return-assign, no-shadow
-    counts.forEach((e) => (e.value = 0));
+    this.counts.forEach((e) => (e.value = 0));
     this.checkBtnVisibility();
   }
 
   accept(e) {
     e.preventDefault();
     this.dropdownContent.classList.remove(ACTIVE);
+  }
+
+  checkInfants() {
+    const counts = Array.from(this.counts, (e) => e.value);
+    const sum = counts.reduce((prev, curr) => Number(prev) + Number(curr), 0);
+    const infantCount = this.dropdown.querySelector(`.${COUNT_ELEM}[data-item="Младенцы"]`).value;
+    const adult = this.dropdown.querySelector(`.${COUNT_ELEM}[data-item="Взрослые"]`);
+    if (sum <= infantCount && sum !== 0 && infantCount !== 0) {
+      adult.value = Number(adult.value) + 1;
+    }
   }
 
   toggleClass() {
