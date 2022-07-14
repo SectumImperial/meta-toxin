@@ -6,11 +6,11 @@
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  color: rgba($dark-color, 0.25);
+  color: rgba($dark-color, 0.5);
 
   &:focus,
   &:hover {
-    color: rgba($dark-color, 0.5);
+    color: rgba($dark-color, 0.75);
   }
 
   &__rich-content {
@@ -27,7 +27,6 @@
 
   &__description {
     font-size: $fontTiny;
-    color: rgba($dark-color, 0.5);
   }
 
   &__new-checkbox {
