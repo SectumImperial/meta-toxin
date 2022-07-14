@@ -1,6 +1,7 @@
 import './input.scss';
 
 import Inputmask from 'inputmask';
+import Input from './Input';
 
 const inputDates = document.querySelectorAll('._dateInput');
 
@@ -17,13 +18,4 @@ if (inputDates) {
   });
 }
 
-const inputs = document.querySelectorAll('.input');
-
-inputs.forEach((element) => {
-  if (element.querySelector('input[type="email"]')) return;
-  element.addEventListener('click', () => {
-    const arrow = element.querySelector('._input_arrow-js');
-    if (!arrow) return;
-    arrow.classList.toggle('input_oppened-js');
-  });
-});
+document.querySelectorAll('.input').forEach((e) => new Input(e));

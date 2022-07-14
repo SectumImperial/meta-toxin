@@ -40,8 +40,9 @@ class Header {
   }
 
   toggleSub(e) {
-    e.preventDefault();
     if (this.page.classList.contains('_pc')) return;
+    if (e.target.closest('.nav__sublist')) return;
+    e.preventDefault();
     const navItem = e.target.closest('.nav__item');
     navItem.classList.toggle('_active');
   }

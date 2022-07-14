@@ -1,6 +1,5 @@
 import {
   ITEMS,
-  OPENED,
   OPENED_LIST,
   ACTIVE,
 } from './constants';
@@ -17,7 +16,8 @@ class CheckboxList {
   }
 
   addListeners() {
-    this.checkboxList.addEventListener('click', this.toggle.bind(this));
+    this.checkboxList.addEventListener('click', this.clickToggle.bind(this));
+    this.checkboxList.addEventListener('keydown', this.keyToggle.bind(this));
   }
 
   removeClasses() {
@@ -30,12 +30,30 @@ class CheckboxList {
     this.list.classList.add(OPENED_LIST);
   }
 
-  toggle({ target }) {
-    if (target.closest(`.${OPENED}`)) return;
+  toggle() {
     if (this.checkboxList.classList.contains(ACTIVE)) {
       this.removeClasses();
     } else {
       this.addClasses();
+    }
+  }
+
+  clickToggle({ target }) {
+    if (target.closest(`.${ITEMS}`)) return;
+    this.toggle();
+  }
+
+  keyToggle(e) {
+    const { code } = e;
+    const { target } = e;
+
+    if (target.closest(`.${ITEMS}`) && code === 'Space') {
+      return;
+    }
+
+    if (code === 'Space') {
+      e.preventDefault();
+      this.toggle();
     }
   }
 }

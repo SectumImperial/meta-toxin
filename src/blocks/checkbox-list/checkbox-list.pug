@@ -8,8 +8,8 @@ mixin checkbox-list(options = {})
     } = options
 
 
-  div.checkbox-list._js-checkbox-list
-    .checkbox-list__head 
+  div.checkbox-list._js-checkbox-list(tabindex = 0)
+    .checkbox-list__head.js-checkbox-list__head
       span.checkbox-list__title= titleList
       span.checkbox-list__arrow.icon__expand_more
     ul.checkbox-list__items.js-checkbox-list__items
@@ -18,7 +18,7 @@ mixin checkbox-list(options = {})
           const {
             labelText = "",
             name = "",
-            checked = false
+            isChecked = false
           } = item
             
         li.checkbox-list__item
@@ -27,5 +27,5 @@ mixin checkbox-list(options = {})
               labelText,
               name,
               id,
-              checked
+              isChecked
             })

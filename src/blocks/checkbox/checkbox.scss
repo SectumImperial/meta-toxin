@@ -45,6 +45,14 @@
     }
   }
 
+  &__input:focus + &__new-checkbox  {
+    box-shadow: 0 0 5px $primary-color;
+  }
+
+  &__input:focus + &__description  {
+    color: rgba($dark-color, 0.75);
+  }
+
   &__input:checked + &__new-checkbox {
     border: 1px solid $primary-color;
     background: url('./icons/checkMark.svg') no-repeat center;

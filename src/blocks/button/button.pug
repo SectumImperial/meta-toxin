@@ -4,7 +4,7 @@ mixin button(options = {})
       btnType = "button",
       type = "submit",
       isArrow = false,
-      btnColor = "",
+      btnColor = "white",
       btnWrapperColor = "violet",
       btnSize = "small",
       href = "error-page.html",
@@ -33,16 +33,16 @@ mixin button(options = {})
     class = `${wrapperColor[btnWrapperColor]}`
    )
     - if(btnType === "button")
-     button.button__button(
-       class = `${colorBtn[btnColor]} ${sizeBtn[btnSize]}`
+     button(
+       class = `button__button ${colorBtn[btnColor]} ${sizeBtn[btnSize]}`
        type = type
       )
        span.button__content= content
      - if (isArrow) 
        .button_arrow.icon__arrow_forward
     - if(btnType === "link")
-     a.button__button(
-       class = `button_link ${colorBtn[btnColor]} ${sizeBtn[btnSize]}`
+     a(
+       class = `button__button button_link ${colorBtn[btnColor]} ${sizeBtn[btnSize]}`
        href = href
       )
        span.button__content= content

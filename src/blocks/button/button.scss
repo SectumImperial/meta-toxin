@@ -75,12 +75,6 @@
     }
   }
 
-  &_no-border {
-    &:hover {
-      color: rgba($dark-color, 0.5);
-    }
-  }
-
   &_arrow {
     position: absolute;
     top: 33%;

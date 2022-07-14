@@ -25,11 +25,17 @@ mixin navItem(options = {})
 mixin navSub(items = [])
   ul.nav__sublist
     each item in items
+      -
+        const {
+          href = "error-page.html",
+          content = ""
+        } = item
+        
       li.nav__sub-item
         a(
-          href = item.href
+          href = href
           class = "nav__sublink"
-        )= item.content
+        )= content
         
 
 mixin navList(options = {}) 
