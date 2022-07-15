@@ -56,6 +56,9 @@ class Paginator {
     this.btnPrev.addEventListener('click', this.decrementPage.bind(this));
     this.btnNext.addEventListener('click', this.incrementPage.bind(this));
     this.itemsPaginator.addEventListener('click', this.changePage.bind(this));
+    this.btnPrev.addEventListener('keydown', this.keyDecrementPage.bind(this));
+    this.btnNext.addEventListener('keydown', this.keyInecrementPage.bind(this));
+    this.itemsPaginator.addEventListener('keydown', this.keyChangePage.bind(this));
   }
 
   static isInStart(currentPage) {
@@ -175,6 +178,9 @@ class Paginator {
     const el = document.createElement('li');
     el.className = className;
     el.innerText = content;
+    if (!dots) {
+      el.tabIndex = 0;
+    }
     if (dots) {
       el.dataset.dots = true;
       el.classList.add(`${this.liClass}_dots`);
@@ -285,6 +291,27 @@ class Paginator {
 
   removePaginator() {
     this.itemsPaginator.innerHTML = '';
+  }
+
+  keyDecrementPage(e) {
+    const { code } = e;
+    if (code !== 'Space') return;
+    e.preventDefault();
+    this.decrementPage();
+  }
+
+  keyInecrementPage(e) {
+    const { code } = e;
+    if (code !== 'Space') return;
+    e.preventDefault();
+    this.incrementPage();
+  }
+
+  keyChangePage(e) {
+    const { code } = e;
+    if (code !== 'Space') return;
+    e.preventDefault();
+    this.changePage(e);
   }
 }
 

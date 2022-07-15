@@ -37,7 +37,8 @@
 
     cursor: pointer;
 
-    &:hover {
+    &:hover,
+    &:focus {
       text-shadow: 1px 0 5px;
     }
 
@@ -73,6 +74,10 @@
     border-radius: 50%;
 
     cursor: pointer;
+
+    &:focus {
+      outline: 1px solid $primary-color;
+    }
 
     &_active {
       color: $secondary-color-2;
