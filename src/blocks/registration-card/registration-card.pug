@@ -57,11 +57,10 @@ mixin registration-card()
         +input({
             type: "text",
             id: "registration-card-birth",
-            classInput: "registration-card__birth",
-            classInputField: "_dateInput",
             placeholder: "ДД.ММ.ГГГГ",
             pattern: "[0-9]{2}.[0-9]{2}.[0-9]{4}",
             isRequired: true,
+            isDate: true,
         })
         
         .registration-card__data-group

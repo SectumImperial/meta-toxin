@@ -38,7 +38,9 @@
     list-style: none;
 
     cursor: pointer;
-    &:hover {
+    
+    &:hover,
+    &_hovered {
       color: rgba($primary-color, 0.75);
     }
 
@@ -69,8 +71,13 @@
     cursor: pointer;
 
     &:hover,
-    &_hovered {
+    &_hovered,
+    &:focus {
       stroke-width: 2;
+    }
+
+    &:focus {
+      outline: none;
     }
 
     transition: all 0.2s ease-in;

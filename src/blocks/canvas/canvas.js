@@ -54,6 +54,8 @@ class Canvas {
     this.circles.forEach((circle) => {
       circle.addEventListener('mouseover', this.performText.bind(this));
       circle.addEventListener('mouseout', this.resetText.bind(this));
+      circle.addEventListener('focus', this.performText.bind(this));
+      circle.addEventListener('blur', this.resetText.bind(this));
     });
   }
 
@@ -128,7 +130,7 @@ class Canvas {
     const className = option.id ? `${UNIT}_${option.id}` : `${UNIT}_default`;
 
     const circle = `<circle class="${UNIT} ${className}" data-line="${option.id}" 
-    r="15.9" cx="50%" cy="50%" ${url} ${dasharray} ${dashoffset}></circle>`;
+    r="15.9" cx="50%" cy="50%" ${url} ${dasharray} ${dashoffset} tabindex="0"></circle>`;
     return circle;
   }
 
@@ -225,7 +227,9 @@ class Canvas {
         this.text = this.createText(stopFirst, count);
         this.deleteText();
         this.addText();
-        this.boldLine(id);
+
+        if (target.classList.contains(ITEM)) this.boldLine(id);
+        if (target.classList.contains(UNIT)) this.hoverText(id);
       }
     }
   }
@@ -235,6 +239,7 @@ class Canvas {
     this.text = this.createText();
     this.addText();
     this.resetLine();
+    this.resetHoverText();
   }
 
   boldLine(id) {
@@ -242,9 +247,19 @@ class Canvas {
     if (circleLine) circleLine.classList.add(`${UNIT}_hovered`);
   }
 
+  hoverText(id) {
+    const item = this.canvas.querySelector(`.${ITEM}_${id}`);
+    if (item) item.classList.add(`${ITEM}_hovered`);
+  }
+
   resetLine() {
     const hoveredLine = this.canvas.querySelector(`.${UNIT}_hovered`);
     if (hoveredLine) hoveredLine.classList.remove(`${UNIT}_hovered`);
+  }
+
+  resetHoverText() {
+    const item = this.canvas.querySelector(`.${ITEM}_hovered`);
+    if (item) item.classList.remove(`${ITEM}_hovered`);
   }
 }
 

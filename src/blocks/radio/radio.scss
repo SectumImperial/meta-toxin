@@ -34,4 +34,8 @@
       background: $gradient;
     }
   }
+
+  &__input:focus + &__new-input {
+    outline: 2px solid $dark-color;
+  }
 }

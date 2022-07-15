@@ -50,4 +50,8 @@
       transition: all 0.2s ease-in;
     }
   }
+
+  &__input:focus + &__new-input {
+    outline: 2px solid $dark-color;
+  }
 }

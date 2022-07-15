@@ -10,6 +10,7 @@ mixin input(options = {})
       pattern = ".*",
       arrow = false,
       isRequired = false,
+      isDate = false,
     } = options
 
     const arrows = {
@@ -17,12 +18,14 @@ mixin input(options = {})
       forward: "icon__arrow_forward input_arrow-forward",
     }
 
+    const dateClass = isDate ? '_dateInput' : ''
+
   .input
     input(
       type = type
       name = name
       id = id
-      class = `input__field`
+      class = `input__field ${dateClass}`
       value = value 
       placeholder = placeholder
       readonly = readonly
