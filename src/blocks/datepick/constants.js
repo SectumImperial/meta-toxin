@@ -12,7 +12,7 @@ const MONTS = [
   'Дек',
 ];
 
-const ITEM = 'js-datepick-item';
+const ITEM = 'js-datepick__item ';
 const DATEPICK = 'js-datepick';
 const DATEPICK_2 = 'js-datepick-2';
 const DATEPICK_1 = 'js-datepick-1';

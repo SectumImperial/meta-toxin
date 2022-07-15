@@ -12,7 +12,7 @@ mixin datepick_2()
           input(
             type = "text",
             id = "booking-enter",
-            class = "datepick__field datepick__field_readonly js-datepick-start js-datepick-item js-date-input",
+            class = "datepick__field datepick__field_readonly js-datepick-start js-datepick__item js-date-input _dateInput",
             name = "datepick-input-start",
             placeholder = "ДД.ММ.ГГГГ",
             pattern = "[0-9]{2}.[0-9]{2}.[0-9]{4}",
@@ -28,7 +28,7 @@ mixin datepick_2()
           input(
             type = "text",
             id = "booking-out",
-            class = "datepick__field datepick__field_readonly js-datepick-end js-datepick-item js-dateInput",
+            class = "datepick__field datepick__field_readonly js-datepick-end js-datepick__item js-dateInput _dateInput",
             name = "datepick-input-end",
             placeholder = "ДД.ММ.ГГГГ",
             pattern = "[0-9]{2}.[0-9]{2}.[0-9]{4}",
@@ -51,7 +51,7 @@ mixin datepick_1()
         input(
           type = "text",
           id = "booking-dates",
-          class = "datepick__field datepick__field_readonly datepick-dates js-datepick-dates js-datepick-item __icon-expand",
+          class = "datepick__field datepick__field_readonly datepick-dates js-datepick-dates js-datepick__item __icon-expand",
           name = "datepick-input-dates",
           placeholder = "дд.мм - дд.мм",
           pattern = "[0-9]{2}.[0-9]{2}.[0-9]{4}",

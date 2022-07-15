@@ -26,6 +26,11 @@
         color: rgba($dark-color, 0.75);
       }
     }
+    
+    // According to the maket requirements
+    &:focus {
+      outline: none;
+    }
 
     &:not([type='radio']):not([type='checkbox']) {
       width: 100%;

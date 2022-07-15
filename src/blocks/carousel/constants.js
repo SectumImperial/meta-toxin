@@ -6,7 +6,16 @@ const PREV = 'js-carousel__prev';
 const NEXT = 'js-carousel__next';
 const TOGGLE = 'js-carousel__toggle-button';
 const ACTIVE = '_active';
+const LINK = 'js-carousel__link';
 
 export {
-  WIDTH, COUNT, ITEMS, ITEM, PREV, NEXT, TOGGLE, ACTIVE,
+  WIDTH,
+  COUNT,
+  ITEMS,
+  ITEM,
+  PREV,
+  NEXT,
+  TOGGLE,
+  ACTIVE,
+  LINK,
 };

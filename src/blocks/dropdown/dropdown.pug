@@ -33,10 +33,11 @@ mixin dropdown(options = {})
                  class = "dropdown__btn dropdown__btn_disabled js-dropdown__btn_disabled dropdown__btn_decrement js-dropdown__btn_decrement"
                 )= "-"
                 input.dropdown__count.js-dropdown__count(
-                  name= item
-                  data-item= item
-                  value= 0
-                  readonly                 
+                  name= item,
+                  data-item= item,
+                  value= 0,
+                  readonly,
+                  tabindex = -1,            
                   )
                 button(
                   class = "dropdown__btn dropdown__btn_increment js-dropdown__btn_increment"
@@ -46,7 +47,8 @@ mixin dropdown(options = {})
           class="visually-hidden js-dropdown__type",
           name = "type",
           value = type,
-          readonly
+          readonly,
+          tabindex = -1, 
           )
       .dropdown__nav
         .dropdown__button.dropdown__button_clear.js-dropdown__button_clear

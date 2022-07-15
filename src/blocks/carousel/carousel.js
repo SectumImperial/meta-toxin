@@ -7,6 +7,7 @@ import {
   NEXT,
   TOGGLE,
   ACTIVE,
+  LINK,
 } from './constants';
 
 class Carousel {
@@ -29,6 +30,7 @@ class Carousel {
     this.prev = this.carousel.querySelector(`.${PREV}`);
     this.next = this.carousel.querySelector(`.${NEXT}`);
     this.toggles = this.carousel.querySelectorAll(`.${TOGGLE}`);
+    this.link = this.carousel.querySelector(`.${LINK}`);
   }
 
   createVars() {
@@ -64,6 +66,8 @@ class Carousel {
       this.handleTouchMove.bind(this),
       { passive: true },
     );
+
+    this.link.addEventListener('keydown', this.handleKey.bind(this));
   }
 
   moveLeft() {
@@ -124,6 +128,16 @@ class Carousel {
       this.moveLeft();
     }
     this.xDown = null;
+  }
+
+  handleKey({ code }) {
+    if (code === 'ArrowRight') {
+      this.moveRight();
+    }
+
+    if (code === 'ArrowLeft') {
+      this.moveLeft();
+    }
   }
 }
 

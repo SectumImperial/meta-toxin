@@ -66,6 +66,20 @@
     outline: none;
     background-color: transparent;
 
+    &:focus {
+      &[type='range']::-webkit-slider-thumb {
+        outline: 2px solid $dark-color;
+      };
+
+      &[type='range']::-moz-range-thumb {
+        outline: 2px solid $dark-color;
+      };
+
+      &[type='range']::-ms-thumb {
+        outline: 2px solid $dark-color;
+      }
+    }
+
     &[type='range']::-webkit-slider-runnable-track {
       -webkit-appearance: none;
       height: 6px;
@@ -111,6 +125,10 @@
       border-radius: 50%;
       background: $gradientSecondary;
       cursor: pointer;
+
+      &:focus {
+        outline: 2px solid $dark-color;
+      }
     }
   }
 }

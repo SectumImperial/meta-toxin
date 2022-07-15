@@ -136,6 +136,14 @@
       padding: 0;
     }
 
+    &__link:focus + &__sublist,
+    &__sublist:focus-within {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: all;
+      transform: translate(0, 0);
+    }
+
     &__link_active {
       font-weight: 700;
     }

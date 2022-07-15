@@ -6,8 +6,7 @@
   position: relative;
   max-width: 270px;
 
-  &:hover::before,
-  &:focus::before {
+  &:hover::before {
     content: '';
     position: absolute;
     z-index: 1;
@@ -23,8 +22,7 @@
     );
   }
 
-  &:hover::after,
-  &:focus::after {
+  &:hover::after {
     content: '';
     position: absolute;
     z-index: 1;
@@ -82,8 +80,7 @@
     }
   }
 
-  &:hover,
-  &:focus {
+  &:hover {
     .carousel__prev,
     .carousel__next {
       visibility: visible;

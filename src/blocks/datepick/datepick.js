@@ -76,6 +76,8 @@ class Datepicker {
     this.calConteiner.addEventListener('click', this.checkRange.bind(this));
     this.datepick.addEventListener('mousemove', this.setRange.bind(this));
     document.addEventListener('click', this.closeOuterClick.bind(this));
+
+    this.items.forEach((item) => item.addEventListener('keydown', this.handleKey.bind(this)));
   }
 
   closeOuterClick({ target }) {
@@ -86,6 +88,14 @@ class Datepicker {
         this.calConteiner.classList.remove('_active-dp');
       }
     });
+  }
+
+  handleKey(e) {
+    const { code } = e;
+    if (code === 'Space') {
+      e.preventDefault();
+      this.clickInputOpen(e);
+    }
   }
 
   static getUrlParams() {

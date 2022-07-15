@@ -10,6 +10,10 @@
   background-color: white;
   box-shadow: 0px 10px 20px 0px rgba($dark-color, 0.05);
 
+  &:focus-within {
+    outline: 2px solid $dark-color;
+  }
+
   &__information {
     padding: 18px 17px 17px 21px;
   }

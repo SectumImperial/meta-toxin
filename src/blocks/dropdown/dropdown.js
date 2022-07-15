@@ -93,6 +93,8 @@ class Dropdown {
       this.dropdownContent.classList.toggle('_active');
     });
 
+    this.dropdownInput.addEventListener('keydown', this.handleKey.bind(this));
+
     this.btnsDecrement.forEach((item) => item.addEventListener('click', this.decrementBtn.bind(this)));
     this.btnsIncrement.forEach((item) => item.addEventListener('click', this.incrementBtn.bind(this)));
 
@@ -109,6 +111,14 @@ class Dropdown {
     }
     if (this.dropdownContent.classList.contains(ACTIVE)) {
       this.dropdownContent.classList.remove(ACTIVE);
+    }
+  }
+
+  handleKey(e) {
+    const { code } = e;
+    if (code === 'Space') {
+      e.preventDefault();
+      this.dropdownContent.classList.toggle('_active');
     }
   }
 
