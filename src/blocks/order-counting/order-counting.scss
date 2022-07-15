@@ -73,7 +73,8 @@
     cursor: pointer;
     z-index: 10;
 
-    &:hover::before {
+    &:hover::before,
+    &:focus::before {
       content: attr(data-information);
       position: absolute;
       top: 25px;

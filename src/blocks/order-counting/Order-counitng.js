@@ -134,6 +134,7 @@ class OrderCount {
     el.style.height = '20px';
     el.style.borderRadius = '50%';
     el.dataset.information = information;
+    el.tabIndex = 0;
 
     return el;
   }
