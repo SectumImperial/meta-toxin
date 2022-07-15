@@ -23,6 +23,8 @@ const CLEAR = 'js-datepick__button_clear';
 const GROUP = 'js-datepick__group';
 const CONTAINER = 'js-datepick__container';
 const DATES = 'js-datepick-dates';
+const ACTIVE = '_active-dp';
+const CLICKED = 'clicked';
 
 export {
   MONTS,
@@ -37,4 +39,6 @@ export {
   GROUP,
   CONTAINER,
   DATES,
+  ACTIVE,
+  CLICKED,
 };

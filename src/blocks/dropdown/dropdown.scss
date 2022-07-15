@@ -93,8 +93,11 @@
 
     color: rgba($dark-color, 0.5);
 
+    cursor: pointer;
+
     &_disabled {
       border-color: rgba($dark-color, 0.25);
+      cursor: auto;
     }
   }
 

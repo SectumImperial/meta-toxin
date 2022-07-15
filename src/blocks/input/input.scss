@@ -5,7 +5,7 @@
 .input {
   position: relative;
   &__field {
-    padding: rem(12) rem(15);
+    padding: 12px 15px;
 
     border: 1px solid rgba($dark-color, 0.25);
     color: rgba($dark-color, 0.75);

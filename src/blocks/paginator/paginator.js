@@ -56,25 +56,26 @@ class Paginator {
     this.btnPrev.addEventListener('click', this.decrementPage.bind(this));
     this.btnNext.addEventListener('click', this.incrementPage.bind(this));
     this.itemsPaginator.addEventListener('click', this.changePage.bind(this));
+
     this.btnPrev.addEventListener('keydown', this.keyDecrementPage.bind(this));
     this.btnNext.addEventListener('keydown', this.keyInecrementPage.bind(this));
     this.itemsPaginator.addEventListener('keydown', this.keyChangePage.bind(this));
   }
 
-  static isInStart(currentPage) {
-    return currentPage === COUNT_PAGE + 1
-    || currentPage <= COUNT_PAGE;
+  isInStart() {
+    return this.currentPage === COUNT_PAGE + 1
+    || this.currentPage <= COUNT_PAGE;
   }
 
-  static isInEnd(currentPage, pageCount) {
-    return currentPage === pageCount - COUNT_PAGE
-    || (currentPage >= pageCount - COUNT_PAGE
-      && currentPage !== pageCount);
+  isInEnd() {
+    return this.currentPage === this.pageCount - COUNT_PAGE
+    || (this.currentPage >= this.pageCount - COUNT_PAGE
+      && this.currentPage !== this.pageCount);
   }
 
-  static isInMiddle(currentPage, pageCount) {
-    return currentPage > COUNT_PAGE
-    && currentPage < pageCount - COUNT_PAGE;
+  isInMiddle() {
+    return this.currentPage > COUNT_PAGE
+    && this.currentPage < this.pageCount - COUNT_PAGE;
   }
 
   //   Методы создания и отображения страниц
@@ -84,17 +85,16 @@ class Paginator {
     end += 1;
     start -= 1;
 
-    // Если на 4 или если на 12 или если в середине
     if (this.currentPage === this.startPage) {
       this.createBegining();
-    } else if (Paginator.isInStart(this.currentPage)) {
+    } else if (this.isInStart()) {
       this.createStart(end);
-    } else if (Paginator.isInEnd(this.currentPage, this.pageCount)
+    } else if (this.isInEnd()
     ) {
       this.createEnd(start);
     } else if (this.currentPage === this.pageCount) {
       this.createEnding();
-    } else if (Paginator.isInMiddle(this.currentPage, this.pageCount)) {
+    } else if (this.isInMiddle()) {
       this.createMiddle(start, end);
     }
   }

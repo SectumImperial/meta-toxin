@@ -2,11 +2,18 @@ mixin social(options = {})
 
   ul.social-links 
     each obj in options 
+      -
+        const {
+        link = "error-page.html",
+        name = "Without name",
+        icon = ""
+        } = obj
+
       li.social-links__item 
         a(
-            href= obj.link
-            class = `social-links__item_${obj.name}`
+            href= link
+            class = `social-links__item_${name}`
             target = "_blank"
             rel = "noopener noreferrer"
         )
-          img(src=`${obj.icon}` alt=`${obj.name} link` width="24" height="24")
+          img(src=`${icon}` alt=`${name} link` width="24" height="24")

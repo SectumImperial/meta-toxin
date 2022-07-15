@@ -12,6 +12,8 @@ import {
   CONTAINER,
   DATES,
   DATEPICK,
+  ACTIVE,
+  CLICKED,
 } from './constants';
 
 class Datepicker {
@@ -83,9 +85,9 @@ class Datepicker {
   closeOuterClick({ target }) {
     if (target.closest(`.${DATEPICK}`)) return;
     this.datepick.querySelectorAll(`.${GROUP}`).forEach((e) => {
-      if (e.classList.contains('clicked')) e.classList.remove('clicked');
-      if (this.calConteiner.classList.contains('_active-dp')) {
-        this.calConteiner.classList.remove('_active-dp');
+      if (e.classList.contains(CLICKED)) e.classList.remove(CLICKED);
+      if (this.calConteiner.classList.contains(ACTIVE)) {
+        this.calConteiner.classList.remove(ACTIVE);
       }
     });
   }
@@ -454,15 +456,15 @@ class Datepicker {
   }
 
   static isOneInputClicked({ targetContainer, sibling, container }) {
-    return !targetContainer.classList.contains('clicked')
-      && sibling.classList.contains('clicked')
-      && container.classList.contains('_active-dp');
+    return !targetContainer.classList.contains(CLICKED)
+      && sibling.classList.contains(CLICKED)
+      && container.classList.contains(ACTIVE);
   }
 
   static isAllInputClicked({ targetContainer, sibling, container }) {
-    return targetContainer.classList.contains('clicked')
-    && sibling.classList.contains('clicked')
-    && container.classList.contains('_active-dp');
+    return targetContainer.classList.contains(CLICKED)
+    && sibling.classList.contains(CLICKED)
+    && container.classList.contains(ACTIVE);
   }
 
   static returnInputSibling(targetContainer, formGroups) {
@@ -474,14 +476,14 @@ class Datepicker {
   }
 
   static closeDpOnInpitCLick(targetContainer, sibling, calConteiner) {
-    targetContainer.classList.remove('clicked');
-    sibling.classList.remove('clicked');
-    calConteiner.classList.remove('_active-dp');
+    targetContainer.classList.remove(CLICKED);
+    sibling.classList.remove(CLICKED);
+    calConteiner.classList.remove(ACTIVE);
   }
 
   static toggleDp(targetContainer, calConteiner) {
-    targetContainer.classList.toggle('clicked');
-    calConteiner.classList.toggle('_active-dp');
+    targetContainer.classList.toggle(CLICKED);
+    calConteiner.classList.toggle(ACTIVE);
   }
 
   clickInputOpen({ target }) {
@@ -499,7 +501,7 @@ class Datepicker {
       });
 
       if (oneInpClick) {
-        targetContainer.classList.toggle('clicked');
+        targetContainer.classList.toggle(CLICKED);
         return;
       }
 
@@ -540,7 +542,7 @@ class Datepicker {
   }
 
   closeDp() {
-    this.calConteiner.classList.remove('_active-dp');
+    this.calConteiner.classList.remove(ACTIVE);
   }
 
   accept(e) {

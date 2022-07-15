@@ -9,7 +9,7 @@
   background-size: cover;
   padding: 5px;
 
-  min-height: rem(830);
+  min-height: 830px;
 
   &__text {
     display: none;
@@ -32,7 +32,7 @@
     &__text {
       display: block;
 
-      max-width: rem(297);
+      max-width: 297px;
       align-self: flex-end;
       justify-self: flex-end;
 

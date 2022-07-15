@@ -13,13 +13,14 @@
     display: inline-block;
     width: 20px;
     height: 20px;
-    background-color: #fff;
+    background-color: $secondary-color-2;
     border: 1px solid rgba($dark-color, 0.25);
     border-radius: 100%;
   }
 
   &__input:checked + &__new-input {
     border: 1px solid $primary-color;
+
     &::before {
       content: '';
       position: absolute;
@@ -33,6 +34,7 @@
       border-radius: 100%;
       background: $gradient;
     }
+    
   }
 
   &__input:focus + &__new-input {

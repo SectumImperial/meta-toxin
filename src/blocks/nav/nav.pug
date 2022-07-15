@@ -1,3 +1,35 @@
+mixin nav(options = {})  
+  nav.nav
+    +navList(options)
+
+mixin navList(options = {}) 
+  - 
+    const {
+      items = [], 
+      mod = "horizontal",
+    } = options
+
+  ul(class = `nav__items nav__items_${mod}`)
+    each item in items
+      -
+        const subItems = item.subItems ? item.subItems : false
+        const {
+          content = "",
+          href = "error-page.html",
+          classLi = subItems === false ? "nav__item" : "nav__item nav__subitem",
+          classLink = subItems === false ? "nav__link" : "nav__link nav__link_sub  icon__expand_more",
+          linkActive = ""
+        } = item
+      +navItem({
+        content,
+        classLink,
+        classLi,
+        href,
+        isActive,
+        linkActive,
+        subItems
+      })
+
 mixin navItem(options = {}) 
   - 
     const {
@@ -36,40 +68,8 @@ mixin navSub(items = [])
           href = href
           class = "nav__sublink"
         )= content
-        
 
-mixin navList(options = {}) 
-  - 
-    const {
-      items = [], 
-      mod = "horizontal",
-    } = options
-
-  ul(class = `nav__items nav__items_${mod}`)
-    each item in items
-      -
-        const subItems = item.subItems ? item.subItems : false
-        const {
-          content = "",
-          href = "error-page.html",
-          classLi = subItems === false ? "nav__item" : "nav__item nav__subitem",
-          classLink = subItems === false ? "nav__link" : "nav__link nav__link_sub  icon__expand_more",
-          linkActive = ""
-        } = item
-      +navItem({
-        content: content,
-        classLink: classLink,
-        classLi: classLi,
-        href: href,
-        isActive: isActive,
-        linkActive: linkActive,
-        subItems: subItems
-        })
        
-
-mixin nav(options = {})  
-  nav.nav
-    +navList(options)
     
 
 

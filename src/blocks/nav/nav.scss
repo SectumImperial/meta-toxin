@@ -35,7 +35,7 @@
     margin-right: 2px;
 
     &::before {
-      font-size: rem(7);
+      font-size: 7px;
     }
 
     &:hover {
@@ -56,7 +56,7 @@
       top: 60%;
       right: -19px;
       transform: translateY(-50%);
-      font-size: rem(8);
+      font-size: 8px;
       color: rgba($dark-color, 0.5);
     }
   }
@@ -65,7 +65,7 @@
     display: none;
     position: relative;
     flex: 1 1 100%;
-    padding: rem(2);
+    padding: 2px;
 
     background-color: $primary-color;
     list-style: none;
@@ -78,7 +78,7 @@
   }
 
   &__sublist li {
-    margin: 0 0 rem(2) 0;
+    margin: 0 0 2px 0;
   }
 
   &__sublist li:last-child {
@@ -89,7 +89,7 @@
     display: inline-block;
     color: $secondary-color-2;
     text-decoration: none;
-    padding: rem(8) rem(5);
+    padding: 8px 5px;
 
     &:hover {
       text-decoration: underline;
@@ -155,7 +155,7 @@
       display: block;
       top: 100%;
       left: 4%;
-      min-width: rem(120);
+      min-width: 120px;
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
@@ -163,7 +163,7 @@
     }
 
     &__sublist li {
-      padding-top: rem(3);
+      padding-top: 3px;
     }
 
     &__sublink:hover {

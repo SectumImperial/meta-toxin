@@ -9,7 +9,7 @@
   &__fields {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: rem(20);
+    gap: 20px;
   }
 
   &__field {
@@ -27,7 +27,7 @@
     right: 0;
     z-index: 11;
 
-    max-width: rem(320);
+    max-width: 320px;
     display: none;
 
     box-shadow: rgba($dark-color, 0.5);
@@ -47,7 +47,7 @@
 
   &__field {
     width: 100%;
-    padding: rem(12) rem(15);
+    padding: 12px 15px;
 
     border: 1px solid rgba($dark-color, 0.25);
     color: rgba($dark-color, 0.75);

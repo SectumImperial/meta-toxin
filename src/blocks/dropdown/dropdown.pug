@@ -30,7 +30,7 @@ mixin dropdown(options = {})
               span.dropdown__item-text= item
               .dropdown__items-nav
                 button(
-                 class = "dropdown__btn dropdown__btn_disabled js-dropdown__btn_disabled dropdown__btn_decrement js-dropdown__btn_decrement"
+                 class = "dropdown__btn dropdown__btn_disabled dropdown__btn_decrement js-dropdown__btn_decrement"
                 )= "-"
                 input.dropdown__count.js-dropdown__count(
                   name= item,
@@ -56,9 +56,7 @@ mixin dropdown(options = {})
             content: "Очистить",
             btnColor: "violet",
             btnWrapperColor: "transparent",
-            border: "false",
-            btnSize: "tiny",
-            btnMod: ["noBorder"],         
+            btnSize: "tiny",        
           })
 
         .dropdown__button.dropdown__button_accept.js-dropdown__button_accept
@@ -66,7 +64,5 @@ mixin dropdown(options = {})
             content: "Применить",
             btnColor: "violet",
             btnWrapperColor: "transparent",
-            border: "false",
             btnSize: "tiny",
-            btnMod: ["noBorder"],
           })

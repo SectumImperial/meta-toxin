@@ -17,8 +17,10 @@ mixin room-card(options = {})
     } = options
 
   article.room-card.js-room-card
-    +carousel(images,
-    href)
+    +carousel(
+      images,
+      href,
+    )
     .room-card__information
       .room-card__details
         .room-card__number

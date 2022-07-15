@@ -1,12 +1,7 @@
 mixin paginator(options = {})
-  -
-    const {
-      paginatorOptions = {},
-    } = options
-
   div(
     class = "paginator _js-paginator"
-    data-paginator = paginatorOptions 
+    data-paginator = options 
   )
     .paginator__content
       button(
