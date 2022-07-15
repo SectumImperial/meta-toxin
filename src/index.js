@@ -47,3 +47,4 @@ pages.forEach((e) => require(`./pages/${e}/index`));
 files.forEach((e) => require(`./blocks/${e}/index`));
 // eslint-disable-next-line global-require, import/no-dynamic-require
 require('./layouts/page-layout/index');
+require('./layouts/ui-layout/index');
