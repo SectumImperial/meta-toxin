@@ -11,5 +11,16 @@ html(lang="ru")
     title #{title} 
     link(rel="icon" type="image/svg" sizes="any" href="../favicon/favicon.svg")
     link(rel="manifest" href="../common/manifest.json")
-  body.page
+  body.ui-page
+    header.ui-page__header 
+      .ui-page__logo 
+        a(
+          href = "start-page.html",
+          class = "ui-page__link",
+        )
+          img(
+            class="ui-page__logo-img",
+            alt="Логотип"
+            src = "../../layouts/ui-layout/logo/logo.svg"
+        )
     block content
