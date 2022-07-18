@@ -4,8 +4,9 @@
 
 .registration-card {
   @include boxes;
-  
+
   min-width: 380px;
+  max-width: 380px;
   padding: 39px 30px 30px 28px;
 
   @media (max-width: $mobile) {

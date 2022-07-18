@@ -1,6 +1,6 @@
 import './common/styles.scss';
 
-const pages = ['start-page', 'error-page', 'ui-colors-type'];
+const pages = ['start-page', 'error-page', 'ui-colors-type', 'ui-cards'];
 
 const files = [
   'registration',
@@ -39,6 +39,7 @@ const files = [
   'order-counting',
   'registration-card',
   'login-card',
+  'ui-header',
 ];
 
 // eslint-disable-next-line global-require, import/no-dynamic-require

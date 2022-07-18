@@ -2,12 +2,15 @@ extends ../../layouts/ui-layout/ui-layout.pug
 
 include ../../blocks/title/title.pug
 include ../../blocks/text-element/text-element.pug
+include ../../blocks/ui-header/ui-header.pug
 
 block variables 
   - 
     const title = "Colors & Type"
 
 block content
+  heder.ui-page__header 
+    +ui-header()
   main.ui-page__main
     .colors-page
       .colors-page__colors

@@ -19,7 +19,9 @@ mixin search-room(options = {})
           class = 'search-room__form',
         )
           .search-room__datepick
-            +datepick_1()
+            +datepick({
+              isTwoInput: false,
+            })
 
           .search-room__guests
             .search-room__subtitle

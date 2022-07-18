@@ -38,6 +38,8 @@ class Datepicker {
     this.buttonClear = container.querySelector(`.${CLEAR}`);
     this.buttonAccept = container.querySelector(`.${ACCEPT}`);
 
+    this.isSingleInput = false;
+    this.isTwoInputs = false;
     if (container.classList.contains(DATEPICK_1)) this.isSingleInput = true;
     if (container.classList.contains(DATEPICK_2)) this.isTwoInputs = true;
     this.rangeFrom = null;

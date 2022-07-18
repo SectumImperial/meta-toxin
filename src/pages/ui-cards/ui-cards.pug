@@ -1,0 +1,35 @@
+extends ../../layouts/ui-layout/ui-layout.pug
+include ../../blocks/ui-header/ui-header.pug
+
+include ../../blocks/booking-card/booking-card.pug
+include ../../blocks/registration-card/registration-card.pug
+include ../../blocks/order-card/order-card.pug
+include ../../blocks/login-card/login-card.pug
+include ../../blocks/datepick/datepick.pug
+
+block variables 
+  - 
+    const title = "Cards"
+
+block content
+  heder.ui-page__header 
+    +ui-header({
+        isGrey: true,
+    })
+  main.ui-page__main 
+    .ui-cards 
+      .ui-cards__container
+        .ui-cards__column
+          +booking-card()
+          +registration-card()
+        .ui-cards__column
+          +order-card()
+          +login-card()
+        .ui-cards__column
+          +datepick({
+            isOnlyCal: true,
+          })
+          
+
+          
+
