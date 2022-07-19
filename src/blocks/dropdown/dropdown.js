@@ -90,7 +90,7 @@ class Dropdown {
   addListeners() {
     this.field.addEventListener('click', this.toggleClass.bind(this));
     this.field.addEventListener('click', () => {
-      this.dropdownContent.classList.toggle('_active');
+      this.dropdownContent.classList.toggle(ACTIVE);
     });
 
     this.dropdownInput.addEventListener('keydown', this.handleKey.bind(this));
@@ -118,7 +118,7 @@ class Dropdown {
     const { code } = e;
     if (code === 'Space') {
       e.preventDefault();
-      this.dropdownContent.classList.toggle('_active');
+      this.dropdownContent.classList.toggle(ACTIVE);
     }
   }
 
@@ -170,22 +170,28 @@ class Dropdown {
     if (sum === 0) this.btnClear.classList.add(HIDDEN);
   }
 
-  decrementBtn(e) {
-    e.preventDefault();
-    const container = e.target.closest(`.${ITEM}`);
-    const count = container.querySelector(`.${COUNT_ELEM}`);
-    Dropdown.checkLimits(count);
+  static checkDecrementDisabled(count, target) {
     if (
       Number(count.value) > 0
-      && e.target.classList.contains(DISABLED)
+      && target.classList.contains(DISABLED)
     ) {
-      e.target.classList.remove(DISABLED);
+      target.classList.remove(DISABLED);
     }
-    if (e.target.classList.contains(DISABLED)) return;
+    if (target.classList.contains(DISABLED)) return;
+    // eslint-disable-next-line no-param-reassign
     count.value = Number(count.value) - 1;
     if (Number(count.value) === 0) {
-      e.target.classList.add(DISABLED);
+      target.classList.add(DISABLED);
     }
+  }
+
+  decrementBtn(e) {
+    e.preventDefault();
+    const { target } = e;
+    const container = target.closest(`.${ITEM}`);
+    const count = container.querySelector(`.${COUNT_ELEM}`);
+    Dropdown.checkLimits(count);
+    Dropdown.checkDecrementDisabled(count, target);
 
     if (this.type === 'guests') this.checkInfants();
     this.performData();
@@ -194,7 +200,8 @@ class Dropdown {
 
   incrementBtn(e) {
     e.preventDefault();
-    const container = e.target.closest(`.${ITEM}`);
+    const { target } = e;
+    const container = target.closest(`.${ITEM}`);
     const count = container.querySelector(`.${COUNT_ELEM}`);
     const decrement = container.querySelector(`.${BTNS_DEC}`);
     Dropdown.checkLimits(count);
@@ -227,8 +234,12 @@ class Dropdown {
     const sum = counts.reduce((prev, curr) => Number(prev) + Number(curr), 0);
     const infantCount = this.dropdown.querySelector(`.${COUNT_ELEM}[data-item="Младенцы"]`).value;
     const adult = this.dropdown.querySelector(`.${COUNT_ELEM}[data-item="Взрослые"]`);
+    const adultDecrementBtn = adult.closest('.dropdown__items-nav').querySelector(`.${BTNS_DEC}`);
     if (sum <= infantCount && sum !== 0 && infantCount !== 0) {
       adult.value = Number(adult.value) + 1;
+      adultDecrementBtn.classList.add(DISABLED);
+    } else if (Number(adult.value) !== 0) {
+      adultDecrementBtn.classList.remove(DISABLED);
     }
   }
 
