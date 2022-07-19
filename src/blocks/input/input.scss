@@ -18,14 +18,15 @@
       color: rgba($dark-color, 0.25);
     }
     &:hover,
-    &:focus {
+    &:focus,
+    &_hovered {
       border-color: rgba($dark-color, 0.5);
       color: rgba($dark-color, 0.75);
       &::placeholder {
         color: rgba($dark-color, 0.75);
       }
     }
-    
+
     // According to the maket requirements
     &:focus {
       outline: none;

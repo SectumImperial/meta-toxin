@@ -1,0 +1,41 @@
+@use 'sass:math';
+@import '../../common/functions.scss';
+@import '../../common/variables.scss';
+
+.form-elems {
+  &__content {
+    max-width: $content;
+    padding: 0 5px;
+    margin: 0 auto;
+
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__fields {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  &__field {
+    max-width: 320px;
+
+    &_bigger {
+      padding-top: 20px;
+    }
+  }
+
+  &__subtitle {
+    display: flex;
+    justify-content: space-between;
+
+    text-transform: uppercase;
+    padding-bottom: 5px;
+  }
+
+  &__status {
+    color: rgba($dark-color, 0.5);
+    font-size: $fontTiny;
+  }
+}

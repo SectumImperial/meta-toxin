@@ -1,0 +1,104 @@
+extends ../../layouts/ui-layout/ui-layout.pug
+include ../../blocks/ui-header/ui-header.pug
+
+include ../../blocks/input/input.pug
+include ../../blocks/title/title.pug
+include ../../blocks/dropdown/dropdown.pug
+include ../../blocks/datepick/datepick.pug
+
+block variables 
+  - 
+    const title = "Form elements"
+
+
+block content
+  header.ui-page__header 
+    +ui-header()
+  main.ui-page__main
+    .form-elems 
+      .form-elems__content
+        .form-elems__fields 
+          .form-elems__field
+            .form-elems__subtitle 
+              +title({
+                level: "h5",
+                text: "Text feild"
+              })
+              span.form-elems__status Default
+            +input({
+              type: "email",
+              placeholder: "Email",
+              pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+            })
+          .form-elems__field
+            .form-elems__subtitle 
+              +title({
+                level: "h5",
+                text: "Text feild"
+              })
+              span.form-elems__status Hover/Focus
+            +input({
+              type: "text",
+              placeholder: "This is pretty awesome",
+              isHovered: true,
+            })
+
+          .form-elems__field
+            .form-elems__subtitle 
+              +title({
+                level: "h5",
+                text: "Сколько гостей"
+              })
+            +dropdown({
+              type: "guests",
+              id: "booking-guests",
+              placeholder: "Сколько гостей",
+              items: [
+                "Взрослые", "Дети", "Младенцы",
+              ],
+              plurals: [
+                {
+                  "default": ["гость", "гостя", "гостей"],
+                  },
+                {
+                  "Младенцы": ["младенец", "младенца", "младенцев"],
+                }
+              ]
+            })
+          .form-elems__field
+            .form-elems__subtitle 
+              +title({
+                text: "masked text field",
+                level: "h5",
+              })
+            +input({
+              type: "text",
+              placeholder: "ДД.ММ.ГГГГ",
+              pattern: "[0-9]{2}.[0-9]{2}.[0-9]{4}",
+              isRequired: true,
+              isDate: true,
+            })
+          .form-elems__field.form-elems__field_bigger
+            +datepick({
+              labelStart: "date Dropdown",
+              labelEnd: "date Dropdown"
+            })
+          .form-elems__field.form-elems__field_bigger
+            +datepick({
+              labelAlone: "filter date dropdown",
+              isTwoInput: false,
+            })
+
+          .form-elems__field.form-elems__field_bigger
+            .form-elems__subtitle 
+              +title({
+                level: "h5",
+                text: "Subscription text field",
+              })
+            +input({
+              type: "email",
+              placeholder: "Email",
+              pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$",
+              arrow: "forward",
+            })
+        

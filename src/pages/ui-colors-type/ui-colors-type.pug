@@ -1,8 +1,9 @@
 extends ../../layouts/ui-layout/ui-layout.pug
+include ../../blocks/ui-header/ui-header.pug
 
 include ../../blocks/title/title.pug
 include ../../blocks/text-element/text-element.pug
-include ../../blocks/ui-header/ui-header.pug
+
 
 block variables 
   - 
@@ -13,58 +14,59 @@ block content
     +ui-header()
   main.ui-page__main
     .colors-page
-      .colors-page__colors
-        .colors-page__container
-          .colors-page__color.colors-page__color_dark-100
-          span.colors-page__descr Dark Shade 100%
-          span.colors-page__value #1F2041
-        .colors-page__container
-          .colors-page__color.colors-page__color_dark-75
-          span.colors-page__descr Dark Shade 75%
-          span.colors-page__value #1F2041
-        .colors-page__container
-          .colors-page__color.colors-page__color_dark-50
-          span.colors-page__descr Dark Shade 50%
-          span.colors-page__value #1F2041
-        .colors-page__container
-          .colors-page__color.colors-page__color_dark-25
-          span.colors-page__descr Dark Shade 25%
-          span.colors-page__value #1F2041
-        .colors-page__container
-          .colors-page__color.colors-page__color_dark-5 
-          span.colors-page__descr Dark Shade 5%
-          span.colors-page__value #1F2041
-        .colors-page__container
-          .colors-page__color.colors-page__color_purple
-          span.colors-page__descr Purple
-          span.colors-page__value #BC9CFF
-        .colors-page__container
-          .colors-page__color.colors-page__color_green 
-          span.colors-page__descr Green
-          span.colors-page__value #6FCF97
-      
-      .colors-page__types
-        .colors-page__type
-          .colors-page__level.colors-page__level_h1 h1 
-          +title({
-            level: "h1",
-            text: "This one is the sub-section or widget title",
-          })
-        .colors-page__type.colors-page__type_h3
-          .colors-page__level.colors-page__level_h3 h2 
-          +title({
-            level: "h3",
-            text: "Next one is the item title inside widgets",
-          })
-        .colors-page__type.colors-page__type_uppercase
-          .colors-page__level.colors-page__level_h5 h3 
-          +title({
-            level: "h5",
-            text: "This is a label or CTA text",
-          })
-        .colors-page__type.colors-page__type_text
-          .colors-page__level.colors-page__text body 
-          +text-element("This is the body text which is used for most of the design, like paragraphs, lists, etc.")
+      .colors-page__content
+        .colors-page__colors
+          .colors-page__container
+            .colors-page__color.colors-page__color_dark-100
+            span.colors-page__descr Dark Shade 100%
+            span.colors-page__value #1F2041
+          .colors-page__container
+            .colors-page__color.colors-page__color_dark-75
+            span.colors-page__descr Dark Shade 75%
+            span.colors-page__value #1F2041
+          .colors-page__container
+            .colors-page__color.colors-page__color_dark-50
+            span.colors-page__descr Dark Shade 50%
+            span.colors-page__value #1F2041
+          .colors-page__container
+            .colors-page__color.colors-page__color_dark-25
+            span.colors-page__descr Dark Shade 25%
+            span.colors-page__value #1F2041
+          .colors-page__container
+            .colors-page__color.colors-page__color_dark-5 
+            span.colors-page__descr Dark Shade 5%
+            span.colors-page__value #1F2041
+          .colors-page__container
+            .colors-page__color.colors-page__color_purple
+            span.colors-page__descr Purple
+            span.colors-page__value #BC9CFF
+          .colors-page__container
+            .colors-page__color.colors-page__color_green 
+            span.colors-page__descr Green
+            span.colors-page__value #6FCF97
+        
+        .colors-page__types
+          .colors-page__type
+            .colors-page__level.colors-page__level_h1 h1 
+            +title({
+              level: "h1",
+              text: "This one is the sub-section or widget title",
+            })
+          .colors-page__type.colors-page__type_h3
+            .colors-page__level.colors-page__level_h3 h2 
+            +title({
+              level: "h3",
+              text: "Next one is the item title inside widgets",
+            })
+          .colors-page__type.colors-page__type_uppercase
+            .colors-page__level.colors-page__level_h5 h3 
+            +title({
+              level: "h5",
+              text: "This is a label or CTA text",
+            })
+          .colors-page__type.colors-page__type_text
+            .colors-page__level.colors-page__text body 
+            +text-element("This is the body text which is used for most of the design, like paragraphs, lists, etc.")
           
 
         

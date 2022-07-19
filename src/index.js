@@ -6,6 +6,7 @@ const pages = [
   'ui-colors-type',
   'ui-cards',
   'ui-headers-footers',
+  'ui-form-elements',
 ];
 
 const files = [

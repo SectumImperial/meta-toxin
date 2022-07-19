@@ -11,6 +11,7 @@ mixin input(options = {})
       arrow = false,
       isRequired = false,
       isDate = false,
+      isHovered = false,
     } = options
 
     const arrows = {
@@ -19,13 +20,14 @@ mixin input(options = {})
     }
 
     const dateClass = isDate ? '_dateInput' : ''
+    const hoveredClass = isHovered ? 'input__field_hovered' : ''
 
   .input
-    input(
+    input.input__field(
       type = type
       name = name
       id = id
-      class = `input__field ${dateClass}`
+      class = `${dateClass} ${hoveredClass}`
       value = value 
       placeholder = placeholder
       readonly = readonly

@@ -2,14 +2,16 @@
 @import '../../common/variables.scss';
 
 .colors-page {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 10px;
+  &__content {
+    max-width: $content;
+    padding: 0 5px;
+    margin: 0 auto;
 
-  width: 100%;
-  max-width: $content;
-  padding: 0 5px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
 
   &__container {
     display: grid;

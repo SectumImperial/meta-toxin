@@ -5,6 +5,9 @@ mixin datepick(options = {})
     const { 
       isTwoInput = true,
       isOnlyCal = false,
+      labelStart = "Прибытие",
+      labelEnd = "Выезд",
+      labelAlone = "Даты пребывания в отеле"
      } = options
   
 
@@ -24,7 +27,7 @@ mixin datepick(options = {})
           label(
             for = "booking-enter",
             class = "datepick__label js-datepick__label",
-          ) Прибытие
+          )= labelStart
           .datepick__input
             input(
               type = "text",
@@ -40,7 +43,7 @@ mixin datepick(options = {})
           label(
             for = "booking-out",
             class = "datepick__label js-datepick__label"
-          ) Выезд
+          )= labelEnd
           .datepick__input
             input(
               type = "text",
@@ -60,7 +63,7 @@ mixin datepick(options = {})
           label(
             for = "booking-dates",
             class = "datepick__label js-datepick__label"
-            ) Даты пребывания в отеле
+            )= labelAlone
           .datepick__input
             input(
               type = "text",

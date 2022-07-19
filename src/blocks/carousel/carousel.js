@@ -98,7 +98,9 @@ class Carousel {
     });
   }
 
-  moveToggle({ target }) {
+  moveToggle(e) {
+    e.preventDefault();
+    const { target } = e;
     const countImage = (this.position / this.width) * -1;
     const move = -(target.dataset.toggleCount - countImage) * this.width;
     this.position += move;
