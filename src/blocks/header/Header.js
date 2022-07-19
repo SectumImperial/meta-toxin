@@ -1,9 +1,8 @@
 /* eslint-disable linebreak-style */
-// const mediaQueryList = window.matchMedia('(min-width: 960px)');
 
 class Header {
   constructor(element) {
-    this.Header = element;
+    this.header = element;
     this.init();
   }
 
@@ -15,10 +14,10 @@ class Header {
   }
 
   findElemes() {
-    this.page = document.querySelector('.page');
-    this.subItems = document.querySelectorAll('.nav__subitem');
-    this.iconMenu = document.querySelector('.header__icon');
-    this.navWrapper = document.querySelector('.header__nav-wrapper');
+    this.page = document.querySelector('body');
+    this.subItems = this.header.querySelectorAll('.nav__subitem');
+    this.iconMenu = this.header.querySelector('.header__icon');
+    this.navWrapper = this.header.querySelector('.header__nav-wrapper');
   }
 
   addListeners() {

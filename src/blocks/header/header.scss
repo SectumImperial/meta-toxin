@@ -3,6 +3,7 @@
 @import '../../common/variables.scss';
 
 .header {
+  background-color: $secondary-color-2;
   &__content {
     width: 100%;
 
@@ -96,6 +97,11 @@
     }
   }
 
+  &__user {
+    color: rgba($dark-color, 0.5);
+    align-self: flex-end;
+  }
+
   /* --------------- Планшет и десктоп ------------------- */
   @media (min-width: $tablet) {
     &__content {
@@ -128,7 +134,7 @@
     }
 
     &__user {
-      padding: 9px 8px 21px;
+      padding: 5px 0 0 20px;
       height: 30px;
       border-left: 1px solid rgba($dark-color, 0.1);
     }

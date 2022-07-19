@@ -1,6 +1,6 @@
 import './common/styles.scss';
 
-const pages = ['start-page', 'error-page', 'ui-colors-type', 'ui-cards'];
+const pages = ['start-page', 'error-page', 'ui-colors-type', 'ui-cards', 'ui-headers-footers'];
 
 const files = [
   'registration',

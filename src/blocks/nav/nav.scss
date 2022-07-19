@@ -173,18 +173,19 @@
 }
 
 /* -------------------------------- */
-.page._pc .nav__items > .nav__subitem:hover .nav__sublist {
+body._pc .nav__items > .nav__subitem:hover .nav__sublist {
   opacity: 1;
   visibility: visible;
   pointer-events: all;
   transform: translate(0, 0);
 }
 
-.page._touch .nav__items > .nav__item._active .nav__sublist {
+body._touch .nav__items > .nav__item._active .nav__sublist {
   opacity: 1;
   visibility: visible;
   pointer-events: all;
   transform: translate(0, 0);
+  z-index: 50;
 }
 
 /* -------------------------------- */

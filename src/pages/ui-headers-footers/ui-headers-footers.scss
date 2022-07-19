@@ -1,0 +1,9 @@
+.ui-hed-fot {
+  background-color: #e5e5e5;
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding-bottom: 40px;
+  }
+}
