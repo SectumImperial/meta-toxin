@@ -12,6 +12,11 @@
       grid-template-columns: 1fr 1fr;
       gap: 20px;
     }
+
+    &_hidden {
+      gap: 0;
+      grid-template-columns: auto;
+    }
   }
 
   &__field {
@@ -37,7 +42,15 @@
     border-radius: 4px;
 
     background-color: $secondary-color-2;
+
+    &_only-cal {
+      position: relative;
+      top: 0;
+      right: 0;
+    }
   }
+
+
   &__button {
     margin: 0 18px 18px 15px;
   }
@@ -83,7 +96,6 @@
   }
 
   &__label {
-    display: inline-block;
     font-weight: bold;
     font-size: $fontTiny;
     text-transform: uppercase;

@@ -25,6 +25,7 @@ const CONTAINER = 'js-datepick__container';
 const DATES = 'js-datepick-dates';
 const ACTIVE = '_active-dp';
 const CLICKED = 'clicked';
+const LABEL = 'js-datepick__label';
 
 export {
   MONTS,
@@ -41,4 +42,5 @@ export {
   DATES,
   ACTIVE,
   CLICKED,
+  LABEL,
 };

@@ -21,6 +21,10 @@
     background: transparent;
     &:hover {
       background: transparent;
+
+      .button__content {
+        color: rgba($dark-color, 0.5);
+      }
     }
   }
 

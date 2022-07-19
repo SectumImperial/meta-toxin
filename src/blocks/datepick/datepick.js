@@ -1,4 +1,6 @@
 import AirDatepicker from 'air-datepicker';
+import { v4 as uuidv4 } from 'uuid';
+
 import {
   MONTS,
   ITEM,
@@ -14,6 +16,7 @@ import {
   DATEPICK,
   ACTIVE,
   CLICKED,
+  LABEL,
 } from './constants';
 
 class Datepicker {
@@ -24,6 +27,7 @@ class Datepicker {
 
   init() {
     this.findElems(this.datepick);
+    this.createId();
     this.createDatepicker();
     this.addButtonsArrow();
     this.checkBtnVisibility([...this.items]);
@@ -44,6 +48,16 @@ class Datepicker {
     if (container.classList.contains(DATEPICK_2)) this.isTwoInputs = true;
     this.rangeFrom = null;
     this.rangeTo = null;
+  }
+
+  createId() {
+    this.formGroups.forEach((e) => {
+      const label = e.querySelector(`.${LABEL}`);
+      const input = e.querySelector(`.${ITEM}`);
+      const id = uuidv4();
+      label.htmlFor = id;
+      input.id = id;
+    });
   }
 
   createDatepicker() {
@@ -89,7 +103,7 @@ class Datepicker {
     this.datepick.querySelectorAll(`.${GROUP}`).forEach((e) => {
       if (e.classList.contains(CLICKED)) e.classList.remove(CLICKED);
       if (this.calConteiner.classList.contains(ACTIVE)) {
-        this.calConteiner.classList.remove(ACTIVE);
+        this.closeDp();
       }
     });
   }
@@ -544,6 +558,7 @@ class Datepicker {
   }
 
   closeDp() {
+    if (this.calConteiner.classList.contains('datepick__container_only-cal')) return;
     this.calConteiner.classList.remove(ACTIVE);
   }
 

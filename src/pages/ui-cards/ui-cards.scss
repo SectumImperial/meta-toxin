@@ -13,6 +13,8 @@
     padding: 0 5px;
 
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 40px;
   }
 
@@ -20,5 +22,10 @@
     display: flex;
     flex-direction: column;
     gap: 40px;
+  }
+
+
+  &__datepick {
+    position: relative;
   }
 }
