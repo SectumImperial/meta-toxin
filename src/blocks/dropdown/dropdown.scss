@@ -32,7 +32,7 @@
 
     // According to the maket requirements
     &:focus {
-      outline: none
+      outline: none;
     }
   }
 
@@ -67,7 +67,7 @@
   }
 
   &__counter {
-    padding: 4px 7px 0 13px;
+    padding: 4px 7px 7px 13px;
   }
 
   &__nav {
@@ -79,8 +79,8 @@
   ._active {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    z-index: 11;
+    gap: 9px;
+    z-index: 2;
   }
 
   // Каунтер

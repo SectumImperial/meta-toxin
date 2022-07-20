@@ -41,6 +41,9 @@ class Dropdown {
 
     this.addListeners();
     this.addUrlValues();
+
+    this.preset = JSON.parse(this.dropdown.dataset.preset);
+    this.addPreset();
   }
 
   findElems() {
@@ -85,6 +88,19 @@ class Dropdown {
     }
 
     this.checkBtnVisibility();
+  }
+
+  addPreset() {
+    if (this.preset.length === 0) return;
+    this.preset.forEach((e) => {
+      const key = Object.keys(e).join('');
+      const value = Object.values(e).join('');
+      const count = this.dropdown.querySelector(`.${COUNT_ELEM}[data-item="${key}"]`);
+      if (!count) return;
+      count.value = value;
+      this.performData();
+      this.checkBtnVisibility();
+    });
   }
 
   addListeners() {

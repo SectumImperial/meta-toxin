@@ -68,21 +68,21 @@ mixin search-room(options = {})
                 level: "h5",
                 text: "Правила дома"
               })
-            .search-room__checkboxes
-              .search-room__checkbox.search-room__checkbox_smoke
+            ul.search-room__checkboxes
+              li.search-room__checkbox
                 +checkbox({
                   labelText: "Можно курить",
                   name: "search-room-smoke",
                   id: "search-room-smoke",
                 })
-              .search-room__checkbox.search-room__checkbox_pets
+              li.search-room__checkbox
                 +checkbox({
                   labelText: "Можно с питомцами",
                   name: "search-room-pets",
                   id: "search-room-pets",
                   isChecked: true
                 })
-              .search-room__checkbox.search-room__checkbox_guests
+              li.search-room__checkbox
                 +checkbox({
                   labelText: `Можно пригласить гостей 
                   (до 10 человек)`,
@@ -101,8 +101,7 @@ mixin search-room(options = {})
               +checkbox({
                 mod: "rich",
                 checkboxTitle: "Широкий коридор",
-                checkboxDescription: `Ширина коридоров в номере",
-                не менее 91 см.`,
+                checkboxDescription: "Ширина коридоров в номере не менее 91 см.",
                 name: "search-room-wide-corr",
                 id: "search-room-wide-corr",
               })
@@ -126,6 +125,7 @@ mixin search-room(options = {})
             .search-room__dropdown
               +dropdown({
                 type: "facilities",
+                size: "small",
                 placeholder: "Удобства номера",
                 items: [
                   "Cпальни", "Кровати", "Ванные комнаты",

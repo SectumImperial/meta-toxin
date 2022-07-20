@@ -5,6 +5,15 @@ include ../../blocks/input/input.pug
 include ../../blocks/title/title.pug
 include ../../blocks/dropdown/dropdown.pug
 include ../../blocks/datepick/datepick.pug
+include ../../blocks/checkbox/checkbox.pug
+include ../../blocks/checkbox-list/checkbox-list.pug
+include ../../blocks/radio/radio.pug
+include ../../blocks/toggle/toggle.pug
+include ../../blocks/like/like.pug
+include ../../blocks/star-rating/star-rating.pug
+include ../../blocks/range-slider/range-slider.pug
+include ../../blocks/button/button.pug
+include ../../blocks/paginator/paginator.pug
 
 block variables 
   - 
@@ -17,41 +26,367 @@ block content
   main.ui-page__main
     .form-elems 
       .form-elems__content
-        .form-elems__fields 
-          .form-elems__field
-            .form-elems__subtitle 
-              +title({
-                level: "h5",
-                text: "Text feild"
+        .form-elems__field-and-btns
+          .form-elems__fields 
+            .form-elems__field
+              .form-elems__subtitle 
+                +title({
+                  level: "h5",
+                  text: "Text feild"
+                })
+                span.form-elems__status Default
+              +input({
+                type: "email",
+                placeholder: "Email",
+                pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
               })
-              span.form-elems__status Default
-            +input({
-              type: "email",
-              placeholder: "Email",
-              pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-            })
-          .form-elems__field
-            .form-elems__subtitle 
-              +title({
-                level: "h5",
-                text: "Text feild"
+            .form-elems__field
+              .form-elems__subtitle 
+                +title({
+                  level: "h5",
+                  text: "Text feild"
+                })
+                span.form-elems__status Hover/Focus
+              +input({
+                type: "text",
+                placeholder: "This is pretty awesome",
+                isHovered: true,
               })
-              span.form-elems__status Hover/Focus
-            +input({
-              type: "text",
-              placeholder: "This is pretty awesome",
-              isHovered: true,
-            })
 
-          .form-elems__field
-            .form-elems__subtitle 
-              +title({
-                level: "h5",
-                text: "Сколько гостей"
+            .form-elems__field
+              .form-elems__subtitle 
+                +title({
+                  level: "h5",
+                  text: "Сколько гостей"
+                })
+              +dropdown({
+                type: "guests",
+                id: "booking-guests",
+                placeholder: "Сколько гостей",
+                items: [
+                  "Взрослые", "Дети", "Младенцы",
+                ],
+                plurals: [
+                  {
+                    "default": ["гость", "гостя", "гостей"],
+                    },
+                  {
+                    "Младенцы": ["младенец", "младенца", "младенцев"],
+                  }
+                ]
               })
-            +dropdown({
+            .form-elems__field
+              .form-elems__subtitle 
+                +title({
+                  text: "masked text field",
+                  level: "h5",
+                })
+              +input({
+                type: "text",
+                placeholder: "ДД.ММ.ГГГГ",
+                pattern: "[0-9]{2}.[0-9]{2}.[0-9]{4}",
+                isRequired: true,
+                isDate: true,
+              })
+            .form-elems__field.form-elems__field_bigger
+              +datepick({
+                labelStart: "date Dropdown",
+                labelEnd: "date Dropdown"
+              })
+            .form-elems__field.form-elems__field_bigger
+              +datepick({
+                labelAlone: "filter date dropdown",
+                isTwoInput: false,
+              })
+
+            .form-elems__field.form-elems__field_bigger
+              .form-elems__subtitle 
+                +title({
+                  level: "h5",
+                  text: "Subscription text field",
+                })
+              +input({
+                type: "email",
+                placeholder: "Email",
+                pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$",
+                arrow: "forward",
+              })
+
+          .form-elems__small-btns 
+            .form-elems__small-btn
+              .form-elems__subtitle 
+                +title({
+                  level: "h5",
+                  text: "Checkbox Buttons"
+                })
+              ul.form-elems__checkboxes
+                li.form-elems__checkbox
+                  +checkbox({
+                    labelText: "Можно курить",
+                    name: "form-elems-smoke",
+                  })
+                li.form-elems__checkbox
+                  +checkbox({
+                    labelText: "Можно с питомцами",
+                    name: "form-elems-pets",
+                    isChecked: true
+                  })
+                li.form-elems__checkbox
+                  +checkbox({
+                    labelText: `Можно пригласить гостей 
+                    (до 10 человек)`,
+                    name: "form-elems-guests",
+                    isChecked: true
+                  })
+            .form-elems__small-btn 
+              .form-elems__subtitle 
+                +title({
+                  level: "h5",
+                  text: "Radio Buttons"
+                })
+              .form-elems__radio
+                .form-elems__sex-group
+                  +radio({
+                    name: "form-elems-sex",
+                    isChecked: true,
+                    text: "Мужчина"
+                  })
+                .form-elems__sex-group
+                  +radio({
+                    name: "form-elems-sex",
+                    text: "Женщина"
+                  })
+
+            .form-elems__small-btn 
+              .form-elems__subtitle 
+                +title({
+                  level: "h5",
+                  text: "Toggle"
+                })
+              .form-elems__toggles 
+                +toggle({
+                  name: "registration-card-mailing",
+                  text: "Получать спецпредложения",
+                  checked: true,
+                })
+                +toggle({
+                  name: "registration-card-mailing",
+                  text: "Получать спецпредложения",
+                })
+
+            .form-elems__small-btn
+              .form-elems__subtitle 
+                +title({
+                  level: "h5",
+                  text: "like button"
+                })
+              .form-elems__likes
+                +like({
+                  counts: 2,
+                })
+                +like({
+                  counts: 12,
+                  liked: true,
+                })
+
+            .form-elems__small-btn
+              .form-elems__subtitle 
+                +title({
+                  level: "h5",
+                  text: "rate button"
+                })
+              .form-elems__rate 
+                +star-rating({
+                  stars: 5,
+                  rating: 4,
+                 })
+                +star-rating({
+                  stars: 5,
+                  rating: 5,
+                 })
+          .form-elems__btns 
+            .form-elems__btn.form-elems__btn_range
+              +range-slider({
+                name: "Range Slider",   
+                step: 100,
+                rangeOptions: {
+                  min: 0,
+                  max: 15000,
+                  initialStart: 5000,
+                  initialEnd: 10000,
+                  addedText: "₽",
+                }
+              })
+            .form-elems__btn
+              .form-elems__subtitle 
+                +title({
+                  level: "h5",
+                  text: "buttons",
+                })
+              .form-elems__elem-btn_medium 
+                .form-elems__elem-btn-cont
+                  +button({
+                    btnColor: "white",
+                    btnWrapperColor: "violet",
+                    content: "Click me",
+                    btnSize: "small",
+                    btnType: "link",
+                    href: "registration-page.html"
+                  })
+                  +button({
+                    btnColor: "white",
+                    btnWrapperColor: "violet",
+                    content: "Click me",
+                    btnSize: "small",
+                    btnType: "link",
+                    href: "registration-page.html",
+                    isHovered: true,
+                  })
+                  
+                .form-elems__elem-btn-cont
+                  +button({
+                    content: "Click me", 
+                    btnColor: "violet",
+                    btnSize: "small",
+                    btnType: "link",
+                    href: "login-page.html",
+                  })
+                  +button({
+                    content: "Click me", 
+                    btnColor: "violet",
+                    btnSize: "small",
+                    btnType: "link",
+                    href: "login-page.html",
+                    isHovered: true,
+                  })
+                .form-elems__elem-btn-cont
+                  +button({
+                    content: "Click me",
+                    btnColor: "violet",
+                    btnWrapperColor: "transparent",
+                    border: "false",
+                    btnSize: "tiny",
+                  })
+                  +button({
+                    content: "Click me",
+                    btnColor: "violet",
+                    btnWrapperColor: "transparent",
+                    border: "false",
+                    btnSize: "tiny",
+                    isHovered: true,
+                  })
+              
+              .form-elems__elem-btn_big 
+                +button({
+                  content: "Перейти к оплате",
+                  btnColor: "white",
+                  btnWrapperColor: "violet",
+                  isArrow: true,
+                  btnSize: "large",
+                })
+            .form-elems__btn 
+              .form-elems__subtitle 
+                +title({
+                  level: "h5",
+                  text: "Pagination",
+                })
+              .form-elems__paginator
+                +paginator({
+                  itemsPerPage: 12,
+                  allItems: 180,
+                  text: "вариантов аренды",
+                })
+        .form-elems__dropdowns
+          .form-elems__dropdowns-item.form-elems__dropdowns-item_2
+            .form-elems__dropdown
+              .form-elems__subtitle 
+                +title({
+                  level: "h5",
+                  text: "dropdown"
+                })
+                span.form-elems__status Expanded
+              +dropdown({
+                type: "facilities",
+                size: "small",
+                isOpened: true,
+                placeholder: "Удобства номера",
+                items: [
+                  "Cпальни", "Кровати", "Ванные комнаты",
+                ],
+                plurals: [
+                  {
+                    "Cпальни": ["спальня", "спальни", "спален"],
+                    },
+                  {
+                    "Кровати": ["кровать", "кровати", "кроватей"],
+                  },
+                  {
+                    "Ванные комнаты": ["ванная комната", "ванных комнаты", "ванных комнат"],
+                  }
+                ]
+              })  
+
+            .form-elems__dropdown
+              .form-elems__subtitle 
+                +title({
+                  level: "h5",
+                  text: "dropdown"
+                })
+                span.form-elems__status Default
+              +dropdown({
+                type: "facilities",
+                size: "small",
+                placeholder: "Удобства номера",
+                items: [
+                  "Cпальни", "Кровати", "Ванные комнаты",
+                ],
+                plurals: [
+                  {
+                    "Cпальни": ["спальня", "спальни", "спален"],
+                    },
+                  {
+                    "Кровати": ["кровать", "кровати", "кроватей"],
+                  },
+                  {
+                    "Ванные комнаты": ["ванная комната", "ванных комнаты", "ванных комнат"],
+                  }
+                ]
+              })  
+
+          .form-elems__dropdowns-item
+            .form-elems__dropdown
+              .form-elems__subtitle 
+                +title({
+                  level: "h5",
+                  text: "dropdown"
+                })
+              +dropdown({
+                type: "guests",
+                isOpened: true,
+                placeholder: "Сколько гостей",
+                items: [
+                  "Взрослые", "Дети", "Младенцы",
+                ],
+                plurals: [
+                  {
+                    "default": ["гость", "гостя", "гостей"],
+                    },
+                  {
+                    "Младенцы": ["младенец", "младенца", "младенцев"],
+                  }
+                ]
+              })
+
+          .form-elems__dropdowns-item
+            .form-elems__dropdown
+              .form-elems__subtitle 
+                +title({
+                  level: "h5",
+                  text: "dropdown"
+                })
+              +dropdown({
               type: "guests",
-              id: "booking-guests",
+              isOpened: true,
               placeholder: "Сколько гостей",
               items: [
                 "Взрослые", "Дети", "Младенцы",
@@ -63,42 +398,19 @@ block content
                 {
                   "Младенцы": ["младенец", "младенца", "младенцев"],
                 }
+              ],
+              preset: [
+                {
+                  "Взрослые": 2,
+                },
+                {
+                  "Дети": 1,
+                },
               ]
             })
-          .form-elems__field
-            .form-elems__subtitle 
-              +title({
-                text: "masked text field",
-                level: "h5",
-              })
-            +input({
-              type: "text",
-              placeholder: "ДД.ММ.ГГГГ",
-              pattern: "[0-9]{2}.[0-9]{2}.[0-9]{4}",
-              isRequired: true,
-              isDate: true,
-            })
-          .form-elems__field.form-elems__field_bigger
-            +datepick({
-              labelStart: "date Dropdown",
-              labelEnd: "date Dropdown"
-            })
-          .form-elems__field.form-elems__field_bigger
-            +datepick({
-              labelAlone: "filter date dropdown",
-              isTwoInput: false,
-            })
-
-          .form-elems__field.form-elems__field_bigger
-            .form-elems__subtitle 
-              +title({
-                level: "h5",
-                text: "Subscription text field",
-              })
-            +input({
-              type: "email",
-              placeholder: "Email",
-              pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$",
-              arrow: "forward",
-            })
-        
+                       
+              
+                  
+              
+              
+            

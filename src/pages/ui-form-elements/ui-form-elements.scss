@@ -4,12 +4,19 @@
 
 .form-elems {
   &__content {
-    max-width: $content;
+    max-width: 1240px;
     padding: 0 5px;
     margin: 0 auto;
+    gap: 40px;
 
     display: flex;
     flex-wrap: wrap;
+  }
+
+  &__field-and-btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 126px;
   }
 
   &__fields {
@@ -26,6 +33,12 @@
     }
   }
 
+  &__small-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
   &__subtitle {
     display: flex;
     justify-content: space-between;
@@ -37,5 +50,92 @@
   &__status {
     color: rgba($dark-color, 0.5);
     font-size: $fontTiny;
+  }
+
+  &__checkbox {
+    padding-top: 10px;
+    list-style: none;
+  }
+
+  &__radio {
+    display: flex;
+    gap: 20px;
+    padding-top: 5px;
+  }
+
+  &__toggles {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    padding-top: 10px;
+  }
+
+  &__likes,
+  &__rate,
+  &__toggles {
+    display: flex;
+    gap: 10px;
+    padding-top: 10px;
+  }
+
+  &__rate {
+    gap: 20px;
+  }
+
+  &__btns {
+    width: 320px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  &__btn {
+    &_range {
+      width: 266px;
+    }
+
+    &_medium {
+      padding-top: 10px;
+    }
+  }
+
+  &__elem-btn {
+    padding-top: 10px;
+  }
+
+  &__elem-btn_medium {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  &__elem-btn-cont {
+    flex-basis: 44px;
+    display: flex;
+    gap: 20px;
+  }
+
+  &__paginator {
+    padding-top: 10px;
+  }
+
+  &__dropdowns {
+    display: flex;
+    gap: 72px;
+
+    padding-bottom: 500px;
+  }
+
+  &__dropdowns-item {
+    width: 320px;
+    &_2 {
+      width: 266px;
+
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 20px;
+    }
   }
 }
