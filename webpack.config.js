@@ -2,7 +2,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 const fs = require('fs');
-const webpack = require('webpack');
 
 let MODE = 'development';
 if (process.env.NODE_ENV === 'production') {
@@ -25,7 +24,14 @@ module.exports = {
 
   output: {
     filename: '[name].[contenthash].js',
-    assetModuleFilename: 'assets/[hash][ext][query]',
+    assetModuleFilename: (pathData) => {
+      const filepath = path
+        .dirname(pathData.filename)
+        .split('/')
+        .slice(1)
+        .join('/');
+      return `${filepath}/[name][ext]`;
+    },
     clean: true,
   },
   devServer: {
@@ -47,10 +53,11 @@ module.exports = {
     }),
 
     ...PAGES.map(
-      (page) => new HtmlWebpackPlugin({
-        template: `${PAGES_DIR}/${page}/${page}.pug`,
-        filename: `./${page}.html`,
-      }),
+      (page) =>
+        new HtmlWebpackPlugin({
+          template: `${PAGES_DIR}/${page}/${page}.pug`,
+          filename: `./${page}.html`,
+        })
     ),
   ],
   module: {
@@ -85,6 +92,10 @@ module.exports = {
       {
         test: /\.(png|svg|jpg|jpeg|gif|webp)$/i,
         type: 'asset/resource',
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]',
+        },
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
