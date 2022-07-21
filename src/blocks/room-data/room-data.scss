@@ -21,9 +21,10 @@
 
     padding: 21px 0 19px 0;
 
-    &:nth-child(2) {
-      border-top: 1px solid rgba($dark-color, 0.25);
-      border-bottom: 1px solid rgba($dark-color, 0.25);
+    border-bottom: 1px solid rgba($dark-color, 0.25);
+
+    &:nth-child(3) {
+      border-bottom: none;
     }
   }
 

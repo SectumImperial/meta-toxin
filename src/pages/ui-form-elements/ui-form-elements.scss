@@ -4,13 +4,12 @@
 
 .form-elems {
   &__content {
-    max-width: 1240px;
-    padding: 0 5px;
-    margin: 0 auto;
-    gap: 40px;
-
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+
+    padding: 0 5px 131px 5px;
   }
 
   &__field-and-btns {
@@ -84,7 +83,8 @@
   }
 
   &__btns {
-    width: 320px;
+    max-width: 320px;
+    min-width: 320px;
 
     display: flex;
     flex-direction: column;
@@ -123,9 +123,7 @@
 
   &__dropdowns {
     display: flex;
-    gap: 72px;
-
-    padding-bottom: 500px;
+    gap: 140px;
   }
 
   &__dropdowns-item {
@@ -136,6 +134,58 @@
       display: flex;
       flex-direction: column-reverse;
       gap: 20px;
+    }
+  }
+
+  &__checkboxes-lists {
+    padding: 120px 0 60px 0;
+
+    display: flex;
+    gap: 162px;
+  }
+
+  &__checkboxes-lists-item {
+    &_2 {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 266px;
+    }
+
+    &_2-rich {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding-left: 17px;
+    }
+
+    &_bullet {
+      width: 261px;
+    }
+  }
+
+  &__checkbox-lists {
+    &_wide-corr {
+      max-width: 236px;
+    }
+
+    &_inv-help {
+      max-width: 264px;
+    }
+  }
+
+  &__details {
+    display: flex;
+    gap: 233px;
+  }
+
+  &__details-item {
+    &_small {
+      max-width: 432px;
+    }
+
+    &_comment {
+      max-width: 715px;
     }
   }
 }

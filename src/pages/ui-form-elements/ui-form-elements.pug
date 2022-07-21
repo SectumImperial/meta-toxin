@@ -14,6 +14,9 @@ include ../../blocks/star-rating/star-rating.pug
 include ../../blocks/range-slider/range-slider.pug
 include ../../blocks/button/button.pug
 include ../../blocks/paginator/paginator.pug
+include ../../blocks/rules/rules.pug
+include ../../blocks/room-data/room-data.pug
+include ../../blocks/review/review.pug
 
 block variables 
   - 
@@ -408,9 +411,137 @@ block content
                 },
               ]
             })
-                       
-              
+        .form-elems__checkboxes-lists
+          .form-elems__checkboxes-lists-item.form-elems__checkboxes-lists-item_2
+            +checkbox-list({
+              titleList: "Expandable checkbox list",
+              items: [
+                {
+                  labelText: "Завтрак",
+                  name: "form-elems-lunch",
                   
+                },
+                {
+                  labelText: "Письменный стол",
+                  name: "form-elems-table",
+                  isChecked: true,
+                },
+                {
+                  labelText: "Стул для кормления",
+                  name: "form-elems-chair",
+                  isChecked: true,
+                },
+                {
+                  labelText: "Кроватка",
+                  name: "form-elems-small-bed",
+                  isChecked: true,
+                },
+                {
+                  labelText: "Телевизор",
+                  name: "form-elems-tv",
+                },
+                {
+                  labelText: "Шампунь",
+                  name: "form-elems-shampoo",
+                },
+              ]
+            })
+            +checkbox-list({
+              isOpened: true,
+              titleList: "Expandable checkbox list",
+              items: [
+                {
+                  labelText: "Завтрак",
+                  name: "form-elems-lunch",
+                },
+                {
+                  labelText: "Письменный стол",
+                  name: "form-elems-table",
+                  isChecked: true,
+                },
+                {
+                  labelText: "Стул для кормления",
+                  name: "form-elems-chair",
+                  isChecked: true,
+                },
+                {
+                  labelText: "Кроватка",
+                  name: "form-elems-small-bed",
+                  isChecked: true,
+                },
+                {
+                  labelText: "Телевизор",
+                  name: "form-elems-tv",
+                },
+                {
+                  labelText: "Шампунь",
+                  name: "form-elems-shampoo",
+                },
+              ]
+            })
+          .form-elems__checkboxes-lists-item.form-elems__checkboxes-lists-item_2-rich
+            .form-elems__subtitle
+              +title({
+                level: "h5",
+                text: "rich Checkbox Buttons"
+              })
+            .form-elems__checkbox-lists.form-elems__checkbox-lists_wide-corr
+              +checkbox({
+                mod: "rich",
+                checkboxTitle: "Широкий коридор",
+                checkboxDescription: "Ширина коридоров в номере не менее 91 см.",
+                name: "form-elems-wide-corr",
+                id: "form-elems-wide-corr",
+              })
+            .form-elems__checkbox.form-elems__checkbox-lists_inv-help
+              +checkbox({
+                mod: "rich",
+                checkboxTitle: "Помощник для инвалидов",
+                checkboxDescription: `На 1 этаже вас встретит специалист 
+                и проводит до номера.`,
+                name: "form-elems-inv-help",
+                id: "form-elems-inv-help",
+              })
+          .form-elems__checkboxes-lists-item.form-elems__checkboxes-lists-item_bullet
+            .form-elems__subtitle    
+              +title({
+                level: "h5",
+                text: "Bullet list",
+              })    
+            +rules({
+              rules: [
+                "Нельзя с питомцами",
+                "Без вечеринок и мероприятий",
+                "Время прибытия — после 13:00, а выезд до 12:00"
+              ]
+            })
+        .form-elems__details 
+          .form-elems__details-item.form-elems__details-item_small 
+            +room-data({
+                  items: [
+                    {
+                      title: "Комфорт",
+                      text: "Шумопоглощающие стены",
+                      icon: "smile",
+                    },
+                    {
+                      title: "Удобство",
+                      text: "Окно в каждой из спален",
+                      icon: "city",
+                    },
+                  ]
+                })     
+          .form-elems__details-item.form-elems__details-item_comment
+            +review({
+                src: "blocks/room-details/img-comment/tesak.png",
+                name: "Мурад Сарафанов",
+                date: "5 дней назад",
+                liked: true,
+                counts: 12,
+                text: `Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий.\n
+                И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто\n
+                не жаловался из соседей.`
+              })    
               
               
             
