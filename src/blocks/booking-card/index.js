@@ -1,1 +1,0 @@
-import './booking-card.scss';

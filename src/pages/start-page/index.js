@@ -1,1 +1,0 @@
-import './start-page.scss';

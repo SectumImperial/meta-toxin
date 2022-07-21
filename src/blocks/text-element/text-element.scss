@@ -1,9 +1,0 @@
-@use 'sass:math';
-@import '../../common/functions.scss';
-@import '../../common/variables.scss';
-
-.text-element {
-  color: rgba($dark-color, 0.75);
-  font-size: $fontSmall;
-  line-height: 24px;
-}

@@ -1,4 +1,0 @@
-@function rem($px) {
-  $result: math.div($px, 16) + rem;
-  @return $result;
-}
