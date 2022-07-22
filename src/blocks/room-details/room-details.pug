@@ -18,20 +18,20 @@ mixin room-details(options= {})
       section.room-details__photos
         .room-details__photos-big
           img(
-            src = "./blocks/room-details/img/room-big.png",
+            src = require("@blocks/room-details/img/room-big.jpg"),
             alt = "Большое фото номера",
             class = "room-details__image"
           )
         .room-details__photos-small
           .room-details__photos-top
             img(
-              src = "./blocks/room-details/img/room-small-1.png",
+              src = require("@blocks/room-details/img/room-small-1.jpg"),
               alt = "Малое фото номера",
               class = "room-details__image room-details__image_small"
           )
           .room-details__photos-bottom
             img(
-              src = "./blocks/room-details/img/room-small-2.png",
+              src = require("@blocks/room-details/img/room-small-2.jpg"),
               alt = "Малое фото номера",
               class = "room-details__image room-details__image_small room-details__image_bigger"
             )
@@ -113,7 +113,7 @@ mixin room-details(options= {})
               span.room-details__reviews-count.js-room-details__reviews-count 0 отзывов
             .room-details__reviews-content    
               +review({
-                src: "blocks/room-details/img-comment/tesak.png",
+                src: "blocks/room-details/img/tesak.png",
                 name: "Мурад Сарафанов",
                 date: "5 дней назад",
                 liked: true,
@@ -123,7 +123,7 @@ mixin room-details(options= {})
                 не жаловался из соседей.`
               })
               +review({
-                src: "blocks/room-details/img-comment/steklo.png",
+                src: "blocks/room-details/img/steklo.png",
                 name: "Патрисия Стёклышкова",
                 date: "Неделю назад",
                 liked: false,

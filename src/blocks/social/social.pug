@@ -16,4 +16,4 @@ mixin social(options = {})
             target = "_blank"
             rel = "noopener noreferrer"
         )
-          img(src=`${icon}` alt=`${name} link` width="24" height="24")
+          img(src= require(`${icon}`) alt=`${name} link` width="24" height="24")

@@ -12,7 +12,7 @@ mixin carousel(images, href)
               img(
                 class = "carousel__image"
                 alt = "Фотография номера"
-                src = `./blocks/search-room/img/${image}`
+                src = require(`@blocks/search-room/img/${image}`)
               )
         ul.carousel__toggles 
           each toggle in images

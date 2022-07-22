@@ -22,6 +22,12 @@ module.exports = {
     scripts: './src/index.js',
   },
 
+  resolve: {
+    alias: {
+      '@blocks': path.resolve(__dirname, 'src', 'blocks'),
+    },
+  },
+
   output: {
     filename: '[name].[contenthash].js',
     assetModuleFilename: (pathData) => {
@@ -35,10 +41,6 @@ module.exports = {
     clean: true,
   },
   devServer: {
-    static: {
-      directory: './src',
-      watch: true,
-    },
     open: '/start-page.html',
   },
   devtool: 'source-map',
@@ -92,10 +94,6 @@ module.exports = {
       {
         test: /\.(png|svg|jpg|jpeg|gif|webp)$/i,
         type: 'asset/resource',
-        loader: 'file-loader',
-        options: {
-          name: '[name].[ext]',
-        },
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
@@ -105,6 +103,9 @@ module.exports = {
         test: /\.pug$/,
         loader: 'pug-loader',
         exclude: /(node_modules|bower_components)/,
+        options: {
+          root: path.resolve(__dirname, 'src'),
+        },
       },
       {
         test: /\.m?js$/,
