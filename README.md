@@ -32,7 +32,9 @@ and four UI pages:
 **Deploy**
 
 `npm run start` - Command to start the dev server
+
 `npm run build` - Command for the project build
+
 `npm run lint` - Command to check JS syntax
 
 
