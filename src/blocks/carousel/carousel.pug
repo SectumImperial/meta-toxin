@@ -10,9 +10,10 @@ mixin carousel(images, href)
           each image in images
             li.carousel__item.js-carousel__item
               img(
-                class = "carousel__image"
-                alt = "Фотография номера"
-                src = require(`@blocks/search-room/img/${image}`)
+                class = "carousel__image",
+                alt = "Фотография номера",
+                src = require(`@blocks/search-room/img/${image}`),
+                width = 270,
               )
         ul.carousel__toggles 
           each toggle in images
