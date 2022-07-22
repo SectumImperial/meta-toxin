@@ -1,12 +1,14 @@
 mixin logo(options = {})
   - 
     const {
-      classLogo = "",
       href = "error-page.html",
+      src = "logo.svg",
+      width = 106,
+      height = 40
     } = options 
 
   a(
-      class=`logo ${classLogo}`
+      class="logo"
       href = href
   )
-    img(src=require("@blocks/logo/img/logo.svg") alt="Логотип Toxin" width="106" height="40")
+    img(src=require(`@blocks/logo/img/${src}`) alt="Логотип Toxin" width=width height=width)

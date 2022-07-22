@@ -8,12 +8,8 @@ if (process.env.NODE_ENV === 'production') {
   MODE = 'production';
 }
 
-console.log(`mode: ${MODE}`);
-
 const PAGES_DIR = path.resolve(__dirname, 'src/pages');
 const PAGES = fs.readdirSync(PAGES_DIR).map((filename) => filename);
-
-console.log(PAGES);
 
 module.exports = {
   mode: MODE,

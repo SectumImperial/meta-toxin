@@ -1,3 +1,5 @@
+include ../logo/logo.pug
+
 mixin ui-header(options = {})
   -
     const { isGrey = false } = options;
@@ -8,12 +10,9 @@ mixin ui-header(options = {})
     class = mod
   ) 
     .ui-header__logo 
-      a(
-        href = "start-page.html",
-        class = "ui-header__link",
-      )
-        img(
-          class="ui-header__logo-img",
-          alt="Логотип"
-          src = "../../layouts/ui-layout/logo/logo.svg"
-        )
+      +logo({
+        href: "start-page.html",
+        src: "logo_ui.svg",
+        width: 48,
+        height: 48,
+      })
