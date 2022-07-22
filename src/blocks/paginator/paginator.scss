@@ -122,5 +122,9 @@
 
     padding-right: 71px;
     color: rgba($dark-color, 0.75);
+
+    @media (max-width: $mobile) {
+      padding-right: 0;
+    }
   }
 }
