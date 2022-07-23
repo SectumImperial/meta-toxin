@@ -243,7 +243,7 @@ class Paginator {
     if (!target.classList.contains(LI_CLASS)) return;
     if (target.dataset.dots) return;
     this.removePage();
-    this.currentPage = target.dataset.number;
+    this.currentPage = Number(target.dataset.number);
     this.removePaginator();
     this.createPaginator();
     this.setCurrentPage();
