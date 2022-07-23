@@ -46,7 +46,9 @@ class Paginator {
     this.startPage = 1;
 
     this.itemsPerPage = this.options.itemsPerPage;
+    if (this.allItems <= 0) throw new Error('Zero or less items per page. I disagree to work with this. Fix it.');
     this.allItems = this.options.allItems;
+    if (this.allItems <= 0) throw new Error('Zero or less counts. I disagree to work with this. Fix it.');
     this.text = this.options.text;
 
     this.pageCount = Math.ceil(this.allItems / this.itemsPerPage);
@@ -80,27 +82,39 @@ class Paginator {
 
   //   Методы создания и отображения страниц
   createPaginator() {
-    let end = Number(this.currentPage);
-    let start = Number(this.currentPage);
-    end += 1;
-    start -= 1;
+    let nextPage = Number(this.currentPage);
+    let prevPage = Number(this.currentPage);
+
+    if (this.isPageCountSmall()) nextPage = this.pageCount;
+    if (!this.isPageCountSmall()) nextPage += 1;
+
+    prevPage -= 1;
 
     if (this.currentPage === this.startPage) {
       this.createBegining();
     } else if (this.isInStart()) {
-      this.createStart(end);
-    } else if (this.isInEnd()
+      this.createStart(nextPage);
+    } else if (
+      this.isInEnd()
     ) {
-      this.createEnd(start);
+      this.createEnd(prevPage);
     } else if (this.currentPage === this.pageCount) {
       this.createEnding();
     } else if (this.isInMiddle()) {
-      this.createMiddle(start, end);
+      this.createMiddle(prevPage, nextPage);
+    }
+  }
+
+  createAll() {
+    for (let i = this.startPage; i <= this.pageCount; i += 1) {
+      const li = this.createLiElement(this.liClass, i);
+      this.itemsPaginator.append(li);
     }
   }
 
   createMiddle(start, end) {
-    for (let i = start; i <= end; i += 1) {
+    // eslint-disable-next-line no-plusplus
+    for (let i = start; i <= end; i++) {
       const li = this.createLiElement(this.liClass, i);
       this.itemsPaginator.append(li);
     }
@@ -110,7 +124,8 @@ class Paginator {
 
   createBegining() {
     // eslint-disable-next-line no-plusplus
-    for (let i = this.startPage; i <= COUNT_PAGE; i++) {
+    const endCount = this.pageCount < COUNT_PAGE ? this.pageCount : COUNT_PAGE;
+    for (let i = this.startPage; i <= endCount; i += 1) {
       const li = this.createLiElement(this.liClass, i);
       this.itemsPaginator.append(li);
     }
@@ -146,27 +161,33 @@ class Paginator {
     this.addFirstPage();
   }
 
+  isPageCountSmall() {
+    return this.pageCount < COUNT_PAGE;
+  }
+
   addLastPage() {
-    // Добавить точки
+    if (this.isPageCountSmall()) return;
+    // Add dots
     const dots = this.createLiElement(this.liClass, '...', true);
     this.itemsPaginator.append(dots);
 
-    // Добавить последнюю страницу
+    // Add the first page
     const lastLi = this.createLiElement(this.liClass, this.pageCount);
     this.itemsPaginator.append(lastLi);
   }
 
   addFirstPage() {
-    // Добавить точки
+    if (this.isPageCountSmall()) return;
+    // Add dots
     const dots = this.createLiElement(this.liClass, '...', true);
     this.itemsPaginator.prepend(dots);
 
-    // Добавить последнюю страницу
+    // Add the last page
     const firstLi = this.createLiElement(this.liClass, this.startPage);
     this.itemsPaginator.prepend(firstLi);
   }
 
-  //   Конец методов создания и отображения страниц
+  // End of the methods creating and displaying pages
 
   /**
    *
@@ -277,7 +298,7 @@ class Paginator {
   //   Создать строку описания
   createText() {
     let string = '';
-    const lastCount = this.currentPage * this.itemsPerPage;
+    let lastCount = this.currentPage * this.itemsPerPage;
     const firstCount = lastCount - this.itemsPerPage + 1;
     let from = '';
     if (this.allItems > 100) {
@@ -285,6 +306,8 @@ class Paginator {
     } else {
       from = this.allItems;
     }
+    if (lastCount > from) lastCount = from;
+
     string = `${firstCount} - ${lastCount} из ${from} ${this.text}`;
     this.textElement.innerText = string;
   }

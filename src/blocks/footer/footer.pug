@@ -52,7 +52,10 @@ mixin footer(options = {})
                 items: items
               })
 
-      .footer__email
+      form.footer__email(
+        method = "GET",
+        action = "error-page.html",
+      )
         .footer__title
           +title({
               level: "h5",

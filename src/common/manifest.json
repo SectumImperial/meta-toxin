@@ -1,8 +1,8 @@
 {
     "name": "Toxin",
-    "short_name": "Toxin",
     "start_url": ".",
     "display": "standalone",
+    "default_locale": "ru",
     "background_color": "#fff",
     "description": "The Toxin hotel with rooms.",
     "icons": [{
