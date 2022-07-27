@@ -12,40 +12,40 @@ class Like {
   }
 
   init() {
-    this.findElems();
-    this.addListeners();
+    this.#findElems();
+    this.#addListeners();
   }
 
-  findElems() {
+  #findElems() {
     this.heart = this.like.querySelector('.like__heart');
     this.count = this.like.querySelector('.like__count');
     this.button = this.like.querySelector('.like__button');
   }
 
-  addListeners() {
-    this.like.addEventListener('click', this.toggleLike.bind(this));
+  #addListeners() {
+    this.like.addEventListener('click', this.#toggleLike.bind(this));
   }
 
-  toggleLike({ target }) {
+  #toggleLike({ target }) {
     const btn = target.closest('.like__button');
     if (btn.classList.contains(LIKED_BUTTON)) {
-      this.decrementLike();
+      this.#decrementLike();
     }
 
     if (!btn.classList.contains(LIKED_BUTTON)) {
-      this.incrementLike();
+      this.#incrementLike();
     }
-    this.toggleClasses();
+    this.#toggleClasses();
   }
 
-  toggleClasses() {
+  #toggleClasses() {
     this.button.classList.toggle(LIKED_BUTTON);
     this.heart.classList.toggle(LIKED__HEART);
     this.heart.classList.toggle(UNLIKED__HEART);
     this.count.classList.toggle(LIKED_COUNT);
   }
 
-  decrementLike() {
+  #decrementLike() {
     let val = Number(this.count.innerText);
     if (Number.isNaN(val)) {
       this.count.innerText = 0;
@@ -55,7 +55,7 @@ class Like {
     this.count.innerText = val;
   }
 
-  incrementLike() {
+  #incrementLike() {
     let val = Number(this.count.innerText);
     if (Number.isNaN(val)) {
       this.count.innerText = 0;

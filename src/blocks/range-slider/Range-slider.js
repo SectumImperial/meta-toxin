@@ -18,20 +18,20 @@ class Slider {
   }
 
   init() {
-    this.findElems();
-    this.createVars();
-    this.setValues();
-    this.addListeners();
+    this.#findElems();
+    this.#createVars();
+    this.#setValues();
+    this.#addListeners();
   }
 
-  findElems() {
+  #findElems() {
     this.field = this.slider.querySelector(`.${AMOUNT}`);
     this.toggleMin = this.slider.querySelector(`.${TOGGLE_MIN}`);
     this.toggleMax = this.slider.querySelector(`.${TOGGLE_MAX}`);
     this.rangeProgress = this.slider.querySelector(`.${RANGE_PROGRESS}`);
   }
 
-  createVars() {
+  #createVars() {
     this.min = this.options.min ? this.options.min : 0;
     this.max = this.options.max ? this.options.max : 15000;
     this.addedText = this.options.addedText ? this.options.addedText : '';
@@ -51,25 +51,25 @@ class Slider {
     }%`;
   }
 
-  addListeners() {
-    this.toggleMin.addEventListener('input', this.changeFirstToggle.bind(this));
+  #addListeners() {
+    this.toggleMin.addEventListener('input', this.#changeFirstToggle.bind(this));
     this.toggleMax.addEventListener(
       'input',
-      this.changeSecondToggle.bind(this),
+      this.#changeSecondToggle.bind(this),
     );
   }
 
-  setValues() {
-    const fitstVal = Slider.performValue(this.toggleMin.value);
-    const secondVal = Slider.performValue(this.toggleMax.value);
+  #setValues() {
+    const fitstVal = Slider.#performValue(this.toggleMin.value);
+    const secondVal = Slider.#performValue(this.toggleMax.value);
     this.field.value = `${fitstVal}${this.addedText} - ${secondVal}${this.addedText}`;
   }
 
-  static performValue(val) {
+  static #performValue(val) {
     return Number(val).toLocaleString('ru-RU');
   }
 
-  colorRange() {
+  #colorRange() {
     this.rangeProgress.style.left = `${
       (this.toggleMin.value / this.max) * 100
     }%`;
@@ -78,7 +78,7 @@ class Slider {
     }%`;
   }
 
-  changeFirstToggle() {
+  #changeFirstToggle() {
     if (
       Number(this.toggleMax.value) - Number(this.toggleMin.value)
       <= this.min
@@ -86,13 +86,13 @@ class Slider {
       this.toggleMin.value = Number(this.toggleMax.value) - this.min;
     }
 
-    this.setValues();
-    this.colorRange();
+    this.#setValues();
+    this.#colorRange();
 
-    this.checkVisibilityToggle();
+    this.#checkVisibilityToggle();
   }
 
-  checkVisibilityToggle() {
+  #checkVisibilityToggle() {
     if (
       Number(this.toggleMin.value) === this.max
       && Number(this.toggleMax.value) === this.max
@@ -103,7 +103,7 @@ class Slider {
     }
   }
 
-  changeSecondToggle() {
+  #changeSecondToggle() {
     if (
       Number(this.toggleMax.value) - Number(this.toggleMin.value)
       <= this.min
@@ -111,8 +111,8 @@ class Slider {
       this.toggleMax.value = Number(this.toggleMin.value) + this.min;
     }
 
-    this.setValues();
-    this.colorRange();
+    this.#setValues();
+    this.#colorRange();
   }
 }
 

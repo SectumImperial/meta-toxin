@@ -12,38 +12,38 @@ class CheckboxList {
 
   init() {
     this.list = this.checkboxList.querySelector(`.${ITEMS}`);
-    this.addListeners();
+    this.#addListeners();
   }
 
-  addListeners() {
-    this.checkboxList.addEventListener('click', this.clickToggle.bind(this));
-    this.checkboxList.addEventListener('keydown', this.keyToggle.bind(this));
+  #addListeners() {
+    this.checkboxList.addEventListener('click', this.#clickToggle.bind(this));
+    this.checkboxList.addEventListener('keydown', this.#keyToggle.bind(this));
   }
 
-  removeClasses() {
+  #removeClasses() {
     this.checkboxList.classList.remove(ACTIVE);
     this.list.classList.remove(OPENED_LIST);
   }
 
-  addClasses() {
+  #addClasses() {
     this.checkboxList.classList.add(ACTIVE);
     this.list.classList.add(OPENED_LIST);
   }
 
-  toggle() {
+  #toggle() {
     if (this.checkboxList.classList.contains(ACTIVE)) {
-      this.removeClasses();
+      this.#removeClasses();
     } else {
-      this.addClasses();
+      this.#addClasses();
     }
   }
 
-  clickToggle({ target }) {
+  #clickToggle({ target }) {
     if (target.closest(`.${ITEMS}`)) return;
-    this.toggle();
+    this.#toggle();
   }
 
-  keyToggle(e) {
+  #keyToggle(e) {
     const { code } = e;
     const { target } = e;
 
@@ -53,7 +53,7 @@ class CheckboxList {
 
     if (code === 'Space') {
       e.preventDefault();
-      this.toggle();
+      this.#toggle();
     }
   }
 }

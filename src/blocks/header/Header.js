@@ -7,28 +7,28 @@ class Header {
   }
 
   init() {
-    this.findElemes();
+    this.#findElemes();
     this.mediaQueryList = window.matchMedia('(min-width: 960px)');
-    this.addListeners();
-    this.toggleDevice();
+    this.#addListeners();
+    this.#toggleDevice();
   }
 
-  findElemes() {
+  #findElemes() {
     this.page = document.querySelector('body');
     this.subItems = this.header.querySelectorAll('.nav__subitem');
     this.iconMenu = this.header.querySelector('.header__icon');
     this.navWrapper = this.header.querySelector('.header__nav-wrapper');
   }
 
-  addListeners() {
-    this.mediaQueryList.addEventListener('change', this.toggleDevice.bind(this));
-    this.iconMenu.addEventListener('click', this.toggleMenu.bind(this));
+  #addListeners() {
+    this.mediaQueryList.addEventListener('change', this.#toggleDevice.bind(this));
+    this.iconMenu.addEventListener('click', this.#toggleMenu.bind(this));
     this.subItems.forEach((element) => {
-      element.addEventListener('click', this.toggleSub.bind(this));
+      element.addEventListener('click', this.#toggleSub.bind(this));
     });
   }
 
-  toggleDevice() {
+  #toggleDevice() {
     if (this.mediaQueryList.matches) {
       this.page.classList.remove('_touch');
       this.page.classList.add('_pc');
@@ -38,7 +38,7 @@ class Header {
     }
   }
 
-  toggleSub(e) {
+  #toggleSub(e) {
     if (this.page.classList.contains('_pc')) return;
     if (e.target.closest('.nav__sublist')) return;
     e.preventDefault();
@@ -46,7 +46,7 @@ class Header {
     navItem.classList.toggle('_active');
   }
 
-  toggleMenu() {
+  #toggleMenu() {
     this.iconMenu.classList.toggle('_active');
     this.navWrapper.classList.toggle('_active');
   }

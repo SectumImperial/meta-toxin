@@ -35,18 +35,18 @@ class Dropdown {
   }
 
   init() {
-    this.findElems();
-    this.checkBtnVisibility();
+    this.#findElems();
+    this.#checkBtnVisibility();
     this.type = this.dropdown.querySelector(`.${TYPE}`).value;
 
-    this.addListeners();
-    this.addUrlValues();
+    this.#addListeners();
+    this.#addUrlValues();
 
     this.preset = JSON.parse(this.dropdown.dataset.preset);
-    this.addPreset();
+    this.#addPreset();
   }
 
-  findElems() {
+  #findElems() {
     this.field = this.dropdown.querySelector(`.${FIELD}`);
     this.dropdownInput = this.dropdown.querySelector(`.${INPUT}`);
     this.dropdownContent = this.dropdown.querySelector(`.${CONTENT}`);
@@ -63,14 +63,14 @@ class Dropdown {
     this.counts = this.dropdown.querySelectorAll(`.${COUNT_ELEM}`);
   }
 
-  addUrlValues() {
+  #addUrlValues() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const dropdownUrlContent = urlParams.get('dropdown');
     const type = urlParams.get('type');
 
     if (dropdownUrlContent && type === this.type) {
-      this.addInputValue(dropdownUrlContent);
+      this.#addInputValue(dropdownUrlContent);
 
       const params = window.location.search
         .replace('?', '')
@@ -87,10 +87,10 @@ class Dropdown {
       });
     }
 
-    this.checkBtnVisibility();
+    this.#checkBtnVisibility();
   }
 
-  addPreset() {
+  #addPreset() {
     if (this.preset.length === 0) return;
     this.preset.forEach((e) => {
       const key = Object.keys(e).join('');
@@ -98,29 +98,29 @@ class Dropdown {
       const count = this.dropdown.querySelector(`.${COUNT_ELEM}[data-item="${key}"]`);
       if (!count) return;
       count.value = value;
-      this.performData();
-      this.checkBtnVisibility();
+      this.#performData();
+      this.#checkBtnVisibility();
     });
   }
 
-  addListeners() {
-    this.field.addEventListener('click', this.toggleClass.bind(this));
+  #addListeners() {
+    this.field.addEventListener('click', this.#toggleClass.bind(this));
     this.field.addEventListener('click', () => {
       this.dropdownContent.classList.toggle(ACTIVE);
     });
 
-    this.dropdownInput.addEventListener('keydown', this.handleKey.bind(this));
+    this.dropdownInput.addEventListener('keydown', this.#handleKey.bind(this));
 
-    this.btnsDecrement.forEach((item) => item.addEventListener('click', this.decrementBtn.bind(this)));
-    this.btnsIncrement.forEach((item) => item.addEventListener('click', this.incrementBtn.bind(this)));
+    this.btnsDecrement.forEach((item) => item.addEventListener('click', this.#decrementBtn.bind(this)));
+    this.btnsIncrement.forEach((item) => item.addEventListener('click', this.#incrementBtn.bind(this)));
 
-    this.btnClear.addEventListener('click', this.clear.bind(this));
-    this.btnAccept.addEventListener('click', this.accept.bind(this));
+    this.btnClear.addEventListener('click', this.#clear.bind(this));
+    this.btnAccept.addEventListener('click', this.#accept.bind(this));
 
-    document.addEventListener('click', this.closeOuterClick.bind(this));
+    document.addEventListener('click', this.#closeOuterClick.bind(this));
   }
 
-  closeOuterClick({ target }) {
+  #closeOuterClick({ target }) {
     if (target.closest('.dropdown')) return;
     if (this.field.classList.contains(OPENED)) {
       this.field.classList.remove(OPENED);
@@ -130,7 +130,7 @@ class Dropdown {
     }
   }
 
-  handleKey(e) {
+  #handleKey(e) {
     const { code } = e;
     if (code === 'Space') {
       e.preventDefault();
@@ -138,15 +138,15 @@ class Dropdown {
     }
   }
 
-  performData() {
-    this.wordsMap = this.createObjectMap();
-    this.countsMap = this.createCountsMap();
-    this.synthMap = this.joinMap();
-    this.string = this.createStrMap();
-    this.addInputValue(this.string);
+  #performData() {
+    this.wordsMap = this.#createObjectMap();
+    this.countsMap = this.#createCountsMap();
+    this.synthMap = this.#joinMap();
+    this.string = this.#createStrMap();
+    this.#addInputValue(this.string);
   }
 
-  createObjectMap() {
+  #createObjectMap() {
     const optMap = new Map();
     this.options.forEach((e) => {
       Object.entries(e).forEach((arr) => {
@@ -158,7 +158,7 @@ class Dropdown {
     return optMap;
   }
 
-  createCountsMap() {
+  #createCountsMap() {
     const countMap = new Map();
     const counts = [...this.counts].filter(
       (e) => Number(e.value) > 0,
@@ -174,7 +174,7 @@ class Dropdown {
     return countMap;
   }
 
-  checkBtnVisibility() {
+  #checkBtnVisibility() {
     const countValues = [];
     this.counts.forEach((e) => countValues.push(Number(e.value)));
     const sum = countValues.reduce(
@@ -201,7 +201,7 @@ class Dropdown {
     }
   }
 
-  decrementBtn(e) {
+  #decrementBtn(e) {
     e.preventDefault();
     const { target } = e;
     const container = target.closest(`.${ITEM}`);
@@ -209,12 +209,12 @@ class Dropdown {
     Dropdown.checkLimits(count);
     Dropdown.checkDecrementDisabled(count, target);
 
-    if (this.type === 'guests') this.checkInfants();
-    this.performData();
-    this.checkBtnVisibility();
+    if (this.type === 'guests') this.#checkInfants();
+    this.#performData();
+    this.#checkBtnVisibility();
   }
 
-  incrementBtn(e) {
+  #incrementBtn(e) {
     e.preventDefault();
     const { target } = e;
     const container = target.closest(`.${ITEM}`);
@@ -227,25 +227,25 @@ class Dropdown {
       decrement.classList.remove(DISABLED);
     }
 
-    if (this.type === 'guests') this.checkInfants();
-    this.performData(`.${COUNT_ELEM}`, this.options);
-    this.checkBtnVisibility();
+    if (this.type === 'guests') this.#checkInfants();
+    this.#performData();
+    this.#checkBtnVisibility();
   }
 
-  clear(e) {
+  #clear(e) {
     e.preventDefault();
     this.dropdownInput.value = '';
     // eslint-disable-next-line no-return-assign, no-shadow
     this.counts.forEach((e) => (e.value = 0));
-    this.checkBtnVisibility();
+    this.#checkBtnVisibility();
   }
 
-  accept(e) {
+  #accept(e) {
     e.preventDefault();
     this.dropdownContent.classList.remove(ACTIVE);
   }
 
-  checkInfants() {
+  #checkInfants() {
     const counts = Array.from(this.counts, (e) => e.value);
     const sum = counts.reduce((prev, curr) => Number(prev) + Number(curr), 0);
     const infantCount = this.dropdown.querySelector(`.${COUNT_ELEM}[data-item="Младенцы"]`).value;
@@ -259,11 +259,11 @@ class Dropdown {
     }
   }
 
-  toggleClass() {
+  #toggleClass() {
     this.field.classList.toggle(OPENED);
   }
 
-  joinMap() {
+  #joinMap() {
     const synthMap = new Map();
 
     this.countsMap.forEach((key, value) => {
@@ -271,7 +271,7 @@ class Dropdown {
         // If new map hasn't kthe key
         synthMap.set(this.wordsMap.get(value), key);
       }
-      // If the map of array hasn't separate array for the key
+      // If the map of array hasn't unique array for the key
       if (!this.wordsMap.has(value) && synthMap.has(this.wordsMap.get(DEFAULT_KEY))) {
         // If there is correct array of words
         // sum all keys countsMap and set in value
@@ -287,7 +287,7 @@ class Dropdown {
     return synthMap;
   }
 
-  createStrMap() {
+  #createStrMap() {
     const arrStrings = [];
     this.synthMap.forEach((key, value) => {
       arrStrings.push(`${key} ${chooseWord(key, value)}`);
@@ -297,7 +297,7 @@ class Dropdown {
     return result;
   }
 
-  addInputValue(str) {
+  #addInputValue(str) {
     this.dropdownInput.value = cutString(str, 20);
   }
 

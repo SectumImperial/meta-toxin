@@ -23,16 +23,16 @@ class Paginator {
   }
 
   init() {
-    this.findElems();
-    this.createVars();
-    this.createPaginator();
-    this.setCurrentPage();
-    this.checkVisibilityBtn();
-    this.addListeners();
-    this.createText();
+    this.#findElems();
+    this.#createVars();
+    this.#createPaginator();
+    this.#setCurrentPage();
+    this.#checkVisibilityBtn();
+    this.#addListeners();
+    this.#createText();
   }
 
-  findElems() {
+  #findElems() {
     this.itemsPaginator = this.paginator.querySelector(`.${ITEMS}`);
     this.btnPrev = this.paginator.querySelector(`.${BTN_PREV}`);
     this.btnNext = this.paginator.querySelector(`.${BTN_NEXT}`);
@@ -40,7 +40,7 @@ class Paginator {
     this.textElement = this.paginator.querySelector(`.${TEXT}`);
   }
 
-  createVars() {
+  #createVars() {
     this.count = COUNT_PAGE;
     this.currentPage = 1;
     this.startPage = 1;
@@ -54,136 +54,129 @@ class Paginator {
     this.pageCount = Math.ceil(this.allItems / this.itemsPerPage);
   }
 
-  addListeners() {
-    this.btnPrev.addEventListener('click', this.decrementPage.bind(this));
-    this.btnNext.addEventListener('click', this.incrementPage.bind(this));
-    this.itemsPaginator.addEventListener('click', this.changePage.bind(this));
+  #addListeners() {
+    this.btnPrev.addEventListener('click', this.#decrementPage.bind(this));
+    this.btnNext.addEventListener('click', this.#incrementPage.bind(this));
+    this.itemsPaginator.addEventListener('click', this.#changePage.bind(this));
 
-    this.btnPrev.addEventListener('keydown', this.keyDecrementPage.bind(this));
-    this.btnNext.addEventListener('keydown', this.keyInecrementPage.bind(this));
-    this.itemsPaginator.addEventListener('keydown', this.keyChangePage.bind(this));
+    this.btnPrev.addEventListener('keydown', this.#keyDecrementPage.bind(this));
+    this.btnNext.addEventListener('keydown', this.#keyInecrementPage.bind(this));
+    this.itemsPaginator.addEventListener('keydown', this.#keyChangePage.bind(this));
   }
 
-  isInStart() {
+  #isInStart() {
     return this.currentPage === COUNT_PAGE + 1
     || this.currentPage <= COUNT_PAGE;
   }
 
-  isInEnd() {
+  #isInEnd() {
     return this.currentPage === this.pageCount - COUNT_PAGE
     || (this.currentPage >= this.pageCount - COUNT_PAGE
       && this.currentPage !== this.pageCount);
   }
 
-  isInMiddle() {
+  #isInMiddle() {
     return this.currentPage > COUNT_PAGE
     && this.currentPage < this.pageCount - COUNT_PAGE;
   }
 
   //   Методы создания и отображения страниц
-  createPaginator() {
+  #createPaginator() {
     let nextPage = Number(this.currentPage);
     let prevPage = Number(this.currentPage);
 
-    if (this.isPageCountSmall()) nextPage = this.pageCount;
-    if (!this.isPageCountSmall()) nextPage += 1;
+    if (this.#isPageCountSmall()) nextPage = this.pageCount;
+    if (!this.#isPageCountSmall()) nextPage += 1;
 
     prevPage -= 1;
 
     if (this.currentPage === this.startPage) {
-      this.createBegining();
-    } else if (this.isInStart()) {
-      this.createStart(nextPage);
+      this.#createBegining();
+    } else if (this.#isInStart()) {
+      this.#createStart(nextPage);
     } else if (
-      this.isInEnd()
+      this.#isInEnd()
     ) {
-      this.createEnd(prevPage);
+      this.#createEnd(prevPage);
     } else if (this.currentPage === this.pageCount) {
-      this.createEnding();
-    } else if (this.isInMiddle()) {
-      this.createMiddle(prevPage, nextPage);
+      this.#createEnding();
+    } else if (this.#isInMiddle()) {
+      this.#createMiddle(prevPage, nextPage);
     }
   }
 
-  createAll() {
-    for (let i = this.startPage; i <= this.pageCount; i += 1) {
-      const li = this.createLiElement(this.liClass, i);
-      this.itemsPaginator.append(li);
-    }
-  }
-
-  createMiddle(start, end) {
+  #createMiddle(start, end) {
     // eslint-disable-next-line no-plusplus
     for (let i = start; i <= end; i++) {
-      const li = this.createLiElement(this.liClass, i);
+      const li = this.#createLiElement(this.liClass, i);
       this.itemsPaginator.append(li);
     }
-    this.addFirstPage();
-    this.addLastPage();
+    this.#addFirstPage();
+    this.#addLastPage();
   }
 
-  createBegining() {
+  #createBegining() {
     // eslint-disable-next-line no-plusplus
     const endCount = this.pageCount < COUNT_PAGE ? this.pageCount : COUNT_PAGE;
     for (let i = this.startPage; i <= endCount; i += 1) {
-      const li = this.createLiElement(this.liClass, i);
+      const li = this.#createLiElement(this.liClass, i);
       this.itemsPaginator.append(li);
     }
 
-    this.addLastPage();
+    this.#addLastPage();
   }
 
-  createStart(end) {
+  #createStart(end) {
     // eslint-disable-next-line no-plusplus
     for (let i = this.startPage; i <= end; i++) {
-      const li = this.createLiElement(this.liClass, i);
+      const li = this.#createLiElement(this.liClass, i);
       this.itemsPaginator.append(li);
     }
-    this.addLastPage();
+    this.#addLastPage();
   }
 
-  createEnd(start) {
+  #createEnd(start) {
     // eslint-disable-next-line no-plusplus
     for (let i = start; i <= this.pageCount; i++) {
-      const li = this.createLiElement(this.liClass, i);
+      const li = this.#createLiElement(this.liClass, i);
       this.itemsPaginator.append(li);
     }
-    this.addFirstPage();
+    this.#addFirstPage();
   }
 
-  createEnding() {
+  #createEnding() {
     // eslint-disable-next-line no-plusplus
     for (let i = this.pageCount - (COUNT_PAGE - 1); i <= this.pageCount; i++) {
-      const li = this.createLiElement(this.liClass, i);
+      const li = this.#createLiElement(this.liClass, i);
       this.itemsPaginator.append(li);
     }
 
-    this.addFirstPage();
+    this.#addFirstPage();
   }
 
-  isPageCountSmall() {
+  #isPageCountSmall() {
     return this.pageCount < COUNT_PAGE;
   }
 
-  addLastPage() {
-    if (this.isPageCountSmall()) return;
+  #addLastPage() {
+    if (this.#isPageCountSmall()) return;
     // Add dots
-    const dots = this.createLiElement(this.liClass, '...', true);
+    const dots = this.#createLiElement(this.liClass, '...', true);
     this.itemsPaginator.append(dots);
 
     // Add the first page
-    const lastLi = this.createLiElement(this.liClass, this.pageCount);
+    const lastLi = this.#createLiElement(this.liClass, this.pageCount);
     this.itemsPaginator.append(lastLi);
   }
 
-  addFirstPage() {
-    if (this.isPageCountSmall()) return;
+  #addFirstPage() {
+    if (this.#isPageCountSmall()) return;
     // Add dots
-    const dots = this.createLiElement(this.liClass, '...', true);
+    const dots = this.#createLiElement(this.liClass, '...', true);
     this.itemsPaginator.prepend(dots);
 
     // Add the last page
-    const firstLi = this.createLiElement(this.liClass, this.startPage);
+    const firstLi = this.#createLiElement(this.liClass, this.startPage);
     this.itemsPaginator.prepend(firstLi);
   }
 
@@ -195,7 +188,7 @@ class Paginator {
    * @param {number or string} content of li
    * @param {boolean} dot
    */
-  createLiElement(className, content, dots = false) {
+  #createLiElement(className, content, dots = false) {
     const el = document.createElement('li');
     el.className = className;
     el.innerText = content;
@@ -212,7 +205,7 @@ class Paginator {
   }
 
   //   Проверить видимость кнопок переключения
-  checkVisibilityBtn() {
+  #checkVisibilityBtn() {
     const activeItem = this.itemsPaginator.querySelector(`.${ACTIVE_JS}`);
     // Скрыть и показать пред. кнопку
     if (Number(activeItem.dataset.number) === 1) {
@@ -238,39 +231,39 @@ class Paginator {
   }
 
   //   Клик по кнопке назад
-  decrementPage() {
+  #decrementPage() {
     if (this.currentPage !== 1) {
-      this.removePage();
+      this.#removePage();
       this.currentPage -= 1;
-      this.removePaginator();
-      this.createPaginator();
-      this.setCurrentPage();
+      this.#removePaginator();
+      this.#createPaginator();
+      this.#setCurrentPage();
     }
   }
 
   //   Клик по кнопке вперёд
-  incrementPage() {
+  #incrementPage() {
     if (this.currentPage !== this.pageCount) {
-      this.removePage();
+      this.#removePage();
       this.currentPage += 1;
-      this.removePaginator();
-      this.createPaginator();
-      this.setCurrentPage();
+      this.#removePaginator();
+      this.#createPaginator();
+      this.#setCurrentPage();
     }
   }
 
   //   Клик по номеру страницы
-  changePage({ target }) {
+  #changePage({ target }) {
     if (!target.classList.contains(LI_CLASS)) return;
     if (target.dataset.dots) return;
-    this.removePage();
+    this.#removePage();
     this.currentPage = Number(target.dataset.number);
-    this.removePaginator();
-    this.createPaginator();
-    this.setCurrentPage();
+    this.#removePaginator();
+    this.#createPaginator();
+    this.#setCurrentPage();
   }
 
-  findCurrentPage() {
+  #findCurrentPage() {
     const page = this.itemsPaginator.querySelector(
       `.${LI_CLASS}[data-number="${this.currentPage}"]`,
     );
@@ -279,24 +272,24 @@ class Paginator {
   }
 
   //   Установить тек. страницу
-  setCurrentPage() {
-    const page = this.findCurrentPage();
+  #setCurrentPage() {
+    const page = this.#findCurrentPage();
     page.classList.add(ACTIVE_LI);
     page.classList.add(ACTIVE_JS);
 
-    this.checkVisibilityBtn();
-    this.createText();
+    this.#checkVisibilityBtn();
+    this.#createText();
   }
 
   //   Удалить классы тек. страницы
-  removePage() {
-    const current = this.findCurrentPage();
+  #removePage() {
+    const current = this.#findCurrentPage();
     current.classList.remove(ACTIVE_LI);
     current.classList.remove(ACTIVE_JS);
   }
 
   //   Создать строку описания
-  createText() {
+  #createText() {
     let string = '';
     let lastCount = this.currentPage * this.itemsPerPage;
     const firstCount = lastCount - this.itemsPerPage + 1;
@@ -312,25 +305,25 @@ class Paginator {
     this.textElement.innerText = string;
   }
 
-  removePaginator() {
+  #removePaginator() {
     this.itemsPaginator.innerHTML = '';
   }
 
-  keyDecrementPage(e) {
+  #keyDecrementPage(e) {
     const { code } = e;
     if (code !== 'Space') return;
     e.preventDefault();
-    this.decrementPage();
+    this.#decrementPage();
   }
 
-  keyInecrementPage(e) {
+  #keyInecrementPage(e) {
     const { code } = e;
     if (code !== 'Space') return;
     e.preventDefault();
     this.incrementPage();
   }
 
-  keyChangePage(e) {
+  #keyChangePage(e) {
     const { code } = e;
     if (code !== 'Space') return;
     e.preventDefault();

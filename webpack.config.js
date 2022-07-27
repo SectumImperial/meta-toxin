@@ -38,6 +38,10 @@ module.exports = {
   },
   devServer: {
     open: '/start-page.html',
+    static: {	
+      directory: './src',	
+      watch: true,	
+    },
   },
   devtool: 'source-map',
   optimization: {

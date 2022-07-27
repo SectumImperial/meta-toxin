@@ -17,10 +17,10 @@ class StarRating {
 
   init() {
     this.stars = this.rating.querySelectorAll('.js-star-rating__star');
-    this.setRating();
+    this.#setRating();
   }
 
-  setRating() {
+  #setRating() {
     this.stars.forEach((star) => {
       if (star.dataset.rateсount <= this.rateNum) {
         star.classList.remove(EMPTY_STAR);

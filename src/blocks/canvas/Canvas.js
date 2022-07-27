@@ -23,43 +23,43 @@ class Canvas {
     // There is NO findElems method BECAUSE OF
     // IT'S IMPOSSIBLE TO FIND ELEMENTS BEFORE THIS ELEMS WAS CREATED!!!
     // All elems created by JS because of the SVG MUST BE dynamic and accept different options
-    this.allCounts = this.sumCount();
+    this.allCounts = this.#sumCount();
     this.dashoffsets = [];
 
     this.svgBlock = this.canvas.querySelector(`.${CHART}`);
     this.legendBlock = this.canvas.querySelector(`.${LEGEND}`);
 
-    this.defs = this.createDefs();
-    this.circles = this.createCircles();
-    this.text = this.createText();
-    this.svgTmp = this.createSvg();
-    this.addSvg();
+    this.defs = this.#createDefs();
+    this.circles = this.#createCircles();
+    this.text = this.#createText();
+    this.svgTmp = this.#createSvg();
+    this.#addSvg();
 
     this.chart = document.querySelector(`.${SVG}`);
-    this.addText();
-    this.list = this.createList();
+    this.#addText();
+    this.list = this.#createList();
     this.items = this.list.querySelectorAll(`.${ITEM}`);
     this.legendBlock.append(this.list);
 
     this.circles = this.canvas.querySelectorAll(`.${UNIT}`);
-    this.addListeners();
+    this.#addListeners();
   }
 
-  addListeners() {
+  #addListeners() {
     this.items.forEach((item) => {
-      item.addEventListener('mouseover', this.performText.bind(this));
-      item.addEventListener('mouseout', this.resetText.bind(this));
+      item.addEventListener('mouseover', this.#performText.bind(this));
+      item.addEventListener('mouseout', this.#resetText.bind(this));
     });
 
     this.circles.forEach((circle) => {
-      circle.addEventListener('mouseover', this.performText.bind(this));
-      circle.addEventListener('mouseout', this.resetText.bind(this));
-      circle.addEventListener('focus', this.performText.bind(this));
-      circle.addEventListener('blur', this.resetText.bind(this));
+      circle.addEventListener('mouseover', this.#performText.bind(this));
+      circle.addEventListener('mouseout', this.#resetText.bind(this));
+      circle.addEventListener('focus', this.#performText.bind(this));
+      circle.addEventListener('blur', this.#resetText.bind(this));
     });
   }
 
-  sumCount() {
+  #sumCount() {
     let sum = 0;
     for (const option of this.options) {
       if (!Number.isNaN(option.count)) sum += option.count;
@@ -70,7 +70,7 @@ class Canvas {
     return sum;
   }
 
-  createSvg() {
+  #createSvg() {
     const svgTemp = `<svg class="${SVG}" width="120" height="121" viewBox="0 0 33 32">
     ${this.defs}
     ${this.circles.join('')}
@@ -78,11 +78,11 @@ class Canvas {
     return svgTemp;
   }
 
-  addSvg() {
+  #addSvg() {
     this.svgBlock.insertAdjacentHTML('beforeend', this.svgTmp);
   }
 
-  createDefs() {
+  #createDefs() {
     let items = '';
     this.options.forEach((option) => {
       items += Canvas.createDef(option);
@@ -104,16 +104,16 @@ class Canvas {
     </linearGradient>`;
   }
 
-  createCircles() {
+  #createCircles() {
     const circles = [];
     this.options.forEach((option) => {
-      circles.push(this.createCircle(option));
+      circles.push(this.#createCircle(option));
     });
 
     return circles;
   }
 
-  createCircle(option) {
+  #createCircle(option) {
     // create dashoffsets
     const dash = Canvas.computeDash(option, this.allCounts);
     const dashoffsetVal = this.dashoffsets.reduce(
@@ -157,7 +157,7 @@ class Canvas {
   }
 
   // Creat the text
-  createText(fill = '#000000', count = this.allCounts) {
+  #createText(fill = '#000000', count = this.allCounts) {
     const textNum = `<text text-anchor="middle" class="canvas__number" x="50%" y="48%" fill="${fill}">${count}</text>`;
     const description = `<text text-anchor="middle" class="canvas__descr" x="50%" y="65%" fill="${fill}">Голосов</text>`;
     const group = `<g class="canvas__text-group" fill="${fill}">${textNum}${description}</g>`;
@@ -165,7 +165,7 @@ class Canvas {
   }
 
   // create the list
-  createList() {
+  #createList() {
     const ul = Canvas.createUl();
     const items = [];
     this.options.forEach((option) => {
@@ -210,54 +210,54 @@ class Canvas {
 
   // Mouse events and perform the text
 
-  addText() {
+  #addText() {
     this.chart.insertAdjacentHTML('beforeend', this.text);
   }
 
-  deleteText() {
+  #deleteText() {
     const text = this.canvas.querySelector('.canvas__text-group');
     if (text !== '') text.remove();
   }
 
-  performText({ target }) {
+  #performText({ target }) {
     const { line } = target.dataset;
 
     for (const { count, stopFirst, id = 'default' } of this.options) {
       if (id === line) {
-        this.text = this.createText(stopFirst, count);
-        this.deleteText();
-        this.addText();
+        this.text = this.#createText(stopFirst, count);
+        this.#deleteText();
+        this.#addText();
 
-        if (target.classList.contains(ITEM)) this.boldLine(id);
-        if (target.classList.contains(UNIT)) this.hoverText(id);
+        if (target.classList.contains(ITEM)) this.#boldLine(id);
+        if (target.classList.contains(UNIT)) this.#hoverText(id);
       }
     }
   }
 
-  resetText() {
-    this.deleteText();
-    this.text = this.createText();
-    this.addText();
-    this.resetLine();
-    this.resetHoverText();
+  #resetText() {
+    this.#deleteText();
+    this.text = this.#createText();
+    this.#addText();
+    this.#resetLine();
+    this.#resetHoverText();
   }
 
-  boldLine(id) {
+  #boldLine(id) {
     const circleLine = this.canvas.querySelector(`.${UNIT}_${id}`);
     if (circleLine) circleLine.classList.add(`${UNIT}_hovered`);
   }
 
-  hoverText(id) {
+  #hoverText(id) {
     const item = this.canvas.querySelector(`.${ITEM}_${id}`);
     if (item) item.classList.add(`${ITEM}_hovered`);
   }
 
-  resetLine() {
+  #resetLine() {
     const hoveredLine = this.canvas.querySelector(`.${UNIT}_hovered`);
     if (hoveredLine) hoveredLine.classList.remove(`${UNIT}_hovered`);
   }
 
-  resetHoverText() {
+  #resetHoverText() {
     const item = this.canvas.querySelector(`.${ITEM}_hovered`);
     if (item) item.classList.remove(`${ITEM}_hovered`);
   }

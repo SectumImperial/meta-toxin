@@ -23,34 +23,34 @@ class OrderCount {
   }
 
   init() {
-    this.createVars();
-    this.computeVars();
-    this.createRentString();
-    this.createFeeString();
-    this.createAddFeeString();
-    this.insertFinalSum();
+    this.#createVars();
+    this.#computeVars();
+    this.#createRentString();
+    this.#createFeeString();
+    this.#createAddFeeString();
+    this.#insertFinalSum();
   }
 
-  createVars() {
+  #createVars() {
     this.fees = this.options.fees;
     this.days = this.options.days;
     this.price = this.options.price;
     this.discounts = this.options.discounts;
   }
 
-  computeVars() {
-    this.sumRent = this.sumRnet();
-    this.allSum = this.sumAll(this.sumRent);
-    this.finalSum = this.computeFinal(this.allSum);
+  #computeVars() {
+    this.sumRent = this.#sumRnet();
+    this.allSum = this.#sumAll(this.sumRent);
+    this.finalSum = this.#computeFinal(this.allSum);
   }
 
-  sumRnet() {
+  #sumRnet() {
     let sum = 0;
     sum = this.price * this.days;
     return sum;
   }
 
-  sumAll(sumRent) {
+  #sumAll(sumRent) {
     let sumFees = sumRent;
     Object.keys(this.fees).forEach((fee) => {
       if (this.fees[fee].count) {
@@ -61,7 +61,7 @@ class OrderCount {
     return sumFees;
   }
 
-  computeFinal(sum) {
+  #computeFinal(sum) {
     let sumDisc = sum;
     Object.keys(this.discounts).forEach((discount) => {
       if (this.discounts[discount].count) {
@@ -72,7 +72,7 @@ class OrderCount {
     return sumDisc;
   }
 
-  createRentString() {
+  #createRentString() {
     const priceFrmtd = this.price.toLocaleString('ru-RU');
     const string = `${priceFrmtd}₽ х ${this.days} суток`;
 
@@ -83,7 +83,7 @@ class OrderCount {
     this.count.querySelector(`.${DAYS_COMPUTED}`).innerText = sumString;
   }
 
-  createFeeString() {
+  #createFeeString() {
     let discountStr = 'Сбор за услуги:';
     let tip = null;
     if (this.discounts.feeDisc.count) {
@@ -104,7 +104,7 @@ class OrderCount {
     ).innerText = `${this.fees.fee.count}₽`;
   }
 
-  createAddFeeString() {
+  #createAddFeeString() {
     const string = `Сбор за дополнительные 
     услуги`;
     this.count.querySelector(`.${ADD_FEE_COMPUTE}`).innerText = string;
@@ -119,7 +119,7 @@ class OrderCount {
     ).innerText = `${this.fees.addFee.count}₽`;
   }
 
-  insertFinalSum() {
+  #insertFinalSum() {
     this.count.querySelector(
       `.${SUM}`,
     ).innerText = `${this.finalSum.toLocaleString('ru-RU')}₽`;

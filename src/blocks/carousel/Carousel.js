@@ -17,14 +17,14 @@ class Carousel {
   }
 
   init() {
-    this.findElems();
-    this.createVars();
-    this.markToggless();
-    this.checkActive();
-    this.addListeners();
+    this.#findElems();
+    this.#createVars();
+    this.#markToggless();
+    this.#checkActive();
+    this.#addListeners();
   }
 
-  findElems() {
+  #findElems() {
     this.list = this.carousel.querySelector(`.${ITEMS}`);
     this.listElems = this.carousel.querySelectorAll(`.${ITEM}`);
     this.prev = this.carousel.querySelector(`.${PREV}`);
@@ -33,14 +33,14 @@ class Carousel {
     this.link = this.carousel.querySelector(`.${LINK}`);
   }
 
-  createVars() {
+  #createVars() {
     this.width = WIDTH;
     this.count = COUNT;
     this.position = 0;
     this.xDown = null;
   }
 
-  markToggless() {
+  #markToggless() {
     let i = 0;
     this.toggles.forEach((toggle) => {
       // eslint-disable-next-line no-param-reassign
@@ -49,45 +49,45 @@ class Carousel {
     });
   }
 
-  addListeners() {
-    this.prev.addEventListener('click', this.moveLeft.bind(this));
-    this.next.addEventListener('click', this.moveRight.bind(this));
+  #addListeners() {
+    this.prev.addEventListener('click', this.#moveLeft.bind(this));
+    this.next.addEventListener('click', this.#moveRight.bind(this));
 
     this.toggles.forEach((element) => {
-      element.addEventListener('click', this.moveToggle.bind(this));
+      element.addEventListener('click', this.#moveToggle.bind(this));
     });
     this.carousel.addEventListener(
       'touchstart',
-      this.handleTouchStart.bind(this),
+      this.#handleTouchStart.bind(this),
       { passive: true },
     );
     this.carousel.addEventListener(
       'touchmove',
-      this.handleTouchMove.bind(this),
+      this.#handleTouchMove.bind(this),
       { passive: true },
     );
 
-    this.link.addEventListener('keydown', this.handleKey.bind(this));
+    this.link.addEventListener('keydown', this.#handleKey.bind(this));
   }
 
-  moveLeft() {
+  #moveLeft() {
     this.position += this.width * this.count;
     this.position = Math.min(this.position, 0);
     this.list.style.marginLeft = `${this.position}px`;
-    this.checkActive();
+    this.#checkActive();
   }
 
-  moveRight() {
+  #moveRight() {
     this.position -= this.width * this.count;
     this.position = Math.max(
       this.position,
       -this.width * (this.listElems.length - this.count),
     );
     this.list.style.marginLeft = `${this.position}px`;
-    this.checkActive();
+    this.#checkActive();
   }
 
-  checkActive() {
+  #checkActive() {
     const countImage = this.position / -this.width;
     this.toggles.forEach((toggle) => {
       if (Number(toggle.dataset.toggleCount) === countImage) {
@@ -98,26 +98,26 @@ class Carousel {
     });
   }
 
-  moveToggle(e) {
+  #moveToggle(e) {
     e.preventDefault();
     const { target } = e;
     const countImage = (this.position / this.width) * -1;
     const move = -(target.dataset.toggleCount - countImage) * this.width;
     this.position += move;
     this.list.style.marginLeft = `${this.position}px`;
-    this.checkActive();
+    this.#checkActive();
   }
 
   static getTouches(evt) {
     return evt.touches;
   }
 
-  handleTouchStart(evt) {
+  #handleTouchStart(evt) {
     const firstTouch = Carousel.getTouches(evt)[0];
     this.xDown = firstTouch.clientX;
   }
 
-  handleTouchMove(evt) {
+  #handleTouchMove(evt) {
     if (!this.xDown) {
       return;
     }
@@ -125,20 +125,20 @@ class Carousel {
     const xDiff = this.xDown - xUp;
 
     if (xDiff && xDiff > 0) {
-      this.moveRight();
+      this.#moveRight();
     } else {
-      this.moveLeft();
+      this.#moveLeft();
     }
     this.xDown = null;
   }
 
-  handleKey({ code }) {
+  #handleKey({ code }) {
     if (code === 'ArrowRight') {
-      this.moveRight();
+      this.#moveRight();
     }
 
     if (code === 'ArrowLeft') {
-      this.moveLeft();
+      this.#moveLeft();
     }
   }
 }
