@@ -6,7 +6,7 @@ mixin room-data(options = {})
         items = []
     } = options
 
-  .room-data 
+  ul.room-data 
     each item in items 
       -
         const {
@@ -21,7 +21,7 @@ mixin room-data(options = {})
           city: "room-data__icon_city",
           fire: "room-data__icon_fire"
         }
-      .room-data__item 
+      li.room-data__item 
         div(
             class = `room-data__icon ${icons[icon]}`
         )

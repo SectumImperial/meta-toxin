@@ -137,8 +137,8 @@ class Datepicker {
         const [firstDay, firstmonth, firstyear] = startUrlDateString.split('.');
         const [secondDay, secondmonth, secondyear] = endUrlDateString.split('.');
 
-        const startDate = new Date(firstyear, firstmonth, firstDay);
-        const endDate = new Date(secondyear, secondmonth, secondDay);
+        const startDate = new Date(firstyear, firstmonth - 1, firstDay);
+        const endDate = new Date(secondyear, secondmonth - 1, secondDay);
 
         this.dp.selectDate([startDate, endDate]);
         this.singleItem.value = Datepicker.formatDate({
