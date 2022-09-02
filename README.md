@@ -27,7 +27,7 @@ and four UI pages:
 **Clone repository:**
 
 ```bash
-  https://github.com/SectumImperial/meta-toxin.git
+   git clone https://github.com/SectumImperial/meta-toxin.git
 ```
 **Deploy**
 
