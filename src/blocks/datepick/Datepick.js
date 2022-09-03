@@ -306,8 +306,6 @@ class Datepicker {
   // Selecting tha range while mousemoving
   #setRange({ target, relatedTarget }) {
     this.#setPointRange();
-
-    // Переменная для пред. дня при движении мыши во время выделения диапазона
     let prevDay;
 
     this.#addPoitRange();
@@ -315,13 +313,11 @@ class Datepicker {
     if (this.rangeFrom && this.rangeFrom.classList.contains('end-range')) {
       this.rangeFrom.classList.remove('end-range');
     }
-
-    // Назначить переменной пред. дня значение
     if (relatedTarget && !relatedTarget.classList.contains('-days-')) {
       prevDay = relatedTarget;
     }
 
-    // Добавить выделение диапазона при движении мыши
+    // Add rangre while moving
     const isRangeStart = Datepicker.isNotRange({
       target,
       to: '-range-to-',
@@ -344,12 +340,11 @@ class Datepicker {
       if (prevDay) prevDay.classList.remove('start-range');
     }
 
-    // Удаление выделения диапазона у элементов там, где это не нужно при быстром
-    // движении мыши или выход за контейнер.
+    // Delete if move fast or leave the container
     this.#clearRange('start-range');
     this.#clearRange('end-range');
 
-    // Удалить выделение диапазона в случае возврата мыши к выбранной дате
+    // Delete if mouse return selected date
     if (
       this.#isSameDateHover()
     ) {
