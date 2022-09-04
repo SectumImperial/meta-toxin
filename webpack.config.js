@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const path = require('path');
 const fs = require('fs');
 
@@ -61,6 +62,10 @@ module.exports = {
           filename: `./${page}.html`,
         })
     ),
+
+    new CopyPlugin({
+      patterns: [{ from: 'src/favicon/', to: 'favicon' }],
+    }),
   ],
   module: {
     rules: [
