@@ -55,7 +55,7 @@
     margin: 0 18px 18px 15px;
   }
 
-  // Поля
+  // Fields
   &__input {
     position: relative;
   }
@@ -109,7 +109,7 @@
   box-shadow: 0 4px 4px 0 rgba(#0000, 0.25);
 }
 
-// Стили маленького календаря для страниы поиска
+// Small cal and search room cal
 .datepick_small {
   .air-datepicker--content {
     padding: 0 7px 7px 7px;
@@ -146,7 +146,7 @@
   font-family: 'Montserrat', sans-serif;
   border: none;
 
-  // Навигация календаря, кнопки и год/месяц
+  // Navigation
   &-nav {
     border: none;
     padding: 16px 18px 30px 14px;
@@ -182,7 +182,7 @@
     }
   }
 
-  // Тело календаря, дни недели и даты
+  // Body of the calendar
   &-body {
     &--day-name {
       color: $primary-color;
@@ -230,7 +230,7 @@
       }
     }
 
-    // Стили элемента при выходе курсора за пределы контейнера без выбора конечного пункта диапазона календаря
+    // Styles with out elem mouse without choosen end point
     .-range-to-,
     .-range-from- {
       border: none;
@@ -257,7 +257,7 @@
       }
     }
 
-    // Добавленные классы при помощи JS для диапазона
+    // Added classes by JS
     .start-range,
     .end-range {
       &:before {
@@ -296,7 +296,7 @@
     .-selected- {
       height: 40px;
       border-radius: 50%;
-      background: $primary-gradient;
+      background: $gradient;
       color: $secondary-color-2;
 
       font-weight: bold;
