@@ -99,7 +99,7 @@ class Datepicker {
   }
 
   #closeOuterClick({ target }) {
-    if (target.closest(`.${DATEPICK}`)) return;
+    if (target.closest(`.${DATEPICK}`) || target.closest('.-other-month-')) return;
     this.datepick.querySelectorAll(`.${GROUP}`).forEach((e) => {
       if (e.classList.contains(CLICKED)) e.classList.remove(CLICKED);
       if (this.calConteiner.classList.contains(ACTIVE)) {
@@ -262,11 +262,11 @@ class Datepicker {
       });
     }
 
-    // Удаление старых линий диапазона при выборе нового
+    // Dele old lines with selectig a new line
     this.#clearRange('start-range');
     this.#clearRange('end-range');
 
-    // Настройка ячеек при смене месяца
+    // Change the cells when the month changed
     this.#setPointRange();
 
     if (target.classList.contains('air-datepicker-nav--action')) {
@@ -426,7 +426,7 @@ class Datepicker {
       const day = `${firstDate.getDate()}`.length < 2
         ? `0${firstDate.getDate()}`
         : firstDate.getDate();
-      const month = `${firstDate.getMonth()}`.length < 2
+      const month = `${firstDate.getMonth()}`.length < 2 && firstDate.getMonth() !== 9
         ? `0${firstDate.getMonth() + 1}`
         : firstDate.getMonth() + 1;
       const year = firstDate.getFullYear();
