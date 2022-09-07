@@ -21,6 +21,7 @@ class Carousel {
     this.#createVars();
     this.#markToggless();
     this.#checkActive();
+    this.#checkBtnVisibility();
     this.#addListeners();
   }
 
@@ -75,6 +76,7 @@ class Carousel {
     this.position = Math.min(this.position, 0);
     this.list.style.marginLeft = `${this.position}px`;
     this.#checkActive();
+    this.#checkBtnVisibility();
   }
 
   #moveRight() {
@@ -85,6 +87,7 @@ class Carousel {
     );
     this.list.style.marginLeft = `${this.position}px`;
     this.#checkActive();
+    this.#checkBtnVisibility();
   }
 
   #checkActive() {
@@ -96,6 +99,20 @@ class Carousel {
         toggle.classList.remove(ACTIVE);
       }
     });
+  }
+
+  #checkBtnVisibility() {
+    if (this.position === -this.width * (this.listElems.length - this.count)) {
+      this.next.style.visibility = 'hidden';
+    } else {
+      this.next.style.visibility = 'visible';
+    }
+
+    if (this.position === 0) {
+      this.prev.style.visibility = 'hidden';
+    } else {
+      this.prev.style.visibility = 'visible';
+    }
   }
 
   #moveToggle(e) {
