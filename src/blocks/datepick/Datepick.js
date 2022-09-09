@@ -98,16 +98,16 @@ class Datepicker {
     this.items.forEach((item) => item.addEventListener('keydown', this.#handleItemKeyDown.bind(this)));
   }
 
-  #handleDatepickClick() {
-    this.#clickInputOpen();
+  #handleDatepickClick(e) {
+    this.#clickInputOpen(e);
   }
 
-  #handleButtonClearClick() {
-    this.#clear();
+  #handleButtonClearClick(e) {
+    this.#clear(e);
   }
 
-  #handleButtonAcceptClick() {
-    this.#accept();
+  #handleButtonAcceptClick(e) {
+    this.#accept(e);
   }
 
   #handleDocumentClick({ target }) {

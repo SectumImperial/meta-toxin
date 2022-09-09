@@ -10,7 +10,7 @@ class Header {
     this.#findElemes();
     this.mediaQueryList = window.matchMedia('(min-width: 960px)');
     this.#addListeners();
-    this.#handleChangeScreen();
+    this.#changeScreenClass();
   }
 
   #findElemes() {
@@ -29,6 +29,10 @@ class Header {
   }
 
   #handleChangeScreen() {
+    this.#changeScreenClass();
+  }
+
+  #changeScreenClass() {
     if (this.mediaQueryList.matches) {
       this.page.classList.remove('_touch');
       this.page.classList.add('_pc');
