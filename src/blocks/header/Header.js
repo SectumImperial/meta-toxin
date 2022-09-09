@@ -10,7 +10,7 @@ class Header {
     this.#findElemes();
     this.mediaQueryList = window.matchMedia('(min-width: 960px)');
     this.#addListeners();
-    this.#toggleDevice();
+    this.#handleChangeScreen();
   }
 
   #findElemes() {
@@ -21,14 +21,14 @@ class Header {
   }
 
   #addListeners() {
-    this.mediaQueryList.addEventListener('change', this.#toggleDevice.bind(this));
-    this.iconMenu.addEventListener('click', this.#toggleMenu.bind(this));
+    this.mediaQueryList.addEventListener('change', this.#handleChangeScreen.bind(this));
+    this.iconMenu.addEventListener('click', this.#handleIconClick.bind(this));
     this.subItems.forEach((element) => {
-      element.addEventListener('click', this.#toggleSub.bind(this));
+      element.addEventListener('click', this.#handleNavSubItemClick.bind(this));
     });
   }
 
-  #toggleDevice() {
+  #handleChangeScreen() {
     if (this.mediaQueryList.matches) {
       this.page.classList.remove('_touch');
       this.page.classList.add('_pc');
@@ -38,7 +38,7 @@ class Header {
     }
   }
 
-  #toggleSub(e) {
+  #handleNavSubItemClick(e) {
     if (this.page.classList.contains('_pc')) return;
     if (e.target.closest('.nav__sublist')) return;
     e.preventDefault();
@@ -46,7 +46,7 @@ class Header {
     navItem.classList.toggle('_active');
   }
 
-  #toggleMenu() {
+  #handleIconClick() {
     this.iconMenu.classList.toggle('_active');
     this.navWrapper.classList.toggle('_active');
   }

@@ -21,7 +21,6 @@ class Carousel {
     this.#createVars();
     this.#markToggless();
     this.#checkActive();
-    this.#checkBtnVisibility();
     this.#addListeners();
   }
 
@@ -51,24 +50,39 @@ class Carousel {
   }
 
   #addListeners() {
-    this.prev.addEventListener('click', this.#moveLeft.bind(this));
-    this.next.addEventListener('click', this.#moveRight.bind(this));
+    this.carousel.addEventListener('mouseover', this.#handleCarouselMouseOver.bind(this));
+    this.carousel.addEventListener('mouseout', this.#handleCarouselMouseOut.bind(this));
+
+    this.prev.addEventListener('click', this.#handlePervButtonClick.bind(this));
+    this.next.addEventListener('click', this.#handleRightButtonClick.bind(this));
 
     this.toggles.forEach((element) => {
-      element.addEventListener('click', this.#moveToggle.bind(this));
+      element.addEventListener('click', this.#handleCarouselToggleClick.bind(this));
     });
     this.carousel.addEventListener(
       'touchstart',
-      this.#handleTouchStart.bind(this),
+      this.#handleCarouselPrevTouchStart.bind(this),
       { passive: true },
     );
     this.carousel.addEventListener(
       'touchmove',
-      this.#handleTouchMove.bind(this),
+      this.#handleCarouselPrevTouchMove.bind(this),
       { passive: true },
     );
 
-    this.link.addEventListener('keydown', this.#handleKey.bind(this));
+    this.link.addEventListener('keydown', this.#handleLinkKeyDown.bind(this));
+  }
+
+  #handleCarouselMouseOver() {
+    this.#checkBtnVisibility();
+  }
+
+  #handlePervButtonClick() {
+    this.#moveLeft();
+  }
+
+  #handleRightButtonClick() {
+    this.#moveRight();
   }
 
   #moveLeft() {
@@ -115,7 +129,12 @@ class Carousel {
     }
   }
 
-  #moveToggle(e) {
+  #handleCarouselMouseOut() {
+    this.next.style.visibility = 'hidden';
+    this.prev.style.visibility = 'hidden';
+  }
+
+  #handleCarouselToggleClick(e) {
     e.preventDefault();
     const { target } = e;
     const countImage = (this.position / this.width) * -1;
@@ -129,12 +148,12 @@ class Carousel {
     return evt.touches;
   }
 
-  #handleTouchStart(evt) {
+  #handleCarouselPrevTouchStart(evt) {
     const firstTouch = Carousel.getTouches(evt)[0];
     this.xDown = firstTouch.clientX;
   }
 
-  #handleTouchMove(evt) {
+  #handleCarouselPrevTouchMove(evt) {
     if (!this.xDown) {
       return;
     }
@@ -149,7 +168,7 @@ class Carousel {
     this.xDown = null;
   }
 
-  #handleKey({ code }) {
+  #handleLinkKeyDown({ code }) {
     if (code === 'ArrowRight') {
       this.#moveRight();
     }

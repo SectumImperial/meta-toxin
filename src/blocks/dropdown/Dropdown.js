@@ -104,23 +104,23 @@ class Dropdown {
   }
 
   #addListeners() {
-    this.field.addEventListener('click', this.#toggleClass.bind(this));
+    this.field.addEventListener('click', this.#handleFieldClick.bind(this));
     this.field.addEventListener('click', () => {
       this.dropdownContent.classList.toggle(ACTIVE);
     });
 
-    this.dropdownInput.addEventListener('keydown', this.#handleKey.bind(this));
+    this.dropdownInput.addEventListener('keydown', this.#handleInputKeyDown.bind(this));
 
-    this.btnsDecrement.forEach((item) => item.addEventListener('click', this.#decrementBtn.bind(this)));
-    this.btnsIncrement.forEach((item) => item.addEventListener('click', this.#incrementBtn.bind(this)));
+    this.btnsDecrement.forEach((item) => item.addEventListener('click', this.#handleDecrBtnClick.bind(this)));
+    this.btnsIncrement.forEach((item) => item.addEventListener('click', this.#handleIncrBtnClick.bind(this)));
 
-    this.btnClear.addEventListener('click', this.#clear.bind(this));
-    this.btnAccept.addEventListener('click', this.#accept.bind(this));
+    this.btnClear.addEventListener('click', this.#handleBtnClearClick.bind(this));
+    this.btnAccept.addEventListener('click', this.#handleBtnAcceptClick.bind(this));
 
-    document.addEventListener('click', this.#closeOuterClick.bind(this));
+    document.addEventListener('click', this.#handleDocumentClick.bind(this));
   }
 
-  #closeOuterClick({ target }) {
+  #handleDocumentClick({ target }) {
     if (target.closest('.dropdown')) return;
     if (this.field.classList.contains(OPENED)) {
       this.field.classList.remove(OPENED);
@@ -130,7 +130,7 @@ class Dropdown {
     }
   }
 
-  #handleKey(e) {
+  #handleInputKeyDown(e) {
     const { code } = e;
     if (code === 'Space') {
       e.preventDefault();
@@ -201,7 +201,7 @@ class Dropdown {
     }
   }
 
-  #decrementBtn(e) {
+  #handleDecrBtnClick(e) {
     e.preventDefault();
     const { target } = e;
     const container = target.closest(`.${ITEM}`);
@@ -214,7 +214,7 @@ class Dropdown {
     this.#checkBtnVisibility();
   }
 
-  #incrementBtn(e) {
+  #handleIncrBtnClick(e) {
     e.preventDefault();
     const { target } = e;
     const container = target.closest(`.${ITEM}`);
@@ -232,7 +232,7 @@ class Dropdown {
     this.#checkBtnVisibility();
   }
 
-  #clear(e) {
+  #handleBtnClearClick(e) {
     e.preventDefault();
     this.dropdownInput.value = '';
     // eslint-disable-next-line no-return-assign, no-shadow
@@ -240,7 +240,7 @@ class Dropdown {
     this.#checkBtnVisibility();
   }
 
-  #accept(e) {
+  #handleBtnAcceptClick(e) {
     e.preventDefault();
     this.dropdownContent.classList.remove(ACTIVE);
   }
@@ -259,7 +259,7 @@ class Dropdown {
     }
   }
 
-  #toggleClass() {
+  #handleFieldClick() {
     this.field.classList.toggle(OPENED);
   }
 

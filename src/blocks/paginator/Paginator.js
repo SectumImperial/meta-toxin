@@ -54,14 +54,22 @@ class Paginator {
     this.pageCount = Math.ceil(this.allItems / this.itemsPerPage);
   }
 
-  #addListeners() {
-    this.btnPrev.addEventListener('click', this.#decrementPage.bind(this));
-    this.btnNext.addEventListener('click', this.#incrementPage.bind(this));
-    this.itemsPaginator.addEventListener('click', this.#changePage.bind(this));
+  #handleButtonPrevClick() {
+    this.#decrementPage();
+  }
 
-    this.btnPrev.addEventListener('keydown', this.#keyDecrementPage.bind(this));
-    this.btnNext.addEventListener('keydown', this.#keyInecrementPage.bind(this));
-    this.itemsPaginator.addEventListener('keydown', this.#keyChangePage.bind(this));
+  #handleButtonNextClick() {
+    this.#incrementPage();
+  }
+
+  #addListeners() {
+    this.btnPrev.addEventListener('click', this.#handleButtonPrevClick.bind(this));
+    this.btnNext.addEventListener('click', this.#handleButtonNextClick.bind(this));
+    this.itemsPaginator.addEventListener('click', this.#handleItemClick.bind(this));
+
+    this.btnPrev.addEventListener('keydown', this.#handleButtonPrevPress.bind(this));
+    this.btnNext.addEventListener('keydown', this.#handleButtonNextPress.bind(this));
+    this.itemsPaginator.addEventListener('keydown', this.#handleItemPress.bind(this));
   }
 
   #isInStart() {
@@ -253,7 +261,7 @@ class Paginator {
   }
 
   //   Клик по номеру страницы
-  #changePage({ target }) {
+  #handleItemClick({ target }) {
     if (!target.classList.contains(LI_CLASS)) return;
     if (target.dataset.dots) return;
     this.#removePage();
@@ -309,21 +317,21 @@ class Paginator {
     this.itemsPaginator.innerHTML = '';
   }
 
-  #keyDecrementPage(e) {
+  #handleButtonPrevPress(e) {
     const { code } = e;
     if (code !== 'Space') return;
     e.preventDefault();
     this.#decrementPage();
   }
 
-  #keyInecrementPage(e) {
+  #handleButtonNextPress(e) {
     const { code } = e;
     if (code !== 'Space') return;
     e.preventDefault();
     this.incrementPage();
   }
 
-  #keyChangePage(e) {
+  #handleItemPress(e) {
     const { code } = e;
     if (code !== 'Space') return;
     e.preventDefault();

@@ -23,10 +23,10 @@ class Like {
   }
 
   #addListeners() {
-    this.like.addEventListener('click', this.#toggleLike.bind(this));
+    this.like.addEventListener('click', this.#handleLikeClick.bind(this));
   }
 
-  #toggleLike({ target }) {
+  #handleLikeClick({ target }) {
     const btn = target.closest('.like__button');
     if (btn.classList.contains(LIKED_BUTTON)) {
       this.#decrementLike();

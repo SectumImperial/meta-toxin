@@ -52,10 +52,10 @@ class Slider {
   }
 
   #addListeners() {
-    this.toggleMin.addEventListener('input', this.#changeFirstToggle.bind(this));
+    this.toggleMin.addEventListener('input', this.#handleToggleMinInput.bind(this));
     this.toggleMax.addEventListener(
       'input',
-      this.#changeSecondToggle.bind(this),
+      this.#handleToggleMaxInput.bind(this),
     );
   }
 
@@ -78,7 +78,7 @@ class Slider {
     }%`;
   }
 
-  #changeFirstToggle() {
+  #handleToggleMinInput() {
     if (
       Number(this.toggleMax.value) - Number(this.toggleMin.value)
       <= this.min
@@ -103,7 +103,7 @@ class Slider {
     }
   }
 
-  #changeSecondToggle() {
+  #handleToggleMaxInput() {
     if (
       Number(this.toggleMax.value) - Number(this.toggleMin.value)
       <= this.min

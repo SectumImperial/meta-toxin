@@ -20,9 +20,6 @@ class Canvas {
   }
 
   init() {
-    // There is NO findElems method BECAUSE OF
-    // IT'S IMPOSSIBLE TO FIND ELEMENTS BEFORE THIS ELEMS WAS CREATED!!!
-    // All elems created by JS because of the SVG MUST BE dynamic and accept different options
     this.allCounts = this.#sumCount();
     this.dashoffsets = [];
 
@@ -47,15 +44,15 @@ class Canvas {
 
   #addListeners() {
     this.items.forEach((item) => {
-      item.addEventListener('mouseover', this.#performText.bind(this));
-      item.addEventListener('mouseout', this.#resetText.bind(this));
+      item.addEventListener('mouseover', this.#handleItemOver.bind(this));
+      item.addEventListener('mouseout', this.#handleItemOut.bind(this));
     });
 
     this.circles.forEach((circle) => {
-      circle.addEventListener('mouseover', this.#performText.bind(this));
-      circle.addEventListener('mouseout', this.#resetText.bind(this));
-      circle.addEventListener('focus', this.#performText.bind(this));
-      circle.addEventListener('blur', this.#resetText.bind(this));
+      circle.addEventListener('mouseover', this.#handleItemOver.bind(this));
+      circle.addEventListener('mouseout', this.#handleItemOut.bind(this));
+      circle.addEventListener('focus', this.#handleItemOver.bind(this));
+      circle.addEventListener('blur', this.#handleItemOut.bind(this));
     });
   }
 
@@ -66,7 +63,9 @@ class Canvas {
       if (Number.isNaN(option.count)) sum += 0;
     }
 
-    if (Number.isNaN(sum)) throw new Error('Ошибка в подсчёте суммы голосов Canvas');
+    if (Number.isNaN(sum)) {
+      throw new Error('Ошибка в подсчёте суммы голосов Canvas');
+    }
     return sum;
   }
 
@@ -219,7 +218,7 @@ class Canvas {
     if (text !== '') text.remove();
   }
 
-  #performText({ target }) {
+  #handleItemOver({ target }) {
     const { line } = target.dataset;
 
     for (const { count, stopFirst, id = 'default' } of this.options) {
@@ -234,7 +233,7 @@ class Canvas {
     }
   }
 
-  #resetText() {
+  #handleItemOut() {
     this.#deleteText();
     this.text = this.#createText();
     this.#addText();

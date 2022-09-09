@@ -16,8 +16,8 @@ class CheckboxList {
   }
 
   #addListeners() {
-    this.checkboxList.addEventListener('click', this.#clickToggle.bind(this));
-    this.checkboxList.addEventListener('keydown', this.#keyToggle.bind(this));
+    this.checkboxList.addEventListener('click', this.#handleListClick.bind(this));
+    this.checkboxList.addEventListener('keydown', this.#handleListKeyPress.bind(this));
   }
 
   #removeClasses() {
@@ -38,12 +38,12 @@ class CheckboxList {
     }
   }
 
-  #clickToggle({ target }) {
+  #handleListClick({ target }) {
     if (target.closest(`.${ITEMS}`)) return;
     this.#toggle();
   }
 
-  #keyToggle(e) {
+  #handleListKeyPress(e) {
     const { code } = e;
     const { target } = e;
 

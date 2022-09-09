@@ -6,10 +6,10 @@ class Input {
   }
 
   init() {
-    this.input.addEventListener('click', this.toggleArrow.bind(this));
+    this.input.addEventListener('click', this.#handleInputClick.bind(this));
   }
 
-  toggleArrow() {
+  #handleInputClick() {
     if (this.input.querySelector('input[type="email"]')) return;
     const arrow = this.input.querySelector('._input_arrow-js');
     if (!arrow) return;

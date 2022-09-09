@@ -85,20 +85,32 @@ class Datepicker {
   }
 
   #addListeners() {
-    this.datepick.addEventListener('click', this.#clickInputOpen.bind(this));
-    this.buttonClear.addEventListener('click', this.#clear.bind(this));
-    this.buttonAccept.addEventListener('click', this.#accept.bind(this));
+    this.datepick.addEventListener('click', this.#handleDatepickClick.bind(this));
+    this.buttonClear.addEventListener('click', this.#handleButtonClearClick.bind(this));
+    this.buttonAccept.addEventListener('click', this.#handleButtonAcceptClick.bind(this));
     this.items.forEach((item) => {
-      item.addEventListener('input', this.#inputDate.bind(this));
+      item.addEventListener('input', this.#handleItemInput.bind(this));
     });
-    this.calConteiner.addEventListener('click', this.#checkRange.bind(this));
-    this.datepick.addEventListener('mousemove', this.#setRange.bind(this));
-    document.addEventListener('click', this.#closeOuterClick.bind(this));
+    this.calConteiner.addEventListener('click', this.#handleContainerClick.bind(this));
+    this.datepick.addEventListener('mousemove', this.#handleDatepickMouseMove.bind(this));
+    document.addEventListener('click', this.#handleDocumentClick.bind(this));
 
-    this.items.forEach((item) => item.addEventListener('keydown', this.#handleKey.bind(this)));
+    this.items.forEach((item) => item.addEventListener('keydown', this.#handleItemKeyDown.bind(this)));
   }
 
-  #closeOuterClick({ target }) {
+  #handleDatepickClick() {
+    this.#clickInputOpen();
+  }
+
+  #handleButtonClearClick() {
+    this.#clear();
+  }
+
+  #handleButtonAcceptClick() {
+    this.#accept();
+  }
+
+  #handleDocumentClick({ target }) {
     if (target.closest(`.${DATEPICK}`) || target.closest('.-other-month-')) return;
     this.datepick.querySelectorAll(`.${GROUP}`).forEach((e) => {
       if (e.classList.contains(CLICKED)) e.classList.remove(CLICKED);
@@ -108,7 +120,7 @@ class Datepicker {
     });
   }
 
-  #handleKey(e) {
+  #handleItemKeyDown(e) {
     const { code } = e;
     if (code === 'Space') {
       e.preventDefault();
@@ -225,11 +237,9 @@ class Datepicker {
       && this.rangeFrom.classList.contains('-selected-');
   }
 
-  #checkRange({ target }) {
+  #handleContainerClick({ target }) {
     const navTitle = this.datepick.querySelector('.air-datepicker-nav--title');
     navTitle.innerText = Datepicker.deleteComma(navTitle);
-
-    // Отображение дат в полях
 
     if (this.isTwoInputs) {
       if (this.dp.rangeDateFrom) {
@@ -304,7 +314,7 @@ class Datepicker {
   }
 
   // Selecting tha range while mousemoving
-  #setRange({ target, relatedTarget }) {
+  #handleDatepickMouseMove({ target, relatedTarget }) {
     this.#setPointRange();
     let prevDay;
 
@@ -383,7 +393,7 @@ class Datepicker {
     return date;
   }
 
-  #inputDate() {
+  #handleItemInput() {
     const isCorrectDateFormat = Datepicker.isCorrectDateFormat([...this.items]);
 
     if (isCorrectDateFormat) {
