@@ -57,7 +57,22 @@ mixin datepick(options = {})
             .datepick__arrow.icon__expand_more
         .datepick__container.js-datepick__container
           .datepick_btns
-            +datepickBtns()
+            .datepick__button.datepick__button_clear.js-datepick__button_clear
+              +button({
+                content: "Очистить",
+                btnColor: "violet",
+                btnWrapperColor: "transparent",
+                border: "false",
+                btnSize: "tiny",
+              })
+            .datepick__button.datepick__button_accept.js-datepick__button_accept
+              +button({
+                content: "Применить",
+                btnColor: "violet",
+                btnWrapperColor: "transparent",
+                border: "false",
+                btnSize: "tiny",
+              })
       else if(!isTwoInput && !isOnlyCal)
         .datepick__group.js-datepick__group
           label(
@@ -77,7 +92,22 @@ mixin datepick(options = {})
             .datepick__arrow.icon__expand_more 
         .datepick__container.datepick_small.js-datepick__container
           .datepick_btns
-            +datepickBtns()
+            .datepick__button.datepick__button_clear.js-datepick__button_clear
+              +button({
+                content: "Очистить",
+                btnColor: "violet",
+                btnWrapperColor: "transparent",
+                border: "false",
+                btnSize: "tiny",
+              })
+            .datepick__button.datepick__button_accept.js-datepick__button_accept
+              +button({
+                content: "Применить",
+                btnColor: "violet",
+                btnWrapperColor: "transparent",
+                border: "false",
+                btnSize: "tiny",
+              })
 
       else if(isOnlyCal)
         .datepick__group.js-datepick__group.visually-hidden
@@ -114,24 +144,20 @@ mixin datepick(options = {})
             .datepick__arrow.icon__expand_more
         .datepick__container.js-datepick__container.datepick__container_only-cal._active-dp 
           .datepick_btns
-            +datepickBtns()
+            .datepick__button.datepick__button_clear.js-datepick__button_clear
+              +button({
+                content: "Очистить",
+                btnColor: "violet",
+                btnWrapperColor: "transparent",
+                border: "false",
+                btnSize: "tiny",
+              })
+            .datepick__button.datepick__button_accept.js-datepick__button_accept
+              +button({
+                content: "Применить",
+                btnColor: "violet",
+                btnWrapperColor: "transparent",
+                border: "false",
+                btnSize: "tiny",
+              })
       
-mixin datepickBtns()
-
-  .datepick__button.datepick__button_clear.js-datepick__button_clear
-    +button({
-      content: "Очистить",
-      btnColor: "violet",
-      btnWrapperColor: "transparent",
-      border: "false",
-      btnSize: "tiny",
-    })
-  .datepick__button.datepick__button_accept.js-datepick__button_accept
-    +button({
-      content: "Применить",
-      btnColor: "violet",
-      btnWrapperColor: "transparent",
-      border: "false",
-      btnSize: "tiny",
-    })
-  

@@ -2,10 +2,6 @@ include ../logo/logo.pug
 include ../nav/nav.pug
 include ../button/button.pug
 
-mixin headerIcon
-  .header__icon
-    span
-
 mixin header(options = {})
   -
    const {
@@ -25,7 +21,8 @@ mixin header(options = {})
         +logo({
           href: "landing-page.html"
         })
-      +headerIcon()
+      .header__icon
+        span
       .header__nav-wrapper
         .header__nav 
           +nav(navigation)

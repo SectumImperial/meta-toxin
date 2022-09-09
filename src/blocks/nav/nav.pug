@@ -1,75 +1,45 @@
-mixin nav(options = {})  
-  nav.nav
-    +navList(options)
-
-mixin navList(options = {}) 
-  - 
+mixin nav(options = {}) 
+  -
     const {
       items = [], 
       mod = "horizontal",
     } = options
 
-  ul(class = `nav__items nav__items_${mod}`)
-    each item in items
-      -
-        const subItems = item.subItems ? item.subItems : false
-        const {
-          content = "",
-          href = "error-page.html",
-          classLi = subItems === false ? "nav__item" : "nav__item nav__subitem",
-          classLink = subItems === false ? "nav__link" : "nav__link nav__link_sub  icon__expand_more",
-          linkActive = ""
-        } = item
-      +navItem({
-        content,
-        classLink,
-        classLi,
-        href,
-        isActive,
-        linkActive,
-        subItems
-      })
+  nav.nav
+    ul(class = `nav__items nav__items_${mod}`)
+      each item in items
+        -
+          const subItems = item.subItems ? item.subItems : false
+          const {
+            content = "",
+            href = "error-page.html",
+            classLi = subItems === false ? "nav__item" : "nav__item nav__subitem",
+            classLink = subItems === false ? "nav__link" : "nav__link nav__link_sub  icon__expand_more",
+            linkActive = ""
+          } = item
+          const isActive = linkActive === "true" ? "nav__link_active" : `${linkActive}` 
 
-mixin navItem(options = {}) 
-  - 
-    const {
-      classLi = "",
-      href = "error-page.html",
-      classLink = "",
-      content = "",
-      linkActive = "",
-      subItems
-    } = options 
-
-    const isActive = linkActive === "true" ? "nav__link_active" : `${linkActive}` 
-
-  li(
-    class = classLi
-  )
-   a(
-      href = href
-      class = `${classLink} ${isActive}`
-    )= content
-   if subItems !== false
-    +navSub(options.subItems)
-
-
-mixin navSub(items = [])
-  ul.nav__sublist
-    each item in items
-      -
-        const {
-          href = "error-page.html",
-          content = ""
-        } = item
-        
-      li.nav__sub-item
-        a(
-          href = href
-          class = "nav__sublink"
-        )= content
-
-       
+        li(
+          class = classLi
+        )
+          a(
+            href = href
+            class = `${classLink} ${isActive}`
+          )= content
+          if subItems !== false
+            ul.nav__sublist
+              each item in subItems
+                -
+                  const {
+                    href = "error-page.html",
+                    content = ""
+                  } = item
+                  
+                li.nav__sub-item
+                  a(
+                    href = href
+                    class = "nav__sublink"
+                  )= content
     
 
 
