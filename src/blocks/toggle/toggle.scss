@@ -36,6 +36,7 @@
 
   &__input:checked + &__new-input {
     border: 1px solid $primary-color;
+
     &::before {
       content: '';
       position: absolute;

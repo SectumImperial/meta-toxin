@@ -60,7 +60,7 @@
     border-radius: 4px 4px 0 0;
   }
 
-  //   Кнопки переключения
+  //   Btns 
   &__prev,
   &__next {
     visibility: hidden;
@@ -99,7 +99,7 @@
     transform: rotate(-90deg);
   }
 
-  //   Переключатели
+  //   Toggles
   &__toggles {
     position: absolute;
     z-index: 4;

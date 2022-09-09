@@ -12,9 +12,22 @@
     flex-wrap: wrap;
     gap: 15px;
 
+    @media (min-width: $tablet) {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
     &_vertical {
       font-size: $fontSmall;
       gap: 0;
+
+      @media (min-width: $tablet) {
+        flex-direction: column;
+        gap: 20px;
+      }
     }
   }
 
@@ -25,6 +38,13 @@
     gap: 10px;
 
     list-style: none;
+
+    @media (min-width: $tablet) {
+      position: relative;
+      justify-content: center;
+      list-style: none;
+      padding: 0;
+    }
   }
 
   &__link {
@@ -44,10 +64,18 @@
 
     &_active {
       font-weight: bold;
+
+      @media (min-width: $tablet) {
+        font-weight: 700;
+      }
+    }
+
+    @media (min-width: $tablet) {
+      margin: 0;
+      padding: 0;
     }
   }
 
-  //   Подменю мобилное и по-умолчанию
   &__link_sub {
     position: relative;
 
@@ -59,6 +87,21 @@
       font-size: 8px;
       color: rgba($dark-color, 0.5);
     }
+
+    @media (min-width: $tablet) {
+      &__link_sub {
+        &::before {
+          font-size: $fontTiny;
+        }
+      }
+    }
+  }
+
+  &__link:focus + &__sublist {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+    transform: translate(0, 0);
   }
 
   &__sublist {
@@ -71,17 +114,43 @@
     list-style: none;
 
     transition: all 0.3s ease 0s;
+
+    @media (min-width: $tablet) {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: all;
+      transform: translate(0, 0);
+
+      position: absolute;
+      z-index: 20;
+      display: block;
+      top: 100%;
+      left: 4%;
+      min-width: 120px;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translate(0, 10%);
+
+      &__sub-item {
+        padding-top: 3px;
+      }
+
+      &__sublink:hover {
+        text-decoration: underline;
+      }
+    }
   }
 
-  &__items > li._active &__sublist {
+  &__items > &__item._active &__sublist {
     display: block;
   }
 
-  &__sublist li {
+  &__sub-item {
     margin: 0 0 2px 0;
   }
 
-  &__sublist li:last-child {
+  &__sublist &__sub-item:last-child {
     margin: 0;
   }
 
@@ -96,78 +165,9 @@
     }
   }
 
-  /* ------------------------------------------ */
-
   @media (min-width: $tablet) {
-    font-size: $fontSmall;
-    &__link_sub {
-      &::before {
-        font-size: $fontTiny;
-      }
-    }
-
-    // Элементы навигации
-    &__items {
-      display: flex;
-      justify-content: space-between;
-      flex-direction: row;
-      flex-wrap: wrap;
-      gap: 20px;
-
-      &_vertical {
-        flex-direction: column;
-        gap: 20px;
-      }
-    }
-
-    &__item {
-      position: relative;
-      justify-content: center;
-      list-style: none;
-      padding: 0;
-    }
-
     &__subitem:not(:last-child) {
       padding-right: 25px;
-    }
-
-    &__link {
-      margin: 0;
-      padding: 0;
-    }
-
-    &__link:focus + &__sublist,
-    &__sublist:focus-within {
-      opacity: 1;
-      visibility: visible;
-      pointer-events: all;
-      transform: translate(0, 0);
-    }
-
-    &__link_active {
-      font-weight: 700;
-    }
-
-    // Подменю
-    &__sublist {
-      position: absolute;
-      z-index: 20;
-      display: block;
-      top: 100%;
-      left: 4%;
-      min-width: 120px;
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-      transform: translate(0, 10%);
-    }
-
-    &__sublist li {
-      padding-top: 3px;
-    }
-
-    &__sublink:hover {
-      text-decoration: underline;
     }
   }
 }

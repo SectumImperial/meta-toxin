@@ -11,10 +11,6 @@
 
   min-height: 830px;
 
-  &__text {
-    display: none;
-  }
-
   @media (min-width: $tablet) {
     align-items: normal;
 
@@ -22,14 +18,18 @@
       width: 100%;
       display: flex;
       justify-content: space-between;
-      padding: 64px 128px 16px 136px;
+      padding: 65px 128px 16px 137px;
     }
 
     &__booking-card {
       align-self: flex-start;
     }
+  }
 
-    &__text {
+  &__text {
+    display: none;
+
+    @media (min-width: $tablet) {
       display: block;
 
       max-width: 297px;
