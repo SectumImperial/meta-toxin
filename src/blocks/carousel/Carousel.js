@@ -142,6 +142,7 @@ class Carousel {
     this.position += move;
     this.list.style.marginLeft = `${this.position}px`;
     this.#checkActive();
+    this.#checkBtnVisibility();
   }
 
   static getTouches(evt) {
