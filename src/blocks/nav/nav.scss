@@ -139,6 +139,13 @@
       &__sublink:hover {
         text-decoration: underline;
       }
+
+      &:focus-within {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: all;
+        transform: translate(0, 0);
+      }
     }
   }
 
