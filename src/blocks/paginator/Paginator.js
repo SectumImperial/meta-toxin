@@ -260,8 +260,12 @@ class Paginator {
     }
   }
 
-  //   Клик по номеру страницы
+  //   Click on the item
   #handleItemClick({ target }) {
+    this.#changePage(target);
+  }
+
+  #changePage(target) {
     if (!target.classList.contains(LI_CLASS)) return;
     if (target.dataset.dots) return;
     this.#removePage();
@@ -328,14 +332,14 @@ class Paginator {
     const { code } = e;
     if (code !== 'Space') return;
     e.preventDefault();
-    this.incrementPage();
+    this.#incrementPage();
   }
 
   #handleItemPress(e) {
-    const { code } = e;
+    const { code, target } = e;
     if (code === 'Space' || code === 'Enter') {
       e.preventDefault();
-      this.changePage(e);
+      this.#changePage(target);
     }
   }
 }

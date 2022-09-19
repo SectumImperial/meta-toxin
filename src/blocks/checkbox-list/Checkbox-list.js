@@ -51,7 +51,7 @@ class CheckboxList {
       return;
     }
 
-    if (code === 'Space' || code === 'Enter') {
+    if (code === 'Space') {
       e.preventDefault();
       this.#toggle();
     }
