@@ -4,6 +4,7 @@
 
 .room-price {
   color: rgba($dark-color, 0.5);
+  word-break: break-all;
   &__price {
     font-size: $fontSmall;
     font-weight: 700;

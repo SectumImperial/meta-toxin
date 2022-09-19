@@ -51,6 +51,7 @@
   &__reviews {
     font-size: $fontSmall;
     padding: 1px 2px 0 0;
+    word-break: break-all;
   }
   &__reviews-count {
     font-size: $fontSmall;

@@ -5,6 +5,7 @@
   padding-top: 1px;
   font-size: $fontSmall;
   font-weight: 700;
+  word-break: break-all;
 
   &__count {
     color: $dark-color;
@@ -22,5 +23,6 @@
     text-transform: uppercase;
     padding-top: 2px;
     padding-left: 8px;
+    word-break: normal;
   }
 }

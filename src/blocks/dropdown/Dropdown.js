@@ -132,7 +132,7 @@ class Dropdown {
 
   #handleInputKeyDown(e) {
     const { code } = e;
-    if (code === 'Space') {
+    if (code === 'Space' || code === 'Enter') {
       e.preventDefault();
       this.dropdownContent.classList.toggle(ACTIVE);
     }

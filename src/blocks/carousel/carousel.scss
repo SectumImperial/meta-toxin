@@ -44,7 +44,7 @@
   }
 
   &__items {
-    height: 152px;
+    min-height: 152px;
     width: 9999px;
     margin-left: 0;
     transition: margin-left 250ms;
@@ -58,6 +58,7 @@
 
   &__image {
     border-radius: 4px 4px 0 0;
+    vertical-align: middle;
   }
 
   //   Btns 

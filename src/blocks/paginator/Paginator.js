@@ -333,9 +333,10 @@ class Paginator {
 
   #handleItemPress(e) {
     const { code } = e;
-    if (code !== 'Space') return;
-    e.preventDefault();
-    this.changePage(e);
+    if (code === 'Space' || code === 'Enter') {
+      e.preventDefault();
+      this.changePage(e);
+    }
   }
 }
 

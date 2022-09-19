@@ -122,7 +122,7 @@ class Datepicker {
 
   #handleItemKeyDown(e) {
     const { code } = e;
-    if (code === 'Space') {
+    if (code === 'Space' || code === 'Enter') {
       e.preventDefault();
       this.#clickInputOpen(e);
     }
