@@ -12,6 +12,7 @@ mixin input(options = {})
       isRequired = false,
       isDate = false,
       isHovered = false,
+      isAutocomplete = false,
     } = options
 
     const arrows = {
@@ -33,6 +34,7 @@ mixin input(options = {})
       readonly = readonly
       pattern = pattern
       required = isRequired
+      autocomplete = isAutocomplete
     )  
     - if(arrow && arrows[arrow])
       div(
