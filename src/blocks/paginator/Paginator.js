@@ -88,7 +88,7 @@ class Paginator {
     && this.currentPage < this.pageCount - COUNT_PAGE;
   }
 
-  //   Методы создания и отображения страниц
+  //   Create and show pages
   #createPaginator() {
     let nextPage = Number(this.currentPage);
     let prevPage = Number(this.currentPage);
@@ -212,10 +212,10 @@ class Paginator {
     return el;
   }
 
-  //   Проверить видимость кнопок переключения
+  //   Toggle btns visibility
   #checkVisibilityBtn() {
     const activeItem = this.itemsPaginator.querySelector(`.${ACTIVE_JS}`);
-    // Скрыть и показать пред. кнопку
+    // Toggle visibility the prev btn
     if (Number(activeItem.dataset.number) === 1) {
       this.btnPrev.classList.add(HIDE);
     }
@@ -226,7 +226,7 @@ class Paginator {
       this.btnPrev.classList.remove(HIDE);
     }
 
-    // Скрыть и показать последнюю кнопку
+    // Toggle visibility the next btn
     if (Number(activeItem.dataset.number) === this.pageCount) {
       this.btnNext.classList.add(HIDE);
     }
@@ -238,7 +238,7 @@ class Paginator {
     }
   }
 
-  //   Клик по кнопке назад
+  //   Click on the prev btn
   #decrementPage() {
     if (this.currentPage !== 1) {
       this.#removePage();
@@ -249,7 +249,7 @@ class Paginator {
     }
   }
 
-  //   Клик по кнопке вперёд
+  //   Click on the next btn
   #incrementPage() {
     if (this.currentPage !== this.pageCount) {
       this.#removePage();
@@ -283,7 +283,7 @@ class Paginator {
     return page;
   }
 
-  //   Установить тек. страницу
+  //   Set the current page
   #setCurrentPage() {
     const page = this.#findCurrentPage();
     page.classList.add(ACTIVE_LI);
@@ -293,14 +293,14 @@ class Paginator {
     this.#createText();
   }
 
-  //   Удалить классы тек. страницы
+  //   Delete the classes of current page
   #removePage() {
     const current = this.#findCurrentPage();
     current.classList.remove(ACTIVE_LI);
     current.classList.remove(ACTIVE_JS);
   }
 
-  //   Создать строку описания
+  //  Create the description
   #createText() {
     let string = '';
     let lastCount = this.currentPage * this.itemsPerPage;
