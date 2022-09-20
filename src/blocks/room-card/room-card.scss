@@ -29,11 +29,10 @@
   }
 
   &__price {
-    padding: 7px 0px 0px 1px;
+    padding-top: 6px;
   }
 
   &__details {
-    border-bottom: 1px solid rgba($dark-color, 0.1);
     padding-bottom: 10px;
   }
 
@@ -43,6 +42,7 @@
 
   &__feedback {
     padding: 11px 0 0 2px;
+    border-top: 1px solid rgba($dark-color, 0.1);
   }
   &__reviews {
     color: rgba($dark-color, 0.5);

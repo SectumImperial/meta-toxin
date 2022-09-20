@@ -7,8 +7,8 @@
   &__content {
     max-width: $content;
     display: flex;
-    gap: 61px;
-    padding: 30px 5px 75px 5px;
+    gap: 59px;
+    padding: 31px 5px 75px 5px;
     margin: 0 auto;
 
     @media (max-width: $pc) {
@@ -17,9 +17,10 @@
     }
   }
 
-  // Фильтры
+  // filters
   &__filters {
-    max-width: 266px;
+    max-width: 268px;
+    padding: 0 1px;
 
     @media (max-width: $pc) {
       position: absolute;
@@ -47,7 +48,7 @@
   }
 
   &__rules {
-    margin-top: 30px;
+    margin-top: 28px;
   }
 
   &__checkboxes {
@@ -70,7 +71,7 @@
   }
 
   &__available {
-    margin-top: 32px;
+    margin-top: 33px;
   }
 
   &__facilities {
@@ -81,7 +82,7 @@
     margin-top: 28px;
   }
 
-  // Кнопка
+  // Button
   &__button {
     display: none;
     @media (max-width: $pc) {
@@ -89,7 +90,7 @@
     }
   }
 
-  // Секция комнат
+  // Room section
   &__rooms {
     width: 100%;
   }
