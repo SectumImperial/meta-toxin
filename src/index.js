@@ -23,7 +23,7 @@ const files = [
   'text-element',
   'social',
   'booking-card',
-  'datepick',
+  'datepicker',
   'input',
   'dropdown',
   'radio',

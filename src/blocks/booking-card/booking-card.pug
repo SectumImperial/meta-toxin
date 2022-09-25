@@ -2,7 +2,7 @@ include ../button/button.pug
 include ../title/title.pug
 include ../text-element/text-element.pug
 
-include ../datepick/datepick.pug
+include ../datepicker/datepicker.pug
 include ../dropdown/dropdown.pug
 
 mixin booking-card(options = {})
@@ -17,8 +17,8 @@ mixin booking-card(options = {})
           level: "h2",
           text: "Найдём номера под ваши пожелания",
         })
-      .booking-card__datepick
-        +datepick()
+      .booking-card__datepicker
+        +datepicker()
       .booking-card__dropdown
         .booking-card__subtitle
           +title({

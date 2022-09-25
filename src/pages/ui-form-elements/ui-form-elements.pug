@@ -4,7 +4,7 @@ include ../../blocks/ui-header/ui-header.pug
 include ../../blocks/input/input.pug
 include ../../blocks/title/title.pug
 include ../../blocks/dropdown/dropdown.pug
-include ../../blocks/datepick/datepick.pug
+include ../../blocks/datepicker/datepicker.pug
 include ../../blocks/checkbox/checkbox.pug
 include ../../blocks/checkbox-list/checkbox-list.pug
 include ../../blocks/radio/radio.pug
@@ -92,12 +92,12 @@ block content
                 isDate: true,
               })
             .form-elems__field.form-elems__field_bigger
-              +datepick({
+              +datepicker({
                 labelStart: "date Dropdown",
                 labelEnd: "date Dropdown"
               })
             .form-elems__field.form-elems__field_bigger
-              +datepick({
+              +datepicker({
                 labelAlone: "filter date dropdown",
                 isTwoInput: false,
               })

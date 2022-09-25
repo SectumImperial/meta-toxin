@@ -1,6 +1,6 @@
 include ../room-number/room-number.pug
 include ../room-price/room-price.pug
-include ../datepick/datepick.pug
+include ../datepicker/datepicker.pug
 include ../dropdown/dropdown.pug
 include ../order-counting/order-counting.pug
 
@@ -19,8 +19,8 @@ mixin order-card(options = {})
         }) 
         .order-card__price
           +room-price("9 990")
-      .order-card__datepick 
-       +datepick()
+      .order-card__datepicker 
+       +datepicker()
       .order-card__dropdown 
         span.order-card__subtitle Гости
         +dropdown({
@@ -40,7 +40,7 @@ mixin order-card(options = {})
            ]
         })
       .order-card__details 
-        .order-card__couting 
+        .order-card__counting 
           +order-counting({
             fees: {
               addFee: {

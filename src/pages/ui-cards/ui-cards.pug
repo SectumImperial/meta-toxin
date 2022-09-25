@@ -5,7 +5,7 @@ include ../../blocks/booking-card/booking-card.pug
 include ../../blocks/registration-card/registration-card.pug
 include ../../blocks/order-card/order-card.pug
 include ../../blocks/login-card/login-card.pug
-include ../../blocks/datepick/datepick.pug
+include ../../blocks/datepicker/datepicker.pug
 include ../../blocks/room-card/room-card.pug
 
 block variables 
@@ -27,7 +27,7 @@ block content
           +order-card()
           +login-card()
         .ui-cards__column
-          +datepick({
+          +datepicker({
             isOnlyCal: true,
           })
           +room-card({

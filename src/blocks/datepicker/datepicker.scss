@@ -1,9 +1,9 @@
 @use 'sass:math';
 @import '../../common/functions.scss';
 @import '../../common/variables.scss';
-@import './datepick_loaded.scss';
+@import './datepicker_loaded.scss';
 
-.datepick {
+.datepicker {
   position: relative;
 
   &__fields {
@@ -110,7 +110,7 @@
 }
 
 // Small cal and search room cal
-.datepick_small {
+.datepicker_small {
   .air-datepicker--content {
     padding: 0 7px 7px 7px;
 
@@ -133,7 +133,7 @@
   }
 }
 
-.datepick_btns {
+.datepicker_btns {
   display: flex;
   justify-content: space-between;
 }
@@ -214,6 +214,11 @@
         border-radius: 50%;
         background-color: $primary-color;
       }
+    }
+
+    .-day-.old-date {
+      color: rgba(229, 229, 229, 0.5);
+      cursor: not-allowed;
     }
 
     .-current- {

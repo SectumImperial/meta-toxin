@@ -1,4 +1,4 @@
-include ../datepick/datepick.pug
+include ../datepicker/datepicker.pug
 include ../dropdown/dropdown.pug
 include ../range-slider/range-slider.pug
 include ../title/title.pug
@@ -18,8 +18,8 @@ mixin search-room(options = {})
           action = "error-page.html",
           class = 'search-room__form',
         )
-          .search-room__datepick
-            +datepick({
+          .search-room__datepicker
+            +datepicker({
               isTwoInput: false,
             })
 
