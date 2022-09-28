@@ -1,8 +1,10 @@
 import {
   AMOUNT,
+  TOGGLE,
   TOGGLE_MIN,
   TOGGLE_MAX,
   RANGE_PROGRESS,
+  SLIDER,
 } from './constants';
 
 class Slider {
@@ -18,14 +20,21 @@ class Slider {
   }
 
   init() {
-    this.#findElems();
+    this.#findElements();
     this.#createVars();
-    this.#setValues();
+    this.#validateRange();
+    this.#validateStep();
+    this.#checkValues();
+    this.#checkPercents();
+    this.#setProgress();
     this.#addListeners();
+    this.#setTogglesState();
   }
 
-  #findElems() {
+  #findElements() {
     this.field = this.slider.querySelector(`.${AMOUNT}`);
+    this.toggles = this.slider.querySelectorAll(`.${TOGGLE}`);
+    this.sliderTrack = this.slider.querySelector(`.${SLIDER}`);
     this.toggleMin = this.slider.querySelector(`.${TOGGLE_MIN}`);
     this.toggleMax = this.slider.querySelector(`.${TOGGLE_MAX}`);
     this.rangeProgress = this.slider.querySelector(`.${RANGE_PROGRESS}`);
@@ -34,85 +43,336 @@ class Slider {
   #createVars() {
     this.min = this.options.min ? this.options.min : 0;
     this.max = this.options.max ? this.options.max : 15000;
+    this.step = this.options.step ? this.options.step : 1;
+    if (Number.isNaN(this.step)) this.step = 1;
+    this.valueFrom = this.options.initialStart ? this.options.initialStart : this.min;
+    this.valueTo = this.options.initialEnd ? this.options.initialEnd : this.max;
     this.addedText = this.options.addedText ? this.options.addedText : '';
+    this.stepPercent = Number((this.step / this.#findValPercent()));
 
-    this.toggleMin.value = this.options.initialStart
-      ? this.options.initialStart
-      : this.min;
-    this.toggleMax.value = this.options.initialEnd
-      ? this.options.initialEnd
-      : this.max;
+    this.togglePercentFrom = 0;
+    this.togglePercentTo = 100;
+  }
 
-    this.rangeProgress.style.left = `${
-      (this.toggleMin.value / this.max) * 100
-    }%`;
-    this.rangeProgress.style.right = `${
-      100 - (this.toggleMax.value / this.max) * 100
-    }%`;
+  #validateRange() {
+    if (Number.isNaN(this.min)) this.min = 0;
+    if (Number.isNaN(this.max)) this.max = 15000;
+    if (this.min === this.max) {
+      this.max = this.min + this.step;
+    }
+    if (this.min > this.max) {
+      [this.min, this.max] = [this.max, this.min];
+    }
+  }
+
+  #validateStep() {
+    const allRange = this.#findRange();
+
+    if (this.step > allRange) {
+      this.step = allRange;
+    }
+    if (!this.step) this.step = 1;
+  }
+
+  #checkValues() {
+    this.valueFrom = this.#checkValue(this.valueFrom);
+
+    if (this.isRange) {
+      this.valueTo = this.checkValue(this.valueTo);
+    }
+
+    if (this.valueTo !== undefined && this.valueFrom > this.valueTo && this.isRange) {
+      [this.valueFrom, this.valueTo] = [this.valueTo, this.valueFrom];
+    }
+  }
+
+  #checkValue(value) {
+    let result = value;
+    if (Number.isNaN(result)) result = 0;
+    if (result === this.max) {
+      result = this.max;
+      return result;
+    }
+
+    if (result % this.step !== 0 && result !== this.min) {
+      const countStep = Math.round((result - this.min) / this.step);
+      const countVal = this.min + (this.step * countStep);
+      result = countVal;
+    }
+
+    if (result > this.max) {
+      result = this.max;
+    }
+
+    if (result < this.min) {
+      result = this.min;
+    }
+
+    return result;
   }
 
   #addListeners() {
-    this.toggleMin.addEventListener('input', this.#handleToggleMinInput.bind(this));
-    this.toggleMax.addEventListener(
-      'input',
-      this.#handleToggleMaxInput.bind(this),
-    );
+    this.toggles.forEach((e) => {
+      e.addEventListener('mousedown', this.#handleToggleMouseDown.bind(this));
+      e.addEventListener('dragstart', () => false);
+    });
   }
 
-  #setValues() {
-    const fitstVal = Slider.#performValue(this.toggleMin.value);
-    const secondVal = Slider.#performValue(this.toggleMax.value);
-    this.field.value = `${fitstVal}${this.addedText} - ${secondVal}${this.addedText}`;
+  #handleToggleMouseDown(e) {
+    e.preventDefault();
+    const { target } = e;
+    const shiftX = e.clientX - target.getBoundingClientRect().left;
+
+    const onMouseMove = (event) => {
+      const coordsMove = event.clientX - shiftX - this.slider.getBoundingClientRect().left;
+      const percent = Slider.performMoveToPercent({
+        coordsMove,
+        scaleSize: this.sliderTrack.offsetWidth,
+      });
+
+      this.#performMove(percent, target);
+    };
+
+    const onMouseUp = () => {
+      document.removeEventListener('mouseup', onMouseUp);
+      document.removeEventListener('mousemove', onMouseMove);
+    };
+
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', onMouseUp);
   }
 
-  static #performValue(val) {
-    return Number(val).toLocaleString('ru-RU');
-  }
+  #performMove(percentMove, toggle) {
+    const nearestPrevCountStep = Math.floor(percentMove / this.stepPercent);
+    const nearestNextCountStep = Math.ceil(percentMove / this.stepPercent);
 
-  #colorRange() {
-    this.rangeProgress.style.left = `${
-      (this.toggleMin.value / this.max) * 100
-    }%`;
-    this.rangeProgress.style.right = `${
-      100 - (this.toggleMax.value / this.max) * 100
-    }%`;
-  }
+    const prevStep = this.min + (this.step * nearestPrevCountStep);
+    const nextStep = this.min + (this.step * nearestNextCountStep);
 
-  #handleToggleMinInput() {
-    if (
-      Number(this.toggleMax.value) - Number(this.toggleMin.value)
-      <= this.min
-    ) {
-      this.toggleMin.value = Number(this.toggleMax.value) - this.min;
-    }
+    const prevPercent = this.stepPercent * nearestPrevCountStep;
+    const nextPercent = this.stepPercent * nearestNextCountStep;
 
-    this.#setValues();
-    this.#colorRange();
+    const halfStep = Number((this.stepPercent / 2).toFixed(3));
+    const halfMove = Number((percentMove % this.stepPercent).toFixed(3));
 
-    this.#checkVisibilityToggle();
-  }
+    let value;
+    let percent;
 
-  #checkVisibilityToggle() {
-    if (
-      Number(this.toggleMin.value) === this.max
-      && Number(this.toggleMax.value) === this.max
-    ) {
-      this.toggleMax.style.display = 'none';
+    if (halfMove < halfStep) {
+      value = prevStep;
+      percent = prevPercent;
     } else {
-      this.toggleMax.style.display = 'block';
+      value = nextStep;
+      percent = nextPercent;
+    }
+
+    const allSteps = Math.ceil((this.max - this.min) / this.step);
+    const beforeEndPercent = this.stepPercent * (allSteps - 1);
+
+    if (percentMove === 100 || 100 - ((100 - beforeEndPercent) / 2) < percentMove) {
+      value = this.max;
+      percent = 100;
+    }
+    if (percent === undefined) percent = this.stepPercent * nearestPrevCountStep;
+
+    percent = Number(percent.toFixed(3));
+    const toggleId = toggle.classList.contains(TOGGLE_MIN) ? 'min' : 'max';
+    this.#updatePosition({
+      value,
+      toggle: toggleId,
+      percent,
+    });
+  }
+
+  #updatePosition(values = {}) {
+    const {
+      value,
+      toggle,
+      percent,
+    } = values;
+
+    if (toggle === 'min') {
+      this.#handleMoveFrom({
+        value,
+        toggle,
+        percent,
+      });
+    }
+
+    if (toggle === 'max') {
+      this.#handleMoveTo({
+        value,
+        toggle,
+        percent,
+      });
     }
   }
 
-  #handleToggleMaxInput() {
-    if (
-      Number(this.toggleMax.value) - Number(this.toggleMin.value)
-      <= this.min
-    ) {
-      this.toggleMax.value = Number(this.toggleMin.value) + this.min;
+  #handleMoveTo(values) {
+    const {
+      value,
+      toggle,
+      percent,
+    } = values;
+
+    this.#updateMoved(value, percent, toggle);
+
+    const isTheSamePos = this.#isValTheSamePos({
+      value,
+      toggle,
+      percent,
+    });
+
+    if (isTheSamePos) {
+      this.#updateMoved(this.valueFrom, this.togglePercentFrom, toggle);
+    } else {
+      this.#updateMoved(value, percent, toggle);
+    }
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  #handleMoveFrom(values) {
+    const {
+      value,
+      toggle,
+      percent,
+    } = values;
+
+    const isTheSamePos = this.#isValTheSamePos({
+      value,
+      toggle,
+      percent,
+    });
+
+    if (isTheSamePos) {
+      this.#updateMoved(this.valueTo, this.togglePercentTo, toggle);
+    } else {
+      this.#updateMoved(value, percent, toggle);
+    }
+  }
+
+  static performMoveToPercent(data = {}) {
+    const {
+      coordsMove, scaleSize,
+    } = data;
+
+    const percent = scaleSize / 100;
+    let percentMove = Number((coordsMove / percent).toFixed(2));
+    if (percentMove < 0) percentMove = 0;
+    if (percentMove > 100) percentMove = 100;
+
+    return percentMove;
+  }
+
+  #findValPercent() {
+    const range = this.#findRange();
+    const percent = range / 100;
+    return percent;
+  }
+
+  #findRange() {
+    const range = this.max - this.min;
+    return range;
+  }
+
+  #checkPercents() {
+    this.togglePercentFrom = this.checkPercent('valueFrom');
+    this.togglePercentTo = this.checkPercent('valueTo');
+  }
+
+  checkPercent(value = 'valueFrom') {
+    const valOfRange = this[value] - this.min;
+    const currentPercent = Number((valOfRange / (this.#findRange() / 100)).toFixed(3));
+    return Number(currentPercent);
+  }
+
+  #isValTheSamePos(values = {}) {
+    const {
+      value,
+      toggle,
+      percent,
+    } = values;
+    let secondTogglePosition;
+    let secondToggleValue;
+
+    if (toggle === 'min') {
+      secondTogglePosition = this.togglePercentTo;
+      secondToggleValue = this.valueTo;
     }
 
-    this.#setValues();
-    this.#colorRange();
+    if (toggle === 'max') {
+      secondTogglePosition = this.togglePercentFrom;
+      secondToggleValue = this.valueFrom;
+    }
+
+    if (toggle === 'min'
+    && Number(value) >= Number(secondToggleValue)
+    && Number(percent) >= Number(secondTogglePosition)) {
+      return true;
+    }
+
+    if (toggle === 'max'
+    && Number(value) <= Number(secondToggleValue)
+    && Number(percent) <= Number(secondTogglePosition)) {
+      return true;
+    }
+
+    return false;
+  }
+
+  #updateMoved(val, percent, toggle) {
+    if (Number.isNaN(val) || percent === undefined) throw new Error('Something wrong with setting new values');
+    this.#setToggleState({
+      toggle,
+      val,
+      percent,
+    });
+
+    this.#setProgress();
+  }
+
+  #setTogglesState() {
+    this.#setToggleState({
+      toggle: 'min',
+      val: this.valueFrom,
+      percent: this.togglePercentFrom,
+    });
+    this.#setToggleState({
+      toggle: 'max',
+      val: this.valueTo,
+      percent: this.togglePercentTo,
+    });
+  }
+
+  #setToggleState(state = {}) {
+    const {
+      toggle,
+      val,
+      percent,
+    } = state;
+
+    if (toggle === 'min') {
+      this.valueFrom = val;
+      this.togglePercentFrom = percent;
+      this.toggleMin.style.left = `${percent}%`;
+    }
+
+    if (toggle === 'max') {
+      this.valueTo = val;
+      this.togglePercentTo = percent;
+      this.toggleMax.style.left = `${percent}%`;
+    }
+
+    this.field.value = `${this.valueFrom}${this.addedText} - ${this.valueTo}${this.addedText}`;
+  }
+
+  #setProgress() {
+    const widthProgress = this.togglePercentTo ? this.togglePercentTo - this.togglePercentFrom : 0;
+    const positionStart = this.togglePercentFrom;
+    const positionEnd = widthProgress;
+
+    this.rangeProgress.style.left = `${positionStart}%`;
+    this.rangeProgress.style.width = `${positionEnd}%`;
   }
 }
 
