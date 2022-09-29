@@ -426,9 +426,17 @@ class Slider {
       this.toggleMax.style.left = `${percent}%`;
     }
 
-    this.field.value = `${this.valueFrom}${this.addedText} - ${this.valueTo}${this.addedText}`;
+    const firstValue = Slider.formatValue(this.valueFrom);
+    const secondValue = Slider.formatValue(this.valueTo);
+
+    this.field.value = `${firstValue}${this.addedText} - ${secondValue}${this.addedText}`;
 
     this.#checkZIndex();
+  }
+
+  static formatValue(value) {
+    const result = new Intl.NumberFormat('ru-RU').format(value);
+    return result;
   }
 
   #setProgress() {
