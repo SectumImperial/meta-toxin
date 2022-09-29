@@ -238,22 +238,33 @@ class Datepicker {
   }
 
   #handleContainerClick({ target }) {
-    if (target.classList.contains('old-date')) return;
-
+    if (target.classList.contains('old-date') || target.classList.contains('-days-')) return;
     const navTitle = this.datepicker.querySelector('.air-datepicker-nav--title');
     navTitle.innerText = Datepicker.deleteComma(navTitle);
 
+    const date = new Date(this.dp.rangeDateFrom);
+    const isLessThanNow = Datepicker.isLessDateThanNow({
+      year: date.getFullYear(),
+      month: date.getMonth(),
+      day: date.getDate(),
+    });
+
     if (this.isTwoInputs) {
       if (this.dp.rangeDateFrom) {
+        const currentDate = new Date();
+        const firstDate = isLessThanNow ? currentDate : this.dp.rangeDateFrom;
         this.firstItem.value = Datepicker.formatDate({
-          firstDate: this.dp.rangeDateFrom,
+          firstDate,
           mod: 'twoInputMod',
         });
       }
 
       if (this.dp.rangeDateTo) {
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        const firstDate = isLessThanNow ? tomorrow : this.dp.rangeDateTo;
         this.secondItem.value = Datepicker.formatDate({
-          firstDate: this.dp.rangeDateTo,
+          firstDate,
           mod: 'twoInputMod',
         });
       }
