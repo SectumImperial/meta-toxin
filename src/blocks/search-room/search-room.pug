@@ -52,10 +52,10 @@ mixin search-room(options = {})
               +range-slider({
                 name: "Диапазон цены",   
                 description: "Стоимость за сутки пребывания в номере",
-                step: 100,
                 rangeOptions: {
                   min: 0,
                   max: 15000,
+                  step: 10,
                   initialStart: 5000,
                   initialEnd: 10000,
                   addedText: "₽",

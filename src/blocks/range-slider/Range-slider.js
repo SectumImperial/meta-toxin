@@ -115,14 +115,27 @@ class Slider {
     this.toggles.forEach((e) => {
       e.addEventListener('mousedown', this.#handleToggleMouseDown.bind(this));
       e.addEventListener('dragstart', () => false);
+      e.addEventListener(
+        'touchstart',
+        this.#handleToggleTouchStart.bind(this),
+        { passive: true },
+      );
+      e.addEventListener('keydown', this.#handleToggleKeyDown.bind(this));
     });
   }
 
   #handleToggleMouseDown(e) {
     e.preventDefault();
-    const { target } = e;
-    const shiftX = e.clientX - target.getBoundingClientRect().left;
+    this.#performStartMove(e);
+  }
 
+  #handleToggleTouchStart(e) {
+    this.#performStartTouch(e);
+  }
+
+  #performStartMove(e) {
+    const { target } = e;
+    const shiftX = e.clientX - e.target.getBoundingClientRect().left;
     const onMouseMove = (event) => {
       const coordsMove = event.clientX - shiftX - this.slider.getBoundingClientRect().left;
       const percent = Slider.performMoveToPercent({
@@ -140,6 +153,57 @@ class Slider {
 
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
+  }
+
+  #performStartTouch(e) {
+    const { target } = e;
+    const moved = e.touches[0].clientX - target.getBoundingClientRect().left;
+    const handleToggleTouchMove = (event) => {
+      e.stopImmediatePropagation();
+      const sliderSize = this.slider.getBoundingClientRect().left;
+      const coordsMove = event.touches[0].clientX - moved - sliderSize;
+      const percent = Slider.performMoveToPercent({
+        coordsMove,
+        scaleSize: this.sliderTrack.offsetWidth,
+      });
+
+      this.#performMove(percent, target);
+    };
+
+    const handleToggleTouchEnd = () => {
+      document.removeEventListener('touchmove', handleToggleTouchMove);
+      document.removeEventListener('touchend', handleToggleTouchEnd);
+    };
+
+    document.addEventListener('touchmove', handleToggleTouchMove);
+    document.addEventListener('touchend', handleToggleTouchEnd);
+  }
+
+  #handleToggleKeyDown(e) {
+    e.preventDefault();
+    const { key, target } = e;
+    if (key === 'ArrowLeft') {
+      this.#performKeyDown('decrement', target);
+    }
+
+    if (key === 'ArrowRight') {
+      this.#performKeyDown('increment', target);
+    }
+  }
+
+  #performKeyDown(action, target) {
+    const togglePercent = target.classList.contains(TOGGLE_MIN) ? 'togglePercentFrom' : 'togglePercentTo';
+    if (action === 'decrement') {
+      const percentMove = this[togglePercent] - this.stepPercent < 0
+        ? 0 : this[togglePercent] - this.stepPercent;
+      this.#performMove(percentMove, target);
+    }
+
+    if (action === 'increment') {
+      const percentMove = this[togglePercent] + this.stepPercent > 100
+        ? 100 : this[togglePercent] + this.stepPercent;
+      this.#performMove(percentMove, target);
+    }
   }
 
   #performMove(percentMove, toggle) {
@@ -230,7 +294,6 @@ class Slider {
     }
   }
 
-  // eslint-disable-next-line class-methods-use-this
   #handleMoveFrom(values) {
     const {
       value,
@@ -364,6 +427,8 @@ class Slider {
     }
 
     this.field.value = `${this.valueFrom}${this.addedText} - ${this.valueTo}${this.addedText}`;
+
+    this.#checkZIndex();
   }
 
   #setProgress() {
@@ -373,6 +438,18 @@ class Slider {
 
     this.rangeProgress.style.left = `${positionStart}%`;
     this.rangeProgress.style.width = `${positionEnd}%`;
+  }
+
+  #checkZIndex() {
+    if (this.togglePercentTo === 100 && this.togglePercentFrom === 100) {
+      this.toggleMin.style.zIndex = '10';
+      this.toggleMax.style.zIndex = '5';
+    }
+
+    if (this.togglePercentTo === 0 && this.togglePercentFrom === 0) {
+      this.toggleMin.style.zIndex = '5';
+      this.toggleMax.style.zIndex = '10';
+    }
   }
 }
 
