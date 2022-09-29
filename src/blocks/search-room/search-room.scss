@@ -8,7 +8,7 @@
     max-width: $content;
     display: flex;
     gap: 59px;
-    padding: 31px 5px 75px 5px;
+    padding: 31px 5px 75px 4px;
     margin: 0 auto;
 
     @media (max-width: $pc) {
@@ -48,7 +48,7 @@
   }
 
   &__rules {
-    margin-top: 28px;
+    margin-top: 30px;
   }
 
   &__checkboxes {
@@ -63,23 +63,25 @@
 
     &_wide-corr {
       max-width: 234px;
+      padding-top: 12px;
     }
 
     &_inv-help {
       max-width: 253px;
+      padding-top: 9px;
     }
   }
 
   &__available {
-    margin-top: 33px;
+    margin-top: 31px;
   }
 
   &__facilities {
-    margin-top: 28px;
+    margin-top: 29px;
   }
 
   &__add-facilities {
-    margin-top: 28px;
+    margin-top: 27px;
   }
 
   // Button
@@ -96,6 +98,7 @@
   }
 
   &__section-title {
+    padding-left: 1px;
     @media (max-width: $pc) {
       text-align: center;
     }
@@ -108,7 +111,7 @@
   &__rooms-content {
     padding-top: 21px;
     display: flex;
-    gap: 20px 12px;
+    gap: 21px 12px;
     flex-wrap: wrap;
 
     @media (max-width: $pc) {

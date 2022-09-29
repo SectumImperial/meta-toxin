@@ -6,7 +6,7 @@
   &__fields {
     display: flex;
     justify-content: space-between;
-    padding-bottom: 22px;
+    padding-bottom: 26px;
   }
 
   &__name {
@@ -29,7 +29,7 @@
   &__description {
     font-size: $fontTiny;
     color: rgba($dark-color, 0.5);
-    padding-top: 21px;
+    padding-top: 16px;
 
     //  PP
     white-space: nowrap;
@@ -65,8 +65,8 @@
     top: 50%;
     transform: translate(-50%,-50%);
     z-index: 2;
-    width: 14px;
-    height: 14px;
+    width: 16px;
+    height: 16px;
     border: 2px solid white;
     border-radius: 50%;
 
