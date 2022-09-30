@@ -1,8 +1,6 @@
 extends ../../layouts/page-layout/page-layout.pug
 
-include ../../blocks/header/header.pug
 include ../../blocks/landing/landing.pug
-include ../../blocks/footer/footer.pug
 
 block variables 
   - 
@@ -11,124 +9,7 @@ block variables
     const keywords = "Отель, Toxin, забронировать номер"
 
 block content
-  header.page__header
-    +header({
-      isLogged,
-      isShadow: true,
-      navigation: {
-      items: [
-        {
-          content: "О нас",
-          href: "error-page.html",
-          },
-        {
-          content: "Услуги",
-          href: "error-page.html",
-          subItems: [
-            {
-              content: "Бассйен",
-              href: "error-page.html"
-            },
-            {
-              content: "Вызов такси",
-              href: "error-page.html"
-            },
-            {
-              content: "Конференц-зал",
-              href: "error-page.html"
-            },
-            {
-              content: "Крематорий",
-              href: "error-page.html"
-            }
-          ]
-        },
-        {
-          content: "Вакансии",
-          href: "error-page.html"
-        },
-        {
-          content: "Новости",
-          href: "error-page.html"
-        },
-        {
-          content: "Соглашения",
-          href: "error-page.html",
-          subItems: [
-            {
-              content: "Общие положения",
-              href: "error-page.html"
-            },
-            {
-              content: "Заказ бронирвоания",
-              href: "error-page.html"
-            },
-            {
-              content: "Отмена бронирования",
-              href: "error-page.html"
-            },
-            {
-              content: "Пользование крематорием",
-              href: "error-page.html"
-            }
-          ]
-        }
-      ]} 
-      })
-  main.page__main
-    +landing()
-  footer.page__footer
-    +footer({
-      contentPromo: "Бронирование номеров в лучшем отеле 2019 года по версии ассоциации «Отельные взгляды»",
-      navItems: [{
-        titleItem: "Навигация",
-        items: [
-          {
-          content: "О нас",
-          },
-          {
-          content: "Новости",
-          },
-          {
-          content: "Служба поддержки",
-          },
-          {
-          content: "Услуги",
-          }
-        ]
-      },
-      {
-        titleItem: "О нас",
-        items: [{
-          content: "О сервисе",
-          },
-          {
-          content: "Наша команда",
-          },
-          {
-          content: "Вакансии",
-          },
-          {
-          content: "Инвесторы"
-          }
-        ]
-      },
-      {
-        titleItem: "Служба поддержки",
-        items: [{
-          content: "Соглашения",
-          },
-          {
-          content: "Сообщества",
-          },
-          {
-          content: "Связь с нами",
-          },
-        ]
-      }]
-    })
-
-
+  +landing()
 
       
 

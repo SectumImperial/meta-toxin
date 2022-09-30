@@ -51,10 +51,10 @@
     font-size: $fontMedium;
     color: $dark-color;
     padding-top: 16px;
-    padding-right: 3px;
+    padding-right: 2px;
   }
 
-  &__decorarion {
+  &__decoration {
     width: 100%;
     border-bottom: 1px dashed rgba($dark-color, 0.25);
     align-self: flex-end;

@@ -5,7 +5,7 @@
   @include boxes;
 
   max-width: 380px;
-  padding: 40px 29px 30px 29px;
+  padding: 39px 29px 30px 29px;
   
   @media (max-width: $mobile) {
     padding: 40px 15px 30px 15px;
@@ -23,6 +23,6 @@
 
   &__subtitle {
     text-transform: uppercase;
-    padding-bottom: 5px;
+    padding-bottom: 4px;
   }
 }

@@ -10,19 +10,9 @@ mixin footer(options = {})
     const {
       contentPromo = "",
       navItems = [],
-      isBorder = false
     } = options 
 
-  -
-    let mod = ""
-    if(border) {
-      mod = "footer_bordered"
-    }
-
-
-  section.footer(
-    class= mod
-  )
+  section.footer.footer_bordered
     .footer__blocks
       .footer__block
         .footer__logo

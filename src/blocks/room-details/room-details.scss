@@ -47,7 +47,7 @@
 
   // Information
   &__main {
-    padding: 70px 140px 71px;
+    padding: 70px 140px 71px 139px;
     margin: 0 auto;
 
     display: flex;
@@ -76,6 +76,7 @@
 
     &_cancel {
       padding-top: 11px;
+      padding-left: 1px;
     }
   }
 
@@ -133,6 +134,7 @@
   &__rules {
     grid-area: rules;
     padding-top: 10px;
+    padding-left: 1px;
     @media (max-width: 699px) {
       align-self: flex-start;
     }
@@ -177,7 +179,7 @@
   }
 
   &__cancel-text {
-    padding: 7px 10px 0 0;
+    padding: 7px 10px 0 1px;
     line-height: 24px;
     color: rgba($dark-color, 0.75);
   }

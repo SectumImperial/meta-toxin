@@ -285,7 +285,7 @@ class Datepicker {
       });
     }
 
-    // Delete old lines with selectig a new line
+    // Delete old lines with selecting a new line
     this.#clearRange('start-range');
     this.#clearRange('end-range');
 
