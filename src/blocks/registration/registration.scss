@@ -1,6 +1,8 @@
-.registration {
-  min-height: 684px;
+@use 'sass:math';
+@import '../../common/functions.scss';
+@import '../../common/variables.scss';
 
+.registration {
   display: flex;
   justify-content: center;
 
@@ -8,10 +10,14 @@
   background-size: cover;
 
   &__container {
-    padding: 19px 5px;
+    padding: 19px 5px 18px;
   }
 
   &__card {
     margin-left: 8px;
+
+    @media (max-width: $pc) {
+      margin: auto;
+    }
   }
 }
