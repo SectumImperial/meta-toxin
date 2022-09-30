@@ -1,58 +1,74 @@
-extends ../../layouts/page-layout/page-layout.pug
-block content
+doctype html
+html(lang="ru")
+  head
+    meta(charset="UTF-8")
+    meta(name="description" content=description)
+    meta(name="keywords" content=keywords)
+    meta(http-equiv="X-UA-Compatible" content="IE=edge")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    meta(name='msapplication-TileColor', content='#da532c')
+    meta(name='msapplication-config', content='./favicon/browserconfig.xml')
+    title #{title} 
+    link(rel='apple-touch-icon', sizes='180x180', href='./favicon/apple-touch-icon.png')
+    link(rel='icon', type='image/png', sizes='32x32', href='./favicon/favicon-32x32.png')
+    link(rel='icon', type='image/png', sizes='16x16', href='./favicon/favicon-16x16.png')
+    link(rel='manifest', href='./favicon/site.webmanifest')
+    link(rel='mask-icon', href='./favicon/safari-pinned-tab.svg', color='#5bbad5')
+    meta(name='theme-color', content='#ffffff')
+  body.page
     main.start-page
       .start-page__pages
         .start-page__types.start-page__types_website
-         h2.start-page__title= "Website pages"
-         ul.start-page__pages-list
+          h2.start-page__title= "Website pages"
+          ul.start-page__pages-list
           li.start-page__pages-item 
-           a(
-             class = "start-page__pages-link"
-             href ="landing-page.html"
-           ) Landing Page
+            a(
+              class = "start-page__pages-link"
+              href ="landing-page.html"
+            ) Landing Page
           li.start-page__pages-item 
-           a(
-             class = "start-page__pages-link"
-             href ="login-page.html"
-           ) Login Page
+            a(
+              class = "start-page__pages-link"
+              href ="login-page.html"
+            ) Login Page
           li.start-page__pages-item 
-           a(
-             class = "start-page__pages-link"
-             href ="registration-page.html"
-           ) Registration Page
+            a(
+              class = "start-page__pages-link"
+              href ="registration-page.html"
+            ) Registration Page
           li.start-page__pages-item 
-           a(
-             class = "start-page__pages-link"
-             href ="search-page.html"
-           ) Search room Page
+            a(
+              class = "start-page__pages-link"
+              href ="search-page.html"
+            ) Search room Page
           li.start-page__pages-item 
-           a(
-             class = "start-page__pages-link"
-             href ="room-page.html"
-           ) Room details Page
+            a(
+              class = "start-page__pages-link"
+              href ="room-page.html"
+            ) Room details Page
         .start-page__types.start-page__types_ui
           h2.start-page__title= "UI pages"
           ul.start-page__pages-list
             li.start-page__pages-item 
-             a(
-               class = "start-page__pages-link"
-               href ="ui-colors-type.html"
-             )= "Color & type page"
+              a(
+                class = "start-page__pages-link"
+                href ="ui-colors-type.html"
+              )= "Color & type page"
             li.start-page__pages-item 
-             a(
-               class = "start-page__pages-link"
-               href ="ui-cards.html"
-             )= "Cards"
+              a(
+                class = "start-page__pages-link"
+                href ="ui-cards.html"
+              )= "Cards"
             li.start-page__pages-item 
-             a(
-               class = "start-page__pages-link"
-               href ="ui-headers-footers.html"
-             )= "Heders & Footers"
+              a(
+                class = "start-page__pages-link"
+                href ="ui-headers-footers.html"
+              )= "Headers & Footers"
             li.start-page__pages-item 
-             a(
-               class = "start-page__pages-link"
-               href ="ui-form-elements.html"
-             )= "Form Elments"
+              a(
+                class = "start-page__pages-link"
+                href ="ui-form-elements.html"
+              )= "Form Elements"
 
 
 
