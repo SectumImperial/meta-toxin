@@ -47,6 +47,7 @@ const files = [
   'registration-card',
   'login-card',
   'ui-header',
+  'subscription-field',
 ];
 
 // eslint-disable-next-line global-require, import/no-dynamic-require

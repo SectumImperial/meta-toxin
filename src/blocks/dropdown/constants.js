@@ -5,7 +5,7 @@ const CONTENT = 'js-dropdown__content';
 const BTN_CLEAR = 'js-dropdown__button_clear';
 const BTN_ACCEPT = 'js-dropdown__button_accept';
 const COUNT_ELEM = 'js-dropdown__count';
-const COUTER = 'js-dropdown__counter';
+const COUNTER = 'js-dropdown__counter';
 const BTNS_DEC = 'js-dropdown__btn_decrement';
 const BTNS_INC = 'js-dropdown__btn_increment';
 const TYPE = 'js-dropdown__type';
@@ -23,7 +23,7 @@ export {
   BTN_CLEAR,
   BTN_ACCEPT,
   COUNT_ELEM,
-  COUTER,
+  COUNTER,
   BTNS_DEC,
   BTNS_INC,
   TYPE,

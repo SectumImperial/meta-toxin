@@ -10,7 +10,7 @@ import {
   BTN_CLEAR,
   BTN_ACCEPT,
   COUNT_ELEM,
-  COUTER,
+  COUNTER,
   BTNS_DEC,
   BTNS_INC,
   TYPE,
@@ -52,13 +52,9 @@ class Dropdown {
     this.dropdownContent = this.dropdown.querySelector(`.${CONTENT}`);
     this.btnClear = this.dropdown.querySelector(`.${BTN_CLEAR}`);
     this.btnAccept = this.dropdown.querySelector(`.${BTN_ACCEPT}`);
-    this.counter = this.dropdown.querySelector(`.${COUTER}`);
-    this.btnsDecrement = this.counter.querySelectorAll(
-      `.${BTNS_DEC}`,
-    );
-    this.btnsIncrement = this.counter.querySelectorAll(
-      `.${BTNS_INC}`,
-    );
+    this.counter = this.dropdown.querySelector(`.${COUNTER}`);
+    this.btnsDecrement = this.counter.querySelectorAll(`.${BTNS_DEC}`);
+    this.btnsIncrement = this.counter.querySelectorAll(`.${BTNS_INC}`);
 
     this.counts = this.dropdown.querySelectorAll(`.${COUNT_ELEM}`);
   }
@@ -95,7 +91,9 @@ class Dropdown {
     this.preset.forEach((e) => {
       const key = Object.keys(e).join('');
       const value = Object.values(e).join('');
-      const count = this.dropdown.querySelector(`.${COUNT_ELEM}[data-item="${key}"]`);
+      const count = this.dropdown.querySelector(
+        `.${COUNT_ELEM}[data-item="${key}"]`,
+      );
       if (!count) return;
       count.value = value;
       this.#performData();
@@ -109,13 +107,22 @@ class Dropdown {
       this.dropdownContent.classList.toggle(ACTIVE);
     });
 
-    this.dropdownInput.addEventListener('keydown', this.#handleInputKeyDown.bind(this));
+    this.dropdownInput.addEventListener(
+      'keydown',
+      this.#handleInputKeyDown.bind(this),
+    );
 
     this.btnsDecrement.forEach((item) => item.addEventListener('click', this.#handleDecrBtnClick.bind(this)));
     this.btnsIncrement.forEach((item) => item.addEventListener('click', this.#handleIncrBtnClick.bind(this)));
 
-    this.btnClear.addEventListener('click', this.#handleBtnClearClick.bind(this));
-    this.btnAccept.addEventListener('click', this.#handleBtnAcceptClick.bind(this));
+    this.btnClear.addEventListener(
+      'click',
+      this.#handleBtnClearClick.bind(this),
+    );
+    this.btnAccept.addEventListener(
+      'click',
+      this.#handleBtnAcceptClick.bind(this),
+    );
 
     document.addEventListener('click', this.#handleDocumentClick.bind(this));
   }
@@ -160,9 +167,7 @@ class Dropdown {
 
   #createCountsMap() {
     const countMap = new Map();
-    const counts = [...this.counts].filter(
-      (e) => Number(e.value) > 0,
-    );
+    const counts = [...this.counts].filter((e) => Number(e.value) > 0);
 
     counts.forEach((count) => {
       if (Number.isNaN(Number(count.value))) {
@@ -187,10 +192,7 @@ class Dropdown {
   }
 
   static checkDecrementDisabled(count, target) {
-    if (
-      Number(count.value) > 0
-      && target.classList.contains(DISABLED)
-    ) {
+    if (Number(count.value) > 0 && target.classList.contains(DISABLED)) {
       target.classList.remove(DISABLED);
     }
     if (target.classList.contains(DISABLED)) return;
@@ -248,9 +250,15 @@ class Dropdown {
   #checkInfants() {
     const counts = Array.from(this.counts, (e) => e.value);
     const sum = counts.reduce((prev, curr) => Number(prev) + Number(curr), 0);
-    const infantCount = this.dropdown.querySelector(`.${COUNT_ELEM}[data-item="Младенцы"]`).value;
-    const adult = this.dropdown.querySelector(`.${COUNT_ELEM}[data-item="Взрослые"]`);
-    const adultDecrementBtn = adult.closest('.dropdown__items-nav').querySelector(`.${BTNS_DEC}`);
+    const infantCount = this.dropdown.querySelector(
+      `.${COUNT_ELEM}[data-item="Младенцы"]`,
+    ).value;
+    const adult = this.dropdown.querySelector(
+      `.${COUNT_ELEM}[data-item="Взрослые"]`,
+    );
+    const adultDecrementBtn = adult
+      .closest('.dropdown__items-nav')
+      .querySelector(`.${BTNS_DEC}`);
     if (sum <= infantCount && sum !== 0 && infantCount !== 0) {
       adult.value = Number(adult.value) + 1;
       adultDecrementBtn.classList.add(DISABLED);
@@ -267,20 +275,33 @@ class Dropdown {
     const synthMap = new Map();
 
     this.countsMap.forEach((key, value) => {
-      if (this.wordsMap.has(value) && !Dropdown.hasIsEqualKey(synthMap, this.wordsMap.get(value))) {
+      if (
+        this.wordsMap.has(value)
+        && !Dropdown.hasIsEqualKey(synthMap, this.wordsMap.get(value))
+      ) {
         // If new map hasn't kthe key
         synthMap.set(this.wordsMap.get(value), key);
       }
       // If the map of array hasn't unique array for the key
-      if (!this.wordsMap.has(value) && synthMap.has(this.wordsMap.get(DEFAULT_KEY))) {
+      if (
+        !this.wordsMap.has(value)
+        && synthMap.has(this.wordsMap.get(DEFAULT_KEY))
+      ) {
         // If there is correct array of words
         // sum all keys countsMap and set in value
-        const newValue = Dropdown.sumCounts(this.countsMap, this.wordsMap, DEFAULT_KEY);
+        const newValue = Dropdown.sumCounts(
+          this.countsMap,
+          this.wordsMap,
+          DEFAULT_KEY,
+        );
         synthMap.set(this.wordsMap.get(DEFAULT_KEY), newValue);
       }
 
       // If there is not array of words
-      if (!this.wordsMap.has(value) && !synthMap.has(this.wordsMap.get(DEFAULT_KEY))) {
+      if (
+        !this.wordsMap.has(value)
+        && !synthMap.has(this.wordsMap.get(DEFAULT_KEY))
+      ) {
         synthMap.set(this.wordsMap.get(DEFAULT_KEY), key);
       }
     });

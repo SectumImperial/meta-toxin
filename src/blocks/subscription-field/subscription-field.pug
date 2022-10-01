@@ -1,0 +1,29 @@
+mixin subscription-field(options = {})
+  - 
+    const {
+      name = "",
+      id = "",
+      value = "",
+      placeholder = "",
+      readonly = false,
+      isRequired = false,
+      isDate = false,
+      isHovered = false,
+      isAutocomplete = false,
+    } = options
+
+
+  .subscription-field
+    input(
+      type = 'text'
+      name = name
+      id = id
+      class = 'subscription-field__input'
+      value = value 
+      placeholder = placeholder
+      readonly = readonly
+      pattern = '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$'
+      required = isRequired
+      autocomplete = isAutocomplete ? "on" : "off"
+    )
+    button.subscription-field__button.icon__arrow_forward

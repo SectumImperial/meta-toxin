@@ -1,0 +1,62 @@
+@use 'sass:math';
+@import '../../common/functions';
+@import '../../common/variables';
+
+.subscription-field {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid rgba($dark-color, 0.25);
+
+  border-radius: 4px;
+
+  &:hover,
+  &:focus,
+  &_hovered {
+    border-color: rgba($dark-color, 0.5);
+  }
+
+  // According to the maket requirements
+  &:focus {
+    outline: none;
+  }
+
+  &__input {
+    width: 100%;
+    padding: 12px 15px;
+    outline: none;
+    border: none;
+    flex-basis: 1;
+    font-size: $fontSmall;
+    font-family: Montserrat, sans-serif;
+
+    &::placeholder {
+      color: rgba($dark-color, 0.25);
+    }
+
+    &:hover,
+    &:focus,
+    &_hovered {
+      &::placeholder {
+        color: rgba($dark-color, 0.75);
+      }
+    }
+  }
+
+  &__button {
+    min-width: 44px;
+    min-height: 44px;
+    border: none;
+    background-color: transparent;
+
+    &::before {
+      background: $gradient;
+      background-clip: text;
+      color: transparent;
+      font-size: 19px;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

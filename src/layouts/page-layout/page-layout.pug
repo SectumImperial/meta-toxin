@@ -15,132 +15,131 @@ html(lang="ru")
     meta(name="keywords" content=keywords)
     meta(http-equiv="X-UA-Compatible" content="IE=edge")
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    meta(name='msapplication-TileColor', content='#da532c')
-    meta(name='msapplication-config', content='./favicon/browserconfig.xml')
+    meta(name='msapplication-TileColor' content='#da532c')
+    meta(name='msapplication-config' content='./favicon/browserconfig.xml')
     title #{title} 
-    link(rel='apple-touch-icon', sizes='180x180', href='./favicon/apple-touch-icon.png')
-    link(rel='icon', type='image/png', sizes='32x32', href='./favicon/favicon-32x32.png')
-    link(rel='icon', type='image/png', sizes='16x16', href='./favicon/favicon-16x16.png')
-    link(rel='manifest', href='./favicon/site.webmanifest')
-    link(rel='mask-icon', href='./favicon/safari-pinned-tab.svg', color='#5bbad5')
-    meta(name='theme-color', content='#ffffff')
+    link(rel='apple-touch-icon' sizes='180x180' href='./favicon/apple-touch-icon.png')
+    link(rel='icon' type='image/png' sizes='32x32' href='./favicon/favicon-32x32.png')
+    link(rel='icon' type='image/png' sizes='16x16' href='./favicon/favicon-16x16.png')
+    link(rel='manifest' href='./favicon/site.webmanifest')
+    link(rel='mask-icon' href='./favicon/safari-pinned-tab.svg' color='#5bbad5')
+    meta(name='theme-color' content='#ffffff')
 
   body.page
     header.page__header
-    +header({
-      isLogged,
-      isShadow: true,
-      navigation: {
-      items: [
-        {
-          content: "О нас",
-          href: "error-page.html",
+      +header({
+        isLogged,
+        isShadow: true,
+        navigation: {
+        items: [
+          {
+            content: "О нас",
+            href: "error-page.html",
+            },
+          {
+            content: "Услуги",
+            href: "error-page.html",
+            subItems: [
+              {
+                content: "Бассйен",
+                href: "error-page.html"
+              },
+              {
+                content: "Вызов такси",
+                href: "error-page.html"
+              },
+              {
+                content: "Конференц-зал",
+                href: "error-page.html"
+              },
+              {
+                content: "Крематорий",
+                href: "error-page.html"
+              }
+            ]
           },
-        {
-          content: "Услуги",
-          href: "error-page.html",
-          subItems: [
-            {
-              content: "Бассйен",
-              href: "error-page.html"
-            },
-            {
-              content: "Вызов такси",
-              href: "error-page.html"
-            },
-            {
-              content: "Конференц-зал",
-              href: "error-page.html"
-            },
-            {
-              content: "Крематорий",
-              href: "error-page.html"
-            }
-          ]
-        },
-        {
-          content: "Вакансии",
-          href: "error-page.html"
-        },
-        {
-          content: "Новости",
-          href: "error-page.html"
-        },
-        {
-          content: "Соглашения",
-          href: "error-page.html",
-          subItems: [
-            {
-              content: "Общие положения",
-              href: "error-page.html"
-            },
-            {
-              content: "Заказ бронирвоания",
-              href: "error-page.html"
-            },
-            {
-              content: "Отмена бронирования",
-              href: "error-page.html"
-            },
-            {
-              content: "Пользование крематорием",
-              href: "error-page.html"
-            }
-          ]
-        }
-      ]} 
-      })
+          {
+            content: "Вакансии",
+            href: "error-page.html"
+          },
+          {
+            content: "Новости",
+            href: "error-page.html"
+          },
+          {
+            content: "Соглашения",
+            href: "error-page.html",
+            subItems: [
+              {
+                content: "Общие положения",
+                href: "error-page.html"
+              },
+              {
+                content: "Заказ бронирвоания",
+                href: "error-page.html"
+              },
+              {
+                content: "Отмена бронирования",
+                href: "error-page.html"
+              },
+              {
+                content: "Пользование крематорием",
+                href: "error-page.html"
+              }
+            ]
+          }
+        ]} 
+        })
     main.page__main
       block content
     footer.page__footer
-    +footer({
-      contentPromo: "Бронирование номеров в лучшем отеле 2019 года по версии ассоциации «Отельные взгляды»",
-      isBorder: isBorder,
-      navItems: [{
-        titleItem: "Навигация",
-        items: [
-          {
-          content: "О нас",
-          },
-          {
-          content: "Новости",
-          },
-          {
-          content: "Служба поддержки",
-          },
-          {
-          content: "Услуги",
-          }
-        ]
-      },
-      {
-        titleItem: "О нас",
-        items: [{
-          content: "О сервисе",
-          },
-          {
-          content: "Наша команда",
-          },
-          {
-          content: "Вакансии",
-          },
-          {
-          content: "Инвесторы"
-          }
-        ]
-      },
-      {
-        titleItem: "Служба поддержки",
-        items: [{
-          content: "Соглашения",
-          },
-          {
-          content: "Сообщества",
-          },
-          {
-          content: "Связь с нами",
-          },
-        ]
-      }]
-    })
-  
+      +footer({
+        contentPromo: "Бронирование номеров в лучшем отеле 2019 года по версии ассоциации «Отельные взгляды»",
+        isBorder: isBorder,
+        navItems: [{
+          titleItem: "Навигация",
+          items: [
+            {
+            content: "О нас",
+            },
+            {
+            content: "Новости",
+            },
+            {
+            content: "Служба поддержки",
+            },
+            {
+            content: "Услуги",
+            }
+          ]
+        },
+        {
+          titleItem: "О нас",
+          items: [{
+            content: "О сервисе",
+            },
+            {
+            content: "Наша команда",
+            },
+            {
+            content: "Вакансии",
+            },
+            {
+            content: "Инвесторы"
+            }
+          ]
+        },
+        {
+          titleItem: "Служба поддержки",
+          items: [{
+            content: "Соглашения",
+            },
+            {
+            content: "Сообщества",
+            },
+            {
+            content: "Связь с нами",
+            },
+          ]
+        }]
+      })

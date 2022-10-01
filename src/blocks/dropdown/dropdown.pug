@@ -29,7 +29,7 @@ mixin dropdown(options = {})
         readonly,
       )
       .dropdown__arrow.icon__expand_more._arrow-js 
-    div.dropdown__content.js-dropdown__content(class = openClasss)
+    div.dropdown__content.js-dropdown__content(class = openClass)
       .dropdown__counter.js-dropdown__counter
         ul.dropdown__items
           each item in items
@@ -51,7 +51,7 @@ mixin dropdown(options = {})
                 )= '+'
         input(
           type='text'
-          class='visually-hidden js-dropdown__type',
+          class='dropdown__type dropdown__type_hidden js-dropdown__type',
           name = 'type',
           value = type,
           readonly,
@@ -76,7 +76,7 @@ mixin dropdown(options = {})
               btnSize: 'tiny',
             })
       else 
-        .dropdown__nav.visually-hidden
+        .dropdown__nav.dropdown__nav_hidden
           .dropdown__button.dropdown__button_clear.js-dropdown__button_clear
             +button({
               content: 'Очистить',
