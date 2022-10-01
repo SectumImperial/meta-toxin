@@ -1,6 +1,6 @@
 @use 'sass:math';
-@import '../../common/functions.scss';
-@import '../../common/variables.scss';
+@import '../../common/functions';
+@import '../../common/variables';
 
 .dropdown {
   position: relative;
@@ -9,22 +9,21 @@
     position: relative;
     cursor: pointer;
   }
+
   &__input {
     width: 100%;
     padding: 12px 15px;
-
     border: 1px solid rgba($dark-color, 0.25);
     color: rgba($dark-color, 0.75);
     border-radius: 4px;
-
     font-size: $fontSmall;
-    font-family: 'Montserrat', sans-serif;
-
+    font-family: Montserrat, sans-serif;
     cursor: pointer;
 
     &::placeholder {
       color: rgba($dark-color, 0.75);
     }
+
     &:hover,
     &:focus {
       border-color: rgba($dark-color, 0.5);
@@ -41,6 +40,7 @@
     top: 36%;
     right: 15px;
     font-size: $fontTiny;
+
     &::before {
       color: rgba($dark-color, 0.5);
     }
@@ -59,11 +59,9 @@
     left: 0;
     top: calc(100% - 2px);
     background-color: white;
-
     border: 1px solid rgba($dark-color, 0.25);
     border-radius: 0 0 4px;
-
-    box-shadow: 0 4px 4px 0 rgba(#000000, 0.25);
+    box-shadow: 0 4px 4px 0 rgba(#000, 0.25);
   }
 
   &__counter {
@@ -90,9 +88,7 @@
     background-color: transparent;
     border: 1px solid rgba($dark-color, 0.5);
     border-radius: 50%;
-
     color: rgba($dark-color, 0.5);
-
     cursor: pointer;
 
     &_disabled {
@@ -110,8 +106,7 @@
   &__count {
     width: 30px;
     text-align: center;
-
-    font-family: 'Montserrat', sans-serif;
+    font-family: Montserrat, sans-serif;
     font-weight: bold;
     font-size: $fontTiny;
     border: none;
@@ -125,7 +120,6 @@
     display: flex;
     flex-direction: column;
     gap: 7px;
-
     list-style: none;
   }
 

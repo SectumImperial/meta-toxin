@@ -1,6 +1,6 @@
 @use 'sass:math';
-@import '../../common/functions.scss';
-@import '../../common/variables.scss';
+@import '../../common/functions';
+@import '../../common/variables';
 
 .registration-card {
   @include boxes;
@@ -19,6 +19,7 @@
     text-transform: uppercase;
     padding-bottom: 5px;
   }
+
   &__name-group {
     display: flex;
     flex-direction: column;
@@ -28,7 +29,6 @@
 
   &__sex {
     margin-top: 9px;
-
     display: grid;
     grid-template-columns: auto 1fr;
     gap: 20px;
@@ -40,7 +40,7 @@
   }
 
   &__birth-group {
-    margin-top: 24px;
+    margin-top: 25px;
   }
 
   &__data-group {
@@ -56,12 +56,11 @@
   }
 
   &__button {
-    margin-top: 24px;
+    margin-top: 23px;
   }
 
   &__login-group {
-    margin-top: 32px;
-
+    margin-top: 31px;
     display: grid;
     grid-template-columns: 1fr auto;
     align-items: center;

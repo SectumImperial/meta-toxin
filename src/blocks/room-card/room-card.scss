@@ -1,6 +1,6 @@
 @use 'sass:math';
-@import '../../common/functions.scss';
-@import '../../common/variables.scss';
+@import '../../common/functions';
+@import '../../common/variables';
 
 .room-card {
   max-width: 270px;
@@ -8,7 +8,7 @@
   grid-template-rows: 1fr auto auto;
   border-radius: 4px;
   background-color: white;
-  box-shadow: 0px 10px 20px 0px rgba($dark-color, 0.05);
+  box-shadow: 0 10px 20px 0 rgba($dark-color, 0.05);
 
   &:focus-within {
     outline: 2px solid $dark-color;
@@ -44,6 +44,7 @@
     padding: 11px 0 0 2px;
     border-top: 1px solid rgba($dark-color, 0.1);
   }
+
   &__reviews {
     color: rgba($dark-color, 0.5);
   }
@@ -53,6 +54,7 @@
     padding: 2px 2px 0 0;
     word-break: break-all;
   }
+
   &__reviews-count {
     font-size: $fontSmall;
     font-weight: 700;

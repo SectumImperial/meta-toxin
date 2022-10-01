@@ -1,12 +1,11 @@
 @use 'sass:math';
-@import '../../common/variables.scss';
+@import '../../common/variables';
 
 .button {
   padding: 2px;
   border-radius: 25px;
   background: $gradient;
   position: relative;
-
   cursor: pointer;
 
   @media (max-width: $tablet) {
@@ -24,6 +23,7 @@
 
   &_transparent {
     background: transparent;
+
     &:hover {
       background: transparent;
 
@@ -37,17 +37,13 @@
     width: 100%;
     display: flex;
     justify-content: center;
-
     border: none;
     border-radius: 25px;
-
-    font-family: 'Montserrat', sans-serif;
+    font-family: Montserrat, sans-serif;
     font-weight: 700;
     font-size: $fontTiny;
-
     text-transform: uppercase;
     text-align: center;
-
     cursor: pointer;
   }
 
@@ -66,7 +62,7 @@
   }
 
   &_medium {
-    padding: 12px 16px 13px 16px;
+    padding: 12px 16px 13px;
   }
 
   &_big {
@@ -85,6 +81,7 @@
   &_violet {
     background-color: white;
     color: $primary-color;
+
     &:hover {
       cursor: pointer;
     }
@@ -104,7 +101,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
     text-decoration: none;
   }
 }

@@ -1,7 +1,7 @@
 @use 'sass:math';
-@import '../../common/functions.scss';
-@import '../../common/variables.scss';
-@import './datepicker_loaded.scss';
+@import '../../common/functions';
+@import '../../common/variables';
+@import './datepicker_loaded';
 
 .datepicker {
   position: relative;
@@ -33,14 +33,11 @@
     top: calc(100% + 5px);
     right: 0;
     z-index: 11;
-
     max-width: 320px;
     display: none;
-
     box-shadow: rgba($dark-color, 0.5);
     border: 1px solid rgba($dark-color, 0.25);
     border-radius: 4px;
-
     background-color: $secondary-color-2;
 
     &_only-cal {
@@ -49,7 +46,6 @@
       right: 0;
     }
   }
-
 
   &__button {
     margin: 0 18px 18px 15px;
@@ -63,17 +59,16 @@
   &__field {
     width: 100%;
     padding: 12px 15px;
-
     border: 1px solid rgba($dark-color, 0.25);
     color: rgba($dark-color, 0.75);
     border-radius: 4px;
-
     font-size: $fontSmall;
-    font-family: 'Montserrat', sans-serif;
+    font-family: Montserrat, sans-serif;
 
     &::placeholder {
       color: rgba($dark-color, 0.75);
     }
+
     &:hover,
     &:focus {
       border-color: rgba($dark-color, 0.5);
@@ -90,6 +85,7 @@
     top: 36%;
     right: 15px;
     font-size: $fontTiny;
+
     &::before {
       color: rgba($dark-color, 0.5);
     }
@@ -112,7 +108,7 @@
 // Small cal and search room cal
 .datepicker_small {
   .air-datepicker--content {
-    padding: 0 7px 7px 7px;
+    padding: 0 7px 7px;
 
     .-days- {
       grid-template-columns: repeat(7, 35px);
@@ -140,10 +136,7 @@
 
 .air-datepicker {
   width: 100%;
-}
-
-.air-datepicker {
-  font-family: 'Montserrat', sans-serif;
+  font-family: Montserrat, sans-serif;
   border: none;
 
   // Navigation
@@ -152,7 +145,7 @@
     padding: 16px 18px 30px 14px;
 
     @media (max-width: 400px) {
-      padding: 10px 12px 28px 12px;
+      padding: 10px 12px 28px;
     }
 
     &--action {
@@ -163,6 +156,7 @@
       &[data-action='next'] {
         transform: rotate(0);
       }
+
       svg {
         display: none;
       }
@@ -176,9 +170,9 @@
   }
 
   &--content {
-    padding: 0 20px 17px 20px;
+    padding: 0 20px 17px;
     @media (max-width: 400px) {
-      padding: 0 10px 10px 10px;
+      padding: 0 10px 10px;
     }
   }
 
@@ -188,12 +182,11 @@
       color: $primary-color;
       font-weight: bold;
       font-size: $fontTiny;
-
       text-transform: capitalize;
     }
 
     &--day-names {
-      margin: 6px 2px 12px 0px;
+      margin: 6px 2px 12px 0;
     }
 
     .-days- {
@@ -217,7 +210,7 @@
     }
 
     .-day-.old-date {
-      color: rgba(229, 229, 229, 0.5);
+      color: rgb(229 229 229 / 50%);
       cursor: not-allowed;
     }
 
@@ -230,12 +223,13 @@
     .-other-month- {
       color: rgba($dark-color, 0.25);
       font-size: $fontTiny;
+
       &:hover {
         color: $secondary-color-2;
       }
     }
 
-    // Styles with out elem mouse without choosen end point
+    // Styles with out elem mouse without chosen end point
     .-range-to-,
     .-range-from- {
       border: none;
@@ -256,6 +250,7 @@
       background: $gradient25;
       border: none;
       border-radius: 0;
+
       &:hover {
         border-radius: 0;
         background: $gradient25;
@@ -265,12 +260,11 @@
     // Added classes by JS
     .start-range,
     .end-range {
-      &:before {
+      &::before {
         content: '';
         position: absolute;
         background: $gradient25;
         z-index: -1;
-
         width: 40px;
         height: 40px;
 
@@ -286,16 +280,17 @@
     }
 
     .start-range {
-      &:before {
+      &::before {
         border-radius: 50% 0 0 50%;
       }
     }
 
     .end-range {
-      &:before {
+      &::before {
         border-radius: 0 50% 50% 0;
       }
     }
+
     // ---------------------------------------------
 
     .-selected- {
@@ -303,7 +298,6 @@
       border-radius: 50%;
       background: $gradient;
       color: $secondary-color-2;
-
       font-weight: bold;
 
       &:hover {

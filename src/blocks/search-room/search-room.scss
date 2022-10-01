@@ -1,9 +1,10 @@
 @use 'sass:math';
-@import '../../common/functions.scss';
-@import '../../common/variables.scss';
+@import '../../common/functions';
+@import '../../common/variables';
 
 .search-room {
   display: flex;
+
   &__content {
     max-width: $content;
     display: flex;

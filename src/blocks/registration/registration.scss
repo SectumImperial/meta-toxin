@@ -1,16 +1,15 @@
 @use 'sass:math';
-@import '../../common/functions.scss';
-@import '../../common/variables.scss';
+@import '../../common/functions';
+@import '../../common/variables';
 
 .registration {
   display: flex;
   justify-content: center;
-
-  background: 50% 102% url(./img/registration.jpg) no-repeat;
+  background: 50% 100% url(./img/registration.jpg) no-repeat;
   background-size: cover;
 
   &__container {
-    padding: 19px 5px 18px;
+    padding: 19px 5px 16px;
   }
 
   &__card {

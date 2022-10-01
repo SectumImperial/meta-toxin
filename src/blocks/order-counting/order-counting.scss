@@ -1,6 +1,6 @@
 @use 'sass:math';
-@import '../../common/functions.scss';
-@import '../../common/variables.scss';
+@import '../../common/functions';
+@import '../../common/variables';
 
 .order-counting {
   display: flex;
@@ -65,9 +65,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
     position: relative;
-
     border: 1px solid rgba($dark-color, 0.25);
     color: rgba($dark-color, 0.25);
     cursor: pointer;
@@ -78,12 +76,9 @@
       position: absolute;
       top: 25px;
       left: 0;
-
       padding: 2px;
-
       background-color: rgba($dark-color, 0.75);
       color: $secondary-color-2;
-
       border-radius: 4px;
       font-size: $fontTiny;
       z-index: 2;

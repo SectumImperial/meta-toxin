@@ -1,6 +1,6 @@
 @use 'sass:math';
-@import '../../common/functions.scss';
-@import '../../common/variables.scss';
+@import '../../common/functions';
+@import '../../common/variables';
 
 .carousel {
   position: relative;
@@ -16,9 +16,9 @@
     height: 100%;
     background: linear-gradient(
       90deg,
-      rgba(0, 0, 0, 0.5) 0%,
-      rgba(0, 0, 0, 0) 99.99%,
-      rgba(255, 255, 255, 0) 100%
+      rgb(0 0 0 / 50%) 0%,
+      rgb(0 0 0 / 0%) 99.99%,
+      rgb(255 255 255 / 0%) 100%
     );
   }
 
@@ -33,9 +33,9 @@
     height: 100%;
     background: linear-gradient(
       90deg,
-      rgba(0, 0, 0, 0.5) 0%,
-      rgba(0, 0, 0, 0) 99.99%,
-      rgba(255, 255, 255, 0) 100%
+      rgb(0 0 0 / 50%) 0%,
+      rgb(0 0 0 / 0%) 99.99%,
+      rgb(255 255 255 / 0%) 100%
     );
   }
 
@@ -73,7 +73,6 @@
     outline: none;
     background: transparent;
     z-index: 2;
-
     cursor: pointer;
 
     &::before {
@@ -113,6 +112,7 @@
   &__toggle {
     list-style: none;
   }
+
   &__toggle-button {
     width: 7px;
     height: 7px;

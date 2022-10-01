@@ -1,28 +1,28 @@
 @use 'sass:math';
-@import '../../common/functions.scss';
-@import '../../common/variables.scss';
+@import '../../common/functions';
+@import '../../common/variables';
 
 .input {
   position: relative;
 
   &__field {
     padding: 12px 15px;
-
     border: 1px solid rgba($dark-color, 0.25);
     color: rgba($dark-color, 0.75);
     border-radius: 4px;
-
     font-size: $fontSmall;
-    font-family: 'Montserrat', sans-serif;
+    font-family: Montserrat, sans-serif;
 
     &::placeholder {
       color: rgba($dark-color, 0.25);
     }
+
     &:hover,
     &:focus,
     &_hovered {
       border-color: rgba($dark-color, 0.5);
       color: rgba($dark-color, 0.75);
+
       &::placeholder {
         color: rgba($dark-color, 0.75);
       }
@@ -33,7 +33,7 @@
       outline: none;
     }
 
-    &:not([type='radio']):not([type='checkbox']) {
+    &:not([type='radio'], [type='checkbox']) {
       width: 100%;
     }
   }
@@ -43,6 +43,7 @@
     top: 36%;
     right: 15px;
     font-size: $fontTiny;
+
     &::before {
       color: rgba($dark-color, 0.5);
     }
@@ -53,12 +54,15 @@
     top: 35%;
     right: 13px;
     font-size: 16px;
+
     &::before {
-      color: $primary-color;
+      background: $gradient;
+      background-clip: text;
+      color: transparent;
     }
   }
 
-  &_oppened-js {
+  &_opened-js {
     transform: rotate(180deg);
   }
 }

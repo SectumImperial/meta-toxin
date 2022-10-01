@@ -188,8 +188,6 @@
 .air-datepicker-nav--action {
     width: var(--adp-nav-action-size);
     border-radius: var(--adp-border-radius);
-    -webkit-user-select: none;
-    -moz-user-select: none;
     user-select: none
 }
 
@@ -253,7 +251,7 @@
     cursor: pointer;
     height: var(--adp-btn-height);
     border: none;
-    background: rgba(255, 255, 255, 0)
+    background: rgb(255 255 255 / 0%)
 }
 
 .air-datepicker-button:hover {
@@ -282,7 +280,6 @@
 
 .air-datepicker-time {
     display: grid;
-    grid-template-columns: -webkit-max-content 1fr;
     grid-template-columns: max-content 1fr;
     grid-column-gap: 12px;
     align-items: center;
@@ -316,8 +313,8 @@
     z-index: 1
 }
 
-.air-datepicker-time--current-hours:after,
-.air-datepicker-time--current-minutes:after {
+.air-datepicker-time--current-hours::after,
+.air-datepicker-time--current-minutes::after {
     content: '';
     background: var(--adp-background-color-hover);
     border-radius: var(--adp-border-radius);
@@ -330,8 +327,8 @@
     opacity: 0
 }
 
-.air-datepicker-time--current-hours.-focus-:after,
-.air-datepicker-time--current-minutes.-focus-:after {
+.air-datepicker-time--current-hours.-focus-::after,
+.air-datepicker-time--current-minutes.-focus-::after {
     opacity: 1
 }
 
@@ -363,11 +360,11 @@
     height: 100%;
     padding: 0;
     margin: 0;
-    -webkit-appearance: none
+    appearance: none
 }
 
 .air-datepicker-time--row input[type='range']::-webkit-slider-thumb {
-    -webkit-appearance: none
+    appearance: none
 }
 
 .air-datepicker-time--row input[type='range']::-ms-tooltip {
@@ -413,7 +410,6 @@
     border: 1px solid var(--adp-time-track-color);
     background: #fff;
     cursor: pointer;
-    -webkit-transition: background var(--adp-transition-duration);
     transition: background var(--adp-transition-duration)
 }
 
@@ -425,7 +421,6 @@
     border: 1px solid var(--adp-time-track-color);
     background: #fff;
     cursor: pointer;
-    -moz-transition: background var(--adp-transition-duration);
     transition: background var(--adp-transition-duration)
 }
 
@@ -437,7 +432,6 @@
     border: 1px solid var(--adp-time-track-color);
     background: #fff;
     cursor: pointer;
-    -ms-transition: background var(--adp-transition-duration);
     transition: background var(--adp-transition-duration)
 }
 
@@ -478,7 +472,7 @@
 }
 
 .air-datepicker {
-    --adp-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    --adp-font-family: -apple-system, blinkmacsystemfont, "Segoe UI", roboto, helvetica, arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     --adp-font-size: 14px;
     --adp-width: 246px;
     --adp-z-index: 100;
@@ -494,8 +488,8 @@
     --adp-background-color: #fff;
     --adp-background-color-hover: #f0f0f0;
     --adp-background-color-active: #eaeaea;
-    --adp-background-color-in-range: rgba(92, 196, 239, .1);
-    --adp-background-color-in-range-focused: rgba(92, 196, 239, .2);
+    --adp-background-color-in-range: rgb(92 196 239 / 10%);
+    --adp-background-color-in-range-focused: rgb(92 196 239 / 20%);
     --adp-background-color-selected-other-month-focused: #8ad5f4;
     --adp-background-color-selected-other-month: #a2ddf6;
     --adp-color: #4a4a4a;
@@ -525,8 +519,8 @@
     --adp-cell-border-radius: 4px;
     --adp-cell-background-color-selected: #5cc4ef;
     --adp-cell-background-color-selected-hover: #45bced;
-    --adp-cell-background-color-in-range: rgba(92, 196, 239, 0.1);
-    --adp-cell-background-color-in-range-hover: rgba(92, 196, 239, 0.2);
+    --adp-cell-background-color-in-range: rgb(92 196 239 / 10%);
+    --adp-cell-background-color-in-range-hover: rgb(92 196 239 / 20%);
     --adp-cell-border-color-in-range: var(--adp-cell-background-color-selected);
     --adp-btn-height: 32px;
     --adp-btn-color: var(--adp-accent-color);
@@ -549,7 +543,7 @@
 }
 
 .air-datepicker-overlay {
-    --adp-overlay-background-color: rgba(0, 0, 0, .3);
+    --adp-overlay-background-color: rgb(0 0 0 / 30%);
     --adp-overlay-transition-duration: .3s;
     --adp-overlay-transition-ease: ease-out;
     --adp-overlay-z-index: 99
@@ -558,7 +552,7 @@
 .air-datepicker {
     background: var(--adp-background-color);
     border: 1px solid var(--adp-border-color);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
     border-radius: var(--adp-border-radius);
     box-sizing: content-box;
     display: grid;
@@ -625,6 +619,7 @@
     --adp-year-cell-height: var(--adp-mobile-year-cell-height);
     --adp-nav-height: var(--adp-mobile-nav-height);
     --adp-nav-action-size: var(--adp-mobile-nav-height);
+
     position: fixed;
     width: var(--adp-mobile-width);
     border: none
@@ -658,13 +653,14 @@
 
 .air-datepicker--pointer {
     --pointer-half-size: calc(var(--adp-pointer-size) / 2);
+
     position: absolute;
     width: var(--adp-pointer-size);
     height: var(--adp-pointer-size);
     z-index: -1
 }
 
-.air-datepicker--pointer:after {
+.air-datepicker--pointer::after {
     content: '';
     position: absolute;
     background: #fff;
@@ -683,10 +679,10 @@
     top: calc(100% - var(--pointer-half-size) + 1px)
 }
 
-.-top-left- .air-datepicker--pointer:after,
-.-top-center- .air-datepicker--pointer:after,
-.-top-right- .air-datepicker--pointer:after,
-[data-popper-placement^='top'] .air-datepicker--pointer:after {
+.-top-left- .air-datepicker--pointer::after,
+.-top-center- .air-datepicker--pointer::after,
+.-top-right- .air-datepicker--pointer::after,
+[data-popper-placement^='top'] .air-datepicker--pointer::after {
     transform: rotate(135deg)
 }
 
@@ -697,10 +693,10 @@
     right: calc(100% - var(--pointer-half-size) + 1px)
 }
 
-.-right-top- .air-datepicker--pointer:after,
-.-right-center- .air-datepicker--pointer:after,
-.-right-bottom- .air-datepicker--pointer:after,
-[data-popper-placement^='right'] .air-datepicker--pointer:after {
+.-right-top- .air-datepicker--pointer::after,
+.-right-center- .air-datepicker--pointer::after,
+.-right-bottom- .air-datepicker--pointer::after,
+[data-popper-placement^='right'] .air-datepicker--pointer::after {
     transform: rotate(225deg)
 }
 
@@ -711,10 +707,10 @@
     bottom: calc(100% - var(--pointer-half-size) + 1px)
 }
 
-.-bottom-left- .air-datepicker--pointer:after,
-.-bottom-center- .air-datepicker--pointer:after,
-.-bottom-right- .air-datepicker--pointer:after,
-[data-popper-placement^='bottom'] .air-datepicker--pointer:after {
+.-bottom-left- .air-datepicker--pointer::after,
+.-bottom-center- .air-datepicker--pointer::after,
+.-bottom-right- .air-datepicker--pointer::after,
+[data-popper-placement^='bottom'] .air-datepicker--pointer::after {
     transform: rotate(315deg)
 }
 
@@ -725,10 +721,10 @@
     left: calc(100% - var(--pointer-half-size) + 1px)
 }
 
-.-left-top- .air-datepicker--pointer:after,
-.-left-center- .air-datepicker--pointer:after,
-.-left-bottom- .air-datepicker--pointer:after,
-[data-popper-placement^='left'] .air-datepicker--pointer:after {
+.-left-top- .air-datepicker--pointer::after,
+.-left-center- .air-datepicker--pointer::after,
+.-left-bottom- .air-datepicker--pointer::after,
+[data-popper-placement^='left'] .air-datepicker--pointer::after {
     transform: rotate(45deg)
 }
 

@@ -2,18 +2,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
   min-width: 100vw;
   min-height: 100vh;
-
   padding: 2px;
   background: radial-gradient(
     circle,
-    rgba(10, 0, 162, 1) 0%,
-    rgba(166, 0, 255, 1) 100%
+    rgb(10 0 162 / 100%) 0%,
+    rgb(166 0 255 / 100%) 100%
   );
-
-  font-family: 'Montserrat', sans-serif;
+  font-family: Montserrat, sans-serif;
 
   &__types {
     display: flex;

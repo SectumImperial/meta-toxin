@@ -1,6 +1,6 @@
 @use 'sass:math';
-@import '../../common/functions.scss';
-@import '../../common/variables.scss';
+@import '../../common/functions';
+@import '../../common/variables';
 
 .radio {
   display: flex;
@@ -24,13 +24,11 @@
     &::before {
       content: '';
       position: absolute;
-
       width: 12px;
       height: 12px;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-
       border-radius: 100%;
       background: $gradient;
     }

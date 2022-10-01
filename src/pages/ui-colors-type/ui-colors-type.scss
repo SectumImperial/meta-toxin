@@ -1,12 +1,11 @@
 @use 'sass:math';
-@import '../../common/variables.scss';
+@import '../../common/variables';
 
 .colors-page {
   &__content {
     max-width: $content;
     padding: 0 5px;
     margin: 0 auto;
-
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -18,7 +17,6 @@
     grid-template-columns: 70px auto;
     grid-template-rows: 35px 35px;
     gap: 0 40px;
-
     font-size: $fontMedium;
   }
 

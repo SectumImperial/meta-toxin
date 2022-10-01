@@ -1,11 +1,10 @@
 @use 'sass:math';
-@import '../../common/functions.scss';
-@import '../../common/variables.scss';
+@import '../../common/functions';
+@import '../../common/variables';
 
 .room-data {
   color: rgba($dark-color, 0.75);
   font-size: $fontSmall;
-
   display: flex;
   flex-direction: column;
 
@@ -18,11 +17,8 @@
     grid-template-areas:
       's t'
       's d';
-
-    padding: 21px 0 19px 0;
-
+    padding: 21px 0 19px;
     border-bottom: 1px solid rgba($dark-color, 0.25);
-
     list-style: none;
 
     &:nth-child(3) {
@@ -50,9 +46,11 @@
     &_smile {
       background: url('./icons/insert_emoticon.svg') no-repeat center;
     }
+
     &_city {
       background: url('./icons/location_city.svg') no-repeat center;
     }
+
     &_fire {
       background: url('./icons/whatshot.svg') no-repeat center;
     }

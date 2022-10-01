@@ -1,6 +1,6 @@
 @use 'sass:math';
-@import '../../common/functions.scss';
-@import '../../common/variables.scss';
+@import '../../common/functions';
+@import '../../common/variables';
 
 .form-elems {
   &__content {
@@ -8,8 +8,7 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 40px;
-
-    padding: 0 5px 131px 5px;
+    padding: 0 5px 131px;
   }
 
   &__field-and-btns {
@@ -41,7 +40,6 @@
   &__subtitle {
     display: flex;
     justify-content: space-between;
-
     text-transform: uppercase;
     padding-bottom: 5px;
   }
@@ -66,7 +64,6 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-
     padding-top: 10px;
   }
 
@@ -85,7 +82,6 @@
   &__btns {
     max-width: 320px;
     min-width: 320px;
-
     display: flex;
     flex-direction: column;
     gap: 40px;
@@ -128,9 +124,9 @@
 
   &__dropdowns-item {
     width: 320px;
+
     &_2 {
       width: 266px;
-
       display: flex;
       flex-direction: column-reverse;
       gap: 20px;
@@ -138,8 +134,7 @@
   }
 
   &__checkboxes-lists {
-    padding: 120px 0 60px 0;
-
+    padding: 120px 0 60px;
     display: flex;
     gap: 162px;
   }

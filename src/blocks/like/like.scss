@@ -1,20 +1,16 @@
 @use 'sass:math';
-@import '../../common/functions.scss';
-@import '../../common/variables.scss';
+@import '../../common/functions';
+@import '../../common/variables';
 
 .like {
   &__button {
     display: flex;
     align-items: center;
-
     min-width: 40px;
     min-height: 20px;
-
     border: 1px solid rgba($dark-color, 0.25);
     border-radius: 10px;
-
     background-color: transparent;
-
     cursor: pointer;
 
     &_liked {
@@ -23,19 +19,18 @@
   }
 
   &__heart {
-    padding: 0 4px 0 4px;
+    padding: 0 4px;
 
     &::before {
       background-image: linear-gradient(180deg, #bc9cff 0%, #8ba4f9 100%);
       background-clip: text;
-      -webkit-background-clip: text;
       color: transparent;
       font-size: rem(11px);
     }
   }
 
   &__count {
-    padding: 1px 1px 3px 0px;
+    padding: 1px 1px 3px 0;
     font-size: rem(10);
     color: rgba($dark-color, 0.25);
 

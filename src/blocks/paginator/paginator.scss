@@ -1,6 +1,6 @@
 @use 'sass:math';
-@import '../../common/functions.scss';
-@import '../../common/variables.scss';
+@import '../../common/functions';
+@import '../../common/variables';
 
 .paginator {
   display: flex;
@@ -23,19 +23,15 @@
 
   &__button {
     position: relative;
-
     display: flex;
     justify-content: center;
     align-items: center;
-
     min-width: 40px;
     min-height: 40px;
-
     background: $gradientSecondary;
     border: none;
     border-radius: 50%;
     outline: none;
-
     cursor: pointer;
 
     &:hover,
@@ -63,7 +59,6 @@
       border: 0;
       padding: 0;
       white-space: nowrap;
-      -webkit-clip-path: inset(100%);
       clip-path: inset(100%);
       clip: rect(0 0 0 0);
       overflow: hidden;
@@ -79,15 +74,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
     width: 40px;
     height: 40px;
-
     list-style: none;
     color: rgba($dark-color, 0.5);
     font-size: rem(12);
     border-radius: 50%;
-
     cursor: pointer;
 
     &:focus {
@@ -120,7 +112,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
     padding-right: 71px;
     color: rgba($dark-color, 0.75);
 

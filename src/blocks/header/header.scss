@@ -1,6 +1,6 @@
 @use 'sass:math';
-@import '../../common/functions.scss';
-@import '../../common/variables.scss';
+@import '../../common/functions';
+@import '../../common/variables';
 
 .header {
   background-color: $secondary-color-2;
@@ -11,7 +11,6 @@
     align-items: center;
     flex-wrap: wrap;
     gap: 10px;
-
     padding: 11px 138px 11px 140px;
 
     @media (max-width: $pc) {
@@ -19,7 +18,7 @@
       justify-content: space-between;
       align-items: center;
       gap: 20px;
-      padding: 11px 10px 11px 10px;
+      padding: 11px 10px;
     }
   }
 
@@ -27,22 +26,18 @@
     position: static;
     left: 0;
     width: auto;
-
     display: flex;
     flex-direction: row;
     gap: 20px;
-
     opacity: 1;
 
     @media (max-width: $pc) {
       position: static;
       left: 0;
       width: auto;
-
       display: flex;
       flex-direction: row;
       gap: 20px;
-
       opacity: 1;
     }
 
@@ -50,13 +45,10 @@
       position: absolute;
       width: 100%;
       left: -200%;
-
       display: flex;
       flex-direction: column;
       gap: 10px;
-
       opacity: 0;
-
       transition: left 0.3s ease 0s;
 
       &._active {
@@ -103,7 +95,6 @@
         height: 2px;
         width: 100%;
         background-color: $primary-color;
-
         transition: all 0.3s ease 0s;
       }
 
@@ -122,7 +113,7 @@
 
       & span {
         top: 50%;
-        transform: scale(1) translate(0px, -50%);
+        transform: scale(1) translate(0, -50%);
       }
 
       // Animation by click on the icon

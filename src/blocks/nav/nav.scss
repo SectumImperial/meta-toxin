@@ -1,6 +1,6 @@
 @use 'sass:math';
-@import '../../common/functions.scss';
-@import '../../common/variables.scss';
+@import '../../common/functions';
+@import '../../common/variables';
 
 .nav {
   display: flex;
@@ -36,7 +36,6 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
-
     list-style: none;
 
     @media (min-width: $tablet) {
@@ -109,18 +108,11 @@
     position: relative;
     flex: 1 1 100%;
     padding: 2px;
-
     background-color: $primary-color;
     list-style: none;
-
     transition: all 0.3s ease 0s;
 
     @media (min-width: $tablet) {
-      opacity: 1;
-      visibility: visible;
-      pointer-events: all;
-      transform: translate(0, 0);
-
       position: absolute;
       z-index: 20;
       display: block;
@@ -154,7 +146,7 @@
   }
 
   &__sub-item {
-    margin: 0 0 2px 0;
+    margin: 0 0 2px;
   }
 
   &__sublist &__sub-item:last-child {

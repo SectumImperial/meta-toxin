@@ -1,6 +1,6 @@
 @use 'sass:math';
-@import '../../common/functions.scss';
-@import '../../common/variables.scss';
+@import '../../common/functions';
+@import '../../common/variables';
 
 .landing {
   display: flex;
@@ -8,7 +8,6 @@
   background: 50% 99% url(./img/landBakc.webp) no-repeat;
   background-size: cover;
   padding: 5px;
-
   min-height: 830px;
 
   @media (min-width: $tablet) {
@@ -31,11 +30,9 @@
 
     @media (min-width: $tablet) {
       display: block;
-
       max-width: 297px;
       align-self: flex-end;
       justify-self: flex-end;
-
       text-align: right;
     }
   }

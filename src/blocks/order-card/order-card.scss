@@ -1,6 +1,6 @@
 @use 'sass:math';
-@import '../../common/functions.scss';
-@import '../../common/variables.scss';
+@import '../../common/functions';
+@import '../../common/variables';
 
 .order-card {
   max-width: 380px;
@@ -22,7 +22,7 @@
   }
 
   &__price {
-    padding: 0px 1px 1px 0;
+    padding: 0 1px 1px 0;
   }
 
   &__datepicker {

@@ -1,6 +1,6 @@
 @use 'sass:math';
-@import '../../common/functions.scss';
-@import '../../common/variables.scss';
+@import '../../common/functions';
+@import '../../common/variables';
 
 .checkbox-list {
   &__item {
@@ -14,11 +14,9 @@
   &__title {
     display: inline-block;
     width: 100%;
-
     font-size: $fontTiny;
     text-transform: uppercase;
     font-weight: bold;
-
     cursor: pointer;
   }
 

@@ -1,17 +1,16 @@
 @use 'sass:math';
-@import '../../common/variables.scss';
+@import '../../common/variables';
 
 .ui-cards {
   width: 100%;
   min-height: 100%;
   background-color: #f4f4f6;
-  padding: 30px 5px 140px 5px;
+  padding: 30px 5px 140px;
 
   &__container {
     max-width: $content;
     margin: 0 auto;
     padding: 0 5px;
-
     display: flex;
     flex-wrap: wrap;
     justify-content: center;

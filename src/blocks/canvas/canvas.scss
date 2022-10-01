@@ -1,5 +1,5 @@
 @use 'sass:math';
-@import '../../common/variables.scss';
+@import '../../common/variables';
 
 .canvas {
   display: flex;
@@ -28,17 +28,15 @@
       padding-top: 5px;
     }
   }
+
   &__item {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     gap: 5px;
-
     padding: 3px 0;
-
     color: rgba($dark-color, 0.75);
     list-style: none;
-
     cursor: pointer;
 
     &:hover,
@@ -67,6 +65,7 @@
   &__item-mark {
     order: -1;
   }
+
   // SVG styles
   &__unit {
     fill: none;

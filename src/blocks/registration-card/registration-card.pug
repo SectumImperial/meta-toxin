@@ -63,52 +63,52 @@ mixin registration-card()
             isDate: true,
         })
         
-        .registration-card__data-group
-          .registration-card__subtitle
-            +title({
-              text: "Данные для входа в сервис",
-              level: "h5",
-            })
-        .registration-card__email
-          +input({
-            type: "email",
-            name: "registration-card-email",
-            id: "registration-card-email",
-            placeholder: "Email",
-            isRequired: true
+      .registration-card__data-group
+        .registration-card__subtitle
+          +title({
+            text: "Данные для входа в сервис",
+            level: "h5",
           })
-        .registrtion__password
-          +input({
-            type: "password",
-            name: "registration-card-password",
-            id: "registration-card-password",
-            placeholder: "Пароль",
-            isRequired: true, 
-            isAutocomplete: true,
-          })
-        .registration-card__mailing
-          +toggle({
-            name: "registration-card-mailing",
-            id: "registration-card-mailing",
-            text: "Получать спецпредложения",
-          })
-        .registration-card__button  
-          +button({
-            content: "Зарегистрироваться",
-            btnColor: "white",
-            btnWrapperColor: "violet",
-            isArrow: true,
-            btnSize: "large"
-          })
+      .registration-card__email
+        +input({
+          type: "email",
+          name: "registration-card-email",
+          id: "registration-card-email",
+          placeholder: "Email",
+          isRequired: true
+        })
+      .registration__password
+        +input({
+          type: "password",
+          name: "registration-card-password",
+          id: "registration-card-password",
+          placeholder: "Пароль",
+          isRequired: true, 
+          isAutocomplete: true,
+        })
+      .registration-card__mailing
+        +toggle({
+          name: "registration-card-mailing",
+          id: "registration-card-mailing",
+          text: "Получать спецпредложения",
+        })
+      .registration-card__button  
+        +button({
+          content: "Зарегистрироваться",
+          btnColor: "white",
+          btnWrapperColor: "violet",
+          isArrow: true,
+          btnSize: "large"
+        })
 
-        .registration-card__login-group
-          .registration-card__login-text
-            +text-element("Уже есть аккаунт на Toxin")
-          .registration-card__login-button
-            +button({
-              href: "login-page.html",
-              content: "Войти", 
-              btnColor: "violet",
-              btnSize: "big",
-              btnType: "link",
-            })
+      .registration-card__login-group
+        .registration-card__login-text
+          +text-element("Уже есть аккаунт на Toxin")
+        .registration-card__login-button
+          +button({
+            href: "login-page.html",
+            content: "Войти", 
+            btnColor: "violet",
+            btnSize: "big",
+            btnType: "link",
+          })

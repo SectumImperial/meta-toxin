@@ -25,10 +25,10 @@ mixin footer(options = {})
       .footer__navigation
         each item in navItems
           -
-           const {
-             titleItem = "",
-             items = [],
-           } = item
+            const {
+              titleItem = "",
+              items = [],
+            } = item
 
           .footer__navigation-item
             .footer__title
@@ -48,19 +48,20 @@ mixin footer(options = {})
       )
         .footer__title
           +title({
-              level: "h5",
-              text: "Подписка",
+            level: "h5",
+            text: "Подписка",
             })
         .footer__email-text
           +text-element("Получайте специальные предложения и новости сервиса")
-        +input({
+        .footer__email-input
+          +input({
             type: "email",
             name: "footer-mail",
             id: "footer-mail",
             placeholder: "Email",
-            arrow: "forward",
             pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
           })
+          button.footer__email-button
 
     .footer__horizontal
       .footer__copyright

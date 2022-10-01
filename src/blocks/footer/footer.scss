@@ -1,6 +1,6 @@
 @use 'sass:math';
-@import '../../common/functions.scss';
-@import '../../common/variables.scss';
+@import '../../common/functions';
+@import '../../common/variables';
 
 .footer {
   display: flex;
@@ -40,11 +40,8 @@
     @media (min-width: $tablet) {
       flex-direction: row;
       justify-content: space-between;
-
       width: 100%;
-
       padding: 9px 140px 22px 119px;
-
       border-top: 1px solid #e5e5e5;
     }
   }
@@ -107,7 +104,7 @@
 
   &__email-text {
     @media (min-width: $tablet) {
-      margin: 17px 0px 23px;
+      margin: 17px 0 23px;
     }
   }
 
