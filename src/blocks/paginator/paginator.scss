@@ -17,7 +17,6 @@
 
     @media (max-width: $mobile) {
       padding: 0;
-      flex-wrap: wrap;
     }
   }
 
@@ -34,6 +33,11 @@
     outline: none;
     cursor: pointer;
 
+    @media (max-width: $mobile) {
+      min-width: 30px;
+      min-height: 30px;
+    }
+
     &:hover,
     &:focus {
       text-shadow: 1px 0 5px;
@@ -43,6 +47,9 @@
       position: absolute;
       color: $secondary-color-2;
       font-size: 18px;
+      @media (max-width: $mobile) {
+        font-size: 12px;
+      }
     }
 
     &_prev {
@@ -74,13 +81,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 40px;
-    height: 40px;
+    min-width: 40px;
+    min-height: 40px;
     list-style: none;
     color: rgba($dark-color, 0.5);
     font-size: rem(12);
     border-radius: 50%;
     cursor: pointer;
+
+    @media (max-width: $mobile) {
+      min-width: 25px;
+      min-height: 25px;
+    }
 
     &:focus {
       outline: 1px solid $primary-color;
