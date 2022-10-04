@@ -30,7 +30,7 @@ mixin search-room(options = {})
                 text: "Гости"
               })
             +dropdown({
-              type: "guests",
+              type: "guests-dropdown",
               placeholder: "Сколько гостей",
               mod: "guests",
               items: [
@@ -124,7 +124,7 @@ mixin search-room(options = {})
               })
             .search-room__dropdown
               +dropdown({
-                type: "facilities",
+                type: "amenity-dropdown",
                 size: "small",
                 placeholder: "Удобства номера",
                 items: [

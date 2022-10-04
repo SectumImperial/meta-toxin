@@ -93,11 +93,11 @@ class Canvas {
   }
 
   static createDef({
-    id = 'default',
+    grade = 'default',
     stopFirst = '#6b0000',
     stopSecond = '#1a0000',
   }) {
-    return `<linearGradient id="${id}" x1="0%" y1="0%" x2="100%" y2="0%">
+    return `<linearGradient id="${grade}" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="${stopFirst}"/>
       <stop offset="100%" stop-color="${stopSecond}"/>
     </linearGradient>`;
@@ -126,9 +126,9 @@ class Canvas {
     const url = Canvas.createUrl(option);
     const dashoffset = Canvas.createDashOffset(dashoffsetVal);
 
-    const className = option.id ? `${UNIT}_${option.id}` : `${UNIT}_default`;
+    const className = option.grade ? `${UNIT}_${option.grade}` : `${UNIT}_default`;
 
-    const circle = `<circle class="${UNIT} ${className}" data-line="${option.id}" 
+    const circle = `<circle class="${UNIT} ${className}" data-line="${option.grade}" 
     r="15.9" cx="50%" cy="50%" ${url} ${dasharray} ${dashoffset} tabindex="0"></circle>`;
     return circle;
   }
@@ -145,8 +145,8 @@ class Canvas {
     return dasharray;
   }
 
-  static createUrl({ id = 'default' }) {
-    return `stroke="url(#${id})"`;
+  static createUrl({ grade = 'default' }) {
+    return `stroke="url(#${grade})"`;
   }
 
   static createDashOffset(dashoffsetVal = 0) {
@@ -184,19 +184,19 @@ class Canvas {
   }
 
   static createLi({
-    id = 'default',
+    grade = 'default',
     name = 'Мёртвые голоса',
     stopFirst = '#6b0000',
     stopSecond = '#1a0000',
   }) {
     const li = document.createElement('li');
-    const className = `${ITEM} ${ITEM}_${id}`;
-    li.dataset.line = id;
+    const className = `${ITEM} ${ITEM}_${grade}`;
+    li.dataset.line = grade;
     li.className = className;
     li.innerText = name;
 
     const mark = document.createElement('div');
-    mark.className = `${ITEM}-mark ${ITEM}-mark_${id}`;
+    mark.className = `${ITEM}-mark ${ITEM}-mark_${grade}`;
     mark.style.width = '10px';
     mark.style.height = '10px';
     mark.style.background = `linear-gradient(${stopFirst}, ${stopSecond})`;
@@ -221,14 +221,14 @@ class Canvas {
   #handleItemOver({ target }) {
     const { line } = target.dataset;
 
-    for (const { count, stopFirst, id = 'default' } of this.options) {
-      if (id === line) {
+    for (const { count, stopFirst, grade = 'default' } of this.options) {
+      if (grade === line) {
         this.text = this.#createText(stopFirst, count);
         this.#deleteText();
         this.#addText();
 
-        if (target.classList.contains(ITEM)) this.#boldLine(id);
-        if (target.classList.contains(UNIT)) this.#hoverText(id);
+        if (target.classList.contains(ITEM)) this.#boldLine(grade);
+        if (target.classList.contains(UNIT)) this.#hoverText(grade);
       }
     }
   }
@@ -241,13 +241,13 @@ class Canvas {
     this.#resetHoverText();
   }
 
-  #boldLine(id) {
-    const circleLine = this.canvas.querySelector(`.${UNIT}_${id}`);
+  #boldLine(grade) {
+    const circleLine = this.canvas.querySelector(`.${UNIT}_${grade}`);
     if (circleLine) circleLine.classList.add(`${UNIT}_hovered`);
   }
 
-  #hoverText(id) {
-    const item = this.canvas.querySelector(`.${ITEM}_${id}`);
+  #hoverText(grade) {
+    const item = this.canvas.querySelector(`.${ITEM}_${grade}`);
     if (item) item.classList.add(`${ITEM}_hovered`);
   }
 

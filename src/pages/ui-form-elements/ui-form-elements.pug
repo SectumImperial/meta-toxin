@@ -63,7 +63,7 @@ block content
                   text: "Сколько гостей"
                 })
               +dropdown({
-                type: "guests",
+                type: "guests-dropdown",
                 id: "booking-guests",
                 placeholder: "Сколько гостей",
                 items: [
@@ -202,11 +202,11 @@ block content
                 +star-rating({
                   stars: 5,
                   rating: 4,
-                 })
+})
                 +star-rating({
                   stars: 5,
                   rating: 5,
-                 })
+})
           .form-elems__btns 
             .form-elems__btn.form-elems__btn_range
               +range-slider({
@@ -245,7 +245,7 @@ block content
                     href: "registration-page.html",
                     isHovered: true,
                   })
-                  
+
                 .form-elems__elem-btn-cont
                   +button({
                     content: "Click me", 
@@ -278,7 +278,7 @@ block content
                     btnSize: "tiny",
                     isHovered: true,
                   })
-              
+
               .form-elems__elem-btn_big 
                 +button({
                   content: "Перейти к оплате",
@@ -364,7 +364,7 @@ block content
                   text: "dropdown"
                 })
               +dropdown({
-                type: "guests",
+                type: "guests-dropdown",
                 isOpened: true,
                 placeholder: "Сколько гостей",
                 items: [
@@ -388,7 +388,7 @@ block content
                   text: "dropdown"
                 })
               +dropdown({
-              type: "guests",
+              type: "guests-dropdown",
               isOpened: true,
               placeholder: "Сколько гостей",
               items: [
@@ -419,7 +419,7 @@ block content
                 {
                   labelText: "Завтрак",
                   name: "form-elems-lunch",
-                  
+
                 },
                 {
                   labelText: "Письменный стол",
@@ -518,30 +518,29 @@ block content
         .form-elems__details 
           .form-elems__details-item.form-elems__details-item_small 
             +room-data({
-                  items: [
-                    {
-                      title: "Комфорт",
-                      text: "Шумопоглощающие стены",
-                      icon: "smile",
-                    },
-                    {
-                      title: "Удобство",
-                      text: "Окно в каждой из спален",
-                      icon: "city",
-                    },
-                  ]
+              items: [
+                {
+                  title: "Комфорт",
+                  text: "Шумопоглощающие стены",
+                  icon: "smile",
+                },
+                {
+                  title: "Удобство",
+                  text: "Окно в каждой из спален",
+                  icon: "city",
+                },
+              ]
                 })     
           .form-elems__details-item.form-elems__details-item_comment
             +review({
-                src: "tesak.jpg",
-                name: "Мурад Сарафанов",
-                date: "5 дней назад",
-                liked: true,
-                counts: 12,
-                text: `Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий.\n
-                И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто\n
-                не жаловался из соседей.`
+              src: "tesak.jpg",
+              name: "Мурад Сарафанов",
+              date: "5 дней назад",
+              liked: true,
+              counts: 12,
+              text: `Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий.\n
+              И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто\n
+              не жаловался из соседей.`
               })    
-              
-              
-            
+
+

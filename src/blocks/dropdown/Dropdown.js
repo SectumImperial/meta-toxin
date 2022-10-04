@@ -44,6 +44,8 @@ class Dropdown {
 
     this.preset = JSON.parse(this.dropdown.dataset.preset);
     this.#addPreset();
+
+    console.log(this.type);
   }
 
   #findElems() {
@@ -211,7 +213,7 @@ class Dropdown {
     Dropdown.checkLimits(count);
     Dropdown.checkDecrementDisabled(count, target);
 
-    if (this.type === 'guests') this.#checkInfants();
+    if (this.type === 'guests-dropdown') this.#checkInfants();
     this.#performData();
     this.#checkBtnVisibility();
   }
@@ -229,7 +231,7 @@ class Dropdown {
       decrement.classList.remove(DISABLED);
     }
 
-    if (this.type === 'guests') this.#checkInfants();
+    if (this.type === 'guests-dropdown') this.#checkInfants();
     this.#performData();
     this.#checkBtnVisibility();
   }
