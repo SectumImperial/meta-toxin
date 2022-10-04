@@ -8,7 +8,7 @@
   gap: 10px;
   color: rgba($dark-color, 0.5);
   cursor: pointer;
-  
+
   &:hover {
     color: rgba($dark-color, 0.75);
   }
@@ -29,6 +29,19 @@
     font-size: $fontTiny;
   }
 
+  &__input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    white-space: nowrap;
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+  }
+
   &__new-checkbox {
     position: relative;
     display: inline-block;
@@ -44,11 +57,11 @@
     }
   }
 
-  &__input:focus + &__new-checkbox  {
+  &__input:focus + &__new-checkbox {
     box-shadow: 0 0 5px $primary-color;
   }
 
-  &__input:focus + &__description  {
+  &__input:focus + &__description {
     color: rgba($dark-color, 0.75);
   }
 

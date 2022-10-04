@@ -4,19 +4,19 @@ include ../button/button.pug
 
 mixin header(options = {})
   -
-   const {
-    isShadow = false,
-    isLogged = false,
-    navigation = {}
-   } = options
+    const {
+      isShadow = false,
+      isLogged = false,
+      navigation = {}
+    } = options
   -
     let shadow = isShadow ? "header_shadow" : ""
 
 
   section.header(
-      class =  `${shadow}`
+    class =  `${shadow}`
     )
-    .header__content.container
+    .header__content
       .header__logo
         +logo({
           href: "landing-page.html"

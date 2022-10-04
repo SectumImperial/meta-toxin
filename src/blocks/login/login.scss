@@ -1,3 +1,7 @@
+@use 'sass:math';
+@import '../../common/functions';
+@import '../../common/variables';
+
 .login {
   min-height: 703px;
   display: flex;
@@ -7,6 +11,8 @@
   background-size: cover;
 
   &__container {
+    max-width: $container;
+    margin: 0 auto;
     padding: 19px 5px;
   }
 }

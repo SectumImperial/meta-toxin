@@ -4,6 +4,8 @@
 
 .search-room {
   display: flex;
+  max-width: $container;
+  margin: 0 auto;
 
   &__content {
     max-width: $content;

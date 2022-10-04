@@ -14,7 +14,7 @@ mixin room-details(options= {})
   div(
     class = `room-details ${classMain}`
   )
-    .room-details__content.container
+    .room-details__content
       section.room-details__photos
         .room-details__photos-big
           img(
@@ -102,7 +102,7 @@ mixin room-details(options= {})
                   stopSecond: "#66d2ea"
                 },
               ])
-          
+
           .room-details__reviews
             .room-details__reviews-heading
               .room-details__subtitle
@@ -151,9 +151,8 @@ mixin room-details(options= {})
                 text: "Отмена"
               })
             p.room-details__cancel-text Бесплатная отмена в течение 48 ч. После этого при отмене не позднее чем за 5 дн. до прибытия вы получите полный возврат за вычетом сбора за услуги.
-            
+
 
         section.room-details__order 
           .room-details__card   
             +order-card()
-          

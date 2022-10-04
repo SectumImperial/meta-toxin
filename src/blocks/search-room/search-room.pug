@@ -10,7 +10,7 @@ include ../button/button.pug
 
 
 mixin search-room(options = {}) 
-  section.search-room.container
+  section.search-room
     .search-room__content
       section.search-room__filters 
         form(
@@ -43,7 +43,7 @@ mixin search-room(options = {})
                 {
                   "Младенцы": ["младенец", "младенца", "младенцев"],
                 }
-                
+
               ]
             })
 
@@ -140,7 +140,7 @@ mixin search-room(options = {})
                   {
                     "Ванные комнаты": ["ванная комната", "ванных комнаты", "ванных комнат"],
                   }
-                  
+
                 ]
               })
 
@@ -194,8 +194,8 @@ mixin search-room(options = {})
       section.search-room__rooms
         .search-room__section-title
           +title({
-              level: "h2",
-              text: "Номера, которые мы для вас подобрали",
+            level: "h2",
+            text: "Номера, которые мы для вас подобрали",
             })
         .search-room__rooms-content
           +room-card({
@@ -358,7 +358,7 @@ mixin search-room(options = {})
           })
         .search-room__paginator 
           +paginator({
-              itemsPerPage: 12,
-              allItems: 180,
-              text: "вариантов аренды",
+            itemsPerPage: 12,
+            allItems: 180,
+            text: "вариантов аренды",
           })

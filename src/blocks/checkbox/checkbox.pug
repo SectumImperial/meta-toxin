@@ -9,14 +9,14 @@ mixin checkbox(options = {})
       id = "",
       mod = "simple"
     } = options 
-  
+
   label.checkbox
     input(
       type = "checkbox"
       name = name
       checked = isChecked
       id = id
-      class = "checkbox__input visually-hidden"
+      class = "checkbox__input"
       )
     span.checkbox__new-checkbox
     if mod === "simple" 
@@ -26,7 +26,6 @@ mixin checkbox(options = {})
         span.checkbox__title= checkboxTitle
         span.checkbox__description= checkboxDescription
 
-      
 
 
-  
+
