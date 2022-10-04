@@ -43,7 +43,6 @@ const files = [
   'order-card',
   'room-number',
   'room-price',
-  'order-counting',
   'registration-card',
   'login-card',
   'ui-header',

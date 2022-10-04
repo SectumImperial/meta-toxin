@@ -2,7 +2,6 @@ include ../room-number/room-number.pug
 include ../room-price/room-price.pug
 include ../datepicker/datepicker.pug
 include ../dropdown/dropdown.pug
-include ../order-counting/order-counting.pug
 
 mixin order-card(options = {})
   .order-card 
@@ -13,61 +12,53 @@ mixin order-card(options = {})
     )
       .order-card__room-info
         +room-number({
-            number: "888",
-            luxe: true,
-            big: true
+          number: "888",
+          luxe: true,
+          big: true
         }) 
         .order-card__price
           +room-price("9 990")
       .order-card__datepicker 
-       +datepicker()
+        +datepicker()
       .order-card__dropdown 
         span.order-card__subtitle Гости
         +dropdown({
-           class: "booking-card__dropdown-input",
-           type: "guests",
-           placeholder: "Сколько гостей",
-           items: [
-             "Взрослые", "Дети", "Младенцы"
-           ],
-           plurals: [
-             {
-               "default": ["гость", "гостя", "гостей"]
-              },
-             {
-               "Младенцы": ["младенец", "младенца", "младенцев"]
-             }
-           ]
+          class: "booking-card__dropdown-input",
+          type: "guests",
+          placeholder: "Сколько гостей",
+          items: [
+            "Взрослые", "Дети", "Младенцы"
+          ],
+          plurals: [
+            {
+              "default": ["гость", "гостя", "гостей"]
+            },
+            {
+              "Младенцы": ["младенец", "младенца", "младенцев"]
+            }
+          ]
         })
       .order-card__details 
-        .order-card__counting 
-          +order-counting({
-            fees: {
-              addFee: {
-                count: 300,
-              },
-              fee: {
-                count: 0,
-                message: "Доп. услуги включают в себя помощь с доставкой багажа"
-              }
-            },
-
-            discounts: {
-              feeDisc: {
-                count: 2179,
-                message: "Какое-нибудь важное сообщение"
-              },
-            },
-            price: 9990,
-            days: 4 
-          })
+        .order-card__days 
+          p.order-card__days-compute.js-order-card__days-compute  
+          span.order-card__days-computed.js-order-card__days-computed
+        .order-card__fee.js-order-card__fee 
+          p.order-card__fee-compute.js-order-card__fee-compute
+          span.order-card__fee-computed.js-order-card__fee-computed
+        .order-card__add-fee 
+          p.order-card__add-fee-compute.js-order-card__add-fee-compute
+          span.order-card__add-fee-computed.js-order-card__add-fee-computed
+        .order-card__all 
+          p.order-card__word Итого
+          .order-card__decoration 
+          span.order-card__sum.js-order-card__sum
         .order-card__button
-         +button({
-          content: "Забронировать",
-          btnColor: "white",
-          btnWrapperColor: "violet",
-          arrow: true,
-          btnSize: "large"
-         })
-        
-    
+          +button({
+            content: "Забронировать",
+            btnColor: "white",
+            btnWrapperColor: "violet",
+            arrow: true,
+            btnSize: "large"
+          })
+
+

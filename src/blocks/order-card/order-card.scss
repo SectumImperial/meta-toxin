@@ -44,6 +44,93 @@
 
   &__details {
     margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    font-size: $fontSmall;
+    color: rgba($dark-color, 0.75);
+  }
+
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  font-size: $fontSmall;
+  color: rgba($dark-color, 0.75);
+
+  &__days,
+  &__fee,
+  &__add-fee,
+  &__all {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__days-computed {
+    padding: 0 2px 0 0;
+  }
+
+  &__fee-compute,
+  &__add-fee-compute {
+    display: flex;
+    align-items: center;
+  }
+
+  &__fee-compute {
+    gap: 6px;
+  }
+
+  &__add-fee-compute {
+    gap: 34px;
+    align-items: flex-start;
+  }
+
+  &__add-fee-computed {
+    padding-bottom: 16px;
+    padding-right: 1px;
+  }
+
+  &__fee-computed {
+    padding-right: 2px;
+  }
+
+  &__all {
+    font-weight: bold;
+    font-size: $fontMedium;
+    color: $dark-color;
+    padding-top: 16px;
+    padding-right: 2px;
+  }
+
+  &__decoration {
+    width: 100%;
+    border-bottom: 1px dashed rgba($dark-color, 0.25);
+    align-self: flex-end;
+    margin-bottom: 5px;
+  }
+
+  &__tip {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border: 1px solid rgba($dark-color, 0.25);
+    color: rgba($dark-color, 0.25);
+    cursor: pointer;
+
+    &:hover::before,
+    &:focus::before {
+      content: attr(data-information);
+      position: absolute;
+      top: 25px;
+      left: 0;
+      padding: 2px;
+      background-color: rgba($dark-color, 0.75);
+      color: $secondary-color-2;
+      border-radius: 4px;
+      font-size: $fontTiny;
+      z-index: 2;
+    }
   }
 
   &__button {
