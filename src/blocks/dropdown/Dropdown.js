@@ -44,8 +44,6 @@ class Dropdown {
 
     this.preset = JSON.parse(this.dropdown.dataset.preset);
     this.#addPreset();
-
-    console.log(this.type);
   }
 
   #findElems() {
