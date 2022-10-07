@@ -6,35 +6,35 @@ include ../dropdown/dropdown.pug
 mixin order-card(options = {})
   .order-card 
     form(
-      class = "order-card__form"
-      method = "GET"
-      action = "error-page.html"
+      class = 'order-card__form'
+      method = 'GET'
+      action = 'error-page.html'
     )
       .order-card__room-info
         +room-number({
-          number: "888",
+          number: '888',
           luxe: true,
           big: true
         }) 
         .order-card__price
-          +room-price("9 990")
+          +room-price('9 990')
       .order-card__datepicker 
         +datepicker()
       .order-card__dropdown 
         span.order-card__subtitle Гости
         +dropdown({
-          class: "booking-card__dropdown-input",
-          type: "guests-dropdown",
-          placeholder: "Сколько гостей",
+          class: 'booking-card__dropdown-input',
+          type: 'guests-dropdown',
+          placeholder: 'Сколько гостей',
           items: [
-            "Взрослые", "Дети", "Младенцы"
+            'Взрослые', 'Дети', 'Младенцы'
           ],
           plurals: [
             {
-              "default": ["гость", "гостя", "гостей"]
+              'default': ['гость', 'гостя', 'гостей']
             },
             {
-              "Младенцы": ["младенец", "младенца", "младенцев"]
+              'Младенцы': ['младенец', 'младенца', 'младенцев']
             }
           ]
         })
@@ -54,11 +54,11 @@ mixin order-card(options = {})
           span.order-card__sum.js-order-card__sum
         .order-card__button
           +button({
-            content: "Забронировать",
-            btnColor: "white",
-            btnWrapperColor: "violet",
+            content: 'Забронировать',
+            btnColor: 'white',
+            btnWrapperColor: 'violet',
             arrow: true,
-            btnSize: "large"
+            btnSize: 'large'
           })
 
 

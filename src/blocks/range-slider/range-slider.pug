@@ -2,11 +2,11 @@ mixin range-slider(options = {})
   - 
     const {
       rangeOptions = {},
-      name = "Range slider",
+      name = 'Range slider',
       min = rangeOptions.min ? rangeOptions.min : 0,
       max = rangeOptions.max ? rangeOptions.max : 15000,
       step = rangeOptions.step ? rangeOptions.step : 1,
-      description = ""
+      description = ''
      } = options
 
   div(
@@ -16,9 +16,9 @@ mixin range-slider(options = {})
     .range-slider__fields
       span.range-slider__name= name
       input(
-        type="text"
-        name="range-slider-value"
-        class="range-slider__amount js-range-slider__amount"
+        type='text'
+        name='range-slider-value'
+        class='range-slider__amount js-range-slider__amount'
         readonly
       )
     .range-slider__slider 

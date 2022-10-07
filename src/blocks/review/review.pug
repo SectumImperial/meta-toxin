@@ -3,25 +3,25 @@ include ../like/like.pug
 mixin review(options = {})
   -
     const {
-      src = require("../../assets/content/default-author.jpg"),
-      name = "Джек Торранс",
-      date = "40 лет назад", 
+      src = require('../../assets/content/default-author.jpg'),
+      name = 'Джек Торранс',
+      date = '40 лет назад', 
       liked = false,
       counts = 0,
     } = options
-    let {text = ""} = options
+    let {text = ''} = options
 
   -      
-    if (text === "") 
+    if (text === '') 
       for (let i = 0; i < 7; i++)
-        text += "Одна работа, никакого безделья — бедняга Джек не знает веселья. "
+        text += 'Одна работа, никакого безделья — бедняга Джек не знает веселья. '
 
   section.review
     .review__image  
       img(
         src = require(`../../assets/content/${src}`) 
         alt = `Фото ${name}`
-        class = "review__photo"
+        class = 'review__photo'
         width = 48
         height = 48
         )

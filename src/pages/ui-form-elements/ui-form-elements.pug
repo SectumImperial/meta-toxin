@@ -20,7 +20,7 @@ include ../../blocks/review/review.pug
 
 block variables 
   - 
-    const title = "Form elements"
+    const title = 'Form elements'
 
 
 block content
@@ -34,154 +34,154 @@ block content
             .form-elems__field
               .form-elems__subtitle 
                 +title({
-                  level: "h5",
-                  text: "Text feild"
+                  level: 'h5',
+                  text: 'Text feild'
                 })
                 span.form-elems__status Default
               +input({
-                type: "email",
-                placeholder: "Email",
-                pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                type: 'email',
+                placeholder: 'Email',
+                pattern: '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$'
               })
             .form-elems__field
               .form-elems__subtitle 
                 +title({
-                  level: "h5",
-                  text: "Text feild"
+                  level: 'h5',
+                  text: 'Text feild'
                 })
                 span.form-elems__status Hover/Focus
               +input({
-                type: "text",
-                placeholder: "This is pretty awesome",
+                type: 'text',
+                placeholder: 'This is pretty awesome',
                 isHovered: true,
               })
 
             .form-elems__field
               .form-elems__subtitle 
                 +title({
-                  level: "h5",
-                  text: "Сколько гостей"
+                  level: 'h5',
+                  text: 'Сколько гостей'
                 })
               +dropdown({
-                type: "guests-dropdown",
-                id: "booking-guests",
-                placeholder: "Сколько гостей",
+                type: 'guests-dropdown',
+                id: 'booking-guests',
+                placeholder: 'Сколько гостей',
                 items: [
-                  "Взрослые", "Дети", "Младенцы",
+                  'Взрослые', 'Дети', 'Младенцы',
                 ],
                 plurals: [
                   {
-                    "default": ["гость", "гостя", "гостей"],
+                    'default': ['гость', 'гостя', 'гостей'],
                     },
                   {
-                    "Младенцы": ["младенец", "младенца", "младенцев"],
+                    'Младенцы': ['младенец', 'младенца', 'младенцев'],
                   }
                 ]
               })
             .form-elems__field
               .form-elems__subtitle 
                 +title({
-                  text: "masked text field",
-                  level: "h5",
+                  text: 'masked text field',
+                  level: 'h5',
                 })
               +input({
-                type: "text",
-                placeholder: "ДД.ММ.ГГГГ",
-                pattern: "[0-9]{2}.[0-9]{2}.[0-9]{4}",
+                type: 'text',
+                placeholder: 'ДД.ММ.ГГГГ',
+                pattern: '[0-9]{2}.[0-9]{2}.[0-9]{4}',
                 isRequired: true,
                 isDate: true,
               })
             .form-elems__field.form-elems__field_bigger
               +datepicker({
-                labelStart: "date Dropdown",
-                labelEnd: "date Dropdown"
+                labelStart: 'date Dropdown',
+                labelEnd: 'date Dropdown'
               })
             .form-elems__field.form-elems__field_bigger
               +datepicker({
-                labelAlone: "filter date dropdown",
+                labelAlone: 'filter date dropdown',
                 isTwoInput: false,
               })
 
             .form-elems__field.form-elems__field_bigger
               .form-elems__subtitle 
                 +title({
-                  level: "h5",
-                  text: "Subscription text field",
+                  level: 'h5',
+                  text: 'Subscription text field',
                 })
               +input({
-                type: "email",
-                placeholder: "Email",
-                pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$",
-                arrow: "forward",
+                type: 'email',
+                placeholder: 'Email',
+                pattern: '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$',
+                arrow: 'forward',
               })
 
           .form-elems__small-btns 
             .form-elems__small-btn
               .form-elems__subtitle 
                 +title({
-                  level: "h5",
-                  text: "Checkbox Buttons"
+                  level: 'h5',
+                  text: 'Checkbox Buttons'
                 })
               ul.form-elems__checkboxes
                 li.form-elems__checkbox
                   +checkbox({
-                    labelText: "Можно курить",
-                    name: "form-elems-smoke",
+                    labelText: 'Можно курить',
+                    name: 'form-elems-smoke',
                   })
                 li.form-elems__checkbox
                   +checkbox({
-                    labelText: "Можно с питомцами",
-                    name: "form-elems-pets",
+                    labelText: 'Можно с питомцами',
+                    name: 'form-elems-pets',
                     isChecked: true
                   })
                 li.form-elems__checkbox
                   +checkbox({
                     labelText: `Можно пригласить гостей 
                     (до 10 человек)`,
-                    name: "form-elems-guests",
+                    name: 'form-elems-guests',
                     isChecked: true
                   })
             .form-elems__small-btn 
               .form-elems__subtitle 
                 +title({
-                  level: "h5",
-                  text: "Radio Buttons"
+                  level: 'h5',
+                  text: 'Radio Buttons'
                 })
               .form-elems__radio
                 .form-elems__sex-group
                   +radio({
-                    name: "form-elems-sex",
+                    name: 'form-elems-sex',
                     isChecked: true,
-                    text: "Мужчина"
+                    text: 'Мужчина'
                   })
                 .form-elems__sex-group
                   +radio({
-                    name: "form-elems-sex",
-                    text: "Женщина"
+                    name: 'form-elems-sex',
+                    text: 'Женщина'
                   })
 
             .form-elems__small-btn 
               .form-elems__subtitle 
                 +title({
-                  level: "h5",
-                  text: "Toggle"
+                  level: 'h5',
+                  text: 'Toggle'
                 })
               .form-elems__toggles 
                 +toggle({
-                  name: "registration-card-mailing",
-                  text: "Получать спецпредложения",
+                  name: 'registration-card-mailing',
+                  text: 'Получать спецпредложения',
                   checked: true,
                 })
                 +toggle({
-                  name: "registration-card-mailing",
-                  text: "Получать спецпредложения",
+                  name: 'registration-card-mailing',
+                  text: 'Получать спецпредложения',
                 })
 
             .form-elems__small-btn
               .form-elems__subtitle 
                 +title({
-                  level: "h5",
-                  text: "like button"
+                  level: 'h5',
+                  text: 'like button'
                 })
               .form-elems__likes
                 +like({
@@ -195,8 +195,8 @@ block content
             .form-elems__small-btn
               .form-elems__subtitle 
                 +title({
-                  level: "h5",
-                  text: "rate button"
+                  level: 'h5',
+                  text: 'rate button'
                 })
               .form-elems__rate 
                 +star-rating({
@@ -210,121 +210,121 @@ block content
           .form-elems__btns 
             .form-elems__btn.form-elems__btn_range
               +range-slider({
-                name: "Range Slider",   
+                name: 'Range Slider',   
                 step: 100,
                 rangeOptions: {
                   min: 0,
                   max: 15000,
                   initialStart: 5000,
                   initialEnd: 10000,
-                  addedText: "₽",
+                  addedText: '₽',
                 }
               })
             .form-elems__btn
               .form-elems__subtitle 
                 +title({
-                  level: "h5",
-                  text: "buttons",
+                  level: 'h5',
+                  text: 'buttons',
                 })
               .form-elems__elem-btn_medium 
                 .form-elems__elem-btn-cont
                   +button({
-                    btnColor: "white",
-                    btnWrapperColor: "violet",
-                    content: "Click me",
-                    btnSize: "small",
-                    btnType: "link",
-                    href: "registration-page.html"
+                    btnColor: 'white',
+                    btnWrapperColor: 'violet',
+                    content: 'Click me',
+                    btnSize: 'small',
+                    btnType: 'link',
+                    href: 'registration-page.html'
                   })
                   +button({
-                    btnColor: "white",
-                    btnWrapperColor: "violet",
-                    content: "Click me",
-                    btnSize: "small",
-                    btnType: "link",
-                    href: "registration-page.html",
+                    btnColor: 'white',
+                    btnWrapperColor: 'violet',
+                    content: 'Click me',
+                    btnSize: 'small',
+                    btnType: 'link',
+                    href: 'registration-page.html',
                     isHovered: true,
                   })
 
                 .form-elems__elem-btn-cont
                   +button({
-                    content: "Click me", 
-                    btnColor: "violet",
-                    btnSize: "small",
-                    btnType: "link",
-                    href: "login-page.html",
+                    content: 'Click me', 
+                    btnColor: 'violet',
+                    btnSize: 'small',
+                    btnType: 'link',
+                    href: 'login-page.html',
                   })
                   +button({
-                    content: "Click me", 
-                    btnColor: "violet",
-                    btnSize: "small",
-                    btnType: "link",
-                    href: "login-page.html",
+                    content: 'Click me', 
+                    btnColor: 'violet',
+                    btnSize: 'small',
+                    btnType: 'link',
+                    href: 'login-page.html',
                     isHovered: true,
                   })
                 .form-elems__elem-btn-cont
                   +button({
-                    content: "Click me",
-                    btnColor: "violet",
-                    btnWrapperColor: "transparent",
-                    border: "false",
-                    btnSize: "tiny",
+                    content: 'Click me',
+                    btnColor: 'violet',
+                    btnWrapperColor: 'transparent',
+                    border: 'false',
+                    btnSize: 'tiny',
                   })
                   +button({
-                    content: "Click me",
-                    btnColor: "violet",
-                    btnWrapperColor: "transparent",
-                    border: "false",
-                    btnSize: "tiny",
+                    content: 'Click me',
+                    btnColor: 'violet',
+                    btnWrapperColor: 'transparent',
+                    border: 'false',
+                    btnSize: 'tiny',
                     isHovered: true,
                   })
 
               .form-elems__elem-btn_big 
                 +button({
-                  content: "Перейти к оплате",
-                  btnColor: "white",
-                  btnWrapperColor: "violet",
+                  content: 'Перейти к оплате',
+                  btnColor: 'white',
+                  btnWrapperColor: 'violet',
                   isArrow: true,
-                  btnSize: "large",
+                  btnSize: 'large',
                 })
             .form-elems__btn 
               .form-elems__subtitle 
                 +title({
-                  level: "h5",
-                  text: "Pagination",
+                  level: 'h5',
+                  text: 'Pagination',
                 })
               .form-elems__paginator
                 +paginator({
                   itemsPerPage: 12,
                   allItems: 180,
-                  text: "вариантов аренды",
+                  text: 'вариантов аренды',
                 })
         .form-elems__dropdowns
           .form-elems__dropdowns-item.form-elems__dropdowns-item_2
             .form-elems__dropdown
               .form-elems__subtitle 
                 +title({
-                  level: "h5",
-                  text: "dropdown"
+                  level: 'h5',
+                  text: 'dropdown'
                 })
                 span.form-elems__status Expanded
               +dropdown({
-                type: "facilities",
-                size: "small",
+                type: 'facilities',
+                size: 'small',
                 isOpened: true,
-                placeholder: "Удобства номера",
+                placeholder: 'Удобства номера',
                 items: [
-                  "Cпальни", "Кровати", "Ванные комнаты",
+                  'Cпальни', 'Кровати', 'Ванные комнаты',
                 ],
                 plurals: [
                   {
-                    "Cпальни": ["спальня", "спальни", "спален"],
+                    'Cпальни': ['спальня', 'спальни', 'спален'],
                     },
                   {
-                    "Кровати": ["кровать", "кровати", "кроватей"],
+                    'Кровати': ['кровать', 'кровати', 'кроватей'],
                   },
                   {
-                    "Ванные комнаты": ["ванная комната", "ванных комнаты", "ванных комнат"],
+                    'Ванные комнаты': ['ванная комната', 'ванных комнаты', 'ванных комнат'],
                   }
                 ]
               })  
@@ -332,26 +332,26 @@ block content
             .form-elems__dropdown
               .form-elems__subtitle 
                 +title({
-                  level: "h5",
-                  text: "dropdown"
+                  level: 'h5',
+                  text: 'dropdown'
                 })
                 span.form-elems__status Default
               +dropdown({
-                type: "facilities",
-                size: "small",
-                placeholder: "Удобства номера",
+                type: 'facilities',
+                size: 'small',
+                placeholder: 'Удобства номера',
                 items: [
-                  "Cпальни", "Кровати", "Ванные комнаты",
+                  'Cпальни', 'Кровати', 'Ванные комнаты',
                 ],
                 plurals: [
                   {
-                    "Cпальни": ["спальня", "спальни", "спален"],
+                    'Cпальни': ['спальня', 'спальни', 'спален'],
                     },
                   {
-                    "Кровати": ["кровать", "кровати", "кроватей"],
+                    'Кровати': ['кровать', 'кровати', 'кроватей'],
                   },
                   {
-                    "Ванные комнаты": ["ванная комната", "ванных комнаты", "ванных комнат"],
+                    'Ванные комнаты': ['ванная комната', 'ванных комнаты', 'ванных комнат'],
                   }
                 ]
               })  
@@ -360,22 +360,22 @@ block content
             .form-elems__dropdown
               .form-elems__subtitle 
                 +title({
-                  level: "h5",
-                  text: "dropdown"
+                  level: 'h5',
+                  text: 'dropdown'
                 })
               +dropdown({
-                type: "guests-dropdown",
+                type: 'guests-dropdown',
                 isOpened: true,
-                placeholder: "Сколько гостей",
+                placeholder: 'Сколько гостей',
                 items: [
-                  "Взрослые", "Дети", "Младенцы",
+                  'Взрослые', 'Дети', 'Младенцы',
                 ],
                 plurals: [
                   {
-                    "default": ["гость", "гостя", "гостей"],
+                    'default': ['гость', 'гостя', 'гостей'],
                     },
                   {
-                    "Младенцы": ["младенец", "младенца", "младенцев"],
+                    'Младенцы': ['младенец', 'младенца', 'младенцев'],
                   }
                 ]
               })
@@ -384,135 +384,135 @@ block content
             .form-elems__dropdown
               .form-elems__subtitle 
                 +title({
-                  level: "h5",
-                  text: "dropdown"
+                  level: 'h5',
+                  text: 'dropdown'
                 })
               +dropdown({
-              type: "guests-dropdown",
+              type: 'guests-dropdown',
               isOpened: true,
-              placeholder: "Сколько гостей",
+              placeholder: 'Сколько гостей',
               items: [
-                "Взрослые", "Дети", "Младенцы",
+                'Взрослые', 'Дети', 'Младенцы',
               ],
               plurals: [
                 {
-                  "default": ["гость", "гостя", "гостей"],
+                  'default': ['гость', 'гостя', 'гостей'],
                   },
                 {
-                  "Младенцы": ["младенец", "младенца", "младенцев"],
+                  'Младенцы': ['младенец', 'младенца', 'младенцев'],
                 }
               ],
               preset: [
                 {
-                  "Взрослые": 2,
+                  'Взрослые': 2,
                 },
                 {
-                  "Дети": 1,
+                  'Дети': 1,
                 },
               ]
             })
         .form-elems__checkboxes-lists
           .form-elems__checkboxes-lists-item.form-elems__checkboxes-lists-item_2
             +checkbox-list({
-              titleList: "Expandable checkbox list",
+              titleList: 'Expandable checkbox list',
               items: [
                 {
-                  labelText: "Завтрак",
-                  name: "form-elems-lunch",
+                  labelText: 'Завтрак',
+                  name: 'form-elems-lunch',
 
                 },
                 {
-                  labelText: "Письменный стол",
-                  name: "form-elems-table",
+                  labelText: 'Письменный стол',
+                  name: 'form-elems-table',
                   isChecked: true,
                 },
                 {
-                  labelText: "Стул для кормления",
-                  name: "form-elems-chair",
+                  labelText: 'Стул для кормления',
+                  name: 'form-elems-chair',
                   isChecked: true,
                 },
                 {
-                  labelText: "Кроватка",
-                  name: "form-elems-small-bed",
+                  labelText: 'Кроватка',
+                  name: 'form-elems-small-bed',
                   isChecked: true,
                 },
                 {
-                  labelText: "Телевизор",
-                  name: "form-elems-tv",
+                  labelText: 'Телевизор',
+                  name: 'form-elems-tv',
                 },
                 {
-                  labelText: "Шампунь",
-                  name: "form-elems-shampoo",
+                  labelText: 'Шампунь',
+                  name: 'form-elems-shampoo',
                 },
               ]
             })
             +checkbox-list({
               isOpened: true,
-              titleList: "Expandable checkbox list",
+              titleList: 'Expandable checkbox list',
               items: [
                 {
-                  labelText: "Завтрак",
-                  name: "form-elems-lunch",
+                  labelText: 'Завтрак',
+                  name: 'form-elems-lunch',
                 },
                 {
-                  labelText: "Письменный стол",
-                  name: "form-elems-table",
+                  labelText: 'Письменный стол',
+                  name: 'form-elems-table',
                   isChecked: true,
                 },
                 {
-                  labelText: "Стул для кормления",
-                  name: "form-elems-chair",
+                  labelText: 'Стул для кормления',
+                  name: 'form-elems-chair',
                   isChecked: true,
                 },
                 {
-                  labelText: "Кроватка",
-                  name: "form-elems-small-bed",
+                  labelText: 'Кроватка',
+                  name: 'form-elems-small-bed',
                   isChecked: true,
                 },
                 {
-                  labelText: "Телевизор",
-                  name: "form-elems-tv",
+                  labelText: 'Телевизор',
+                  name: 'form-elems-tv',
                 },
                 {
-                  labelText: "Шампунь",
-                  name: "form-elems-shampoo",
+                  labelText: 'Шампунь',
+                  name: 'form-elems-shampoo',
                 },
               ]
             })
           .form-elems__checkboxes-lists-item.form-elems__checkboxes-lists-item_2-rich
             .form-elems__subtitle
               +title({
-                level: "h5",
-                text: "rich Checkbox Buttons"
+                level: 'h5',
+                text: 'rich Checkbox Buttons'
               })
             .form-elems__checkbox-lists.form-elems__checkbox-lists_wide-corr
               +checkbox({
-                mod: "rich",
-                checkboxTitle: "Широкий коридор",
-                checkboxDescription: "Ширина коридоров в номере не менее 91 см.",
-                name: "form-elems-wide-corr",
-                id: "form-elems-wide-corr",
+                mod: 'rich',
+                checkboxTitle: 'Широкий коридор',
+                checkboxDescription: 'Ширина коридоров в номере не менее 91 см.',
+                name: 'form-elems-wide-corr',
+                id: 'form-elems-wide-corr',
               })
             .form-elems__checkbox.form-elems__checkbox-lists_inv-help
               +checkbox({
-                mod: "rich",
-                checkboxTitle: "Помощник для инвалидов",
+                mod: 'rich',
+                checkboxTitle: 'Помощник для инвалидов',
                 checkboxDescription: `На 1 этаже вас встретит специалист 
                 и проводит до номера.`,
-                name: "form-elems-inv-help",
-                id: "form-elems-inv-help",
+                name: 'form-elems-inv-help',
+                id: 'form-elems-inv-help',
               })
           .form-elems__checkboxes-lists-item.form-elems__checkboxes-lists-item_bullet
             .form-elems__subtitle    
               +title({
-                level: "h5",
-                text: "Bullet list",
+                level: 'h5',
+                text: 'Bullet list',
               })    
             +rules({
               rules: [
-                "Нельзя с питомцами",
-                "Без вечеринок и мероприятий",
-                "Время прибытия — после 13:00, а выезд до 12:00"
+                'Нельзя с питомцами',
+                'Без вечеринок и мероприятий',
+                'Время прибытия — после 13:00, а выезд до 12:00'
               ]
             })
         .form-elems__details 
@@ -520,22 +520,22 @@ block content
             +room-data({
               items: [
                 {
-                  title: "Комфорт",
-                  text: "Шумопоглощающие стены",
-                  icon: "smile",
+                  title: 'Комфорт',
+                  text: 'Шумопоглощающие стены',
+                  icon: 'smile',
                 },
                 {
-                  title: "Удобство",
-                  text: "Окно в каждой из спален",
-                  icon: "city",
+                  title: 'Удобство',
+                  text: 'Окно в каждой из спален',
+                  icon: 'city',
                 },
               ]
                 })     
           .form-elems__details-item.form-elems__details-item_comment
             +review({
-              src: "tesak.jpg",
-              name: "Мурад Сарафанов",
-              date: "5 дней назад",
+              src: 'tesak.jpg',
+              name: 'Мурад Сарафанов',
+              date: '5 дней назад',
               liked: true,
               counts: 12,
               text: `Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий.\n

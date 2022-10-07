@@ -3,15 +3,15 @@ include ../logo/logo.pug
 mixin ui-header(options = {})
   -
     const { isGrey = false } = options;
-    let mod = "";
-    if (isGrey) mod = "ui-header_grey" 
+    let mod = '';
+    if (isGrey) mod = 'ui-header_grey' 
 
   .ui-header(
     class = mod
   ) 
     .ui-header__logo 
       a(
-        class="ui-header__logo"
+        class='ui-header__logo'
         href = 'start-page.html'
       )
         svg(width='48' height='48' viewbox='0 0 48 48' fill='none' xmlns='http://www.w3.org/2000/svg')

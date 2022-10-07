@@ -1,18 +1,18 @@
 mixin radio (options = {})
   - 
     const {
-      name = "",
-      id = "",
+      name = '',
+      id = '',
       isChecked = false,
-      text = "",
+      text = '',
     } = options 
 
   label.radio
     input(
-      type = "radio",
+      type = 'radio',
       name = name,
       id = id,
-      class = "radio__input",
+      class = 'radio__input',
       checked = isChecked
       )
     span.radio__new-input

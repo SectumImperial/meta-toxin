@@ -2,7 +2,7 @@ mixin nav(options = {})
   -
     const {
       items = [], 
-      mod = "horizontal",
+      mod = 'horizontal',
     } = options
 
   nav.nav
@@ -11,13 +11,13 @@ mixin nav(options = {})
         -
           const subItems = item.subItems ? item.subItems : false
           const {
-            content = "",
-            href = "error-page.html",
-            classLi = subItems === false ? "nav__item" : "nav__item nav__subitem",
-            classLink = subItems === false ? "nav__link" : "nav__link nav__link_sub  icon__expand_more",
-            linkActive = ""
+            content = '',
+            href = 'error-page.html',
+            classLi = subItems === false ? 'nav__item' : 'nav__item nav__subitem',
+            classLink = subItems === false ? 'nav__link' : 'nav__link nav__link_sub  icon__expand_more',
+            linkActive = ''
           } = item
-          const isActive = linkActive === "true" ? "nav__link_active" : `${linkActive}` 
+          const isActive = linkActive === 'true' ? 'nav__link_active' : `${linkActive}` 
 
         li(
           class = classLi
@@ -31,16 +31,16 @@ mixin nav(options = {})
               each item in subItems
                 -
                   const {
-                    href = "error-page.html",
-                    content = ""
+                    href = 'error-page.html',
+                    content = ''
                   } = item
-                  
+
                 li.nav__sub-item
                   a(
                     href = href
-                    class = "nav__sublink"
+                    class = 'nav__sublink'
                   )= content
-    
+
 
 
 

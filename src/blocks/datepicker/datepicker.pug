@@ -5,15 +5,15 @@ mixin datepicker(options = {})
     const { 
       isTwoInput = true,
       isOnlyCal = false,
-      labelStart = "Прибытие",
-      labelEnd = "Выезд",
-      labelAlone = "Даты пребывания в отеле"
-     } = options
-  
+      labelStart = 'Прибытие',
+      labelEnd = 'Выезд',
+      labelAlone = 'Даты пребывания в отеле',
+      } = options
 
-    let classModField = isTwoInput ? "datepicker__fields_2" : "datepicker__fields_1"
-    if (isOnlyCal) classModField += " datepicker__fields_hidden"
-    const datepickerClass = isTwoInput ? "js-datepicker-2" : "js-datepicker-1"
+
+    let classModField = isTwoInput ? 'datepicker__fields_2' : 'datepicker__fields_1'
+    if (isOnlyCal) classModField += ' datepicker__fields_hidden'
+    const datepickerClass = isTwoInput ? 'js-datepicker-2' : 'js-datepicker-1'
 
   .datepicker.js-datepicker(
     class = datepickerClass
@@ -25,33 +25,33 @@ mixin datepicker(options = {})
       if(isTwoInput && !isOnlyCal)
         .datepicker__group.js-datepicker__group
           label(
-            for = "booking-enter",
-            class = "datepicker__label js-datepicker__label",
+            for = 'booking-enter',
+            class = 'datepicker__label js-datepicker__label',
           )= labelStart
           .datepicker__input
             input(
-              type = "text",
-              id = "booking-enter",
-              class = "datepicker__field datepicker__field_readonly js-datepicker-start js-datepicker__item _dateInput",
-              name = "datepicker-input-start",
-              placeholder = "ДД.ММ.ГГГГ",
-              pattern = "[0-9]{2}.[0-9]{2}.[0-9]{4}",
+              type = 'text',
+              id = 'booking-enter',
+              class = 'datepicker__field datepicker__field_readonly js-datepicker-start js-datepicker__item _dateInput',
+              name = 'datepicker-input-start',
+              placeholder = 'ДД.ММ.ГГГГ',
+              pattern = '[0-9]{2}.[0-9]{2}.[0-9]{4}',
               required
             )
             .datepicker__arrow.icon__expand_more 
         .datepicker__group.js-datepicker__group
           label(
-            for = "booking-out",
-            class = "datepicker__label js-datepicker__label"
+            for = 'booking-out',
+            class = 'datepicker__label js-datepicker__label'
           )= labelEnd
           .datepicker__input
             input(
-              type = "text",
-              id = "booking-out",
-              class = "datepicker__field datepicker__field_readonly js-datepicker-end js-datepicker__item _dateInput",
-              name = "datepicker-input-end",
-              placeholder = "ДД.ММ.ГГГГ",
-              pattern = "[0-9]{2}.[0-9]{2}.[0-9]{4}",
+              type = 'text',
+              id = 'booking-out',
+              class = 'datepicker__field datepicker__field_readonly js-datepicker-end js-datepicker__item _dateInput',
+              name = 'datepicker-input-end',
+              placeholder = 'ДД.ММ.ГГГГ',
+              pattern = '[0-9]{2}.[0-9]{2}.[0-9]{4}',
               required
               )
             .datepicker__arrow.icon__expand_more
@@ -59,34 +59,34 @@ mixin datepicker(options = {})
           .datepicker_btns
             .datepicker__button.datepicker__button_clear.js-datepicker__button_clear
               +button({
-                content: "Очистить",
-                btnColor: "violet",
-                btnWrapperColor: "transparent",
-                border: "false",
-                btnSize: "tiny",
+                content: 'Очистить',
+                btnColor: 'violet',
+                btnWrapperColor: 'transparent',
+                border: 'false',
+                btnSize: 'tiny',
               })
             .datepicker__button.datepicker__button_accept.js-datepicker__button_accept
               +button({
-                content: "Применить",
-                btnColor: "violet",
-                btnWrapperColor: "transparent",
-                border: "false",
-                btnSize: "tiny",
+                content: 'Применить',
+                btnColor: 'violet',
+                btnWrapperColor: 'transparent',
+                border: 'false',
+                btnSize: 'tiny',
               })
       else if(!isTwoInput && !isOnlyCal)
         .datepicker__group.js-datepicker__group
           label(
-            for = "booking-dates",
-            class = "datepicker__label js-datepicker__label"
+            for = 'booking-dates',
+            class = 'datepicker__label js-datepicker__label'
             )= labelAlone
           .datepicker__input
             input(
-              type = "text",
-              id = "booking-dates",
-              class = "datepicker__field datepicker__field_readonly datepicker-dates js-datepicker-dates js-datepicker__item __icon-expand",
-              name = "datepicker-input-dates",
-              placeholder = "дд.мм - дд.мм",
-              pattern = "[0-9]{2}.[0-9]{2}.[0-9]{4}",
+              type = 'text',
+              id = 'booking-dates',
+              class = 'datepicker__field datepicker__field_readonly datepicker-dates js-datepicker-dates js-datepicker__item __icon-expand',
+              name = 'datepicker-input-dates',
+              placeholder = 'дд.мм - дд.мм',
+              pattern = '[0-9]{2}.[0-9]{2}.[0-9]{4}',
               readonly
             )
             .datepicker__arrow.icon__expand_more 
@@ -94,51 +94,51 @@ mixin datepicker(options = {})
           .datepicker_btns
             .datepicker__button.datepicker__button_clear.js-datepicker__button_clear
               +button({
-                content: "Очистить",
-                btnColor: "violet",
-                btnWrapperColor: "transparent",
-                border: "false",
-                btnSize: "tiny",
+                content: 'Очистить',
+                btnColor: 'violet',
+                btnWrapperColor: 'transparent',
+                border: 'false',
+                btnSize: 'tiny',
               })
             .datepicker__button.datepicker__button_accept.js-datepicker__button_accept
               +button({
-                content: "Применить",
-                btnColor: "violet",
-                btnWrapperColor: "transparent",
-                border: "false",
-                btnSize: "tiny",
+                content: 'Применить',
+                btnColor: 'violet',
+                btnWrapperColor: 'transparent',
+                border: 'false',
+                btnSize: 'tiny',
               })
 
       else if(isOnlyCal)
-        .datepicker__group.js-datepicker__group.visually-hidden
+        .datepicker__group.js-datepicker__group.datepicker__group_hidden
           label(
-            for = "booking-enter",
-            class = "datepicker__label js-datepicker__label",
+            for = 'booking-enter',
+            class = 'datepicker__label js-datepicker__label',
           ) Прибытие
           .datepicker__input
             input(
-              type = "text",
-              id = "booking-enter",
-              class = "datepicker__field datepicker__field_readonly js-datepicker-start js-datepicker__item _dateInput",
-              name = "datepicker-input-start",
-              placeholder = "ДД.ММ.ГГГГ",
-              pattern = "[0-9]{2}.[0-9]{2}.[0-9]{4}",
+              type = 'text',
+              id = 'booking-enter',
+              class = 'datepicker__field datepicker__field_readonly js-datepicker-start js-datepicker__item _dateInput',
+              name = 'datepicker-input-start',
+              placeholder = 'ДД.ММ.ГГГГ',
+              pattern = '[0-9]{2}.[0-9]{2}.[0-9]{4}',
               required
             )
             .datepicker__arrow.icon__expand_more 
-        .datepicker__group.js-datepicker__group.visually-hidden
+        .datepicker__group.js-datepicker__group.datepicker__group_hidden
           label(
-            for = "booking-out",
-            class = "datepicker__label js-datepicker__label"
+            for = 'booking-out',
+            class = 'datepicker__label js-datepicker__label'
           ) Выезд
           .datepicker__input
             input(
-              type = "text",
-              id = "booking-out",
-              class = "datepicker__field datepicker__field_readonly js-datepicker-end js-datepicker__item _dateInput",
-              name = "datepicker-input-end",
-              placeholder = "ДД.ММ.ГГГГ",
-              pattern = "[0-9]{2}.[0-9]{2}.[0-9]{4}",
+              type = 'text',
+              id = 'booking-out',
+              class = 'datepicker__field datepicker__field_readonly js-datepicker-end js-datepicker__item _dateInput',
+              name = 'datepicker-input-end',
+              placeholder = 'ДД.ММ.ГГГГ',
+              pattern = '[0-9]{2}.[0-9]{2}.[0-9]{4}',
               required
               )
             .datepicker__arrow.icon__expand_more
@@ -146,18 +146,17 @@ mixin datepicker(options = {})
           .datepicker_btns
             .datepicker__button.datepicker__button_clear.js-datepicker__button_clear
               +button({
-                content: "Очистить",
-                btnColor: "violet",
-                btnWrapperColor: "transparent",
-                border: "false",
-                btnSize: "tiny",
+                content: 'Очистить',
+                btnColor: 'violet',
+                btnWrapperColor: 'transparent',
+                border: 'false',
+                btnSize: 'tiny',
               })
             .datepicker__button.datepicker__button_accept.js-datepicker__button_accept
               +button({
-                content: "Применить",
-                btnColor: "violet",
-                btnWrapperColor: "transparent",
-                border: "false",
-                btnSize: "tiny",
+                content: 'Применить',
+                btnColor: 'violet',
+                btnWrapperColor: 'transparent',
+                border: 'false',
+                btnSize: 'tiny',
               })
-      

@@ -3,18 +3,18 @@ include ../../blocks/footer/footer.pug
 
 block variables
   -
-    const description = "Поиск номеров отеля Toxin"
-    const keywords = "Отель, Toxin, номера, отдых, ночлег, шампунь"
+    const description = 'Поиск номеров отеля Toxin'
+    const keywords = 'Отель, Toxin, номера, отдых, ночлег, шампунь'
     const isBorder = true;
 
 doctype html
-html(lang="ru")
+html(lang='ru')
   head
-    meta(charset="UTF-8")
-    meta(name="description" content=description)
-    meta(name="keywords" content=keywords)
-    meta(http-equiv="X-UA-Compatible" content="IE=edge")
-    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    meta(charset='UTF-8')
+    meta(name='description' content=description)
+    meta(name='keywords' content=keywords)
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
     meta(name='msapplication-TileColor' content='#da532c')
     meta(name='msapplication-config' content='./favicon/browserconfig.xml')
     title #{title} 
@@ -33,58 +33,58 @@ html(lang="ru")
         navigation: {
         items: [
           {
-            content: "О нас",
-            href: "error-page.html",
+            content: 'О нас',
+            href: 'error-page.html',
             },
           {
-            content: "Услуги",
-            href: "error-page.html",
+            content: 'Услуги',
+            href: 'error-page.html',
             subItems: [
               {
-                content: "Бассйен",
-                href: "error-page.html"
+                content: 'Бассйен',
+                href: 'error-page.html'
               },
               {
-                content: "Вызов такси",
-                href: "error-page.html"
+                content: 'Вызов такси',
+                href: 'error-page.html'
               },
               {
-                content: "Конференц-зал",
-                href: "error-page.html"
+                content: 'Конференц-зал',
+                href: 'error-page.html'
               },
               {
-                content: "Крематорий",
-                href: "error-page.html"
+                content: 'Крематорий',
+                href: 'error-page.html'
               }
             ]
           },
           {
-            content: "Вакансии",
-            href: "error-page.html"
+            content: 'Вакансии',
+            href: 'error-page.html'
           },
           {
-            content: "Новости",
-            href: "error-page.html"
+            content: 'Новости',
+            href: 'error-page.html'
           },
           {
-            content: "Соглашения",
-            href: "error-page.html",
+            content: 'Соглашения',
+            href: 'error-page.html',
             subItems: [
               {
-                content: "Общие положения",
-                href: "error-page.html"
+                content: 'Общие положения',
+                href: 'error-page.html'
               },
               {
-                content: "Заказ бронирвоания",
-                href: "error-page.html"
+                content: 'Заказ бронирвоания',
+                href: 'error-page.html'
               },
               {
-                content: "Отмена бронирования",
-                href: "error-page.html"
+                content: 'Отмена бронирования',
+                href: 'error-page.html'
               },
               {
-                content: "Пользование крематорием",
-                href: "error-page.html"
+                content: 'Пользование крематорием',
+                href: 'error-page.html'
               }
             ]
           }
@@ -94,51 +94,51 @@ html(lang="ru")
       block content
     footer.page__footer
       +footer({
-        contentPromo: "Бронирование номеров в лучшем отеле 2019 года по версии ассоциации «Отельные взгляды»",
+        contentPromo: 'Бронирование номеров в лучшем отеле 2019 года по версии ассоциации «Отельные взгляды»',
         isBorder: isBorder,
         navItems: [{
-          titleItem: "Навигация",
+          titleItem: 'Навигация',
           items: [
             {
-            content: "О нас",
+            content: 'О нас',
             },
             {
-            content: "Новости",
+            content: 'Новости',
             },
             {
-            content: "Служба поддержки",
+            content: 'Служба поддержки',
             },
             {
-            content: "Услуги",
+            content: 'Услуги',
             }
           ]
         },
         {
-          titleItem: "О нас",
+          titleItem: 'О нас',
           items: [{
-            content: "О сервисе",
+            content: 'О сервисе',
             },
             {
-            content: "Наша команда",
+            content: 'Наша команда',
             },
             {
-            content: "Вакансии",
+            content: 'Вакансии',
             },
             {
-            content: "Инвесторы"
+            content: 'Инвесторы'
             }
           ]
         },
         {
-          titleItem: "Служба поддержки",
+          titleItem: 'Служба поддержки',
           items: [{
-            content: "Соглашения",
+            content: 'Соглашения',
             },
             {
-            content: "Сообщества",
+            content: 'Сообщества',
             },
             {
-            content: "Связь с нами",
+            content: 'Связь с нами',
             },
           ]
         }]

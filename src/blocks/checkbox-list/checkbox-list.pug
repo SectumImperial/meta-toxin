@@ -3,13 +3,13 @@ include ../checkbox/checkbox.pug
 mixin checkbox-list(options = {})
   -
     const {
-        titleList = "",
-        items = [],
-        isOpened = false
+      titleList = '',
+      items = [],
+      isOpened = false
     } = options
-    
-    const openedBlock = isOpened ? "js_active" : ""
-    const openedList = isOpened ? "js_opened_list" : ""
+
+    const openedBlock = isOpened ? 'js_active' : ''
+    const openedList = isOpened ? 'js_opened_list' : ''
 
   div.checkbox-list._js-checkbox-list(
     tabindex = 0
@@ -22,11 +22,11 @@ mixin checkbox-list(options = {})
       each item in items 
         - 
           const {
-            labelText = "",
-            name = "",
+            labelText = '',
+            name = '',
             isChecked = false
           } = item
-            
+
         li.checkbox-list__item
           .checkbox-list__checkbox
             +checkbox({

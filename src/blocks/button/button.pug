@@ -1,53 +1,53 @@
 mixin button(options = {}) 
   - 
     const {
-      btnType = "button",
-      type = "submit",
+      btnType = 'button',
+      type = 'submit',
       isArrow = false,
-      btnColor = "white",
-      btnWrapperColor = "violet",
-      btnSize = "small",
-      href = "error-page.html",
-      content = "",
+      btnColor = 'white',
+      btnWrapperColor = 'violet',
+      btnSize = 'small',
+      href = 'error-page.html',
+      content = '',
       isHovered = false
     } = options 
 
     const colorBtn = {
-      white: "button_white",
-      violet: "button_violet",
+      white: 'button_white',
+      violet: 'button_violet',
     } 
 
     const wrapperColor = {
-      transparent: "button_transparent",
-      violet: "button_violet",
+      transparent: 'button_transparent',
+      violet: 'button_violet',
     }
 
     const sizeBtn = {
-      tiny: "button_tiny",
-      small: "button_small",
-      medium: "button_medium",
-      big: "button_big",
-      large: "button_large"
+      tiny: 'button_tiny',
+      small: 'button_small',
+      medium: 'button_medium',
+      big: 'button_big',
+      large: 'button_large'
     }
 
-    const hoverClass = isHovered ? "button_hovered" : ""
+    const hoverClass = isHovered ? 'button_hovered' : ''
 
   .button(
     class = `${wrapperColor[btnWrapperColor]} ${hoverClass}`
-   )
-    - if(btnType === "button")
-     button(
-       class = `button__button ${colorBtn[btnColor]} ${sizeBtn[btnSize]}`
-       type = type
-      )
-       span.button__content= content
-     - if (isArrow) 
-       .button_arrow.icon__arrow_forward
-    - if(btnType === "link")
-     a(
-       class = `button__button button_link ${colorBtn[btnColor]} ${sizeBtn[btnSize]}`
-       href = href
-      )
-       span.button__content= content
+  )
+    - if(btnType === 'button')
+      button(
+        class = `button__button ${colorBtn[btnColor]} ${sizeBtn[btnSize]}`
+        type = type
+        )
+          span.button__content= content
+      - if (isArrow) 
+        .button_arrow.icon__arrow_forward
+    - if(btnType === 'link')
+      a(
+        class = `button__button button_link ${colorBtn[btnColor]} ${sizeBtn[btnSize]}`
+        href = href
+        )
+          span.button__content= content
 
 

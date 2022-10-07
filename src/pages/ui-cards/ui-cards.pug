@@ -10,12 +10,12 @@ include ../../blocks/room-card/room-card.pug
 
 block variables 
   - 
-    const title = "Cards"
+    const title = 'Cards'
 
 block content
   header.ui-page__header 
     +ui-header({
-        isGrey: true,
+      isGrey: true,
     })
   main.ui-page__main 
     .ui-cards 
@@ -32,32 +32,32 @@ block content
           })
           +room-card({
             images: [
-              "room-image-1.jpg",
-              "room-image-2.jpg",
-              "room-image-3.jpg",
-              "room-image-4.jpg",
+              'room-image-1.jpg',
+              'room-image-2.jpg',
+              'room-image-3.jpg',
+              'room-image-4.jpg',
             ],
             number: 888,
             luxe: true,
-            price: "9 990",
+            price: '9 990',
             rating: 5,
             reviews: 145,
-            href: "room-page.html",
+            href: 'room-page.html',
           })
           +room-card({
             images: [
-              "room-image-2.jpg",
-              "room-image-3.jpg",
-              "room-image-4.jpg",
-              "room-image-5.jpg",
+              'room-image-2.jpg',
+              'room-image-3.jpg',
+              'room-image-4.jpg',
+              'room-image-5.jpg',
             ],
             number: 840,
-            price: "9 900",
+            price: '9 900',
             rating: 4,
             reviews: 65,
-            href: "room-page.html",
+            href: 'room-page.html',
           })
-          
 
-          
+
+
 
