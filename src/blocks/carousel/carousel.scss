@@ -6,39 +6,6 @@
   position: relative;
   max-width: 270px;
 
-  &:hover::before {
-    content: '';
-    position: absolute;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    width: 42px;
-    height: 100%;
-    background: linear-gradient(
-      90deg,
-      rgb(0 0 0 / 50%) 0%,
-      rgb(0 0 0 / 0%) 99.99%,
-      rgb(255 255 255 / 0%) 100%
-    );
-  }
-
-  &:hover::after {
-    content: '';
-    position: absolute;
-    z-index: 1;
-    transform: rotate(180deg);
-    top: 0;
-    right: 0;
-    width: 42px;
-    height: 100%;
-    background: linear-gradient(
-      90deg,
-      rgb(0 0 0 / 50%) 0%,
-      rgb(0 0 0 / 0%) 99.99%,
-      rgb(255 255 255 / 0%) 100%
-    );
-  }
-
   &__images {
     overflow: hidden;
   }
@@ -61,7 +28,7 @@
     vertical-align: middle;
   }
 
-  //   Btns 
+  //   Btns
   &__prev,
   &__next {
     visibility: hidden;
@@ -77,13 +44,6 @@
 
     &::before {
       color: white;
-    }
-  }
-
-  &:hover {
-    .carousel__prev,
-    .carousel__next {
-      visibility: visible;
     }
   }
 
@@ -125,5 +85,45 @@
 
   ._active {
     background: white;
+  }
+
+  &:hover {
+    .carousel__prev,
+    .carousel__next {
+      visibility: visible;
+    }
+  }
+
+  &:hover::before {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 42px;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      rgb(0 0 0 / 50%) 0%,
+      rgb(0 0 0 / 0%) 99.99%,
+      rgb(255 255 255 / 0%) 100%
+    );
+  }
+
+  &:hover::after {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    transform: rotate(180deg);
+    top: 0;
+    right: 0;
+    width: 42px;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      rgb(0 0 0 / 50%) 0%,
+      rgb(0 0 0 / 0%) 99.99%,
+      rgb(255 255 255 / 0%) 100%
+    );
   }
 }

@@ -14,7 +14,7 @@
   &__title {
     display: inline-block;
     width: 100%;
-    font-size: $fontTiny;
+    font-size: $font-tiny;
     text-transform: uppercase;
     font-weight: bold;
     cursor: pointer;
@@ -24,7 +24,7 @@
     position: absolute;
     right: 15px;
     top: calc(50% - 6px);
-    font-size: $fontTiny;
+    font-size: $font-tiny;
     color: rgba($dark-color, 0.5);
   }
 

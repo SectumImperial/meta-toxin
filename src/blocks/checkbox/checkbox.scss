@@ -9,10 +9,6 @@
   color: rgba($dark-color, 0.5);
   cursor: pointer;
 
-  &:hover {
-    color: rgba($dark-color, 0.75);
-  }
-
   &__rich-content {
     display: flex;
     flex-direction: column;
@@ -20,13 +16,13 @@
   }
 
   &__title {
-    font-size: $fontSmall;
+    font-size: $font-small;
     font-weight: bold;
     color: rgba($dark-color, 0.75);
   }
 
   &__description {
-    font-size: $fontTiny;
+    font-size: $font-tiny;
   }
 
   &__input {
@@ -68,11 +64,12 @@
   &__input:checked + &__new-checkbox {
     position: relative;
     border: 1px solid $primary-color;
+
     &::after {
-      content: "";
+      content: '';
       position: absolute;
       top: 20%;
-      left: 35%;  
+      left: 35%;
       height: 6px;
       width: 4px;
       border-image: $gradient;
@@ -81,5 +78,9 @@
       transform: rotate(45deg);
       border-image-slice: 1;
     }
+  }
+
+  &:hover {
+    color: rgba($dark-color, 0.75);
   }
 }

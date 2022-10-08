@@ -2,7 +2,7 @@
 @import '../../common/variables';
 
 .room-number {
-  font-size: $fontSmall;
+  font-size: $font-small;
   font-weight: 700;
   word-break: break-all;
 
@@ -12,13 +12,13 @@
     font-weight: 700;
 
     &_big {
-      font-size: $fontBig;
+      font-size: $font-big;
     }
   }
 
   &__luxe {
     color: $primary-color;
-    font-size: $fontTiny;
+    font-size: $font-tiny;
     text-transform: uppercase;
     padding-top: 2px;
     padding-left: 8px;

@@ -7,12 +7,12 @@
   word-break: break-all;
 
   &__price {
-    font-size: $fontSmall;
+    font-size: $font-small;
     font-weight: 700;
   }
 
   &__word {
-    font-size: $fontTiny;
+    font-size: $font-tiny;
     font-weight: 400;
   }
 }

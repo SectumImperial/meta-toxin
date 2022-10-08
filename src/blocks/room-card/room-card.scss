@@ -47,16 +47,13 @@
 
   &__reviews {
     color: rgba($dark-color, 0.5);
-  }
-
-  &__reviews {
-    font-size: $fontSmall;
+    font-size: $font-small;
     padding: 2px 2px 0 0;
     word-break: break-all;
   }
 
   &__reviews-count {
-    font-size: $fontSmall;
+    font-size: $font-small;
     font-weight: 700;
   }
 

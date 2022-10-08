@@ -10,7 +10,7 @@
   }
 
   &__name {
-    font-size: $fontTiny;
+    font-size: $font-tiny;
     font-weight: bold;
     text-transform: uppercase;
   }
@@ -23,11 +23,11 @@
     border: none;
     outline: none;
     color: rgba($dark-color, 0.5);
-    font-size: $fontTiny;
+    font-size: $font-tiny;
   }
 
   &__description {
-    font-size: $fontTiny;
+    font-size: $font-tiny;
     color: rgba($dark-color, 0.5);
     padding-top: 16px;
 
@@ -51,24 +51,24 @@
     border: 1px solid rgba($dark-color, 0.25);
     border-radius: 3px;
   }
-  
+
   &__progress {
     position: absolute;
     height: 6px;
-    background: $gradientSecondary;
+    background: $gradient-secondary;
     border-radius: 3px;
   }
 
   &__toggle {
     position: absolute;
     top: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     z-index: 2;
     width: 16px;
     height: 16px;
     border: 2px solid white;
     border-radius: 50%;
-    background: $gradientSecondary;
+    background: $gradient-secondary;
     cursor: grab;
 
     &:active {

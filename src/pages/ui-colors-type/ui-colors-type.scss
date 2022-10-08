@@ -17,7 +17,7 @@
     grid-template-columns: 70px auto;
     grid-template-rows: 35px 35px;
     gap: 0 40px;
-    font-size: $fontMedium;
+    font-size: $font-medium;
   }
 
   &__colors {
@@ -98,15 +98,15 @@
     text-transform: capitalize;
 
     &_h1 {
-      font-size: $fontBig;
+      font-size: $font-big;
     }
 
     &_h3 {
-      font-size: $fontMedium;
+      font-size: $font-medium;
     }
 
     &_h5 {
-      font-size: $fontSmall;
+      font-size: $font-small;
     }
   }
 }

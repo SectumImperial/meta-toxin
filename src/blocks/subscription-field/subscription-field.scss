@@ -6,7 +6,6 @@
   display: flex;
   justify-content: space-between;
   border: 1px solid rgba($dark-color, 0.25);
-
   border-radius: 4px;
 
   &:hover,
@@ -26,7 +25,7 @@
     outline: none;
     border: none;
     flex-basis: 1;
-    font-size: $fontSmall;
+    font-size: $font-small;
     font-family: Montserrat, sans-serif;
 
     &::placeholder {

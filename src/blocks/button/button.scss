@@ -14,7 +14,7 @@
 
   &:hover,
   &_hovered {
-    background: $gradient50;
+    background: $gradient-50;
   }
 
   @media (max-width: $mobile) {
@@ -41,16 +41,10 @@
     border-radius: 25px;
     font-family: Montserrat, sans-serif;
     font-weight: 700;
-    font-size: $fontTiny;
+    font-size: $font-tiny;
     text-transform: uppercase;
     text-align: center;
     cursor: pointer;
-  }
-
-  &_hovered {
-    .button_tiny {
-      color: rgba($dark-color, 0.5);
-    }
   }
 
   &_tiny {
@@ -102,5 +96,11 @@
     justify-content: center;
     align-items: center;
     text-decoration: none;
+  }
+
+  &_hovered {
+    .button_tiny {
+      color: rgba($dark-color, 0.5);
+    }
   }
 }

@@ -41,6 +41,7 @@
 
   &__subtitle {
     padding-bottom: 5px;
+    text-transform: uppercase;
   }
 
   &__guests {
@@ -106,10 +107,6 @@
     @media (max-width: $pc) {
       text-align: center;
     }
-  }
-
-  &__subtitle {
-    text-transform: uppercase;
   }
 
   &__rooms-content {

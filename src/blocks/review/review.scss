@@ -9,7 +9,7 @@
   grid-template-areas:
     'a d'
     'l t';
-  font-size: $fontSmall;
+  font-size: $font-small;
   color: rgba($dark-color, 0.75);
 
   &__head {
@@ -36,6 +36,7 @@
   &__text {
     grid-area: t;
     padding: 6px 3px 0 10px;
+    line-height: 24px;
   }
 
   &__photo {
@@ -46,9 +47,5 @@
 
   &__name {
     font-weight: 700;
-  }
-
-  &__text {
-    line-height: 24px;
   }
 }

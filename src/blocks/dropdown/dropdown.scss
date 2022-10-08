@@ -16,7 +16,7 @@
     border: 1px solid rgba($dark-color, 0.25);
     color: rgba($dark-color, 0.75);
     border-radius: 4px;
-    font-size: $fontSmall;
+    font-size: $font-small;
     font-family: Montserrat, sans-serif;
     cursor: pointer;
 
@@ -39,7 +39,7 @@
     position: absolute;
     top: 36%;
     right: 15px;
-    font-size: $fontTiny;
+    font-size: $font-tiny;
 
     &::before {
       color: rgba($dark-color, 0.5);
@@ -111,7 +111,7 @@
   }
 
   &__item-text {
-    font-size: $fontTiny;
+    font-size: $font-tiny;
     text-transform: uppercase;
     font-weight: bold;
   }
@@ -121,7 +121,7 @@
     text-align: center;
     font-family: Montserrat, sans-serif;
     font-weight: bold;
-    font-size: $fontTiny;
+    font-size: $font-tiny;
     border: none;
 
     &:focus {
