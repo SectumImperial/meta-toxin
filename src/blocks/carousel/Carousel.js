@@ -19,7 +19,7 @@ class Carousel {
   init() {
     this.#findElems();
     this.#createVars();
-    this.#markToggless();
+    this.#markToggles();
     this.#checkActive();
     this.#addListeners();
   }
@@ -40,7 +40,7 @@ class Carousel {
     this.xDown = null;
   }
 
-  #markToggless() {
+  #markToggles() {
     let i = 0;
     this.toggles.forEach((toggle) => {
       // eslint-disable-next-line no-param-reassign
@@ -145,10 +145,6 @@ class Carousel {
     this.#checkBtnVisibility();
   }
 
-  static getTouches(evt) {
-    return evt.touches;
-  }
-
   #handleCarouselPrevTouchStart(evt) {
     const firstTouch = Carousel.getTouches(evt)[0];
     this.xDown = firstTouch.clientX;
@@ -177,6 +173,10 @@ class Carousel {
     if (code === 'ArrowLeft') {
       this.#moveLeft();
     }
+  }
+
+  static getTouches(evt) {
+    return evt.touches;
   }
 }
 

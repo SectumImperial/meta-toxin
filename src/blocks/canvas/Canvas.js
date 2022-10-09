@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-syntax */
 import {
   CHART,
   LEGEND,
@@ -58,10 +57,10 @@ class Canvas {
 
   #sumCount() {
     let sum = 0;
-    for (const option of this.options) {
+    this.options.forEach((option) => {
       if (!Number.isNaN(option.count)) sum += option.count;
       if (Number.isNaN(option.count)) sum += 0;
-    }
+    });
 
     if (Number.isNaN(sum)) {
       throw new Error('Ошибка в подсчёте суммы голосов Canvas');
@@ -92,17 +91,6 @@ class Canvas {
     return defs;
   }
 
-  static createDef({
-    grade = 'default',
-    stopFirst = '#6b0000',
-    stopSecond = '#1a0000',
-  }) {
-    return `<linearGradient id="${grade}" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="${stopFirst}"/>
-      <stop offset="100%" stop-color="${stopSecond}"/>
-    </linearGradient>`;
-  }
-
   #createCircles() {
     const circles = [];
     this.options.forEach((option) => {
@@ -113,7 +101,6 @@ class Canvas {
   }
 
   #createCircle(option) {
-    // create dashoffsets
     const dash = Canvas.computeDash(option, this.allCounts);
     const dashoffsetVal = this.dashoffsets.reduce(
       (curr, prev) => curr + prev,
@@ -121,41 +108,15 @@ class Canvas {
     );
     this.dashoffsets.push(dash);
 
-    // create rest params
     const dasharray = Canvas.createDash(dash);
     const url = Canvas.createUrl(option);
     const dashoffset = Canvas.createDashOffset(dashoffsetVal);
-
     const className = option.grade ? `${UNIT}_${option.grade}` : `${UNIT}_default`;
-
     const circle = `<circle class="${UNIT} ${className}" data-line="${option.grade}" 
     r="15.9" cx="50%" cy="50%" ${url} ${dasharray} ${dashoffset} tabindex="0"></circle>`;
     return circle;
   }
 
-  static computeDash({ count = 0 }, allCounts) {
-    const dash = (count / allCounts) * 100;
-    return dash;
-  }
-
-  static createDash(dash = 0) {
-    let strokeDasharray = dash;
-    if (dash !== 0) strokeDasharray -= 1;
-    const dasharray = `stroke-dasharray="${strokeDasharray} 100"`;
-    return dasharray;
-  }
-
-  static createUrl({ grade = 'default' }) {
-    return `stroke="url(#${grade})"`;
-  }
-
-  static createDashOffset(dashoffsetVal = 0) {
-    let strokeDashoffset = dashoffsetVal;
-    if (dashoffsetVal !== 0) strokeDashoffset *= -1;
-    return `stroke-dashoffset="${strokeDashoffset}"`;
-  }
-
-  // Creat the text
   #createText(fill = '#000000', count = this.allCounts) {
     const textNum = `<text text-anchor="middle" class="canvas__number" x="50%" y="48%" fill="${fill}">${count}</text>`;
     const description = `<text text-anchor="middle" class="canvas__descr" x="50%" y="65%" fill="${fill}">Голосов</text>`;
@@ -163,7 +124,6 @@ class Canvas {
     return group;
   }
 
-  // create the list
   #createList() {
     const ul = Canvas.createUl();
     const items = [];
@@ -175,6 +135,69 @@ class Canvas {
     });
 
     return ul;
+  }
+
+  #addText() {
+    this.chart.insertAdjacentHTML('beforeend', this.text);
+  }
+
+  #deleteText() {
+    const text = this.canvas.querySelector('.canvas__text-group');
+    if (text !== '') text.remove();
+  }
+
+  #handleItemOver({ target }) {
+    const { line } = target.dataset;
+
+    this.options.forEach(({ count, stopFirst, grade = 'default' }) => {
+      if (grade === line) {
+        this.text = this.#createText(stopFirst, count);
+        this.#deleteText();
+        this.#addText();
+
+        if (target.classList.contains(ITEM)) this.#boldLine(grade);
+        if (target.classList.contains(UNIT)) this.#hoverText(grade);
+      }
+    });
+  }
+
+  #handleItemOut() {
+    this.#deleteText();
+    this.text = this.#createText();
+    this.#addText();
+    this.#resetLine();
+    this.#resetHoverText();
+  }
+
+  #boldLine(grade) {
+    const circleLine = this.canvas.querySelector(`.${UNIT}_${grade}`);
+    if (circleLine) circleLine.classList.add(`${UNIT}_hovered`);
+  }
+
+  #hoverText(grade) {
+    const item = this.canvas.querySelector(`.${ITEM}_${grade}`);
+    if (item) item.classList.add(`${ITEM}_hovered`);
+  }
+
+  #resetLine() {
+    const hoveredLine = this.canvas.querySelector(`.${UNIT}_hovered`);
+    if (hoveredLine) hoveredLine.classList.remove(`${UNIT}_hovered`);
+  }
+
+  #resetHoverText() {
+    const item = this.canvas.querySelector(`.${ITEM}_hovered`);
+    if (item) item.classList.remove(`${ITEM}_hovered`);
+  }
+
+  static createDef({
+    grade = 'default',
+    stopFirst = '#6b0000',
+    stopSecond = '#1a0000',
+  }) {
+    return `<linearGradient id="${grade}" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="${stopFirst}"/>
+      <stop offset="100%" stop-color="${stopSecond}"/>
+    </linearGradient>`;
   }
 
   static createUl() {
@@ -207,58 +230,26 @@ class Canvas {
     return li;
   }
 
-  // Mouse events and perform the text
-
-  #addText() {
-    this.chart.insertAdjacentHTML('beforeend', this.text);
+  static computeDash({ count = 0 }, allCounts) {
+    const dash = (count / allCounts) * 100;
+    return dash;
   }
 
-  #deleteText() {
-    const text = this.canvas.querySelector('.canvas__text-group');
-    if (text !== '') text.remove();
+  static createDash(dash = 0) {
+    let strokeDasharray = dash;
+    if (dash !== 0) strokeDasharray -= 1;
+    const dasharray = `stroke-dasharray="${strokeDasharray} 100"`;
+    return dasharray;
   }
 
-  #handleItemOver({ target }) {
-    const { line } = target.dataset;
-
-    for (const { count, stopFirst, grade = 'default' } of this.options) {
-      if (grade === line) {
-        this.text = this.#createText(stopFirst, count);
-        this.#deleteText();
-        this.#addText();
-
-        if (target.classList.contains(ITEM)) this.#boldLine(grade);
-        if (target.classList.contains(UNIT)) this.#hoverText(grade);
-      }
-    }
+  static createUrl({ grade = 'default' }) {
+    return `stroke="url(#${grade})"`;
   }
 
-  #handleItemOut() {
-    this.#deleteText();
-    this.text = this.#createText();
-    this.#addText();
-    this.#resetLine();
-    this.#resetHoverText();
-  }
-
-  #boldLine(grade) {
-    const circleLine = this.canvas.querySelector(`.${UNIT}_${grade}`);
-    if (circleLine) circleLine.classList.add(`${UNIT}_hovered`);
-  }
-
-  #hoverText(grade) {
-    const item = this.canvas.querySelector(`.${ITEM}_${grade}`);
-    if (item) item.classList.add(`${ITEM}_hovered`);
-  }
-
-  #resetLine() {
-    const hoveredLine = this.canvas.querySelector(`.${UNIT}_hovered`);
-    if (hoveredLine) hoveredLine.classList.remove(`${UNIT}_hovered`);
-  }
-
-  #resetHoverText() {
-    const item = this.canvas.querySelector(`.${ITEM}_hovered`);
-    if (item) item.classList.remove(`${ITEM}_hovered`);
+  static createDashOffset(dashoffsetVal = 0) {
+    let strokeDashoffset = dashoffsetVal;
+    if (dashoffsetVal !== 0) strokeDashoffset *= -1;
+    return `stroke-dashoffset="${strokeDashoffset}"`;
   }
 }
 

@@ -1,4 +1,4 @@
-import './dropdown.scss';
 import Dropdown from './Dropdown';
+import './dropdown.scss';
 
-document.querySelectorAll('.js-dropdown').forEach((e) => new Dropdown(e));
+document.querySelectorAll('.dropdown').forEach((e) => new Dropdown(e));

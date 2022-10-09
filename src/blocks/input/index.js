@@ -1,7 +1,6 @@
-import './input.scss';
-
 import Inputmask from 'inputmask';
 import Input from './Input';
+import './input.scss';
 
 const inputDates = document.querySelectorAll('._dateInput');
 

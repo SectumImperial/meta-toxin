@@ -32,12 +32,6 @@ class OrderCard {
     this.#addListeners();
   }
 
-  #findElements() {
-    this.startDate = this.card.querySelector(`.${START_DATE}`);
-    this.endDate = this.card.querySelector(`.${END_DATE}`);
-    this.datepicker = this.card.querySelector('.js-datepicker__container');
-  }
-
   #addListeners() {
     this.startDate.addEventListener('input', this.#handleDatepickerInput.bind(this));
     this.endDate.addEventListener('input', this.#handleDatepickerInput.bind(this));
@@ -55,6 +49,12 @@ class OrderCard {
 
   #handleDocumentClick() {
     this.#updateCounting();
+  }
+
+  #findElements() {
+    this.startDate = this.card.querySelector(`.${START_DATE}`);
+    this.endDate = this.card.querySelector(`.${END_DATE}`);
+    this.datepicker = this.card.querySelector('.datepicker__container');
   }
 
   #updateCounting() {
@@ -92,19 +92,10 @@ class OrderCard {
     return diffInDays;
   }
 
-  static formattedDate(date) {
-    const result = date.split('.').reverse().join('-');
-    return result;
-  }
-
   #sumRent() {
     let sum = 0;
     sum = this.price * this.days;
     return sum;
-  }
-
-  static sumDiscount() {
-    return FEES_DISC - ADD_FEE;
   }
 
   #computeFinal() {
@@ -159,6 +150,15 @@ class OrderCard {
     this.card.querySelector(
       `.${SUM}`,
     ).innerText = `${finalSum}₽`;
+  }
+
+  static formattedDate(date) {
+    const result = date.split('.').reverse().join('-');
+    return result;
+  }
+
+  static sumDiscount() {
+    return FEES_DISC - ADD_FEE;
   }
 
   static createTip(information) {

@@ -67,12 +67,12 @@
     padding: 13px 50px 12px 46px;
   }
 
-  &_white {
+  &_violet {
     color: map.get(variables.$colors, 'secondary-2');
     background-color: transparent;
   }
 
-  &_violet {
+  &_white {
     background-color: map.get(variables.$colors, 'secondary-2');
     color: map.get(variables.$colors, 'primary');
 

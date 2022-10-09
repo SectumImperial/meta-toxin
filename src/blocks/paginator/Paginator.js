@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 import {
   ACTIVE_JS,
   ACTIVE_LI,
@@ -32,6 +31,50 @@ class Paginator {
     this.#createText();
   }
 
+  #addListeners() {
+    this.btnPrev.addEventListener('click', this.#handleButtonPrevClick.bind(this));
+    this.btnNext.addEventListener('click', this.#handleButtonNextClick.bind(this));
+    this.itemsPaginator.addEventListener('click', this.#handleItemClick.bind(this));
+
+    this.btnPrev.addEventListener('keydown', this.#handleButtonPrevPress.bind(this));
+    this.btnNext.addEventListener('keydown', this.#handleButtonNextPress.bind(this));
+    this.itemsPaginator.addEventListener('keydown', this.#handleItemPress.bind(this));
+  }
+
+  #handleButtonPrevClick() {
+    this.#decrementPage();
+  }
+
+  #handleButtonNextClick() {
+    this.#incrementPage();
+  }
+
+  #handleButtonPrevPress(e) {
+    const { code } = e;
+    if (code !== 'Space') return;
+    e.preventDefault();
+    this.#decrementPage();
+  }
+
+  #handleButtonNextPress(e) {
+    const { code } = e;
+    if (code !== 'Space') return;
+    e.preventDefault();
+    this.#incrementPage();
+  }
+
+  #handleItemPress(e) {
+    const { code, target } = e;
+    if (code === 'Space' || code === 'Enter') {
+      e.preventDefault();
+      this.#changePage(target);
+    }
+  }
+
+  #handleItemClick({ target }) {
+    this.#changePage(target);
+  }
+
   #findElems() {
     this.itemsPaginator = this.paginator.querySelector(`.${ITEMS}`);
     this.btnPrev = this.paginator.querySelector(`.${BTN_PREV}`);
@@ -52,40 +95,6 @@ class Paginator {
     this.text = this.options.text;
 
     this.pageCount = Math.ceil(this.allItems / this.itemsPerPage);
-  }
-
-  #handleButtonPrevClick() {
-    this.#decrementPage();
-  }
-
-  #handleButtonNextClick() {
-    this.#incrementPage();
-  }
-
-  #addListeners() {
-    this.btnPrev.addEventListener('click', this.#handleButtonPrevClick.bind(this));
-    this.btnNext.addEventListener('click', this.#handleButtonNextClick.bind(this));
-    this.itemsPaginator.addEventListener('click', this.#handleItemClick.bind(this));
-
-    this.btnPrev.addEventListener('keydown', this.#handleButtonPrevPress.bind(this));
-    this.btnNext.addEventListener('keydown', this.#handleButtonNextPress.bind(this));
-    this.itemsPaginator.addEventListener('keydown', this.#handleItemPress.bind(this));
-  }
-
-  #isInStart() {
-    return this.currentPage === COUNT_PAGE + 1
-    || this.currentPage <= COUNT_PAGE;
-  }
-
-  #isInEnd() {
-    return this.currentPage === this.pageCount - COUNT_PAGE
-    || (this.currentPage >= this.pageCount - COUNT_PAGE
-      && this.currentPage !== this.pageCount);
-  }
-
-  #isInMiddle() {
-    return this.currentPage > COUNT_PAGE
-    && this.currentPage < this.pageCount - COUNT_PAGE;
   }
 
   //   Create and show pages
@@ -113,9 +122,24 @@ class Paginator {
     }
   }
 
+  #isInStart() {
+    return this.currentPage === COUNT_PAGE + 1
+    || this.currentPage <= COUNT_PAGE;
+  }
+
+  #isInEnd() {
+    return this.currentPage === this.pageCount - COUNT_PAGE
+    || (this.currentPage >= this.pageCount - COUNT_PAGE
+      && this.currentPage !== this.pageCount);
+  }
+
+  #isInMiddle() {
+    return this.currentPage > COUNT_PAGE
+    && this.currentPage < this.pageCount - COUNT_PAGE;
+  }
+
   #createMiddle(start, end) {
-    // eslint-disable-next-line no-plusplus
-    for (let i = start; i <= end; i++) {
+    for (let i = start; i <= end; i += 1) {
       const li = this.#createLiElement(this.liClass, i);
       this.itemsPaginator.append(li);
     }
@@ -124,7 +148,6 @@ class Paginator {
   }
 
   #createBegining() {
-    // eslint-disable-next-line no-plusplus
     const endCount = this.pageCount < COUNT_PAGE ? this.pageCount : COUNT_PAGE;
     for (let i = this.startPage; i <= endCount; i += 1) {
       const li = this.#createLiElement(this.liClass, i);
@@ -135,8 +158,7 @@ class Paginator {
   }
 
   #createStart(end) {
-    // eslint-disable-next-line no-plusplus
-    for (let i = this.startPage; i <= end; i++) {
+    for (let i = this.startPage; i <= end; i += 1) {
       const li = this.#createLiElement(this.liClass, i);
       this.itemsPaginator.append(li);
     }
@@ -144,8 +166,7 @@ class Paginator {
   }
 
   #createEnd(start) {
-    // eslint-disable-next-line no-plusplus
-    for (let i = start; i <= this.pageCount; i++) {
+    for (let i = start; i <= this.pageCount; i += 1) {
       const li = this.#createLiElement(this.liClass, i);
       this.itemsPaginator.append(li);
     }
@@ -153,8 +174,7 @@ class Paginator {
   }
 
   #createEnding() {
-    // eslint-disable-next-line no-plusplus
-    for (let i = this.pageCount - (COUNT_PAGE - 1); i <= this.pageCount; i++) {
+    for (let i = this.pageCount - (COUNT_PAGE - 1); i <= this.pageCount; i += 1) {
       const li = this.#createLiElement(this.liClass, i);
       this.itemsPaginator.append(li);
     }
@@ -260,11 +280,6 @@ class Paginator {
     }
   }
 
-  //   Click on the item
-  #handleItemClick({ target }) {
-    this.#changePage(target);
-  }
-
   #changePage(target) {
     if (!target.classList.contains(LI_CLASS)) return;
     if (target.dataset.dots) return;
@@ -319,28 +334,6 @@ class Paginator {
 
   #removePaginator() {
     this.itemsPaginator.innerHTML = '';
-  }
-
-  #handleButtonPrevPress(e) {
-    const { code } = e;
-    if (code !== 'Space') return;
-    e.preventDefault();
-    this.#decrementPage();
-  }
-
-  #handleButtonNextPress(e) {
-    const { code } = e;
-    if (code !== 'Space') return;
-    e.preventDefault();
-    this.#incrementPage();
-  }
-
-  #handleItemPress(e) {
-    const { code, target } = e;
-    if (code === 'Space' || code === 'Enter') {
-      e.preventDefault();
-      this.#changePage(target);
-    }
   }
 }
 

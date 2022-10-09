@@ -1,4 +1,4 @@
-import './range-slider.scss';
 import Slider from './Range-slider';
+import './range-slider.scss';
 
-document.querySelectorAll('.js-range-slider').forEach((e) => new Slider(e));
+document.querySelectorAll('.range-slider').forEach((e) => new Slider(e));

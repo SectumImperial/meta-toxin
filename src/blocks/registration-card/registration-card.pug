@@ -47,7 +47,7 @@ mixin registration-card()
             id: 'registration-card-female',
             text: 'Женщина'
           })
-            
+
       .registration-card__birth-group
         .registration-card__subtitle
           +title({
@@ -55,14 +55,14 @@ mixin registration-card()
             level: 'h5',
           })
         +input({
-            type: 'text',
-            id: 'registration-card-birth',
-            placeholder: 'ДД.ММ.ГГГГ',
-            pattern: '[0-9]{2}.[0-9]{2}.[0-9]{4}',
-            isRequired: true,
-            isDate: true,
+          type: 'text',
+          id: 'registration-card-birth',
+          placeholder: 'ДД.ММ.ГГГГ',
+          pattern: '[0-9]{2}.[0-9]{2}.[0-9]{4}',
+          isRequired: true,
+          isDate: true,
         })
-        
+
       .registration-card__data-group
         .registration-card__subtitle
           +title({
@@ -95,8 +95,7 @@ mixin registration-card()
       .registration-card__button  
         +button({
           content: 'Зарегистрироваться',
-          btnColor: 'white',
-          btnWrapperColor: 'violet',
+          btnColor: 'violet',
           isArrow: true,
           btnSize: 'large'
         })
@@ -108,7 +107,7 @@ mixin registration-card()
           +button({
             href: 'login-page.html',
             content: 'Войти', 
-            btnColor: 'violet',
+            btnColor: 'white',
             btnSize: 'big',
             btnType: 'link',
           })

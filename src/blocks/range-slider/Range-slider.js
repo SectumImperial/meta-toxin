@@ -31,6 +31,40 @@ class Slider {
     this.#setTogglesState();
   }
 
+  #addListeners() {
+    this.toggles.forEach((e) => {
+      e.addEventListener('mousedown', this.#handleToggleMouseDown.bind(this));
+      e.addEventListener('dragstart', () => false);
+      e.addEventListener(
+        'touchstart',
+        this.#handleToggleTouchStart.bind(this),
+        { passive: true },
+      );
+      e.addEventListener('keydown', this.#handleToggleKeyDown.bind(this));
+    });
+  }
+
+  #handleToggleMouseDown(e) {
+    e.preventDefault();
+    this.#performStartMove(e);
+  }
+
+  #handleToggleTouchStart(e) {
+    this.#performStartTouch(e);
+  }
+
+  #handleToggleKeyDown(e) {
+    e.preventDefault();
+    const { key, target } = e;
+    if (key === 'ArrowLeft') {
+      this.#performKeyDown('decrement', target);
+    }
+
+    if (key === 'ArrowRight') {
+      this.#performKeyDown('increment', target);
+    }
+  }
+
   #findElements() {
     this.field = this.slider.querySelector(`.${AMOUNT}`);
     this.toggles = this.slider.querySelectorAll(`.${TOGGLE}`);
@@ -111,28 +145,6 @@ class Slider {
     return result;
   }
 
-  #addListeners() {
-    this.toggles.forEach((e) => {
-      e.addEventListener('mousedown', this.#handleToggleMouseDown.bind(this));
-      e.addEventListener('dragstart', () => false);
-      e.addEventListener(
-        'touchstart',
-        this.#handleToggleTouchStart.bind(this),
-        { passive: true },
-      );
-      e.addEventListener('keydown', this.#handleToggleKeyDown.bind(this));
-    });
-  }
-
-  #handleToggleMouseDown(e) {
-    e.preventDefault();
-    this.#performStartMove(e);
-  }
-
-  #handleToggleTouchStart(e) {
-    this.#performStartTouch(e);
-  }
-
   #performStartMove(e) {
     const { target } = e;
     const shiftX = e.clientX - e.target.getBoundingClientRect().left;
@@ -177,18 +189,6 @@ class Slider {
 
     document.addEventListener('touchmove', handleToggleTouchMove);
     document.addEventListener('touchend', handleToggleTouchEnd);
-  }
-
-  #handleToggleKeyDown(e) {
-    e.preventDefault();
-    const { key, target } = e;
-    if (key === 'ArrowLeft') {
-      this.#performKeyDown('decrement', target);
-    }
-
-    if (key === 'ArrowRight') {
-      this.#performKeyDown('increment', target);
-    }
   }
 
   #performKeyDown(action, target) {
@@ -339,11 +339,11 @@ class Slider {
   }
 
   #checkPercents() {
-    this.togglePercentFrom = this.checkPercent('valueFrom');
-    this.togglePercentTo = this.checkPercent('valueTo');
+    this.togglePercentFrom = this.#checkPercent('valueFrom');
+    this.togglePercentTo = this.#checkPercent('valueTo');
   }
 
-  checkPercent(value = 'valueFrom') {
+  #checkPercent(value = 'valueFrom') {
     const valOfRange = this[value] - this.min;
     const currentPercent = Number((valOfRange / (this.#findRange() / 100)).toFixed(3));
     return Number(currentPercent);
@@ -434,11 +434,6 @@ class Slider {
     this.#checkZIndex();
   }
 
-  static formatValue(value) {
-    const result = new Intl.NumberFormat('ru-RU').format(value);
-    return result;
-  }
-
   #setProgress() {
     const widthProgress = this.togglePercentTo ? this.togglePercentTo - this.togglePercentFrom : 0;
     const positionStart = this.togglePercentFrom;
@@ -458,6 +453,11 @@ class Slider {
       this.toggleMin.style.zIndex = '5';
       this.toggleMax.style.zIndex = '10';
     }
+  }
+
+  static formatValue(value) {
+    const result = new Intl.NumberFormat('ru-RU').format(value);
+    return result;
   }
 }
 

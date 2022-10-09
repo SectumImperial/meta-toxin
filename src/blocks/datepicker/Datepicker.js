@@ -50,44 +50,6 @@ class Datepicker {
     this.rangeTo = null;
   }
 
-  #createId() {
-    this.formGroups.forEach((e) => {
-      const label = e.querySelector(`.${LABEL}`);
-      const input = e.querySelector(`.${ITEM}`);
-      const id = uuidv4();
-      label.htmlFor = id;
-      input.id = id;
-    });
-  }
-
-  #createDatepicker() {
-    const currentDate = new Date();
-    this.calContainer = this.datepicker.querySelector(`.${CONTAINER}`);
-    this.dp = new AirDatepicker(this.calContainer, {
-      range: true,
-      minDate: currentDate,
-    });
-    this.dp.show();
-
-    if (this.isTwoInputs) {
-      this.firstItem = this.datepicker.querySelector(`.${START}`);
-      this.secondItem = this.datepicker.querySelector(`.${END}`);
-    }
-
-    if (this.isSingleInput) {
-      this.singleItem = this.datepicker.querySelector(`.${DATES}`);
-    }
-
-    this.#formatTitle();
-    if (Datepicker.getUrlParams()) {
-      this.#getUrlValues();
-    } else {
-      this.#setPrev();
-    }
-
-    this.#markOlderDays();
-  }
-
   #addListeners() {
     this.datepicker.addEventListener('click', this.#handleDatepickerClick.bind(this));
     this.buttonClear.addEventListener('click', this.#handleButtonClearClick.bind(this));
@@ -131,110 +93,6 @@ class Datepicker {
       e.preventDefault();
       this.#clickInputOpen(e);
     }
-  }
-
-  #getUrlValues() {
-    if (this.isSingleInput) {
-      const [startUrlDateString, endUrlDateString] = Datepicker.getUrlParams();
-
-      if ((startUrlDateString, endUrlDateString)) {
-        const [firstDay, firstMonth, firstYear] = startUrlDateString.split('.');
-        const [secondDay, secondMonth, secondYear] = endUrlDateString.split('.');
-
-        const startDate = new Date(firstYear, firstMonth - 1, firstDay);
-        const endDate = new Date(secondYear, secondMonth - 1, secondDay);
-
-        this.dp.selectDate([startDate, endDate]);
-        this.singleItem.value = Datepicker.formatDate({
-          firstDate: startDate,
-          secondDate: endDate,
-          mod: 'singleInputMod',
-        });
-        this.#setPointRange();
-        this.#performRange(this.rangeFrom, this.rangeTo);
-      }
-    }
-  }
-
-  #markOlderDays() {
-    const allDays = this.calContainer.querySelectorAll('.-day-');
-    allDays.forEach((e) => {
-      if (Datepicker.isItemDateLessThanNow(e)) {
-        e.classList.add('old-date');
-      }
-    });
-  }
-
-  #checkBtnVisibility(itemsArr) {
-    let addedValue;
-    if (this.isTwoInputs) {
-      addedValue = itemsArr.every((e) => e.value !== '');
-    }
-
-    if (this.isSingleInput) {
-      addedValue = this.singleItem.value !== '';
-    }
-
-    if (addedValue) this.buttonClear.style.visibility = 'visible';
-    if (!addedValue) this.buttonClear.style.visibility = 'hidden';
-  }
-
-  #performRange(rangeFrom, rangeTo) {
-    this.#clearRange('start-range');
-    this.#clearRange('end-range');
-    Datepicker.deletePointRange(rangeFrom);
-    Datepicker.deletePointRange(rangeTo);
-    this.#addPointRange(rangeFrom, rangeTo);
-  }
-
-  #clearRange(rangeLineClass) {
-    const elements = [...this.datepicker.querySelectorAll(`.${rangeLineClass}`)];
-    if (elements.length === 0) return;
-    elements.forEach((el) => {
-      if (
-        !el.classList.contains(rangeLineClass)
-        && !el.classList.contains('-selected-')
-      ) {
-        el.classList.remove(rangeLineClass);
-      }
-
-      if (
-        !el.classList.contains('-selected-')
-        && !el.classList.contains('-focus-')
-      ) {
-        el.classList.remove(rangeLineClass);
-      }
-    });
-  }
-
-  #removeRange() {
-    this.rangeFrom.classList.remove('end-range');
-    this.rangeFrom.classList.remove('start-range');
-  }
-
-  #setPointRange() {
-    this.rangeFrom = this.datepicker.querySelector('.-range-from-');
-    this.rangeTo = this.datepicker.querySelector('.-range-to-');
-  }
-
-  #addPointRange() {
-    if (Datepicker.isRangeSelecting(this.rangeFrom, 'start-range')) {
-      this.rangeFrom.classList.add('start-range');
-    }
-
-    if (
-      Datepicker.isRangeSelecting(this.rangeTo, 'end-range')
-    ) {
-      this.rangeTo.classList.add('end-range');
-    }
-  }
-
-  #isSameDateHover() {
-    return this.rangeFrom
-      && this.rangeFrom.classList.contains('-focus-')
-      && this.rangeFrom.classList.contains('-range-to-')
-      && this.rangeFrom.classList.contains('-range-from-')
-      && this.rangeFrom.classList.contains('-selected-');
   }
 
   #handleContainerClick({ target }) {
@@ -348,6 +206,182 @@ class Datepicker {
     }
   }
 
+  #handleItemInput() {
+    const correctDateFormat = Datepicker.correctDateFormat([...this.items]);
+
+    if (correctDateFormat) {
+      this.#addDateCal(this.items);
+
+      if (this.firstItem.value === this.secondItem.value) {
+        this.secondItem.value = Datepicker.changeSameData(this.secondItem);
+        this.#addDateCal(this.items);
+      }
+      if (this.firstItem.value > this.secondItem.value) {
+        this.#swapDates();
+        this.#addDateCal(this.items);
+      }
+
+      this.#setPointRange();
+      this.#performRange(this.rangeFrom, this.rangeTo);
+    }
+  }
+
+  #createId() {
+    this.formGroups.forEach((e) => {
+      const label = e.querySelector(`.${LABEL}`);
+      const input = e.querySelector(`.${ITEM}`);
+      const id = uuidv4();
+      label.htmlFor = id;
+      input.id = id;
+    });
+  }
+
+  #createDatepicker() {
+    const currentDate = new Date();
+    this.calContainer = this.datepicker.querySelector(`.${CONTAINER}`);
+    this.dp = new AirDatepicker(this.calContainer, {
+      range: true,
+      minDate: currentDate,
+    });
+    this.dp.show();
+
+    if (this.isTwoInputs) {
+      this.firstItem = this.datepicker.querySelector(`.${START}`);
+      this.secondItem = this.datepicker.querySelector(`.${END}`);
+    }
+
+    if (this.isSingleInput) {
+      this.singleItem = this.datepicker.querySelector(`.${DATES}`);
+    }
+
+    this.#formatTitle();
+    if (Datepicker.getUrlParams()) {
+      this.#getUrlValues();
+    } else {
+      this.#setPrev();
+    }
+
+    this.#markOlderDays();
+  }
+
+  #markOlderDays() {
+    const allDays = this.calContainer.querySelectorAll('.-day-');
+    allDays.forEach((e) => {
+      if (Datepicker.isItemDateLessThanNow(e)) {
+        e.classList.add('old-date');
+      }
+    });
+  }
+
+  #addButtonsArrow() {
+    const navButtons = this.datepicker.querySelectorAll(
+      '.air-datepicker-nav--action',
+    );
+    navButtons.forEach((e) => {
+      e.classList.add('icon__arrow_forward');
+    });
+  }
+
+  #formatTitle() {
+    const navTitle = this.datepicker.querySelector('.air-datepicker-nav--title');
+    navTitle.innerText = Datepicker.deleteComma(navTitle);
+  }
+
+  #getUrlValues() {
+    if (this.isSingleInput) {
+      const [startUrlDateString, endUrlDateString] = Datepicker.getUrlParams();
+
+      if ((startUrlDateString, endUrlDateString)) {
+        const [firstDay, firstMonth, firstYear] = startUrlDateString.split('.');
+        const [secondDay, secondMonth, secondYear] = endUrlDateString.split('.');
+
+        const startDate = new Date(firstYear, firstMonth - 1, firstDay);
+        const endDate = new Date(secondYear, secondMonth - 1, secondDay);
+
+        this.dp.selectDate([startDate, endDate]);
+        this.singleItem.value = Datepicker.formatDate({
+          firstDate: startDate,
+          secondDate: endDate,
+          mod: 'singleInputMod',
+        });
+        this.#setPointRange();
+        this.#performRange(this.rangeFrom, this.rangeTo);
+      }
+    }
+  }
+
+  #checkBtnVisibility(itemsArr) {
+    let addedValue;
+    if (this.isTwoInputs) {
+      addedValue = itemsArr.every((e) => e.value !== '');
+    }
+
+    if (this.isSingleInput) {
+      addedValue = this.singleItem.value !== '';
+    }
+
+    if (addedValue) this.buttonClear.style.visibility = 'visible';
+    if (!addedValue) this.buttonClear.style.visibility = 'hidden';
+  }
+
+  #performRange(rangeFrom, rangeTo) {
+    this.#clearRange('start-range');
+    this.#clearRange('end-range');
+    Datepicker.deletePointRange(rangeFrom);
+    Datepicker.deletePointRange(rangeTo);
+    this.#addPointRange(rangeFrom, rangeTo);
+  }
+
+  #clearRange(rangeLineClass) {
+    const elements = [...this.datepicker.querySelectorAll(`.${rangeLineClass}`)];
+    if (elements.length === 0) return;
+    elements.forEach((el) => {
+      if (
+        !el.classList.contains(rangeLineClass)
+        && !el.classList.contains('-selected-')
+      ) {
+        el.classList.remove(rangeLineClass);
+      }
+
+      if (
+        !el.classList.contains('-selected-')
+        && !el.classList.contains('-focus-')
+      ) {
+        el.classList.remove(rangeLineClass);
+      }
+    });
+  }
+
+  #removeRange() {
+    this.rangeFrom.classList.remove('end-range');
+    this.rangeFrom.classList.remove('start-range');
+  }
+
+  #setPointRange() {
+    this.rangeFrom = this.datepicker.querySelector('.-range-from-');
+    this.rangeTo = this.datepicker.querySelector('.-range-to-');
+  }
+
+  #addPointRange() {
+    if (Datepicker.isRangeSelecting(this.rangeFrom, 'start-range')) {
+      this.rangeFrom.classList.add('start-range');
+    }
+
+    if (
+      Datepicker.isRangeSelecting(this.rangeTo, 'end-range')
+    ) {
+      this.rangeTo.classList.add('end-range');
+    }
+  }
+
+  #isSameDateHover() {
+    return this.rangeFrom
+      && this.rangeFrom.classList.contains('-focus-')
+      && this.rangeFrom.classList.contains('-range-to-')
+      && this.rangeFrom.classList.contains('-range-from-')
+      && this.rangeFrom.classList.contains('-selected-');
+  }
+
   #addDateCal(items) {
     if (this.isTwoInputs) {
       const arrItems = Array.from(items, (inputElement) => inputElement.value);
@@ -369,6 +403,7 @@ class Datepicker {
       this.secondItem.value = secondValue;
 
       this.dp.selectDate(correctDate);
+      this.#performRange();
     }
 
     if (this.isSingleInput) {
@@ -380,40 +415,6 @@ class Datepicker {
 
       this.dp.selectDate([firstDate, secondDate]);
     }
-  }
-
-  #handleItemInput() {
-    const correctDateFormat = Datepicker.correctDateFormat([...this.items]);
-
-    if (correctDateFormat) {
-      this.#addDateCal(this.items);
-
-      if (this.firstItem.value === this.secondItem.value) {
-        Datepicker.changeSameData(this.secondItem);
-        this.#addDateCal(this.items);
-      }
-      if (this.firstItem.value > this.secondItem.value) {
-        this.#swapDates();
-        this.#addDateCal(this.items);
-      }
-
-      this.#setPointRange();
-      this.#performRange(this.rangeFrom, this.rangeTo);
-    }
-  }
-
-  #addButtonsArrow() {
-    const navButtons = this.datepicker.querySelectorAll(
-      '.air-datepicker-nav--action',
-    );
-    navButtons.forEach((e) => {
-      e.classList.add('icon__arrow_forward');
-    });
-  }
-
-  #formatTitle() {
-    const navTitle = this.datepicker.querySelector('.air-datepicker-nav--title');
-    navTitle.innerText = Datepicker.deleteComma(navTitle);
   }
 
   #clickInputOpen({ target }) {
@@ -602,11 +603,10 @@ class Datepicker {
 
   static changeSameData(secondItem) {
     const date = secondItem.value.split('.');
-    let day = date[0];
+    let day = Number(date[0]);
     day += 1;
     date.splice(0, 1, day);
-    // eslint-disable-next-line no-param-reassign
-    secondItem.value = date.join('.');
+    return date.join('.');
   }
 
   static deleteComma(elem) {

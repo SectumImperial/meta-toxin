@@ -46,6 +46,111 @@ class Dropdown {
     this.#addPreset();
   }
 
+  #addListeners() {
+    this.field.addEventListener('click', this.#handleFieldClick.bind(this));
+    this.field.addEventListener('click', () => {
+      this.dropdownContent.classList.toggle(ACTIVE);
+    });
+
+    this.dropdownInput.addEventListener(
+      'keydown',
+      this.#handleInputKeyDown.bind(this),
+    );
+
+    this.btnsDecrement.forEach((item) => item.addEventListener('click', this.#handleDecrBtnClick.bind(this)));
+    this.btnsIncrement.forEach((item) => item.addEventListener('click', this.#handleIncrBtnClick.bind(this)));
+
+    this.btnClear.addEventListener(
+      'click',
+      this.#handleBtnClearClick.bind(this),
+    );
+    this.btnAccept.addEventListener(
+      'click',
+      this.#handleBtnAcceptClick.bind(this),
+    );
+
+    document.addEventListener('click', this.#handleDocumentClick.bind(this));
+  }
+
+  #handleDocumentClick({ target }) {
+    if (target.closest('.dropdown')) return;
+    if (this.field.classList.contains(OPENED)) {
+      this.field.classList.remove(OPENED);
+    }
+    if (this.dropdownContent.classList.contains(ACTIVE)) {
+      this.dropdownContent.classList.remove(ACTIVE);
+    }
+  }
+
+  #handleInputKeyDown(e) {
+    const { code } = e;
+    if (code === 'Space' || code === 'Enter') {
+      e.preventDefault();
+      this.dropdownContent.classList.toggle(ACTIVE);
+    }
+  }
+
+  #checkBtnVisibility() {
+    const countValues = [];
+    this.counts.forEach((e) => countValues.push(Number(e.value)));
+    const sum = countValues.reduce(
+      (previousValue, currentValue) => previousValue + currentValue,
+      0,
+    );
+
+    if (sum > 0) this.btnClear.classList.remove(HIDDEN);
+    if (sum === 0) this.btnClear.classList.add(HIDDEN);
+  }
+
+  #handleDecrBtnClick(e) {
+    e.preventDefault();
+    const { target } = e;
+    const container = target.closest(`.${ITEM}`);
+    const count = container.querySelector(`.${COUNT_ELEM}`);
+    count.value = Dropdown.checkLimits(count);
+    count.value = Dropdown.decrementValue(count, target);
+    Dropdown.checkDecrementDisabled(count, target);
+
+    if (this.type === 'guests-dropdown') this.#checkInfants();
+    this.#performData();
+    this.#checkBtnVisibility();
+  }
+
+  #handleIncrBtnClick(e) {
+    e.preventDefault();
+    const { target } = e;
+    const container = target.closest(`.${ITEM}`);
+    const count = container.querySelector(`.${COUNT_ELEM}`);
+    const decrement = container.querySelector(`.${BTNS_DEC}`);
+    count.value = Dropdown.checkLimits(count);
+    if (Number(count.value) === 999) return;
+    count.value = Number(count.value) + 1;
+    if (Number(count.value) > 0) {
+      decrement.classList.remove(DISABLED);
+    }
+
+    if (this.type === 'guests-dropdown') this.#checkInfants();
+    this.#performData();
+    this.#checkBtnVisibility();
+  }
+
+  #handleBtnClearClick(e) {
+    e.preventDefault();
+    this.dropdownInput.value = '';
+    // eslint-disable-next-line no-return-assign, no-shadow
+    this.counts.forEach((e) => (e.value = 0));
+    this.#checkBtnVisibility();
+  }
+
+  #handleBtnAcceptClick(e) {
+    e.preventDefault();
+    this.dropdownContent.classList.remove(ACTIVE);
+  }
+
+  #handleFieldClick() {
+    this.field.classList.toggle(OPENED);
+  }
+
   #findElems() {
     this.field = this.dropdown.querySelector(`.${FIELD}`);
     this.dropdownInput = this.dropdown.querySelector(`.${INPUT}`);
@@ -101,50 +206,6 @@ class Dropdown {
     });
   }
 
-  #addListeners() {
-    this.field.addEventListener('click', this.#handleFieldClick.bind(this));
-    this.field.addEventListener('click', () => {
-      this.dropdownContent.classList.toggle(ACTIVE);
-    });
-
-    this.dropdownInput.addEventListener(
-      'keydown',
-      this.#handleInputKeyDown.bind(this),
-    );
-
-    this.btnsDecrement.forEach((item) => item.addEventListener('click', this.#handleDecrBtnClick.bind(this)));
-    this.btnsIncrement.forEach((item) => item.addEventListener('click', this.#handleIncrBtnClick.bind(this)));
-
-    this.btnClear.addEventListener(
-      'click',
-      this.#handleBtnClearClick.bind(this),
-    );
-    this.btnAccept.addEventListener(
-      'click',
-      this.#handleBtnAcceptClick.bind(this),
-    );
-
-    document.addEventListener('click', this.#handleDocumentClick.bind(this));
-  }
-
-  #handleDocumentClick({ target }) {
-    if (target.closest('.dropdown')) return;
-    if (this.field.classList.contains(OPENED)) {
-      this.field.classList.remove(OPENED);
-    }
-    if (this.dropdownContent.classList.contains(ACTIVE)) {
-      this.dropdownContent.classList.remove(ACTIVE);
-    }
-  }
-
-  #handleInputKeyDown(e) {
-    const { code } = e;
-    if (code === 'Space' || code === 'Enter') {
-      e.preventDefault();
-      this.dropdownContent.classList.toggle(ACTIVE);
-    }
-  }
-
   #performData() {
     this.wordsMap = this.#createObjectMap();
     this.countsMap = this.#createCountsMap();
@@ -179,74 +240,6 @@ class Dropdown {
     return countMap;
   }
 
-  #checkBtnVisibility() {
-    const countValues = [];
-    this.counts.forEach((e) => countValues.push(Number(e.value)));
-    const sum = countValues.reduce(
-      (previousValue, currentValue) => previousValue + currentValue,
-      0,
-    );
-
-    if (sum > 0) this.btnClear.classList.remove(HIDDEN);
-    if (sum === 0) this.btnClear.classList.add(HIDDEN);
-  }
-
-  static checkDecrementDisabled(count, target) {
-    if (Number(count.value) > 0 && target.classList.contains(DISABLED)) {
-      target.classList.remove(DISABLED);
-    }
-    if (target.classList.contains(DISABLED)) return;
-    // eslint-disable-next-line no-param-reassign
-    count.value = Number(count.value) - 1;
-    if (Number(count.value) === 0) {
-      target.classList.add(DISABLED);
-    }
-  }
-
-  #handleDecrBtnClick(e) {
-    e.preventDefault();
-    const { target } = e;
-    const container = target.closest(`.${ITEM}`);
-    const count = container.querySelector(`.${COUNT_ELEM}`);
-    Dropdown.checkLimits(count);
-    Dropdown.checkDecrementDisabled(count, target);
-
-    if (this.type === 'guests-dropdown') this.#checkInfants();
-    this.#performData();
-    this.#checkBtnVisibility();
-  }
-
-  #handleIncrBtnClick(e) {
-    e.preventDefault();
-    const { target } = e;
-    const container = target.closest(`.${ITEM}`);
-    const count = container.querySelector(`.${COUNT_ELEM}`);
-    const decrement = container.querySelector(`.${BTNS_DEC}`);
-    Dropdown.checkLimits(count);
-    if (Number(count.value) === 999) return;
-    count.value = Number(count.value) + 1;
-    if (Number(count.value) > 0) {
-      decrement.classList.remove(DISABLED);
-    }
-
-    if (this.type === 'guests-dropdown') this.#checkInfants();
-    this.#performData();
-    this.#checkBtnVisibility();
-  }
-
-  #handleBtnClearClick(e) {
-    e.preventDefault();
-    this.dropdownInput.value = '';
-    // eslint-disable-next-line no-return-assign, no-shadow
-    this.counts.forEach((e) => (e.value = 0));
-    this.#checkBtnVisibility();
-  }
-
-  #handleBtnAcceptClick(e) {
-    e.preventDefault();
-    this.dropdownContent.classList.remove(ACTIVE);
-  }
-
   #checkInfants() {
     const counts = Array.from(this.counts, (e) => e.value);
     const sum = counts.reduce((prev, curr) => Number(prev) + Number(curr), 0);
@@ -267,10 +260,6 @@ class Dropdown {
     }
   }
 
-  #handleFieldClick() {
-    this.field.classList.toggle(OPENED);
-  }
-
   #joinMap() {
     const synthMap = new Map();
 
@@ -279,7 +268,7 @@ class Dropdown {
         this.wordsMap.has(value)
         && !Dropdown.hasIsEqualKey(synthMap, this.wordsMap.get(value))
       ) {
-        // If new map hasn't kthe key
+        // If new map hasn't the key
         synthMap.set(this.wordsMap.get(value), key);
       }
       // If the map of array hasn't unique array for the key
@@ -323,21 +312,20 @@ class Dropdown {
   }
 
   static hasIsEqualKey(compareMap, arr) {
-    // eslint-disable-next-line consistent-return
     compareMap.forEach((_, value) => {
       if (isEqual(value, arr)) return true;
+      return false;
     });
-    return false;
   }
 
   static sumCounts(countsMap, wordsMap, indicator) {
-    const arrKyes = [];
+    const arrKeys = [];
     countsMap.forEach((key, value) => {
       if (value !== indicator && !wordsMap.has(value)) {
-        arrKyes.push(key);
+        arrKeys.push(key);
       }
     });
-    const reusult = arrKyes.reduce(
+    const reusult = arrKeys.reduce(
       (prev, curr) => Number(prev) + Number(curr),
       0,
     );
@@ -345,10 +333,23 @@ class Dropdown {
   }
 
   static checkLimits(countEl) {
-    // eslint-disable-next-line no-param-reassign
-    if (Number(countEl.value) > 999) countEl.value = 999;
-    // eslint-disable-next-line no-param-reassign
-    if (Number(countEl.value) < 0) countEl.value = 0;
+    if (Number(countEl.value) > 999) return 999;
+    if (Number(countEl.value) < 0) return 0;
+    return Number(countEl.value);
+  }
+
+  static checkDecrementDisabled(count, target) {
+    if (Number(count.value) === 0) {
+      target.classList.add(DISABLED);
+    }
+  }
+
+  static decrementValue(count, target) {
+    if (Number(count.value) > 0 && target.classList.contains(DISABLED)) {
+      target.classList.remove(DISABLED);
+    }
+    if (target.classList.contains(DISABLED)) return count.value;
+    return Number(count.value) - 1;
   }
 }
 

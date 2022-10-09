@@ -1,4 +1,4 @@
-import './datepicker.scss';
 import Datepicker from './Datepicker';
+import './datepicker.scss';
 
-document.querySelectorAll('.js-datepicker').forEach((e) => new Datepicker(e));
+document.querySelectorAll('.datepicker').forEach((e) => new Datepicker(e));
