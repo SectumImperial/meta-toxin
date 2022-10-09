@@ -1,23 +1,23 @@
-@use 'sass:math';
-@import '../../common/variables';
+@use 'sass:map';
+@use '../../common/variables';
 
 .button {
   padding: 2px;
   border-radius: 25px;
-  background: $gradient;
+  background: map.get(variables.$gradients, 'primary');
   position: relative;
   cursor: pointer;
 
-  @media (max-width: $tablet) {
+  @media (max-width: variables.$tablet) {
     width: 100%;
   }
 
   &:hover,
   &_hovered {
-    background: $gradient-50;
+    background: map.get(variables.$gradients, 'primary-50');
   }
 
-  @media (max-width: $mobile) {
+  @media (max-width: variables.$mobile) {
     display: block;
   }
 
@@ -28,7 +28,7 @@
       background: transparent;
 
       .button__content {
-        color: rgba($dark-color, 0.5);
+        color: rgba(map.get(variables.$colors, 'dark'), 0.5);
       }
     }
   }
@@ -41,7 +41,7 @@
     border-radius: 25px;
     font-family: Montserrat, sans-serif;
     font-weight: 700;
-    font-size: $font-tiny;
+    font-size: map.get(variables.$font-sizes, 'tiny');
     text-transform: uppercase;
     text-align: center;
     cursor: pointer;
@@ -68,13 +68,13 @@
   }
 
   &_white {
-    color: white;
+    color: map.get(variables.$colors, 'secondary-2');
     background-color: transparent;
   }
 
   &_violet {
-    background-color: white;
-    color: $primary-color;
+    background-color: map.get(variables.$colors, 'secondary-2');
+    color: map.get(variables.$colors, 'primary');
 
     &:hover {
       cursor: pointer;
@@ -85,7 +85,7 @@
     position: absolute;
     top: 33%;
     right: 13px;
-    color: white;
+    color: map.get(variables.$colors, 'secondary-2');
     font-size: 16px;
   }
 
@@ -100,7 +100,7 @@
 
   &_hovered {
     .button_tiny {
-      color: rgba($dark-color, 0.5);
+      color: rgba((map.get(variables.$colors, 'dark')), 0.5);
     }
   }
 }

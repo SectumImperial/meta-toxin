@@ -1,6 +1,3 @@
-@use 'sass:math';
-@import 'variables';
-@import 'functions';
 @import 'iconsfont';
 
 @font-face {
@@ -25,12 +22,10 @@
   font-style: normal;
 }
 
-.container {
-  outline: 5px solid green;
-}
-
 * {
   box-sizing: border-box;
+}
+
+body {
   margin: 0;
-  padding: 0;
 }

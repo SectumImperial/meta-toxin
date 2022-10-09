@@ -1,17 +1,16 @@
-@use 'sass:math';
-@import '../../common/functions';
-@import '../../common/variables';
+@use 'sass:map';
+@use '../../common/variables';
 
 .subscription-field {
   display: flex;
   justify-content: space-between;
-  border: 1px solid rgba($dark-color, 0.25);
+  border: 1px solid rgba(map.get(variables.$colors, 'dark'), 0.25);
   border-radius: 4px;
 
   &:hover,
   &:focus,
   &_hovered {
-    border-color: rgba($dark-color, 0.5);
+    border-color: rgba(map.get(variables.$colors, 'dark'), 0.5);
   }
 
   // According to the maket requirements
@@ -25,18 +24,18 @@
     outline: none;
     border: none;
     flex-basis: 1;
-    font-size: $font-small;
+    font-size: map.get(variables.$font-sizes, 'small');
     font-family: Montserrat, sans-serif;
 
     &::placeholder {
-      color: rgba($dark-color, 0.25);
+      color: rgba(map.get(variables.$colors, 'dark'), 0.25);
     }
 
     &:hover,
     &:focus,
     &_hovered {
       &::placeholder {
-        color: rgba($dark-color, 0.75);
+        color: rgba(map.get(variables.$colors, 'dark'), 0.75);
       }
     }
   }
@@ -48,10 +47,10 @@
     background-color: transparent;
 
     &::before {
-      background: $gradient;
+      background: map.get(variables.$gradients, 'primary');
       background-clip: text;
       color: transparent;
-      font-size: 19px;
+      font-size: map.get(variables.$font-sizes, 'medium');
     }
 
     &:hover {

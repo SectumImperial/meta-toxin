@@ -1,6 +1,4 @@
-@use 'sass:math';
-@import '../../common/functions';
-@import '../../common/variables';
+@use '../../common/variables';
 
 .registration {
   display: flex;
@@ -15,7 +13,7 @@
   &__card {
     margin-left: 8px;
 
-    @media (max-width: $pc) {
+    @media (max-width: variables.$pc) {
       margin: auto;
     }
   }

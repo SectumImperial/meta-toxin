@@ -1,6 +1,5 @@
-@use 'sass:math';
-@import '../../common/functions';
-@import '../../common/variables';
+@use 'sass:map';
+@use '../../common/variables';
 
 .review {
   width: 100%;
@@ -9,8 +8,8 @@
   grid-template-areas:
     'a d'
     'l t';
-  font-size: $font-small;
-  color: rgba($dark-color, 0.75);
+  font-size: map.get(variables.$font-sizes, 'small');
+  color: rgba(map.get(variables.$colors, 'dark'), 0.75);
 
   &__head {
     display: flex;
@@ -30,19 +29,20 @@
 
   &__like {
     grid-area: l;
-    padding: 8px 0 0 2px;
+    padding: 8px 0 0 4px;
   }
 
   &__text {
     grid-area: t;
+    margin: 0;
     padding: 6px 3px 0 10px;
     line-height: 24px;
   }
 
   &__photo {
     border-radius: 50%;
-    border: 2px solid $secondary-color-2;
-    box-shadow: 0 10px 20px 0 rgba($dark-color, 0.1);
+    border: 2px solid map.get(variables.$colors, 'secondary-2');
+    box-shadow: 0 10px 20px 0 rgba(map.get(variables.$colors, 'dark'), 0.1);
   }
 
   &__name {

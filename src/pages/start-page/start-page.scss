@@ -23,6 +23,7 @@
     color: white;
     font-size: 35px;
     text-decoration: underline;
+    margin: 0;
   }
 
   &__pages {
@@ -36,7 +37,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;;
+    gap: 15px;
+    padding: 0;
+    margin: 0;
   }
 
   &__pages-item {

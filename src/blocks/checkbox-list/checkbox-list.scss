@@ -1,6 +1,6 @@
-@use 'sass:math';
-@import '../../common/functions';
-@import '../../common/variables';
+@use 'sass:map';
+@use '../../common/functions';
+@use '../../common/variables';
 
 .checkbox-list {
   &__item {
@@ -14,7 +14,7 @@
   &__title {
     display: inline-block;
     width: 100%;
-    font-size: $font-tiny;
+    font-size: map.get(variables.$font-sizes, 'tiny');
     text-transform: uppercase;
     font-weight: bold;
     cursor: pointer;
@@ -24,12 +24,14 @@
     position: absolute;
     right: 15px;
     top: calc(50% - 6px);
-    font-size: $font-tiny;
-    color: rgba($dark-color, 0.5);
+    font-size: map.get(variables.$font-sizes, 'tiny');
+    color: rgba(map.get(variables.$colors, 'dark'), 0.5);
   }
 
   &__items {
     display: none;
+    margin: 0;
+    padding: 0;
     padding-top: 19px;
   }
 }

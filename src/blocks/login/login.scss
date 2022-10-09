@@ -1,17 +1,15 @@
-@use 'sass:math';
-@import '../../common/functions';
-@import '../../common/variables';
+@use '../../common/variables';
 
 .login {
   min-height: 703px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: 50% 100% url('../../assets/decorative/landBakc.webp') no-repeat;
+  background: 50% 100% url('../../assets/decorative/registration.jpg') no-repeat;
   background-size: cover;
 
   &__container {
-    max-width: $container;
+    max-width: variables.$container;
     margin: 0 auto;
     padding: 19px 5px;
   }

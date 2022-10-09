@@ -1,41 +1,44 @@
-@use 'sass:math';
-@import '../../common/functions';
-@import '../../common/variables';
+@use 'sass:map';
+@use '../../common/variables';
+@use '../../common/functions';
 
 .like {
   &__button {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     min-width: 40px;
     min-height: 20px;
-    border: 1px solid rgba($dark-color, 0.25);
+    border: 1px solid rgba(map.get(variables.$colors, 'dark'), 0.25);
     border-radius: 10px;
     background-color: transparent;
     cursor: pointer;
+    padding: 0 10px 0 0;
 
     &_liked {
-      border: 1px solid $primary-color;
+      border: 1px solid map.get(variables.$colors, 'primary');
     }
   }
 
   &__heart {
+    font-size: 10px;
     padding: 0 4px;
 
     &::before {
       background-image: linear-gradient(180deg, #bc9cff 0%, #8ba4f9 100%);
       background-clip: text;
       color: transparent;
-      font-size: rem(11px);
+      font-size: functions.rem(11px);
     }
   }
 
   &__count {
     padding: 1px 1px 3px 0;
-    font-size: rem(10);
-    color: rgba($dark-color, 0.25);
+    font-size: functions.rem(10);
+    color: rgba(map.get(variables.$colors, 'dark'), 0.25);
 
     &_liked {
-      color: $primary-color;
+      color: map.get(variables.$colors, 'primary');
     }
   }
 }

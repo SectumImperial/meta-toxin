@@ -1,6 +1,5 @@
-@use 'sass:math';
-@import '../../common/functions';
-@import '../../common/variables';
+@use 'sass:map';
+@use '../../common/variables';
 
 .nav {
   display: flex;
@@ -10,8 +9,9 @@
     justify-content: space-between;
     flex-flow: column wrap;
     gap: 15px;
+    padding: 0;
 
-    @media (min-width: $tablet) {
+    @media (min-width: variables.$tablet) {
       display: flex;
       justify-content: space-between;
       flex-flow: row wrap;
@@ -19,10 +19,10 @@
     }
 
     &_vertical {
-      font-size: $font-small;
+      font-size: map.get(variables.$font-sizes, 'small');
       gap: 0;
 
-      @media (min-width: $tablet) {
+      @media (min-width: variables.$tablet) {
         flex-direction: column;
         gap: 20px;
       }
@@ -36,7 +36,7 @@
     gap: 10px;
     list-style: none;
 
-    @media (min-width: $tablet) {
+    @media (min-width: variables.$tablet) {
       position: relative;
       justify-content: center;
       list-style: none;
@@ -46,7 +46,7 @@
 
   &__link {
     display: inline-block;
-    color: rgba($dark-color, 0.5);
+    color: rgba(map.get(variables.$colors, 'dark'), 0.5);
     text-decoration: none;
     padding: 5px;
     margin-right: 2px;
@@ -56,18 +56,18 @@
     }
 
     &:hover {
-      color: $primary-color;
+      color: map.get(variables.$colors, 'primary');
     }
 
     &_active {
       font-weight: bold;
 
-      @media (min-width: $tablet) {
+      @media (min-width: variables.$tablet) {
         font-weight: 700;
       }
     }
 
-    @media (min-width: $tablet) {
+    @media (min-width: variables.$tablet) {
       margin: 0;
       padding: 0;
     }
@@ -82,13 +82,13 @@
       right: -19px;
       transform: translateY(-50%);
       font-size: 12px;
-      color: rgba($dark-color, 0.5);
+      color: rgba(map.get(variables.$colors, 'dark'), 0.5);
     }
 
-    @media (min-width: $tablet) {
+    @media (min-width: variables.$tablet) {
       &__link_sub {
         &::before {
-          font-size: $font-tiny;
+          font-size: map.get(variables.$font-sizes, 'tiny');
         }
       }
     }
@@ -99,11 +99,11 @@
     position: relative;
     flex: 1 1 100%;
     padding: 2px;
-    background-color: $primary-color;
+    background-color: map.get(variables.$colors, 'primary');
     list-style: none;
     transition: all 0.3s ease 0s;
 
-    @media (min-width: $tablet) {
+    @media (min-width: variables.$tablet) {
       position: absolute;
       z-index: 20;
       display: block;
@@ -153,7 +153,7 @@
 
   &__sublink {
     display: inline-block;
-    color: $secondary-color-2;
+    color: map.get(variables.$colors, 'secondary-2');
     text-decoration: none;
     padding: 8px 5px;
 
@@ -162,7 +162,7 @@
     }
   }
 
-  @media (min-width: $tablet) {
+  @media (min-width: variables.$tablet) {
     &__subitem:not(:last-child) {
       padding-right: 25px;
     }

@@ -1,12 +1,11 @@
-@use 'sass:math';
-@import '../../common/variables';
+@use 'sass:map';
+@use '../../common/variables';
 
 .canvas {
   display: flex;
-  align-items: center;
   gap: 30px;
 
-  @media (max-width: $mobile) {
+  @media (max-width: variables.$mobile) {
     flex-direction: column;
     gap: 10px;
   }
@@ -22,9 +21,10 @@
   &__items {
     display: flex;
     flex-direction: column;
-    padding-top: 26px;
+    padding: 26px 0 0 0;
+    margin: 0;
 
-    @media (max-width: $mobile) {
+    @media (max-width: variables.$mobile) {
       padding-top: 5px;
     }
   }
@@ -35,13 +35,13 @@
     flex-wrap: wrap;
     gap: 5px;
     padding: 3px 0;
-    color: rgba($dark-color, 0.75);
+    color: rgba((map.get(variables.$colors, 'dark')), 0.75);
     list-style: none;
     cursor: pointer;
 
     &:hover,
     &_hovered {
-      color: rgba($primary-color, 0.75);
+      color: rgba((map.get(variables.$colors, 'primary')), 0.75);
     }
 
     // For PP

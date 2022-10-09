@@ -1,6 +1,5 @@
-@use 'sass:math';
-@import '../../common/functions';
-@import '../../common/variables';
+@use 'sass:map';
+@use '../../common/variables';
 
 .form-elems {
   &__content {
@@ -45,8 +44,8 @@
   }
 
   &__status {
-    color: rgba($dark-color, 0.5);
-    font-size: $font-tiny;
+    color: rgba(map.get(variables.$colors, 'dark'), 0.5);
+    font-size: map.get(variables.$font-sizes, 'tiny');
   }
 
   &__checkbox {

@@ -1,25 +1,25 @@
-@use 'sass:math';
-@import '../../common/functions';
-@import '../../common/variables';
+@use 'sass:map';
+@use '../../common/variables';
 
 .title {
   font-weight: bold;
-  color: $dark-color;
+  color: map.get(variables.$colors, 'dark');
+  margin: 0;
 
   &_h1,
   &_h2 {
-    font-size: $font-big;
+    font-size: map.get(variables.$font-sizes, 'big');
   }
 
   &_h3 {
-    font-size: $font-medium;
+    font-size: map.get(variables.$font-sizes, 'medium');
   }
 
   &_h4 {
-    font-size: $font-small;
+    font-size: map.get(variables.$font-sizes, 'small');
   }
 
   &_h5 {
-    font-size: $font-tiny;
+    font-size: map.get(variables.$font-sizes, 'tiny');
   }
 }

@@ -1,7 +1,7 @@
-@use 'sass:math';
-@import '../../common/functions';
-@import '../../common/variables';
-@import './datepicker_loaded';
+@use 'sass:map';
+@use '../../common/functions';
+@use '../../common/variables';
+@use './datepicker_loaded';
 
 .datepicker {
   position: relative;
@@ -43,11 +43,16 @@
     right: 0;
     z-index: 11;
     max-width: 320px;
+    width: 100%;
     display: none;
-    box-shadow: rgba($dark-color, 0.5);
-    border: 1px solid rgba($dark-color, 0.25);
+    box-shadow: rgba(map.get(variables.$colors, 'dark'), 0.5);
+    border: 1px solid rgba(map.get(variables.$colors, 'dark'), 0.25);
     border-radius: 4px;
-    background-color: $secondary-color-2;
+    background-color: map.get(variables.$colors, 'secondary-2');
+
+    @media (max-width: variables.$mobile) {
+      width: auto;
+    }
 
     &_only-cal {
       position: relative;
@@ -69,19 +74,19 @@
     cursor: pointer;
     width: 100%;
     padding: 12px 15px;
-    border: 1px solid rgba($dark-color, 0.25);
-    color: rgba($dark-color, 0.75);
+    border: 1px solid rgba(map.get(variables.$colors, 'dark'), 0.25);
+    color: rgba(map.get(variables.$colors, 'dark'), 0.75);
     border-radius: 4px;
-    font-size: $font-small;
+    font-size: map.get(variables.$font-sizes, 'small');
     font-family: Montserrat, sans-serif;
 
     &::placeholder {
-      color: rgba($dark-color, 0.75);
+      color: rgba(map.get(variables.$colors, 'dark'), 0.75);
     }
 
     &:hover,
     &:focus {
-      border-color: rgba($dark-color, 0.5);
+      border-color: rgba(map.get(variables.$colors, 'dark'), 0.5);
     }
 
     // According to the maket requirements
@@ -94,16 +99,16 @@
     position: absolute;
     top: 36%;
     right: 15px;
-    font-size: $font-tiny;
+    font-size: map.get(variables.$font-sizes, 'tiny');
 
     &::before {
-      color: rgba($dark-color, 0.5);
+      color: rgba(map.get(variables.$colors, 'dark'), 0.5);
     }
   }
 
   &__label {
     font-weight: bold;
-    font-size: $font-tiny;
+    font-size: map.get(variables.$font-sizes, 'tiny');
     text-transform: uppercase;
     padding-bottom: 5px;
   }
@@ -130,19 +135,12 @@
     border: none;
     padding: 16px 18px 30px 14px;
 
-    @media (max-width: 400px) {
+    @media (max-width: variables.$mobile) {
       padding: 10px 12px 28px;
     }
 
-    &--content {
-      padding: 0 20px 17px;
-      @media (max-width: 400px) {
-        padding: 0 10px 10px;
-      }
-    }
-
     &--action {
-      color: $primary-color;
+      color: map.get(variables.$colors, 'primary');
       font-size: 17px;
       transform: rotate(180deg);
 
@@ -156,18 +154,25 @@
     }
 
     &--title {
-      color: $dark-color;
+      color: map.get(variables.$colors, 'dark');
       font-weight: bold;
-      font-size: $font-medium;
+      font-size: map.get(variables.$font-sizes, 'medium');
+    }
+  }
+
+  &--content {
+    padding: 0 20px 17px;
+    @media (max-width: variables.$mobile) {
+      padding: 0 10px 10px;
     }
   }
 
   // Body of the calendar
   &-body {
     &--day-name {
-      color: $primary-color;
+      color: map.get(variables.$colors, 'primary');
       font-weight: bold;
-      font-size: $font-tiny;
+      font-size: map.get(variables.$font-sizes, 'tiny');
       text-transform: capitalize;
     }
 
@@ -179,19 +184,19 @@
       grid-template-columns: repeat(7, 40px);
       grid-auto-rows: 40px;
 
-      @media (max-width: 400px) {
+      @media (max-width: variables.$mobile) {
         grid-template-columns: repeat(7, 32px);
         grid-auto-rows: 32px;
       }
     }
 
     .-day- {
-      color: rgba($dark-color, 0.5);
-      font-size: $font-tiny;
+      color: rgba(map.get(variables.$colors, 'dark'), 0.5);
+      font-size: map.get(variables.$font-sizes, 'tiny');
 
       &:hover {
         border-radius: 50%;
-        background-color: $primary-color;
+        background-color: map.get(variables.$colors, 'primary');
       }
     }
 
@@ -201,17 +206,17 @@
     }
 
     .-current- {
-      color: $secondary-color-2;
-      background: $gradient-secondary;
+      color: map.get(variables.$colors, 'secondary-2');
+      background: map.get(variables.$gradients, 'secondary');
       border-radius: 50%;
     }
 
     .-other-month- {
-      color: rgba($dark-color, 0.25);
-      font-size: $font-tiny;
+      color: rgba(map.get(variables.$colors, 'dark'), 0.25);
+      font-size: map.get(variables.$font-sizes, 'tiny');
 
       &:hover {
-        color: $secondary-color-2;
+        color: map.get(variables.$colors, 'secondary-2');
       }
     }
 
@@ -219,7 +224,7 @@
     .-range-to-,
     .-range-from- {
       border: none;
-      background: $gradient-25;
+      background: map.get(variables.$gradients, 'primary-25');
     }
 
     .-range-to- {
@@ -233,13 +238,13 @@
     // ---------------------------------------------
 
     .-in-range- {
-      background: $gradient-25;
+      background: map.get(variables.$gradients, 'primary-25');
       border: none;
       border-radius: 0;
 
       &:hover {
         border-radius: 0;
-        background: $gradient-25;
+        background: map.get(variables.$gradients, 'primary-25');
       }
     }
 
@@ -261,16 +266,16 @@
       &::before {
         content: '';
         position: absolute;
-        background: $gradient-25;
+        background: map.get(variables.$gradients, 'primary-25');
         z-index: -1;
         width: 40px;
         height: 40px;
 
         &:hover {
-          background: $gradient-25;
+          background: map.get(variables.$gradients, 'primary-25');
         }
 
-        @media (max-width: 400px) {
+        @media (max-width: variables.$mobile) {
           height: 32px;
           width: 32px;
         }
@@ -282,21 +287,21 @@
     .-selected- {
       height: 40px;
       border-radius: 50%;
-      background: $gradient;
-      color: $secondary-color-2;
+      background: map.get(variables.$gradients, 'primary');
+      color: map.get(variables.$colors, 'secondary-2');
       font-weight: bold;
 
       &:hover {
-        background: $primary-gradient-color;
+        background: map.get(variables.$gradients, 'primary-gradient');
       }
 
-      @media (max-width: 400px) {
+      @media (max-width: variables.$mobile) {
         height: 32px;
       }
     }
 
     .-focus- {
-      color: white;
+      color: map.get(variables.$colors, 'secondary-2');
       font-weight: bold;
     }
   }

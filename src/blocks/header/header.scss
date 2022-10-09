@@ -1,12 +1,11 @@
-@use 'sass:math';
-@import '../../common/functions';
-@import '../../common/variables';
+@use 'sass:map';
+@use '../../common/variables';
 
 .header {
-  background-color: $secondary-color-2;
+  background-color: map.get(variables.$colors, 'secondary-2');
 
   &__content {
-    max-width: $container;
+    max-width: variables.$container;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -15,7 +14,7 @@
     gap: 10px;
     padding: 11px 138px 11px 140px;
 
-    @media (max-width: $pc) {
+    @media (max-width: variables.$pc) {
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
@@ -33,7 +32,7 @@
     gap: 20px;
     opacity: 1;
 
-    @media (max-width: $pc) {
+    @media (max-width: variables.$pc) {
       position: static;
       left: 0;
       width: auto;
@@ -43,7 +42,7 @@
       opacity: 1;
     }
 
-    @media (max-width: $tablet) {
+    @media (max-width: variables.$tablet) {
       position: absolute;
       width: 100%;
       left: -200%;
@@ -61,28 +60,33 @@
     }
   }
 
-  &__nav {
-    display: flex;
-    margin-right: 26px;
-  }
-
   &__logo {
     display: inline-block;
     padding-top: 3px;
     padding-left: 2px;
   }
 
+  &__nav {
+    display: flex;
+    margin-right: 26px;
+  }
+
+  &__button {
+    display: flex;
+    align-items: center;
+  }
+
   &__user {
-    color: rgba($dark-color, 0.5);
+    color: rgba(map.get(variables.$colors, 'dark'), 0.5);
     align-self: flex-end;
     padding: 5px 0 0 20px;
-    border-left: 1px solid rgba($dark-color, 0.1);
+    border-left: 1px solid rgba(map.get(variables.$colors, 'dark'), 0.1);
   }
 
   &__icon {
     display: none;
 
-    @media (max-width: $tablet) {
+    @media (max-width: variables.$tablet) {
       display: block;
       position: relative;
       width: 30px;
@@ -96,7 +100,7 @@
         left: 0;
         height: 2px;
         width: 100%;
-        background-color: $primary-color;
+        background-color: map.get(variables.$colors, 'primary');
         transition: all 0.3s ease 0s;
       }
 
@@ -136,6 +140,6 @@
   }
 
   &_shadow {
-    box-shadow: 0 10px 20px rgba($dark-color, 0.05);
+    box-shadow: 0 10px 20px rgba(map.get(variables.$colors, 'dark'), 0.05);
   }
 }

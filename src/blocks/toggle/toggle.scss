@@ -1,6 +1,5 @@
-@use 'sass:math';
-@import '../../common/functions';
-@import '../../common/variables';
+@use 'sass:map';
+@use '../../common/variables';
 
 .toggle {
   display: flex;
@@ -25,8 +24,8 @@
     display: inline-block;
     width: 40px;
     height: 20px;
-    background-color: $secondary-color-2;
-    border: 1px solid rgba($dark-color, 0.25);
+    background-color: map.get(variables.$colors, 'secondary-2');
+    border: 1px solid rgba(map.get(variables.$colors, 'dark'), 0.25);
     border-radius: 10px;
     transition: all 0.3s ease-in;
     cursor: pointer;
@@ -39,13 +38,13 @@
       top: calc(50% - 6px);
       left: 3px;
       border-radius: 100%;
-      background: rgba($dark-color, 0.25);
+      background: rgba(map.get(variables.$colors, 'dark'), 0.25);
       transition: all 0.1s ease-in;
     }
   }
 
   &__input:checked + &__new-input {
-    border: 1px solid $primary-color;
+    border: 1px solid map.get(variables.$colors, 'primary');
 
     &::before {
       content: '';
@@ -55,12 +54,12 @@
       top: calc(50% - 6px);
       left: 23px;
       border-radius: 100%;
-      background: $gradient;
+      background: map.get(variables.$gradients, 'primary');
       transition: all 0.2s ease-in;
     }
   }
 
   &__input:focus + &__new-input {
-    outline: 2px solid $dark-color;
+    outline: 2px solid map.get(variables.$colors, 'dark');
   }
 }

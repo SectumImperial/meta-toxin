@@ -1,6 +1,5 @@
-@use 'sass:math';
-@import '../../common/functions';
-@import '../../common/variables';
+@use 'sass:map';
+@use '../../common/variables';
 
 .footer {
   display: flex;
@@ -8,15 +7,15 @@
   align-items: center;
   padding: 120px 15px;
 
-  @media (min-width: $tablet) {
+  @media (min-width: variables.$tablet) {
     padding: 0;
     justify-content: space-between;
   }
 
   &__blocks {
-    @media (min-width: $tablet) {
+    @media (min-width: variables.$tablet) {
       display: flex;
-      padding: 101px 138px 96px 137px;
+      padding: 100px 138px 96px 137px;
     }
   }
 
@@ -26,7 +25,7 @@
     align-items: center;
     gap: 20px;
 
-    @media (min-width: $tablet) {
+    @media (min-width: variables.$tablet) {
       align-items: flex-start;
       gap: 13px;
     }
@@ -37,7 +36,7 @@
     flex-direction: column;
     align-items: center;
 
-    @media (min-width: $tablet) {
+    @media (min-width: variables.$tablet) {
       flex-direction: row;
       justify-content: space-between;
       width: 100%;
@@ -54,7 +53,7 @@
   &__promo {
     display: none;
 
-    @media (min-width: $tablet) {
+    @media (min-width: variables.$tablet) {
       display: block;
       max-width: 260px;
     }
@@ -63,7 +62,7 @@
   &__email {
     display: none;
 
-    @media (min-width: $tablet) {
+    @media (min-width: variables.$tablet) {
       display: block;
       width: 100%;
       max-width: 260px;
@@ -74,24 +73,24 @@
   &__navigation {
     display: none;
 
-    @media (min-width: $tablet) {
+    @media (min-width: variables.$tablet) {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
       margin-left: 40px;
       min-width: 560px;
 
-      @media (max-width: $pc) {
+      @media (max-width: variables.$pc) {
         display: none;
       }
     }
   }
 
   &__navigation-item {
-    @media (min-width: $tablet) {
+    @media (min-width: variables.$tablet) {
       display: flex;
       flex-direction: column;
-      gap: 21px;
+      gap: 7px;
       padding-bottom: 4px;
 
       // For PP
@@ -103,19 +102,19 @@
   }
 
   &__email-text {
-    @media (min-width: $tablet) {
+    @media (min-width: variables.$tablet) {
       margin: 17px 0 22px;
     }
   }
 
   &__title {
-    @media (min-width: $tablet) {
+    @media (min-width: variables.$tablet) {
       text-transform: uppercase;
       margin-top: 4px;
     }
   }
 
   &_bordered {
-    border-top: 1px solid rgba($dark-color, 0.25);
+    border-top: 1px solid rgba(map.get(variables.$colors, 'dark'), 0.25);
   }
 }

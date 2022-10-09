@@ -1,6 +1,5 @@
-@use 'sass:math';
-@import '../../common/functions';
-@import '../../common/variables';
+@use 'sass:map';
+@use '../../common/variables';
 
 .radio {
   display: flex;
@@ -26,13 +25,13 @@
     display: inline-block;
     width: 20px;
     height: 20px;
-    background-color: $secondary-color-2;
-    border: 1px solid rgba($dark-color, 0.25);
+    background-color: map.get(variables.$colors, 'secondary-2');
+    border: 1px solid rgba(map.get(variables.$colors, 'dark'), 0.25);
     border-radius: 100%;
   }
 
   &__input:checked + &__new-input {
-    border: 1px solid $primary-color;
+    border: 1px solid map.get(variables.$colors, 'primary');
 
     &::before {
       content: '';
@@ -43,11 +42,11 @@
       left: 50%;
       transform: translate(-50%, -50%);
       border-radius: 100%;
-      background: $gradient;
+      background: map.get(variables.$gradients, 'primary');
     }
   }
 
   &__input:focus + &__new-input {
-    outline: 2px solid $dark-color;
+    outline: 2px solid map.get(variables.$colors, 'dark');
   }
 }

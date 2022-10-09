@@ -1,12 +1,13 @@
-@use 'sass:math';
-@import '../../common/functions';
-@import '../../common/variables';
+@use 'sass:map';
+@use '../../common/variables';
 
 .room-data {
-  color: rgba($dark-color, 0.75);
-  font-size: $font-small;
+  color: rgba(map.get(variables.$colors, 'dark'), 0.75);
+  font-size: map.get(variables.$font-sizes, 'small');
   display: flex;
   flex-direction: column;
+  padding: 0;
+  margin: 0;
 
   &__item {
     display: grid;
@@ -19,7 +20,7 @@
       's t'
       's d';
     padding: 21px 0 19px;
-    border-bottom: 1px solid rgba($dark-color, 0.25);
+    border-bottom: 1px solid rgba(map.get(variables.$colors, 'dark'), 0.25);
     list-style: none;
 
     &:nth-child(3) {
@@ -29,6 +30,9 @@
 
   &__icon {
     grid-area: s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 48px;
     height: 48px;
   }

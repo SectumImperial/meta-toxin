@@ -1,21 +1,20 @@
-@use 'sass:math';
-@import '../../common/functions';
-@import '../../common/variables';
+@use '../../common/variables';
 
 .search-room {
   display: flex;
-  max-width: $container;
+  max-width: variables.$container;
   margin: 0 auto;
 
   &__content {
-    max-width: $content;
+    max-width: variables.$content;
     display: flex;
     align-items: flex-start;
     gap: 59px;
     padding: 31px 5px 75px 4px;
     margin: 0 auto;
 
-    @media (max-width: $pc) {
+    @media (max-width: variables.$pc) {
+      align-items: center;
       flex-direction: column;
       gap: 45px;
     }
@@ -26,7 +25,7 @@
     max-width: 267px;
     padding: 0 1px;
 
-    @media (max-width: $pc) {
+    @media (max-width: variables.$pc) {
       position: absolute;
       transform: translate(-9999px);
       max-width: 100%;
@@ -57,6 +56,8 @@
   }
 
   &__checkboxes {
+    margin: 0;
+    padding: 0;
     padding-top: 2px;
     padding-right: 17px;
   }
@@ -92,7 +93,8 @@
   // Button
   &__button {
     display: none;
-    @media (max-width: $pc) {
+    @media (max-width: variables.$pc) {
+      width: 100%;
       display: block;
     }
   }
@@ -104,7 +106,7 @@
 
   &__section-title {
     padding-left: 1px;
-    @media (max-width: $pc) {
+    @media (max-width: variables.$pc) {
       text-align: center;
     }
   }
@@ -115,7 +117,7 @@
     gap: 21px 12px;
     flex-wrap: wrap;
 
-    @media (max-width: $pc) {
+    @media (max-width: variables.$pc) {
       justify-content: center;
     }
   }
@@ -127,7 +129,7 @@
     padding-top: 41px;
     padding-left: 58px;
 
-    @media (max-width: $mobile) {
+    @media (max-width: variables.$mobile) {
       justify-content: center;
       padding: 25px 5px;
     }

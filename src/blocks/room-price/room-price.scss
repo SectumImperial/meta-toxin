@@ -1,18 +1,17 @@
-@use 'sass:math';
-@import '../../common/functions';
-@import '../../common/variables';
+@use 'sass:map';
+@use '../../common/variables';
 
 .room-price {
-  color: rgba($dark-color, 0.5);
+  color: rgba(map.get(variables.$colors, 'dark'), 0.5);
   word-break: break-all;
 
   &__price {
-    font-size: $font-small;
+    font-size: map.get(variables.$font-sizes, 'small');
     font-weight: 700;
   }
 
   &__word {
-    font-size: $font-tiny;
+    font-size: map.get(variables.$font-sizes, 'tiny');
     font-weight: 400;
   }
 }

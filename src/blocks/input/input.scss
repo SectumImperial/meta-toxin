@@ -1,30 +1,29 @@
-@use 'sass:math';
-@import '../../common/functions';
-@import '../../common/variables';
+@use 'sass:map';
+@use '../../common/variables';
 
 .input {
   position: relative;
 
   &__field {
     padding: 12px 15px;
-    border: 1px solid rgba($dark-color, 0.25);
-    color: rgba($dark-color, 0.75);
+    border: 1px solid rgba(map.get(variables.$colors, 'dark'), 0.25);
+    color: rgba(map.get(variables.$colors, 'dark'), 0.75);
     border-radius: 4px;
-    font-size: $font-small;
+    font-size: map.get(variables.$font-sizes, 'small');
     font-family: Montserrat, sans-serif;
 
     &::placeholder {
-      color: rgba($dark-color, 0.25);
+      color: rgba(map.get(variables.$colors, 'dark'), 0.25);
     }
 
     &:hover,
     &:focus,
     &_hovered {
-      border-color: rgba($dark-color, 0.5);
-      color: rgba($dark-color, 0.75);
+      border-color: rgba(map.get(variables.$colors, 'dark'), 0.5);
+      color: rgba(map.get(variables.$colors, 'dark'), 0.75);
 
       &::placeholder {
-        color: rgba($dark-color, 0.75);
+        color: rgba(map.get(variables.$colors, 'dark'), 0.75);
       }
     }
 
@@ -42,10 +41,10 @@
     position: absolute;
     top: 36%;
     right: 15px;
-    font-size: $font-tiny;
+    font-size: map.get(variables.$font-sizes, 'tiny');
 
     &::before {
-      color: rgba($dark-color, 0.5);
+      color: rgba(map.get(variables.$colors, 'dark'), 0.5);
     }
   }
 
@@ -56,7 +55,7 @@
     font-size: 16px;
 
     &::before {
-      background: $gradient;
+      background: map.get(variables.$gradients, 'primary');
       background-clip: text;
       color: transparent;
     }

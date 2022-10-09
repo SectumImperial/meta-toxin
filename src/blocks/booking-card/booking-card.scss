@@ -1,13 +1,13 @@
 @use 'sass:math';
-@import '../../common/variables';
+@use '../../common/variables';
 
 .booking-card {
-  @include boxes;
+  @include variables.boxes;
 
   max-width: 380px;
   padding: 39px 29px 30px;
 
-  @media (max-width: $mobile) {
+  @media (max-width: variables.$mobile) {
     padding: 40px 15px 30px;
   }
 

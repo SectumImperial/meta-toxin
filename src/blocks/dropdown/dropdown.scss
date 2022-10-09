@@ -1,6 +1,5 @@
-@use 'sass:math';
-@import '../../common/functions';
-@import '../../common/variables';
+@use 'sass:map';
+@use '../../common/variables';
 
 .dropdown {
   position: relative;
@@ -13,20 +12,20 @@
   &__input {
     width: 100%;
     padding: 12px 15px;
-    border: 1px solid rgba($dark-color, 0.25);
-    color: rgba($dark-color, 0.75);
+    border: 1px solid rgba(map.get(variables.$colors, 'dark'), 0.25);
+    color: rgba(map.get(variables.$colors, 'dark'), 0.75);
     border-radius: 4px;
-    font-size: $font-small;
+    font-size: map.get(variables.$font-sizes, 'small');
     font-family: Montserrat, sans-serif;
     cursor: pointer;
 
     &::placeholder {
-      color: rgba($dark-color, 0.75);
+      color: rgba(map.get(variables.$colors, 'dark'), 0.75);
     }
 
     &:hover,
     &:focus {
-      border-color: rgba($dark-color, 0.5);
+      border-color: rgba(map.get(variables.$colors, 'dark'), 0.5);
     }
 
     // According to the maket requirements
@@ -39,10 +38,10 @@
     position: absolute;
     top: 36%;
     right: 15px;
-    font-size: $font-tiny;
+    font-size: map.get(variables.$font-sizes, 'tiny');
 
     &::before {
-      color: rgba($dark-color, 0.5);
+      color: rgba(map.get(variables.$colors, 'dark'), 0.5);
     }
   }
 
@@ -59,7 +58,7 @@
     left: 0;
     top: calc(100% - 2px);
     background-color: white;
-    border: 1px solid rgba($dark-color, 0.25);
+    border: 1px solid rgba(map.get(variables.$colors, 'dark'), 0.25);
     border-radius: 0 0 4px;
     box-shadow: 0 4px 4px 0 rgba(#000, 0.25);
   }
@@ -99,19 +98,19 @@
     width: 30px;
     height: 30px;
     background-color: transparent;
-    border: 1px solid rgba($dark-color, 0.5);
+    border: 1px solid rgba(map.get(variables.$colors, 'dark'), 0.5);
     border-radius: 50%;
-    color: rgba($dark-color, 0.5);
+    color: rgba(map.get(variables.$colors, 'dark'), 0.5);
     cursor: pointer;
 
     &_disabled {
-      border-color: rgba($dark-color, 0.25);
+      border-color: rgba(map.get(variables.$colors, 'dark'), 0.25);
       cursor: not-allowed;
     }
   }
 
   &__item-text {
-    font-size: $font-tiny;
+    font-size: map.get(variables.$font-sizes, 'tiny');
     text-transform: uppercase;
     font-weight: bold;
   }
@@ -121,7 +120,7 @@
     text-align: center;
     font-family: Montserrat, sans-serif;
     font-weight: bold;
-    font-size: $font-tiny;
+    font-size: map.get(variables.$font-sizes, 'tiny');
     border: none;
 
     &:focus {
@@ -134,6 +133,8 @@
     flex-direction: column;
     gap: 7px;
     list-style: none;
+    padding: 0;
+    margin: 0;
   }
 
   &__item {

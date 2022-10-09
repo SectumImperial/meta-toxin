@@ -1,15 +1,13 @@
-@use 'sass:math';
-@import '../../common/functions';
-@import '../../common/variables';
+@use '../../common/variables';
 
 .registration-card {
-  @include boxes;
+  @include variables.boxes;
 
   min-width: 380px;
   max-width: 380px;
   padding: 40px 30px 30px 28px;
 
-  @media (max-width: $mobile) {
+  @media (max-width: variables.$mobile) {
     margin-left: 0;
     padding: 10px;
     min-width: auto;

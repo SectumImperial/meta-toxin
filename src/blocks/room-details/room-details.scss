@@ -1,10 +1,9 @@
-@use 'sass:math';
-@import '../../common/functions';
-@import '../../common/variables';
+@use 'sass:map';
+@use '../../common/variables';
 
 .room-details {
   &__content {
-    max-width: $container;
+    max-width: variables.$container;
     margin: 0 auto;
   }
 
@@ -17,7 +16,7 @@
   &__photos-big {
     flex: 1 0 981px;
 
-    @media (max-width: $pc) {
+    @media (max-width: variables.$pc) {
       flex: 1 1 auto;
     }
   }
@@ -26,7 +25,7 @@
     display: flex;
     flex-direction: column;
 
-    @media (max-width: $pc) {
+    @media (max-width: variables.$pc) {
       display: none;
     }
   }
@@ -49,17 +48,17 @@
 
   // Information
   &__main {
-    padding: 70px 140px 71px 139px;
+    padding: 70px 140px 71px 140px;
     margin: 0 auto;
     display: flex;
     gap: 66px;
 
-    @media (max-width: $pc) {
+    @media (max-width: variables.$pc) {
       padding: 60px 30px;
       flex-direction: column;
     }
 
-    @media (max-width: $mobile) {
+    @media (max-width: variables.$mobile) {
       padding: 60px 5px;
     }
   }
@@ -70,7 +69,7 @@
     &_rules {
       padding-left: 20px;
       padding-top: 1px;
-      @media (max-width: 699px) {
+      @media (max-width: variables.$tablet) {
         padding: 1px;
       }
     }
@@ -95,12 +94,12 @@
       'rules cancel';
     padding-top: 1px;
 
-    @media (max-width: $pc) {
+    @media (max-width: variables.$pc) {
       grid-template-columns: 1fr 1fr;
       justify-items: center;
       gap: 0 10px;
     }
-    @media (max-width: 699px) {
+    @media (max-width: variables.$tablet) {
       display: flex;
       flex-direction: column;
       gap: 10px;
@@ -133,7 +132,7 @@
     grid-area: rules;
     padding-top: 10px;
     padding-left: 1px;
-    @media (max-width: 699px) {
+    @media (max-width: variables.$tablet) {
       align-self: flex-start;
     }
   }
@@ -159,10 +158,10 @@
   }
 
   &__reviews-count {
-    color: rgba($dark-color, 0.5);
+    color: rgba(map.get(variables.$colors, 'dark'), 0.5);
     padding: 0 4px 6px 0;
 
-    @media (max-width: 699px) {
+    @media (max-width: variables.$tablet) {
       position: absolute;
       width: 1px;
       height: 1px;
@@ -177,9 +176,10 @@
   }
 
   &__cancel-text {
+    margin: 0;
     padding: 7px 10px 0 1px;
     line-height: 24px;
-    color: rgba($dark-color, 0.75);
+    color: rgba(map.get(variables.$colors, 'dark'), 0.75);
   }
 
   // The order-card
@@ -187,7 +187,7 @@
     display: flex;
     flex-basis: 390px;
 
-    @media (max-width: $pc) {
+    @media (max-width: variables.$pc) {
       justify-content: center;
     }
   }

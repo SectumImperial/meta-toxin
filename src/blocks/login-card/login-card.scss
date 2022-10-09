@@ -1,14 +1,12 @@
-@use 'sass:math';
-@import '../../common/functions';
-@import '../../common/variables';
+@use '../../common/variables';
 
 .login-card {
-  @include boxes;
+  @include variables.boxes;
 
   min-width: 380px;
   padding: 37px 30px 30px 29px;
 
-  @media (max-width: $mobile) {
+  @media (max-width: variables.$mobile) {
     margin-bottom: 0;
     min-width: auto;
     padding: 10px;

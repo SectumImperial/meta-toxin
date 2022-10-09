@@ -1,6 +1,5 @@
-@use 'sass:math';
-@import '../../common/functions';
-@import '../../common/variables';
+@use 'sass:map';
+@use '../../common/variables';
 
 .range-slider {
   &__fields {
@@ -10,7 +9,7 @@
   }
 
   &__name {
-    font-size: $font-tiny;
+    font-size: map.get(variables.$font-sizes, 'tiny');
     font-weight: bold;
     text-transform: uppercase;
   }
@@ -22,13 +21,13 @@
     text-align: right;
     border: none;
     outline: none;
-    color: rgba($dark-color, 0.5);
-    font-size: $font-tiny;
+    color: rgba(map.get(variables.$colors, 'dark'), 0.5);
+    font-size: map.get(variables.$font-sizes, 'tiny');
   }
 
   &__description {
-    font-size: $font-tiny;
-    color: rgba($dark-color, 0.5);
+    font-size: map.get(variables.$font-sizes, 'tiny');
+    color: rgba(map.get(variables.$colors, 'dark'), 0.5);
     padding-top: 16px;
 
     //  PP
@@ -48,14 +47,14 @@
     position: absolute;
     height: 6px;
     width: 100%;
-    border: 1px solid rgba($dark-color, 0.25);
+    border: 1px solid rgba(map.get(variables.$colors, 'dark'), 0.25);
     border-radius: 3px;
   }
 
   &__progress {
     position: absolute;
     height: 6px;
-    background: $gradient-secondary;
+    background: map.get(variables.$gradients, 'secondary');
     border-radius: 3px;
   }
 
@@ -66,9 +65,9 @@
     z-index: 2;
     width: 16px;
     height: 16px;
-    border: 2px solid white;
+    border: 2px solid map.get(variables.$colors, 'secondary-2');
     border-radius: 50%;
-    background: $gradient-secondary;
+    background: map.get(variables.$gradients, 'secondary');
     cursor: grab;
 
     &:active {

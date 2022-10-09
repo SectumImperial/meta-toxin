@@ -1,4 +1,5 @@
-@import './functions';
+@use './functions';
+@use 'sass:map';
 
 $container: 1440px;
 $pc: 1280px;
@@ -6,37 +7,77 @@ $tablet: 1024px;
 $mobile: 420px;
 $content: 1170px;
 
-// Font size
-$font-tiny: rem(12);
-$font-small: rem(14);
-$font-medium: rem(19);
-$font-big: rem(24);
+$font-sizes: (
+  'tiny': functions.rem(12),
+  'small': functions.rem(14),
+  'medium': functions.rem(19),
+  'big': functions.rem(24),
+);
+
+// colors
+$colors: (
+  'dark': #1f2041,
+  'primary': #bc9cff,
+  'primary-gradient': #8ba4f9,
+  'secondary': #6fcf97,
+  'secondary-2': white,
+  'secondary-gradient': #66d2ea,
+);
+
+$colors-rgba: (
+  'primary-50': rgba((map.get($colors, 'primary')), 0.5),
+  'primary-25': rgba((map.get($colors, 'primary')), 0.25),
+  'primary-gradient-50': rgba((map.get($colors, 'primary-gradient')), 0.5),
+  'primary-gradient-25': rgba((map.get($colors, 'primary-gradient')), 0.25),
+);
+
+$gradients: (
+  'primary':
+    linear-gradient(
+      (map.get($colors, 'primary')),
+      (map.get($colors, 'primary-gradient'))
+    ),
+  'primary-50':
+    linear-gradient(
+      (map.get($colors-rgba, 'primary-50')),
+      (map.get($colors-rgba, 'primary-gradient-50'))
+    ),
+  'primary-25':
+    linear-gradient(
+      (map.get($colors-rgba, 'primary-25')),
+      (map.get($colors-rgba, 'primary-gradient-25'))
+    ),
+  'secondary':
+    linear-gradient(
+      (map.get($colors, 'secondary')),
+      (map.get($colors, 'secondary-gradient'))
+    ),
+);
 
 // box
 @mixin boxes {
-  background-color: $secondary-color-2;
+  background-color: map.get($colors, 'secondary-2');
   box-shadow: 0 0 25px 0 rgba(#000, 0.2);
   border: 1px solid rgba(#000, 0.12);
   border-radius: 4px;
 }
 
-// colors
-$dark-color: #1f2041;
-$primary-color: #bc9cff;
-$primary-gradient-color: #8ba4f9;
-$primary-color-50: rgba($primary-color, 0.5);
-$primary-gradient-color-50: rgba($primary-gradient-color, 0.5);
-$primary-color-25: rgba($primary-color, 0.25);
-$primary-gradient-color-25: rgba($primary-gradient-color, 0.25);
-$secondary-color: #6fcf97;
-$secondary-color-2: white;
-$secondary-gradient-color: #66d2ea;
+// $dark-color: #1f2041;
+// $primary-color: #bc9cff;
+// $primary-gradient-color: #8ba4f9;
+// $primary-color-50: rgba($primary-color, 0.5);
+// $primary-gradient-color-50: rgba($primary-gradient-color, 0.5);
+// $primary-color-25: rgba($primary-color, 0.25);
+// $primary-gradient-color-25: rgba($primary-gradient-color, 0.25);
+// $secondary-color: #6fcf97;
+// $secondary-color-2: white;
+// $secondary-gradient-color: #66d2ea;
 
-// Gradients
-$gradient: linear-gradient($primary-color, $primary-gradient-color);
-$gradient-50: linear-gradient($primary-color-50, $primary-gradient-color-50);
-$gradient-25: linear-gradient($primary-color-25, $primary-gradient-color-25);
-$gradient-secondary: linear-gradient(
-  $secondary-color,
-  $secondary-gradient-color
-);
+// // Gradients
+// $gradient: linear-gradient($primary-color, $primary-gradient-color);
+// $gradient-50: linear-gradient($primary-color-50, $primary-gradient-color-50);
+// $gradient-25: linear-gradient($primary-color-25, $primary-gradient-color-25);
+// $gradient-secondary: linear-gradient(
+//   $secondary-color,
+//   $secondary-gradient-color
+// );

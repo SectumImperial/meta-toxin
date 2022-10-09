@@ -1,9 +1,9 @@
-@use 'sass:math';
-@import '../../common/variables';
+@use 'sass:map';
+@use '../../common/variables';
 
 .colors-page {
   &__content {
-    max-width: $content;
+    max-width: variables.$content;
     padding: 0 5px;
     margin: 0 auto;
     display: flex;
@@ -17,7 +17,7 @@
     grid-template-columns: 70px auto;
     grid-template-rows: 35px 35px;
     gap: 0 40px;
-    font-size: $font-medium;
+    font-size: map.get(variables.$font-sizes, 'medium');
   }
 
   &__colors {
@@ -33,32 +33,32 @@
     border-radius: 6px;
 
     &_dark-100 {
-      background-color: $dark-color;
+      background-color: map.get(variables.$colors, 'dark');
     }
 
     &_dark-75 {
-      background-color: rgba($dark-color, 0.75);
-      border: 1px solid $dark-color;
+      background-color: rgba(map.get(variables.$colors, 'dark'), 0.75);
+      border: 1px solid map.get(variables.$colors, 'dark');
     }
 
     &_dark-50 {
-      background-color: rgba($dark-color, 0.5);
+      background-color: rgba(map.get(variables.$colors, 'dark'), 0.5);
     }
 
     &_dark-25 {
-      background-color: rgba($dark-color, 0.25);
+      background-color: rgba(map.get(variables.$colors, 'dark'), 0.25);
     }
 
     &_dark-5 {
-      background-color: rgba($dark-color, 0.05);
+      background-color: rgba(map.get(variables.$colors, 'dark'), 0.05);
     }
 
     &_purple {
-      background-color: $primary-color;
+      background-color: map.get(variables.$colors, 'primary');
     }
 
     &_green {
-      background-color: $secondary-color;
+      background-color: map.get(variables.$colors, 'secondary');
     }
   }
 
@@ -94,19 +94,19 @@
   }
 
   &__level {
-    color: rgba($dark-color, 0.25);
+    color: rgba(map.get(variables.$colors, 'dark'), 0.25);
     text-transform: capitalize;
 
     &_h1 {
-      font-size: $font-big;
+      font-size: map.get(variables.$font-sizes, 'big');
     }
 
     &_h3 {
-      font-size: $font-medium;
+      font-size: map.get(variables.$font-sizes, 'medium');
     }
 
     &_h5 {
-      font-size: $font-small;
+      font-size: map.get(variables.$font-sizes, 'small');
     }
   }
 }
