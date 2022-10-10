@@ -1,4 +1,3 @@
-/* eslint-disable no-trailing-spaces */
 const ACTIVE_JS = '_active-js';
 const LI_CLASS = 'paginator__item';
 const ACTIVE_LI = 'paginator__item_active';

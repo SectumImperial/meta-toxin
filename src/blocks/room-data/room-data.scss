@@ -11,17 +11,17 @@
 
   &__item {
     display: grid;
-    grid-template-columns: 48px auto;
-    grid-template-rows: auto auto;
-    gap: 0 10px;
     align-items: center;
-    /* stylelint-disable-next-line */
-    grid-template-areas:
+    grid-template:
       's t'
       's d';
     padding: 21px 0 19px;
     border-bottom: 1px solid rgba(map.get(variables.$colors, 'dark'), 0.25);
     list-style: none;
+
+    &:first-child {
+      gap: 0 7px;
+    }
 
     &:nth-child(3) {
       border-bottom: none;
@@ -33,7 +33,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 48px;
+    width: 45px;
     height: 48px;
   }
 

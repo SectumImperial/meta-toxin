@@ -4,7 +4,7 @@
 .subscription-field {
   display: flex;
   justify-content: space-between;
-  border: 1px solid rgba(map.get(variables.$colors, 'dark'), 0.25);
+  border: 1px solid rgb(map.get(variables.$colors, 'dark'), 0.25);
   border-radius: 4px;
 
   &:hover,

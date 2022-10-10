@@ -48,7 +48,7 @@
 
   // Information
   &__main {
-    padding: 70px 140px 71px 140px;
+    padding: 70px 140px 71px;
     margin: 0 auto;
     display: flex;
     gap: 66px;
@@ -76,7 +76,6 @@
 
     &_cancel {
       padding-top: 11px;
-      padding-left: 1px;
     }
   }
 
@@ -130,8 +129,7 @@
 
   &__rules {
     grid-area: rules;
-    padding-top: 10px;
-    padding-left: 1px;
+    padding-top: 11px;
     @media (max-width: variables.$tablet) {
       align-self: flex-start;
     }
@@ -177,7 +175,7 @@
 
   &__cancel-text {
     margin: 0;
-    padding: 7px 10px 0 1px;
+    padding: 7px 10px 0 0;
     line-height: 24px;
     color: rgba(map.get(variables.$colors, 'dark'), 0.75);
   }

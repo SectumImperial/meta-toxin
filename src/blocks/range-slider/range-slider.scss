@@ -5,6 +5,7 @@
   &__fields {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding-bottom: 26px;
   }
 
@@ -28,7 +29,8 @@
   &__description {
     font-size: map.get(variables.$font-sizes, 'tiny');
     color: rgba(map.get(variables.$colors, 'dark'), 0.5);
-    padding-top: 16px;
+    padding: 16px 0 0 0;
+    margin: 0;
 
     //  PP
     white-space: nowrap;

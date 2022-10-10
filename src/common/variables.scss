@@ -6,7 +6,6 @@ $pc: 1280px;
 $tablet: 1024px;
 $mobile: 420px;
 $content: 1170px;
-
 $font-sizes: (
   'tiny': functions.rem(12),
   'small': functions.rem(14),
@@ -23,14 +22,12 @@ $colors: (
   'secondary-2': white,
   'secondary-gradient': #66d2ea,
 );
-
 $colors-rgba: (
   'primary-50': rgba((map.get($colors, 'primary')), 0.5),
   'primary-25': rgba((map.get($colors, 'primary')), 0.25),
   'primary-gradient-50': rgba((map.get($colors, 'primary-gradient')), 0.5),
   'primary-gradient-25': rgba((map.get($colors, 'primary-gradient')), 0.25),
 );
-
 $gradients: (
   'primary':
     linear-gradient(

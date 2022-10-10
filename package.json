@@ -7,7 +7,8 @@
     "start": "set NODE_ENV=development&&webpack serve",
     "dev": "set NODE_ENV=development&&webpack",
     "build": "set NODE_ENV=production&&webpack",
-    "lint": "eslint . --ext js,jsx,ts,tsx --fix"
+    "lint": "eslint . --ext js,jsx,ts,tsx --fix",
+    "stylelint": "npx stylelint \"**/*.css\""
   },
   "keywords": [],
   "author": "Maxim",

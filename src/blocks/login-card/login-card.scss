@@ -4,7 +4,7 @@
   @include variables.boxes;
 
   min-width: 380px;
-  padding: 37px 30px 30px 29px;
+  padding: 39px 30px 30px 29px;
 
   @media (max-width: variables.$mobile) {
     margin-bottom: 0;
@@ -14,7 +14,7 @@
 
   //  Form groups
   &__data-group {
-    margin-top: 22px;
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -33,6 +33,5 @@
 
   &__create-text {
     padding-right: 5px;
-    padding-bottom: 4px;
   }
 }
