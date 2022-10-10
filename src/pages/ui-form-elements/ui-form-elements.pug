@@ -17,6 +17,8 @@ include ../../blocks/paginator/paginator.pug
 include ../../blocks/rules/rules.pug
 include ../../blocks/room-data/room-data.pug
 include ../../blocks/review/review.pug
+include ../../blocks/subscription-field/subscription-field.pug
+
 
 block variables 
   - 
@@ -108,11 +110,11 @@ block content
                   level: 'h5',
                   text: 'Subscription text field',
                 })
-              +input({
+              +subscription-field({
                 type: 'email',
+                name: 'footer-mail',
+                id: 'footer-mail',
                 placeholder: 'Email',
-                pattern: '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$',
-                arrow: 'forward',
               })
 
           .form-elems__small-btns 
@@ -203,102 +205,102 @@ block content
                   stars: 5,
                   rating: 4,
 })
-                +star-rating({
-                  stars: 5,
-                  rating: 5,
+  +star-rating({
+    stars: 5,
+    rating: 5,
 })
-          .form-elems__btns 
-            .form-elems__btn.form-elems__btn_range
-              +range-slider({
-                name: 'Range Slider',   
-                step: 100,
-                rangeOptions: {
-                  min: 0,
-                  max: 15000,
-                  initialStart: 5000,
-                  initialEnd: 10000,
-                  addedText: '₽',
-                }
-              })
-            .form-elems__btn
-              .form-elems__subtitle 
-                +title({
-                  level: 'h5',
-                  text: 'buttons',
-                })
-              .form-elems__elem-btn_medium 
-                .form-elems__elem-btn-cont
-                  +button({
-                    btnColor: 'white',
-                    btnWrapperColor: 'violet',
-                    content: 'Click me',
-                    btnSize: 'small',
-                    btnType: 'link',
-                    href: 'registration-page.html'
-                  })
-                  +button({
-                    btnColor: 'white',
-                    btnWrapperColor: 'violet',
-                    content: 'Click me',
-                    btnSize: 'small',
-                    btnType: 'link',
-                    href: 'registration-page.html',
-                    isHovered: true,
-                  })
+  .form-elems__btns 
+    .form-elems__btn.form-elems__btn_range
+      +range-slider({
+        name: 'Range Slider',   
+        step: 100,
+        rangeOptions: {
+          min: 0,
+          max: 15000,
+          initialStart: 5000,
+          initialEnd: 10000,
+          addedText: '₽',
+        }
+      })
+    .form-elems__btn
+      .form-elems__subtitle 
+        +title({
+          level: 'h5',
+          text: 'buttons',
+        })
+      .form-elems__elem-btn_medium 
+        .form-elems__elem-btn-cont
+          +button({
+            btnColor: 'white',
+            btnWrapperColor: 'violet',
+            content: 'Click me',
+            btnSize: 'small',
+            btnType: 'link',
+            href: 'registration-page.html'
+          })
+          +button({
+            btnColor: 'white',
+            btnWrapperColor: 'violet',
+            content: 'Click me',
+            btnSize: 'small',
+            btnType: 'link',
+            href: 'registration-page.html',
+            isHovered: true,
+          })
 
-                .form-elems__elem-btn-cont
-                  +button({
-                    content: 'Click me', 
-                    btnColor: 'violet',
-                    btnSize: 'small',
-                    btnType: 'link',
-                    href: 'login-page.html',
-                  })
-                  +button({
-                    content: 'Click me', 
-                    btnColor: 'violet',
-                    btnSize: 'small',
-                    btnType: 'link',
-                    href: 'login-page.html',
-                    isHovered: true,
-                  })
-                .form-elems__elem-btn-cont
-                  +button({
-                    content: 'Click me',
-                    btnColor: 'violet',
-                    btnWrapperColor: 'transparent',
-                    border: 'false',
-                    btnSize: 'tiny',
-                  })
-                  +button({
-                    content: 'Click me',
-                    btnColor: 'violet',
-                    btnWrapperColor: 'transparent',
-                    border: 'false',
-                    btnSize: 'tiny',
-                    isHovered: true,
-                  })
+        .form-elems__elem-btn-cont
+          +button({
+            content: 'Click me', 
+            btnColor: 'violet',
+            btnSize: 'small',
+            btnType: 'link',
+            href: 'login-page.html',
+          })
+          +button({
+            content: 'Click me', 
+            btnColor: 'violet',
+            btnSize: 'small',
+            btnType: 'link',
+            href: 'login-page.html',
+            isHovered: true,
+          })
+        .form-elems__elem-btn-cont
+          +button({
+            content: 'Click me',
+            btnColor: 'violet',
+            btnWrapperColor: 'transparent',
+            border: 'false',
+            btnSize: 'tiny',
+          })
+          +button({
+            content: 'Click me',
+            btnColor: 'violet',
+            btnWrapperColor: 'transparent',
+            border: 'false',
+            btnSize: 'tiny',
+            isHovered: true,
+          })
 
-              .form-elems__elem-btn_big 
-                +button({
-                  content: 'Перейти к оплате',
-                  btnColor: 'white',
-                  btnWrapperColor: 'violet',
-                  isArrow: true,
-                  btnSize: 'large',
-                })
-            .form-elems__btn 
-              .form-elems__subtitle 
-                +title({
-                  level: 'h5',
-                  text: 'Pagination',
-                })
-              .form-elems__paginator
-                +paginator({
-                  itemsPerPage: 12,
-                  allItems: 180,
-                  text: 'вариантов аренды',
-                })
+      .form-elems__elem-btn_big 
+        +button({
+          content: 'Перейти к оплате',
+          btnColor: 'white',
+          btnWrapperColor: 'violet',
+          isArrow: true,
+          btnSize: 'large',
+        })
+    .form-elems__btn 
+      .form-elems__subtitle 
+        +title({
+          level: 'h5',
+          text: 'Pagination',
+        })
+      .form-elems__paginator
+        +paginator({
+          itemsPerPage: 12,
+          allItems: 180,
+          text: 'вариантов аренды',
+        })
         .form-elems__dropdowns
           .form-elems__dropdowns-item.form-elems__dropdowns-item_2
             .form-elems__dropdown
