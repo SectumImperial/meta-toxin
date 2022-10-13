@@ -1,6 +1,19 @@
 .social-links {
   display: flex;
   flex-direction: row;
-  gap: 21px;
   list-style: none;
+  margin: 0;
+  padding: 0;
+
+  &__item {
+    margin-right: 21px;
+
+    &:first-child {
+      margin-right: 22px;
+    }
+
+    &:last-child {
+      margin: 0;
+    }
+  }
 }

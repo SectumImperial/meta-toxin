@@ -12,10 +12,14 @@
     justify-content: space-between;
   }
 
+  &_bordered {
+    border-top: 1px solid rgba(map.get(variables.$colors, 'dark'), 0.25);
+  }
+
   &__blocks {
     @media (min-width: variables.$tablet) {
       display: flex;
-      padding: 100px 138px 82px 137px;
+      padding: 99px 138px 82px 137px;
     }
   }
 
@@ -40,13 +44,13 @@
       flex-direction: row;
       justify-content: space-between;
       width: 100%;
-      padding: 9px 143px 22px 119px;
+      padding: 8px 142px 22px 119px;
       border-top: 1px solid #e5e5e5;
     }
   }
 
   &__copyright {
-    padding: 14px 31px 21px 20px;
+    padding: 14px 31px 22px 20px;
     text-align: center;
   }
 
@@ -103,7 +107,7 @@
 
   &__email-text {
     @media (min-width: variables.$tablet) {
-      margin: 17px 0 22px;
+      margin: 18px 0 21px;
     }
   }
 
@@ -114,7 +118,7 @@
     }
   }
 
-  &_bordered {
-    border-top: 1px solid rgba(map.get(variables.$colors, 'dark'), 0.25);
+  &__social {
+    padding: 0 0 1px 0;
   }
 }

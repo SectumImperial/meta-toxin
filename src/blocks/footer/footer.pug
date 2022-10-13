@@ -64,20 +64,21 @@ mixin footer(options = {})
     .footer__horizontal
       .footer__copyright
         +text-element('Copyright © 2018 Toxin отель. Все права защищены.')
-      +social([
-        {
-        name: 'twitter',
-        link: 'https://twitter.com/',
-        icon: 'twitter',
-        },
-        {
-        name: 'facebook',
-        link: 'https://facebook.com/',
-        icon: 'facebook',
-        },
-        {
-        name: 'instagram',
-        link: 'https://instagram.com/',
-        icon: 'instagram',
-        }
-    ])
+      .footer__social
+        +social([
+          {
+          name: 'twitter',
+          link: 'https://twitter.com/',
+          icon: 'twitter',
+          },
+          {
+          name: 'facebook',
+          link: 'https://facebook.com/',
+          icon: 'facebook',
+          },
+          {
+          name: 'instagram',
+          link: 'https://instagram.com/',
+          icon: 'instagram',
+          }
+        ])

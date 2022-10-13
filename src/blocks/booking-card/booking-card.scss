@@ -5,24 +5,31 @@
   @include variables.boxes;
 
   max-width: 380px;
-  padding: 39px 29px 30px;
+  padding: 39px 29px 29px 29px;
 
   @media (max-width: variables.$mobile) {
     padding: 40px 15px 30px;
   }
 
+  &__subtitle {
+    text-transform: uppercase;
+    padding-bottom: 5px;
+  }
+
   &__card {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 22px;
+  }
+
+  &__datepicker {
+    margin-top: 22px;
+  }
+
+  &__dropdown {
+    margin-top: 21px;
   }
 
   &__button {
-    margin-top: 9px;
-  }
-
-  &__subtitle {
-    text-transform: uppercase;
-    padding-bottom: 4px;
+    margin-top: 31px;
   }
 }
