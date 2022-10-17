@@ -32,7 +32,7 @@
   &__item {
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 5px;
     padding: 3px 0;
     color: rgba((map.get(variables.$colors, 'dark')), 0.75);
