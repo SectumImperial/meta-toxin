@@ -33,11 +33,6 @@
     outline: none;
     cursor: pointer;
 
-    @media (max-width: variables.$mobile) {
-      min-width: 30px;
-      min-height: 30px;
-    }
-
     &:hover,
     &:focus {
       text-shadow: 1px 0 5px;
@@ -89,11 +84,6 @@
     font-size: map.get(variables.$font-sizes, 'tiny');
     border-radius: 50%;
     cursor: pointer;
-
-    @media (max-width: variables.$mobile) {
-      min-width: 25px;
-      min-height: 25px;
-    }
 
     &:focus {
       outline: 1px solid map.get(variables.$colors, 'primary');

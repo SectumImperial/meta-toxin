@@ -39,6 +39,7 @@ class Paginator {
     this.btnPrev.addEventListener('keydown', this.#handleButtonPrevPress.bind(this));
     this.btnNext.addEventListener('keydown', this.#handleButtonNextPress.bind(this));
     this.itemsPaginator.addEventListener('keydown', this.#handleItemPress.bind(this));
+    this.mediaQueryList.addEventListener('change', this.#handleChangeScreen.bind(this));
   }
 
   #handleButtonPrevClick() {
@@ -89,15 +90,15 @@ class Paginator {
     this.startPage = 1;
 
     this.itemsPerPage = this.options.itemsPerPage;
-    if (this.allItems <= 0) throw new Error('Zero or less items per page. I disagree to work with this. Fix it.');
+    if (this.allItems <= 0) throw new Error('Zero or less items per page.');
     this.allItems = this.options.allItems;
-    if (this.allItems <= 0) throw new Error('Zero or less counts. I disagree to work with this. Fix it.');
+    if (this.allItems <= 0) throw new Error('Zero or less counts.');
     this.text = this.options.text;
 
     this.pageCount = Math.ceil(this.allItems / this.itemsPerPage);
+    this.mediaQueryList = window.matchMedia('(min-width: 500px)');
   }
 
-  //   Create and show pages
   #createPaginator() {
     let nextPage = Number(this.currentPage);
     let prevPage = Number(this.currentPage);
@@ -108,7 +109,7 @@ class Paginator {
     prevPage -= 1;
 
     if (this.currentPage === this.startPage) {
-      this.#createBegining();
+      this.#createBeginning();
     } else if (this.#isInStart()) {
       this.#createStart(nextPage);
     } else if (
@@ -143,34 +144,47 @@ class Paginator {
       const li = this.#createLiElement(this.liClass, i);
       this.itemsPaginator.append(li);
     }
-    this.#addFirstPage();
-    this.#addLastPage();
+
+    if (this.mediaQueryList.matches) {
+      this.#addFirstPage();
+      this.#addLastPage();
+    }
   }
 
-  #createBegining() {
+  #createBeginning() {
     const endCount = this.pageCount < COUNT_PAGE ? this.pageCount : COUNT_PAGE;
     for (let i = this.startPage; i <= endCount; i += 1) {
       const li = this.#createLiElement(this.liClass, i);
       this.itemsPaginator.append(li);
     }
 
-    this.#addLastPage();
+    if (this.mediaQueryList.matches) {
+      this.#addLastPage();
+    }
   }
 
   #createStart(end) {
-    for (let i = this.startPage; i <= end; i += 1) {
+    const start = this.mediaQueryList.matches ? this.startPage : this.currentPage - 1;
+    for (let i = start; i <= end; i += 1) {
       const li = this.#createLiElement(this.liClass, i);
       this.itemsPaginator.append(li);
     }
-    this.#addLastPage();
+
+    if (this.mediaQueryList.matches) {
+      this.#addLastPage();
+    }
   }
 
   #createEnd(start) {
-    for (let i = start; i <= this.pageCount; i += 1) {
+    const end = this.mediaQueryList.matches ? this.pageCount : this.currentPage + 1;
+    for (let i = start; i <= end; i += 1) {
       const li = this.#createLiElement(this.liClass, i);
       this.itemsPaginator.append(li);
     }
-    this.#addFirstPage();
+
+    if (this.mediaQueryList.matches) {
+      this.#addFirstPage();
+    }
   }
 
   #createEnding() {
@@ -179,7 +193,9 @@ class Paginator {
       this.itemsPaginator.append(li);
     }
 
-    this.#addFirstPage();
+    if (this.mediaQueryList.matches) {
+      this.#addFirstPage();
+    }
   }
 
   #isPageCountSmall() {
@@ -188,24 +204,24 @@ class Paginator {
 
   #addLastPage() {
     if (this.#isPageCountSmall()) return;
-    // Add dots
     const dots = this.#createLiElement(this.liClass, '...', true);
     this.itemsPaginator.append(dots);
 
-    // Add the first page
-    const lastLi = this.#createLiElement(this.liClass, this.pageCount);
-    this.itemsPaginator.append(lastLi);
+    if (this.mediaQueryList.matches) {
+      const lastLi = this.#createLiElement(this.liClass, this.pageCount);
+      this.itemsPaginator.append(lastLi);
+    }
   }
 
   #addFirstPage() {
     if (this.#isPageCountSmall()) return;
-    // Add dots
     const dots = this.#createLiElement(this.liClass, '...', true);
     this.itemsPaginator.prepend(dots);
 
-    // Add the last page
-    const firstLi = this.#createLiElement(this.liClass, this.startPage);
-    this.itemsPaginator.prepend(firstLi);
+    if (this.mediaQueryList.matches) {
+      const firstLi = this.#createLiElement(this.liClass, this.startPage);
+      this.itemsPaginator.prepend(firstLi);
+    }
   }
 
   // End of the methods creating and displaying pages
@@ -232,10 +248,8 @@ class Paginator {
     return el;
   }
 
-  //   Toggle btns visibility
   #checkVisibilityBtn() {
     const activeItem = this.itemsPaginator.querySelector(`.${ACTIVE_JS}`);
-    // Toggle visibility the prev btn
     if (Number(activeItem.dataset.number) === 1) {
       this.btnPrev.classList.add(HIDE);
     }
@@ -246,7 +260,6 @@ class Paginator {
       this.btnPrev.classList.remove(HIDE);
     }
 
-    // Toggle visibility the next btn
     if (Number(activeItem.dataset.number) === this.pageCount) {
       this.btnNext.classList.add(HIDE);
     }
@@ -258,7 +271,6 @@ class Paginator {
     }
   }
 
-  //   Click on the prev btn
   #decrementPage() {
     if (this.currentPage !== 1) {
       this.#removePage();
@@ -269,7 +281,6 @@ class Paginator {
     }
   }
 
-  //   Click on the next btn
   #incrementPage() {
     if (this.currentPage !== this.pageCount) {
       this.#removePage();
@@ -298,7 +309,6 @@ class Paginator {
     return page;
   }
 
-  //   Set the current page
   #setCurrentPage() {
     const page = this.#findCurrentPage();
     page.classList.add(ACTIVE_LI);
@@ -308,14 +318,12 @@ class Paginator {
     this.#createText();
   }
 
-  //   Delete the classes of current page
   #removePage() {
     const current = this.#findCurrentPage();
     current.classList.remove(ACTIVE_LI);
     current.classList.remove(ACTIVE_JS);
   }
 
-  //  Create the description
   #createText() {
     let string = '';
     let lastCount = this.currentPage * this.itemsPerPage;
@@ -334,6 +342,12 @@ class Paginator {
 
   #removePaginator() {
     this.itemsPaginator.innerHTML = '';
+  }
+
+  #handleChangeScreen() {
+    this.#removePaginator();
+    this.#createPaginator();
+    this.#setCurrentPage();
   }
 }
 
