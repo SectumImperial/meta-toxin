@@ -91,6 +91,7 @@
   }
 
   &__navigation-item {
+    max-width: 200px;
     @media (min-width: variables.$tablet) {
       display: flex;
       flex-direction: column;
