@@ -4,6 +4,7 @@
   @include variables.boxes;
 
   min-width: 380px;
+  max-width: 400px;
   padding: 39px 30px 34px 29px;
 
   @media (max-width: variables.$mobile) {
