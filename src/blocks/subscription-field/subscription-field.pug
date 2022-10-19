@@ -10,20 +10,28 @@ mixin subscription-field(options = {})
       isDate = false,
       isHovered = false,
       isAutocomplete = false,
+      action = './error-page.html'
     } = options
 
 
   .subscription-field
-    input(
-      type = 'text'
-      name = name
-      id = id
-      class = 'subscription-field__input'
-      value = value 
-      placeholder = placeholder
-      readonly = readonly
-      pattern = '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$'
-      required = isRequired
-      autocomplete = isAutocomplete ? 'on' : 'off'
+    form(
+      class = "subscription-field__form"
+      action = action
+      method = "GET"
     )
-    button.subscription-field__button.icon__arrow_forward
+      input(
+        type = "text"
+        name = name
+        id = id
+        class = "subscription-field__input"
+        value = value 
+        placeholder = placeholder
+        readonly = readonly
+        pattern = "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+        required = isRequired
+        autocomplete = isAutocomplete ? "on" : "off"
+      )
+      button.subscription-field__button.icon__arrow_forward(
+        type = 'submit'
+      )

@@ -43,10 +43,7 @@ mixin footer(options = {})
                 items: items
               })
 
-      form.footer__email(
-        method = 'GET',
-        action = 'error-page.html',
-      )
+      .footer__email
         .footer__title
           +title({
             level: 'h5',
@@ -60,6 +57,7 @@ mixin footer(options = {})
             name: 'footer-mail',
             id: 'footer-mail',
             placeholder: 'Email',
+            action: './error-page.html'
           })
     .footer__horizontal
       .footer__copyright
