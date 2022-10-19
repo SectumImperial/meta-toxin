@@ -1,4 +1,4 @@
-// Just imitation of counting
+import { v4 as uuidv4 } from 'uuid';
 import {
   DAYS_COMPUTE,
   DAYS_COMPUTED,
@@ -37,6 +37,12 @@ class OrderCard {
     this.endDate.addEventListener('input', this.#handleDatepickerInput.bind(this));
     this.datepicker.addEventListener('click', this.#handleDatepickerClick.bind(this));
     document.addEventListener('click', this.#handleDocumentClick.bind(this));
+    document.querySelectorAll('.js-order-card__tip').forEach((e) => {
+      e.addEventListener('mouseenter', OrderCard.handleTipMouseEnter.bind(this));
+      e.addEventListener('mouseout', OrderCard.handleTipMouseOut.bind(this));
+      e.addEventListener('focus', OrderCard.handleTipFocus.bind(this));
+      e.addEventListener('blur', OrderCard.handleTipBlur.bind(this));
+    });
   }
 
   #handleDatepickerInput() {
@@ -122,10 +128,12 @@ class OrderCard {
       'ru-RU',
     )}₽`;
 
-    tip = OrderCard.createTip('Какое-нибудь важное сообщение');
+    tip = OrderCard.createTip();
 
     this.card.querySelector(`.${FEE_COMPUTE}`).innerText = discountStr;
     this.card.querySelector(`.${FEE_COMPUTE}`).append(tip);
+    const messageTip = OrderCard.createMessageTip('Какое-нибудь важное сообщение', tip);
+    document.body.append(messageTip);
 
     this.card.querySelector(
       `.${FEE_COMPUTED}`,
@@ -137,8 +145,10 @@ class OrderCard {
     услуги`;
     this.card.querySelector(`.${ADD_FEE_COMPUTE}`).innerText = string;
 
-    const tip = OrderCard.createTip('Доп. услуги включают в себя помощь с доставкой багажа');
+    const tip = OrderCard.createTip();
     this.card.querySelector(`.${ADD_FEE_COMPUTE}`).append(tip);
+    const messageTip = OrderCard.createMessageTip('Доп. услуги включают в себя помощь с доставкой багажа', tip);
+    document.body.append(messageTip);
 
     this.card.querySelector(
       `.${ADD_FEE_COMPUTED}`,
@@ -152,6 +162,37 @@ class OrderCard {
     ).innerText = `${finalSum}₽`;
   }
 
+  static handleTipMouseEnter({ target }) {
+    OrderCard.handleShowMessage(target);
+  }
+
+  static handleTipMouseOut({ target }) {
+    OrderCard.handleHideMessage(target);
+  }
+
+  static handleTipFocus({ target }) {
+    OrderCard.handleShowMessage(target);
+  }
+
+  static handleTipBlur({ target }) {
+    OrderCard.handleHideMessage(target);
+  }
+
+  static handleShowMessage(target) {
+    const elemId = target.dataset.idTip;
+    const coords = {
+      x: target.getBoundingClientRect().x,
+      y: target.getBoundingClientRect().y,
+    };
+    OrderCard.showMessage(elemId, coords);
+  }
+
+  static handleHideMessage(target) {
+    const elemId = target.dataset.idTip;
+    const message = document.querySelector(`.order-card__tip-message[data-id-message="${elemId}"]`);
+    message.style.display = 'none';
+  }
+
   static formattedDate(date) {
     const result = date.split('.').reverse().join('-');
     return result;
@@ -161,7 +202,7 @@ class OrderCard {
     return FEES_DISC - ADD_FEE;
   }
 
-  static createTip(information) {
+  static createTip() {
     const el = document.createElement('div');
     el.className = 'order-card__tip js-order-card__tip';
     el.innerText = 'i';
@@ -169,10 +210,31 @@ class OrderCard {
     el.style.width = '20px';
     el.style.height = '20px';
     el.style.borderRadius = '50%';
-    el.dataset.information = information;
+    el.dataset.idTip = uuidv4();
     el.tabIndex = 0;
+    return el;
+  }
+
+  static createMessageTip(information, tip) {
+    const el = document.createElement('div');
+    el.className = 'order-card__tip-message js-order-card__tip-message';
+    el.innerText = information;
+    el.style.display = 'none';
+    el.dataset.idMessage = tip.dataset.idTip;
 
     return el;
+  }
+
+  static showMessage(elemId, coords = {}) {
+    if (elemId === undefined || elemId === null) return;
+    const message = document.querySelector(`.order-card__tip-message[data-id-message="${elemId}"]`);
+    if (!message) return;
+
+    const { x, y } = coords;
+    message.style.display = 'block';
+    message.style.position = 'fixed';
+    message.style.left = `${x + 22}px`;
+    message.style.top = `${y + 20}px`;
   }
 }
 

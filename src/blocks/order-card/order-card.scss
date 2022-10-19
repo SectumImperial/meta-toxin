@@ -112,24 +112,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
     border: 1px solid rgb(map.get(variables.$colors, 'dark'), 0.25);
     color: rgba(map.get(variables.$colors, 'dark'), 0.25);
     cursor: pointer;
+  }
 
-    &:hover::before,
-    &:focus::before {
-      content: attr(data-information);
-      position: absolute;
-      top: 25px;
-      left: 0;
-      padding: 2px;
-      background-color: rgba(map.get(variables.$colors, 'dark'), 0.75);
-      color: map.get(variables.$colors, 'secondary-2');
-      border-radius: 4px;
-      font-size: map.get(variables.$font-sizes, 'tiny');
-      z-index: 2;
-    }
+  &__tip-message {
+    max-width: 100px;
+    padding: 2px;
+    background-color: rgba(map.get(variables.$colors, 'dark'), 0.75);
+    color: map.get(variables.$colors, 'secondary-2');
+    border-radius: 4px;
+    font-size: map.get(variables.$font-sizes, 'tiny');
+    z-index: 2;
   }
 
   &__button {
