@@ -34,9 +34,11 @@
 
   &__text {
     grid-area: t;
+    max-width: 700px;
     margin: 0;
     padding: 6px 3px 0 10px;
     line-height: 24px;
+    word-break: break-all;
   }
 
   &__photo {
