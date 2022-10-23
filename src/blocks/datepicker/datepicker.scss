@@ -194,7 +194,8 @@
       color: rgba(map.get(variables.$colors, 'dark'), 0.5);
       font-size: map.get(variables.$font-sizes, 'tiny');
 
-      &:hover {
+      &:hover,
+      &:focus {
         border-radius: 50%;
         background-color: map.get(variables.$colors, 'primary');
       }

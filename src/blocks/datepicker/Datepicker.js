@@ -26,26 +26,29 @@ class Datepicker {
   }
 
   init() {
-    this.#findElements(this.datepicker);
-    this.#createId();
     this.#createDatepicker();
     this.#addButtonsArrow();
+    this.#findElements();
+    this.#createId();
+    this.#configuratorDatepicker();
     this.#checkBtnVisibility([...this.items]);
     this.#addListeners();
+    this.#addTabIndex();
   }
 
-  #findElements(container) {
-    this.items = container.querySelectorAll(`.${ITEM}`);
+  #findElements() {
+    this.items = this.datepicker.querySelectorAll(`.${ITEM}`);
     this.formGroups = Array.from(
-      container.querySelectorAll(`.${GROUP}`),
+      this.datepicker.querySelectorAll(`.${GROUP}`),
     );
-    this.buttonClear = container.querySelector(`.${CLEAR}`);
-    this.buttonAccept = container.querySelector(`.${ACCEPT}`);
+    this.buttonClear = this.datepicker.querySelector(`.${CLEAR}`);
+    this.buttonAccept = this.datepicker.querySelector(`.${ACCEPT}`);
+    this.navButtons = this.datepicker.querySelectorAll('.air-datepicker-nav--action');
 
     this.isSingleInput = false;
     this.isTwoInputs = false;
-    if (container.classList.contains(DATEPICKER_1)) this.isSingleInput = true;
-    if (container.classList.contains(DATEPICKER_2)) this.isTwoInputs = true;
+    if (this.datepicker.classList.contains(DATEPICKER_1)) this.isSingleInput = true;
+    if (this.datepicker.classList.contains(DATEPICKER_2)) this.isTwoInputs = true;
     this.rangeFrom = null;
     this.rangeTo = null;
   }
@@ -62,6 +65,17 @@ class Datepicker {
     document.addEventListener('click', this.#handleDocumentClick.bind(this));
 
     this.items.forEach((item) => item.addEventListener('keydown', this.#handleItemKeyDown.bind(this)));
+    this.navButtons.forEach((item) => item.addEventListener('keydown', this.#handleNavKeyPress.bind(this)));
+  }
+
+  #handleNavKeyPress(e) {
+    const { code } = e;
+    const { action } = e.target.dataset;
+    if (code === 'Enter' || code === 'Space') {
+      e.preventDefault();
+      if (action === 'next') this.dp.next();
+      if (action === 'prev') this.dp.prev();
+    }
   }
 
   #handleDatepickerClick(e) {
@@ -242,9 +256,12 @@ class Datepicker {
     this.dp = new AirDatepicker(this.calContainer, {
       range: true,
       minDate: currentDate,
+      keyboardNav: true,
     });
     this.dp.show();
+  }
 
+  #configuratorDatepicker() {
     if (this.isTwoInputs) {
       this.firstItem = this.datepicker.querySelector(`.${START}`);
       this.secondItem = this.datepicker.querySelector(`.${END}`);
@@ -270,6 +287,20 @@ class Datepicker {
       if (Datepicker.isItemDateLessThanNow(e)) {
         e.classList.add('old-date');
       }
+    });
+  }
+
+  #addTabIndex() {
+    const allDays = this.calContainer.querySelectorAll('.-day-');
+    allDays.forEach((e) => {
+      if (!Datepicker.isItemDateLessThanNow(e)) {
+        e.tabIndex = '0';
+      }
+    });
+
+    const navButtons = this.calContainer.querySelectorAll('.air-datepicker-nav--action');
+    navButtons.forEach((e) => {
+      e.tabIndex = '0';
     });
   }
 
