@@ -51,6 +51,8 @@ class Datepicker {
     if (this.datepicker.classList.contains(DATEPICKER_2)) this.isTwoInputs = true;
     this.rangeFrom = null;
     this.rangeTo = null;
+
+    this.days = this.datepicker.querySelectorAll('.-day-');
   }
 
   #addListeners() {
@@ -61,11 +63,12 @@ class Datepicker {
       item.addEventListener('input', this.#handleItemInput.bind(this));
     });
     this.calContainer.addEventListener('click', this.#handleContainerClick.bind(this));
-    this.datepicker.addEventListener('mousemove', this.#handleDatepickerMouseMove.bind(this));
     document.addEventListener('click', this.#handleDocumentClick.bind(this));
 
     this.items.forEach((item) => item.addEventListener('keydown', this.#handleItemKeyDown.bind(this)));
     this.navButtons.forEach((item) => item.addEventListener('keydown', this.#handleNavKeyPress.bind(this)));
+    this.days.forEach((item) => item.addEventListener('click', this.#handleDayClick.bind(this)));
+    this.days.forEach((item) => item.addEventListener('keydown', this.#handleDayKeyPress.bind(this)));
   }
 
   #handleNavKeyPress(e) {
@@ -75,6 +78,20 @@ class Datepicker {
       e.preventDefault();
       if (action === 'next') this.dp.next();
       if (action === 'prev') this.dp.prev();
+    }
+
+    this.#addTabIndex();
+    this.days = this.datepicker.querySelectorAll('.-day-');
+  }
+
+  #handleDayKeyPress(e) {
+    const { code, target } = e;
+    if (code === 'Enter' || code === 'Space') {
+      e.preventDefault();
+      this.#clearRange();
+      const { year, month, date } = target.dataset;
+      const formattedMonth = Number(target.dataset.month) + 1;
+      console.log(formattedMonth);
     }
   }
 
@@ -169,6 +186,17 @@ class Datepicker {
     }
 
     this.#checkBtnVisibility([this.firstItem, this.secondItem]);
+  }
+
+  #handleDayClick() {
+    this.days.forEach((item) => item.removeEventListener('click', this.#handleDayClick.bind(this)));
+    this.datepicker.addEventListener('mousemove', this.#handleDatepickerMouseMove.bind(this));
+    this.days.forEach((item) => item.addEventListener('click', this.#handleDayRemoveClick.bind(this)));
+  }
+
+  #handleDayRemoveClick() {
+    this.datepicker.removeEventListener('mousemove', this.#handleDatepickerMouseMove.bind(this));
+    this.days.forEach((item) => item.addEventListener('click', this.#handleDayClick.bind(this)));
   }
 
   #handleDatepickerMouseMove({ target, relatedTarget }) {
