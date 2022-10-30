@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import {
   MONTHS,
-  ITEM,
+  FIELD,
   DATEPICKER_2,
   DATEPICKER_1,
   START,
@@ -31,19 +31,20 @@ class Datepicker {
     this.#findElements();
     this.#createId();
     this.#configuratorDatepicker();
-    this.#checkBtnVisibility([...this.items]);
+    this.#checkBtnVisibility([...this.fields]);
     this.#addListeners();
     this.#addTabIndex();
   }
 
   #findElements() {
-    this.items = this.datepicker.querySelectorAll(`.${ITEM}`);
+    this.fields = this.datepicker.querySelectorAll(`.${FIELD}`);
     this.formGroups = Array.from(
       this.datepicker.querySelectorAll(`.${GROUP}`),
     );
     this.buttonClear = this.datepicker.querySelector(`.${CLEAR}`);
     this.buttonAccept = this.datepicker.querySelector(`.${ACCEPT}`);
     this.navButtons = this.datepicker.querySelectorAll('.air-datepicker-nav--action');
+    this.datepickerBody = this.datepicker.querySelector('.air-datepicker-body');
 
     this.isSingleInput = false;
     this.isTwoInputs = false;
@@ -51,24 +52,23 @@ class Datepicker {
     if (this.datepicker.classList.contains(DATEPICKER_2)) this.isTwoInputs = true;
     this.rangeFrom = null;
     this.rangeTo = null;
-
-    this.days = this.datepicker.querySelectorAll('.-day-');
+    this.relatedTarget = null;
   }
 
   #addListeners() {
     this.datepicker.addEventListener('click', this.#handleDatepickerClick.bind(this));
     this.buttonClear.addEventListener('click', this.#handleButtonClearClick.bind(this));
     this.buttonAccept.addEventListener('click', this.#handleButtonAcceptClick.bind(this));
-    this.items.forEach((item) => {
+    this.fields.forEach((item) => {
       item.addEventListener('input', this.#handleItemInput.bind(this));
     });
-    this.calContainer.addEventListener('click', this.#handleContainerClick.bind(this));
+    this.datepickerBody.addEventListener('click', this.#handleBodyClick.bind(this));
+    this.datepickerBody.addEventListener('keydown', this.#handleBodyKeyPress.bind(this));
+
     document.addEventListener('click', this.#handleDocumentClick.bind(this));
 
-    this.items.forEach((item) => item.addEventListener('keydown', this.#handleItemKeyDown.bind(this)));
+    this.fields.forEach((field) => field.addEventListener('keydown', this.#handleFieldKeyDown.bind(this)));
     this.navButtons.forEach((item) => item.addEventListener('keydown', this.#handleNavKeyPress.bind(this)));
-    this.days.forEach((item) => item.addEventListener('click', this.#handleDayClick.bind(this)));
-    this.days.forEach((item) => item.addEventListener('keydown', this.#handleDayKeyPress.bind(this)));
   }
 
   #handleNavKeyPress(e) {
@@ -78,20 +78,8 @@ class Datepicker {
       e.preventDefault();
       if (action === 'next') this.dp.next();
       if (action === 'prev') this.dp.prev();
-    }
 
-    this.#addTabIndex();
-    this.days = this.datepicker.querySelectorAll('.-day-');
-  }
-
-  #handleDayKeyPress(e) {
-    const { code, target } = e;
-    if (code === 'Enter' || code === 'Space') {
-      e.preventDefault();
-      this.#clearRange();
-      const { year, month, date } = target.dataset;
-      const formattedMonth = Number(target.dataset.month) + 1;
-      console.log(formattedMonth);
+      this.#addTabIndex();
     }
   }
 
@@ -118,7 +106,7 @@ class Datepicker {
     });
   }
 
-  #handleItemKeyDown(e) {
+  #handleFieldKeyDown(e) {
     const { code } = e;
     if (code === 'Space' || code === 'Enter') {
       e.preventDefault();
@@ -126,10 +114,38 @@ class Datepicker {
     }
   }
 
+  #handleBodyKeyPress(e) {
+    const { code, target } = e;
+    if (code === 'Enter' || code === 'Space') {
+      e.preventDefault();
+      this.relatedTarget = target;
+      if (this.rangeFrom) {
+        target.classList.add('.-range-to-');
+      } else {
+        this.#clearRange('-range-from-');
+        this.#clearRange('-range-to-');
+        target.classList.add('-range-from-');
+      }
+
+      const { year, month, date } = target.dataset;
+      const dateTarget = new Date(year, month, date);
+      this.dp.selectDate(dateTarget);
+      this.#handleContainerClick(e);
+      this.datepickerBody.querySelectorAll('.-day-').forEach((day) => {
+        day.addEventListener('focus', this.#handleBodyFocus.bind(this));
+      });
+      this.#performRange();
+      if (target.classList.contains('-other-month-')) this.#addTabIndex();
+    }
+
+    if (code === 'Tab' && !this.isFirstPressOnDay) {
+      this.relatedTarget = target;
+    }
+  }
+
   #handleContainerClick({ target }) {
     if (target.classList.contains('old-date') || target.classList.contains('-days-')) return;
-    const navTitle = this.datepicker.querySelector('.air-datepicker-nav--title');
-    navTitle.innerText = Datepicker.deleteComma(navTitle);
+    this.#formatTitle();
 
     const date = new Date(this.dp.rangeDateFrom);
     const isLessThanNow = Datepicker.isDateBiggerThanNow({
@@ -188,18 +204,21 @@ class Datepicker {
     this.#checkBtnVisibility([this.firstItem, this.secondItem]);
   }
 
-  #handleDayClick() {
-    this.days.forEach((item) => item.removeEventListener('click', this.#handleDayClick.bind(this)));
-    this.datepicker.addEventListener('mousemove', this.#handleDatepickerMouseMove.bind(this));
-    this.days.forEach((item) => item.addEventListener('click', this.#handleDayRemoveClick.bind(this)));
+  #handleBodyFocus({ target }) {
+    this.#performSelectingRange(target, this.relatedTarget);
   }
 
-  #handleDayRemoveClick() {
-    this.datepicker.removeEventListener('mousemove', this.#handleDatepickerMouseMove.bind(this));
-    this.days.forEach((item) => item.addEventListener('click', this.#handleDayClick.bind(this)));
+  #handleBodyClick(e) {
+    this.datepicker.addEventListener('mousemove', this.#handleDatepickerMouseMove.bind(this));
+    this.#handleContainerClick(e);
   }
 
   #handleDatepickerMouseMove({ target, relatedTarget }) {
+    this.#performSelectingRange(target, relatedTarget);
+  }
+
+  #performSelectingRange(target, relatedTarget) {
+    if (target === relatedTarget) return;
     if (target.classList.contains('old-date')) return;
 
     this.#setPointRange();
@@ -249,18 +268,18 @@ class Datepicker {
   }
 
   #handleItemInput() {
-    const correctDateFormat = Datepicker.correctDateFormat([...this.items]);
+    const correctDateFormat = Datepicker.correctDateFormat([...this.fields]);
 
     if (correctDateFormat) {
-      this.#addDateCal(this.items);
+      this.#addDateCal(this.fields);
 
       if (this.firstItem.value === this.secondItem.value) {
         this.secondItem.value = Datepicker.changeSameData(this.secondItem);
-        this.#addDateCal(this.items);
+        this.#addDateCal(this.fields);
       }
       if (this.firstItem.value > this.secondItem.value) {
         this.#swapDates();
-        this.#addDateCal(this.items);
+        this.#addDateCal(this.fields);
       }
 
       this.#setPointRange();
@@ -271,7 +290,7 @@ class Datepicker {
   #createId() {
     this.formGroups.forEach((e) => {
       const label = e.querySelector(`.${LABEL}`);
-      const input = e.querySelector(`.${ITEM}`);
+      const input = e.querySelector(`.${FIELD}`);
       const id = uuidv4();
       label.htmlFor = id;
       input.id = id;
@@ -441,9 +460,9 @@ class Datepicker {
       && this.rangeFrom.classList.contains('-selected-');
   }
 
-  #addDateCal(items) {
+  #addDateCal(fields) {
     if (this.isTwoInputs) {
-      const arrItems = Array.from(items, (inputElement) => inputElement.value);
+      const arrItems = Array.from(fields, (inputElement) => inputElement.value);
       const correctDate = arrItems.map((e) => {
         const [day, month, year] = e.split('.');
         const formattedMonth = Number(month) - 1;
@@ -477,6 +496,7 @@ class Datepicker {
   }
 
   #clickInputOpen({ target }) {
+    this.#formatTitle();
     const targetContainer = target.closest(`.${GROUP}`);
     if (!targetContainer) return;
 
@@ -538,7 +558,7 @@ class Datepicker {
         firstDate: fourAfter,
         mod: 'twoInputMod',
       });
-      this.#addDateCal(this.items);
+      this.#addDateCal(this.fields);
       this.#setPointRange();
     }
 
@@ -548,7 +568,7 @@ class Datepicker {
         secondDate: fourAfter,
         mod: 'singleInputMod',
       });
-      this.#addDateCal(this.items);
+      this.#addDateCal(this.fields);
       this.#setPointRange();
     }
 

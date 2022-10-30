@@ -216,7 +216,8 @@
       color: rgba(map.get(variables.$colors, 'dark'), 0.25);
       font-size: map.get(variables.$font-sizes, 'tiny');
 
-      &:hover {
+      &:hover,
+      &:focus {
         color: map.get(variables.$colors, 'secondary-2');
       }
     }
@@ -243,7 +244,8 @@
       border: none;
       border-radius: 0;
 
-      &:hover {
+      &:hover,
+      &:focus {
         border-radius: 0;
         background: map.get(variables.$gradients, 'primary-25');
       }
@@ -272,7 +274,8 @@
         width: 40px;
         height: 40px;
 
-        &:hover {
+        &:hover,
+        &:focus {
           background: map.get(variables.$gradients, 'primary-25');
         }
 
@@ -292,7 +295,8 @@
       color: map.get(variables.$colors, 'secondary-2');
       font-weight: bold;
 
-      &:hover {
+      &:hover,
+      &:focus {
         background: map.get(variables.$gradients, 'primary-gradient');
       }
 

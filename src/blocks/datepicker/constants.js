@@ -12,7 +12,7 @@ const MONTHS = [
   'Дек',
 ];
 
-const ITEM = 'js-datepicker__item';
+const FIELD = 'js-datepicker__field';
 const DATEPICKER = 'js-datepicker';
 const DATEPICKER_2 = 'js-datepicker-2';
 const DATEPICKER_1 = 'js-datepicker-1';
@@ -29,7 +29,7 @@ const LABEL = 'js-datepicker__label';
 
 export {
   MONTHS,
-  ITEM,
+  FIELD,
   DATEPICKER_2,
   DATEPICKER_1,
   DATEPICKER,
