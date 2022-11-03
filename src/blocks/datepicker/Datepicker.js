@@ -271,17 +271,14 @@ class Datepicker {
     const correctDateFormat = Datepicker.correctDateFormat([...this.fields]);
 
     if (correctDateFormat) {
-      this.#addDateCal(this.fields);
-
       if (this.firstItem.value === this.secondItem.value) {
         this.secondItem.value = Datepicker.changeSameData(this.secondItem);
-        this.#addDateCal(this.fields);
       }
       if (this.firstItem.value > this.secondItem.value) {
         this.#swapDates();
-        this.#addDateCal(this.fields);
       }
 
+      this.#addDateCal();
       this.#setPointRange();
       this.#performRange(this.rangeFrom, this.rangeTo);
     }
@@ -460,9 +457,9 @@ class Datepicker {
       && this.rangeFrom.classList.contains('-selected-');
   }
 
-  #addDateCal(fields) {
+  #addDateCal() {
     if (this.isTwoInputs) {
-      const arrItems = Array.from(fields, (inputElement) => inputElement.value);
+      const arrItems = Array.from(this.fields, (inputElement) => inputElement.value);
       const correctDate = arrItems.map((e) => {
         const [day, month, year] = e.split('.');
         const formattedMonth = Number(month) - 1;
@@ -540,6 +537,16 @@ class Datepicker {
     ];
   }
 
+  static getFourAfter() {
+    const current = new Date();
+    const year = current.getFullYear();
+    const month = current.getMonth();
+    const day = current.getDate();
+    const fourAfter = new Date(year, month, day + 5);
+
+    return fourAfter;
+  }
+
   #setPrev() {
     const current = new Date();
     const year = current.getFullYear();
@@ -547,7 +554,7 @@ class Datepicker {
     const day = current.getDate();
 
     const tomorrow = new Date(year, month, day + 1);
-    const fourAfter = new Date(year, month, day + 5);
+    const fourAfter = Datepicker.getFourAfter();
 
     if (this.isTwoInputs) {
       this.firstItem.value = Datepicker.formatDate({
@@ -558,8 +565,6 @@ class Datepicker {
         firstDate: fourAfter,
         mod: 'twoInputMod',
       });
-      this.#addDateCal(this.fields);
-      this.#setPointRange();
     }
 
     if (this.isSingleInput) {
@@ -568,9 +573,10 @@ class Datepicker {
         secondDate: fourAfter,
         mod: 'singleInputMod',
       });
-      this.#addDateCal(this.fields);
-      this.#setPointRange();
     }
+
+    this.#addDateCal();
+    this.#setPointRange();
 
     this.#performRange(this.rangeFrom, this.rangeTo);
   }
@@ -578,6 +584,7 @@ class Datepicker {
   #closeDp() {
     if (this.calContainer.classList.contains('datepicker__container_only-cal')) return;
     this.calContainer.classList.remove(ACTIVE);
+    this.#checkDateAfterClosing();
   }
 
   #accept(e) {
@@ -734,6 +741,26 @@ class Datepicker {
     const { month, year } = target.dataset;
     const result = Datepicker.isDateBiggerThanNow({ year, month, day });
     return result;
+  }
+
+  #checkDateAfterClosing() {
+    if (this.isTwoInputs) {
+      this.secondItem.value = Datepicker.formatDate({
+        firstDate: this.dp.rangeDateTo,
+        mod: 'twoInputMod',
+      });
+    }
+
+    if (this.isSingleInput) {
+      this.singleItem.value = Datepicker.formatDate({
+        firstDate: this.dp.rangeDateFrom,
+        secondDate: this.dp.rangeDateTo,
+        mod: 'singleInputMod',
+      });
+    }
+
+    this.#performRange();
+    this.#setPointRange();
   }
 
   static isDateBiggerThanNow({ year, month, day }) {
