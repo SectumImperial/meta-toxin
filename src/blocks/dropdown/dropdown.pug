@@ -5,7 +5,7 @@ mixin dropdown(options = {})
     const {
       items = [],
       dataOptions = '',
-      placeholder = '',
+      placeholder = 'Введите значение',
       plurals = {},
       preset = [],
       type = 'guests-dropdown',
@@ -17,17 +17,15 @@ mixin dropdown(options = {})
     const openArrow = isOpened ? '_opened' : '' 
 
   section.dropdown.js-dropdown(
-    data-options = plurals
+    data-options = [...plurals, { placeholder: placeholder }]
     data-preset = preset
   )
-    .dropdown__input-field.js-dropdown__input-field(class = openArrow)
-      input(
-        type = 'text',
-        class = 'dropdown__input js-dropdown__input',
-        name = 'dropdown',
-        placeholder = placeholder,
-        readonly,
-      )
+    .dropdown__output-field.js-dropdown__output-field(class = openArrow)
+      output(
+        type = "text",
+        class = "dropdown__output js-dropdown__output",
+        name = "dropdown",
+      )= placeholder
       .dropdown__arrow.icon__expand_more._arrow-js 
     div.dropdown__content.js-dropdown__content(class = openClass)
       .dropdown__counter.js-dropdown__counter
@@ -37,7 +35,7 @@ mixin dropdown(options = {})
               span.dropdown__item-text= item
               .dropdown__items-nav
                 button(
-                  class = 'dropdown__btn dropdown__btn_disabled dropdown__btn_decrement js-dropdown__btn_decrement'
+                  class = "dropdown__btn dropdown__btn_disabled dropdown__btn_decrement js-dropdown__btn_decrement"
                 )= '-'
                 input.dropdown__count.js-dropdown__count(
                   name= item,
@@ -47,12 +45,12 @@ mixin dropdown(options = {})
                   tabindex = -1,            
                   )
                 button(
-                  class = 'dropdown__btn dropdown__btn_increment js-dropdown__btn_increment'
-                )= '+'
+                  class = "dropdown__btn dropdown__btn_increment js-dropdown__btn_increment"
+                )= "+"
         input(
-          type='text'
-          class='dropdown__type dropdown__type_hidden js-dropdown__type',
-          name = 'type',
+          type="text"
+          class="dropdown__type dropdown__type_hidden js-dropdown__type",
+          name = "type",
           value = type,
           readonly,
           tabindex = -1, 
@@ -62,10 +60,10 @@ mixin dropdown(options = {})
         .dropdown__nav
           .dropdown__button.dropdown__button_clear.js-dropdown__button_clear
             +button({
-              content: 'Очистить',
-              btnColor: 'white',
-              btnWrapperColor: 'transparent',
-              btnSize: 'tiny',        
+              content: "Очистить",
+              btnColor: "white",
+              btnWrapperColor: "transparent",
+              btnSize: "tiny",        
             })
 
           .dropdown__button.dropdown__button_accept.js-dropdown__button_accept

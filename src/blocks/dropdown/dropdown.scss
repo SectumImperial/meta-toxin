@@ -4,13 +4,14 @@
 .dropdown {
   position: relative;
 
-  &__input-field {
+  &__output-field {
     position: relative;
     cursor: pointer;
   }
 
-  &__input {
+  &__output {
     width: 100%;
+    display: block;
     padding: 12px 15px;
     border: 1px solid rgba(map.get(variables.$colors, 'dark'), 0.25);
     color: rgba(map.get(variables.$colors, 'dark'), 0.75);
@@ -18,10 +19,6 @@
     font-size: map.get(variables.$font-sizes, 'small');
     font-family: Montserrat, sans-serif;
     cursor: pointer;
-
-    &::placeholder {
-      color: rgba(map.get(variables.$colors, 'dark'), 0.75);
-    }
 
     &:hover,
     &:focus {

@@ -54,13 +54,14 @@ class Slider {
   }
 
   #handleToggleKeyDown(e) {
-    e.preventDefault();
     const { key, target } = e;
     if (key === 'ArrowLeft') {
+      e.preventDefault();
       this.#performKeyDown('decrement', target);
     }
 
     if (key === 'ArrowRight') {
+      e.preventDefault();
       this.#performKeyDown('increment', target);
     }
   }

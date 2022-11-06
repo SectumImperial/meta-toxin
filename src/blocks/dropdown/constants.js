@@ -1,6 +1,6 @@
 const DEFAULT_KEY = 'default';
-const FIELD = 'js-dropdown__input-field';
-const INPUT = 'js-dropdown__input';
+const FIELD = 'js-dropdown__output-field';
+const INPUT = 'js-dropdown__output ';
 const CONTENT = 'js-dropdown__content';
 const BTN_CLEAR = 'js-dropdown__button_clear';
 const BTN_ACCEPT = 'js-dropdown__button_accept';

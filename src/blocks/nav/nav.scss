@@ -10,6 +10,7 @@
     flex-flow: column wrap;
     gap: 15px;
     padding: 0;
+    margin: 0;
 
     @media (min-width: variables.$tablet) {
       display: flex;

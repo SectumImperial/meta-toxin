@@ -30,7 +30,6 @@ class Dropdown {
     } catch (err) {
       throw new Error('Ошибка в чтении options', err);
     }
-
     this.init();
   }
 
@@ -167,27 +166,16 @@ class Dropdown {
   #addUrlValues() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    const dropdownUrlContent = urlParams.get('dropdown');
     const type = urlParams.get('type');
 
-    if (dropdownUrlContent && type === this.type) {
-      this.#addInputValue(dropdownUrlContent);
-
-      const params = window.location.search
-        .replace('?', '')
-        .split('&')
-        .reduce((p, e) => {
-          const a = e.split('=');
-          // eslint-disable-next-line no-param-reassign
-          p[decodeURIComponent(a[0])] = decodeURIComponent(a[1]);
-          return p;
-        }, {});
-
-      this.counts.forEach((e) => {
-        e.value = params[e.dataset.item];
-      });
-    }
-
+    this.counts.forEach((e) => {
+      if (urlParams.get(e.dataset.item) && type === this.type) {
+        e.value = urlParams.get(e.dataset.item);
+        Dropdown.checkDecrementDisabled(e.value, e);
+      }
+    });
+    if (this.type === 'guests-dropdown') this.#checkInfants();
+    this.#performData();
     this.#checkBtnVisibility();
   }
 
@@ -222,7 +210,6 @@ class Dropdown {
         optMap.set(key, value);
       });
     });
-
     return optMap;
   }
 
@@ -268,16 +255,12 @@ class Dropdown {
         this.wordsMap.has(value)
         && !Dropdown.hasIsEqualKey(synthMap, this.wordsMap.get(value))
       ) {
-        // If new map hasn't the key
         synthMap.set(this.wordsMap.get(value), key);
       }
-      // If the map of array hasn't unique array for the key
       if (
         !this.wordsMap.has(value)
         && synthMap.has(this.wordsMap.get(DEFAULT_KEY))
       ) {
-        // If there is correct array of words
-        // sum all keys countsMap and set in value
         const newValue = Dropdown.sumCounts(
           this.countsMap,
           this.wordsMap,
@@ -286,7 +269,6 @@ class Dropdown {
         synthMap.set(this.wordsMap.get(DEFAULT_KEY), newValue);
       }
 
-      // If there is not array of words
       if (
         !this.wordsMap.has(value)
         && !synthMap.has(this.wordsMap.get(DEFAULT_KEY))
@@ -308,7 +290,11 @@ class Dropdown {
   }
 
   #addInputValue(str) {
-    this.dropdownInput.value = cutString(str, 20);
+    if (str === '') {
+      this.dropdownInput.innerText = this.wordsMap.get('placeholder');
+    } else {
+      this.dropdownInput.innerText = cutString(str, 20);
+    }
   }
 
   static hasIsEqualKey(compareMap, arr) {
