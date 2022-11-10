@@ -74,32 +74,32 @@ mixin room-details(options= {})
             .room-details__canvas
               +canvas([
                 {
-                  count: 0,
-                  grade: 'bad',
-                  name: 'Разочарован',
-                  stopFirst: '#919191',
-                  stopSecond: '#3d4975'
-                },
-                {
-                  count: 260,
-                  grade: 'satisfy',
-                  name: 'Удовлетворительно',
-                  stopFirst: '#bc9cff',
-                  stopSecond: '#8ba4f9'
-                },
-                {
                   count: 520,
-                  grade: 'great',
+                  idGrade: 'great',
                   name: 'Великолепно',
                   stopFirst: '#ffe39c',
                   stopSecond: '#ffba9c'
                 },
                 {
                   count: 260,
-                  grade: 'good',
+                  idGrade: 'good',
                   name: 'Хорошо',
                   stopFirst: '#6fcf97',
                   stopSecond: '#66d2ea'
+                },
+                {
+                  count: 260,
+                  idGrade: 'satisfy',
+                  name: 'Удовлетворительно',
+                  stopFirst: '#bc9cff',
+                  stopSecond: '#8ba4f9'
+                },
+                {
+                  count: 0,
+                  idGrade: 'bad',
+                  name: 'Разочарован',
+                  stopFirst: '#919191',
+                  stopSecond: '#3d4975'
                 },
               ])
 
@@ -118,9 +118,7 @@ mixin room-details(options= {})
                 date: '5 дней назад',
                 liked: true,
                 counts: 12,
-                text: `Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий.\n
-                И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто\n
-                не жаловался из соседей.`
+                text: "Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей."
               })
               +review({
                 src: 'steklo.jpg',
