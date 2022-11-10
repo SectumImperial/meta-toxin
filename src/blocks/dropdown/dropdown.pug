@@ -25,6 +25,7 @@ mixin dropdown(options = {})
         type = "text",
         class = "dropdown__output js-dropdown__output",
         name = "dropdown",
+        tabindex = "0"
       )= placeholder
       .dropdown__arrow.icon__expand_more._arrow-js 
     div.dropdown__content.js-dropdown__content(class = openClass)

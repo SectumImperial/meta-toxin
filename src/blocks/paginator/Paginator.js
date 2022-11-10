@@ -313,6 +313,7 @@ class Paginator {
     const page = this.#findCurrentPage();
     page.classList.add(ACTIVE_LI);
     page.classList.add(ACTIVE_JS);
+    page.focus();
 
     this.#checkVisibilityBtn();
     this.#createText();
