@@ -148,7 +148,9 @@ class Slider {
 
   #performStartMove(e) {
     const { target } = e;
-    const shiftX = e.clientX - e.target.getBoundingClientRect().left;
+    const shiftX = e.clientX
+    - (e.target.getBoundingClientRect().left + (e.target.getBoundingClientRect().width / 2));
+
     const onMouseMove = (event) => {
       const coordsMove = event.clientX - shiftX - this.slider.getBoundingClientRect().left;
       const percent = Slider.performMoveToPercent({
