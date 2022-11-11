@@ -43,6 +43,23 @@
     &_hovered {
       color: rgba((map.get(variables.$colors, 'primary')), 0.75);
     }
+
+    // For PP
+    &_great {
+      order: 1;
+    }
+
+    &_good {
+      order: 2;
+    }
+
+    &_satisfy {
+      order: 3;
+    }
+
+    &_bad {
+      order: 4;
+    }
   }
 
   &__item-mark {
@@ -71,14 +88,6 @@
     width: 100%;
     height: 100%;
     border-radius: 50%;
-
-    transform: rotate(90deg);
-    transform-origin: center;
-  }
-
-  &__text-group {
-    transform: rotate(-90deg);
-    transform-origin: center;
   }
 
   &__number {

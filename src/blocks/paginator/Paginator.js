@@ -278,6 +278,7 @@ class Paginator {
       this.#removePaginator();
       this.#createPaginator();
       this.#setCurrentPage();
+      this.#findCurrentPage().focus();
     }
   }
 
@@ -288,6 +289,7 @@ class Paginator {
       this.#removePaginator();
       this.#createPaginator();
       this.#setCurrentPage();
+      this.#findCurrentPage().focus();
     }
   }
 
@@ -299,6 +301,7 @@ class Paginator {
     this.#removePaginator();
     this.#createPaginator();
     this.#setCurrentPage();
+    this.#findCurrentPage().focus();
   }
 
   #findCurrentPage() {
@@ -313,7 +316,6 @@ class Paginator {
     const page = this.#findCurrentPage();
     page.classList.add(ACTIVE_LI);
     page.classList.add(ACTIVE_JS);
-    page.focus();
 
     this.#checkVisibilityBtn();
     this.#createText();
