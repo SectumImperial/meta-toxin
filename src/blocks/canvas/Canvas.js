@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 import {
   CHART,
   LEGEND,
@@ -10,7 +11,7 @@ class Canvas {
   constructor(element) {
     this.canvas = element;
     try {
-      this.options = JSON.parse(this.canvas.dataset.canvas);
+      this.inputOptions = JSON.parse(this.canvas.dataset.canvas);
     } catch (err) {
       throw new Error('Ошибка в опциях', err);
     }
@@ -19,9 +20,9 @@ class Canvas {
   }
 
   init() {
+    this.options = this.#addIdForOptions();
     this.allCounts = this.#sumCount();
     this.dashoffsets = [];
-
     this.svgBlock = this.canvas.querySelector(`.${CHART}`);
     this.legendBlock = this.canvas.querySelector(`.${LEGEND}`);
 
@@ -39,6 +40,14 @@ class Canvas {
 
     this.circles = this.canvas.querySelectorAll(`.${UNIT}`);
     this.#addListeners();
+  }
+
+  #addIdForOptions() {
+    const options = [];
+    this.inputOptions.forEach((option) => {
+      options.push({ ...option, id: uuidv4() });
+    });
+    return options;
   }
 
   #addListeners() {
@@ -190,11 +199,11 @@ class Canvas {
   }
 
   static createDef({
-    grade = 'default',
+    id,
     stopFirst = '#6b0000',
     stopSecond = '#1a0000',
   }) {
-    return `<linearGradient id="${grade}" x1="0%" y1="0%" x2="100%" y2="0%">
+    return `<linearGradient id="${id}" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="${stopFirst}"/>
       <stop offset="100%" stop-color="${stopSecond}"/>
     </linearGradient>`;
@@ -242,8 +251,8 @@ class Canvas {
     return dasharray;
   }
 
-  static createUrl({ grade = 'default' }) {
-    return `stroke="url(#${grade})"`;
+  static createUrl({ id }) {
+    return `stroke="url(#${id})"`;
   }
 
   static createDashOffset(dashoffsetVal = 0) {
