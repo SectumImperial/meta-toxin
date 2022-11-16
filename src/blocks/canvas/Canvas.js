@@ -20,7 +20,7 @@ class Canvas {
   }
 
   init() {
-    this.options = this.#addIdForOptions();
+    this.options = this.#performOptions();
     this.allCounts = this.#sumCount();
     this.dashoffsets = [];
     this.svgBlock = this.canvas.querySelector(`.${CHART}`);
@@ -32,7 +32,7 @@ class Canvas {
     this.svgTmp = this.#createSvg();
     this.#addSvg();
 
-    this.chart = document.querySelector(`.${SVG}`);
+    this.chart = this.canvas.querySelector(`.${SVG}`);
     this.#addText();
     this.list = this.#createList();
     this.items = this.list.querySelectorAll(`.${ITEM}`);
@@ -40,14 +40,6 @@ class Canvas {
 
     this.circles = this.canvas.querySelectorAll(`.${UNIT}`);
     this.#addListeners();
-  }
-
-  #addIdForOptions() {
-    const options = [];
-    this.inputOptions.forEach((option) => {
-      options.push({ ...option, id: uuidv4() });
-    });
-    return options;
   }
 
   #addListeners() {
@@ -62,6 +54,45 @@ class Canvas {
       circle.addEventListener('focus', this.#handleItemOver.bind(this));
       circle.addEventListener('blur', this.#handleItemOut.bind(this));
     });
+  }
+
+  #performOptions() {
+    const uniqueItems = this.#makeGradeUnique();
+    const options = Canvas.addIdForOptions(uniqueItems);
+    return options;
+  }
+
+  #makeGradeUnique() {
+    const grades = new Map();
+    let filteredOptions = [...this.inputOptions];
+
+    this.inputOptions.forEach(({ grade }) => {
+      if (grades.has(grade)) {
+        const key = Number(grades.get(grade)) + 1;
+        if (Number.isNaN(key)) throw new Error('Ошибка в количестве оценок');
+        grades.set(grade, key);
+      } else {
+        grades.set(grade, 1);
+      }
+    });
+
+    grades.forEach((key, grade) => {
+      if (key > 1) {
+        const unitedItem = this.#uniteItems(grade);
+        const index = filteredOptions.findIndex((e) => e.grade === grade);
+        filteredOptions = filteredOptions.filter((option) => option.grade !== grade);
+        filteredOptions.splice(index, 0, unitedItem);
+      }
+    });
+    return filteredOptions;
+  }
+
+  #uniteItems(grade) {
+    if (!grade) throw new Error('Cannot unite empty items');
+    const sameItems = this.inputOptions.filter((option) => option.grade === grade);
+    const sumCounts = sameItems.reduce((p, c) => p.count + c.count, 0);
+    const newItem = Object.assign(...sameItems, { count: sumCounts });
+    return newItem;
   }
 
   #sumCount() {
@@ -198,6 +229,14 @@ class Canvas {
     if (item) item.classList.remove(`${ITEM}_hovered`);
   }
 
+  static addIdForOptions(items) {
+    const options = [];
+    items.forEach((option) => {
+      options.push({ ...option, id: uuidv4() });
+    });
+    return options;
+  }
+
   static createDef({
     id,
     stopFirst = '#6b0000',
@@ -246,7 +285,7 @@ class Canvas {
 
   static createDash(dash = 0) {
     let strokeDasharray = dash;
-    if (dash !== 0) strokeDasharray -= 1;
+    if (dash >= 1) strokeDasharray -= 1;
     const dasharray = `stroke-dasharray="${strokeDasharray} 100"`;
     return dasharray;
   }
