@@ -126,6 +126,7 @@ class Dropdown {
     count.value = Number(count.value) + 1;
     if (Number(count.value) > 0) {
       decrement.classList.remove(DISABLED);
+      decrement.disabled = false;
     }
 
     if (this.type === 'guests-dropdown') this.#checkInfants();
@@ -242,8 +243,10 @@ class Dropdown {
     if (sum <= infantCount && sum !== 0 && infantCount !== 0) {
       adult.value = Number(adult.value) + 1;
       adultDecrementBtn.classList.add(DISABLED);
+      Dropdown.addDisabledForButton(adultDecrementBtn);
     } else if (Number(adult.value) !== 0) {
       adultDecrementBtn.classList.remove(DISABLED);
+      Dropdown.removeDisabledForButton(adultDecrementBtn);
     }
   }
 
@@ -311,11 +314,11 @@ class Dropdown {
         arrKeys.push(key);
       }
     });
-    const reusult = arrKeys.reduce(
+    const result = arrKeys.reduce(
       (prev, curr) => Number(prev) + Number(curr),
       0,
     );
-    return reusult;
+    return result;
   }
 
   static checkLimits(countEl) {
@@ -327,15 +330,29 @@ class Dropdown {
   static checkDecrementDisabled(count, target) {
     if (Number(count.value) === 0) {
       target.classList.add(DISABLED);
+      Dropdown.addDisabledForButton(target);
+    } else {
+      Dropdown.removeDisabledForButton(target);
     }
   }
 
   static decrementValue(count, target) {
     if (Number(count.value) > 0 && target.classList.contains(DISABLED)) {
       target.classList.remove(DISABLED);
+      Dropdown.removeDisabledForButton(target);
     }
     if (target.classList.contains(DISABLED)) return count.value;
     return Number(count.value) - 1;
+  }
+
+  static removeDisabledForButton(target) {
+    const container = target.closest(`.${ITEM}`);
+    container.querySelector(`.${BTNS_DEC}`).disabled = false;
+  }
+
+  static addDisabledForButton(target) {
+    const container = target.closest(`.${ITEM}`);
+    container.querySelector(`.${BTNS_DEC}`).disabled = true;
   }
 }
 
