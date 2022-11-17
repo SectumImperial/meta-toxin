@@ -7,6 +7,10 @@
   font-weight: 700;
   word-break: break-all;
 
+  &__number {
+    margin: 0;
+  }
+
   &__count {
     color: map.get(variables.$colors, 'dark');
     font-size: functions.rem(19);
