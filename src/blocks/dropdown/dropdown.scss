@@ -16,6 +16,9 @@
     border: 1px solid rgba(map.get(variables.$colors, 'dark'), 0.25);
     color: rgba(map.get(variables.$colors, 'dark'), 0.75);
     border-radius: 4px;
+
+    font-weight: normal;
+    text-transform: none;
     font-size: map.get(variables.$font-sizes, 'small');
     font-family: Montserrat, sans-serif;
     cursor: pointer;

@@ -43,6 +43,16 @@
     padding-bottom: 5px;
   }
 
+  &__label {
+    text-transform: uppercase;
+    font-size: map.get(variables.$font-sizes, 'tiny');
+    font-weight: 700;
+  }
+
+  &__dropdown {
+    padding-top: 5px;
+  }
+
   &__status {
     color: rgba(map.get(variables.$colors, 'dark'), 0.5);
     font-size: map.get(variables.$font-sizes, 'tiny');

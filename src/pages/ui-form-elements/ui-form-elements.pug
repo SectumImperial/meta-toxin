@@ -59,27 +59,24 @@ block content
               })
 
             .form-elems__field
-              .form-elems__subtitle 
-                +title({
-                  level: 'h5',
-                  text: 'Сколько гостей'
-                })
-              +dropdown({
-                type: 'guests-dropdown',
-                id: 'booking-guests',
-                placeholder: 'Сколько гостей',
-                items: [
-                  'Взрослые', 'Дети', 'Младенцы',
-                ],
-                plurals: [
-                  {
-                    'default': ['гость', 'гостя', 'гостей'],
-                    },
-                  {
-                    'Младенцы': ['младенец', 'младенца', 'младенцев'],
-                  }
-                ]
-              })
+              label.form-elems__label Сколько гостей
+                .form-elems__dropdown
+                  +dropdown({
+                    type: 'guests-dropdown',
+                    id: 'booking-guests',
+                    placeholder: 'Сколько гостей',
+                    items: [
+                      'Взрослые', 'Дети', 'Младенцы',
+                    ],
+                    plurals: [
+                      {
+                        'default': ['гость', 'гостя', 'гостей'],
+                        },
+                      {
+                        'Младенцы': ['младенец', 'младенца', 'младенцев'],
+                      }
+                    ]
+                  })
             .form-elems__field
               .form-elems__subtitle 
                 +title({

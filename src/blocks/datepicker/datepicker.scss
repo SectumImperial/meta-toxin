@@ -1,5 +1,4 @@
 @use 'sass:map';
-@use '../../common/functions';
 @use '../../common/variables';
 @use './datepicker_loaded';
 
@@ -109,6 +108,7 @@
   &__label {
     font-weight: bold;
     font-size: map.get(variables.$font-sizes, 'tiny');
+    color: map.get(variables.$colors, 'dark');
     text-transform: uppercase;
     padding-bottom: 5px;
   }

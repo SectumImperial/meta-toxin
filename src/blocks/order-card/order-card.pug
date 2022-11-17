@@ -21,23 +21,23 @@ mixin order-card(options = {})
       .order-card__datepicker 
         +datepicker()
       .order-card__dropdown 
-        span.order-card__subtitle Гости
-        +dropdown({
-          class: 'booking-card__dropdown-input',
-          type: 'guests-dropdown',
-          placeholder: 'Сколько гостей',
-          items: [
-            'Взрослые', 'Дети', 'Младенцы'
-          ],
-          plurals: [
-            {
-              'default': ['гость', 'гостя', 'гостей']
-            },
-            {
-              'Младенцы': ['младенец', 'младенца', 'младенцев']
-            }
-          ]
-        })
+        label.order-card__label Гости
+          .order-card__dropdown-section
+            +dropdown({
+              type: 'guests-dropdown',
+              placeholder: 'Сколько гостей',
+              items: [
+                'Взрослые', 'Дети', 'Младенцы'
+              ],
+              plurals: [
+                {
+                  'default': ['гость', 'гостя', 'гостей']
+                },
+                {
+                  'Младенцы': ['младенец', 'младенца', 'младенцев']
+                }
+              ]
+            })
       .order-card__details 
         .order-card__days 
           span.order-card__days-compute.js-order-card__days-compute  
