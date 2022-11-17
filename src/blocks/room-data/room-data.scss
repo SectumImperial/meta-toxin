@@ -16,7 +16,7 @@
       's t'
       's d';
     padding: 21px 0 19px;
-    border-bottom: 1px solid rgba(map.get(variables.$colors, 'dark'), 0.25);
+    border-bottom: 1px solid rgba(map.get(variables.$colors, 'dark'), 0.1);
     list-style: none;
 
     &:first-child {
