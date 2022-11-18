@@ -2,22 +2,22 @@
 
 @font-face {
   font-family: Montserrat;
-  src: url('../fonts/Montserrat-Regular.woff2') format('woff2');
-  src: url('../fonts/Montserrat-Regular.eot');
-  src: local('☺'), url('../fonts/Montserrat-Regular.woff') format('woff'),
-    url('../fonts/Montserrat-Regular.ttf') format('truetype'),
-    url('../fonts/Montserrat-Regular.svg') format('svg');
+  src: url('../fonts/montserrat-regular/montserrat-regular.woff2') format('woff2');
+  src: url('../fonts/montserrat-regular/montserrat-regular.eot');
+  src: local('☺'), url('../fonts/montserrat-regular/montserrat-regular.woff') format('woff'),
+    url('../fonts/montserrat-regular/montserrat-regular.ttf') format('truetype'),
+    url('../fonts/montserrat-regular/montserrat-regular.svg') format('svg');
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: Montserrat;
-  src: url('../fonts/Montserrat-Regular.woff2') format('woff2');
-  src: url('../fonts/Montserrat-Bold.eot');
-  src: local('☺'), url('../fonts/Montserrat-Bold.woff') format('woff'),
-    url('../fonts/Montserrat-Bold.ttf') format('truetype'),
-    url('../fonts/Montserrat-Bold.svg') format('svg');
+  src: url('../fonts/montserrat-regular/montserrat-regular.woff2') format('woff2');
+  src: url('../fonts/montserrat-bold/montserrat-bold.eot');
+  src: local('☺'), url('../fonts/montserrat-bold/montserrat-bold.woff') format('woff'),
+    url('../fonts/montserrat-bold/montserrat-bold.ttf') format('truetype'),
+    url('../fonts/montserrat-bold/montserrat-bold.svg') format('svg');
   font-weight: 700;
   font-style: normal;
 }
