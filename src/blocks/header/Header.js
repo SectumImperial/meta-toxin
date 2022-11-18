@@ -5,7 +5,7 @@ class Header {
   }
 
   init() {
-    this.#findElemes();
+    this.#findElements();
     this.mediaQueryList = window.matchMedia('(min-width: 960px)');
     this.#addListeners();
     this.#changeScreenClass();
@@ -36,7 +36,7 @@ class Header {
     this.navWrapper.classList.toggle('_active');
   }
 
-  #findElemes() {
+  #findElements() {
     this.page = document.querySelector('body');
     this.subItems = this.header.querySelectorAll('.nav__subitem');
     this.iconMenu = this.header.querySelector('.header__icon');

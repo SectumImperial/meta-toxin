@@ -29,38 +29,38 @@ block content
   header.ui-page__header 
     +ui-header()
   main.ui-page__main
-    .form-elems 
-      .form-elems__content
-        .form-elems__field-and-btns
-          .form-elems__fields 
-            .form-elems__field
-              .form-elems__subtitle 
+    .form-elements 
+      .form-elements__content
+        .form-elements__field-and-buttons
+          .form-elements__fields 
+            .form-elements__field
+              .form-elements__subtitle 
                 +title({
                   level: 'h5',
                   text: 'Text feild'
                 })
-                span.form-elems__status Default
+                span.form-elements__status Default
               +input({
                 type: 'email',
                 placeholder: 'Email',
                 pattern: '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$'
               })
-            .form-elems__field
-              .form-elems__subtitle 
+            .form-elements__field
+              .form-elements__subtitle 
                 +title({
                   level: 'h5',
                   text: 'Text feild'
                 })
-                span.form-elems__status Hover/Focus
+                span.form-elements__status Hover/Focus
               +input({
                 type: 'text',
                 placeholder: 'This is pretty awesome',
                 isHovered: true,
               })
 
-            .form-elems__field
-              label.form-elems__label Сколько гостей
-                .form-elems__dropdown
+            .form-elements__field
+              label.form-elements__label Сколько гостей
+                .form-elements__dropdown
                   +dropdown({
                     type: 'guests-dropdown',
                     id: 'booking-guests',
@@ -77,8 +77,8 @@ block content
                       }
                     ]
                   })
-            .form-elems__field
-              .form-elems__subtitle 
+            .form-elements__field
+              .form-elements__subtitle 
                 +title({
                   text: 'masked text field',
                   level: 'h5',
@@ -90,19 +90,19 @@ block content
                 isRequired: true,
                 isDate: true,
               })
-            .form-elems__field.form-elems__field_bigger
+            .form-elements__field.form-elements__field_bigger
               +datepicker({
                 labelStart: 'date Dropdown',
                 labelEnd: 'date Dropdown'
               })
-            .form-elems__field.form-elems__field_bigger
+            .form-elements__field.form-elements__field_bigger
               +datepicker({
                 labelAlone: 'filter date dropdown',
                 isTwoInput: false,
               })
 
-            .form-elems__field.form-elems__field_bigger
-              .form-elems__subtitle 
+            .form-elements__field.form-elements__field_bigger
+              .form-elements__subtitle 
                 +title({
                   level: 'h5',
                   text: 'Subscription text field',
@@ -114,58 +114,58 @@ block content
                 placeholder: 'Email',
               })
 
-          .form-elems__small-btns 
-            .form-elems__small-btn
-              .form-elems__subtitle 
+          .form-elements__small-buttons 
+            .form-elements__small-btn
+              .form-elements__subtitle 
                 +title({
                   level: 'h5',
                   text: 'Checkbox Buttons'
                 })
-              ul.form-elems__checkboxes
-                li.form-elems__checkbox
+              ul.form-elements__checkboxes
+                li.form-elements__checkbox
                   +checkbox({
                     labelText: 'Можно курить',
-                    name: 'form-elems-smoke',
+                    name: 'form-elements-smoke',
                   })
-                li.form-elems__checkbox
+                li.form-elements__checkbox
                   +checkbox({
                     labelText: 'Можно с питомцами',
-                    name: 'form-elems-pets',
+                    name: 'form-elements-pets',
                     isChecked: true
                   })
-                li.form-elems__checkbox
+                li.form-elements__checkbox
                   +checkbox({
                     labelText: `Можно пригласить гостей 
                     (до 10 человек)`,
-                    name: 'form-elems-guests',
+                    name: 'form-elements-guests',
                     isChecked: true
                   })
-            .form-elems__small-btn 
-              .form-elems__subtitle 
+            .form-elements__small-btn 
+              .form-elements__subtitle 
                 +title({
                   level: 'h5',
                   text: 'Radio Buttons'
                 })
-              .form-elems__radio
-                .form-elems__sex-group
+              .form-elements__radio
+                .form-elements__sex-group
                   +radio({
-                    name: 'form-elems-sex',
+                    name: 'form-elements-sex',
                     isChecked: true,
                     text: 'Мужчина'
                   })
-                .form-elems__sex-group
+                .form-elements__sex-group
                   +radio({
-                    name: 'form-elems-sex',
+                    name: 'form-elements-sex',
                     text: 'Женщина'
                   })
 
-            .form-elems__small-btn 
-              .form-elems__subtitle 
+            .form-elements__small-btn 
+              .form-elements__subtitle 
                 +title({
                   level: 'h5',
                   text: 'Toggle'
                 })
-              .form-elems__toggles 
+              .form-elements__toggles 
                 +toggle({
                   name: 'registration-card-mailing',
                   text: 'Получать спецпредложения',
@@ -176,13 +176,13 @@ block content
                   text: 'Получать спецпредложения',
                 })
 
-            .form-elems__small-btn
-              .form-elems__subtitle 
+            .form-elements__small-btn
+              .form-elements__subtitle 
                 +title({
                   level: 'h5',
                   text: 'like button'
                 })
-              .form-elems__likes
+              .form-elements__likes
                 +like({
                   counts: 2,
                 })
@@ -191,197 +191,173 @@ block content
                   liked: true,
                 })
 
-            .form-elems__small-btn
-              .form-elems__subtitle 
+            .form-elements__small-btn
+              .form-elements__subtitle 
                 +title({
                   level: 'h5',
                   text: 'rate button'
                 })
-              .form-elems__rate 
+              .form-elements__rate 
                 +star-rating({
                   stars: 5,
                   rating: 4,
-})
-  +star-rating({
-    stars: 5,
-    rating: 5,
-})
-  .form-elems__btns 
-    .form-elems__btn.form-elems__btn_range
-      +range-slider({
-        name: 'Range Slider',   
-        step: 100,
-        rangeOptions: {
-          min: 0,
-          max: 15000,
-          initialStart: 5000,
-          initialEnd: 10000,
-          addedText: '₽',
-        }
-      })
-    .form-elems__btn
-      .form-elems__subtitle 
-        +title({
-          level: 'h5',
-          text: 'buttons',
-        })
-      .form-elems__elem-btn_medium 
-        .form-elems__elem-btn-cont
-          +button({
-            btnColor: 'white',
-            btnWrapperColor: 'violet',
-            content: 'Click me',
-            btnSize: 'small',
-            btnType: 'link',
-            href: 'registration-page.html'
-          })
-          +button({
-            btnColor: 'white',
-            btnWrapperColor: 'violet',
-            content: 'Click me',
-            btnSize: 'small',
-            btnType: 'link',
-            href: 'registration-page.html',
-            isHovered: true,
-          })
-
-        .form-elems__elem-btn-cont
-          +button({
-            content: 'Click me', 
-            btnColor: 'violet',
-            btnSize: 'small',
-            btnType: 'link',
-            href: 'login-page.html',
-          })
-          +button({
-            content: 'Click me', 
-            btnColor: 'violet',
-            btnSize: 'small',
-            btnType: 'link',
-            href: 'login-page.html',
-            isHovered: true,
-          })
-        .form-elems__elem-btn-cont
-          +button({
-            content: 'Click me',
-            btnColor: 'violet',
-            btnWrapperColor: 'transparent',
-            border: 'false',
-            btnSize: 'tiny',
-          })
-          +button({
-            content: 'Click me',
-            btnColor: 'violet',
-            btnWrapperColor: 'transparent',
-            border: 'false',
-            btnSize: 'tiny',
-            isHovered: true,
-          })
-
-      .form-elems__elem-btn_big 
-        +button({
-          content: 'Перейти к оплате',
-          btnColor: 'white',
-          btnWrapperColor: 'violet',
-          isArrow: true,
-          btnSize: 'large',
-        })
-    .form-elems__btn 
-      .form-elems__subtitle 
-        +title({
-          level: 'h5',
-          text: 'Pagination',
-        })
-      .form-elems__paginator
-        +paginator({
-          itemsPerPage: 12,
-          allItems: 180,
-          text: 'вариантов аренды',
-        })
-        .form-elems__dropdowns
-          .form-elems__dropdowns-item.form-elems__dropdowns-item_2
-            .form-elems__dropdown
-              .form-elems__subtitle 
-                +title({
-                  level: 'h5',
-                  text: 'dropdown'
                 })
-                span.form-elems__status Expanded
-              +dropdown({
-                type: 'facilities',
-                size: 'small',
-                isOpened: true,
-                placeholder: 'Удобства номера',
-                items: [
-                  'Cпальни', 'Кровати', 'Ванные комнаты',
-                ],
-                plurals: [
-                  {
-                    'Cпальни': ['спальня', 'спальни', 'спален'],
-                    },
-                  {
-                    'Кровати': ['кровать', 'кровати', 'кроватей'],
-                  },
-                  {
-                    'Ванные комнаты': ['ванная комната', 'ванных комнаты', 'ванных комнат'],
-                  }
-                ]
-              })  
-
-            .form-elems__dropdown
-              .form-elems__subtitle 
-                +title({
-                  level: 'h5',
-                  text: 'dropdown'
+                +star-rating({
+                  stars: 5,
+                  rating: 5,
                 })
-                span.form-elems__status Default
-              +dropdown({
-                type: 'facilities',
-                size: 'small',
-                placeholder: 'Удобства номера',
-                items: [
-                  'Cпальни', 'Кровати', 'Ванные комнаты',
-                ],
-                plurals: [
-                  {
-                    'Cпальни': ['спальня', 'спальни', 'спален'],
-                    },
-                  {
-                    'Кровати': ['кровать', 'кровати', 'кроватей'],
-                  },
-                  {
-                    'Ванные комнаты': ['ванная комната', 'ванных комнаты', 'ванных комнат'],
-                  }
-                ]
-              })  
-
-          .form-elems__dropdowns-item
-            .form-elems__dropdown
-              .form-elems__subtitle 
-                +title({
-                  level: 'h5',
-                  text: 'dropdown'
-                })
-              +dropdown({
-                type: 'guests-dropdown',
-                isOpened: true,
-                placeholder: 'Сколько гостей',
-                items: [
-                  'Взрослые', 'Дети', 'Младенцы',
-                ],
-                plurals: [
-                  {
-                    'default': ['гость', 'гостя', 'гостей'],
-                    },
-                  {
-                    'Младенцы': ['младенец', 'младенца', 'младенцев'],
-                  }
-                ]
+          .form-elements__buttons 
+            .form-elements__btn.form-elements__btn_range
+              +range-slider({
+                name: 'Range Slider',   
+                step: 100,
+                rangeOptions: {
+                  min: 0,
+                  max: 15000,
+                  initialStart: 5000,
+                  initialEnd: 10000,
+                  addedText: '₽',
+                }
               })
+            .form-elements__btn
+              .form-elements__subtitle 
+                +title({
+                  level: 'h5',
+                  text: 'buttons',
+                })
+              .form-elements__elem-btn_medium 
+                .form-elements__elem-btn-cont
+                  +button({
+                    btnColor: 'white',
+                    btnWrapperColor: 'violet',
+                    content: 'Click me',
+                    buttonsize: 'small',
+                    btnType: 'link',
+                    href: 'registration-page.html'
+                  })
+                  +button({
+                    btnColor: 'white',
+                    btnWrapperColor: 'violet',
+                    content: 'Click me',
+                    buttonsize: 'small',
+                    btnType: 'link',
+                    href: 'registration-page.html',
+                    isHovered: true,
+                  })
 
-          .form-elems__dropdowns-item
-            .form-elems__dropdown
-              .form-elems__subtitle 
+                .form-elements__elem-btn-cont
+                  +button({
+                    content: 'Click me', 
+                    btnColor: 'violet',
+                    buttonsize: 'small',
+                    btnType: 'link',
+                    href: 'login-page.html',
+                  })
+                  +button({
+                    content: 'Click me', 
+                    btnColor: 'violet',
+                    buttonsize: 'small',
+                    btnType: 'link',
+                    href: 'login-page.html',
+                    isHovered: true,
+                  })
+                .form-elements__elem-btn-cont
+                  +button({
+                    content: 'Click me',
+                    btnColor: 'violet',
+                    btnWrapperColor: 'transparent',
+                    border: 'false',
+                    buttonsize: 'tiny',
+                  })
+                  +button({
+                    content: 'Click me',
+                    btnColor: 'violet',
+                    btnWrapperColor: 'transparent',
+                    border: 'false',
+                    buttonsize: 'tiny',
+                    isHovered: true,
+                  })
+
+              .form-elements__elem-btn_big 
+                +button({
+                  content: 'Перейти к оплате',
+                  btnColor: 'white',
+                  btnWrapperColor: 'violet',
+                  isArrow: true,
+                  buttonsize: 'large',
+                })
+            .form-elements__btn 
+              .form-elements__subtitle 
+                +title({
+                  level: 'h5',
+                  text: 'Pagination',
+                })
+              .form-elements__paginator
+                +paginator({
+                  itemsPerPage: 12,
+                  allItems: 180,
+                  text: 'вариантов аренды',
+                })
+        .form-elements__dropdowns
+          .form-elements__dropdowns-item.form-elements__dropdowns-item_2
+            .form-elements__dropdown
+              .form-elements__subtitle 
+                +title({
+                  level: 'h5',
+                  text: 'dropdown'
+                })
+                span.form-elements__status Expanded
+              +dropdown({
+                type: 'facilities',
+                size: 'small',
+                isOpened: true,
+                placeholder: 'Удобства номера',
+                items: [
+                  'Cпальни', 'Кровати', 'Ванные комнаты',
+                ],
+                plurals: [
+                  {
+                    'Cпальни': ['спальня', 'спальни', 'спален'],
+                    },
+                  {
+                    'Кровати': ['кровать', 'кровати', 'кроватей'],
+                  },
+                  {
+                    'Ванные комнаты': ['ванная комната', 'ванных комнаты', 'ванных комнат'],
+                  }
+                ]
+              })  
+
+            .form-elements__dropdown
+              .form-elements__subtitle 
+                +title({
+                  level: 'h5',
+                  text: 'dropdown'
+                })
+                span.form-elements__status Default
+              +dropdown({
+              type: 'facilities',
+              size: 'small',
+              placeholder: 'Удобства номера',
+              items: [
+                'Cпальни', 'Кровати', 'Ванные комнаты',
+              ],
+              plurals: [
+                {
+                  'Cпальни': ['спальня', 'спальни', 'спален'],
+                  },
+                {
+                  'Кровати': ['кровать', 'кровати', 'кроватей'],
+                },
+                {
+                  'Ванные комнаты': ['ванная комната', 'ванных комнаты', 'ванных комнат'],
+                }
+              ]
+              })  
+
+          .form-elements__dropdowns-item
+            .form-elements__dropdown
+              .form-elements__subtitle 
                 +title({
                   level: 'h5',
                   text: 'dropdown'
@@ -400,48 +376,72 @@ block content
                 {
                   'Младенцы': ['младенец', 'младенца', 'младенцев'],
                 }
-              ],
-              preset: [
-                {
-                  'Взрослые': 2,
-                },
-                {
-                  'Дети': 1,
-                },
               ]
-            })
-        .form-elems__checkboxes-lists
-          .form-elems__checkboxes-lists-item.form-elems__checkboxes-lists-item_2
+              })
+
+          .form-elements__dropdowns-item
+            .form-elements__dropdown
+              .form-elements__subtitle 
+                +title({
+                  level: 'h5',
+                  text: 'dropdown'
+                })
+              +dropdown({
+                type: 'guests-dropdown',
+                isOpened: true,
+                placeholder: 'Сколько гостей',
+                items: [
+                  'Взрослые', 'Дети', 'Младенцы',
+                ],
+                plurals: [
+                  {
+                    'default': ['гость', 'гостя', 'гостей'],
+                    },
+                  {
+                    'Младенцы': ['младенец', 'младенца', 'младенцев'],
+                  }
+                ],
+                preset: [
+                  {
+                    'Взрослые': 2,
+                  },
+                  {
+                    'Дети': 1,
+                  },
+                ]
+              })
+        .form-elements__checkboxes-lists
+          .form-elements__checkboxes-lists-item.form-elements__checkboxes-lists-item_2
             +checkbox-list({
               titleList: 'Expandable checkbox list',
               items: [
                 {
                   labelText: 'Завтрак',
-                  name: 'form-elems-lunch',
+                  name: 'form-elements-lunch',
 
                 },
                 {
                   labelText: 'Письменный стол',
-                  name: 'form-elems-table',
+                  name: 'form-elements-table',
                   isChecked: true,
                 },
                 {
                   labelText: 'Стул для кормления',
-                  name: 'form-elems-chair',
+                  name: 'form-elements-chair',
                   isChecked: true,
                 },
                 {
                   labelText: 'Кроватка',
-                  name: 'form-elems-small-bed',
+                  name: 'form-elements-small-bed',
                   isChecked: true,
                 },
                 {
                   labelText: 'Телевизор',
-                  name: 'form-elems-tv',
+                  name: 'form-elements-tv',
                 },
                 {
                   labelText: 'Шампунь',
-                  name: 'form-elems-shampoo',
+                  name: 'form-elements-shampoo',
                 },
               ]
             })
@@ -451,58 +451,58 @@ block content
               items: [
                 {
                   labelText: 'Завтрак',
-                  name: 'form-elems-lunch',
+                  name: 'form-elements-lunch',
                 },
                 {
                   labelText: 'Письменный стол',
-                  name: 'form-elems-table',
+                  name: 'form-elements-table',
                   isChecked: true,
                 },
                 {
                   labelText: 'Стул для кормления',
-                  name: 'form-elems-chair',
+                  name: 'form-elements-chair',
                   isChecked: true,
                 },
                 {
                   labelText: 'Кроватка',
-                  name: 'form-elems-small-bed',
+                  name: 'form-elements-small-bed',
                   isChecked: true,
                 },
                 {
                   labelText: 'Телевизор',
-                  name: 'form-elems-tv',
+                  name: 'form-elements-tv',
                 },
                 {
                   labelText: 'Шампунь',
-                  name: 'form-elems-shampoo',
+                  name: 'form-elements-shampoo',
                 },
               ]
             })
-          .form-elems__checkboxes-lists-item.form-elems__checkboxes-lists-item_2-rich
-            .form-elems__subtitle
+          .form-elements__checkboxes-lists-item.form-elements__checkboxes-lists-item_2-rich
+            .form-elements__subtitle
               +title({
                 level: 'h5',
                 text: 'rich Checkbox Buttons'
               })
-            .form-elems__checkbox-lists.form-elems__checkbox-lists_wide-corr
+            .form-elements__checkbox-lists.form-elements__checkbox-lists_wide-corr
               +checkbox({
                 mod: 'rich',
                 checkboxTitle: 'Широкий коридор',
                 checkboxDescription: 'Ширина коридоров в номере не менее 91 см.',
-                name: 'form-elems-wide-corr',
-                id: 'form-elems-wide-corr',
+                name: 'form-elements-wide-corr',
+                id: 'form-elements-wide-corr',
               })
-            .form-elems__checkbox.form-elems__checkbox-lists_inv-help
+            .form-elements__checkbox.form-elements__checkbox-lists_inv-help
               +checkbox({
                 mod: 'rich',
                 checkboxTitle: 'Помощник для инвалидов',
                 checkboxDescription: `На 1 этаже вас встретит специалист 
                 и проводит до номера.`,
-                name: 'form-elems-inv-help',
-                id: 'form-elems-inv-help',
+                name: 'form-elements-inv-help',
+                id: 'form-elements-inv-help',
               })
-          .form-elems__checkboxes-lists-item.form-elems__checkboxes-lists-item_bullet
-            .form-elems__subtitle    
+          .form-elements__checkboxes-lists-item.form-elements__checkboxes-lists-item_bullet
+            .form-elements__subtitle    
               +title({
                 level: 'h5',
                 text: 'Bullet list',
@@ -514,32 +514,32 @@ block content
                 'Время прибытия — после 13:00, а выезд до 12:00'
               ]
             })
-        .form-elems__details 
-          .form-elems__details-item.form-elems__details-item_small 
-            +room-data({
-              items: [
-                {
-                  title: 'Комфорт',
-                  text: 'Шумопоглощающие стены',
-                  icon: 'smile',
-                },
-                {
-                  title: 'Удобство',
-                  text: 'Окно в каждой из спален',
-                  icon: 'city',
-                },
-              ]
-                })     
-          .form-elems__details-item.form-elems__details-item_comment
-            +review({
-              src: 'tesak.jpg',
-              name: 'Мурад Сарафанов',
-              date: '5 дней назад',
-              liked: true,
-              counts: 12,
-              text: `Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий.\n
-              И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто\n
-              не жаловался из соседей.`
-              })    
+        .form-elements__details 
+            .form-elements__details-item.form-elements__details-item_small 
+              +room-data({
+                items: [
+                  {
+                    title: 'Комфорт',
+                    text: 'Шумопоглощающие стены',
+                    icon: 'smile',
+                  },
+                  {
+                    title: 'Удобство',
+                    text: 'Окно в каждой из спален',
+                    icon: 'city',
+                  },
+                ]
+                  })     
+            .form-elements__details-item.form-elements__details-item_comment
+              +review({
+                src: 'tesak.jpg',
+                name: 'Мурад Сарафанов',
+                date: '5 дней назад',
+                liked: true,
+                counts: 12,
+                text: `Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий.\n
+                И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто\n
+                не жаловался из соседей.`
+                })    
 
 

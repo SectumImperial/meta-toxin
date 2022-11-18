@@ -159,7 +159,7 @@ class Canvas {
 
   #createText(fill = '#000000', count = this.allCounts) {
     const textNum = `<text text-anchor="middle" class="canvas__number" x="50%" y="48%" fill="${fill}">${count}</text>`;
-    const description = `<text text-anchor="middle" class="canvas__descr" x="50%" y="65%" fill="${fill}">Голосов</text>`;
+    const description = `<text text-anchor="middle" class="canvas__description" x="50%" y="65%" fill="${fill}">Голосов</text>`;
     const group = `<g class="canvas__text-group" fill="${fill}">${textNum}${description}</g>`;
     return group;
   }

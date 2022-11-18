@@ -1,7 +1,7 @@
 @use 'sass:map';
 @use '../../common/variables';
 
-.form-elems {
+.form-elements {
   &__content {
     display: flex;
     flex-wrap: wrap;
@@ -10,7 +10,7 @@
     padding: 0 5px 131px;
   }
 
-  &__field-and-btns {
+  &__field-and-buttons {
     display: flex;
     flex-wrap: wrap;
     gap: 126px;
@@ -30,7 +30,7 @@
     }
   }
 
-  &__small-btns {
+  &__small-buttons {
     display: flex;
     flex-direction: column;
     gap: 40px;
@@ -63,6 +63,11 @@
     list-style: none;
   }
 
+  &__checkboxes {
+    margin: 0;
+    padding: 0;
+  }
+
   &__radio {
     display: flex;
     gap: 20px;
@@ -88,7 +93,7 @@
     gap: 20px;
   }
 
-  &__btns {
+  &__buttons {
     max-width: 320px;
     min-width: 320px;
     display: flex;
@@ -143,7 +148,7 @@
   }
 
   &__checkboxes-lists {
-    padding: 120px 0 60px;
+    padding: 180px 0 60px;
     display: flex;
     gap: 162px;
   }

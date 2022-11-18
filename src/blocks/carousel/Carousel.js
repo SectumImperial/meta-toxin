@@ -17,16 +17,16 @@ class Carousel {
   }
 
   init() {
-    this.#findElems();
+    this.#findElements();
     this.#createVars();
     this.#markToggles();
     this.#checkActive();
     this.#addListeners();
   }
 
-  #findElems() {
+  #findElements() {
     this.list = this.carousel.querySelector(`.${ITEMS}`);
-    this.listElems = this.carousel.querySelectorAll(`.${ITEM}`);
+    this.listElements = this.carousel.querySelectorAll(`.${ITEM}`);
     this.prev = this.carousel.querySelector(`.${PREV}`);
     this.next = this.carousel.querySelector(`.${NEXT}`);
     this.toggles = this.carousel.querySelectorAll(`.${TOGGLE}`);
@@ -97,7 +97,7 @@ class Carousel {
     this.position -= this.width * this.count;
     this.position = Math.max(
       this.position,
-      -this.width * (this.listElems.length - this.count),
+      -this.width * (this.listElements.length - this.count),
     );
     this.list.style.marginLeft = `${this.position}px`;
     this.#checkActive();
@@ -116,7 +116,7 @@ class Carousel {
   }
 
   #checkBtnVisibility() {
-    if (this.position === -this.width * (this.listElems.length - this.count)) {
+    if (this.position === -this.width * (this.listElements.length - this.count)) {
       this.next.style.visibility = 'hidden';
     } else {
       this.next.style.visibility = 'visible';

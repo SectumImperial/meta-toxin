@@ -11,8 +11,8 @@ import {
   BTN_ACCEPT,
   COUNT_ELEM,
   COUNTER,
-  BTNS_DEC,
-  BTNS_INC,
+  BUTTONS_DEC,
+  BUTTONS_INC,
   TYPE,
   ITEM,
   DISABLED,
@@ -34,7 +34,7 @@ class Dropdown {
   }
 
   init() {
-    this.#findElems();
+    this.#findElements();
     this.#checkBtnVisibility();
     this.type = this.dropdown.querySelector(`.${TYPE}`).value;
 
@@ -56,8 +56,8 @@ class Dropdown {
       this.#handleInputKeyDown.bind(this),
     );
 
-    this.btnsDecrement.forEach((item) => item.addEventListener('click', this.#handleDecrBtnClick.bind(this)));
-    this.btnsIncrement.forEach((item) => item.addEventListener('click', this.#handleIncrBtnClick.bind(this)));
+    this.buttonsDecrement.forEach((item) => item.addEventListener('click', this.#handleDecrBtnClick.bind(this)));
+    this.buttonsIncrement.forEach((item) => item.addEventListener('click', this.#handleIncrBtnClick.bind(this)));
 
     this.btnClear.addEventListener(
       'click',
@@ -120,7 +120,7 @@ class Dropdown {
     const { target } = e;
     const container = target.closest(`.${ITEM}`);
     const count = container.querySelector(`.${COUNT_ELEM}`);
-    const decrement = container.querySelector(`.${BTNS_DEC}`);
+    const decrement = container.querySelector(`.${BUTTONS_DEC}`);
     count.value = Dropdown.checkLimits(count);
     if (Number(count.value) === 999) return;
     count.value = Number(count.value) + 1;
@@ -151,15 +151,15 @@ class Dropdown {
     this.field.classList.toggle(OPENED);
   }
 
-  #findElems() {
+  #findElements() {
     this.field = this.dropdown.querySelector(`.${FIELD}`);
     this.dropdownInput = this.dropdown.querySelector(`.${INPUT}`);
     this.dropdownContent = this.dropdown.querySelector(`.${CONTENT}`);
     this.btnClear = this.dropdown.querySelector(`.${BTN_CLEAR}`);
     this.btnAccept = this.dropdown.querySelector(`.${BTN_ACCEPT}`);
     this.counter = this.dropdown.querySelector(`.${COUNTER}`);
-    this.btnsDecrement = this.counter.querySelectorAll(`.${BTNS_DEC}`);
-    this.btnsIncrement = this.counter.querySelectorAll(`.${BTNS_INC}`);
+    this.buttonsDecrement = this.counter.querySelectorAll(`.${BUTTONS_DEC}`);
+    this.buttonsIncrement = this.counter.querySelectorAll(`.${BUTTONS_INC}`);
 
     this.counts = this.dropdown.querySelectorAll(`.${COUNT_ELEM}`);
   }
@@ -239,7 +239,7 @@ class Dropdown {
     );
     const adultDecrementBtn = adult
       .closest('.dropdown__items-nav')
-      .querySelector(`.${BTNS_DEC}`);
+      .querySelector(`.${BUTTONS_DEC}`);
     if (sum <= infantCount && sum !== 0 && infantCount !== 0) {
       adult.value = Number(adult.value) + 1;
       adultDecrementBtn.classList.add(DISABLED);
@@ -347,12 +347,12 @@ class Dropdown {
 
   static removeDisabledForButton(target) {
     const container = target.closest(`.${ITEM}`);
-    container.querySelector(`.${BTNS_DEC}`).disabled = false;
+    container.querySelector(`.${BUTTONS_DEC}`).disabled = false;
   }
 
   static addDisabledForButton(target) {
     const container = target.closest(`.${ITEM}`);
-    container.querySelector(`.${BTNS_DEC}`).disabled = true;
+    container.querySelector(`.${BUTTONS_DEC}`).disabled = true;
   }
 }
 
