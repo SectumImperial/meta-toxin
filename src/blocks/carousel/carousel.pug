@@ -4,14 +4,14 @@ mixin carousel(images, href)
     .carousel__images 
       a(
         href = href,
-        class = 'carousel__link js-carousel__link'
+        class = "carousel__link js-carousel__link"
       )
         ul.carousel__items.js-carousel__items
           each image in images
             li.carousel__item.js-carousel__item
               img(
-                class = 'carousel__image',
-                alt = 'Фотография номера',
+                class = "carousel__image",
+                alt = "Фотография номера",
                 src = require(`../../assets/content/${image}`),
                 width = 270,
               )

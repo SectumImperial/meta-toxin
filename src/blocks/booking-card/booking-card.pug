@@ -8,14 +8,14 @@ include ../dropdown/dropdown.pug
 mixin booking-card(options = {})
   section.booking-card
     form(
-      action = 'search-page.html'
+      action = "search-page.html"
       method = GET,
-      class = 'booking-card__card',
+      class = "booking-card__card",
     )
       .booking-card__title
         +title({
-          level: 'h2',
-          text: 'Найдём номера под ваши пожелания',
+          level: "h2",
+          text: "Найдём номера под ваши пожелания",
         })
       .booking-card__datepicker
         +datepicker()
@@ -23,25 +23,25 @@ mixin booking-card(options = {})
         label.booking-card__label Гости
           .booking-card__dropdown-input
             +dropdown({
-              type: 'guests-dropdown',
-              id: 'booking-guests',
-              placeholder: 'Сколько гостей',
+              type: "guests-dropdown",
+              id: "booking-guests",
+              placeholder: "Сколько гостей",
               items: [
-                'Взрослые', 'Дети', 'Младенцы',
+                "Взрослые", "Дети", "Младенцы",
               ],
               plurals: [
                 {
-                  'default': ['гость', 'гостя', 'гостей'],
+                  "default": ["гость", "гостя", "гостей"],
                   },
                 {
-                  'Младенцы': ['младенец', 'младенца', 'младенцев'],
+                  "Младенцы": ["младенец", "младенца", "младенцев"],
                 }
               ]
             })
       .booking-card__button
         +button({
-          content: 'Подобрать номер',
-          btnColor: 'violet',
+          content: "Подобрать номер",
+          btnColor: "violet",
           isArrow: true,
-          btnSize: 'large',
+          btnSize: "large",
         })

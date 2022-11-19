@@ -7,7 +7,7 @@ include ../../blocks/text-element/text-element.pug
 
 block variables 
   - 
-    const title = 'Colors & Type'
+    const title = "Colors & Type"
 
 block content
   header.ui-page__header 
@@ -49,24 +49,24 @@ block content
           .colors-page__type
             .colors-page__level.colors-page__level_h1 h1 
             +title({
-              level: 'h1',
-              text: 'This one is the sub-section or widget title',
+              level: "h1",
+              text: "This one is the sub-section or widget title",
             })
           .colors-page__type.colors-page__type_h3
             .colors-page__level.colors-page__level_h3 h2 
             +title({
-              level: 'h3',
-              text: 'Next one is the item title inside widgets',
+              level: "h3",
+              text: "Next one is the item title inside widgets",
             })
           .colors-page__type.colors-page__type_uppercase
             .colors-page__level.colors-page__level_h5 h3 
             +title({
-              level: 'h5',
-              text: 'This is a label or CTA text',
+              level: "h5",
+              text: "This is a label or CTA text",
             })
           .colors-page__type.colors-page__type_text
             .colors-page__level.colors-page__text body 
-            +text-element('This is the body text which is used for most of the design, like paragraphs, lists, etc.')
+            +text-element("This is the body text which is used for most of the design, like paragraphs, lists, etc.")
 
 
 

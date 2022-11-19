@@ -1,16 +1,16 @@
 mixin paginator(options = {})
   div(
-    class = 'paginator _js-paginator'
+    class = "paginator _js-paginator"
     data-paginator = options 
   )
     .paginator__content
       button(
-        class='paginator__button paginator__button_prev js-paginator__button_prev icon__arrow_forward',
+        class="paginator__button paginator__button_prev js-paginator__button_prev icon__arrow_forward",
         tabindex = 0,
       )
       ul.paginator__items.js-paginator__items
       button(
-        class='paginator__button paginator__button_next js-paginator__button_next icon__arrow_forward',
+        class="paginator__button paginator__button_next js-paginator__button_next icon__arrow_forward",
         tabindex = 0,
       )
     .paginator__description 

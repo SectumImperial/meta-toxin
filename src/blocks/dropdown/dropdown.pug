@@ -13,7 +13,7 @@ mixin dropdown(options = {})
       isOpened = false,
     } = options
 
-    const openClass = isOpened ? '_active' : '' 
+    const openClass = isOpened ? '_active' : ''
     const openArrow = isOpened ? '_opened' : '' 
 
   section.dropdown.js-dropdown(
@@ -37,27 +37,27 @@ mixin dropdown(options = {})
               .dropdown__items-nav
                 button(
                   class = "dropdown__btn dropdown__btn_disabled dropdown__btn_decrement js-dropdown__btn_decrement"
-                )= '-'
+                ) = "-"
                 input.dropdown__count.js-dropdown__count(
-                  name= item,
-                  data-item= item,
-                  value= 0,
+                  name = item,
+                  data-item = item,
+                  value = 0,
                   readonly,
                   tabindex = -1,            
                   )
                 button(
                   class = "dropdown__btn dropdown__btn_increment js-dropdown__btn_increment"
-                )= "+"
+                ) = "+"
         input(
-          type="text"
-          class="dropdown__type dropdown__type_hidden js-dropdown__type",
+          type ="text"
+          class ="dropdown__type dropdown__type_hidden js-dropdown__type",
           name = "type",
           value = type,
           readonly,
           tabindex = -1, 
           )
 
-      if(size === 'normal')
+      if(size === "normal")
         .dropdown__nav
           .dropdown__button.dropdown__button_clear.js-dropdown__button_clear
             +button({
@@ -69,25 +69,25 @@ mixin dropdown(options = {})
 
           .dropdown__button.dropdown__button_accept.js-dropdown__button_accept
             +button({
-              content: 'Применить',
-              btnColor: 'white',
-              btnWrapperColor: 'transparent',
-              btnSize: 'tiny',
+              content: "Применить",
+              btnColor: "white",
+              btnWrapperColor: "transparent",
+              btnSize: "tiny",
             })
       else 
         .dropdown__nav.dropdown__nav_hidden
           .dropdown__button.dropdown__button_clear.js-dropdown__button_clear
             +button({
-              content: 'Очистить',
-              btnColor: 'white',
-              btnWrapperColor: 'transparent',
-              btnSize: 'tiny',        
+              content: "Очистить",
+              btnColor: "white",
+              btnWrapperColor: "transparent",
+              btnSize: "tiny",        
             })
 
           .dropdown__button.dropdown__button_accept.js-dropdown__button_accept
             +button({
-              content: 'Применить',
-              btnColor: 'white',
-              btnWrapperColor: 'transparent',
-              btnSize: 'tiny',
+              content: "Применить",
+              btnColor: "white",
+              btnWrapperColor: "transparent",
+              btnSize: "tiny",
             })
