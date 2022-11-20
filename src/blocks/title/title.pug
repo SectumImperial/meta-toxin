@@ -5,13 +5,13 @@ mixin title(options = {})
       text = '',
     } = options 
 
-  - if(options.level === "h1")
+  - if(options.level === 'h1')
   h1.title= text
-  - if(level === "h2")
+  - if(level === 'h2')
   h2.title.title_h2= text
-  - if(level === "h3")
+  - if(level === 'h3')
   h3.title.title_h3= text
-  - if(level === "h4")
+  - if(level === 'h4')
   h4.title.title_h4= text
-    - if(level === "h5")
+    - if(level === 'h5')
   h5.title.title_h5= text

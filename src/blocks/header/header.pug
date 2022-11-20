@@ -19,7 +19,7 @@ mixin header(options = {})
     .header__content
       .header__logo
         +logo({
-          href: "landing-page.html"
+          href: 'landing-page.html'
         })
       .header__icon
         span
@@ -29,19 +29,19 @@ mixin header(options = {})
         if !options.isLogged
           .header__button
             +button({
-              content: "Войти", 
-              btnColor: "white",
-              btnSize: "small",
-              btnType: "link",
-              href: "login-page.html"
+              content: 'Войти', 
+              btnColor: 'white',
+              btnSize: 'small',
+              btnType: 'link',
+              href: 'login-page.html'
               })
           .header__button
             +button({
-              btnColor: "violet",
-              content: "Зарегистрироваться",
-              btnSize: "small",
-              btnType: "link",
-              href: "registration-page.html"
+              btnColor: 'violet',
+              content: 'Зарегистрироваться',
+              btnSize: 'small',
+              btnType: 'link',
+              href: 'registration-page.html'
               })
         else
           p.header__user Юлий Цезарь

@@ -18,7 +18,7 @@ mixin footer(options = {})
       .footer__block
         .footer__logo
           +logo({
-            href: "landing-page.html"
+            href: 'landing-page.html'
           })
         .footer__promo
           +text-element(contentPromo)
@@ -27,56 +27,56 @@ mixin footer(options = {})
         each item in navItems
           -
             const {
-              titleItem = "",
+              titleItem = '',
               items = [],
             } = item
 
           .footer__navigation-item
             .footer__title
               +title({
-                level: "h5",
+                level: 'h5',
                 text: titleItem,
               })
             .footer__nav 
               +nav({
-                mod: "vertical",
+                mod: 'vertical',
                 items: items
               })
 
       .footer__email
         .footer__title
           +title({
-            level: "h5",
-            text: "Подписка",
+            level: 'h5',
+            text: 'Подписка',
             })
         .footer__email-text
           +text-element("Получайте специальные предложения и новости сервиса")
         .footer__email-input
           +subscription-field({
-            type: "email",
-            name: "footer-mail",
-            id: "footer-mail",
-            placeholder: "Email",
-            action: "./error-page.html"
+            type: 'email',
+            name: 'footer-mail',
+            id: 'footer-mail',
+            placeholder: 'Email',
+            action: './error-page.html',
           })
     .footer__horizontal
       .footer__copyright
-        +text-element("Copyright © 2018 Toxin отель. Все права защищены.")
+        +text-element('Copyright © 2018 Toxin отель. Все права защищены.')
       .footer__social
         +social([
           {
-          name: "twitter",
-          link: "https://twitter.com/",
-          icon: "twitter",
+          name: 'twitter',
+          link: 'https://twitter.com/',
+          icon: 'twitter',
           },
           {
-          name: "facebook",
-          link: "https://facebook.com/",
-          icon: "facebook",
+          name: 'facebook',
+          link: 'https://facebook.com/',
+          icon: 'facebook',
           },
           {
-          name: "instagram",
-          link: "https://instagram.com/",
-          icon: "instagram",
+          name: 'instagram',
+          link: 'https://instagram.com/',
+          icon: 'instagram',
           }
         ])
