@@ -8,18 +8,18 @@
 
   &_h1,
   &_h2 {
-    font-size: map.get(variables.$font-sizes, 'big');
+    font-size: map.get(variables.$font-sizes, '2xl');
   }
 
   &_h3 {
-    font-size: map.get(variables.$font-sizes, 'medium');
+    font-size: map.get(variables.$font-sizes, 'lg');
   }
 
   &_h4 {
-    font-size: map.get(variables.$font-sizes, 'small');
+    font-size: map.get(variables.$font-sizes, 'sm');
   }
 
   &_h5 {
-    font-size: map.get(variables.$font-sizes, 'tiny');
+    font-size: map.get(variables.$font-sizes, 'xs');
   }
 }

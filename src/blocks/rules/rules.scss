@@ -2,7 +2,7 @@
 @use '../../common/variables';
 
 .rules {
-  font-size: map.get(variables.$font-sizes, 'small');
+  font-size: map.get(variables.$font-sizes, 'sm');
   color: rgba(map.get(variables.$colors, 'dark'), 0.75);
   line-height: 24px;
 

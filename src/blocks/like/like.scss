@@ -28,13 +28,13 @@
       background-image: linear-gradient(180deg, #bc9cff 0%, #8ba4f9 100%);
       background-clip: text;
       color: transparent;
-      font-size: functions.rem(11px);
+      font-size: functions.rem(11px, variables.$base-font-size);
     }
   }
 
   &__count {
     padding: 1px 1px 3px 0;
-    font-size: functions.rem(10);
+    font-size: functions.rem(10, variables.$base-font-size);
     color: rgba(map.get(variables.$colors, 'dark'), 0.25);
 
     &_liked {

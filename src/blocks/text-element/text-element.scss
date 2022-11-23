@@ -3,7 +3,7 @@
 
 .text-element {
   color: rgba(map.get(variables.$colors, 'dark'), 0.75);
-  font-size: map.get(variables.$font-sizes, 'small');
+  font-size: map.get(variables.$font-sizes, 'sm');
   line-height: 24px;
   margin: 0;
 }

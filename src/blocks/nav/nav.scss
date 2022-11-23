@@ -12,7 +12,7 @@
     padding: 0;
     margin: 0;
 
-    @media (min-width: variables.$tablet) {
+    @media (min-width: map.get(variables.$breakpoints, 'tablet')) {
       display: flex;
       justify-content: space-between;
       flex-flow: row wrap;
@@ -20,10 +20,10 @@
     }
 
     &_vertical {
-      font-size: map.get(variables.$font-sizes, 'small');
+      font-size: map.get(variables.$font-sizes, 'sm');
       gap: 0;
 
-      @media (min-width: variables.$tablet) {
+      @media (min-width: map.get(variables.$breakpoints, 'tablet')) {
         flex-direction: column;
         gap: 20px;
       }
@@ -37,7 +37,7 @@
     gap: 10px;
     list-style: none;
 
-    @media (min-width: variables.$tablet) {
+    @media (min-width: map.get(variables.$breakpoints, 'tablet')) {
       position: relative;
       justify-content: center;
       list-style: none;
@@ -63,12 +63,12 @@
     &_active {
       font-weight: bold;
 
-      @media (min-width: variables.$tablet) {
+      @media (min-width: map.get(variables.$breakpoints, 'tablet')) {
         font-weight: 700;
       }
     }
 
-    @media (min-width: variables.$tablet) {
+    @media (min-width: map.get(variables.$breakpoints, 'tablet')) {
       margin: 0;
       padding: 0;
     }
@@ -86,10 +86,10 @@
       color: rgba(map.get(variables.$colors, 'dark'), 0.5);
     }
 
-    @media (min-width: variables.$tablet) {
+    @media (min-width: map.get(variables.$breakpoints, 'tablet')) {
       &__link_sub {
         &::before {
-          font-size: map.get(variables.$font-sizes, 'tiny');
+          font-size: map.get(variables.$font-sizes, 'xs');
         }
       }
     }
@@ -104,7 +104,7 @@
     list-style: none;
     transition: all 0.3s ease 0s;
 
-    @media (min-width: variables.$tablet) {
+    @media (min-width: map.get(variables.$breakpoints, 'tablet')) {
       position: absolute;
       z-index: 20;
       display: block;
@@ -154,7 +154,7 @@
 
   &__sublink {
     display: inline-block;
-    color: map.get(variables.$colors, 'secondary-2');
+    color: map.get(variables.$colors, 'tertiary');
     text-decoration: none;
     padding: 8px 5px;
 
@@ -163,7 +163,7 @@
     }
   }
 
-  @media (min-width: variables.$tablet) {
+  @media (min-width: map.get(variables.$breakpoints, 'tablet')) {
     &__subitem:not(:last-child) {
       padding-right: 25px;
     }

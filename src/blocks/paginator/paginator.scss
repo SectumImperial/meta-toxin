@@ -15,7 +15,7 @@
     // PP
     padding-right: 72px;
 
-    @media (max-width: variables.$mobile) {
+    @media (max-width: map.get(variables.$breakpoints, 'mobile')) {
       padding: 0;
     }
   }
@@ -40,10 +40,10 @@
 
     &::before {
       position: absolute;
-      color: map.get(variables.$colors, 'secondary-2');
+      color: map.get(variables.$colors, 'tertiary');
       font-size: 18px;
-      @media (max-width: variables.$mobile) {
-        font-size: map.get(variables.$font-sizes, 'tiny');
+      @media (max-width: map.get(variables.$breakpoints, 'mobile')) {
+        font-size: map.get(variables.$font-sizes, 'xs');
       }
     }
 
@@ -81,7 +81,7 @@
     min-height: 40px;
     list-style: none;
     color: rgba(map.get(variables.$colors, 'dark'), 0.5);
-    font-size: map.get(variables.$font-sizes, 'tiny');
+    font-size: map.get(variables.$font-sizes, 'xs');
     border-radius: 50%;
     cursor: pointer;
 
@@ -90,7 +90,7 @@
     }
 
     &_active {
-      color: map.get(variables.$colors, 'secondary-2');
+      color: map.get(variables.$colors, 'tertiary');
       font-weight: 700;
       background: map.get(variables.$gradients, 'primary');
 
@@ -118,7 +118,7 @@
     padding-right: 71px;
     color: rgba(map.get(variables.$colors, 'dark'), 0.75);
 
-    @media (max-width: variables.$mobile) {
+    @media (max-width: map.get(variables.$breakpoints, 'mobile')) {
       padding-right: 0;
     }
   }

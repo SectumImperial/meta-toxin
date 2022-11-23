@@ -8,16 +8,16 @@
   position: relative;
   cursor: pointer;
 
-  @media (max-width: variables.$tablet) {
+  @media (max-width: map.get(variables.$breakpoints, 'tablet')) {
     width: 100%;
   }
 
   &:hover,
   &_hovered {
-    background: map.get(variables.$gradients, 'primary-50');
+    background: map.get(variables.$gradients, 'primary-transparentize-half');
   }
 
-  @media (max-width: variables.$mobile) {
+  @media (max-width: map.get(variables.$breakpoints, 'mobile')) {
     display: block;
   }
 
@@ -41,7 +41,7 @@
     border-radius: 25px;
     font-family: Montserrat, sans-serif;
     font-weight: 700;
-    font-size: map.get(variables.$font-sizes, 'tiny');
+    font-size: map.get(variables.$font-sizes, 'xs');
     text-transform: uppercase;
     text-align: center;
     cursor: pointer;
@@ -68,12 +68,12 @@
   }
 
   &_violet {
-    color: map.get(variables.$colors, 'secondary-2');
+    color: map.get(variables.$colors, 'tertiary');
     background-color: transparent;
   }
 
   &_white {
-    background-color: map.get(variables.$colors, 'secondary-2');
+    background-color: map.get(variables.$colors, 'tertiary');
     color: map.get(variables.$colors, 'primary');
 
     &:hover {
@@ -85,7 +85,7 @@
     position: absolute;
     top: 33%;
     right: 13px;
-    color: map.get(variables.$colors, 'secondary-2');
+    color: map.get(variables.$colors, 'tertiary');
     font-size: 16px;
   }
 

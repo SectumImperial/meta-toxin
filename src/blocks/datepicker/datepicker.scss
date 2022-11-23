@@ -47,9 +47,9 @@
     box-shadow: rgba(map.get(variables.$colors, 'dark'), 0.5);
     border: 1px solid rgba(map.get(variables.$colors, 'dark'), 0.25);
     border-radius: 4px;
-    background-color: map.get(variables.$colors, 'secondary-2');
+    background-color: map.get(variables.$colors, 'tertiary');
 
-    @media (max-width: variables.$mobile) {
+    @media (max-width: map.get(variables.$breakpoints, 'mobile')) {
       width: auto;
     }
 
@@ -76,7 +76,7 @@
     border: 1px solid rgba(map.get(variables.$colors, 'dark'), 0.25);
     color: rgba(map.get(variables.$colors, 'dark'), 0.75);
     border-radius: 4px;
-    font-size: map.get(variables.$font-sizes, 'small');
+    font-size: map.get(variables.$font-sizes, 'sm');
     font-family: Montserrat, sans-serif;
 
     &::placeholder {
@@ -98,7 +98,7 @@
     position: absolute;
     top: 36%;
     right: 15px;
-    font-size: map.get(variables.$font-sizes, 'tiny');
+    font-size: map.get(variables.$font-sizes, 'xs');
 
     &::before {
       color: rgba(map.get(variables.$colors, 'dark'), 0.5);
@@ -107,7 +107,7 @@
 
   &__label {
     font-weight: bold;
-    font-size: map.get(variables.$font-sizes, 'tiny');
+    font-size: map.get(variables.$font-sizes, 'xs');
     color: map.get(variables.$colors, 'dark');
     text-transform: uppercase;
     padding-bottom: 5px;
@@ -135,7 +135,7 @@
     border: none;
     padding: 16px 18px 30px 14px;
 
-    @media (max-width: variables.$mobile) {
+    @media (max-width: map.get(variables.$breakpoints, 'mobile')) {
       padding: 10px 12px 28px;
     }
 
@@ -156,13 +156,13 @@
     &--title {
       color: map.get(variables.$colors, 'dark');
       font-weight: bold;
-      font-size: map.get(variables.$font-sizes, 'medium');
+      font-size: map.get(variables.$font-sizes, 'lg');
     }
   }
 
   &--content {
     padding: 0 20px 17px;
-    @media (max-width: variables.$mobile) {
+    @media (max-width: map.get(variables.$breakpoints, 'mobile')) {
       padding: 0 10px 10px;
     }
   }
@@ -172,7 +172,7 @@
     &--day-name {
       color: map.get(variables.$colors, 'primary');
       font-weight: bold;
-      font-size: map.get(variables.$font-sizes, 'tiny');
+      font-size: map.get(variables.$font-sizes, 'xs');
       text-transform: capitalize;
     }
 
@@ -184,7 +184,7 @@
       grid-template-columns: repeat(7, 40px);
       grid-auto-rows: 40px;
 
-      @media (max-width: variables.$mobile) {
+      @media (max-width: map.get(variables.$breakpoints, 'mobile')) {
         grid-template-columns: repeat(7, 32px);
         grid-auto-rows: 32px;
       }
@@ -192,7 +192,7 @@
 
     .-day- {
       color: rgba(map.get(variables.$colors, 'dark'), 0.5);
-      font-size: map.get(variables.$font-sizes, 'tiny');
+      font-size: map.get(variables.$font-sizes, 'xs');
 
       &:hover,
       &:focus {
@@ -207,18 +207,18 @@
     }
 
     .-current- {
-      color: map.get(variables.$colors, 'secondary-2');
+      color: map.get(variables.$colors, 'tertiary');
       background: map.get(variables.$gradients, 'secondary');
       border-radius: 50%;
     }
 
     .-other-month- {
       color: rgba(map.get(variables.$colors, 'dark'), 0.25);
-      font-size: map.get(variables.$font-sizes, 'tiny');
+      font-size: map.get(variables.$font-sizes, 'xs');
 
       &:hover,
       &:focus {
-        color: map.get(variables.$colors, 'secondary-2');
+        color: map.get(variables.$colors, 'tertiary');
       }
     }
 
@@ -226,7 +226,10 @@
     .-range-to-,
     .-range-from- {
       border: none;
-      background: map.get(variables.$gradients, 'primary-25');
+      background: map.get(
+        variables.$gradients,
+        'primary-transparentize-quarter'
+      );
     }
 
     .-range-to- {
@@ -240,14 +243,20 @@
     // ---------------------------------------------
 
     .-in-range- {
-      background: map.get(variables.$gradients, 'primary-25');
+      background: map.get(
+        variables.$gradients,
+        'primary-transparentize-quarter'
+      );
       border: none;
       border-radius: 0;
 
       &:hover,
       &:focus {
         border-radius: 0;
-        background: map.get(variables.$gradients, 'primary-25');
+        background: map.get(
+          variables.$gradients,
+          'primary-transparentize-quarter'
+        );
       }
     }
 
@@ -269,17 +278,23 @@
       &::before {
         content: '';
         position: absolute;
-        background: map.get(variables.$gradients, 'primary-25');
+        background: map.get(
+          variables.$gradients,
+          'primary-transparentize-quarter'
+        );
         z-index: -1;
         width: 40px;
         height: 40px;
 
         &:hover,
         &:focus {
-          background: map.get(variables.$gradients, 'primary-25');
+          background: map.get(
+            variables.$gradients,
+            'primary-transparentize-quarter'
+          );
         }
 
-        @media (max-width: variables.$mobile) {
+        @media (max-width: map.get(variables.$breakpoints, 'mobile')) {
           height: 32px;
           width: 32px;
         }
@@ -292,7 +307,7 @@
       height: 40px;
       border-radius: 50%;
       background: map.get(variables.$gradients, 'primary');
-      color: map.get(variables.$colors, 'secondary-2');
+      color: map.get(variables.$colors, 'tertiary');
       font-weight: bold;
 
       &:hover,
@@ -300,13 +315,13 @@
         background: map.get(variables.$gradients, 'primary-gradient');
       }
 
-      @media (max-width: variables.$mobile) {
+      @media (max-width: map.get(variables.$breakpoints, 'mobile')) {
         height: 32px;
       }
     }
 
     .-focus- {
-      color: map.get(variables.$colors, 'secondary-2');
+      color: map.get(variables.$colors, 'tertiary');
       font-weight: bold;
     }
   }

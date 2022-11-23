@@ -3,7 +3,7 @@
 
 .colors-page {
   &__content {
-    max-width: variables.$content;
+    max-width: map.get(variables.$layout-sizes, 'content');
     padding: 0 5px;
     margin: 0 auto;
     display: flex;
@@ -17,7 +17,7 @@
     grid-template-columns: 70px auto;
     grid-template-rows: 35px 35px;
     gap: 0 40px;
-    font-size: map.get(variables.$font-sizes, 'medium');
+    font-size: map.get(variables.$font-sizes, 'lg');
   }
 
   &__colors {
@@ -98,15 +98,15 @@
     text-transform: capitalize;
 
     &_h1 {
-      font-size: map.get(variables.$font-sizes, 'big');
+      font-size: map.get(variables.$font-sizes, '2xl');
     }
 
     &_h3 {
-      font-size: map.get(variables.$font-sizes, 'medium');
+      font-size: map.get(variables.$font-sizes, 'lg');
     }
 
     &_h5 {
-      font-size: map.get(variables.$font-sizes, 'small');
+      font-size: map.get(variables.$font-sizes, 'sm');
     }
   }
 }

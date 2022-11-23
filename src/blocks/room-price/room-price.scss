@@ -6,12 +6,12 @@
   word-break: break-all;
 
   &__price {
-    font-size: map.get(variables.$font-sizes, 'small');
+    font-size: map.get(variables.$font-sizes, 'sm');
     font-weight: 700;
   }
 
   &__word {
-    font-size: map.get(variables.$font-sizes, 'tiny');
+    font-size: map.get(variables.$font-sizes, 'xs');
     font-weight: 400;
   }
 }

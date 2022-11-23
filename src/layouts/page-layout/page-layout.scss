@@ -8,9 +8,9 @@
   min-height: 100vh;
   font-family: Montserrat, Arial, Helvetica, sans-serif;
   font-weight: 400;
-  font-size: map.get(variables.$font-sizes, 'small');
+  font-size: map.get(variables.$font-sizes, 'sm');
   color: map.get(variables.$colors, 'dark');
-  background: map.get(variables.$colors, 'secondary-2');
+  background: map.get(variables.$colors, 'tertiary');
 
   &__main {
     flex: 1 0 auto;

@@ -1,3 +1,4 @@
+@use 'sass:map';
 @use '../../common/variables';
 
 .landing {
@@ -9,11 +10,11 @@
   padding: 5px;
   min-height: 830px;
 
-  @media (min-width: variables.$tablet) {
+  @media (min-width: map.get(variables.$breakpoints, 'tablet')) {
     align-items: normal;
 
     &__content {
-      max-width: variables.$container;
+      max-width: map.get(variables.$layout-sizes, 'container');
       margin: 0 auto;
       width: 100%;
       display: flex;
@@ -29,7 +30,7 @@
   &__text {
     display: none;
 
-    @media (min-width: variables.$tablet) {
+    @media (min-width: map.get(variables.$breakpoints, 'tablet')) {
       display: block;
       max-width: 297px;
       align-self: flex-end;

@@ -24,7 +24,7 @@
     display: inline-block;
     width: 40px;
     height: 20px;
-    background-color: map.get(variables.$colors, 'secondary-2');
+    background-color: map.get(variables.$colors, 'tertiary');
     border: 1px solid rgba(map.get(variables.$colors, 'dark'), 0.25);
     border-radius: 10px;
     transition: all 0.3s ease-in;

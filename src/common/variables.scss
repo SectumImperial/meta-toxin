@@ -1,59 +1,53 @@
 @use 'sass:map';
+@use 'sass:color';
 @use './functions';
 
-$container: 1440px;
-$pc: 1280px;
-$tablet: 1024px;
-$mobile: 420px;
-$content: 1170px;
+$breakpoints: (
+  'pc': 1280px,
+  'tablet': 1024px,
+  'mobile': 420px,
+);
+
+$layout-sizes: (
+  'container': 1440px,
+  'content': 1170px,
+);
+
+$base-font-size: 16;
 $font-sizes: (
-  'tiny': functions.rem(12),
-  'small': functions.rem(14),
-  'medium': functions.rem(19),
-  'big': functions.rem(24),
+  'xs': functions.rem(12, $base-font-size),
+  'sm': functions.rem(14, $base-font-size),
+  'lg': functions.rem(19, $base-font-size),
+  '2xl': functions.rem(24, $base-font-size),
 );
 
 // colors
 $colors: (
   'dark': #1f2041,
   'primary': #bc9cff,
-  'primary-gradient': #8ba4f9,
+  'primary-transparentize-half': transparentize(#bc9cff, 0.5),
+  'primary-transparentize-quarter': transparentize(#bc9cff, 0.25),
   'secondary': #6fcf97,
-  'secondary-2': white,
-  'secondary-gradient': #66d2ea,
-);
-$colors-rgba: (
-  'primary-50': rgba((map.get($colors, 'primary')), 0.5),
-  'primary-25': rgba((map.get($colors, 'primary')), 0.25),
-  'primary-gradient-50': rgba((map.get($colors, 'primary-gradient')), 0.5),
-  'primary-gradient-25': rgba((map.get($colors, 'primary-gradient')), 0.25),
-);
-$gradients: (
-  'primary':
-    linear-gradient(
-      (map.get($colors, 'primary')),
-      (map.get($colors, 'primary-gradient'))
-    ),
-  'primary-50':
-    linear-gradient(
-      (map.get($colors-rgba, 'primary-50')),
-      (map.get($colors-rgba, 'primary-gradient-50'))
-    ),
-  'primary-25':
-    linear-gradient(
-      (map.get($colors-rgba, 'primary-25')),
-      (map.get($colors-rgba, 'primary-gradient-25'))
-    ),
-  'secondary':
-    linear-gradient(
-      (map.get($colors, 'secondary')),
-      (map.get($colors, 'secondary-gradient'))
-    ),
+  'tertiary': white,
 );
 
-// box
+$gradients: (
+  'primary': linear-gradient((map.get($colors, 'primary')), #8ba4f9),
+  'primary-transparentize-half':
+    linear-gradient(
+      (map.get($colors, 'primary-transparentize-half')),
+      transparentize(#8ba4f9, 0.5)
+    ),
+  'primary-transparentize-quarter':
+    linear-gradient(
+      (map.get($colors, 'primary-transparentize-quarter')),
+      transparentize(#8ba4f9, 0.25)
+    ),
+  'secondary': linear-gradient(map.get($colors, 'secondary'), #66d2ea),
+);
+
 @mixin boxes {
-  background-color: map.get($colors, 'secondary-2');
+  background-color: map.get($colors, 'tertiary');
   box-shadow: 0 0 25px 0 rgba(#000, 0.2);
   border: 1px solid rgba(#000, 0.12);
   border-radius: 4px;

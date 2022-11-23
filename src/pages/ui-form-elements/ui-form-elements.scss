@@ -45,7 +45,7 @@
 
   &__label {
     text-transform: uppercase;
-    font-size: map.get(variables.$font-sizes, 'tiny');
+    font-size: map.get(variables.$font-sizes, 'xs');
     font-weight: 700;
   }
 
@@ -55,7 +55,7 @@
 
   &__status {
     color: rgba(map.get(variables.$colors, 'dark'), 0.5);
-    font-size: map.get(variables.$font-sizes, 'tiny');
+    font-size: map.get(variables.$font-sizes, 'xs');
   }
 
   &__checkbox {

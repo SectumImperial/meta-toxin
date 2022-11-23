@@ -2,7 +2,6 @@
 @use '../../common/variables';
 
 .range-slider {
-
   &__fields {
     display: flex;
     flex-direction: row;
@@ -12,7 +11,7 @@
   }
 
   &__name {
-    font-size: map.get(variables.$font-sizes, 'tiny');
+    font-size: map.get(variables.$font-sizes, 'xs');
     font-weight: bold;
     text-transform: uppercase;
   }
@@ -25,11 +24,11 @@
     border: none;
     outline: none;
     color: rgba(map.get(variables.$colors, 'dark'), 0.5);
-    font-size: map.get(variables.$font-sizes, 'tiny');
+    font-size: map.get(variables.$font-sizes, 'xs');
   }
 
   &__description {
-    font-size: map.get(variables.$font-sizes, 'tiny');
+    font-size: map.get(variables.$font-sizes, 'xs');
     color: rgba(map.get(variables.$colors, 'dark'), 0.5);
     padding: 16px 0 0 0;
     margin: 0;
@@ -71,7 +70,7 @@
     z-index: 2;
     width: 16px;
     height: 16px;
-    border: 2px solid map.get(variables.$colors, 'secondary-2');
+    border: 2px solid map.get(variables.$colors, 'tertiary');
     border-radius: 50%;
     background: map.get(variables.$gradients, 'secondary');
     cursor: grab;

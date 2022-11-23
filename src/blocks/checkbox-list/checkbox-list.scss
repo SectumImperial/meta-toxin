@@ -14,7 +14,7 @@
   &__title {
     display: inline-block;
     width: 100%;
-    font-size: map.get(variables.$font-sizes, 'tiny');
+    font-size: map.get(variables.$font-sizes, 'xs');
     text-transform: uppercase;
     font-weight: bold;
     cursor: pointer;
@@ -24,7 +24,7 @@
     position: absolute;
     right: 15px;
     top: calc(50% - 6px);
-    font-size: map.get(variables.$font-sizes, 'tiny');
+    font-size: map.get(variables.$font-sizes, 'xs');
     color: rgba(map.get(variables.$colors, 'dark'), 0.5);
   }
 

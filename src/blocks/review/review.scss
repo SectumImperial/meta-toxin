@@ -8,7 +8,7 @@
   grid-template-areas:
     'a d'
     'l t';
-  font-size: map.get(variables.$font-sizes, 'small');
+  font-size: map.get(variables.$font-sizes, 'sm');
   color: rgba(map.get(variables.$colors, 'dark'), 0.75);
 
   &__head {
@@ -43,7 +43,7 @@
 
   &__photo {
     border-radius: 50%;
-    border: 2px solid map.get(variables.$colors, 'secondary-2');
+    border: 2px solid map.get(variables.$colors, 'tertiary');
     box-shadow: 0 10px 20px 0 rgba(map.get(variables.$colors, 'dark'), 0.1);
   }
 

@@ -2,10 +2,10 @@
 @use '../../common/variables';
 
 .header {
-  background-color: map.get(variables.$colors, 'secondary-2');
+  background-color: map.get(variables.$colors, 'tertiary');
 
   &__content {
-    max-width: variables.$container;
+    max-width: map.get(variables.$layout-sizes, 'container');
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -14,7 +14,7 @@
     gap: 10px;
     padding: 11px 138px 11px 140px;
 
-    @media (max-width: variables.$pc) {
+    @media (max-width: map.get(variables.$breakpoints, 'pc')) {
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
@@ -32,7 +32,7 @@
     gap: 20px;
     opacity: 1;
 
-    @media (max-width: variables.$pc) {
+    @media (max-width: map.get(variables.$breakpoints, 'pc')) {
       position: static;
       left: 0;
       width: auto;
@@ -42,7 +42,7 @@
       opacity: 1;
     }
 
-    @media (max-width: variables.$tablet) {
+    @media (max-width: map.get(variables.$breakpoints, 'tablet')) {
       position: absolute;
       width: 100%;
       left: -200%;
@@ -86,7 +86,7 @@
   &__icon {
     display: none;
 
-    @media (max-width: variables.$tablet) {
+    @media (max-width: map.get(variables.$breakpoints, 'tablet')) {
       display: block;
       position: relative;
       width: 30px;

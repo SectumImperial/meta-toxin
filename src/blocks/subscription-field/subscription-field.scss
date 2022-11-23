@@ -7,7 +7,7 @@
     justify-content: space-between;
     border: 1px solid rgb(map.get(variables.$colors, 'dark'), 0.25);
     border-radius: 4px;
-  
+
     &:hover,
     &:focus,
     &_hovered {
@@ -26,7 +26,7 @@
     outline: none;
     border: none;
     flex-basis: 1;
-    font-size: map.get(variables.$font-sizes, 'small');
+    font-size: map.get(variables.$font-sizes, 'sm');
     font-family: Montserrat, sans-serif;
 
     &::placeholder {
@@ -52,7 +52,7 @@
       background: map.get(variables.$gradients, 'primary');
       background-clip: text;
       color: transparent;
-      font-size: map.get(variables.$font-sizes, 'medium');
+      font-size: map.get(variables.$font-sizes, 'lg');
     }
 
     &:hover {

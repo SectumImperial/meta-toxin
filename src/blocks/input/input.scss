@@ -9,7 +9,7 @@
     border: 1px solid rgba(map.get(variables.$colors, 'dark'), 0.25);
     color: rgba(map.get(variables.$colors, 'dark'), 0.75);
     border-radius: 4px;
-    font-size: map.get(variables.$font-sizes, 'small');
+    font-size: map.get(variables.$font-sizes, 'sm');
     font-family: Montserrat, sans-serif;
 
     &::placeholder {
@@ -25,7 +25,8 @@
       &::placeholder {
         color: rgba(map.get(variables.$colors, 'dark'), 0.75);
       }
-    }W
+    }
+    W
 
     // According to the maket requirements
     &:focus {
@@ -41,7 +42,7 @@
     position: absolute;
     top: 36%;
     right: 15px;
-    font-size: map.get(variables.$font-sizes, 'tiny');
+    font-size: map.get(variables.$font-sizes, 'xs');
 
     &::before {
       color: rgba(map.get(variables.$colors, 'dark'), 0.5);

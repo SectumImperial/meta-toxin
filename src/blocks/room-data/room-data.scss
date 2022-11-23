@@ -3,7 +3,7 @@
 
 .room-data {
   color: rgba(map.get(variables.$colors, 'dark'), 0.75);
-  font-size: map.get(variables.$font-sizes, 'small');
+  font-size: map.get(variables.$font-sizes, 'sm');
   display: flex;
   flex-direction: column;
   padding: 0;

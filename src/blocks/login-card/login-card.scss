@@ -1,3 +1,4 @@
+@use 'sass:map';
 @use '../../common/variables';
 
 .login-card {
@@ -7,7 +8,7 @@
   max-width: 400px;
   padding: 39px 30px 34px 29px;
 
-  @media (max-width: variables.$mobile) {
+  @media (max-width: map.get(variables.$breakpoints, 'mobile')) {
     margin-bottom: 0;
     min-width: auto;
     padding: 10px;

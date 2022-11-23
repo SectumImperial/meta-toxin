@@ -3,7 +3,7 @@
 @use '../../common/functions';
 
 .room-number {
-  font-size: map.get(variables.$font-sizes, 'small');
+  font-size: map.get(variables.$font-sizes, 'sm');
   font-weight: 700;
   word-break: break-all;
 
@@ -13,17 +13,17 @@
 
   &__count {
     color: map.get(variables.$colors, 'dark');
-    font-size: functions.rem(19);
+    font-size: functions.rem(19, variables.$base-font-size);
     font-weight: 700;
 
     &_big {
-      font-size: map.get(variables.$font-sizes, 'big');
+      font-size: map.get(variables.$font-sizes, '2xl');
     }
   }
 
   &__luxe {
     color: map.get(variables.$colors, 'primary');
-    font-size: map.get(variables.$font-sizes, 'tiny');
+    font-size: map.get(variables.$font-sizes, 'xs');
     text-transform: uppercase;
     padding-top: 2px;
     padding-left: 8px;

@@ -1,3 +1,4 @@
+@use 'sass:map';
 @use '../../common/variables';
 
 .login {
@@ -9,7 +10,7 @@
   background-size: cover;
 
   &__container {
-    max-width: variables.$container;
+    max-width: map.get(variables.$layout-sizes, 'container');
     margin: 0 auto;
     padding: 19px 5px;
   }

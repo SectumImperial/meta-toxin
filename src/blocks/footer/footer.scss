@@ -7,7 +7,7 @@
   align-items: center;
   padding: 120px 15px;
 
-  @media (min-width: variables.$tablet) {
+  @media (min-width: map.get(variables.$breakpoints, 'tablet')) {
     padding: 0;
     justify-content: space-between;
   }
@@ -17,7 +17,7 @@
   }
 
   &__blocks {
-    @media (min-width: variables.$tablet) {
+    @media (min-width: map.get(variables.$breakpoints, 'tablet')) {
       display: flex;
       padding: 99px 138px 82px 137px;
     }
@@ -29,7 +29,7 @@
     align-items: center;
     gap: 20px;
 
-    @media (min-width: variables.$tablet) {
+    @media (min-width: map.get(variables.$breakpoints, 'tablet')) {
       align-items: flex-start;
       gap: 13px;
     }
@@ -40,7 +40,7 @@
     flex-direction: column;
     align-items: center;
 
-    @media (min-width: variables.$tablet) {
+    @media (min-width: map.get(variables.$breakpoints, 'tablet')) {
       flex-direction: row;
       justify-content: space-between;
       width: 100%;
@@ -57,7 +57,7 @@
   &__promo {
     display: none;
 
-    @media (min-width: variables.$tablet) {
+    @media (min-width: map.get(variables.$breakpoints, 'tablet')) {
       display: block;
       max-width: 260px;
     }
@@ -66,7 +66,7 @@
   &__email {
     display: none;
 
-    @media (min-width: variables.$tablet) {
+    @media (min-width: map.get(variables.$breakpoints, 'tablet')) {
       display: block;
       width: 100%;
       max-width: 260px;
@@ -77,14 +77,14 @@
   &__navigation {
     display: none;
 
-    @media (min-width: variables.$tablet) {
+    @media (min-width: map.get(variables.$breakpoints, 'tablet')) {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
       margin-left: 40px;
       min-width: 560px;
 
-      @media (max-width: variables.$pc) {
+      @media (max-width: map.get(variables.$breakpoints, 'pc')) {
         display: none;
       }
     }
@@ -92,7 +92,7 @@
 
   &__navigation-item {
     max-width: 200px;
-    @media (min-width: variables.$tablet) {
+    @media (min-width: map.get(variables.$breakpoints, 'tablet')) {
       display: flex;
       flex-direction: column;
       gap: 7px;
@@ -107,13 +107,13 @@
   }
 
   &__email-text {
-    @media (min-width: variables.$tablet) {
+    @media (min-width: map.get(variables.$breakpoints, 'tablet')) {
       margin: 18px 0 21px;
     }
   }
 
   &__title {
-    @media (min-width: variables.$tablet) {
+    @media (min-width: map.get(variables.$breakpoints, 'tablet')) {
       text-transform: uppercase;
       margin-top: 4px;
     }

@@ -16,13 +16,13 @@
   }
 
   &__title {
-    font-size: map.get(variables.$font-sizes, 'small');
+    font-size: map.get(variables.$font-sizes, 'sm');
     font-weight: bold;
     color: rgba((map.get(variables.$colors, 'dark')), 0.75);
   }
 
   &__description {
-    font-size: map.get(variables.$font-sizes, 'tiny');
+    font-size: map.get(variables.$font-sizes, 'xs');
   }
 
   &__input {
