@@ -1,10 +1,11 @@
 @use 'sass:map';
 @use '../../common/variables';
+@use '../../common/mixins';
 
 .order-card {
   max-width: 380px;
   min-width: 380px;
-  @include variables.boxes;
+  @include mixins.box-style;
 
   padding: 40px 27px 30px 29px;
 

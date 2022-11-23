@@ -1,8 +1,9 @@
 @use 'sass:map';
 @use '../../common/variables';
+@use '../../common/mixins';
 
 .registration-card {
-  @include variables.boxes;
+  @include mixins.box-style;
 
   min-width: 380px;
   max-width: 380px;

@@ -1,0 +1,9 @@
+@use 'sass:map';
+@use './variables';
+
+@mixin box-style {
+  background-color: map.get(variables.$colors, 'tertiary');
+  box-shadow: 0 0 25px 0 rgba(#000, 0.2);
+  border: 1px solid rgba(#000, 0.12);
+  border-radius: 4px;
+}
