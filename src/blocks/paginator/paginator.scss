@@ -1,6 +1,6 @@
 @use 'sass:map';
-@use '../../common/variables';
-@use '../../common/functions';
+@use '../../styles/variables';
+@use '../../styles/functions';
 
 .paginator {
   display: flex;

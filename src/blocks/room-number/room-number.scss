@@ -1,6 +1,6 @@
 @use 'sass:map';
-@use '../../common/variables';
-@use '../../common/functions';
+@use '../../styles/variables';
+@use '../../styles/functions';
 
 .room-number {
   font-size: map.get(variables.$font-sizes, 'sm');
