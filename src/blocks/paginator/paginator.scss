@@ -1,6 +1,6 @@
 @use 'sass:map';
-@use '../../styles/shared-styles/variables';
-@use '../../styles/shared-styles/functions';
+@use 'SharedStyles/variables';
+@use 'SharedStyles/functions';
 
 .paginator {
   display: flex;

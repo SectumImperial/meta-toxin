@@ -1,5 +1,5 @@
 @use 'sass:map';
-@use '../../styles/shared-styles/variables';
+@use 'SharedStyles/variables';
 
 .text-element {
   color: rgba(map.get(variables.$colors, 'dark'), 0.75);

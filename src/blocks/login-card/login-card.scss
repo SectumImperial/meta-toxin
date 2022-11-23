@@ -1,6 +1,6 @@
 @use 'sass:map';
-@use '../../styles/shared-styles/variables';
-@use '../../styles/shared-styles/mixins';
+@use 'SharedStyles/variables';
+@use 'SharedStyles/mixins';
 
 .login-card {
   @include mixins.box-style;

@@ -1,5 +1,5 @@
 @use 'sass:map';
-@use '../../styles/shared-styles/variables';
+@use 'SharedStyles/variables';
 
 .rules {
   font-size: map.get(variables.$font-sizes, 'sm');

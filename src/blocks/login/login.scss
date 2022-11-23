@@ -1,12 +1,12 @@
 @use 'sass:map';
-@use '../../styles/shared-styles/variables';
+@use 'SharedStyles/variables';
 
 .login {
   min-height: 703px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: 50% 100% url('../../assets/decorative/registration.jpg') no-repeat;
+  background: 50% 100% url('Assets/decorative/registration.jpg') no-repeat;
   background-size: cover;
 
   &__container {

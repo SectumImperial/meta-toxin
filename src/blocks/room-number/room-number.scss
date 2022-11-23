@@ -1,11 +1,11 @@
 @use 'sass:map';
-@use '../../styles/shared-styles/variables';
-@use '../../styles/shared-styles/functions';
+@use 'SharedStyles/variables';
+@use 'SharedStyles/functions';
 
 .room-number {
   font-size: map.get(variables.$font-sizes, 'sm');
   font-weight: 700;
-  word-break: break-all;
+  word-break: break-word;
 
   &__number {
     margin: 0;

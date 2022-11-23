@@ -1,9 +1,9 @@
 @use 'sass:map';
-@use '../../styles/shared-styles/variables';
+@use 'SharedStyles/variables';
 
 .room-price {
   color: rgba(map.get(variables.$colors, 'dark'), 0.5);
-  word-break: break-all;
+  word-break: break-word;
 
   &__price {
     font-size: map.get(variables.$font-sizes, 'sm');

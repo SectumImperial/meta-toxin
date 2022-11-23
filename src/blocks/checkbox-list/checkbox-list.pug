@@ -8,8 +8,8 @@ mixin checkbox-list(options = {})
       isOpened = false
     } = options
 
-    const openedBlock = isOpened ? 'js_active' : ''
-    const openedList = isOpened ? 'js_opened_list' : ''
+    const openedBlock = isOpened ? '_active' : ''
+    const openedList = isOpened ? '_opened_list' : ''
 
   div.checkbox-list.js-checkbox-list(
     tabindex = 0

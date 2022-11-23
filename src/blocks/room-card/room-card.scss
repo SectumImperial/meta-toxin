@@ -1,5 +1,5 @@
 @use 'sass:map';
-@use '../../styles/shared-styles/variables';
+@use 'SharedStyles/variables';
 
 .room-card {
   max-width: 270px;
@@ -48,7 +48,7 @@
     color: rgba(map.get(variables.$colors, 'dark'), 0.5);
     font-size: map.get(variables.$font-sizes, 'sm');
     padding: 2px 2px 0 0;
-    word-break: break-all;
+    word-break: break-word;
   }
 
   &__reviews-count {

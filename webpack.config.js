@@ -21,7 +21,8 @@ module.exports = {
 
   resolve: {
     alias: {
-      '@assets': path.resolve(__dirname, 'src', 'assets'),
+      SharedStyles: path.resolve(__dirname, 'src', 'styles', 'shared-styles'),
+      Assets: path.resolve(__dirname, 'src', 'assets'),
     },
   },
 
@@ -39,9 +40,9 @@ module.exports = {
   },
   devServer: {
     open: '/start-page.html',
-    static: {	
-      directory: './src',	
-      watch: true,	
+    static: {
+      directory: './src',
+      watch: true,
     },
   },
   devtool: 'source-map',
@@ -109,7 +110,7 @@ module.exports = {
         loader: 'pug-loader',
         exclude: /(node_modules|bower_components)/,
         options: {
-          root: path.resolve(__dirname, 'src'),
+          root: path.resolve(__dirname, 'src', 'blocks'),
         },
       },
       {

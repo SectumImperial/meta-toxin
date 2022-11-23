@@ -1,11 +1,11 @@
 @use 'sass:map';
-@use '../../styles/shared-styles/variables';
+@use 'SharedStyles/variables';
 
 .landing {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: 50% 99% url('../../assets/decorative/landBakc.webp') no-repeat;
+  background: 50% 99% url('Assets/decorative/landBakc.webp') no-repeat;
   background-size: cover;
   padding: 5px;
   min-height: 830px;
