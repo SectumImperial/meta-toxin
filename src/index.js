@@ -1,4 +1,4 @@
-import './common/styles.scss';
+import './index.scss';
 
 const cache = {};
 

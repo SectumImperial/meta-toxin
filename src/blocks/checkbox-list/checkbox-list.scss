@@ -1,6 +1,6 @@
 @use 'sass:map';
-@use '../../styles/functions';
-@use '../../styles/variables';
+@use '../../styles/shared-styles/functions';
+@use '../../styles/shared-styles/variables';
 
 .checkbox-list {
   &__item {

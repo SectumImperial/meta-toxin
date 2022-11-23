@@ -1,6 +1,6 @@
 @use 'sass:map';
-@use '../../styles/variables';
-@use '../../styles/mixins';
+@use '../../styles/shared-styles/variables';
+@use '../../styles/shared-styles/mixins';
 
 .booking-card {
   @include mixins.box-style;
