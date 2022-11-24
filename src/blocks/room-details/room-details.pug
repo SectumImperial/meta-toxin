@@ -44,26 +44,26 @@ mixin room-details(options= {})
                 level: 'h3',
                 text: 'Сведения о номере'
               })
-              .room-details__data
-                +room-data({
-                  items: [
-                    {
-                      title: 'Комфорт',
-                      text: 'Шумопоглощающие стены',
-                      icon: 'smile',
-                    },
-                    {
-                      title: 'Удобство',
-                      text: 'Окно в каждой из спален',
-                      icon: 'city',
-                    },
-                    {
-                      title: 'Уют',
-                      text: 'Номер оснащён камином',
-                      icon: 'fire',
-                    }
-                  ]
-                })
+            .room-details__data
+              +room-data({
+                items: [
+                  {
+                    title: 'Комфорт',
+                    text: 'Шумопоглощающие стены',
+                    icon: 'smile',
+                  },
+                  {
+                    title: 'Удобство',
+                    text: 'Окно в каждой из спален',
+                    icon: 'city',
+                  },
+                  {
+                    title: 'Уют',
+                    text: 'Номер оснащён камином',
+                    icon: 'fire',
+                  }
+                ]
+              })
           .room-details__feedback
             .room-details__subtitle
               +title({

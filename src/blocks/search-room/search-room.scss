@@ -13,25 +13,12 @@
     gap: 59px;
     padding: 31px 5px 75px 4px;
     margin: 0 auto;
-
-    @media (max-width: map.get(variables.$breakpoints, 'pc')) {
-      align-items: center;
-      flex-direction: column;
-      gap: 45px;
-    }
   }
 
   // filters
   &__filters {
     max-width: 267px;
     padding: 0 1px;
-
-    @media (max-width: map.get(variables.$breakpoints, 'pc')) {
-      position: absolute;
-      transform: translate(-9999px);
-      max-width: 100%;
-      transition: all 0.3s ease-in;
-    }
   }
 
   ._active {
@@ -104,10 +91,6 @@
   // Button
   &__button {
     display: none;
-    @media (max-width: map.get(variables.$breakpoints, 'pc')) {
-      width: 100%;
-      display: block;
-    }
   }
 
   // Room section
@@ -117,9 +100,6 @@
 
   &__section-title {
     padding-left: 1px;
-    @media (max-width: map.get(variables.$breakpoints, 'pc')) {
-      text-align: center;
-    }
   }
 
   &__rooms-content {
@@ -127,10 +107,6 @@
     display: flex;
     gap: 21px 12px;
     flex-wrap: wrap;
-
-    @media (max-width: map.get(variables.$breakpoints, 'pc')) {
-      justify-content: center;
-    }
   }
 
   &__paginator {
@@ -139,8 +115,38 @@
     align-items: center;
     padding-top: 41px;
     padding-left: 58px;
+  }
 
-    @media (max-width: map.get(variables.$breakpoints, 'mobile')) {
+  @media (max-width: map.get(variables.$breakpoints, 'pc')) {
+    &__content {
+      align-items: center;
+      flex-direction: column;
+      gap: 45px;
+    }
+
+    &__filters {
+      position: absolute;
+      transform: translate(-9999px);
+      max-width: 100%;
+      transition: all 0.3s ease-in;
+    }
+
+    &__button {
+      width: 100%;
+      display: block;
+    }
+
+    &__section-title {
+      text-align: center;
+    }
+
+    &__rooms-content {
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: map.get(variables.$breakpoints, 'mobile')) {
+    &__paginator {
       justify-content: center;
       padding: 25px 5px;
     }

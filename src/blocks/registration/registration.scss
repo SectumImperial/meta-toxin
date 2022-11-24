@@ -13,8 +13,10 @@
 
   &__card {
     margin-left: 8px;
+  }
 
-    @media (max-width: map.get(variables.$breakpoints, 'pc')) {
+  @media (max-width: map.get(variables.$breakpoints, 'pc')) {
+    &__card {
       margin: auto;
     }
   }

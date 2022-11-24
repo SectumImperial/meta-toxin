@@ -1,4 +1,5 @@
 @use 'sass:map';
+@use 'sass:color';
 @use 'SharedStyles/variables';
 
 .room-details {
@@ -15,19 +16,11 @@
 
   &__photos-big {
     flex: 1 0 981px;
-
-    @media (max-width: map.get(variables.$breakpoints, 'pc')) {
-      flex: 1 1 auto;
-    }
   }
 
   &__photos-small {
     display: flex;
     flex-direction: column;
-
-    @media (max-width: map.get(variables.$breakpoints, 'pc')) {
-      display: none;
-    }
   }
 
   &__photos-top,
@@ -48,15 +41,6 @@
     margin: 0 auto;
     display: flex;
     gap: 66px;
-
-    @media (max-width: map.get(variables.$breakpoints, 'pc')) {
-      padding: 60px 30px;
-      flex-direction: column;
-    }
-
-    @media (max-width: map.get(variables.$breakpoints, 'mobile')) {
-      padding: 60px 5px;
-    }
   }
 
   &__subtitle {
@@ -65,9 +49,6 @@
     &_rules {
       padding-left: 20px;
       padding-top: 1px;
-      @media (max-width: map.get(variables.$breakpoints, 'tablet')) {
-        padding: 1px;
-      }
     }
 
     &_cancel {
@@ -88,18 +69,6 @@
       'reviews reviews'
       'rules cancel';
     padding-top: 1px;
-
-    @media (max-width: map.get(variables.$breakpoints, 'pc')) {
-      grid-template-columns: 1fr 1fr;
-      justify-items: center;
-      gap: 0 10px;
-    }
-    @media (max-width: map.get(variables.$breakpoints, 'tablet')) {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      align-items: center;
-    }
   }
 
   &__details {
@@ -126,9 +95,6 @@
   &__rules {
     grid-area: rules;
     padding-top: 11px;
-    @media (max-width: map.get(variables.$breakpoints, 'tablet')) {
-      align-self: flex-start;
-    }
   }
 
   &__cancel {
@@ -149,13 +115,90 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 15px;
   }
 
   &__reviews-count {
-    color: rgba(map.get(variables.$colors, 'dark'), 0.5);
+    color: rgb(map.get(variables.$colors, 'dark'), 0.5);
     padding: 0 4px 6px 0;
+  }
 
-    @media (max-width: map.get(variables.$breakpoints, 'tablet')) {
+  &__cancel-text {
+    margin: 0;
+    padding: 7px 10px 0 0;
+    line-height: 24px;
+    color: rgb(map.get(variables.$colors, 'dark'), 0.75);
+  }
+
+  // The order-card
+  &__order {
+    display: flex;
+    flex-basis: 390px;
+  }
+
+  @media (max-width: map.get(variables.$breakpoints, 'pc')) {
+    &__photos-big {
+      flex: 1 1 auto;
+    }
+
+    &__photos-small {
+      display: none;
+    }
+
+    &__main {
+      padding: 60px 30px;
+      flex-direction: column;
+    }
+
+    &__information {
+      grid-template-columns: 1fr 1fr;
+      justify-items: center;
+      gap: 0 10px;
+    }
+
+    &__reviews {
+      align-items: center;
+      margin-top: 30px;
+    }
+
+    &__details {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &__order {
+      justify-content: center;
+    }
+
+    &__feedback {
+      margin-top: 30px;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  @media (max-width: map.get(variables.$breakpoints, 'tablet')) {
+    &__subtitle {
+      &_rules {
+        padding: 1px;
+      }
+    }
+
+    &__information {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+    }
+
+    &__rules {
+      align-self: flex-start;
+    }
+
+    &__reviews-count {
       position: absolute;
       width: 1px;
       height: 1px;
@@ -169,20 +212,9 @@
     }
   }
 
-  &__cancel-text {
-    margin: 0;
-    padding: 7px 10px 0 0;
-    line-height: 24px;
-    color: rgba(map.get(variables.$colors, 'dark'), 0.75);
-  }
-
-  // The order-card
-  &__order {
-    display: flex;
-    flex-basis: 390px;
-
-    @media (max-width: map.get(variables.$breakpoints, 'pc')) {
-      justify-content: center;
+  @media (max-width: map.get(variables.$breakpoints, 'mobile')) {
+    &__main {
+      padding: 60px 5px;
     }
   }
 }

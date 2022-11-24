@@ -10,6 +10,10 @@
   padding: 5px;
   min-height: 830px;
 
+  &__text {
+    display: none;
+  }
+
   @media (min-width: map.get(variables.$breakpoints, 'tablet')) {
     align-items: normal;
 
@@ -25,12 +29,8 @@
     &__booking-card {
       align-self: flex-start;
     }
-  }
 
-  &__text {
-    display: none;
-
-    @media (min-width: map.get(variables.$breakpoints, 'tablet')) {
+    &__text {
       display: block;
       max-width: 297px;
       align-self: flex-end;

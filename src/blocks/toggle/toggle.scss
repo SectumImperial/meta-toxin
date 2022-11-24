@@ -1,4 +1,5 @@
 @use 'sass:map';
+@use 'sass:color';
 @use 'SharedStyles/variables';
 
 .toggle {
@@ -25,7 +26,7 @@
     width: 40px;
     height: 20px;
     background-color: map.get(variables.$colors, 'tertiary');
-    border: 1px solid rgba(map.get(variables.$colors, 'dark'), 0.25);
+    border: 1px solid rgb(map.get(variables.$colors, 'dark'), 0.25);
     border-radius: 10px;
     transition: all 0.3s ease-in;
     cursor: pointer;
@@ -38,7 +39,7 @@
       top: calc(50% - 6px);
       left: 3px;
       border-radius: 100%;
-      background: rgba(map.get(variables.$colors, 'dark'), 0.25);
+      background: rgb(map.get(variables.$colors, 'dark'), 0.25);
       transition: all 0.1s ease-in;
     }
   }

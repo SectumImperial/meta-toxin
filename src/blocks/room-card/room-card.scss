@@ -1,4 +1,5 @@
 @use 'sass:map';
+@use 'sass:color';
 @use 'SharedStyles/variables';
 
 .room-card {
@@ -7,7 +8,7 @@
   grid-template-rows: 1fr auto auto;
   border-radius: 4px;
   background-color: white;
-  box-shadow: 0 10px 20px 0 rgba(map.get(variables.$colors, 'dark'), 0.05);
+  box-shadow: 0 10px 20px 0 rgb(map.get(variables.$colors, 'dark'), 0.05);
 
   &:focus-within {
     outline: 2px solid map.get(variables.$colors, 'dark');
@@ -41,11 +42,11 @@
 
   &__feedback {
     padding: 11px 0 0 2px;
-    border-top: 1px solid rgba(map.get(variables.$colors, 'dark'), 0.1);
+    border-top: 1px solid rgb(map.get(variables.$colors, 'dark'), 0.1);
   }
 
   &__reviews {
-    color: rgba(map.get(variables.$colors, 'dark'), 0.5);
+    color: rgb(map.get(variables.$colors, 'dark'), 0.5);
     font-size: map.get(variables.$font-sizes, 'sm');
     padding: 2px 2px 0 0;
     word-break: break-word;

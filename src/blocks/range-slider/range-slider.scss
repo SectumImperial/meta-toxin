@@ -1,4 +1,5 @@
 @use 'sass:map';
+@use 'sass:color';
 @use 'SharedStyles/variables';
 
 .range-slider {
@@ -23,13 +24,13 @@
     text-align: right;
     border: none;
     outline: none;
-    color: rgba(map.get(variables.$colors, 'dark'), 0.5);
+    color: rgb(map.get(variables.$colors, 'dark'), 0.5);
     font-size: map.get(variables.$font-sizes, 'xs');
   }
 
   &__description {
     font-size: map.get(variables.$font-sizes, 'xs');
-    color: rgba(map.get(variables.$colors, 'dark'), 0.5);
+    color: rgb(map.get(variables.$colors, 'dark'), 0.5);
     padding: 16px 0 0 0;
     margin: 0;
 
@@ -51,7 +52,7 @@
     left: 0;
     height: 6px;
     width: 100%;
-    border: 1px solid rgba(map.get(variables.$colors, 'dark'), 0.25);
+    border: 1px solid rgb(map.get(variables.$colors, 'dark'), 0.25);
     border-radius: 3px;
   }
 

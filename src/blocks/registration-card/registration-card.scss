@@ -9,12 +9,6 @@
   max-width: 380px;
   padding: 40px 30px 30px 28px;
 
-  @media (max-width: map.get(variables.$breakpoints, 'mobile')) {
-    margin-left: 0;
-    padding: 10px;
-    min-width: auto;
-  }
-
   &__subtitle {
     text-transform: uppercase;
     padding-bottom: 5px;
@@ -64,5 +58,11 @@
     display: grid;
     grid-template-columns: 1fr auto;
     align-items: center;
+  }
+
+  @media (max-width: map.get(variables.$breakpoints, 'mobile')) {
+    margin-left: 0;
+    padding: 10px;
+    min-width: auto;
   }
 }

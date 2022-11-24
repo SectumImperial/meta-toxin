@@ -1,4 +1,5 @@
 @use 'sass:map';
+@use 'sass:color';
 @use 'SharedStyles/functions';
 @use 'SharedStyles/variables';
 
@@ -6,7 +7,7 @@
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  color: rgba((map.get(variables.$colors, 'dark')), 0.5);
+  color: rgb((map.get(variables.$colors, 'dark')), 0.5);
   cursor: pointer;
 
   &__rich-content {
@@ -18,7 +19,7 @@
   &__title {
     font-size: map.get(variables.$font-sizes, 'sm');
     font-weight: bold;
-    color: rgba((map.get(variables.$colors, 'dark')), 0.75);
+    color: rgb((map.get(variables.$colors, 'dark')), 0.75);
   }
 
   &__description {
@@ -43,7 +44,7 @@
     display: inline-block;
     width: 20px;
     height: 20px;
-    border: 1px solid rgba((map.get(variables.$colors, 'dark')), 0.25);
+    border: 1px solid rgb((map.get(variables.$colors, 'dark')), 0.25);
     border-radius: 4px;
     flex-shrink: 0;
 
@@ -58,7 +59,7 @@
   }
 
   &__input:focus + &__description {
-    color: rgba((map.get(variables.$colors, 'dark')), 0.75);
+    color: rgb((map.get(variables.$colors, 'dark')), 0.75);
   }
 
   &__input:checked + &__new-checkbox {
@@ -81,6 +82,6 @@
   }
 
   &:hover {
-    color: rgba((map.get(variables.$colors, 'dark')), 0.75);
+    color: rgb((map.get(variables.$colors, 'dark')), 0.75);
   }
 }

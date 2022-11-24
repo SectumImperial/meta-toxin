@@ -1,4 +1,5 @@
 @use 'sass:map';
+@use 'sass:color';
 @use 'SharedStyles/variables';
 
 .dropdown {
@@ -13,8 +14,8 @@
     width: 100%;
     display: block;
     padding: 12px 15px;
-    border: 1px solid rgba(map.get(variables.$colors, 'dark'), 0.25);
-    color: rgba(map.get(variables.$colors, 'dark'), 0.75);
+    border: 1px solid rgb(map.get(variables.$colors, 'dark'), 0.25);
+    color: rgb(map.get(variables.$colors, 'dark'), 0.75);
     border-radius: 4px;
 
     font-weight: normal;
@@ -25,7 +26,7 @@
 
     &:hover,
     &:focus {
-      border-color: rgba(map.get(variables.$colors, 'dark'), 0.5);
+      border-color: rgb(map.get(variables.$colors, 'dark'), 0.5);
     }
 
     // According to the maket requirements
@@ -41,7 +42,7 @@
     font-size: map.get(variables.$font-sizes, 'xs');
 
     &::before {
-      color: rgba(map.get(variables.$colors, 'dark'), 0.5);
+      color: rgb(map.get(variables.$colors, 'dark'), 0.5);
     }
   }
 
@@ -58,9 +59,9 @@
     left: 0;
     top: calc(100% - 2px);
     background-color: white;
-    border: 1px solid rgba(map.get(variables.$colors, 'dark'), 0.25);
+    border: 1px solid rgb(map.get(variables.$colors, 'dark'), 0.25);
     border-radius: 0 0 4px;
-    box-shadow: 0 4px 4px 0 rgba(#000, 0.25);
+    box-shadow: 0 4px 4px 0 rgb(#000, 0.25);
   }
 
   &__counter {
@@ -98,13 +99,13 @@
     width: 30px;
     height: 30px;
     background-color: transparent;
-    border: 1px solid rgba(map.get(variables.$colors, 'dark'), 0.5);
+    border: 1px solid rgb(map.get(variables.$colors, 'dark'), 0.5);
     border-radius: 50%;
-    color: rgba(map.get(variables.$colors, 'dark'), 0.5);
+    color: rgb(map.get(variables.$colors, 'dark'), 0.5);
     cursor: pointer;
 
     &_disabled {
-      border-color: rgba(map.get(variables.$colors, 'dark'), 0.25);
+      border-color: rgb(map.get(variables.$colors, 'dark'), 0.25);
       cursor: not-allowed;
     }
   }

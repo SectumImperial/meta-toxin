@@ -1,4 +1,5 @@
 @use 'sass:map';
+@use 'sass:color';
 @use 'SharedStyles/variables';
 @use 'SharedStyles/functions';
 
@@ -9,7 +10,7 @@
     justify-content: space-between;
     min-width: 40px;
     min-height: 20px;
-    border: 1px solid rgba(map.get(variables.$colors, 'dark'), 0.25);
+    border: 1px solid rgb(map.get(variables.$colors, 'dark'), 0.25);
     border-radius: 10px;
     background-color: transparent;
     cursor: pointer;
@@ -35,7 +36,7 @@
   &__count {
     padding: 1px 1px 3px 0;
     font-size: functions.rem(10, variables.$base-font-size);
-    color: rgba(map.get(variables.$colors, 'dark'), 0.25);
+    color: rgb(map.get(variables.$colors, 'dark'), 0.25);
 
     &_liked {
       color: map.get(variables.$colors, 'primary');

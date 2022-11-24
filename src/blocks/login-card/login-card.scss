@@ -9,13 +9,6 @@
   max-width: 400px;
   padding: 39px 30px 34px 29px;
 
-  @media (max-width: map.get(variables.$breakpoints, 'mobile')) {
-    margin-bottom: 0;
-    min-width: auto;
-    padding: 10px;
-  }
-
-  //  Form groups
   &__data-group {
     margin-top: 20px;
     display: flex;
@@ -36,5 +29,11 @@
 
   &__create-text {
     padding-right: 5px;
+  }
+
+  @media (max-width: map.get(variables.$breakpoints, 'mobile')) {
+    margin-bottom: 0;
+    min-width: auto;
+    padding: 10px;
   }
 }

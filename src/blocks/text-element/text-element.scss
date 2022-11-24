@@ -1,8 +1,9 @@
 @use 'sass:map';
+@use 'sass:color';
 @use 'SharedStyles/variables';
 
 .text-element {
-  color: rgba(map.get(variables.$colors, 'dark'), 0.75);
+  color: rgb(map.get(variables.$colors, 'dark'), 0.75);
   font-size: map.get(variables.$font-sizes, 'sm');
   line-height: 24px;
   margin: 0;

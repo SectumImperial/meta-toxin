@@ -1,4 +1,5 @@
 @use 'sass:map';
+@use 'sass:color';
 @use 'SharedStyles/variables';
 
 .button {
@@ -8,17 +9,9 @@
   position: relative;
   cursor: pointer;
 
-  @media (max-width: map.get(variables.$breakpoints, 'tablet')) {
-    width: 100%;
-  }
-
   &:hover,
   &_hovered {
     background: map.get(variables.$gradients, 'primary-transparentize-half');
-  }
-
-  @media (max-width: map.get(variables.$breakpoints, 'mobile')) {
-    display: block;
   }
 
   &_transparent {
@@ -28,7 +21,7 @@
       background: transparent;
 
       .button__content {
-        color: rgba(map.get(variables.$colors, 'dark'), 0.5);
+        color: rgb(map.get(variables.$colors, 'dark'), 0.5);
       }
     }
   }
@@ -100,7 +93,15 @@
 
   &_hovered {
     .button_tiny {
-      color: rgba((map.get(variables.$colors, 'dark')), 0.5);
+      color: rgb((map.get(variables.$colors, 'dark')), 0.5);
     }
+  }
+
+  @media (max-width: map.get(variables.$breakpoints, 'tablet')) {
+    width: 100%;
+  }
+
+  @media (max-width: map.get(variables.$breakpoints, 'mobile')) {
+    display: block;
   }
 }

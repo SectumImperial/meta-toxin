@@ -1,8 +1,9 @@
 @use 'sass:map';
+@use 'sass:color';
 @use 'SharedStyles/variables';
 
 .room-data {
-  color: rgba(map.get(variables.$colors, 'dark'), 0.75);
+  color: rgb(map.get(variables.$colors, 'dark'), 0.75);
   font-size: map.get(variables.$font-sizes, 'sm');
   display: flex;
   flex-direction: column;
@@ -16,7 +17,7 @@
       's t'
       's d';
     padding: 21px 0 19px;
-    border-bottom: 1px solid rgba(map.get(variables.$colors, 'dark'), 0.1);
+    border-bottom: 1px solid rgb(map.get(variables.$colors, 'dark'), 0.1);
     list-style: none;
 
     &:first-child {

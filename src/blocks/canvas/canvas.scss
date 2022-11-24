@@ -1,14 +1,10 @@
 @use 'sass:map';
+@use 'sass:color';
 @use 'SharedStyles/variables';
 
 .canvas {
   display: flex;
   gap: 30px;
-
-  @media (max-width: map.get(variables.$breakpoints, 'mobile')) {
-    flex-direction: column;
-    gap: 10px;
-  }
 
   &__chart {
     max-width: 120px;
@@ -23,10 +19,6 @@
     flex-direction: column;
     padding: 26px 0 0;
     margin: 0;
-
-    @media (max-width: map.get(variables.$breakpoints, 'mobile')) {
-      padding-top: 5px;
-    }
   }
 
   &__item {
@@ -35,13 +27,13 @@
     flex-wrap: nowrap;
     gap: 5px;
     padding: 3px 0;
-    color: rgba((map.get(variables.$colors, 'dark')), 0.75);
+    color: rgb((map.get(variables.$colors, 'dark')), 0.75);
     list-style: none;
     cursor: pointer;
 
     &:hover,
     &_hovered {
-      color: rgba((map.get(variables.$colors, 'primary')), 0.75);
+      color: rgb((map.get(variables.$colors, 'primary')), 0.75);
     }
   }
 
@@ -92,4 +84,14 @@
   }
 
   transition: all 0.2s ease-in;
+
+  @media (max-width: map.get(variables.$breakpoints, 'mobile')) {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    &__items {
+      padding-top: 5px;
+    }
+  }
 }

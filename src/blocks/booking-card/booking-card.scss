@@ -8,10 +8,6 @@
   max-width: 380px;
   padding: 39px 29px 29px 29px;
 
-  @media (max-width: map.get(variables.$breakpoints, 'mobile')) {
-    padding: 40px 15px 30px;
-  }
-
   &__label {
     text-transform: uppercase;
     color: map.get(variables.$colors, 'dark');
@@ -38,5 +34,9 @@
 
   &__button {
     margin-top: 31px;
+  }
+
+  @media (max-width: map.get(variables.$breakpoints, 'mobile')) {
+    padding: 40px 15px 30px;
   }
 }

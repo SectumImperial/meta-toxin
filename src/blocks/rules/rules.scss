@@ -1,9 +1,10 @@
 @use 'sass:map';
+@use 'sass:color';
 @use 'SharedStyles/variables';
 
 .rules {
   font-size: map.get(variables.$font-sizes, 'sm');
-  color: rgba(map.get(variables.$colors, 'dark'), 0.75);
+  color: rgb(map.get(variables.$colors, 'dark'), 0.75);
   line-height: 24px;
 
   &__items {
@@ -26,7 +27,7 @@
       left: 0;
       width: 10px;
       height: 10px;
-      background-color: rgba(map.get(variables.$colors, 'dark'), 0.25);
+      background-color: rgb(map.get(variables.$colors, 'dark'), 0.25);
       border-radius: 50%;
     }
   }

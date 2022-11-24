@@ -1,4 +1,5 @@
 @use 'sass:map';
+@use 'sass:color';
 @use 'SharedStyles/variables';
 @use './datepicker_loaded';
 
@@ -44,14 +45,10 @@
     max-width: 320px;
     width: 100%;
     display: none;
-    box-shadow: rgba(map.get(variables.$colors, 'dark'), 0.5);
-    border: 1px solid rgba(map.get(variables.$colors, 'dark'), 0.25);
+    box-shadow: rgb(map.get(variables.$colors, 'dark'), 0.5);
+    border: 1px solid rgb(map.get(variables.$colors, 'dark'), 0.25);
     border-radius: 4px;
     background-color: map.get(variables.$colors, 'tertiary');
-
-    @media (max-width: map.get(variables.$breakpoints, 'mobile')) {
-      width: auto;
-    }
 
     &_only-cal {
       position: relative;
@@ -73,19 +70,19 @@
     cursor: pointer;
     width: 100%;
     padding: 12px 15px;
-    border: 1px solid rgba(map.get(variables.$colors, 'dark'), 0.25);
-    color: rgba(map.get(variables.$colors, 'dark'), 0.75);
+    border: 1px solid rgb(map.get(variables.$colors, 'dark'), 0.25);
+    color: rgb(map.get(variables.$colors, 'dark'), 0.75);
     border-radius: 4px;
     font-size: map.get(variables.$font-sizes, 'sm');
     font-family: Montserrat, sans-serif;
 
     &::placeholder {
-      color: rgba(map.get(variables.$colors, 'dark'), 0.75);
+      color: rgb(map.get(variables.$colors, 'dark'), 0.75);
     }
 
     &:hover,
     &:focus {
-      border-color: rgba(map.get(variables.$colors, 'dark'), 0.5);
+      border-color: rgb(map.get(variables.$colors, 'dark'), 0.5);
     }
 
     // According to the maket requirements
@@ -101,7 +98,7 @@
     font-size: map.get(variables.$font-sizes, 'xs');
 
     &::before {
-      color: rgba(map.get(variables.$colors, 'dark'), 0.5);
+      color: rgb(map.get(variables.$colors, 'dark'), 0.5);
     }
   }
 
@@ -112,241 +109,255 @@
     text-transform: uppercase;
     padding-bottom: 5px;
   }
-}
 
-._active-dp {
-  display: flex;
-  flex-direction: column-reverse;
-  box-shadow: 0 4px 4px 0 rgba(#0000, 0.25);
-}
+  // ---------------------------------
 
-.datepicker__btns {
-  display: flex;
-  justify-content: space-between;
-}
+  ._active-dp {
+    display: flex;
+    flex-direction: column-reverse;
+    box-shadow: 0 4px 4px 0 rgb(#0000, 0.25);
+  }
 
-.air-datepicker {
-  width: 100%;
-  font-family: Montserrat, sans-serif;
-  border: none;
+  .datepicker__btns {
+    display: flex;
+    justify-content: space-between;
+  }
 
-  // Navigation
-  &-nav {
+  .air-datepicker {
+    width: 100%;
+    font-family: Montserrat, sans-serif;
     border: none;
-    padding: 16px 18px 30px 14px;
 
-    @media (max-width: map.get(variables.$breakpoints, 'mobile')) {
-      padding: 10px 12px 28px;
-    }
-
-    &--action {
-      color: map.get(variables.$colors, 'primary');
-      font-size: 17px;
-      transform: rotate(180deg);
-
-      &[data-action='next'] {
-        transform: rotate(0);
-      }
-
-      svg {
-        display: none;
-      }
-    }
-
-    &--title {
-      color: map.get(variables.$colors, 'dark');
-      font-weight: bold;
-      font-size: map.get(variables.$font-sizes, 'lg');
-    }
-  }
-
-  &--content {
-    padding: 0 20px 17px;
-    @media (max-width: map.get(variables.$breakpoints, 'mobile')) {
-      padding: 0 10px 10px;
-    }
-  }
-
-  // Body of the calendar
-  &-body {
-    &--day-name {
-      color: map.get(variables.$colors, 'primary');
-      font-weight: bold;
-      font-size: map.get(variables.$font-sizes, 'xs');
-      text-transform: capitalize;
-    }
-
-    &--day-names {
-      margin: 6px 2px 12px 0;
-    }
-
-    .-days- {
-      grid-template-columns: repeat(7, 40px);
-      grid-auto-rows: 40px;
-
-      @media (max-width: map.get(variables.$breakpoints, 'mobile')) {
-        grid-template-columns: repeat(7, 32px);
-        grid-auto-rows: 32px;
-      }
-    }
-
-    .-day- {
-      color: rgba(map.get(variables.$colors, 'dark'), 0.5);
-      font-size: map.get(variables.$font-sizes, 'xs');
-
-      &:hover,
-      &:focus {
-        border-radius: 50%;
-        background-color: map.get(variables.$colors, 'primary');
-      }
-    }
-
-    .-day-.old-date {
-      color: rgb(229 229 229 / 50%);
-      cursor: not-allowed;
-    }
-
-    .-current- {
-      color: map.get(variables.$colors, 'tertiary');
-      background: map.get(variables.$gradients, 'secondary');
-      border-radius: 50%;
-    }
-
-    .-other-month- {
-      color: rgba(map.get(variables.$colors, 'dark'), 0.25);
-      font-size: map.get(variables.$font-sizes, 'xs');
-
-      &:hover,
-      &:focus {
-        color: map.get(variables.$colors, 'tertiary');
-      }
-    }
-
-    // Styles with out elem mouse without chosen end point
-    .-range-to-,
-    .-range-from- {
+    // Navigation
+    &-nav {
       border: none;
-      background: map.get(
-        variables.$gradients,
-        'primary-transparentize-quarter'
-      );
-    }
+      padding: 16px 18px 30px 14px;
 
-    .-range-to- {
-      border-radius: 0 50% 50% 0;
-    }
+      &--action {
+        color: map.get(variables.$colors, 'primary');
+        font-size: 17px;
+        transform: rotate(180deg);
 
-    .-range-from- {
-      border-radius: 50% 0 0 50%;
-    }
+        &[data-action='next'] {
+          transform: rotate(0);
+        }
 
-    // ---------------------------------------------
+        svg {
+          display: none;
+        }
+      }
 
-    .-in-range- {
-      background: map.get(
-        variables.$gradients,
-        'primary-transparentize-quarter'
-      );
-      border: none;
-      border-radius: 0;
-
-      &:hover,
-      &:focus {
-        border-radius: 0;
-        background: map.get(
-          variables.$gradients,
-          'primary-transparentize-quarter'
-        );
+      &--title {
+        color: map.get(variables.$colors, 'dark');
+        font-weight: bold;
+        font-size: map.get(variables.$font-sizes, 'lg');
       }
     }
 
-    // Added classes by JS
-    .start-range {
-      &::before {
-        border-radius: 50% 0 0 50%;
-      }
+    &--content {
+      padding: 0 20px 17px;
     }
 
-    .end-range {
-      &::before {
-        border-radius: 0 50% 50% 0;
+    // Body of the calendar
+    &-body {
+      &--day-name {
+        color: map.get(variables.$colors, 'primary');
+        font-weight: bold;
+        font-size: map.get(variables.$font-sizes, 'xs');
+        text-transform: capitalize;
       }
-    }
 
-    .start-range,
-    .end-range {
-      &::before {
-        content: '';
-        position: absolute;
-        background: map.get(
-          variables.$gradients,
-          'primary-transparentize-quarter'
-        );
-        z-index: -1;
-        width: 40px;
-        height: 40px;
+      &--day-names {
+        margin: 6px 2px 12px 0;
+      }
+
+      .-days- {
+        grid-template-columns: repeat(7, 40px);
+        grid-auto-rows: 40px;
+      }
+
+      .-day- {
+        color: rgb(map.get(variables.$colors, 'dark'), 0.5);
+        font-size: map.get(variables.$font-sizes, 'xs');
 
         &:hover,
         &:focus {
+          border-radius: 50%;
+          background-color: map.get(variables.$colors, 'primary');
+        }
+      }
+
+      .-day-.old-date {
+        color: rgb(229 229 229 / 50%);
+        cursor: not-allowed;
+      }
+
+      .-current- {
+        color: map.get(variables.$colors, 'tertiary');
+        background: map.get(variables.$gradients, 'secondary');
+        border-radius: 50%;
+      }
+
+      .-other-month- {
+        color: rgb(map.get(variables.$colors, 'dark'), 0.25);
+        font-size: map.get(variables.$font-sizes, 'xs');
+
+        &:hover,
+        &:focus {
+          color: map.get(variables.$colors, 'tertiary');
+        }
+      }
+
+      // Styles with out elem mouse without chosen end point
+      .-range-to-,
+      .-range-from- {
+        border: none;
+        background: map.get(
+          variables.$gradients,
+          'primary-transparentize-quarter'
+        );
+      }
+
+      .-range-to- {
+        border-radius: 0 50% 50% 0;
+      }
+
+      .-range-from- {
+        border-radius: 50% 0 0 50%;
+      }
+
+      // ---------------------------------------------
+
+      .-in-range- {
+        background: map.get(
+          variables.$gradients,
+          'primary-transparentize-quarter'
+        );
+        border: none;
+        border-radius: 0;
+
+        &:hover,
+        &:focus {
+          border-radius: 0;
           background: map.get(
             variables.$gradients,
             'primary-transparentize-quarter'
           );
         }
+      }
 
-        @media (max-width: map.get(variables.$breakpoints, 'mobile')) {
-          height: 32px;
-          width: 32px;
+      // Added classes by JS
+      .start-range {
+        &::before {
+          border-radius: 50% 0 0 50%;
         }
       }
-    }
 
-    // ---------------------------------------------
-
-    .-selected- {
-      height: 40px;
-      border-radius: 50%;
-      background: map.get(variables.$gradients, 'primary');
-      color: map.get(variables.$colors, 'tertiary');
-      font-weight: bold;
-
-      &:hover,
-      &:focus {
-        background: map.get(variables.$gradients, 'primary-gradient');
-      }
-
-      @media (max-width: map.get(variables.$breakpoints, 'mobile')) {
-        height: 32px;
-      }
-    }
-
-    .-focus- {
-      color: map.get(variables.$colors, 'tertiary');
-      font-weight: bold;
-    }
-  }
-}
-
-// Small cal and search room cal
-.datepicker_small {
-  .air-datepicker--content {
-    padding: 0 7px 7px;
-
-    .-days- {
-      grid-template-columns: repeat(7, 35px);
-      grid-auto-rows: 35px;
-
-      .-selected- {
-        height: 35px;
+      .end-range {
+        &::before {
+          border-radius: 0 50% 50% 0;
+        }
       }
 
       .start-range,
       .end-range {
         &::before {
-          width: 35px;
-          height: 35px;
+          content: '';
+          position: absolute;
+          background: map.get(
+            variables.$gradients,
+            'primary-transparentize-quarter'
+          );
+          z-index: -1;
+          width: 40px;
+          height: 40px;
+
+          &:hover,
+          &:focus {
+            background: map.get(
+              variables.$gradients,
+              'primary-transparentize-quarter'
+            );
+          }
         }
       }
+
+      // ---------------------------------------------
+
+      .-selected- {
+        height: 40px;
+        border-radius: 50%;
+        background: map.get(variables.$gradients, 'primary');
+        color: map.get(variables.$colors, 'tertiary');
+        font-weight: bold;
+
+        &:hover,
+        &:focus {
+          background: map.get(variables.$gradients, 'primary-gradient');
+        }
+      }
+
+      .-focus- {
+        color: map.get(variables.$colors, 'tertiary');
+        font-weight: bold;
+      }
+    }
+
+    @media (max-width: map.get(variables.$breakpoints, 'mobile')) {
+      &-nav {
+        padding: 10px 12px 28px;
+      }
+
+      &--content {
+        padding: 0 10px 10px;
+      }
+
+      .-days- {
+        grid-template-columns: repeat(7, 32px);
+        grid-auto-rows: 32px;
+      }
+
+      .start-range,
+      .end-range {
+        &::before {
+          height: 32px;
+          width: 32px;
+        }
+      }
+
+      .-selected- {
+        height: 32px;
+      }
+    }
+  }
+
+  // Small cal and search room cal
+  .datepicker_small {
+    .air-datepicker--content {
+      padding: 0 7px 7px;
+
+      .-days- {
+        grid-template-columns: repeat(7, 35px);
+        grid-auto-rows: 35px;
+
+        .-selected- {
+          height: 35px;
+        }
+
+        .start-range,
+        .end-range {
+          &::before {
+            width: 35px;
+            height: 35px;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: map.get(variables.$breakpoints, 'mobile')) {
+    &__container {
+      width: auto;
     }
   }
 }
