@@ -16,19 +16,28 @@
   }
 
   &__item {
-    position: relative;
     list-style: none;
-    padding-left: 20px;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
 
     &::before {
       content: '';
-      position: absolute;
-      top: 7px;
-      left: 0;
-      width: 10px;
-      height: 10px;
+      display: block;
+
+      min-width: 10px;
+      max-width: 10px;
+
+      min-height: 10px;
+      max-height: 10px;
+
       background-color: rgb(map.get(variables.$colors, 'dark'), 0.25);
       border-radius: 50%;
     }
+  }
+
+  &__text {
+    margin: 0;
   }
 }

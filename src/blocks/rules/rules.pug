@@ -6,5 +6,6 @@ mixin rules(options = {})
   .rules 
     ul.rules__items
       each rule in rules 
-        li.rules__item= rule
+        li.rules__item
+          p.rules__text= rule
       
