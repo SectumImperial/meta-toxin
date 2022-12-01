@@ -45,6 +45,18 @@
     right: 15px;
     font-size: map.get(variables.$font-sizes, 'xs');
 
+    &_icon-expand {
+      &::before {
+        content: '\e903';
+      }
+    }
+
+    &_icon-forward {
+      &::before {
+        content: '\e901';
+      }
+    }
+
     &::before {
       color: rgb(map.get(variables.$colors, 'dark'), 0.5);
     }

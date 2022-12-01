@@ -25,8 +25,8 @@ $font-sizes: (
 $colors: (
   'dark': #1f2041,
   'primary': #bc9cff,
-  'primary-transparentize-half': transparentize(#bc9cff, 0.5),
-  'primary-transparentize-quarter': transparentize(#bc9cff, 0.25),
+  'primary-transparentize-half': rgb(#bc9cff, 0.5),
+  'primary-transparentize-quarter': rgb(#bc9cff, 0.25),
   'secondary': #6fcf97,
   'tertiary': white,
 );
@@ -36,12 +36,12 @@ $gradients: (
   'primary-transparentize-half':
     linear-gradient(
       (map.get($colors, 'primary-transparentize-half')),
-      transparentize(#8ba4f9, 0.5)
+      rgb(#8ba4f9, 0.5)
     ),
   'primary-transparentize-quarter':
     linear-gradient(
       (map.get($colors, 'primary-transparentize-quarter')),
-      transparentize(#8ba4f9, 0.25)
+      rgb(#8ba4f9, 0.25)
     ),
   'secondary': linear-gradient(map.get($colors, 'secondary'), #66d2ea),
 );

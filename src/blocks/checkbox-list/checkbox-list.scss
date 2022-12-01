@@ -21,12 +21,16 @@
     cursor: pointer;
   }
 
-  &__arrow {
+  &__arrow-icon {
     position: absolute;
     right: 15px;
     top: calc(50% - 6px);
     font-size: map.get(variables.$font-sizes, 'xs');
     color: rgb(map.get(variables.$colors, 'dark'), 0.5);
+
+    &::before {
+      content: '\e903';
+    }
   }
 
   &__items {
@@ -35,14 +39,14 @@
     padding: 0;
     padding-top: 19px;
   }
-}
 
-._active {
-  .checkbox-list__arrow {
-    transform: rotate(180deg);
+  &_active {
+    .checkbox-list__arrow-icon {
+      transform: rotate(180deg);
+    }
   }
 
-  ._opened_list {
+  &_opened_list {
     display: flex;
     flex-direction: column;
     gap: 10px;

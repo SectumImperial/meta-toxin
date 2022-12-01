@@ -11,9 +11,9 @@ mixin datepicker(options = {})
       } = options
 
 
-    let classModField = isTwoInput ? 'datepicker__fields_2' : 'datepicker__fields_1'
+    let classModField = isTwoInput ? 'datepicker__fields_two-fields' : 'datepicker_fields_1'
     if (isOnlyCal) classModField += 'datepicker__fields_hidden'
-    const datepickerClass = isTwoInput ? 'js-datepicker-2' : 'js-datepicker-1'
+    const datepickerClass = isTwoInput ? 'js-datepicker_two-fields' : 'js-datepicker_one-field'
 
   .datepicker.js-datepicker(
     class = datepickerClass
@@ -32,13 +32,13 @@ mixin datepicker(options = {})
             input(
               type = "text",
               id = "booking-enter",
-              class = "datepicker__field datepicker__field_readonly js-datepicker-start js-datepicker__field _dateInput",
+              class = "datepicker__field datepicker__field_readonly js-datepicker_start js-datepicker__field datepicker_dateInput",
               name = "datepicker-input-start",
               placeholder = "ДД.ММ.ГГГГ",
               pattern = "[0-9]{2}.[0-9]{2}.[0-9]{4}",
               required
             )
-            .datepicker__arrow.icon__expand_more 
+            .datepicker__icon
         .datepicker__group.js-datepicker__group
           label(
             for = "booking-out",
@@ -48,13 +48,13 @@ mixin datepicker(options = {})
             input(
               type = "text",
               id = "booking-out",
-              class = "datepicker__field datepicker__field_readonly js-datepicker-end js-datepicker__field _dateInput",
+              class = "datepicker__field datepicker__field_readonly js-datepicker_end js-datepicker__field _dateInput",
               name = "datepicker-input-end",
               placeholder = "ДД.ММ.ГГГГ",
               pattern = "[0-9]{2}.[0-9]{2}.[0-9]{4}",
               required
               )
-            .datepicker__arrow.icon__expand_more
+            .datepicker__icon
         .datepicker__container.js-datepicker__container
           .datepicker__btns
             .datepicker__button.datepicker__button_clear.js-datepicker__button_clear
@@ -83,14 +83,14 @@ mixin datepicker(options = {})
             input(
               type = "text",
               id = "booking-dates",
-              class = "datepicker__field datepicker__field_readonly datepicker-dates js-datepicker-dates js-datepicker__field __icon-expand",
+              class = "datepicker__field datepicker__field_readonly datepicker-dates js-datepicker-dates js-datepicker__field",
               name = "datepicker-input-dates",
               placeholder = "дд.мм - дд.мм",
               pattern = "[0-9]{2}.[0-9]{2}.[0-9]{4}",
               readonly
             )
-            .datepicker__arrow.icon__expand_more 
-        .datepicker__container.datepicker_small.js-datepicker__container
+            .datepicker__icon
+        .datepicker__container.datepicker__container_small.js-datepicker__container
           .datepicker__btns
             .datepicker__button.datepicker__button_clear.js-datepicker__button_clear
               +button({
@@ -119,13 +119,13 @@ mixin datepicker(options = {})
             input(
               type = "text",
               id = "booking-enter",
-              class = "datepicker__field datepicker__field_readonly js-datepicker-start js-datepicker__field _dateInput",
+              class = "datepicker__field datepicker__field_readonly js-datepicker_start js-datepicker__field datepicker_dateInput",
               name = "datepicker-input-start",
               placeholder = "ДД.ММ.ГГГГ",
               pattern = "[0-9]{2}.[0-9]{2}.[0-9]{4}",
               required
             )
-            .datepicker__arrow.icon__expand_more 
+            .datepicker__icon
         .datepicker__group.js-datepicker__group.datepicker__group_hidden
           label(
             for = "booking-out",
@@ -135,14 +135,14 @@ mixin datepicker(options = {})
             input(
               type = "text",
               id = "booking-out",
-              class = "datepicker__field datepicker__field_readonly js-datepicker-end js-datepicker__field _dateInput",
+              class = "datepicker__field datepicker__field_readonly js-datepicker_end js-datepicker__field datepicker_dateInput",
               name = "datepicker-input-end",
               placeholder = "ДД.ММ.ГГГГ",
               pattern = "[0-9]{2}.[0-9]{2}.[0-9]{4}",
               required
               )
-            .datepicker__arrow.icon__expand_more
-        .datepicker__container.js-datepicker__container.datepicker__container_only-cal._active-dp 
+            .datepicker__icon
+        .datepicker__container.js-datepicker__container.datepicker__container_only-cal.datepicker_active-dp 
           .datepicker__btns
             .datepicker__button.datepicker__button_clear.js-datepicker__button_clear
               +button({

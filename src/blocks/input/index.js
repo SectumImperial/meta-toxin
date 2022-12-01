@@ -2,7 +2,7 @@ import Inputmask from 'inputmask';
 import Input from './Input';
 import './input.scss';
 
-const inputDates = document.querySelectorAll('._dateInput');
+const inputDates = document.querySelectorAll('.input_date');
 
 if (inputDates) {
   inputDates.forEach((e) => {

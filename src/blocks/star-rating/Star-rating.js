@@ -16,7 +16,7 @@ class StarRating {
   }
 
   init() {
-    this.stars = this.rating.querySelectorAll('.star-rating__star');
+    this.stars = this.rating.querySelectorAll('.star-rating__star-icon');
     this.#setRating();
   }
 

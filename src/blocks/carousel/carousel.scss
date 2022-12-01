@@ -40,8 +40,11 @@
     z-index: 2;
     cursor: pointer;
 
-    &::before {
-      color: white;
+    &_icon {
+      &::before {
+        color: white;
+        content: '\e903';
+      }
     }
   }
 

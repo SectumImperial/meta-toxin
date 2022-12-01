@@ -7,7 +7,7 @@
   position: relative;
 
   &__fields {
-    &_2 {
+    &_two-fields {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 20px;
@@ -36,6 +36,14 @@
       overflow: hidden;
     }
   }
+  .air-datepicker--content {
+    padding: 0 20px 17px;
+
+    .-days- {
+      grid-template-columns: repeat(7, 40px);
+      grid-auto-rows: 40px;
+    }
+  }
 
   &__container {
     position: absolute;
@@ -54,6 +62,29 @@
       position: relative;
       top: 0;
       right: 0;
+    }
+
+    &_small {
+      .air-datepicker--content {
+        padding: 0 7px 7px;
+
+        .-days- {
+          grid-template-columns: repeat(7, 35px);
+          grid-auto-rows: 35px;
+
+          .-selected- {
+            height: 35px;
+          }
+
+          .start-range,
+          .end-range {
+            &::before {
+              width: 35px;
+              height: 35px;
+            }
+          }
+        }
+      }
     }
   }
 
@@ -91,7 +122,7 @@
     }
   }
 
-  &__arrow {
+  &__icon {
     position: absolute;
     top: 36%;
     right: 15px;
@@ -99,6 +130,7 @@
 
     &::before {
       color: rgb(map.get(variables.$colors, 'dark'), 0.5);
+      content: '\e903';
     }
   }
 
@@ -112,7 +144,7 @@
 
   // ---------------------------------
 
-  ._active-dp {
+  &_active-dp {
     display: flex;
     flex-direction: column-reverse;
     box-shadow: 0 4px 4px 0 rgb(#0000, 0.25);
@@ -154,10 +186,6 @@
       }
     }
 
-    &--content {
-      padding: 0 20px 17px;
-    }
-
     // Body of the calendar
     &-body {
       &--day-name {
@@ -169,11 +197,6 @@
 
       &--day-names {
         margin: 6px 2px 12px 0;
-      }
-
-      .-days- {
-        grid-template-columns: repeat(7, 40px);
-        grid-auto-rows: 40px;
       }
 
       .-day- {
@@ -327,30 +350,6 @@
 
       .-selected- {
         height: 32px;
-      }
-    }
-  }
-
-  // Small cal and search room cal
-  .datepicker_small {
-    .air-datepicker--content {
-      padding: 0 7px 7px;
-
-      .-days- {
-        grid-template-columns: repeat(7, 35px);
-        grid-auto-rows: 35px;
-
-        .-selected- {
-          height: 35px;
-        }
-
-        .start-range,
-        .end-range {
-          &::before {
-            width: 35px;
-            height: 35px;
-          }
-        }
       }
     }
   }

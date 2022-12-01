@@ -45,6 +45,12 @@
     &_active {
       font-weight: bold;
     }
+
+    &_icon {
+      &::before {
+        content: '\e903';
+      }
+    }
   }
 
   &__link_sub {

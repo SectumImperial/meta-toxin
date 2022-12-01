@@ -17,7 +17,7 @@ class Like {
   }
 
   #findElements() {
-    this.heart = this.like.querySelector('.like__heart');
+    this.heart = this.like.querySelector('.like__heart-icon');
     this.count = this.like.querySelector('.like__count');
     this.button = this.like.querySelector('.like__button');
   }

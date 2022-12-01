@@ -11,8 +11,8 @@ const BUTTONS_INC = 'js-dropdown__btn_increment';
 const TYPE = 'js-dropdown__type';
 const ITEM = 'js-dropdown__item';
 const DISABLED = 'dropdown__btn_disabled';
-const ACTIVE = '_active';
-const OPENED = '_opened';
+const ACTIVE = 'dropdown_active';
+const OPENED = 'dropdown_opened';
 const HIDDEN = 'dropdown__button_hidden';
 
 export {

@@ -41,12 +41,15 @@
     right: 15px;
     font-size: map.get(variables.$font-sizes, 'xs');
 
-    &::before {
-      color: rgb(map.get(variables.$colors, 'dark'), 0.5);
+    &_icon {
+      &::before {
+        content: '\e903';
+        color: rgb(map.get(variables.$colors, 'dark'), 0.5);
+      }
     }
   }
 
-  ._opened {
+  &_opened {
     .dropdown__arrow {
       transform: rotate(180deg);
     }
@@ -87,11 +90,15 @@
     }
   }
 
-  ._active {
+  &_active {
     display: flex;
     flex-direction: column;
     gap: 9px;
-    z-index: 2;
+    z-index: 10;
+  }
+
+  &__icon::before {
+    content: '\e903';
   }
 
   // Counter

@@ -7,10 +7,9 @@ include ../dropdown/dropdown.pug
 
 mixin booking-card(options = {})
   section.booking-card
-    form(
+    form.booking-card__card(
       action = "search-page.html",
       method = GET,
-      class = "booking-card__card",
     )
       .booking-card__title
         +title({

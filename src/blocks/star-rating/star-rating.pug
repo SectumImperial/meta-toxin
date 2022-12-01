@@ -11,6 +11,6 @@ mixin star-rating(options = {})
     .star-rating__items 
       - for(let i = 0; i < stars; i++)
         span(
-          class = "star-rating__star js-star-rating__star icon__star_empty"
+          class = "star-rating__star-icon js-star-rating__star-icon star-rating__star-icon_empty"
           data-rateсount = i + 1
         )

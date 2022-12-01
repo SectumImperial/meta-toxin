@@ -1,6 +1,6 @@
 mixin carousel(images, href) 
   section.carousel
-    button.carousel__prev.icon__expand_more.js-carousel__prev
+    button.carousel__prev.js-carousel__prev.carousel__prev_icon
     .carousel__images 
       a(
         href = href,
@@ -19,4 +19,4 @@ mixin carousel(images, href)
           each toggle in images
             li.carousel__toggle
               button.carousel__toggle-button.js-carousel__toggle-button(tabindex = -1)
-    button.carousel__next.icon__expand_more.js-carousel__next
+    button.carousel__next.carousel__next_icon.js-carousel__next

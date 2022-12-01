@@ -122,8 +122,8 @@ class Datepicker {
       if (this.rangeFrom) {
         target.classList.add('.-range-to-');
       } else {
-        this.#clearRange('-range-from-');
-        this.#clearRange('-range-to-');
+        this.#deleteRangePoint('-range-from-');
+        this.#deleteRangePoint('-range-to-');
         target.classList.add('-range-from-');
       }
 
@@ -191,8 +191,8 @@ class Datepicker {
     }
 
     // Delete old lines with selecting a new line
-    this.#clearRange('start-range');
-    this.#clearRange('end-range');
+    this.#deleteRangePoint('start-range');
+    this.#deleteRangePoint('end-range');
 
     // Change the cells when the month changed
     this.#setPointRange();
@@ -256,8 +256,8 @@ class Datepicker {
     }
 
     // Delete if move fast or leave the container
-    this.#clearRange('start-range');
-    this.#clearRange('end-range');
+    this.#deleteRangePoint('start-range');
+    this.#deleteRangePoint('end-range');
 
     // Delete if mouse return selected date
     if (
@@ -400,14 +400,14 @@ class Datepicker {
   }
 
   #performRange(rangeFrom, rangeTo) {
-    this.#clearRange('start-range');
-    this.#clearRange('end-range');
+    this.#deleteRangePoint('start-range');
+    this.#deleteRangePoint('end-range');
     Datepicker.deletePointRange(rangeFrom);
     Datepicker.deletePointRange(rangeTo);
     this.#addPointRange(rangeFrom, rangeTo);
   }
 
-  #clearRange(rangeLineClass) {
+  #deleteRangePoint(rangeLineClass) {
     const elements = [...this.datepicker.querySelectorAll(`.${rangeLineClass}`)];
     if (elements.length === 0) return;
     elements.forEach((el) => {
@@ -606,6 +606,9 @@ class Datepicker {
       this.singleItem.value = '';
     }
     this.dp.clear();
+    this.#deleteRangePoint('start-range');
+    this.#deleteRangePoint('end-range');
+    this.#checkBtnVisibility();
   }
 
   static isOneInputClicked({ targetContainer, sibling, container }) {
@@ -752,6 +755,7 @@ class Datepicker {
     }
 
     if (this.isSingleInput) {
+      if (!this.dp.rangeDateFrom && !this.dp.rangeDateTo) return;
       this.singleItem.value = Datepicker.formatDate({
         firstDate: this.dp.rangeDateFrom,
         secondDate: this.dp.rangeDateTo,

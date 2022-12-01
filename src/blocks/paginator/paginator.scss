@@ -41,6 +41,12 @@
       font-size: 18px;
     }
 
+    &_icon {
+      &::before {
+        content: '\e901';
+      }
+    }
+
     &_prev {
       &::before {
         transform: rotate(180deg);

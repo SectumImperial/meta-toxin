@@ -136,7 +136,11 @@ class Dropdown {
 
   #handleBtnClearClick(e) {
     e.preventDefault();
-    this.dropdownInput.value = '';
+    let placeholderValue = 'Введите данные';
+    this.options.forEach((element) => {
+      if (element.placeholder) placeholderValue = element.placeholder;
+    });
+    this.dropdownInput.value = placeholderValue;
     // eslint-disable-next-line no-return-assign, no-shadow
     this.counts.forEach((e) => (e.value = 0));
     this.#checkBtnVisibility();
@@ -145,6 +149,7 @@ class Dropdown {
   #handleBtnAcceptClick(e) {
     e.preventDefault();
     this.dropdownContent.classList.remove(ACTIVE);
+    this.field.classList.remove(OPENED);
   }
 
   #handleFieldClick() {

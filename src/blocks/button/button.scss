@@ -74,12 +74,16 @@
     }
   }
 
-  &_arrow {
+  &__icon {
     position: absolute;
     top: 33%;
     right: 13px;
     color: map.get(variables.$colors, 'tertiary');
     font-size: 16px;
+
+    &::before {
+      content: '\e901';
+    }
   }
 
   &_link {

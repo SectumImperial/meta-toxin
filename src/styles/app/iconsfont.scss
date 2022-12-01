@@ -13,7 +13,13 @@
 }
 
 [class^='icon__']::before,
-[class*='icon__']::before {
+[class^='__icon-']::before,
+[class*='__icon-']::before,
+[class^='__icon']::before,
+[class*='__icon']::before,
+[class*='icon__']::before,
+[class*='-icon']::before,
+[class*='_icon']::before {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: icomoon !important;
   speak: never;
@@ -26,44 +32,4 @@
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-.icon__star_fill::before {
-  content: '\e900';
-}
-
-.icon__star_empty::before {
-  content: '\e904';
-}
-
-.icon__arrow_forward::before {
-  content: '\e901';
-}
-
-.icon__checkbox::before {
-  content: '\e902';
-}
-
-.icon__expand_more::before {
-  content: '\e903';
-}
-
-.icon__favorite::before {
-  content: '\e905';
-}
-
-.icon__favorite_border::before {
-  content: '\e906';
-}
-
-.icon__insert_emoticon::before {
-  content: '\e907';
-}
-
-.icon__location_city::before {
-  content: '\e908';
-}
-
-.icon__whatshot::before {
-  content: '\e909';
 }

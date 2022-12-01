@@ -13,21 +13,20 @@ mixin dropdown(options = {})
       isOpened = false,
     } = options
 
-    const openClass = isOpened ? '_active' : ''
-    const openArrow = isOpened ? '_opened' : '' 
+    const openClass = isOpened ? 'dropdown_active' : ''
+    const openArrow = isOpened ? 'dropdown_opened' : '' 
 
   section.dropdown.js-dropdown(
     data-options = [...plurals, { placeholder: placeholder }]
     data-preset = preset
   )
     .dropdown__output-field.js-dropdown__output-field(class = openArrow)
-      output(
+      output.dropdown__output.js-dropdown__output(
         type = "text",
-        class = "dropdown__output js-dropdown__output",
         name = "dropdown",
         tabindex = "0"
       )= placeholder
-      .dropdown__arrow.icon__expand_more._arrow-js 
+      .dropdown__arrow.dropdown__arrow_icon.dropdown_icon-js 
     div.dropdown__content.js-dropdown__content(class = openClass)
       .dropdown__counter.js-dropdown__counter
         ul.dropdown__items

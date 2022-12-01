@@ -42,7 +42,7 @@ mixin button(options = {})
         )
           span.button__content= content
       - if (isArrow) 
-        .button_arrow.icon__arrow_forward
+        .button__icon
     - if(btnType === 'link')
       a(
         class = `button__button button_link ${colorBtn[btnColor]} ${sizeBtn[btnSize]}`

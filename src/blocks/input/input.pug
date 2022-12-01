@@ -16,11 +16,11 @@ mixin input(options = {})
     } = options
 
     const arrows = {
-      expandMore: 'icon__expand_more',
-      forward: 'icon__arrow_forward input_arrow-forward',
+      expandMore: 'input__arrow_icon-expand',
+      forward: 'input__arrow_icon-forward',
     }
 
-    const dateClass = isDate ? '_dateInput' : ''
+    const dateClass = isDate ? 'input_date' : ''
     const hoveredClass = isHovered ? 'input__field_hovered' : ''
 
   .input
@@ -38,5 +38,5 @@ mixin input(options = {})
     )  
     - if(arrow && arrows[arrow])
       div(
-        class = `input_arrow ${arrows[arrow]}` 
+        class = `input__arrow ${arrows[arrow]}` 
       )

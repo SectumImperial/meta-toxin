@@ -21,7 +21,7 @@
     }
   }
 
-  &__heart {
+  &__heart-icon {
     font-size: 10px;
     padding: 0 4px;
 
@@ -30,6 +30,18 @@
       background-clip: text;
       color: transparent;
       font-size: functions.rem(11px, variables.$base-font-size);
+    }
+
+    &_liked {
+      &::before {
+        content: '\e905';
+      }
+    }
+
+    &_unliked {
+      &::before {
+        content: '\e906';
+      }
     }
   }
 
