@@ -13,8 +13,8 @@ mixin button(options = {})
     } = options 
 
     const colorBtn = {
-      white: 'button_white',
-      violet: 'button_violet',
+      white: 'white',
+      violet: 'violet',
     } 
 
     const wrapperColor = {
@@ -37,7 +37,7 @@ mixin button(options = {})
   )
     - if(btnType === 'button')
       button(
-        class = `button__button ${colorBtn[btnColor]} ${sizeBtn[btnSize]}`
+        class = `button__button button__button_${colorBtn[btnColor]} ${sizeBtn[btnSize]}`
         type = type
         )
           span.button__content= content
@@ -45,7 +45,7 @@ mixin button(options = {})
         .button__icon
     - if(btnType === 'link')
       a(
-        class = `button__button button_link ${colorBtn[btnColor]} ${sizeBtn[btnSize]}`
+        class = `button__button button__button_link button__button_${colorBtn[btnColor]} ${sizeBtn[btnSize]}`
         href = href
         )
           span.button__content= content

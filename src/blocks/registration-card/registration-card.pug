@@ -7,8 +7,7 @@ include ../text-element/text-element.pug
 
 mixin registration-card()
   section.registration-card
-    form(
-      classForm = "registration-card__form",
+    form.registration-card__form(
       action = "error-page.html",
       method = "GET"
     )
@@ -21,14 +20,12 @@ mixin registration-card()
         +input({
           type: 'text',
           name: 'registration-card-name',
-          id: 'registration-card-name',
           placeholder: 'Имя',
           isRequired: true
         })
         +input({
           type: 'text',
           name: 'registration-card-surname',
-          id: 'registration-card-surname',
           placeholder: 'Фамилия',
           isRequired: true
         })
@@ -37,14 +34,12 @@ mixin registration-card()
         .registration-card__sex-group
           +radio({
             name: 'registration-card-sex',
-            id: 'registration-card-male',
             isChecked: true,
             text: 'Мужчина'
         })
         .registration-card__sex-group
           +radio({
             name: 'registration-card-sex',
-            id: 'registration-card-female',
             text: 'Женщина'
           })
 
@@ -56,7 +51,6 @@ mixin registration-card()
           })
         +input({
           type: 'text',
-          id: 'registration-card-birth',
           placeholder: 'ДД.ММ.ГГГГ',
           pattern: '[0-9]{2}.[0-9]{2}.[0-9]{4}',
           isRequired: true,
@@ -73,7 +67,6 @@ mixin registration-card()
         +input({
           type: 'email',
           name: 'registration-card-email',
-          id: 'registration-card-email',
           placeholder: 'Email',
           isRequired: true
         })
@@ -81,7 +74,6 @@ mixin registration-card()
         +input({
           type: 'password',
           name: 'registration-card-password',
-          id: 'registration-card-password',
           placeholder: 'Пароль',
           isRequired: true, 
           isAutocomplete: true,
@@ -89,7 +81,6 @@ mixin registration-card()
       .registration-card__mailing
         +toggle({
           name: 'registration-card-mailing',
-          id: 'registration-card-mailing',
           text: 'Получать спецпредложения',
         })
       .registration-card__button  

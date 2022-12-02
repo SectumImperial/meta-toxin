@@ -63,7 +63,6 @@ block content
                 .form-elements__dropdown
                   +dropdown({
                     type: 'guests-dropdown',
-                    id: 'booking-guests',
                     placeholder: 'Сколько гостей',
                     items: [
                       'Взрослые', 'Дети', 'Младенцы',
@@ -110,7 +109,6 @@ block content
               +subscription-field({
                 type: 'email',
                 name: 'footer-mail',
-                id: 'footer-mail',
                 placeholder: 'Email',
               })
 
@@ -304,7 +302,7 @@ block content
                 })
                 span.form-elements__status Expanded
               +dropdown({
-                type: 'facilities',
+                type: 'amenities-dropdown',
                 size: 'small',
                 isOpened: true,
                 placeholder: 'Удобства номера',
@@ -332,7 +330,7 @@ block content
                 })
                 span.form-elements__status Default
               +dropdown({
-              type: 'facilities',
+              type: 'amenities-dropdown',
               size: 'small',
               placeholder: 'Удобства номера',
               items: [
@@ -486,7 +484,6 @@ block content
                 checkboxTitle: 'Широкий коридор',
                 checkboxDescription: 'Ширина коридоров в номере не менее 91 см.',
                 name: 'form-elements-wide-corr',
-                id: 'form-elements-wide-corr',
               })
             .form-elements__checkbox.form-elements__checkbox-lists_inv-help
               +checkbox({
@@ -495,7 +492,6 @@ block content
                 checkboxDescription: `На 1 этаже вас встретит специалист 
                 и проводит до номера.`,
                 name: 'form-elements-inv-help',
-                id: 'form-elements-inv-help',
               })
           .form-elements__checkboxes-lists-item.form-elements__checkboxes-lists-item_bullet
             .form-elements__subtitle    

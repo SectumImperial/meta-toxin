@@ -4,13 +4,11 @@ mixin paginator(options = {})
     data-paginator = options 
   )
     .paginator__content
-      button(
-        class="paginator__button paginator__button_prev paginator__button_icon js-paginator__button_prev",
+      button.paginator__button.paginator__button_prev.paginator__button_icon.js-paginator__button_prev(
         tabindex = 0,
       )
       ul.paginator__items.js-paginator__items
-      button(
-        class="paginator__button paginator__button_next paginator__button_icon js-paginator__button_next",
+      button.paginator__button.paginator__button_next.paginator__button_icon.js-paginator__button_next(
         tabindex = 0,
       )
     .paginator__description 

@@ -1,5 +1,6 @@
 import AirDatepicker from 'air-datepicker';
 import { v4 as uuidv4 } from 'uuid';
+import Inputmask from 'inputmask';
 
 import {
   MONTHS,
@@ -34,6 +35,7 @@ class Datepicker {
     this.#checkBtnVisibility([...this.fields]);
     this.#addListeners();
     this.#addTabIndex();
+    this.#addMask();
   }
 
   #findElements() {
@@ -215,6 +217,19 @@ class Datepicker {
 
   #handleDatepickerMouseMove({ target, relatedTarget }) {
     this.#performSelectingRange(target, relatedTarget);
+  }
+
+  #addMask() {
+    this.fields.forEach((e) => {
+      Inputmask('datetime', {
+        alias: 'datetime',
+        inputFormat: 'dd.mm.yyyy',
+        placeholder: '__.__.____',
+        showMaskOnHover: false,
+        showMaskOnFocus: false,
+        greedy: false,
+      }).mask(e);
+    });
   }
 
   #performSelectingRange(target, relatedTarget) {

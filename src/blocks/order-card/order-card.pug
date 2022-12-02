@@ -5,8 +5,7 @@ include ../dropdown/dropdown.pug
 
 mixin order-card(options = {})
   .order-card 
-    form(
-      class = "order-card__form",
+    form.order-card__form(
       method = "GET",
       action = "error-page.html",
     )

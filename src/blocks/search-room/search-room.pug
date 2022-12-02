@@ -70,13 +70,11 @@ mixin search-room(options = {})
                 +checkbox({
                   labelText: 'Можно курить',
                   name: 'search-room-smoke',
-                  id: 'search-room-smoke',
                 })
               li.search-room__checkbox
                 +checkbox({
                   labelText: 'Можно с питомцами',
                   name: 'search-room-pets',
-                  id: 'search-room-pets',
                   isChecked: true
                 })
               li.search-room__checkbox
@@ -84,7 +82,6 @@ mixin search-room(options = {})
                   labelText: `Можно пригласить гостей 
                   (до 10 человек)`,
                   name: 'search-room-guests',
-                  id: 'search-room-guests',
                   isChecked: true
                 })
 
@@ -100,7 +97,6 @@ mixin search-room(options = {})
                 checkboxTitle: 'Широкий коридор',
                 checkboxDescription: 'Ширина коридоров в номере не менее 91 см.',
                 name: 'search-room-wide-corr',
-                id: 'search-room-wide-corr',
               })
             .search-room__checkbox.search-room__checkbox_inv-help
               +checkbox({
@@ -109,7 +105,6 @@ mixin search-room(options = {})
                 checkboxDescription: `На 1 этаже вас встретит специалист 
                 и проводит до номера.`,
                 name: 'search-room-inv-help',
-                id: 'search-room-inv-help',
               })
 
 
@@ -146,35 +141,29 @@ mixin search-room(options = {})
                   {
                     labelText: 'Завтрак',
                     name: 'search-room-lunch',
-                    id: 'search-room-lunch',
                   },
                   {
                     labelText: 'Письменный стол',
                     name: 'search-room-table',
-                    id: 'search-room-table',
                     isChecked: true,
                   },
                   {
                     labelText: 'Стул для кормления',
                     name: 'search-room-chair',
-                    id: 'search-room-chair',
                     isChecked: true,
                   },
                   {
                     labelText: 'Кроватка',
                     name: 'search-room-small-bed',
-                    id: 'search-room-small-bed',
                     isChecked: true,
                   },
                   {
                     labelText: 'Телевизор',
                     name: 'search-room-tv',
-                    id: 'search-room-tv',
                   },
                   {
                     labelText: 'Шампунь',
                     name: 'search-room-shampoo',
-                    id: 'search-room-shampoo',
                   },
                 ]
               })

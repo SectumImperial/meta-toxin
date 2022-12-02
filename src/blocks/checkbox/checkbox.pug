@@ -11,12 +11,11 @@ mixin checkbox(options = {})
     } = options 
 
   label.checkbox
-    input(
+    input.checkbox__input(
       type = "checkbox"
       name = name
       checked = isChecked
       id = id
-      class = "checkbox__input"
       )
     span.checkbox__new-checkbox
     if mod === 'simple'

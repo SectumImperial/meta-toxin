@@ -9,16 +9,14 @@ mixin range-slider(options = {})
       description = '',
      } = options
 
-  div(
-    class = "range-slider js-range-slider"
+  div.range-slider.js-range-slider(
     data-rangeOptions = rangeOptions
   )
     .range-slider__fields
       span.range-slider__name= name
-      output(
+      output.range-slider__amount.js-range-slider__amount(
         type="text"
         name= "range-slider-value"
-        class= "range-slider__amount js-range-slider__amount"
         readonly
         tabindex = "1"
       )

@@ -2,7 +2,6 @@ mixin subscription-field(options = {})
   - 
     const {
       name = '',
-      id = '',
       value = '',
       placeholder = '',
       readonly = false,
@@ -15,16 +14,13 @@ mixin subscription-field(options = {})
 
 
   .subscription-field
-    form(
-      class = "subscription-field__form"
+    form.subscription-field__form(
       action = action
       method = "GET"
     )
-      input(
+      input.subscription-field__input(
         type = "text"
         name = name
-        id = id
-        class = "subscription-field__input"
         value = value 
         placeholder = placeholder
         readonly = readonly

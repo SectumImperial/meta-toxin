@@ -26,6 +26,11 @@
     }
   }
 
+  &_violet {
+    color: map.get(variables.$colors, 'tertiary');
+    background-color: transparent;
+  }
+
   &__button {
     width: 100%;
     display: flex;
@@ -38,6 +43,29 @@
     text-transform: uppercase;
     text-align: center;
     cursor: pointer;
+
+    &_link {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    &_violet {
+      color: map.get(variables.$colors, 'tertiary');
+      background-color: transparent;
+    }
+  
+    &_white {
+      background-color: map.get(variables.$colors, 'tertiary');
+      color: map.get(variables.$colors, 'primary');
+  
+      &:hover {
+        cursor: pointer;
+      }
+    }
   }
 
   &_tiny {
@@ -60,20 +88,6 @@
     padding: 13px 50px 12px 46px;
   }
 
-  &_violet {
-    color: map.get(variables.$colors, 'tertiary');
-    background-color: transparent;
-  }
-
-  &_white {
-    background-color: map.get(variables.$colors, 'tertiary');
-    color: map.get(variables.$colors, 'primary');
-
-    &:hover {
-      cursor: pointer;
-    }
-  }
-
   &__icon {
     position: absolute;
     top: 33%;
@@ -86,14 +100,7 @@
     }
   }
 
-  &_link {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-  }
+ 
 
   &_hovered {
     .button_tiny {

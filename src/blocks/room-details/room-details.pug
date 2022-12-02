@@ -17,23 +17,20 @@ mixin room-details(options= {})
     .room-details__content
       section.room-details__photos
         .room-details__photos-big
-          img(
+          img.room-details__image(
             src = require("Assets/content/room-big.jpg"),
             alt = "Большое фото номера",
-            class = "room-details__image"
           )
         .room-details__photos-small
           .room-details__photos-top
-            img(
+            img.room-details__image.room-details__image_small(
               src = require("Assets/content/room-small-1.jpg"),
               alt = "Малое фото номера",
-              class = "room-details__image room-details__image_small"
           )
           .room-details__photos-bottom
-            img(
+            img.room-details__image.room-details__image_small.room-details__image_bigger(
               src = require("Assets/content/room-small-2.jpg"),
               alt = "Малое фото номера",
-              class = "room-details__image room-details__image_small room-details__image_bigger"
             )
 
       .room-details__main
@@ -68,7 +65,6 @@ mixin room-details(options= {})
             .room-details__subtitle
               +title({
                 level: 'h3',
-                classTitle: 'room-details__subtitle',
                 text: 'Впечатления от номера'
               })
             .room-details__canvas

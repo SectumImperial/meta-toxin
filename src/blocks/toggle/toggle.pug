@@ -2,17 +2,14 @@ mixin toggle(options = {})
   - 
     const {
       name = '',
-      id = '',
       checked = false,
       text = '',
     } = options
 
   label.toggle
-    input(
+    input.toggle__input(
       type = "checkbox",
       name = name,
-      id = id,
-      class = "toggle__input",
       checked = checked
       )
     span.toggle__new-input

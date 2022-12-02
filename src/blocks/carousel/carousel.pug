@@ -2,15 +2,13 @@ mixin carousel(images, href)
   section.carousel
     button.carousel__prev.js-carousel__prev.carousel__prev_icon
     .carousel__images 
-      a(
+      a.carousel__link.js-carousel__link(
         href = href,
-        class = "carousel__link js-carousel__link"
       )
         ul.carousel__items.js-carousel__items
           each image in images
             li.carousel__item.js-carousel__item
-              img(
-                class = "carousel__image",
+              img.carousel__image(
                 alt = "Фотография номера",
                 src = require(`Assets/content/${image}`),
                 width = 270,
