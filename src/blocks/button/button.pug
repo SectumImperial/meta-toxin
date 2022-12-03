@@ -23,11 +23,11 @@ mixin button(options = {})
     }
 
     const sizeBtn = {
-      tiny: 'button_tiny',
-      small: 'button_small',
-      medium: 'button_medium',
-      big: 'button_big',
-      large: 'button_large'
+      tiny: 'tiny',
+      small: 'small',
+      medium: 'medium',
+      big: 'big',
+      large: 'large'
     }
 
     const hoverClass = isHovered ? 'button_hovered' : ''
@@ -37,7 +37,7 @@ mixin button(options = {})
   )
     - if(btnType === 'button')
       button(
-        class = `button__button button__button_${colorBtn[btnColor]} ${sizeBtn[btnSize]}`
+        class = `button__button button__button_${colorBtn[btnColor]} button__button_${sizeBtn[btnSize]}`
         type = type
         )
           span.button__content= content
@@ -45,7 +45,7 @@ mixin button(options = {})
         .button__icon
     - if(btnType === 'link')
       a(
-        class = `button__button button__button_link button__button_${colorBtn[btnColor]} ${sizeBtn[btnSize]}`
+        class = `button__button button__button_link button__button_${colorBtn[btnColor]} button__button_${sizeBtn[btnSize]}`
         href = href
         )
           span.button__content= content

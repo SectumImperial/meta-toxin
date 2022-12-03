@@ -57,35 +57,35 @@
       color: map.get(variables.$colors, 'tertiary');
       background-color: transparent;
     }
-  
+
     &_white {
       background-color: map.get(variables.$colors, 'tertiary');
       color: map.get(variables.$colors, 'primary');
-  
+
       &:hover {
         cursor: pointer;
       }
     }
-  }
 
-  &_tiny {
-    padding: 0;
-  }
+    &_tiny {
+      padding: 0;
+    }
 
-  &_small {
-    padding: 7px 18px 8px;
-  }
+    &_small {
+      padding: 7px 18px 8px;
+    }
 
-  &_medium {
-    padding: 12px 16px 13px;
-  }
+    &_medium {
+      padding: 12px 16px 13px;
+    }
 
-  &_big {
-    padding: 10px 23px 13px 24px;
-  }
+    &_big {
+      padding: 10px 23px 13px 24px;
+    }
 
-  &_large {
-    padding: 13px 50px 12px 46px;
+    &_large {
+      padding: 13px 50px 12px 46px;
+    }
   }
 
   &__icon {
@@ -99,8 +99,6 @@
       content: '\e901';
     }
   }
-
- 
 
   &_hovered {
     .button_tiny {

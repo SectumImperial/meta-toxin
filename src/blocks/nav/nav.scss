@@ -87,11 +87,11 @@
     display: block;
   }
 
-  &__sub-item {
+  &__subitem {
     margin: 0 0 2px;
   }
 
-  &__sublist &__sub-item:last-child {
+  &__sublist &__subitem:last-child {
     margin: 0;
   }
 
@@ -153,7 +153,7 @@
       pointer-events: none;
       transform: translate(0, 10%);
 
-      &__sub-item {
+      &__subitem {
         padding-top: 3px;
       }
 
