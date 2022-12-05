@@ -1,8 +1,17 @@
 extends ../../layouts/page-layout/page-layout.pug
 
 include ../../blocks/header/header.pug
-include ../../blocks/search-room/search-room.pug
 include ../../blocks/footer/footer.pug
+
+include ../../blocks/datepicker/datepicker.pug
+include ../../blocks/dropdown/dropdown.pug
+include ../../blocks/range-slider/range-slider.pug
+include ../../blocks/title/title.pug
+include ../../blocks/checkbox/checkbox.pug
+include ../../blocks/checkbox-list/checkbox-list.pug
+include ../../blocks/room-card/room-card.pug
+include ../../blocks/paginator/paginator.pug
+include ../../blocks/button/button.pug
 
 block variables 
   - 
@@ -11,4 +20,337 @@ block variables
     const keywords = 'Отель, Toxin, поиск номера'
 
 block content
-  +search-room()
+  section.search-room
+    .search-room__content
+      section.search-room__filters 
+        form(
+          method = "GET",
+          action = "error-page.html",
+          class = "search-room__form",
+        )
+          .search-room__datepicker
+            +datepicker({
+              isTwoInput: false,
+            })
+
+          .search-room__guests
+            label.search-room__label Гости
+              .search-room__dropdown
+                +dropdown({
+                  type: 'guests-dropdown',
+                  placeholder: 'Сколько гостей',
+                  mod: 'guests',
+                  items: [
+                    'Взрослые', 'Дети', 'Младенцы',
+                  ],
+                  plurals: [
+                    {
+                      'default': ['гость', 'гостя', 'гостей'],
+                      },
+                    {
+                      'Младенцы': ['младенец', 'младенца', 'младенцев'],
+                    }
+
+                  ]
+                })
+
+          .search-room__filter
+            .search-room__range
+              +range-slider({
+                name: 'Диапазон цены',   
+                description: 'Стоимость за сутки пребывания в номере',
+                rangeOptions: {
+                  min: 0,
+                  max: 15000,
+                  step: 10,
+                  initialStart: 5000,
+                  initialEnd: 10000,
+                  addedText: '₽',
+                }
+              })
+
+          .search-room__rules
+            .search-room__subtitle 
+              +title({
+                level: 'h5',
+                text: 'Правила дома'
+              })
+            ul.search-room__checkboxes
+              li.search-room__checkbox
+                +checkbox({
+                  labelText: 'Можно курить',
+                  name: 'search-room-smoke',
+                })
+              li.search-room__checkbox
+                +checkbox({
+                  labelText: 'Можно с питомцами',
+                  name: 'search-room-pets',
+                  isChecked: true
+                })
+              li.search-room__checkbox
+                +checkbox({
+                  labelText: `Можно пригласить гостей 
+                  (до 10 человек)`,
+                  name: 'search-room-guests',
+                  isChecked: true
+                })
+
+          .search-room__available
+            .search-room__subtitle
+              +title({
+                level: 'h5',
+                text: 'Доступность'
+              })
+            .search-room__checkbox.search-room__checkbox_wide-corr
+              +checkbox({
+                mod: 'rich',
+                checkboxTitle: 'Широкий коридор',
+                checkboxDescription: 'Ширина коридоров в номере не менее 91 см.',
+                name: 'search-room-wide-corr',
+              })
+            .search-room__checkbox.search-room__checkbox_inv-help
+              +checkbox({
+                mod: 'rich',
+                checkboxTitle: 'Помощник для инвалидов',
+                checkboxDescription: `На 1 этаже вас встретит специалист 
+                и проводит до номера.`,
+                name: 'search-room-inv-help',
+              })
+
+
+          .search-room__facilities
+            .search-room__amenity
+              label.search-room__label Удобства номера
+                .search-room__dropdown
+                  +dropdown({
+                    type: 'amenities-dropdown',
+                    size: 'small',
+                    placeholder: 'Удобства номера',
+                    items: [
+                      'Cпальни', 'Кровати', 'Ванные комнаты',
+                    ],
+                    plurals: [
+                      {
+                        'Cпальни': ['спальня', 'спальни', 'спален'],
+                        },
+                      {
+                        'Кровати': ['кровать', 'кровати', 'кроватей'],
+                      },
+                      {
+                        'Ванные комнаты': ['ванная комната', 'ванных комнаты', 'ванных комнат'],
+                      }
+
+                    ]
+                  })
+
+          .search-room__add-facilities
+            .search-room__add-facilities-list
+              +checkbox-list({
+                titleList: 'Дополнительные удобства',
+                items: [
+                  {
+                    labelText: 'Завтрак',
+                    name: 'search-room-lunch',
+                  },
+                  {
+                    labelText: 'Письменный стол',
+                    name: 'search-room-table',
+                    isChecked: true,
+                  },
+                  {
+                    labelText: 'Стул для кормления',
+                    name: 'search-room-chair',
+                    isChecked: true,
+                  },
+                  {
+                    labelText: 'Кроватка',
+                    name: 'search-room-small-bed',
+                    isChecked: true,
+                  },
+                  {
+                    labelText: 'Телевизор',
+                    name: 'search-room-tv',
+                  },
+                  {
+                    labelText: 'Шампунь',
+                    name: 'search-room-shampoo',
+                  },
+                ]
+              })
+      .search-room__button.js-search-room__button
+        +button({
+          content: 'Раскрыть фильтры',
+          btnColor: 'violet',
+          btnSize: 'large',
+        })
+      section.search-room__rooms
+        .search-room__section-title
+          +title({
+            level: 'h2',
+            text: 'Номера, которые мы для вас подобрали',
+            })
+        .search-room__rooms-content
+          +room-card({
+            images: [
+              'room-image-1.jpg',
+              'room-image-2.jpg',
+              'room-image-3.jpg',
+              'room-image-4.jpg',
+            ],
+            number: 888,
+            luxe: true,
+            price: '9 990',
+            rating: 5,
+            reviews: 145,
+            href: 'room-page.html',
+          })
+          +room-card({
+            images: [
+              'room-image-2.jpg',
+              'room-image-3.jpg',
+              'room-image-4.jpg',
+              'room-image-5.jpg',
+            ],
+            number: 840,
+            price: '9 900',
+            rating: 4,
+            reviews: 65,
+            href: 'room-page.html',
+          })
+          +room-card({
+            images: [
+              'room-image-3.jpg',
+              'room-image-4.jpg',
+              'room-image-5.jpg',
+              'room-image-6.jpg',
+            ],
+            number: 980,
+            luxe: true,
+            price: '8 500',
+            rating: 3,
+            reviews: 35,
+            href: 'room-page.html',
+          })
+          +room-card({
+            images: [
+              'room-image-4.jpg',
+              'room-image-5.jpg',
+              'room-image-6.jpg',
+              'room-image-7.jpg',
+            ],
+            number: 856,
+            price: '7 300',
+            rating: 5,
+            reviews: 19,
+            href: 'room-page.html',
+          })
+          +room-card({
+            images: [
+              'room-image-5.jpg',
+              'room-image-6.jpg',
+              'room-image-7.jpg',
+              'room-image-8.jpg',
+            ],
+            number: 740,
+            price: '6 000',
+            rating: 4,
+            reviews: 44,
+            href: 'room-page.html',
+          })
+          +room-card({
+            images: [
+              'room-image-6.jpg',
+              'room-image-7.jpg',
+              'room-image-8.jpg',
+              'room-image-9.jpg',
+            ],
+            number: 982,
+            price: '5 800',
+            rating: 3,
+            reviews: 56,
+            href: 'room-page.html',
+          })
+          +room-card({
+            images: [
+              'room-image-7.jpg',
+              'room-image-8.jpg',
+              'room-image-9.jpg',
+              'room-image-10.jpg',
+            ],
+            number: 678,
+            price: '5 500',
+            rating: 5,
+            reviews: 45,
+            href: 'room-page.html',
+          })
+          +room-card({
+            images: [
+              'room-image-8.jpg',
+              'room-image-9.jpg',
+              'room-image-10.jpg',
+              'room-image-11.jpg',
+            ],
+            number: 450,
+            price: '5 300',
+            rating: 4,
+            reviews: 39,
+            href: 'room-page.html',
+          })
+          +room-card({
+            images: [
+              'room-image-9.jpg',
+              'room-image-10.jpg',
+              'room-image-11.jpg',
+              'room-image-12.jpg',
+            ],
+            number: 350,
+            price: '5 000',
+            rating: 3,
+            reviews: 77,
+            href: 'room-page.html',
+          })
+          +room-card({
+            images: [
+              'room-image-10.jpg',
+              'room-image-11.jpg',
+              'room-image-12.jpg',
+              'room-image-1.jpg',
+            ],
+            number: 666,
+            price: '5 000',
+            rating: 5,
+            reviews: 25,
+            href: 'room-page.html',
+          })
+          +room-card({
+            images: [
+              'room-image-11.jpg',
+              'room-image-12.jpg',
+              'room-image-1.jpg',
+              'room-image-2.jpg',
+            ],
+            number: 444,
+            price: '5 000',
+            rating: 3,
+            reviews: 15,
+            href: 'room-page.html',
+          })
+          +room-card({
+            images: [
+              'room-image-12.jpg',
+              'room-image-1.jpg',
+              'room-image-2.jpg',
+              'room-image-3.jpg',
+            ],
+            number: 352,
+            price: '5 000',
+            rating: 3,
+            reviews: 55,
+            href: 'room-page.html',
+          })
+        .search-room__paginator 
+          +paginator({
+            itemsPerPage: 12,
+            allItems: 180,
+            text: 'вариантов аренды',
+          })

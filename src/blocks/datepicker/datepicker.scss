@@ -154,6 +154,12 @@
     display: flex;
     justify-content: space-between;
   }
+  
+  &__icon_forward {
+    &::before {
+      content: "\e901";
+    }
+  }
 
   .air-datepicker {
     width: 100%;

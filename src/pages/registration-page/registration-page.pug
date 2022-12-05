@@ -1,8 +1,8 @@
 extends ../../layouts/page-layout/page-layout.pug
 
 include ../../blocks/header/header.pug
-include ../../blocks/registration/registration.pug
 include ../../blocks/footer/footer.pug
+include ../../blocks/registration-card/registration-card.pug
 
 block variables 
   - 
@@ -11,4 +11,7 @@ block variables
     const keywords = 'Отель, Toxin, Зарегистрироваться'
 
 block content
-  +registration()
+  section.registration
+    .registration__container
+      .registration__card
+        +registration-card()

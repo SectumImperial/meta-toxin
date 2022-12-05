@@ -221,14 +221,16 @@ class Datepicker {
 
   #addMask() {
     this.fields.forEach((e) => {
-      Inputmask('datetime', {
-        alias: 'datetime',
-        inputFormat: 'dd.mm.yyyy',
-        placeholder: '__.__.____',
-        showMaskOnHover: false,
-        showMaskOnFocus: false,
-        greedy: false,
-      }).mask(e);
+      if (this.isTwoInputs) {
+        Inputmask('datetime', {
+          alias: 'datetime',
+          inputFormat: 'dd.mm.yyyy',
+          placeholder: '__.__.____',
+          showMaskOnHover: false,
+          showMaskOnFocus: false,
+          greedy: false,
+        }).mask(e);
+      }
     });
   }
 
@@ -368,7 +370,7 @@ class Datepicker {
       '.air-datepicker-nav--action',
     );
     navButtons.forEach((e) => {
-      e.classList.add('icon__arrow_forward');
+      e.classList.add('datepicker__icon_forward');
     });
   }
 

@@ -1,5 +1,5 @@
 import chooseWord from '../../helpers/chooseWord';
-import './room-details.scss';
+import './room-page.scss';
 
 const reviewCount = document.querySelector('.room-details__reviews-count');
 if (reviewCount) {

@@ -1,4 +1,4 @@
-import './search-room.scss';
+import './search-page.scss';
 
 const filtersBtn = document.querySelector('.search-room__button');
 const filters = document.querySelector('.search-room__filters');

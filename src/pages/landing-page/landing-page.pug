@@ -1,5 +1,7 @@
 extends ../../layouts/page-layout/page-layout.pug
-include ../../blocks/landing/landing.pug
+include ../../blocks/booking-card/booking-card.pug
+include ../../blocks/text-element/text-element.pug
+include ../../blocks/footer/footer.pug
 
 block variables 
   - 
@@ -8,8 +10,10 @@ block variables
     const keywords = 'Отель, Toxin, забронировать номер'
 
 block content
-  +landing()
-
-
-
+  .landing
+    .landing__content
+      .landing__booking-card
+        +booking-card()
+      .landing__text
+        +text-element("Лучшие номера для вашей работы, отдыха и просто вдохновения")
 
