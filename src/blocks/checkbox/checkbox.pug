@@ -6,7 +6,6 @@ mixin checkbox(options = {})
       checkboxDescription = '',
       isChecked = false,
       name = 'checkbox',
-      id = '',
       mod = 'simple'
     } = options 
 
@@ -15,7 +14,6 @@ mixin checkbox(options = {})
       type = "checkbox"
       name = name
       checked = isChecked
-      id = id
       )
     span.checkbox__new-checkbox
     if mod === 'simple'
