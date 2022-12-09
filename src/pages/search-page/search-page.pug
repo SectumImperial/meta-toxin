@@ -34,25 +34,25 @@ block content
             })
 
           .search-room__guests
-            label.search-room__label Гости
-              .search-room__dropdown
-                +dropdown({
-                  type: 'guests-dropdown',
-                  placeholder: 'Сколько гостей',
-                  mod: 'guests',
-                  items: [
-                    'Взрослые', 'Дети', 'Младенцы',
-                  ],
-                  plurals: [
-                    {
-                      'default': ['гость', 'гостя', 'гостей'],
-                      },
-                    {
-                      'Младенцы': ['младенец', 'младенца', 'младенцев'],
-                    }
+            .search-room__dropdown
+              +dropdown({
+                label: 'Гости',
+                type: 'guests-dropdown',
+                placeholder: 'Сколько гостей',
+                mod: 'guests',
+                items: [
+                  'Взрослые', 'Дети', 'Младенцы',
+                ],
+                plurals: [
+                  {
+                    'default': ['гость', 'гостя', 'гостей'],
+                    },
+                  {
+                    'Младенцы': ['младенец', 'младенца', 'младенцев'],
+                  }
 
-                  ]
-                })
+                ]
+              })
 
           .search-room__filter
             .search-room__range
@@ -120,28 +120,28 @@ block content
 
           .search-room__facilities
             .search-room__amenity
-              label.search-room__label Удобства номера
-                .search-room__dropdown
-                  +dropdown({
-                    type: 'amenities-dropdown',
-                    size: 'small',
-                    placeholder: 'Удобства номера',
-                    items: [
-                      'Cпальни', 'Кровати', 'Ванные комнаты',
-                    ],
-                    plurals: [
-                      {
-                        'Cпальни': ['спальня', 'спальни', 'спален'],
-                        },
-                      {
-                        'Кровати': ['кровать', 'кровати', 'кроватей'],
+              .search-room__dropdown
+                +dropdown({
+                  label: 'Удобства номера',
+                  type: 'amenities-dropdown',
+                  size: 'small',
+                  placeholder: 'Удобства номера',
+                  items: [
+                    'Cпальни', 'Кровати', 'Ванные комнаты',
+                  ],
+                  plurals: [
+                    {
+                      'Cпальни': ['спальня', 'спальни', 'спален'],
                       },
-                      {
-                        'Ванные комнаты': ['ванная комната', 'ванных комнаты', 'ванных комнат'],
-                      }
+                    {
+                      'Кровати': ['кровать', 'кровати', 'кроватей'],
+                    },
+                    {
+                      'Ванные комнаты': ['ванная комната', 'ванных комнаты', 'ванных комнат'],
+                    }
 
-                    ]
-                  })
+                  ]
+                })
 
           .search-room__add-facilities
             .search-room__add-facilities-list

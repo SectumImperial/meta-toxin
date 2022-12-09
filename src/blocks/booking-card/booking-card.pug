@@ -7,35 +7,35 @@ include ../dropdown/dropdown.pug
 
 mixin booking-card(options = {})
   section.booking-card
+    .booking-card__title
+      +title({
+        level: 'h2',
+        text: 'Найдём номера под ваши пожелания',
+      })
     form.booking-card__card(
       action = "search-page.html",
       method = GET,
     )
-      .booking-card__title
-        +title({
-          level: 'h2',
-          text: 'Найдём номера под ваши пожелания',
-        })
       .booking-card__datepicker
         +datepicker()
       .booking-card__dropdown
-        label.booking-card__label Гости
-          .booking-card__dropdown-input
-            +dropdown({
-              type: 'guests-dropdown',
-              placeholder: 'Сколько гостей',
-              items: [
-                'Взрослые', 'Дети', 'Младенцы',
-              ],
-              plurals: [
-                {
-                  'default': ['гость', 'гостя', 'гостей'],
-                  },
-                {
-                  'Младенцы': ['младенец', 'младенца', 'младенцев'],
-                }
-              ]
-            })
+        .booking-card__dropdown-input
+          +dropdown({
+            label: 'Гости',
+            type: 'guests-dropdown',
+            placeholder: 'Сколько гостей',
+            items: [
+              'Взрослые', 'Дети', 'Младенцы',
+            ],
+            plurals: [
+              {
+                'default': ['гость', 'гостя', 'гостей'],
+                },
+              {
+                'Младенцы': ['младенец', 'младенца', 'младенцев'],
+              }
+            ]
+          })
       .booking-card__button
         +button({
           content: 'Подобрать номер',

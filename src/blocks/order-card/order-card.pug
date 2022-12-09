@@ -23,6 +23,7 @@ mixin order-card(options = {})
         label.order-card__label Гости
           .order-card__dropdown-section
             +dropdown({
+              label: 'Гости',
               type: 'guests-dropdown',
               placeholder: 'Сколько гостей',
               items: [

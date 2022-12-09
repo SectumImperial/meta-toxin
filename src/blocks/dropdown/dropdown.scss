@@ -5,15 +5,29 @@
 .dropdown {
   position: relative;
 
+  &__label {
+    text-transform: uppercase;
+    color: map.get(variables.$colors, 'dark');
+    font-size: map.get(variables.$font-sizes, 'xs');
+    font-weight: bold;
+  }
+
   &__output-field {
     position: relative;
     cursor: pointer;
+
+    &_opened {
+      .dropdown__arrow {
+        transform: rotate(180deg);
+      }
+    }
   }
 
   &__output {
     width: 100%;
     display: block;
     padding: 12px 15px;
+    margin-top: 5px;
     border: 1px solid rgb(map.get(variables.$colors, 'dark'), 0.25);
     color: rgb(map.get(variables.$colors, 'dark'), 0.75);
     border-radius: 4px;
@@ -37,7 +51,7 @@
 
   &__arrow {
     position: absolute;
-    top: 36%;
+    top: 57%;
     right: 15px;
     font-size: map.get(variables.$font-sizes, 'xs');
 
@@ -49,11 +63,6 @@
     }
   }
 
-  &_opened {
-    .dropdown__arrow {
-      transform: rotate(180deg);
-    }
-  }
 
   &__content {
     display: none;
@@ -65,6 +74,13 @@
     border: 1px solid rgb(map.get(variables.$colors, 'dark'), 0.25);
     border-radius: 0 0 4px;
     box-shadow: 0 4px 4px 0 rgb(#000, 0.25);
+
+    &_active {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      z-index: 10;
+    }
   }
 
   &__counter {
@@ -88,13 +104,6 @@
       clip: rect(0 0 0 0);
       overflow: hidden;
     }
-  }
-
-  &_active {
-    display: flex;
-    flex-direction: column;
-    gap: 9px;
-    z-index: 10;
   }
 
   &__icon::before {

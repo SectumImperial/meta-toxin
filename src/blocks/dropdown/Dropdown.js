@@ -19,6 +19,7 @@ import {
   ACTIVE,
   OPENED,
   HIDDEN,
+  LABEL,
 } from './constants';
 
 class Dropdown {
@@ -50,6 +51,7 @@ class Dropdown {
     this.field.addEventListener('click', () => {
       this.dropdownContent.classList.toggle(ACTIVE);
     });
+    if (this.label) this.label.addEventListener('click', (e) => e.preventDefault());
 
     this.dropdownInput.addEventListener(
       'keydown',
@@ -158,6 +160,7 @@ class Dropdown {
 
   #findElements() {
     this.field = this.dropdown.querySelector(`.${FIELD}`);
+    this.label = this.dropdown.querySelector(`.${LABEL}`);
     this.dropdownInput = this.dropdown.querySelector(`.${INPUT}`);
     this.dropdownContent = this.dropdown.querySelector(`.${CONTENT}`);
     this.btnClear = this.dropdown.querySelector(`.${BTN_CLEAR}`);

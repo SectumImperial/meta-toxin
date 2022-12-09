@@ -625,7 +625,7 @@ class Datepicker {
     this.dp.clear();
     this.#deleteRangePoint('start-range');
     this.#deleteRangePoint('end-range');
-    this.#checkBtnVisibility();
+    this.#checkBtnVisibility([...this.fields]);
   }
 
   static isOneInputClicked({ targetContainer, sibling, container }) {

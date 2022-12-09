@@ -9,24 +9,36 @@ mixin dropdown(options = {})
       plurals = {},
       preset = [],
       type = 'guests-dropdown',
+      label = '',
       size = 'normal',
       isOpened = false,
     } = options
 
-    const openClass = isOpened ? 'dropdown_active' : ''
-    const openArrow = isOpened ? 'dropdown_opened' : '' 
+    const openClass = isOpened ? 'dropdown__content_active' : ''
+    const openArrow = isOpened ? 'dropdown__output-field_opened' : '' 
 
   section.dropdown.js-dropdown(
     data-options = [...plurals, { placeholder: placeholder }]
     data-preset = preset
   )
-    .dropdown__output-field.js-dropdown__output-field(class = openArrow)
-      output.dropdown__output.js-dropdown__output(
-        type = "text",
-        name = "dropdown",
-        tabindex = "0"
-      )= placeholder
-      .dropdown__arrow.dropdown__arrow_icon.dropdown_icon-js 
+    .dropdown__output-field.js-dropdown__output-field(
+      class = `${openArrow}`
+      )
+      if (label !== '')
+        label.dropdown__label= label
+          output.dropdown__output.js-dropdown__output(
+            type = "text",
+            name = "dropdown",
+            tabindex = "0"
+          )= placeholder
+          span.dropdown__arrow.dropdown__arrow_icon.dropdown_icon-js 
+      else 
+        output.dropdown__output.js-dropdown__output(
+          type = "text",
+          name = "dropdown",
+          tabindex = "0"
+        )= placeholder
+        span.dropdown__arrow.dropdown__arrow_icon.dropdown_icon-js 
     div.dropdown__content.js-dropdown__content(class = openClass)
       .dropdown__counter.js-dropdown__counter
         ul.dropdown__items

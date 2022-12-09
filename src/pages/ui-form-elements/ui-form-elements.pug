@@ -59,23 +59,23 @@ block content
               })
 
             .form-elements__field
-              label.form-elements__label Сколько гостей
-                .form-elements__dropdown
-                  +dropdown({
-                    type: 'guests-dropdown',
-                    placeholder: 'Сколько гостей',
-                    items: [
-                      'Взрослые', 'Дети', 'Младенцы',
-                    ],
-                    plurals: [
-                      {
-                        'default': ['гость', 'гостя', 'гостей'],
-                        },
-                      {
-                        'Младенцы': ['младенец', 'младенца', 'младенцев'],
-                      }
-                    ]
-                  })
+              .form-elements__dropdown
+                +dropdown({
+                  label: 'Сколько гостей',
+                  type: 'guests-dropdown',
+                  placeholder: 'Сколько гостей',
+                  items: [
+                    'Взрослые', 'Дети', 'Младенцы',
+                  ],
+                  plurals: [
+                    {
+                      'default': ['гость', 'гостя', 'гостей'],
+                      },
+                    {
+                      'Младенцы': ['младенец', 'младенца', 'младенцев'],
+                    }
+                  ]
+                })
             .form-elements__field
               .form-elements__subtitle 
                 +title({
