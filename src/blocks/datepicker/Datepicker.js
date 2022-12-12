@@ -18,6 +18,8 @@ import {
   ACTIVE,
   CLICKED,
   LABEL,
+  ICON,
+  ICON_ACTIVE,
 } from './constants';
 
 class Datepicker {
@@ -45,6 +47,7 @@ class Datepicker {
     );
     this.buttonClear = this.datepicker.querySelector(`.${CLEAR}`);
     this.buttonAccept = this.datepicker.querySelector(`.${ACCEPT}`);
+    this.icons = this.datepicker.querySelectorAll(`.${ICON}`);
     this.navButtons = this.datepicker.querySelectorAll('.air-datepicker-nav--action');
     this.datepickerBody = this.datepicker.querySelector('.air-datepicker-body');
 
@@ -536,14 +539,15 @@ class Datepicker {
         container: this.calContainer,
       });
 
+      this.#toggleDp(targetContainer, this.calContainer);
+
       if (allClicked) {
         Datepicker.#closeDpOnInputCLick(targetContainer, sibling, this.calContainer);
       }
-      Datepicker.toggleDp(targetContainer, this.calContainer);
     }
 
     if (this.isSingleInput) {
-      Datepicker.toggleDp(targetContainer, this.calContainer);
+      this.#toggleDp(targetContainer, this.calContainer);
     }
   }
 
@@ -628,6 +632,12 @@ class Datepicker {
     this.#checkBtnVisibility([...this.fields]);
   }
 
+  #toggleDp(targetContainer, calContainer) {
+    targetContainer.classList.toggle(CLICKED);
+    calContainer.classList.toggle(ACTIVE);
+    this.icons.forEach((icon) => icon.classList.toggle(ICON_ACTIVE));
+  }
+
   static isOneInputClicked({ targetContainer, sibling, container }) {
     return !targetContainer.classList.contains(CLICKED)
       && sibling.classList.contains(CLICKED)
@@ -652,11 +662,6 @@ class Datepicker {
     targetContainer.classList.remove(CLICKED);
     sibling.classList.remove(CLICKED);
     calContainer.classList.remove(ACTIVE);
-  }
-
-  static toggleDp(targetContainer, calContainer) {
-    targetContainer.classList.toggle(CLICKED);
-    calContainer.classList.toggle(ACTIVE);
   }
 
   static isSelectedDates({ isSingleInput, rangeDateFrom, rangeDateTo }) {

@@ -2,9 +2,9 @@ mixin social(options = {})
 
   -
     const social = {
-      facebook: '../../assets/decorative/facebook.svg',
-      twitter: '../../assets/decorative/twitter.svg',
-      instagram: '../../assets/decorative/instagram.svg', 
+      facebook: './assets/decorative/facebook.svg',
+      twitter: './assets/decorative/twitter.svg',
+      instagram: './assets/decorative/instagram.svg', 
     } 
 
 
@@ -26,4 +26,5 @@ mixin social(options = {})
         )
         img(
           src = social[icon]
+          alt = icon
         )

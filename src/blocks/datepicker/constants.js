@@ -26,6 +26,8 @@ const DATES = 'js-datepicker-dates';
 const ACTIVE = 'datepicker_active-dp';
 const CLICKED = 'js-datepicker_clicked';
 const LABEL = 'js-datepicker__label';
+const ICON = 'datepicker__icon';
+const ICON_ACTIVE = 'datepicker__icon_active';
 
 export {
   MONTHS,
@@ -43,4 +45,6 @@ export {
   ACTIVE,
   CLICKED,
   LABEL,
+  ICON,
+  ICON_ACTIVE,
 };

@@ -131,6 +131,10 @@
     right: 15px;
     font-size: map.get(variables.$font-sizes, 'xs');
 
+    &_active {
+      transform: rotate(180deg)
+    }
+
     &::before {
       color: rgb(map.get(variables.$colors, 'dark'), 0.5);
       content: '\e903';
