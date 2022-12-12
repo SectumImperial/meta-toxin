@@ -76,7 +76,7 @@
     list-style: none;
   }
 
-  &__toggle-button {
+  &__toggle-knob {
     width: 7px;
     height: 7px;
     border: 1px solid white;
@@ -85,10 +85,10 @@
     outline: none;
     cursor: pointer;
     padding: 0;
-  }
 
-  ._active {
-    background: white;
+    &_active {
+      background: white;
+    }
   }
 
   &:hover {
