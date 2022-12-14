@@ -43,7 +43,8 @@ block content
               +input({
                 type: 'email',
                 placeholder: 'Email',
-                pattern: '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$'
+                pattern: '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$',
+                name: 'email-field'
               })
             .form-elements__field
               .form-elements__subtitle 
@@ -56,6 +57,7 @@ block content
                 type: 'text',
                 placeholder: 'This is pretty awesome',
                 isHovered: true,
+                name: 'email-field focus',
               })
 
             .form-elements__field
@@ -85,6 +87,7 @@ block content
               +input({
                 type: 'text',
                 placeholder: 'ДД.ММ.ГГГГ',
+                name: 'masked text',
                 pattern: '[0-9]{2}.[0-9]{2}.[0-9]{4}',
                 isRequired: true,
                 isDate: true,
@@ -227,58 +230,46 @@ block content
                 .form-elements__elem-btn-cont
                   +button({
                     content: 'Click me',
-                    btnColor: 'white',
-                    btnWrapperColor: 'transparent',
-                    buttonsize: 'small',
+                    btnColor: 'violet',
+                    btnSize: 'small',
                   })
                   +button({
                     content: 'Click me',
-                    btnColor: 'white',
-                    btnWrapperColor: 'transparent',
-                    buttonsize: 'small',
+                    btnColor: 'violet',
                     isHovered: true,
                   })
 
                 .form-elements__elem-btn-cont
                   +button({
                     content: 'Click me', 
-                    btnColor: 'violet',
-                    buttonsize: 'small',
-                    btnType: 'link',
-                    href: 'login-page.html',
+                    btnColor: 'white',
                   })
                   +button({
                     content: 'Click me', 
-                    btnColor: 'violet',
-                    buttonsize: 'small',
-                    btnType: 'link',
-                    href: 'login-page.html',
+                    btnColor: 'white',
                     isHovered: true,
                   })
                 .form-elements__elem-btn-cont
                   +button({
                     content: 'Click me',
-                    btnColor: 'violet',
+                    btnColor: 'white',
                     btnWrapperColor: 'transparent',
-                    border: 'false',
-                    buttonsize: 'tiny',
+                    btnSize: 'tiny',
                   })
                   +button({
                     content: 'Click me',
-                    btnColor: 'violet',
+                    btnColor: 'white',
                     btnWrapperColor: 'transparent',
-                    border: 'false',
-                    buttonsize: 'tiny',
+                    btnSize: 'tiny',
                     isHovered: true,
                   })
 
               .form-elements__elem-btn_big 
                 +button({
                   content: 'Перейти к оплате',
-                  btnColor: 'white',
-                  btnWrapperColor: 'violet',
+                  btnColor: 'violet',
                   isArrow: true,
-                  buttonsize: 'large',
+                  btnSize: 'large'
                 })
             .form-elements__btn 
               .form-elements__subtitle 
@@ -357,20 +348,20 @@ block content
                   text: 'dropdown'
                 })
               +dropdown({
-              type: 'guests-dropdown',
-              isOpened: true,
-              placeholder: 'Сколько гостей',
-              items: [
-                'Взрослые', 'Дети', 'Младенцы',
-              ],
-              plurals: [
-                {
-                  'default': ['гость', 'гостя', 'гостей'],
-                  },
-                {
-                  'Младенцы': ['младенец', 'младенца', 'младенцев'],
-                }
-              ]
+                type: 'guests-dropdown',
+                isOpened: true,
+                placeholder: 'Сколько гостей',
+                items: [
+                  'Взрослые', 'Дети', 'Младенцы',
+                ],
+                plurals: [
+                  {
+                    'default': ['гость', 'гостя', 'гостей'],
+                    },
+                  {
+                    'Младенцы': ['младенец', 'младенца', 'младенцев'],
+                  }
+                ]
               })
 
           .form-elements__dropdowns-item

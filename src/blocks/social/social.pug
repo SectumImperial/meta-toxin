@@ -17,6 +17,8 @@ mixin social(options = {})
         icon = ''
         } = obj
 
+        const socialIcon = social[icon] ? social[icon] : social.facebook;
+
       li.social-links__item 
         a(
           href= link

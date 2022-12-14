@@ -87,7 +87,6 @@ module.exports = {
                   [
                     'postcss-preset-env',
                     {
-                      // Options
                     },
                   ],
                 ],

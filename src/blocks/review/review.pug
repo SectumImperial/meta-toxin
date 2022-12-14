@@ -27,7 +27,9 @@ mixin review(options = {})
         )
     .review__details 
       span.review__name= name
-      time.review__date= date
+      time.review__date(
+        datetime = "2022-01-02 10:00"
+      )= date
     .review__like
       +like({
         liked,

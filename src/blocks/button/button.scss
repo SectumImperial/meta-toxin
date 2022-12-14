@@ -3,6 +3,10 @@
 @use 'SharedStyles/variables';
 
 .button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   padding: 2px;
   border-radius: 25px;
   background: map.get(variables.$gradients, 'primary');
@@ -12,6 +16,12 @@
   &:hover,
   &_hovered {
     background: map.get(variables.$gradients, 'primary-transparentize-half');
+  }
+
+  &_transparent.button_hovered {
+    .button__content {
+      color: rgb(map.get(variables.$colors, 'dark'), 0.5);
+    }
   }
 
   &_transparent {
@@ -32,9 +42,11 @@
   }
 
   &__button {
-    width: 100%;
+    min-width: 100%;
+    min-height: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
     border: none;
     border-radius: 25px;
     font-family: Montserrat, sans-serif;
