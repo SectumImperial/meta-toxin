@@ -10,7 +10,7 @@ mixin like(options = {})
     const btnClass = liked ? 'like__button like__button_liked' : 'like__button'
 
   .like
-    button(class = btnClass, name = "liked__btn")
+    button(class = btnClass, name = "liked__btn", type = "button")
       span(class = heartClass)
       span(class = countClass)= counts
 
