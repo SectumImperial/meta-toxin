@@ -25,7 +25,7 @@ mixin dropdown(options = {})
       class = `${openArrow}`
       )
       if (label !== '')
-        label.dropdown__label= label
+        label.dropdown__label.js-dropdown__label= label
           output.dropdown__output.js-dropdown__output(
             name = "dropdown",
             tabindex = "0"

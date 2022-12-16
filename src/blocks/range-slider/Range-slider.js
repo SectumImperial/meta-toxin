@@ -243,10 +243,10 @@ class Slider {
     if (percent === undefined) percent = this.stepPercent * nearestPrevCountStep;
 
     percent = Number(percent.toFixed(3));
-    const toggleId = toggle.classList.contains(TOGGLE_MIN) ? 'min' : 'max';
+    const toggleID = toggle.classList.contains(TOGGLE_MIN) ? 'min' : 'max';
     this.#updatePosition({
       value,
-      toggle: toggleId,
+      toggle: toggleID,
       percent,
     });
   }

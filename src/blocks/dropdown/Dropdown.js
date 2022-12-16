@@ -40,7 +40,7 @@ class Dropdown {
     this.type = this.dropdown.querySelector(`.${TYPE}`).value;
 
     this.#addListeners();
-    this.#addUrlValues();
+    this.#addURLValues();
 
     this.preset = JSON.parse(this.dropdown.dataset.preset);
     this.#addPreset();
@@ -143,8 +143,11 @@ class Dropdown {
       if (element.placeholder) placeholderValue = element.placeholder;
     });
     this.dropdownInput.value = placeholderValue;
-    // eslint-disable-next-line no-return-assign, no-shadow
-    this.counts.forEach((e) => (e.value = 0));
+    this.counts.forEach((count) => {
+      const element = count.closest(`.${COUNT_ELEM}`);
+      element.value = 0;
+    });
+
     this.#checkBtnVisibility();
   }
 
@@ -172,14 +175,14 @@ class Dropdown {
     this.counts = this.dropdown.querySelectorAll(`.${COUNT_ELEM}`);
   }
 
-  #addUrlValues() {
+  #addURLValues() {
     const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const type = urlParams.get('type');
+    const URLParams = new URLSearchParams(queryString);
+    const type = URLParams.get('type');
 
     this.counts.forEach((e) => {
-      if (urlParams.get(e.dataset.item) && type === this.type) {
-        e.value = urlParams.get(e.dataset.item);
+      if (URLParams.get(e.dataset.item) && type === this.type) {
+        e.value = URLParams.get(e.dataset.item);
         Dropdown.checkDecrementDisabled(e.value, e);
       }
     });

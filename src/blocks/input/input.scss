@@ -27,9 +27,8 @@
         color: rgb(map.get(variables.$colors, 'dark'), 0.75);
       }
     }
-    W
+    
 
-    // According to the maket requirements
     &:focus {
       outline: none;
     }
@@ -75,7 +74,7 @@
     }
   }
 
-  &_opened-js {
+  &_opened {
     transform: rotate(180deg);
   }
 }

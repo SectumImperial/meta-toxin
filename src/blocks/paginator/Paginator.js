@@ -224,8 +224,6 @@ class Paginator {
     }
   }
 
-  // End of the methods creating and displaying pages
-
   /**
    *
    * @param {string} className

@@ -3,8 +3,10 @@ import './index.scss';
 const cache = {};
 
 function importAll(r) {
-  // eslint-disable-next-line no-return-assign
-  r.keys().forEach((key) => (cache[key] = r(key)));
+  r.keys().forEach((key) => {
+    const newKey = key;
+    cache[newKey] = r(newKey);
+  });
 }
 
 importAll(require.context('../src/', true, /\.js$/));

@@ -5,8 +5,8 @@ const ITEM = 'js-carousel__item';
 const PREV = 'js-carousel__prev';
 const NEXT = 'js-carousel__next';
 const TOGGLE = 'js-carousel__toggle-knob';
-const ACTIVE = 'carousel__toggle-knob_active';
 const LINK = 'js-carousel__link';
+const ACTIVE = 'carousel__toggle-knob_active';
 
 export {
   WIDTH,

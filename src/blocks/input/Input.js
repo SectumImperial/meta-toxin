@@ -10,9 +10,9 @@ class Input {
 
   #handleInputClick() {
     if (this.input.querySelector('input[type="email"]')) return;
-    const arrow = this.input.querySelector('._input_arrow-js');
+    const arrow = this.input.querySelector('._input_arrow');
     if (!arrow) return;
-    arrow.classList.toggle('input_opened-js');
+    arrow.classList.toggle('input_opened');
   }
 }
 

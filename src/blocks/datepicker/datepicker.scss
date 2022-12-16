@@ -92,7 +92,6 @@
     margin: 0 18px 18px 15px;
   }
 
-  // Fields
   &__input-container  {
     display: inline-block;
     width: 100%;
@@ -119,7 +118,6 @@
       border-color: rgb(map.get(variables.$colors, 'dark'), 0.5);
     }
 
-    // According to the maket requirements
     &:focus {
       outline: none;
     }
@@ -148,8 +146,6 @@
     text-transform: uppercase;
   }
 
-  // ---------------------------------
-
   &_active-dp {
     display: flex;
     flex-direction: column-reverse;
@@ -172,7 +168,6 @@
     font-family: Montserrat, sans-serif;
     border: none;
 
-    // Navigation
     &-nav {
       border: none;
       padding: 16px 18px 30px 14px;
@@ -198,7 +193,6 @@
       }
     }
 
-    // Body of the calendar
     &-body {
       &--day-name {
         color: map.get(variables.$colors, 'primary');
@@ -243,7 +237,6 @@
         }
       }
 
-      // Styles with out elem mouse without chosen end point
       .-range-to-,
       .-range-from- {
         border: none;
@@ -261,7 +254,6 @@
         border-radius: 50% 0 0 50%;
       }
 
-      // ---------------------------------------------
 
       .-in-range- {
         background: map.get(
@@ -281,7 +273,6 @@
         }
       }
 
-      // Added classes by JS
       .start-range {
         &::before {
           border-radius: 50% 0 0 50%;
@@ -317,7 +308,6 @@
         }
       }
 
-      // ---------------------------------------------
 
       .-selected- {
         height: 40px;

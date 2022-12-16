@@ -57,10 +57,6 @@
   color: var(--adp-color-current-date);
 }
 
-/* .air-datepicker-cell.-current-.-focus- {
-    color: var(--adp-color)
-} */
-
 .air-datepicker-cell.-current-.-in-range- {
   color: var(--adp-color-current-date);
 }
@@ -102,10 +98,6 @@
   background-color: var(--adp-cell-background-color-in-range);
   border-radius: 0 var(--adp-cell-border-radius) var(--adp-cell-border-radius) 0;
 }
-
-/* .air-datepicker-cell.-range-to-.-range-from- {
-    border-radius: var(--adp-cell-border-radius)
-} */
 
 .air-datepicker-cell.-selected- {
   color: #fff;

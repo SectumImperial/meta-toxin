@@ -1,4 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
+
 import {
   DAYS_COMPUTE,
   DAYS_COMPUTED,
@@ -179,17 +180,17 @@ class OrderCard {
   }
 
   static handleShowMessage(target) {
-    const elemId = target.dataset.idTip;
+    const elemID = target.dataset.IDTip;
     const coords = {
       x: target.getBoundingClientRect().x,
       y: target.getBoundingClientRect().y,
     };
-    OrderCard.showMessage(elemId, coords);
+    OrderCard.showMessage(elemID, coords);
   }
 
   static handleHideMessage(target) {
-    const elemId = target.dataset.idTip;
-    const message = document.querySelector(`.order-card__tip-message[data-id-message="${elemId}"]`);
+    const elemID = target.dataset.IDTip;
+    const message = document.querySelector(`.order-card__tip-message[data-id-message="${elemID}"]`);
     message.style.display = 'none';
   }
 
@@ -210,7 +211,7 @@ class OrderCard {
     el.style.width = '20px';
     el.style.height = '20px';
     el.style.borderRadius = '50%';
-    el.dataset.idTip = uuidv4();
+    el.dataset.IDTip = uuidv4();
     el.tabIndex = 0;
     return el;
   }
@@ -220,14 +221,14 @@ class OrderCard {
     el.className = 'order-card__tip-message js-order-card__tip-message';
     el.innerText = information;
     el.style.display = 'none';
-    el.dataset.idMessage = tip.dataset.idTip;
+    el.dataset.idMessage = tip.dataset.IDTip;
 
     return el;
   }
 
-  static showMessage(elemId, coords = {}) {
-    if (elemId === undefined || elemId === null) return;
-    const message = document.querySelector(`.order-card__tip-message[data-id-message="${elemId}"]`);
+  static showMessage(elemID, coords = {}) {
+    if (elemID === undefined || elemID === null) return;
+    const message = document.querySelector(`.order-card__tip-message[data-id-message="${elemID}"]`);
     if (!message) return;
 
     const { x, y } = coords;

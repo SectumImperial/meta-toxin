@@ -195,11 +195,8 @@ class Datepicker {
       });
     }
 
-    // Delete old lines with selecting a new line
     this.#deleteRangePoint('start-range');
     this.#deleteRangePoint('end-range');
-
-    // Change the cells when the month changed
     this.#setPointRange();
 
     if (target.classList.contains('air-datepicker-nav--action')) {
@@ -275,11 +272,9 @@ class Datepicker {
       if (prevDay) prevDay.classList.remove('start-range');
     }
 
-    // Delete if move fast or leave the container
     this.#deleteRangePoint('start-range');
     this.#deleteRangePoint('end-range');
 
-    // Delete if mouse return selected date
     if (
       this.#isSameDateHover()
     ) {
@@ -308,9 +303,9 @@ class Datepicker {
     this.formGroups.forEach((e) => {
       const label = e.querySelector(`.${LABEL}`);
       const input = e.querySelector(`.${FIELD}`);
-      const id = uuidv4();
-      label.htmlFor = id;
-      input.id = id;
+      const ID = uuidv4();
+      label.htmlFor = ID;
+      input.ID = ID;
     });
   }
 
@@ -336,8 +331,8 @@ class Datepicker {
     }
 
     this.#formatTitle();
-    if (Datepicker.getUrlParams()) {
-      this.#getUrlValues();
+    if (Datepicker.getURLParams()) {
+      this.#getURLValues();
     } else {
       this.#setPrev();
     }
@@ -382,13 +377,13 @@ class Datepicker {
     navTitle.innerText = Datepicker.deleteComma(navTitle);
   }
 
-  #getUrlValues() {
+  #getURLValues() {
     if (this.isSingleInput) {
-      const [startUrlDateString, endUrlDateString] = Datepicker.getUrlParams();
+      const [startURLDateString, endURLDateString] = Datepicker.getURLParams();
 
-      if ((startUrlDateString, endUrlDateString)) {
-        const [firstDay, firstMonth, firstYear] = startUrlDateString.split('.');
-        const [secondDay, secondMonth, secondYear] = endUrlDateString.split('.');
+      if ((startURLDateString, endURLDateString)) {
+        const [firstDay, firstMonth, firstYear] = startURLDateString.split('.');
+        const [secondDay, secondMonth, secondYear] = endURLDateString.split('.');
 
         const startDate = new Date(firstYear, firstMonth - 1, firstDay);
         const endDate = new Date(secondYear, secondMonth - 1, secondDay);
@@ -520,7 +515,6 @@ class Datepicker {
     if (this.isTwoInputs) {
       const sibling = Datepicker.returnInputSibling(targetContainer, this.formGroups);
 
-      // Click on the sibling
       const oneInpClick = Datepicker.isOneInputClicked({
         targetContainer,
         sibling,
@@ -532,7 +526,6 @@ class Datepicker {
         return;
       }
 
-      // Close the calendar and remove all clicked fro the inputs
       const allClicked = Datepicker.isAllInputClicked({
         targetContainer,
         sibling,
@@ -542,7 +535,7 @@ class Datepicker {
       this.#toggleDp(targetContainer, this.calContainer);
 
       if (allClicked) {
-        Datepicker.#closeDpOnInputCLick(targetContainer, sibling, this.calContainer);
+        Datepicker.closeDpOnInputCLick(targetContainer, sibling, this.calContainer);
       }
     }
 
@@ -658,7 +651,7 @@ class Datepicker {
     return sibling;
   }
 
-  static #closeDpOnInputCLick(targetContainer, sibling, calContainer) {
+  static closeDpOnInputCLick(targetContainer, sibling, calContainer) {
     targetContainer.classList.remove(CLICKED);
     sibling.classList.remove(CLICKED);
     calContainer.classList.remove(ACTIVE);
@@ -672,15 +665,15 @@ class Datepicker {
     return items.every(({ value, pattern }) => value.match(pattern));
   }
 
-  static getUrlParams() {
+  static getURLParams() {
     const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
+    const URLParams = new URLSearchParams(queryString);
 
-    const startUrlDateString = urlParams.get('datepicker-input-start');
-    const endUrlDateString = urlParams.get('datepicker-input-end');
+    const startURLDateString = URLParams.get('datepicker-input-start');
+    const endURLDateString = URLParams.get('datepicker-input-end');
 
-    if ((startUrlDateString, endUrlDateString)) {
-      return [startUrlDateString, endUrlDateString];
+    if ((startURLDateString, endURLDateString)) {
+      return [startURLDateString, endURLDateString];
     }
     return false;
   }

@@ -10,11 +10,11 @@ const BUTTONS_DEC = 'js-dropdown__btn_decrement';
 const BUTTONS_INC = 'js-dropdown__btn_increment';
 const TYPE = 'js-dropdown__type';
 const ITEM = 'js-dropdown__item';
+const LABEL = 'js-dropdown__label';
 const DISABLED = 'dropdown__btn_disabled';
 const ACTIVE = 'dropdown__content_active';
 const OPENED = 'dropdown__output-field_opened';
 const HIDDEN = 'dropdown__button_hidden';
-const LABEL = 'dropdown__label';
 
 export {
   DEFAULT_KEY,

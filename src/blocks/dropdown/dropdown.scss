@@ -43,7 +43,6 @@
       border-color: rgb(map.get(variables.$colors, 'dark'), 0.5);
     }
 
-    // According to the maket requirements
     &:focus {
       outline: none;
     }
@@ -110,7 +109,6 @@
     content: '\e903';
   }
 
-  // Counter
   &__btn {
     width: 30px;
     height: 30px;

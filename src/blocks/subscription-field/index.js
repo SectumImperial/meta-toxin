@@ -1,5 +1,6 @@
-import './subscription-field.scss';
 import Inputmask from 'inputmask';
+
+import './subscription-field.scss';
 
 const inputMailSubscription = document.querySelectorAll('.subscription-field__input');
 

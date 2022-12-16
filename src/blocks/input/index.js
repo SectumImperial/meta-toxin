@@ -1,4 +1,5 @@
 import Inputmask from 'inputmask';
+
 import Input from './Input';
 import './input.scss';
 

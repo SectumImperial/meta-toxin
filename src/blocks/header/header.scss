@@ -131,7 +131,6 @@
         transform: scale(1) translate(0, -50%);
       }
 
-      // Animation by click on the icon
       &._active span {
         transform: scale(0) translate(0, -50%);
       }

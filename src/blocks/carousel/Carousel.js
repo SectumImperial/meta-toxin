@@ -43,8 +43,8 @@ class Carousel {
   #markToggles() {
     let i = 0;
     this.toggles.forEach((toggle) => {
-      // eslint-disable-next-line no-param-reassign
-      toggle.dataset.toggleCount = i;
+      const toggleElem = toggle.closest(`.${TOGGLE}`);
+      toggleElem.dataset.toggleCount = i;
       i += 1;
     });
   }

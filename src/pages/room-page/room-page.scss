@@ -8,7 +8,6 @@
     margin: 0 auto;
   }
 
-  // Images
   &__photos {
     max-height: 485px;
     display: flex;
@@ -35,7 +34,6 @@
     width: 100%;
   }
 
-  // Information
   &__main {
     padding: 70px 140px 71px;
     margin: 0 auto;
@@ -130,7 +128,6 @@
     color: rgb(map.get(variables.$colors, 'dark'), 0.75);
   }
 
-  // The order-card
   &__order {
     display: flex;
     flex-basis: 390px;
