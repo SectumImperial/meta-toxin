@@ -149,11 +149,11 @@ class Canvas {
     this.dashoffsets.push(dash);
 
     const dasharray = Canvas.createDash(dash);
-    const URL = Canvas.createURL(option);
+    const url = Canvas.createURL(option);
     const dashoffset = Canvas.createDashOffset(dashoffsetVal);
     const className = option.grade ? `${UNIT}_${option.grade}` : `${UNIT}_default`;
     const circle = `<circle class="${UNIT} ${className}" data-line="${option.grade}" 
-    r="15.9" cx="50%" cy="50%" ${URL} ${dasharray} ${dashoffset} tabindex="0"></circle>`;
+    r="15.9" cx="50%" cy="50%" ${url} ${dasharray} ${dashoffset} tabindex="0"></circle>`;
     return circle;
   }
 
@@ -290,8 +290,8 @@ class Canvas {
     return dasharray;
   }
 
-  static createURL({ ID }) {
-    return `stroke="url(#${ID})"`;
+  static createURL({ id }) {
+    return `stroke="url(#${id})"`;
   }
 
   static createDashOffset(dashoffsetVal = 0) {

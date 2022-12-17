@@ -37,13 +37,26 @@ class Dropdown {
   init() {
     this.#findElements();
     this.#checkBtnVisibility();
-    this.type = this.dropdown.querySelector(`.${TYPE}`).value;
-
     this.#addListeners();
     this.#addURLValues();
-
-    this.preset = JSON.parse(this.dropdown.dataset.preset);
     this.#addPreset();
+    this.#checkDecrementButtonDisabled();
+  }
+
+  #findElements() {
+    this.preset = JSON.parse(this.dropdown.dataset.preset);
+    this.field = this.dropdown.querySelector(`.${FIELD}`);
+    this.label = this.dropdown.querySelector(`.${LABEL}`);
+    this.dropdownInput = this.dropdown.querySelector(`.${INPUT}`);
+    this.dropdownContent = this.dropdown.querySelector(`.${CONTENT}`);
+    this.btnClear = this.dropdown.querySelector(`.${BTN_CLEAR}`);
+    this.btnAccept = this.dropdown.querySelector(`.${BTN_ACCEPT}`);
+    this.counter = this.dropdown.querySelector(`.${COUNTER}`);
+    this.buttonsDecrement = this.counter.querySelectorAll(`.${BUTTONS_DEC}`);
+    this.buttonsIncrement = this.counter.querySelectorAll(`.${BUTTONS_INC}`);
+
+    this.counts = this.dropdown.querySelectorAll(`.${COUNT_ELEM}`);
+    this.type = this.dropdown.querySelector(`.${TYPE}`).value;
   }
 
   #addListeners() {
@@ -159,20 +172,6 @@ class Dropdown {
 
   #handleFieldClick() {
     this.field.classList.toggle(OPENED);
-  }
-
-  #findElements() {
-    this.field = this.dropdown.querySelector(`.${FIELD}`);
-    this.label = this.dropdown.querySelector(`.${LABEL}`);
-    this.dropdownInput = this.dropdown.querySelector(`.${INPUT}`);
-    this.dropdownContent = this.dropdown.querySelector(`.${CONTENT}`);
-    this.btnClear = this.dropdown.querySelector(`.${BTN_CLEAR}`);
-    this.btnAccept = this.dropdown.querySelector(`.${BTN_ACCEPT}`);
-    this.counter = this.dropdown.querySelector(`.${COUNTER}`);
-    this.buttonsDecrement = this.counter.querySelectorAll(`.${BUTTONS_DEC}`);
-    this.buttonsIncrement = this.counter.querySelectorAll(`.${BUTTONS_INC}`);
-
-    this.counts = this.dropdown.querySelectorAll(`.${COUNT_ELEM}`);
   }
 
   #addURLValues() {
@@ -311,6 +310,18 @@ class Dropdown {
     }
   }
 
+  #checkDecrementButtonDisabled() {
+    const countElements = this.dropdown.querySelectorAll(`.${COUNT_ELEM}`);
+    countElements.forEach((countElement) => {
+      if (Number(countElement.value) > 0) {
+        Dropdown.removeDisabledForButton(countElement);
+      }
+      if (Number(countElement.value) === 0) {
+        Dropdown.addDisabledForButton(countElement);
+      }
+    });
+  }
+
   static hasIsEqualKey(compareMap, arr) {
     compareMap.forEach((_, value) => {
       if (isEqual(value, arr)) return true;
@@ -358,12 +369,16 @@ class Dropdown {
 
   static removeDisabledForButton(target) {
     const container = target.closest(`.${ITEM}`);
-    container.querySelector(`.${BUTTONS_DEC}`).disabled = false;
+    const button = container.querySelector(`.${BUTTONS_DEC}`);
+    button.disabled = false;
+    button.classList.remove(DISABLED);
   }
 
   static addDisabledForButton(target) {
     const container = target.closest(`.${ITEM}`);
-    container.querySelector(`.${BUTTONS_DEC}`).disabled = true;
+    const button = container.querySelector(`.${BUTTONS_DEC}`);
+    button.disabled = true;
+    button.classList.add(DISABLED);
   }
 }
 
