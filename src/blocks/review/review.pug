@@ -18,10 +18,9 @@ mixin review(options = {})
 
   section.review
     .review__image  
-      img(
+      img.review__photo(
         src = require(`Assets/content/${src}`) 
         alt = `Фото ${name}`
-        class = "review__photo"
         width = 48
         height = 48
         )

@@ -30,13 +30,13 @@ mixin dropdown(options = {})
             name = "dropdown",
             tabindex = "0"
           )= placeholder
-          span.dropdown__arrow.dropdown__arrow_icon.dropdown_icon-js 
+          span.dropdown__arrow.dropdown__arrow_icon.js-dropdown__arrow_icon 
       else 
         output.dropdown__output.js-dropdown__output(
           name = "dropdown",
           tabindex = "0"
         )= placeholder
-        span.dropdown__arrow.dropdown__arrow_icon.dropdown_icon-js 
+        span.dropdown__arrow.dropdown__arrow_icon.js-dropdown__arrow_icon 
     div.dropdown__content.js-dropdown__content(class = openClass)
       .dropdown__counter.js-dropdown__counter
         ul.dropdown__items

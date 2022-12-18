@@ -22,11 +22,10 @@ block variables
 block content
   section.search-room
     .search-room__content
-      section.search-room__filters 
-        form(
+      aside.search-room__filters 
+        form.search-room__form(
           method = "GET",
           action = "error-page.html",
-          class = "search-room__form",
         )
           .search-room__datepicker
             +datepicker({

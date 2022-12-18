@@ -1,4 +1,4 @@
-const ACTIVE_JS = '_active-js';
+const ACTIVE_JS = 'paginator_active';
 const LI_CLASS = 'paginator__item';
 const ACTIVE_LI = 'paginator__item_active';
 const HIDE = 'paginator__button_hidden';
