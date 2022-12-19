@@ -50,8 +50,8 @@
 
   &__arrow {
     position: absolute;
-    top: 57%;
-    right: 15px;
+    top: 58%;
+    right: 5%;
     font-size: map.get(variables.$font-sizes, 'xs');
 
     &_icon {
@@ -61,7 +61,6 @@
       }
     }
   }
-
 
   &__content {
     display: none;

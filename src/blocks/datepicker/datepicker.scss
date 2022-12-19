@@ -92,7 +92,7 @@
     margin: 0 18px 18px 15px;
   }
 
-  &__input-container  {
+  &__input-container {
     display: inline-block;
     width: 100%;
     position: relative;
@@ -125,12 +125,12 @@
 
   &__icon {
     position: absolute;
-    top: 36%;
-    right: 15px;
+    top: 43%;
+    right: 11%;
     font-size: map.get(variables.$font-sizes, 'xs');
 
     &_active {
-      transform: rotate(180deg)
+      transform: rotate(180deg);
     }
 
     &::before {
@@ -156,10 +156,10 @@
     display: flex;
     justify-content: space-between;
   }
-  
+
   &__icon_forward {
     &::before {
-      content: "\e901";
+      content: '\e901';
     }
   }
 
@@ -254,7 +254,6 @@
         border-radius: 50% 0 0 50%;
       }
 
-
       .-in-range- {
         background: map.get(
           variables.$gradients,
@@ -307,7 +306,6 @@
           }
         }
       }
-
 
       .-selected- {
         height: 40px;

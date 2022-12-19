@@ -25,7 +25,7 @@
   }
 
   &__copyright {
-    padding: 14px 31px 22px 20px;
+    padding: 0 31px 0 20px;
     text-align: center;
   }
 
@@ -49,7 +49,7 @@
 
     &__blocks {
       display: flex;
-      padding: 99px 138px 82px 137px;
+      padding: 99px 138px 96px 137px;
     }
 
     &__block {
@@ -61,7 +61,7 @@
       flex-direction: row;
       justify-content: space-between;
       width: 100%;
-      padding: 8px 142px 22px 119px;
+      padding: 24px 142px 22px 119px;
       border-top: 1px solid #e5e5e5;
     }
 
@@ -104,6 +104,7 @@
     &__title {
       text-transform: uppercase;
       margin-top: 4px;
+      margin-bottom: 14px;
     }
   }
 
