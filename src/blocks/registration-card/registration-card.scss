@@ -7,7 +7,7 @@
 
   min-width: 380px;
   max-width: 380px;
-  padding: 40px 30px 30px 28px;
+  padding: 39px 30px 30px 28px;
 
   &__subtitle {
     text-transform: uppercase;
@@ -34,7 +34,7 @@
   }
 
   &__birth-group {
-    margin-top: 25px;
+    margin-top: 24px;
   }
 
   &__data-group {
@@ -50,7 +50,7 @@
   }
 
   &__button {
-    margin-top: 23px;
+    margin-top: 24px;
   }
 
   &__login-group {
@@ -58,6 +58,10 @@
     display: grid;
     grid-template-columns: 1fr auto;
     align-items: center;
+  }
+
+  &__login-button {
+    margin-right: 1px;
   }
 
   @media (max-width: map.get(variables.$breakpoints, 'mobile')) {

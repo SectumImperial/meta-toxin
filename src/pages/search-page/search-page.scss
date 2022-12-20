@@ -10,8 +10,8 @@
     max-width: map.get(variables.$layout-sizes, 'content');
     display: flex;
     align-items: flex-start;
-    gap: 59px;
-    padding: 31px 5px 75px 4px;
+    gap: 58px;
+    padding: 30px 5px 75px 4px;
     margin: 0 auto;
   }
 
@@ -37,7 +37,7 @@
   }
 
   &__guests {
-    margin-top: 21px;
+    margin-top: 13px;
   }
 
   &__dropdown {
@@ -45,11 +45,11 @@
   }
 
   &__range {
-    margin-top: 30px;
+    margin-top: 28px;
   }
 
   &__rules {
-    margin-top: 28px;
+    margin-top: 31px;
   }
 
   &__checkboxes {
@@ -80,7 +80,7 @@
   }
 
   &__facilities {
-    margin-top: 29px;
+    margin-top: 21px;
   }
 
   &__add-facilities {
