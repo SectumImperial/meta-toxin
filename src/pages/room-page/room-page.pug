@@ -16,35 +16,35 @@ block variables
     const keywords = 'Отель, Toxin, детали номера'
 
 block content
-  div.room-details
-    .room-details__content
-      section.room-details__photos
-        .room-details__photos-big
-          img.room-details__image(
+  div.room-page
+    .room-page__content
+      section.room-page__photos
+        .room-page__photos-big
+          img.room-page__image(
             src = require("Assets/content/room-big.jpg"),
             alt = "Большое фото номера",
           )
-        .room-details__photos-small
-          .room-details__photos-top
-            img.room-details__image.room-details__image_small(
+        .room-page__photos-small
+          .room-page__photos-top
+            img.room-page__image.room-page__image_small(
               src = require("Assets/content/room-small-1.jpg"),
               alt = "Малое фото номера",
           )
-          .room-details__photos-bottom
-            img.room-details__image.room-details__image_small.room-details__image_bigger(
+          .room-page__photos-bottom
+            img.room-page__image.room-page__image_small.room-page__image_bigger(
               src = require("Assets/content/room-small-2.jpg"),
               alt = "Малое фото номера",
             )
 
-      .room-details__main
-        section.room-details__information
-          .room-details__details 
-            .room-details__subtitle
+      .room-page__main
+        section.room-page__information
+          .room-page__details 
+            .room-page__subtitle
               +title({
                 level: 'h3',
                 text: 'Сведения о номере'
               })
-            .room-details__data
+            .room-page__data
               +room-data({
                 items: [
                   {
@@ -64,13 +64,13 @@ block content
                   }
                 ]
               })
-          .room-details__feedback
-            .room-details__subtitle
+          .room-page__feedback
+            .room-page__subtitle
               +title({
                 level: 'h3',
                 text: 'Впечатления от номера'
               })
-            .room-details__canvas
+            .room-page__canvas
               +canvas([
                 {
                   count: 520,
@@ -102,15 +102,15 @@ block content
                 },
               ])
 
-          .room-details__reviews
-            .room-details__reviews-heading
-              .room-details__subtitle
+          .room-page__reviews
+            .room-page__reviews-heading
+              .room-page__subtitle
                 +title({
                   level: 'h3',
                   text: 'Отзывы посетителей номера'
                 })
-              span.room-details__reviews-count.js-room-details__reviews-count 0 отзывов
-            .room-details__reviews-content    
+              span.room-page__reviews-count.js-room-page__reviews-count 0 отзывов
+            .room-page__reviews-content    
               +review({
                 src: 'tesak.jpg',
                 name: 'Мурад Сарафанов',
@@ -127,13 +127,13 @@ block content
                 counts: 2,
                 text: 'Обслуживание на высоте! Всё аккуратно, чисто. Завтраки в номер советую заказать, каждый день новое блюдо и десерт как комплимент.'
               })
-          .room-details__rules
-            .room-details__subtitle.room-details__subtitle_rules
+          .room-page__rules
+            .room-page__subtitle.room-page__subtitle_rules
               +title({
                 level: 'h3',
                 text: 'Правила'
               })
-            .room-details__rules-items
+            .room-page__rules-items
               +rules({
                 rules: [
                   'Нельзя с питомцами',
@@ -141,15 +141,15 @@ block content
                   'Время прибытия — после 13:00, а выезд до 12:00'
                 ]
               })
-          .room-details__cancel
-            .room-details__subtitle.room-details__subtitle_cancel
+          .room-page__cancel
+            .room-page__subtitle.room-page__subtitle_cancel
               +title({
                 level: 'h3',
                 text: 'Отмена'
               })
-            p.room-details__cancel-text Бесплатная отмена в течение 48 ч. После этого при отмене не позднее чем за 5 дн. до прибытия вы получите полный возврат за вычетом сбора за услуги.
+            p.room-page__cancel-text Бесплатная отмена в течение 48 ч. После этого при отмене не позднее чем за 5 дн. до прибытия вы получите полный возврат за вычетом сбора за услуги.
 
 
-        section.room-details__order 
-          .room-details__card   
+        section.room-page__order 
+          .room-page__card   
             +order-card()

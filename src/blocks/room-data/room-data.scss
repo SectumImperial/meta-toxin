@@ -16,12 +16,19 @@
     grid-template:
       's t'
       's d';
-    padding: 21px 0 19px;
+    padding: 12px 0 34px 6px;
     border-bottom: 1px solid rgb(map.get(variables.$colors, 'dark'), 0.1);
     list-style: none;
 
+    gap: 7px 7px;
+
     &:first-child {
-      gap: 0 7px;
+      padding-left: 5px;
+      gap: 6px 10px;
+    }
+
+    &:nth-child(2) {
+      gap: 6px 2px;
     }
 
     &:nth-child(3) {

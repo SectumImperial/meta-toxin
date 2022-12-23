@@ -2,7 +2,7 @@
 @use 'sass:color';
 @use 'SharedStyles/variables';
 
-.room-details {
+.room-page {
   &__content {
     max-width: map.get(variables.$layout-sizes, 'container');
     margin: 0 auto;
@@ -35,7 +35,7 @@
   }
 
   &__main {
-    padding: 70px 140px 71px;
+    padding: 70px 139px 71px;
     margin: 0 auto;
     display: flex;
     gap: 66px;
@@ -43,6 +43,7 @@
 
   &__subtitle {
     padding-bottom: 11px;
+    padding-left: 1px;
 
     &_rules {
       padding-left: 20px;
@@ -78,7 +79,7 @@
   }
 
   &__canvas {
-    margin-top: 12px;
+    margin-top: 10px;
   }
 
   &__reviews {
@@ -86,7 +87,7 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    padding-top: 3px;
+    padding-top: 1px;
     padding-bottom: 22px;
   }
 
