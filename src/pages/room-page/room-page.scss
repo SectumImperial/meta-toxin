@@ -35,18 +35,18 @@
   }
 
   &__main {
-    padding: 70px 139px 71px;
+    padding: 70px 140px 71px 137px;
     margin: 0 auto;
     display: flex;
     gap: 66px;
   }
 
   &__subtitle {
-    padding-bottom: 11px;
+    padding-bottom: 2px;
     padding-left: 1px;
 
     &_rules {
-      padding-left: 20px;
+      padding-left: 23px;
       padding-top: 1px;
     }
 
@@ -61,8 +61,8 @@
 
   &__information {
     display: grid;
-    grid-template-columns: 259px auto;
-    gap: 0 102px;
+    grid-template-columns: 279px auto;
+    gap: 0 82px;
     grid-template-areas:
       'details feedback'
       'reviews reviews'
@@ -72,22 +72,25 @@
 
   &__details {
     grid-area: details;
+    padding-left: 2px;
   }
 
   &__feedback {
     grid-area: feedback;
+    padding-left: 2px;
   }
 
   &__canvas {
-    margin-top: 10px;
+    margin-top: 19px;
   }
 
   &__reviews {
     grid-area: reviews;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    padding-top: 1px;
+    gap: 19px;
+    padding-top: 12px;
+    padding-left: 1px;
     padding-bottom: 22px;
   }
 
@@ -98,16 +101,27 @@
 
   &__cancel {
     grid-area: cancel;
+    max-width: 356px;
+    padding-left: 2px;
   }
 
+  &__cancel-text {
+    margin: 0;
+    padding: 17px 10px 0 1px;
+    line-height: 24px;
+    color: rgb(map.get(variables.$colors, 'dark'), 0.75);
+  } 
+
   &__rules-items {
-    padding-top: 7px;
+    padding-top: 16px;
+    padding-left: 1px;
   }
 
   &__reviews-content {
     display: flex;
     flex-direction: column;
     gap: 23px;
+    padding-left: 1px;
   }
 
   &__reviews-heading {
@@ -119,14 +133,7 @@
 
   &__reviews-count {
     color: rgb(map.get(variables.$colors, 'dark'), 0.5);
-    padding: 0 4px 6px 0;
-  }
-
-  &__cancel-text {
-    margin: 0;
-    padding: 7px 10px 0 0;
-    line-height: 24px;
-    color: rgb(map.get(variables.$colors, 'dark'), 0.75);
+    padding: 3px 4px 0 0;
   }
 
   &__order {

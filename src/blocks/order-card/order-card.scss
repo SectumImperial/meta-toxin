@@ -8,7 +8,7 @@
   min-width: 380px;
   @include mixins.box-style;
 
-  padding: 40px 27px 30px 29px;
+  padding: 39px 27px 30px 29px;
 
   &__room-info {
     display: flex;
@@ -25,7 +25,7 @@
   }
 
   &__dropdown {
-    margin-top: 21px;
+    margin-top: 14px;
   }
 
   &__dropdown-section {
@@ -50,6 +50,7 @@
 
   &__details {
     margin-top: 20px;
+    padding-left: 1px;
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -104,7 +105,7 @@
     font-weight: bold;
     font-size: map.get(variables.$font-sizes, 'lg');
     color: map.get(variables.$colors, 'dark');
-    padding-top: 16px;
+    padding-top: 15px;
     padding-right: 2px;
   }
 

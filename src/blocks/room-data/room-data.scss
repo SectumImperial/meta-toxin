@@ -16,7 +16,8 @@
     grid-template:
       's t'
       's d';
-    padding: 12px 0 34px 6px;
+    grid-template-columns: 44px 1fr;
+    padding: 21px 0 23px 6px;
     border-bottom: 1px solid rgb(map.get(variables.$colors, 'dark'), 0.1);
     list-style: none;
 
@@ -28,11 +29,14 @@
     }
 
     &:nth-child(2) {
-      gap: 6px 2px;
+      padding-top: 23px;
+      gap: 6px 9px;
     }
 
     &:nth-child(3) {
       border-bottom: none;
+      padding-top: 23px;
+      gap: 7px 9px;
     }
   }
 
