@@ -107,6 +107,7 @@ class Datepicker {
       if (e.classList.contains(CLICKED)) e.classList.remove(CLICKED);
       if (this.calContainer.classList.contains(ACTIVE)) {
         this.#closeDp();
+        this.icons.forEach((icon) => icon.classList.toggle(ICON_ACTIVE));
       }
     });
   }
@@ -551,16 +552,6 @@ class Datepicker {
     ];
   }
 
-  static getFourAfter() {
-    const current = new Date();
-    const year = current.getFullYear();
-    const month = current.getMonth();
-    const day = current.getDate();
-    const fourAfter = new Date(year, month, day + 5);
-
-    return fourAfter;
-  }
-
   #setPrev() {
     const current = new Date();
     const year = current.getFullYear();
@@ -629,6 +620,27 @@ class Datepicker {
     targetContainer.classList.toggle(CLICKED);
     calContainer.classList.toggle(ACTIVE);
     this.icons.forEach((icon) => icon.classList.toggle(ICON_ACTIVE));
+  }
+
+  #checkDateAfterClosing() {
+    if (this.isTwoInputs) {
+      this.secondItem.value = Datepicker.formatDate({
+        firstDate: this.dp.rangeDateTo,
+        mod: 'twoInputMod',
+      });
+    }
+
+    if (this.isSingleInput) {
+      if (!this.dp.rangeDateFrom && !this.dp.rangeDateTo) return;
+      this.singleItem.value = Datepicker.formatDate({
+        firstDate: this.dp.rangeDateFrom,
+        secondDate: this.dp.rangeDateTo,
+        mod: 'singleInputMod',
+      });
+    }
+
+    this.#performRange();
+    this.#setPointRange();
   }
 
   static isOneInputClicked({ targetContainer, sibling, container }) {
@@ -761,27 +773,6 @@ class Datepicker {
     return result;
   }
 
-  #checkDateAfterClosing() {
-    if (this.isTwoInputs) {
-      this.secondItem.value = Datepicker.formatDate({
-        firstDate: this.dp.rangeDateTo,
-        mod: 'twoInputMod',
-      });
-    }
-
-    if (this.isSingleInput) {
-      if (!this.dp.rangeDateFrom && !this.dp.rangeDateTo) return;
-      this.singleItem.value = Datepicker.formatDate({
-        firstDate: this.dp.rangeDateFrom,
-        secondDate: this.dp.rangeDateTo,
-        mod: 'singleInputMod',
-      });
-    }
-
-    this.#performRange();
-    this.#setPointRange();
-  }
-
   static isDateBiggerThanNow({ year, month, day }) {
     const { currentYear, currentMonth, currentDay } = Datepicker.getCurrentDate();
     const fullCurrentDate = new Date(`${currentMonth}-${currentDay}-${currentYear}`);
@@ -805,6 +796,16 @@ class Datepicker {
     const currentYear = currentDate.getFullYear();
 
     return { currentDay, currentMonth, currentYear };
+  }
+
+  static getFourAfter() {
+    const current = new Date();
+    const year = current.getFullYear();
+    const month = current.getMonth();
+    const day = current.getDate();
+    const fourAfter = new Date(year, month, day + 5);
+
+    return fourAfter;
   }
 }
 
