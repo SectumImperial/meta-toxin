@@ -191,7 +191,7 @@ class OrderCard {
   static handleHideMessage(target) {
     const elemID = target.dataset.IDTip;
     const message = document.querySelector(`.order-card__tip-message[data-id-message="${elemID}"]`);
-    message.style.display = 'none';
+    if (message.classList.contains('order-card__tip-message_show')) message.classList.remove('order-card__tip-message_show');
   }
 
   static formattedDate(date) {
@@ -220,7 +220,6 @@ class OrderCard {
     const el = document.createElement('div');
     el.className = 'order-card__tip-message js-order-card__tip-message';
     el.innerText = information;
-    el.style.display = 'none';
     el.dataset.idMessage = tip.dataset.IDTip;
 
     return el;
@@ -232,8 +231,7 @@ class OrderCard {
     if (!message) return;
 
     const { x, y } = coords;
-    message.style.display = 'block';
-    message.style.position = 'fixed';
+    message.classList.add('order-card__tip-message_show');
     message.style.left = `${x + 22}px`;
     message.style.top = `${y + 20}px`;
   }

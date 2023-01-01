@@ -126,6 +126,7 @@
   }
 
   &__tip-message {
+    display: none;
     max-width: 100px;
     padding: 2px;
     background-color: rgb(map.get(variables.$colors, 'dark'), 0.75);
@@ -133,6 +134,11 @@
     border-radius: 4px;
     font-size: map.get(variables.$font-sizes, 'xs');
     z-index: 2;
+
+    &_show {
+      display: block;
+      position: fixed;
+    }
   }
 
   &__button {
