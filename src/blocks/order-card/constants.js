@@ -7,6 +7,7 @@ const ADD_FEE_COMPUTED = 'js-order-card__add-fee-computed';
 const SUM = 'js-order-card__sum';
 const START_DATE = 'js-datepicker__field_start';
 const END_DATE = 'js-datepicker__field_end';
+const TIP = 'js-order-card__tip';
 const FEES_DISC = 2179;
 const ADD_FEE = 300;
 const PRICE = 9990;
@@ -26,4 +27,5 @@ export {
   ADD_FEE,
   PRICE,
   DEFAULT_DAYS,
+  TIP,
 };

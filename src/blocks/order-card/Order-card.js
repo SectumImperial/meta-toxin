@@ -14,6 +14,7 @@ import {
   ADD_FEE,
   PRICE,
   DEFAULT_DAYS,
+  TIP,
 } from './constants';
 
 class OrderCard {
@@ -38,11 +39,25 @@ class OrderCard {
     this.endDate.addEventListener('input', this.#handleDatepickerInput.bind(this));
     this.datepicker.addEventListener('click', this.#handleDatepickerClick.bind(this));
     document.addEventListener('click', this.#handleDocumentClick.bind(this));
-    document.querySelectorAll('.js-order-card__tip').forEach((e) => {
+    document.querySelectorAll(`.${TIP}`).forEach((e) => {
       e.addEventListener('mouseenter', OrderCard.handleTipMouseEnter.bind(this));
       e.addEventListener('mouseout', OrderCard.handleTipMouseOut.bind(this));
       e.addEventListener('focus', OrderCard.handleTipFocus.bind(this));
       e.addEventListener('blur', OrderCard.handleTipBlur.bind(this));
+    });
+
+    document.addEventListener('scroll', this.#handleDocumentScroll.bind(this));
+  }
+
+  #handleDocumentScroll() {
+    this.card.querySelectorAll(`.${TIP}`).forEach((tip) => {
+      const idTip = tip.dataset.IDTip;
+      if (idTip.length > 0) {
+        const message = OrderCard.findMessage(tip.dataset.IDTip);
+        if (message.classList.contains('order-card__tip-message_show')) {
+          OrderCard.updateTipPosition(tip, message);
+        }
+      }
     });
   }
 
@@ -163,6 +178,15 @@ class OrderCard {
     ).innerText = `${finalSum}₽`;
   }
 
+  static updateTipPosition(tip, message) {
+    const coords = {
+      x: tip.getBoundingClientRect().x,
+      y: tip.getBoundingClientRect().y,
+    };
+
+    OrderCard.setMessagePosition(coords, message);
+  }
+
   static handleTipMouseEnter({ target }) {
     OrderCard.handleShowMessage(target);
   }
@@ -227,13 +251,21 @@ class OrderCard {
 
   static showMessage(elemID, coords = {}) {
     if (elemID === undefined || elemID === null) return;
-    const message = document.querySelector(`.order-card__tip-message[data-id-message="${elemID}"]`);
+    const message = OrderCard.findMessage(elemID);
     if (!message) return;
-
-    const { x, y } = coords;
     message.classList.add('order-card__tip-message_show');
-    message.style.left = `${x + 22}px`;
-    message.style.top = `${y + 20}px`;
+    OrderCard.setMessagePosition(coords, message);
+  }
+
+  static setMessagePosition(coords, message) {
+    const { x, y } = coords;
+    const messageTip = message;
+    messageTip.style.left = `${x + 22}px`;
+    messageTip.style.top = `${y + 20}px`;
+  }
+
+  static findMessage(elemID) {
+    return document.querySelector(`.order-card__tip-message[data-id-message="${elemID}"]`);
   }
 }
 
