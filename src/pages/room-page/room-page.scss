@@ -200,7 +200,8 @@
     }
 
     &__rules {
-      align-self: flex-start;
+      display: flex;
+      flex-direction: column;
     }
 
     &__reviews-count {
