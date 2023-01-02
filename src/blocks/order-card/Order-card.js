@@ -32,6 +32,7 @@ class OrderCard {
     this.#createAddFeeString();
     this.#insertFinalSum();
     this.#addListeners();
+    this.#addResizeObserver();
   }
 
   #addListeners() {
@@ -39,7 +40,7 @@ class OrderCard {
     this.endDate.addEventListener('input', this.#handleDatepickerInput.bind(this));
     this.datepicker.addEventListener('click', this.#handleDatepickerClick.bind(this));
     document.addEventListener('click', this.#handleDocumentClick.bind(this));
-    document.querySelectorAll(`.${TIP}`).forEach((e) => {
+    this.card.querySelectorAll(`.${TIP}`).forEach((e) => {
       e.addEventListener('mouseenter', OrderCard.handleTipMouseEnter.bind(this));
       e.addEventListener('mouseout', OrderCard.handleTipMouseOut.bind(this));
       e.addEventListener('focus', OrderCard.handleTipFocus.bind(this));
@@ -51,9 +52,9 @@ class OrderCard {
 
   #handleDocumentScroll() {
     this.card.querySelectorAll(`.${TIP}`).forEach((tip) => {
-      const idTip = tip.dataset.IDTip;
+      const { idTip } = tip.dataset;
       if (idTip.length > 0) {
-        const message = OrderCard.findMessage(tip.dataset.IDTip);
+        const message = OrderCard.findMessage(tip.dataset.idTip);
         if (message.classList.contains('order-card__tip-message_show')) {
           OrderCard.updateTipPosition(tip, message);
         }
@@ -77,6 +78,28 @@ class OrderCard {
     this.startDate = this.card.querySelector(`.${START_DATE}`);
     this.endDate = this.card.querySelector(`.${END_DATE}`);
     this.datepicker = this.card.querySelector('.datepicker__container');
+  }
+
+  #addResizeObserver() {
+    const resizeObserver = new ResizeObserver((entries) => {
+      entries.forEach(() => {
+        const tips = this.card.querySelectorAll(`.${TIP}`);
+        if (tips.length <= 0) return;
+        tips.forEach((tip) => {
+          const elemID = tip.dataset.idTip;
+          const message = OrderCard.findMessage(elemID);
+          if (message.classList.contains('order-card__tip-message_show')) {
+            const coords = {
+              x: tip.getBoundingClientRect().x,
+              y: tip.getBoundingClientRect().y,
+            };
+            OrderCard.setMessagePosition(coords, message);
+          }
+        });
+      });
+    });
+
+    resizeObserver.observe(document.querySelector('.page'));
   }
 
   #updateCounting() {
@@ -204,7 +227,7 @@ class OrderCard {
   }
 
   static handleShowMessage(target) {
-    const elemID = target.dataset.IDTip;
+    const elemID = target.dataset.idTip;
     const coords = {
       x: target.getBoundingClientRect().x,
       y: target.getBoundingClientRect().y,
@@ -213,7 +236,7 @@ class OrderCard {
   }
 
   static handleHideMessage(target) {
-    const elemID = target.dataset.IDTip;
+    const elemID = target.dataset.idTip;
     const message = document.querySelector(`.order-card__tip-message[data-id-message="${elemID}"]`);
     if (message.classList.contains('order-card__tip-message_show')) message.classList.remove('order-card__tip-message_show');
   }
@@ -235,7 +258,7 @@ class OrderCard {
     el.style.width = '20px';
     el.style.height = '20px';
     el.style.borderRadius = '50%';
-    el.dataset.IDTip = uuidv4();
+    el.dataset.idTip = uuidv4();
     el.tabIndex = 0;
     return el;
   }
@@ -244,7 +267,7 @@ class OrderCard {
     const el = document.createElement('div');
     el.className = 'order-card__tip-message js-order-card__tip-message';
     el.innerText = information;
-    el.dataset.idMessage = tip.dataset.IDTip;
+    el.dataset.idMessage = tip.dataset.idTip;
 
     return el;
   }
