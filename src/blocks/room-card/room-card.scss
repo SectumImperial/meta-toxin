@@ -3,6 +3,7 @@
 @use 'SharedStyles/variables';
 
 .room-card {
+  max-height: 258px;
   max-width: 270px;
   display: grid;
   grid-template-rows: 1fr auto auto;
@@ -15,17 +16,20 @@
   }
 
   &__information {
-    padding: 18px 15px 17px 22px;
+    padding: 18px 13px 17px 21px;
   }
 
   &__details,
   &__feedback {
     display: flex;
     justify-content: space-between;
+    display: flex;
+    gap: 5px;
   }
 
   &__number {
     padding-top: 2px;
+    max-width: 110px;
   }
 
   &__price {
@@ -41,23 +45,29 @@
   }
 
   &__feedback {
-    padding: 11px 0 0 2px;
+    padding: 11px 0 0 3px;
     border-top: 1px solid rgb(map.get(variables.$colors, 'dark'), 0.1);
   }
 
   &__reviews {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 4px;
     color: rgb(map.get(variables.$colors, 'dark'), 0.5);
     font-size: map.get(variables.$font-sizes, 'sm');
     padding: 2px 2px 0 0;
-    word-break: break-word;
   }
 
   &__reviews-count {
     font-size: map.get(variables.$font-sizes, 'sm');
     font-weight: 700;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
   &__reviews-word {
     text-transform: capitalize;
+    padding-right: 3px;
   }
 }

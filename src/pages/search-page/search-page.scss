@@ -20,11 +20,6 @@
     padding: 0 1px;
   }
 
-  ._active {
-    position: static;
-    transform: translate(0);
-  }
-
   &__subtitle {
     padding-bottom: 5px;
     text-transform: uppercase;
@@ -126,6 +121,11 @@
       transform: translate(-9999px);
       max-width: 100%;
       transition: all 0.3s ease-in;
+
+      &_active {
+        position: static;
+        transform: translate(0);
+      }
     }
 
     &__button {

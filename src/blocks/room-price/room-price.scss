@@ -4,15 +4,23 @@
 
 .room-price {
   color: rgb(map.get(variables.$colors, 'dark'), 0.5);
-  word-break: break-word;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
 
   &__price {
     font-size: map.get(variables.$font-sizes, 'sm');
     font-weight: 700;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
   &__word {
     font-size: map.get(variables.$font-sizes, 'xs');
     font-weight: 400;
+    display: grid;
+    align-self: end;
   }
 }

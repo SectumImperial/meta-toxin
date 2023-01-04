@@ -9,12 +9,29 @@
   &__number {
     font-size: map.get(variables.$font-sizes, 'sm');
     margin: 0;
+    display: grid;
+    align-items: end;
+    justify-items: start;
+    grid-template-columns: 20px minmax(35px, 44px) 1fr;
+    gap: 1px;
+  }
+
+  &__symbol {
+    padding-left: 1px;
+    padding-bottom: 1px;
   }
 
   &__count {
+    padding-left: 1px;
+    max-width: 50px;
+
     color: map.get(variables.$colors, 'dark');
     font-size: functions.rem(19, variables.$base-font-size);
     font-weight: 700;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 
     &_big {
       font-size: map.get(variables.$font-sizes, '2xl');
@@ -25,8 +42,9 @@
     color: map.get(variables.$colors, 'primary');
     font-size: map.get(variables.$font-sizes, 'xs');
     text-transform: uppercase;
-    padding-top: 2px;
-    padding-left: 8px;
+    padding-left: 2px;
     word-break: normal;
+
+    align-self: end;
   }
 }

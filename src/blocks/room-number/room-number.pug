@@ -11,7 +11,7 @@ mixin room-number(options = {})
 
   .room-number 
     h5.room-number__number
-      span= "№ "
+      span.room-number__symbol №
       span(class = numClass)= `${number}`
       if luxe
         span(class = luxeClass) Люкс
