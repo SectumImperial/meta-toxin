@@ -58,6 +58,8 @@ class Datepicker {
     this.rangeFrom = null;
     this.rangeTo = null;
     this.relatedTarget = null;
+
+    this.lastDay = this.datepicker.querySelector('.air-datepicker-body--cells').lastElementChild;
   }
 
   #addListeners() {
@@ -74,6 +76,13 @@ class Datepicker {
 
     this.fields.forEach((field) => field.addEventListener('keydown', this.#handleFieldKeyDown.bind(this)));
     this.navButtons.forEach((item) => item.addEventListener('keydown', this.#handleNavKeyPress.bind(this)));
+
+    this.lastDay.addEventListener('blur', this.#handleFocusAccept.bind(this));
+  }
+
+  #handleFocusAccept() {
+    this.buttonAccept.querySelector('button').focus();
+    this.buttonAccept.querySelector('button').tabIndex = '0';
   }
 
   #handleNavKeyPress(e) {
@@ -362,6 +371,8 @@ class Datepicker {
     navButtons.forEach((e) => {
       e.tabIndex = '0';
     });
+
+    this.buttonAccept.querySelector('button').tabIndex = '-1';
   }
 
   #addButtonsArrow() {
