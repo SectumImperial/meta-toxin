@@ -22,7 +22,7 @@ class Paginator {
   }
 
   init() {
-    this.#findElems();
+    this.#findElements();
     this.#createVars();
     this.#createPaginator();
     this.#setCurrentPage();
@@ -32,12 +32,12 @@ class Paginator {
   }
 
   #addListeners() {
-    this.btnPrev.addEventListener('click', this.#handleButtonPrevClick.bind(this));
-    this.btnNext.addEventListener('click', this.#handleButtonNextClick.bind(this));
+    this.buttonPrev.addEventListener('click', this.#handleButtonPrevClick.bind(this));
+    this.buttonNext.addEventListener('click', this.#handleButtonNextClick.bind(this));
     this.itemsPaginator.addEventListener('click', this.#handleItemClick.bind(this));
 
-    this.btnPrev.addEventListener('keydown', this.#handleButtonPrevPress.bind(this));
-    this.btnNext.addEventListener('keydown', this.#handleButtonNextPress.bind(this));
+    this.buttonPrev.addEventListener('keydown', this.#handleButtonPrevPress.bind(this));
+    this.buttonNext.addEventListener('keydown', this.#handleButtonNextPress.bind(this));
     this.itemsPaginator.addEventListener('keydown', this.#handleItemPress.bind(this));
     this.mediaQueryList.addEventListener('change', this.#handleChangeScreen.bind(this));
   }
@@ -76,10 +76,10 @@ class Paginator {
     this.#changePage(target);
   }
 
-  #findElems() {
+  #findElements() {
     this.itemsPaginator = this.paginator.querySelector(`.${ITEMS}`);
-    this.btnPrev = this.paginator.querySelector(`.${BTN_PREV}`);
-    this.btnNext = this.paginator.querySelector(`.${BTN_NEXT}`);
+    this.buttonPrev = this.paginator.querySelector(`.${BTN_PREV}`);
+    this.buttonNext = this.paginator.querySelector(`.${BTN_NEXT}`);
     this.liClass = LI_CLASS;
     this.textElement = this.paginator.querySelector(`.${TEXT}`);
   }
@@ -249,23 +249,23 @@ class Paginator {
   #checkVisibilityBtn() {
     const activeItem = this.itemsPaginator.querySelector(`.${ACTIVE_JS}`);
     if (Number(activeItem.dataset.number) === 1) {
-      this.btnPrev.classList.add(HIDE);
+      this.buttonPrev.classList.add(HIDE);
     }
     if (
       Number(activeItem.dataset.number) !== 1
-      && this.btnPrev.classList.contains(HIDE)
+      && this.buttonPrev.classList.contains(HIDE)
     ) {
-      this.btnPrev.classList.remove(HIDE);
+      this.buttonPrev.classList.remove(HIDE);
     }
 
     if (Number(activeItem.dataset.number) === this.pageCount) {
-      this.btnNext.classList.add(HIDE);
+      this.buttonNext.classList.add(HIDE);
     }
     if (
       Number(activeItem.dataset.number) !== this.pageCount
-      && this.btnNext.classList.contains(HIDE)
+      && this.buttonNext.classList.contains(HIDE)
     ) {
-      this.btnNext.classList.remove(HIDE);
+      this.buttonNext.classList.remove(HIDE);
     }
   }
 
@@ -276,7 +276,7 @@ class Paginator {
       this.#removePaginator();
       this.#createPaginator();
       this.#setCurrentPage();
-      this.#findCurrentPage().focus();
+      this.buttonPrev.focus();
     }
   }
 
@@ -287,7 +287,7 @@ class Paginator {
       this.#removePaginator();
       this.#createPaginator();
       this.#setCurrentPage();
-      this.#findCurrentPage().focus();
+      this.buttonNext.focus();
     }
   }
 
