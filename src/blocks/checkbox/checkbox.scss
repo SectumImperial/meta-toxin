@@ -1,7 +1,7 @@
 @use 'sass:map';
 @use 'sass:color';
-@use 'SharedStyles/functions';
-@use 'SharedStyles/variables';
+@use '@styles/functions';
+@use '@styles/variables';
 
 .checkbox {
   display: flex;

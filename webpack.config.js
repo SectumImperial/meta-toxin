@@ -21,7 +21,7 @@ module.exports = {
 
   resolve: {
     alias: {
-      SharedStyles: path.resolve(__dirname, 'src', 'styles', 'shared-styles'),
+      '@styles': path.resolve(__dirname, 'src', 'styles'),
       Assets: path.resolve(__dirname, 'src', 'assets'),
     },
   },

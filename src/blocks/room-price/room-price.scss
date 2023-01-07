@@ -1,6 +1,6 @@
 @use 'sass:map';
 @use 'sass:color';
-@use 'SharedStyles/variables';
+@use '@styles/variables';
 
 .room-price {
   color: rgb(map.get(variables.$colors, 'dark'), 0.5);

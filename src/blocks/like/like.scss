@@ -1,7 +1,7 @@
 @use 'sass:map';
 @use 'sass:color';
-@use 'SharedStyles/variables';
-@use 'SharedStyles/functions';
+@use '@styles/variables';
+@use '@styles/functions';
 
 .like {
   &__button {

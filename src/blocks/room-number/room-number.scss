@@ -1,6 +1,6 @@
 @use 'sass:map';
-@use 'SharedStyles/variables';
-@use 'SharedStyles/functions';
+@use '@styles/variables';
+@use '@styles/functions';
 
 .room-number {
   font-weight: 700;
