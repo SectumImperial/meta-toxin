@@ -250,22 +250,26 @@ class Paginator {
     const activeItem = this.itemsPaginator.querySelector(`.${ACTIVE_JS}`);
     if (Number(activeItem.dataset.number) === 1) {
       this.buttonPrev.classList.add(HIDE);
+      this.buttonPrev.tabIndex = '-1';
     }
     if (
       Number(activeItem.dataset.number) !== 1
       && this.buttonPrev.classList.contains(HIDE)
     ) {
       this.buttonPrev.classList.remove(HIDE);
+      this.buttonPrev.tabIndex = '0';
     }
 
     if (Number(activeItem.dataset.number) === this.pageCount) {
       this.buttonNext.classList.add(HIDE);
+      this.buttonNext.tabIndex = '-1';
     }
     if (
       Number(activeItem.dataset.number) !== this.pageCount
       && this.buttonNext.classList.contains(HIDE)
     ) {
       this.buttonNext.classList.remove(HIDE);
+      this.buttonNext.tabIndex = '0';
     }
   }
 
