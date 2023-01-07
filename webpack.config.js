@@ -22,7 +22,8 @@ module.exports = {
   resolve: {
     alias: {
       '@styles': path.resolve(__dirname, 'src', 'styles'),
-      Assets: path.resolve(__dirname, 'src', 'assets'),
+      '@assets': path.resolve(__dirname, 'src', 'assets'),
+      '@helpers': path.resolve(__dirname, 'src', 'helpers'),
     },
   },
 

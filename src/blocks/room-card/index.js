@@ -1,4 +1,4 @@
-import chooseWord from '../../helpers/chooseWord';
+import chooseWord from '@helpers/chooseWord';
 import './room-card.scss';
 
 document.querySelectorAll('.js-room-card').forEach((e) => {

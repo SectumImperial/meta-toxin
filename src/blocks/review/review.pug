@@ -3,7 +3,7 @@ include ../like/like.pug
 mixin review(options = {})
   -
     const {
-      src = require('Assets/content/default-author.jpg'),
+      src = require('@assets/content/default-author.jpg'),
       name = 'Джек Торранс',
       date = '40 лет назад', 
       liked = false,
@@ -19,7 +19,7 @@ mixin review(options = {})
   section.review
     .review__image  
       img.review__photo(
-        src = require(`Assets/content/${src}`) 
+        src = require(`@assets/content/${src}`) 
         alt = `Фото ${name}`
         width = 48
         height = 48

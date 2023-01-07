@@ -1,4 +1,4 @@
-import chooseWord from '../../helpers/chooseWord';
+import chooseWord from '@helpers/chooseWord';
 import './room-page.scss';
 
 const reviewCount = document.querySelector('.room-page__reviews-count');

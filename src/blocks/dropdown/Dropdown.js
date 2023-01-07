@@ -1,4 +1,4 @@
-import chooseWord from '../../helpers/chooseWord';
+import chooseWord from '@helpers/chooseWord';
 import isEqual from './helpers/isEqual';
 import cutString from './helpers/cutString';
 
