@@ -99,7 +99,7 @@ class OrderCard {
       });
     });
 
-    resizeObserver.observe(document.querySelector('.page'));
+    resizeObserver.observe(document.querySelector('body'));
   }
 
   #updateCounting() {
@@ -283,8 +283,14 @@ class OrderCard {
   static setMessagePosition(coords, message) {
     const { x, y } = coords;
     const messageTip = message;
-    messageTip.style.left = `${x + 22}px`;
-    messageTip.style.top = `${y + 20}px`;
+
+    if (window.innerWidth < 370) {
+      messageTip.style.left = `${x - 42}px`;
+      messageTip.style.top = `${y + 20}px`;
+    } else {
+      messageTip.style.left = `${x + 22}px`;
+      messageTip.style.top = `${y + 20}px`;
+    }
   }
 
   static findMessage(elemID) {

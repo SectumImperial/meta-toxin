@@ -251,7 +251,6 @@ class Paginator {
     if (Number(activeItem.dataset.number) === 1) {
       this.buttonPrev.classList.add(HIDE);
       this.buttonPrev.tabIndex = '-1';
-      this.#findCurrentPage().focus();
     }
     if (
       Number(activeItem.dataset.number) !== 1
@@ -264,7 +263,6 @@ class Paginator {
     if (Number(activeItem.dataset.number) === this.pageCount) {
       this.buttonNext.classList.add(HIDE);
       this.buttonNext.tabIndex = '-1';
-      this.#findCurrentPage().focus();
     }
     if (
       Number(activeItem.dataset.number) !== this.pageCount

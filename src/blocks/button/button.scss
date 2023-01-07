@@ -42,6 +42,7 @@
   }
 
   &__button {
+    margin: 0 auto;
     min-height: 100%;
     display: flex;
     justify-content: center;
@@ -95,7 +96,7 @@
     }
 
     &_large {
-      padding: 13px 50px 12px 89px;
+      padding: 13px 0 12px 24px;
     }
   }
 
@@ -122,6 +123,6 @@
   }
 
   @media (max-width: map.get(variables.$breakpoints, 'mobile')) {
-    display: block;
+    display: flex;
   }
 }
