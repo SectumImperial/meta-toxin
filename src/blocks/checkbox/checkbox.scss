@@ -66,11 +66,13 @@
     position: relative;
     border: 1px solid (map.get(variables.$colors, 'primary'));
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     &::after {
       content: '';
-      position: absolute;
-      top: 20%;
-      left: 35%;
+      display: flex;
       height: 6px;
       width: 4px;
       border-image: map.get(variables.$gradients, 'primary');

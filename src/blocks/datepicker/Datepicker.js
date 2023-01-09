@@ -87,11 +87,11 @@ class Datepicker {
 
   #handleNavKeyPress(e) {
     const { code } = e;
-    const { action } = e.target.dataset;
+    const action = e.target.dataset.action === 'prev' ? 'prevNavButton' : 'nextNavButton';
     if (code === 'Enter' || code === 'Space') {
       e.preventDefault();
-      if (action === 'next') this.dp.next();
-      if (action === 'prev') this.dp.prev();
+      if (action === 'nextNavButton') this.dp.next();
+      if (action === 'prevNavButton') this.dp.prev();
 
       this.#addTabIndex();
     }

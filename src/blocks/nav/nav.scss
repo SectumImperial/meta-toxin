@@ -28,7 +28,11 @@
   }
 
   &__link {
-    display: inline-block;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-between;
+
     color: rgb(map.get(variables.$colors, 'dark'), 0.5);
     text-decoration: none;
     padding: 5px;
@@ -57,10 +61,6 @@
     position: relative;
 
     &::before {
-      position: absolute;
-      top: 60%;
-      right: -19px;
-      transform: translateY(-50%);
       font-size: 12px;
       color: rgb(map.get(variables.$colors, 'dark'), 0.5);
     }
@@ -85,10 +85,6 @@
 
   &__items > &__item._active &__sublist {
     display: block;
-  }
-
-  &__subitem {
-    margin: 0 0 2px;
   }
 
   &__sublist &__subitem:last-child {
@@ -120,10 +116,13 @@
     }
 
     &__item {
-      position: relative;
       justify-content: center;
       list-style: none;
       padding: 0;
+    }
+
+    &__subitem {
+      padding-right: 6px;
     }
 
     &__link {
@@ -138,6 +137,8 @@
     &__link_sub {
       &::before {
         font-size: map.get(variables.$font-sizes, 'xs');
+        padding-left: 7px;
+        padding-top: 1px;
       }
     }
 
@@ -153,10 +154,6 @@
       pointer-events: none;
       transform: translate(0, 10%);
 
-      &__subitem {
-        padding-top: 3px;
-      }
-
       &__sublink:hover {
         text-decoration: underline;
       }
@@ -167,10 +164,6 @@
         pointer-events: all;
         transform: translate(0, 0);
       }
-    }
-
-    &__subitem:not(:last-child) {
-      padding-right: 25px;
     }
   }
 }

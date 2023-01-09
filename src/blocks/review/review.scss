@@ -7,8 +7,8 @@
   display: grid;
   grid-template-columns: 48px 1fr;
   grid-template-areas:
-    'a d'
-    'l t';
+    'author details'
+    'like text';
   font-size: map.get(variables.$font-sizes, 'sm');
   color: rgb(map.get(variables.$colors, 'dark'), 0.75);
 
@@ -17,11 +17,11 @@
   }
 
   &__author {
-    grid-area: a;
+    grid-area: author;
   }
 
   &__details {
-    grid-area: d;
+    grid-area: details;
     display: flex;
     flex-direction: column;
     gap: 6px;
@@ -29,12 +29,12 @@
   }
 
   &__like {
-    grid-area: l;
+    grid-area: like;
     padding: 8px 0 0 4px;
   }
 
   &__text {
-    grid-area: t;
+    grid-area: text;
     max-width: 700px;
     margin: 0;
     padding: 6px 5px 0 10px;
