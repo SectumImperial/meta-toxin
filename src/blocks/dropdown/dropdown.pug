@@ -70,7 +70,7 @@ mixin dropdown(options = {})
             +button({
               content: 'Очистить',
               btnColor: 'white',
-              btnWrapperColor: 'transparent',
+              isBordered: false,
               btnSize: 'tiny',        
             })
 
@@ -78,8 +78,8 @@ mixin dropdown(options = {})
             +button({
               content: 'Применить',
               btnColor: 'white',
-              btnWrapperColor: 'transparent',
-              btnSize: 'tiny',
+              isBordered: false,
+              btnSize: 'tiny', 
             })
       else 
         .dropdown__nav.dropdown__nav_hidden
@@ -87,14 +87,14 @@ mixin dropdown(options = {})
             +button({
               content: 'Очистить',
               btnColor: 'white',
-              btnWrapperColor: 'transparent',
-              btnSize: 'tiny',        
+              isBordered: false,
+              btnSize: 'tiny',      
             })
 
           .dropdown__button.dropdown__button_accept.js-dropdown__button_accept
             +button({
               content: 'Применить',
               btnColor: 'white',
-              btnWrapperColor: 'transparent',
-              btnSize: 'tiny',
+              isBordered: false,
+              btnSize: 'tiny', 
             })

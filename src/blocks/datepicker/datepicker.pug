@@ -51,17 +51,15 @@ mixin datepicker(options = {})
               +button({
                 content: 'Очистить',
                 btnColor: 'white',
-                btnWrapperColor: 'transparent',
-                border: 'false',
-                btnSize: 'tiny',
+                isBordered: false,
+                btnSize: 'tiny', 
               })
             .datepicker__button.datepicker__button_accept.js-datepicker__button_accept
               +button({
                 content: 'Применить',
                 btnColor: 'white',
-                btnWrapperColor: 'transparent',
-                border: 'false',
-                btnSize: 'tiny',
+                isBordered: false,
+                btnSize: 'tiny', 
               })
       else if(!isTwoInput && !isOnlyCal)
         .datepicker__group.js-datepicker__group
@@ -74,24 +72,22 @@ mixin datepicker(options = {})
                 pattern = "[0-9]{2}.[0-9]{2}.[0-9]{4}",
                 readonly
               )
-              span.datepicker__icon
+              span.datepicker__icon.datepicker__icon_in-wide-container
         .datepicker__container.datepicker__container_small.js-datepicker__container
           .datepicker__buttons
             .datepicker__button.datepicker__button_clear.js-datepicker__button_clear
               +button({
                 content: 'Очистить',
                 btnColor: 'white',
-                btnWrapperColor: 'transparent',
-                border: 'false',
-                btnSize: 'tiny',
+                isBordered: false,
+                btnSize: 'tiny', 
               })
             .datepicker__button.datepicker__button_accept.js-datepicker__button_accept
               +button({
                 content: 'Применить',
                 btnColor: 'white',
-                btnWrapperColor: 'transparent',
-                border: 'false',
-                btnSize: 'tiny',
+                isBordered: false,
+                btnSize: 'tiny', 
               })
 
       else if(isOnlyCal)
@@ -123,15 +119,13 @@ mixin datepicker(options = {})
               +button({
                 content: 'Очистить',
                 btnColor: 'white',
-                btnWrapperColor: 'transparent',
-                border: 'false',
-                btnSize: 'tiny',
+                isBordered: false,
+                btnSize: 'tiny', 
               })
             .datepicker__button.datepicker__button_accept.js-datepicker__button_accept
               +button({
                 content: 'Применить',
                 btnColor: 'white',
-                btnWrapperColor: 'transparent',
-                border: 'false',
-                btnSize: 'tiny',
+                isBordered: false,
+                btnSize: 'tiny', 
               })

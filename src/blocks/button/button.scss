@@ -1,12 +1,14 @@
 @use 'sass:map';
 @use 'sass:color';
+@use 'sass:selector';
 @use '@styles/variables';
+
+$root: 'button';
 
 .button {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-
+  align-items: stretch;
   padding: 2px;
   border-radius: 25px;
   background: map.get(variables.$gradients, 'primary');
@@ -19,9 +21,7 @@
   }
 
   &_transparent.button_hovered {
-    .button__content {
-      color: rgb(map.get(variables.$colors, 'dark'), 0.5);
-    }
+    color: rgb(map.get(variables.$colors, 'dark'), 0.5);
   }
 
   &_transparent {
@@ -41,8 +41,9 @@
     background-color: transparent;
   }
 
-  &__button {
-    margin: 0 auto;
+  &__normal-button,
+  &__link {
+    width: 100%;
     min-height: 100%;
     display: flex;
     justify-content: center;
@@ -54,16 +55,8 @@
     font-size: map.get(variables.$font-sizes, 'xs');
     text-transform: uppercase;
     text-align: center;
+    text-decoration: none;
     cursor: pointer;
-
-    &_link {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-decoration: none;
-    }
 
     &_violet {
       color: map.get(variables.$colors, 'tertiary');
@@ -100,6 +93,14 @@
     }
   }
 
+  &__content {
+    margin: 0 auto;
+
+    &_gray {
+      color: rgb(map.get(variables.$colors, 'dark'), 0.5);
+    }
+  }
+
   &__icon {
     padding-right: 12px;
     padding-top: 3px;
@@ -109,12 +110,6 @@
 
     &::before {
       content: '\e901';
-    }
-  }
-
-  &_hovered {
-    .button_tiny {
-      color: rgb((map.get(variables.$colors, 'dark')), 0.5);
     }
   }
 

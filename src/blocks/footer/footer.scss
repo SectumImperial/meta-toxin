@@ -70,13 +70,6 @@
       max-width: 260px;
     }
 
-    &__email {
-      display: block;
-      width: 100%;
-      max-width: 260px;
-      margin-left: 40px;
-    }
-
     &__navigation {
       display: flex;
       flex-direction: row;
@@ -99,6 +92,13 @@
 
     &__email-text {
       margin: 18px 0 21px;
+    }
+
+    &__email {
+      display: block;
+      width: 100%;
+      max-width: 260px;
+      margin-left: 40px;
     }
 
     &__title {

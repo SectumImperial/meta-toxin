@@ -36,12 +36,68 @@
       overflow: hidden;
     }
   }
-  .air-datepicker--content {
-    padding: 0 20px 17px;
 
-    .-days- {
-      grid-template-columns: repeat(7, 40px);
-      grid-auto-rows: 40px;
+  &__label {
+    font-weight: bold;
+    font-size: map.get(variables.$font-sizes, 'xs');
+    color: map.get(variables.$colors, 'dark');
+    text-transform: uppercase;
+  }
+
+  &__input-container {
+    display: inline-block;
+    width: 100%;
+    position: relative;
+    padding-top: 5px;
+  }
+
+  &__field {
+    cursor: pointer;
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid rgb(map.get(variables.$colors, 'dark'), 0.25);
+    color: rgb(map.get(variables.$colors, 'dark'), 0.75);
+    border-radius: 4px;
+    font-size: map.get(variables.$font-sizes, 'sm');
+    font-family: Montserrat, sans-serif;
+
+    &::placeholder {
+      color: rgb(map.get(variables.$colors, 'dark'), 0.75);
+    }
+
+    &:hover,
+    &:focus {
+      border-color: rgb(map.get(variables.$colors, 'dark'), 0.5);
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__icon {
+    position: absolute;
+    top: 43%;
+    right: 11%;
+    font-size: map.get(variables.$font-sizes, 'xs');
+
+    &_active {
+      transform: rotate(180deg);
+    }
+
+    &_in-wide-container {
+      right: 6%;
+    }
+
+    &::before {
+      color: rgb(map.get(variables.$colors, 'dark'), 0.5);
+      content: '\e903';
+    }
+  }
+
+  &__icon_forward {
+    &::before {
+      content: '\e901';
     }
   }
 
@@ -99,58 +155,13 @@
     margin: 0 18px 18px 15px;
   }
 
-  &__input-container {
-    display: inline-block;
-    width: 100%;
-    position: relative;
-    padding-top: 5px;
-  }
+  .air-datepicker--content {
+    padding: 0 20px 17px;
 
-  &__field {
-    cursor: pointer;
-    width: 100%;
-    padding: 12px 15px;
-    border: 1px solid rgb(map.get(variables.$colors, 'dark'), 0.25);
-    color: rgb(map.get(variables.$colors, 'dark'), 0.75);
-    border-radius: 4px;
-    font-size: map.get(variables.$font-sizes, 'sm');
-    font-family: Montserrat, sans-serif;
-
-    &::placeholder {
-      color: rgb(map.get(variables.$colors, 'dark'), 0.75);
+    .-days- {
+      grid-template-columns: repeat(7, 40px);
+      grid-auto-rows: 40px;
     }
-
-    &:hover,
-    &:focus {
-      border-color: rgb(map.get(variables.$colors, 'dark'), 0.5);
-    }
-
-    &:focus {
-      outline: none;
-    }
-  }
-
-  &__icon {
-    position: absolute;
-    top: 43%;
-    right: 11%;
-    font-size: map.get(variables.$font-sizes, 'xs');
-
-    &_active {
-      transform: rotate(180deg);
-    }
-
-    &::before {
-      color: rgb(map.get(variables.$colors, 'dark'), 0.5);
-      content: '\e903';
-    }
-  }
-
-  &__label {
-    font-weight: bold;
-    font-size: map.get(variables.$font-sizes, 'xs');
-    color: map.get(variables.$colors, 'dark');
-    text-transform: uppercase;
   }
 
   &_active-dp {
@@ -159,15 +170,9 @@
     box-shadow: 0 4px 4px 0 rgb(#0000, 0.25);
   }
 
-  .datepicker__buttons {
+  &__buttons {
     display: flex;
     justify-content: space-between;
-  }
-
-  &__icon_forward {
-    &::before {
-      content: '\e901';
-    }
   }
 
   .air-datepicker {

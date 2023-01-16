@@ -9,18 +9,16 @@ mixin button(options = {})
       btnSize = 'small',
       href = 'error-page.html',
       content = '',
-      isHovered = false
+      isHovered = false,
+      isBordered = true,
+      isGrey = false,
     } = options 
 
     const colorBtn = {
       white: 'white',
       violet: 'violet',
+      transparent: 'transparent',
     } 
-
-    const wrapperColor = {
-      transparent: 'button_transparent',
-      violet: 'button_violet',
-    }
 
     const sizeBtn = {
       tiny: 'tiny',
@@ -31,23 +29,25 @@ mixin button(options = {})
     }
 
     const hoverClass = isHovered ? 'button_hovered' : ''
+    const borderClass = isBordered ? '' : 'button_transparent'
+    const contentClass = isGrey ? 'button__content button__content_gray' : 'button__content'
 
-  .button(
-    class = `${wrapperColor[btnWrapperColor]} ${hoverClass}`
-  )
+  .button(class = `${hoverClass} ${borderClass}`)
     - if(btnType === 'button')
       button(
-        class = `button__button button__button_${colorBtn[btnColor]} button__button_${sizeBtn[btnSize]}`
+        class = `button__normal-button button__normal-button_${colorBtn[btnColor]} button__normal-button_${sizeBtn[btnSize]}`
         type = type
         )
-          span.button__content= content
-      - if (isArrow) 
-        .button__icon
+          span(class = contentClass)= content
+          - if (isArrow) 
+            .button__icon
     - if(btnType === 'link')
       a(
-        class = `button__button button__button_link button__button_${colorBtn[btnColor]} button__button_${sizeBtn[btnSize]}`
+        class = `button__link button__link button__link_${colorBtn[btnColor]} button__link_${sizeBtn[btnSize]}`
         href = href
         )
-          span.button__content= content
+          span(class = contentClass)= content
+          - if (isArrow) 
+            .button__icon
 
 

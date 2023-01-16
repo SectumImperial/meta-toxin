@@ -28,15 +28,6 @@
     font-size: map.get(variables.$font-sizes, 'xs');
   }
 
-  &__description {
-    font-size: map.get(variables.$font-sizes, 'xs');
-    color: rgb(map.get(variables.$colors, 'dark'), 0.5);
-    padding: 16px 0 0 0;
-    margin: 0;
-
-    white-space: nowrap;
-  }
-
   &__slider {
     position: relative;
     width: 100%;
@@ -82,5 +73,14 @@
     &_max {
       left: 50%;
     }
+  }
+
+  &__description {
+    font-size: map.get(variables.$font-sizes, 'xs');
+    color: rgb(map.get(variables.$colors, 'dark'), 0.5);
+    padding: 16px 0 0 0;
+    margin: 0;
+
+    white-space: nowrap;
   }
 }

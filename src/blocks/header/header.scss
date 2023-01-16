@@ -16,6 +16,12 @@
     padding: 11px 138px 11px 140px;
   }
 
+  &__logo {
+    display: inline-block;
+    padding-top: 4px;
+    padding-left: 2px;
+  }
+
   &__nav-wrapper {
     position: static;
     left: 0;
@@ -24,12 +30,6 @@
     flex-direction: row;
     gap: 20px;
     opacity: 1;
-  }
-
-  &__logo {
-    display: inline-block;
-    padding-top: 4px;
-    padding-left: 2px;
   }
 
   &__nav {

@@ -9,11 +9,6 @@
   max-width: 380px;
   padding: 39px 29px 30px 29px;
 
-  &__subtitle {
-    text-transform: uppercase;
-    padding-bottom: 5px;
-  }
-
   &__name-group {
     display: flex;
     flex-direction: column;
@@ -35,6 +30,11 @@
 
   &__birth-group {
     margin-top: 24px;
+  }
+
+  &__subtitle {
+    text-transform: uppercase;
+    padding-bottom: 5px;
   }
 
   &__data-group {

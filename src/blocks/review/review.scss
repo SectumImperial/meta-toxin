@@ -12,12 +12,14 @@
   font-size: map.get(variables.$font-sizes, 'sm');
   color: rgb(map.get(variables.$colors, 'dark'), 0.75);
 
-  &__head {
-    display: flex;
+  &__image {
+    grid-area: author;
   }
 
-  &__author {
-    grid-area: author;
+  &__photo {
+    border-radius: 50%;
+    border: 2px solid map.get(variables.$colors, 'tertiary');
+    box-shadow: 0 10px 20px 0 rgb(map.get(variables.$colors, 'dark'), 0.1);
   }
 
   &__details {
@@ -26,6 +28,10 @@
     flex-direction: column;
     gap: 6px;
     padding: 3px 0 0 9px;
+  }
+
+  &__name {
+    font-weight: 700;
   }
 
   &__like {
@@ -40,15 +46,5 @@
     padding: 6px 5px 0 10px;
     line-height: 24px;
     word-break: break-word;
-  }
-
-  &__photo {
-    border-radius: 50%;
-    border: 2px solid map.get(variables.$colors, 'tertiary');
-    box-shadow: 0 10px 20px 0 rgb(map.get(variables.$colors, 'dark'), 0.1);
-  }
-
-  &__name {
-    font-weight: 700;
   }
 }
