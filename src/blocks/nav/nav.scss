@@ -20,6 +20,7 @@
   }
 
   &__item {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -68,7 +69,6 @@
 
   &__sublist {
     display: none;
-    position: relative;
     flex: 1 1 100%;
     padding: 2px;
     background-color: map.get(variables.$colors, 'primary');
@@ -80,10 +80,10 @@
     opacity: 1;
     visibility: visible;
     pointer-events: all;
-    transform: translate(0, 0);
+    transform: translate(0, 58%);
   }
 
-  &__items > &__item._active &__sublist {
+  &__items > &__item_active &__sublist {
     display: block;
   }
 
@@ -146,13 +146,11 @@
       position: absolute;
       z-index: 20;
       display: block;
-      top: 100%;
-      left: 4%;
       min-width: 120px;
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
-      transform: translate(0, 10%);
+      transform: translate(0, 65%);
 
       &__sublink:hover {
         text-decoration: underline;
@@ -162,8 +160,14 @@
         opacity: 1;
         visibility: visible;
         pointer-events: all;
-        transform: translate(0, 0);
+        transform: translate(0, 58%);
       }
+    }
+  }
+
+  @media (max-width: map.get(variables.$breakpoints, 'tablet')) {
+    &__link {
+      gap: 10px;
     }
   }
 }
@@ -173,14 +177,14 @@ body._pc .nav__items > .nav__subitem:hover .nav__sublist {
   opacity: 1;
   visibility: visible;
   pointer-events: all;
-  transform: translate(0, 0);
+  transform: translate(0, 58%);
 }
 
-body._touch .nav__items > .nav__item._active .nav__sublist {
+body._touch .nav__items > .nav__item_active .nav__sublist {
   opacity: 1;
   visibility: visible;
   pointer-events: all;
-  transform: translate(0, 0);
+  transform: translate(0, -5%);
   z-index: 50;
 }
 
