@@ -1,5 +1,7 @@
+@use '@styles/variables';
+
 .error-page {
-  font-family: Montserrat, Arial, Helvetica, sans-serif;
+  font-family: variables.$font;
   font-weight: 400;
 
   &__main {

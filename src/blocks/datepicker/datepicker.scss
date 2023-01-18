@@ -59,7 +59,7 @@
     color: rgb(map.get(variables.$colors, 'dark'), 0.75);
     border-radius: 4px;
     font-size: map.get(variables.$font-sizes, 'sm');
-    font-family: Montserrat, sans-serif;
+    font-family: variables.$font;
 
     &::placeholder {
       color: rgb(map.get(variables.$colors, 'dark'), 0.75);
@@ -175,7 +175,7 @@
 
   .air-datepicker {
     width: 100%;
-    font-family: Montserrat, sans-serif;
+    font-family: variables.$font;
     border: none;
 
     &-nav {

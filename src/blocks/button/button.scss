@@ -50,7 +50,7 @@ $root: 'button';
     align-items: center;
     border: none;
     border-radius: 25px;
-    font-family: Montserrat, sans-serif;
+    font-family: variables.$font;
     font-weight: 700;
     font-size: map.get(variables.$font-sizes, 'xs');
     text-transform: uppercase;

@@ -35,7 +35,7 @@
     font-weight: normal;
     text-transform: none;
     font-size: map.get(variables.$font-sizes, 'sm');
-    font-family: Montserrat, sans-serif;
+    font-family: variables.$font;
     cursor: pointer;
 
     &:hover,
@@ -128,7 +128,7 @@
   &__count {
     width: 30px;
     text-align: center;
-    font-family: Montserrat, sans-serif;
+    font-family: variables.$font;
     font-weight: bold;
     font-size: map.get(variables.$font-sizes, 'xs');
     border: none;

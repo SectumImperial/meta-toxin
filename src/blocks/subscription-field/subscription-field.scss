@@ -27,7 +27,7 @@
     border: none;
     flex-basis: 1;
     font-size: map.get(variables.$font-sizes, 'sm');
-    font-family: Montserrat, sans-serif;
+    font-family: variables.$font;
 
     &::placeholder {
       color: rgb(map.get(variables.$colors, 'dark'), 0.25);

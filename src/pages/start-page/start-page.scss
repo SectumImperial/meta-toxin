@@ -1,3 +1,5 @@
+@use '@styles/variables';
+
 .start-page {
   display: flex;
   justify-content: center;
@@ -9,7 +11,7 @@
     rgb(10 0 162 / 100%) 0%,
     rgb(166 0 255 / 100%) 100%
   );
-  font-family: Montserrat, sans-serif;
+  font-family: variables.$font;
 
   &__types {
     display: flex;
