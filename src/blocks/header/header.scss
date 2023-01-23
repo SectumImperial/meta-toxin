@@ -113,6 +113,11 @@
         transition: all 0.3s ease 0s;
       }
 
+      & span {
+        top: 50%;
+        transform: scale(1) translate(0, -50%);
+      }
+
       &::before,
       &::after {
         content: '';
@@ -124,11 +129,6 @@
 
       &::after {
         bottom: 0;
-      }
-
-      & span {
-        top: 50%;
-        transform: scale(1) translate(0, -50%);
       }
 
       &_active span {

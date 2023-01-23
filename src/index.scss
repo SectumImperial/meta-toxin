@@ -5,8 +5,7 @@
   src: url('./fonts/montserrat-regular/montserrat-regular.woff2')
     format('woff2');
   src: url('./fonts/montserrat-regular/montserrat-regular.eot');
-  src: local('☺'),
-    url('./fonts/montserrat-regular/montserrat-regular.woff') format('woff'),
+  src: url('./fonts/montserrat-regular/montserrat-regular.woff') format('woff'),
     url('./fonts/montserrat-regular/montserrat-regular.ttf') format('truetype'),
     url('./fonts/montserrat-regular/montserrat-regular.svg') format('svg');
   font-weight: 400;
@@ -18,8 +17,7 @@
   src: url('./fonts/montserrat-regular/montserrat-regular.woff2')
     format('woff2');
   src: url('./fonts/montserrat-bold/montserrat-bold.eot');
-  src: local('☺'),
-    url('./fonts/montserrat-bold/montserrat-bold.woff') format('woff'),
+  src: url('./fonts/montserrat-bold/montserrat-bold.woff') format('woff'),
     url('./fonts/montserrat-bold/montserrat-bold.ttf') format('truetype'),
     url('./fonts/montserrat-bold/montserrat-bold.svg') format('svg');
   font-weight: 700;

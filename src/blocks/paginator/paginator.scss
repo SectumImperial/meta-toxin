@@ -84,10 +84,6 @@
     border-radius: 50%;
     cursor: pointer;
 
-    &:focus {
-      outline: 1px solid map.get(variables.$colors, 'primary');
-    }
-
     &_active {
       color: map.get(variables.$colors, 'tertiary');
       font-weight: 700;
@@ -98,15 +94,19 @@
       }
     }
 
-    &:hover {
-      font-weight: 700;
-    }
-
     &_dots {
       &:hover {
         font-weight: normal;
         cursor: auto;
       }
+    }
+
+    &:focus {
+      outline: 1px solid map.get(variables.$colors, 'primary');
+    }
+
+    &:hover {
+      font-weight: 700;
     }
   }
 

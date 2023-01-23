@@ -49,6 +49,12 @@
     width: 100%;
     position: relative;
     padding-top: 5px;
+
+    &_wide {
+      .datepicker__icon {
+        right: 5%;
+      }
+    }
   }
 
   &__field {

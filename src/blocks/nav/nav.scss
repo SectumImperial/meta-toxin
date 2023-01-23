@@ -39,14 +39,6 @@
     padding: 5px;
     margin-right: 2px;
 
-    &::before {
-      font-size: 7px;
-    }
-
-    &:hover {
-      color: map.get(variables.$colors, 'primary');
-    }
-
     &_active {
       font-weight: bold;
     }
@@ -55,6 +47,14 @@
       &::before {
         content: '\e903';
       }
+    }
+
+    &::before {
+      font-size: 7px;
+    }
+
+    &:hover {
+      color: map.get(variables.$colors, 'primary');
     }
   }
 

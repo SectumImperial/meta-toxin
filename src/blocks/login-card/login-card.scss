@@ -3,11 +3,10 @@
 @use '@styles/mixins';
 
 .login-card {
-  @include mixins.box-style;
-
   min-width: 380px;
   max-width: 400px;
   padding: 39px 30px 34px 29px;
+  @include mixins.box-style;
 
   &__data-group {
     margin-top: 20px;

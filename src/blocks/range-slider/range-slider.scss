@@ -66,12 +66,12 @@
     background: map.get(variables.$gradients, 'secondary');
     cursor: grab;
 
-    &:active {
-      cursor: grabbing;
-    }
-
     &_max {
       left: 50%;
+    }
+
+    &:active {
+      cursor: grabbing;
     }
   }
 

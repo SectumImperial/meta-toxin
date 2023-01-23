@@ -1,6 +1,5 @@
 @use 'sass:map';
 @use 'sass:color';
-@use 'sass:selector';
 @use '@styles/variables';
 
 $root: 'button';
@@ -20,16 +19,11 @@ $root: 'button';
     background: map.get(variables.$gradients, 'primary-transparentize-half');
   }
 
-  &_transparent.button_hovered {
-    color: rgb(map.get(variables.$colors, 'dark'), 0.5);
-  }
-
   &_transparent {
     background: transparent;
 
     &:hover {
-      background: transparent;
-
+      background: transparent;      
       .button__content {
         color: rgb(map.get(variables.$colors, 'dark'), 0.5);
       }
