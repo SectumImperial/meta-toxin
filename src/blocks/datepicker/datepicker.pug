@@ -12,7 +12,6 @@ mixin datepicker(options = {})
 
 
     let classModField = isTwoInput ? 'datepicker__fields_two-fields' : 'datepicker_fields_one-field'
-    if (isOnlyCal) classModField += 'datepicker__fields_hidden'
     const datepickerClass = isTwoInput ? 'js-datepicker_two-fields' : 'js-datepicker_one-field'
 
   .datepicker.js-datepicker(
@@ -20,6 +19,9 @@ mixin datepicker(options = {})
   )
     .datepicker__fields(
       class = classModField
+      class = {
+        datepicker__fields_hidden: isOnlyCal
+      }
     )
 
       if(isTwoInput && !isOnlyCal)

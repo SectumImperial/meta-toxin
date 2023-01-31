@@ -8,17 +8,17 @@ mixin checkbox-list(options = {})
       isOpened = false
     } = options
 
-    const openedBlock = isOpened ? 'checkbox-list_active' : ''
-    const openedList = isOpened ? 'checkbox-list_opened_list' : ''
-
   div.checkbox-list.js-checkbox-list(
     tabindex = 0
-    class = openedBlock
-    )
+    class = { 
+      'checkbox-list_active': isOpened 
+    })
     .checkbox-list__head.js-checkbox-list__head
       span.checkbox-list__title= titleList
       span.checkbox-list__arrow-icon
-    ul.checkbox-list__items.js-checkbox-list__items(class = openedList)
+    ul.checkbox-list__items.js-checkbox-list__items(class = { 
+        'checkbox-list_opened_list': isOpened 
+      })
       each item in items 
         - 
           const {

@@ -3,11 +3,11 @@ include ../logo/logo.pug
 mixin ui-header(options = {})
   -
     const { isGrey = false } = options;
-    let mod = '';
-    if (isGrey) mod = 'ui-header_grey' 
 
   .ui-header(
-    class = mod
+    class = {
+      'ui-header_grey': isGrey
+    }
   ) 
     .ui-header__logo 
       a.ui-header__logo(

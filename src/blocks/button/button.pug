@@ -28,13 +28,12 @@ mixin button(options = {})
       large: 'large'
     }
 
-    
-
-    const hoverClass = isHovered ? 'button_hovered' : ''
-    const borderClass = isBordered ? '' : 'button_transparent'
     const contentClass = isGrey ? 'button__content button__content_gray' : 'button__content'
 
-  .button(class = `${hoverClass} ${borderClass}`)
+  .button(class = {
+    button_hovered: isHovered,
+    button_transparent: !isBordered
+  })
     - if(btnType === 'button')
       button(
         class = `button__normal-button button__normal-button_${colorBtn[btnColor]} button__normal-button_${sizeBtn[btnSize]}`
@@ -51,5 +50,4 @@ mixin button(options = {})
           span(class = contentClass)= content
           - if (isArrow) 
             .button__icon
-
 

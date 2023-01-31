@@ -14,30 +14,28 @@ mixin dropdown(options = {})
       isOpened = false,
     } = options
 
-    const openClass = isOpened ? 'dropdown__content_active' : ''
-    const openArrow = isOpened ? 'dropdown__output-field_opened' : '' 
-
   section.dropdown.js-dropdown(
     data-options = [...plurals, { placeholder: placeholder }]
     data-preset = preset
   )
     .dropdown__output-field.js-dropdown__output-field(
-      class = `${openArrow}`
-      )
+      class = {
+      'dropdown__output-field_opened': isOpened
+      })
       if (label !== '')
         label.dropdown__label.js-dropdown__label= label
-          output.dropdown__output.js-dropdown__output(
+          output.dropdown__output.dropdown__output_icon.js-dropdown__output(
             name = "dropdown",
             tabindex = "0"
           )= placeholder
-          span.dropdown__arrow.dropdown__arrow_icon.js-dropdown__arrow_icon 
       else 
-        output.dropdown__output.js-dropdown__output(
+        output.dropdown__output.dropdown__output_icon.js-dropdown__output(
           name = "dropdown",
           tabindex = "0"
         )= placeholder
-        span.dropdown__arrow.dropdown__arrow_icon.js-dropdown__arrow_icon 
-    div.dropdown__content.js-dropdown__content(class = openClass)
+    div.dropdown__content.js-dropdown__content(class = {
+      dropdown__content_active: isOpened
+    })
       .dropdown__counter.js-dropdown__counter
         ul.dropdown__items
           each item in items

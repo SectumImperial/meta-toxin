@@ -19,14 +19,15 @@ mixin input(options = {})
       forward: 'input__arrow_icon-forward',
     }
 
-    const dateClass = isDate ? 'input_date' : ''
-    const hoveredClass = isHovered ? 'input__field_hovered' : ''
 
   .input
     input.input__field(
       type = type
       name = name
-      class = `${dateClass} ${hoveredClass}`
+      class = {
+        input_date: isDate,
+        input__field_hovered: isHovered
+      }
       value = value 
       placeholder = placeholder
       readonly = readonly

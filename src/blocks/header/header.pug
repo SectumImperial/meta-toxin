@@ -9,12 +9,12 @@ mixin header(options = {})
       isLogged = false,
       navigation = {},
     } = options
-  -
-    let shadow = isShadow ? 'header_shadow' : ''
 
 
   header.header(
-    class =  `${shadow}`
+    class = {
+      header_shadow: isShadow
+    }
     )
     .header__content
       .header__logo

@@ -10,8 +10,11 @@
     cursor: pointer;
 
     &_opened {
-      .dropdown__arrow {
-        transform: rotate(180deg);
+      .dropdown__output_icon {
+        &::before {
+          transform: rotate(180deg);
+          transform-origin: center center;
+        }
       }
     }
   }
@@ -24,17 +27,20 @@
   }
 
   &__output {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+
     width: 100%;
-    display: block;
     padding: 12px 14px;
     margin-top: 4px;
     border: 1px solid rgb(map.get(variables.$colors, 'dark'), 0.25);
     color: rgb(map.get(variables.$colors, 'dark'), 0.75);
     border-radius: 4px;
 
+    font-size: map.get(variables.$font-sizes, 'sm');
     font-weight: normal;
     text-transform: none;
-    font-size: map.get(variables.$font-sizes, 'sm');
     font-family: variables.$font;
     cursor: pointer;
 
@@ -46,18 +52,13 @@
     &:focus {
       outline: none;
     }
-  }
-
-  &__arrow {
-    position: absolute;
-    top: 58%;
-    right: 5%;
-    font-size: map.get(variables.$font-sizes, 'xs');
 
     &_icon {
       &::before {
         content: '\e903';
         color: rgb(map.get(variables.$colors, 'dark'), 0.5);
+        font-size: map.get(variables.$font-sizes, 'xs');
+        transform: translateY(19%);
       }
     }
   }
