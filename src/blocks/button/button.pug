@@ -36,7 +36,7 @@ mixin button(options = {})
   })
     - if(btnType === 'button')
       button(
-        class = `button__normal-button button__normal-button_${colorBtn[btnColor]} button__normal-button_${sizeBtn[btnSize]}`
+        class = `button__normal-button button__normal-button_color_${colorBtn[btnColor]} button__normal-button_size_${sizeBtn[btnSize]}`
         type = type
         )
           span(class = contentClass)= content
@@ -44,7 +44,7 @@ mixin button(options = {})
             .button__icon
     - if(btnType === 'link')
       a(
-        class = `button__link button__link button__link_${colorBtn[btnColor]} button__link_${sizeBtn[btnSize]}`
+        class = `button__link button__link button__link_color_${colorBtn[btnColor]} button__link_size_${sizeBtn[btnSize]}`
         href = href
         )
           span(class = contentClass)= content

@@ -1,5 +1,6 @@
 @use 'sass:map';
 @use 'sass:color';
+@use 'sass:selector';
 @use '@styles/variables';
 
 $root: 'button';
@@ -19,22 +20,6 @@ $root: 'button';
     background: map.get(variables.$gradients, 'primary-transparentize-half');
   }
 
-  &_transparent {
-    background: transparent;
-
-    &:hover {
-      background: transparent;      
-      .button__content {
-        color: rgb(map.get(variables.$colors, 'dark'), 0.5);
-      }
-    }
-  }
-
-  &_violet {
-    color: map.get(variables.$colors, 'tertiary');
-    background-color: transparent;
-  }
-
   &__normal-button,
   &__link {
     width: 100%;
@@ -52,44 +37,60 @@ $root: 'button';
     text-decoration: none;
     cursor: pointer;
 
-    &_violet {
-      color: map.get(variables.$colors, 'tertiary');
-      background-color: transparent;
-    }
+    &_color {
+      @at-root .button {
+        &_transparent {
+          background: transparent;
 
-    &_white {
-      background-color: map.get(variables.$colors, 'tertiary');
-      color: map.get(variables.$colors, 'primary');
+          &:hover {
+            background: transparent;
+            .button__content {
+              color: rgb(map.get(variables.$colors, 'dark'), 0.5);
+            }
+          }
+        }
+      }
 
-      &:hover {
-        cursor: pointer;
+      &_violet {
+        color: map.get(variables.$colors, 'tertiary');
+        background-color: transparent;
+      }
+
+      &_white {
+        background-color: map.get(variables.$colors, 'tertiary');
+        color: map.get(variables.$colors, 'primary');
+
+        &:hover {
+          cursor: pointer;
+        }
       }
     }
 
-    &_tiny {
-      padding: 0;
-    }
+    &_size {
+      &_tiny {
+        padding: 0;
+      }
 
-    &_small {
-      padding: 7px 18px 8px;
-    }
+      &_small {
+        padding: 7px 18px 8px;
+      }
 
-    &_medium {
-      padding: 12px 16px 13px;
-    }
+      &_medium {
+        padding: 12px 16px 13px;
+      }
 
-    &_big {
-      padding: 10px 23px 13px 24px;
-    }
+      &_big {
+        padding: 10px 23px 13px 24px;
+      }
 
-    &_large {
-      padding: 13px 0 12px 24px;
+      &_large {
+        padding: 13px 0 12px 24px;
+      }
     }
   }
 
   &__content {
     margin: 0 auto;
-
     &_gray {
       color: rgb(map.get(variables.$colors, 'dark'), 0.5);
     }
