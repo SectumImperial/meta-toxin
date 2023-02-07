@@ -6,7 +6,7 @@ mixin review(options = {})
       src = require('@assets/content/default-author.jpg'),
       name = 'Джек Торранс',
       date = '40 лет назад', 
-      liked = false,
+      isLiked = false,
       counts = 0,
     } = options
     let {text = ''} = options
@@ -31,7 +31,7 @@ mixin review(options = {})
       )= date
     .review__like
       +like({
-        liked,
+        isLiked,
         counts
       })
     p.review__text= text

@@ -42,6 +42,7 @@ mixin button(options = {})
           span(class = contentClass)= content
           - if (isArrow) 
             .button__icon
+              include ../../assets/decorative/arrow-forward.svg 
     - if(btnType === 'link')
       a(
         class = `button__link button__link button__link_color_${colorBtn[btnColor]} button__link_size_${sizeBtn[btnSize]}`
@@ -50,4 +51,5 @@ mixin button(options = {})
           span(class = contentClass)= content
           - if (isArrow) 
             .button__icon
+              include ../../assets/decorative/arrow-forward.svg 
 

@@ -20,6 +20,7 @@ import {
   LABEL,
   ICON,
   ICON_ACTIVE,
+  NAV_ARROW,
 } from './constants';
 
 class Datepicker {
@@ -326,6 +327,8 @@ class Datepicker {
       range: true,
       minDate: currentDate,
       keyboardNav: true,
+      prevHtml: NAV_ARROW,
+      nextHtml: NAV_ARROW,
     });
     this.dp.show();
   }

@@ -16,13 +16,13 @@ class StarRating {
   }
 
   init() {
-    this.stars = this.rating.querySelectorAll('.star-rating__star-icon');
+    this.stars = this.rating.querySelectorAll('.star-rating__star');
     this.#setRating();
   }
 
   #setRating() {
     this.stars.forEach((star) => {
-      if (star.dataset.rateсount <= this.rateNum) {
+      if (star.dataset['rate-сount'] <= this.rateNum) {
         star.classList.remove(EMPTY_STAR);
         star.classList.add(FILL_STAR);
       }

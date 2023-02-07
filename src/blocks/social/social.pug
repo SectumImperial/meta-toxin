@@ -18,6 +18,7 @@ mixin social(options = {})
         } = obj
 
         const socialIcon = social[icon] ? social[icon] : social.facebook;
+        const requirePath = `@assets/decorative/${icon}`
 
       li.social-links__item 
         a(
@@ -26,7 +27,9 @@ mixin social(options = {})
           target = "_blank"
           rel = "noopener noreferrer"
         )
-          img(
-            src = social[icon]
-            alt = icon
-          )
+          case icon
+            when 'facebook': include ../../assets/decorative/facebook.svg 
+            when 'twitter': include ../../assets/decorative/twitter.svg 
+            when 'instagram': include ../../assets/decorative/instagram.svg 
+            default: include ../../assets/decorative/facebook.svg 
+

@@ -49,6 +49,7 @@
   "dependencies": {
     "air-datepicker": "^3.1.1",
     "inputmask": "^5.0.7",
+    "pug-require": "^2.0.2",
     "stylelint-scss": "^4.3.0",
     "uuid": "^8.3.2"
   }

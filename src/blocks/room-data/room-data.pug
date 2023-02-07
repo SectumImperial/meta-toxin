@@ -24,9 +24,11 @@ mixin room-data(options = {})
         const dataIcon = icons[icon] ? icons[icon] : icons.smile;
 
       li.room-data__item 
-        img.room-data__icon(
-          src = dataIcon
-          alt = icon
-        )
+        .room-data__icon
+          case icon
+            when 'smile': include ../../assets/decorative/smile.svg 
+            when 'city': include ../../assets/decorative/city.svg 
+            when 'fire': include ../../assets/decorative/fire.svg 
+            default: include ../../assets/decorative/smile.svg 
         span.room-data__title= title
         span.room-data__description= text

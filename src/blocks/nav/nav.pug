@@ -14,7 +14,7 @@ mixin nav(options = {})
             content = '',
             href = 'error-page.html',
             classLi = subItems === false ? 'nav__item' : 'nav__item nav__subitem',
-            classLink = subItems === false ? 'nav__link' : 'nav__link nav__link_sub nav__link_icon',
+            classLink = subItems === false ? 'nav__link' : 'nav__link nav__link_sub',
             linkActive = ''
           } = item
           const isActive = linkActive === 'true' ? 'nav__link_active' : `${linkActive}` 
@@ -26,19 +26,20 @@ mixin nav(options = {})
             href = href
             class = `${classLink} ${isActive}`
           )= content
-          if subItems !== false
-            ul.nav__sublist
-              each item in subItems
-                -
-                  const {
-                    href = 'error-page.html',
-                    content = ''
-                  } = item
+            if subItems !== false
+              include ../../assets/decorative/expand-more.svg
+              ul.nav__sublist
+                each item in subItems
+                  -
+                    const {
+                      href = 'error-page.html',
+                      content = ''
+                    } = item
 
-                li.nav__sub-item
-                  a.nav__sublink(
-                    href = href
-                  )= content
+                  li.nav__sub-item
+                    a.nav__sublink(
+                      href = href
+                    )= content
 
 
 

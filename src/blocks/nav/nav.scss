@@ -30,7 +30,7 @@
 
   &__link {
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
     align-items: center;
     justify-content: space-between;
 
@@ -39,31 +39,16 @@
     padding: 5px;
     margin-right: 2px;
 
+    &:hover {
+      color: map.get(variables.$colors, 'primary');
+    }
+
     &_active {
       font-weight: bold;
     }
 
-    &_icon {
-      &::before {
-        content: '\e903';
-      }
-    }
-
-    &::before {
-      font-size: 7px;
-    }
-
-    &:hover {
-      color: map.get(variables.$colors, 'primary');
-    }
-  }
-
-  &__link_sub {
-    position: relative;
-
-    &::before {
-      font-size: 12px;
-      color: rgb(map.get(variables.$colors, 'dark'), 0.5);
+    &_sub {
+      gap: 5px;
     }
   }
 

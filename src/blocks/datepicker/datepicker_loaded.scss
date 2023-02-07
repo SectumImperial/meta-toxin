@@ -197,17 +197,6 @@
   visibility: hidden;
 }
 
-.air-datepicker-nav--action svg {
-  width: 32px;
-  height: 32px;
-}
-
-.air-datepicker-nav--action path {
-  fill: none;
-  stroke: var(--adp-nav-arrow-color);
-  stroke-width: 2px;
-}
-
 .air-datepicker-nav--title {
   border-radius: var(--adp-border-radius);
   padding: 0 8px;

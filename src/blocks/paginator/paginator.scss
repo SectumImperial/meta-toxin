@@ -29,26 +29,19 @@
     outline: none;
     cursor: pointer;
 
-    &:hover,
-    &:focus {
-      text-shadow: 1px 0 5px;
-    }
-
-    &::before {
-      position: absolute;
-      color: map.get(variables.$colors, 'tertiary');
-      font-size: 18px;
-    }
-
-    &_icon {
-      &::before {
-        content: '\e901';
-      }
+    svg,
+    path {
+      fill: white;
     }
 
     &_prev {
-      &::before {
+      svg {
         transform: rotate(180deg);
+      }
+
+      &:hover,
+      &:focus {
+        text-shadow: 1px 0 5px;
       }
     }
 

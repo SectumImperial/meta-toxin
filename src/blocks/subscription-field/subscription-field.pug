@@ -28,6 +28,8 @@ mixin subscription-field(options = {})
         required = isRequired
         autocomplete = isAutocomplete ? "on" : "off"
       )
-      button.subscription-field__button.subscription-field__button_icon(
+      button.subscription-field__button(
         type = "submit"
       )
+        .subscription-field__button-icon
+          include ../../assets/decorative/arrow-forward.svg 

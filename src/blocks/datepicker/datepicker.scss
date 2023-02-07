@@ -83,9 +83,8 @@
 
   &__icon {
     position: absolute;
-    top: 43%;
+    top: 38%;
     right: 11%;
-    font-size: map.get(variables.$font-sizes, 'xs');
 
     &_active {
       transform: rotate(180deg);
@@ -93,17 +92,6 @@
 
     &_in-wide-container {
       right: 6%;
-    }
-
-    &::before {
-      color: rgb(map.get(variables.$colors, 'dark'), 0.5);
-      content: '\e903';
-    }
-  }
-
-  &__icon_forward {
-    &::before {
-      content: '\e901';
     }
   }
 
@@ -189,16 +177,8 @@
       padding: 16px 18px 30px 14px;
 
       &--action {
-        color: map.get(variables.$colors, 'primary');
-        font-size: 17px;
-        transform: rotate(180deg);
-
-        &[data-action='next'] {
-          transform: rotate(0);
-        }
-
-        svg {
-          display: none;
+        &[data-action='prev'] {
+          transform: rotate(180deg);
         }
       }
 

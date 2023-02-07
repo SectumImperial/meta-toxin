@@ -100,11 +100,9 @@ $root: 'button';
     padding-right: 12px;
     padding-top: 3px;
 
-    color: map.get(variables.$colors, 'tertiary');
-    font-size: 16px;
-
-    &::before {
-      content: '\e901';
+    svg,
+    path {
+      fill: white;
     }
   }
 

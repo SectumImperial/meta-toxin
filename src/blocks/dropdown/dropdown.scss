@@ -12,7 +12,7 @@
     &_opened {
       .dropdown__output_icon {
         &::before {
-          transform: rotate(180deg);
+          transform: rotate(180deg) translateY(-20%);
           transform-origin: center center;
         }
       }
@@ -55,10 +55,13 @@
 
     &_icon {
       &::before {
-        content: '\e903';
-        color: rgb(map.get(variables.$colors, 'dark'), 0.5);
-        font-size: map.get(variables.$font-sizes, 'xs');
-        transform: translateY(19%);
+        content: '';
+        background: url('@assets/decorative/expand-more.svg') no-repeat center;
+        display: block;
+        width: 15px;
+        height: 10px;
+        transform-origin: center;
+        transform: translateY(40%);
       }
     }
   }
@@ -120,10 +123,6 @@
       border-color: rgb(map.get(variables.$colors, 'dark'), 0.25);
       cursor: not-allowed;
     }
-  }
-
-  &__icon::before {
-    content: '\e903';
   }
 
   &__count {

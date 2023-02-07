@@ -23,13 +23,8 @@
   }
 
   &__arrow-icon {
-    font-size: map.get(variables.$font-sizes, 'xs');
-    color: rgb(map.get(variables.$colors, 'dark'), 0.5);
     margin-right: 14px;
-
-    &::before {
-      content: '\e903';
-    }
+    cursor: pointer;
   }
 
   &__items {

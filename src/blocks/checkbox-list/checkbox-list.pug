@@ -16,6 +16,7 @@ mixin checkbox-list(options = {})
     .checkbox-list__head.js-checkbox-list__head
       span.checkbox-list__title= titleList
       span.checkbox-list__arrow-icon
+        include ../../assets/decorative/expand-more.svg 
     ul.checkbox-list__items.js-checkbox-list__items(class = { 
         'checkbox-list_opened-list': isOpened 
       })

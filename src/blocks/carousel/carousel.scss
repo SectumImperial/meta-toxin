@@ -12,21 +12,19 @@
     border-radius: 10px;
     outline: none;
     background: transparent;
-    z-index: 2;
+    z-index: 5;
     cursor: pointer;
 
-    &_icon {
-      &::before {
-        color: white;
-        content: '\e903';
-      }
+    svg,
+    path {
+      fill: white;
     }
   }
 
   &__prev {
     top: calc(50% - 22px);
     left: 0;
-    transform: rotate(90deg);
+    transform: rotate(180deg);
   }
 
   &__images {
@@ -86,7 +84,6 @@
   &__next {
     top: calc(50% - 22px);
     right: 0;
-    transform: rotate(-90deg);
   }
 
   &:hover {

@@ -3,12 +3,14 @@ mixin paginator(options = {})
     data-paginator = options 
   )
     .paginator__content
-      button.paginator__button.paginator__button_prev.paginator__button_icon.js-paginator__button_prev(
+      button.paginator__button.paginator__button_prev.js-paginator__button_prev(
         tabindex = 0,
       )
+        include ../../assets/decorative/arrow-forward.svg 
       ul.paginator__items.js-paginator__items
-      button.paginator__button.paginator__button_next.paginator__button_icon.js-paginator__button_next(
+      button.paginator__button.paginator__button_next.js-paginator__button_next(
         tabindex = 0,
       )
+        include ../../assets/decorative/arrow-forward.svg 
     .paginator__description 
       span.paginator__text.js-paginator__text
