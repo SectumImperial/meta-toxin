@@ -5,10 +5,7 @@ mixin title(options = {})
       text = '',
     } = options 
 
-  case level 
-    when 'h1': h1.title= text
-    when 'h2': h2.title.title_h2= text
-    when 'h3': h3.title.title_h3= text
-    when 'h4': h4.title.title_h4= text
-    when 'h5': h5.title.title_h5= text
-    default: h2.title.title_h2= text
+  div. 
+    #[#{level}(class = `title title_${level}`) #{text}]
+      
+    
