@@ -87,9 +87,9 @@ mixin registration-card()
       .registration-card__button  
         +button({
           content: 'Зарегистрироваться',
-          btnColor: 'violet',
-          isArrow: true,
-          btnSize: 'large',
+          color: 'violet',
+          isRightPart: true,
+          size: 'large',
           type: 'submit',
         })
 
@@ -100,7 +100,6 @@ mixin registration-card()
           +button({
             href: 'login-page.html',
             content: 'Войти', 
-            btnColor: 'white',
-            btnSize: 'big',
-            btnType: 'link',
+            color: 'white',
+            size: 'big',
           })

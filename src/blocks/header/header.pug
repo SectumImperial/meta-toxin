@@ -30,17 +30,15 @@ mixin header(options = {})
           .header__button
             +button({
               content: 'Войти', 
-              btnColor: 'white',
-              btnSize: 'small',
-              btnType: 'link',
+              color: 'white',
+              size: 'small',
               href: 'login-page.html'
               })
           .header__button
             +button({
-              btnColor: 'violet',
+              color: 'violet',
               content: 'Зарегистрироваться',
-              btnSize: 'small',
-              btnType: 'link',
+              size: 'small',
               href: 'registration-page.html'
               })
         else

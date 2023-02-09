@@ -1,55 +1,40 @@
 mixin button(options = {}) 
   - 
     const {
-      btnType = 'button',
-      type = 'button',
-      isArrow = false,
-      btnColor = 'white',
-      btnWrapperColor = 'violet',
-      btnSize = 'small',
-      href = 'error-page.html',
+      isRightPart = false,
+      color = 'white',
+      size = 'small',
+      href = '',
       content = '',
       isHovered = false,
       isBordered = true,
       isGrey = false,
     } = options 
 
-    const colorBtn = {
-      white: 'white',
-      violet: 'violet',
-      transparent: 'transparent',
-    } 
-
-    const sizeBtn = {
-      tiny: 'tiny',
-      small: 'small',
-      medium: 'medium',
-      big: 'big',
-      large: 'large'
-    }
-
-    const contentClass = isGrey ? 'button__content button__content_gray' : 'button__content'
-
   .button(class = {
     button_hovered: isHovered,
     button_transparent: !isBordered
   })
-    - if(btnType === 'button')
+    if(href === '')
       button(
-        class = `button__normal-button button__normal-button_color_${colorBtn[btnColor]} button__normal-button_size_${sizeBtn[btnSize]}`
-        type = type
+        class = `button__normal-button button__normal-button_color_${color} button__normal-button_size_${size}`
+        type = btnType
         )
-          span(class = contentClass)= content
-          - if (isArrow) 
+          span.button__content(class = {
+            button__content_gray: isGrey
+          })= content
+          - if (isRightPart) 
             .button__icon
               include ../../assets/decorative/arrow-forward.svg 
-    - if(btnType === 'link')
+    - if(href !== '')
       a(
-        class = `button__link button__link button__link_color_${colorBtn[btnColor]} button__link_size_${sizeBtn[btnSize]}`
+        class = `button__link button__link button__link_color_${color} button__link_size_${size}`
         href = href
         )
-          span(class = contentClass)= content
-          - if (isArrow) 
+          span.button__content(class = {
+            button__content_gray: isGrey
+          })= content
+          - if (isRightPart) 
             .button__icon
               include ../../assets/decorative/arrow-forward.svg 
 

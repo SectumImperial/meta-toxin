@@ -30,9 +30,9 @@ mixin login-card()
       .login-card__button
         +button({
           content: 'Войти',
-          btnColor: 'violet',
-          isArrow: true,
-          btnSize: 'large',
+          color: 'violet',
+          isRightPart: true,
+          size: 'large',
           type: 'submit',
         })
       .login-card__create-group
@@ -41,8 +41,7 @@ mixin login-card()
         .login-card__create-button
           +button({
             content: 'Создать', 
-            btnColor: 'white',
-            btnSize: 'medium',
-            btnType: 'link',
+            color: 'white',
+            size: 'medium',
             href: 'registration-page.html'
         })
