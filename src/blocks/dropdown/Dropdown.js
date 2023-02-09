@@ -64,28 +64,25 @@ class Dropdown {
     this.field.addEventListener('click', () => {
       this.dropdownContent.classList.toggle(ACTIVE);
     });
-    if (this.label)
+    if (this.label) {
       this.label.addEventListener('click', (e) => e.preventDefault());
+    }
 
     this.dropdownInput.addEventListener(
       'keydown',
-      this.#handleInputKeyDown.bind(this)
+      this.#handleInputKeyDown.bind(this),
     );
 
-    this.buttonsDecrement.forEach((item) =>
-      item.addEventListener('click', this.#handleDecrBtnClick.bind(this))
-    );
-    this.buttonsIncrement.forEach((item) =>
-      item.addEventListener('click', this.#handleIncrBtnClick.bind(this))
-    );
+    this.buttonsDecrement.forEach((item) => item.addEventListener('click', this.#handleDecrBtnClick.bind(this)));
+    this.buttonsIncrement.forEach((item) => item.addEventListener('click', this.#handleIncrBtnClick.bind(this)));
 
     this.btnClear.addEventListener(
       'click',
-      this.#handleBtnClearClick.bind(this)
+      this.#handleBtnClearClick.bind(this),
     );
     this.btnAccept.addEventListener(
       'click',
-      this.#handleBtnAcceptClick.bind(this)
+      this.#handleBtnAcceptClick.bind(this),
     );
 
     document.addEventListener('click', this.#handleDocumentClick.bind(this));
@@ -114,7 +111,7 @@ class Dropdown {
     this.counts.forEach((e) => countValues.push(Number(e.value)));
     const sum = countValues.reduce(
       (previousValue, currentValue) => previousValue + currentValue,
-      0
+      0,
     );
 
     if (sum > 0) this.btnClear.classList.remove(HIDDEN);
@@ -130,7 +127,7 @@ class Dropdown {
     count.value = Dropdown.decrementValue(count, target);
     Dropdown.checkDecrementDisabled(count, target);
 
-    if (this.type === 'guests-dropdown') this.#checkInfants();
+    if (this.type === 'guests-dropdown-type') this.#checkInfants();
     this.#performData();
     this.#checkBtnVisibility();
   }
@@ -149,7 +146,7 @@ class Dropdown {
       decrement.disabled = false;
     }
 
-    if (this.type === 'guests-dropdown') this.#checkInfants();
+    if (this.type === 'guests-dropdown-type') this.#checkInfants();
     this.#performData();
     this.#checkBtnVisibility();
   }
@@ -190,7 +187,7 @@ class Dropdown {
         Dropdown.checkDecrementDisabled(e.value, e);
       }
     });
-    if (this.type === 'guests-dropdown') this.#checkInfants();
+    if (this.type === 'guests-dropdown-type') this.#checkInfants();
     this.#performData();
     this.#checkBtnVisibility();
   }
@@ -201,7 +198,7 @@ class Dropdown {
       const key = Object.keys(e).join('');
       const value = Object.values(e).join('');
       const count = this.dropdown.querySelector(
-        `.${COUNT_ELEM}[data-item="${key}"]`
+        `.${COUNT_ELEM}[data-item="${key}"]`,
       );
       if (!count) return;
       count.value = value;
@@ -247,21 +244,28 @@ class Dropdown {
     const counts = Array.from(this.counts, (e) => e.value);
     const sum = counts.reduce((prev, curr) => Number(prev) + Number(curr), 0);
     const infantCount = this.dropdown.querySelector(
-      `.${COUNT_ELEM}[data-item="Младенцы"]`
+      `.${COUNT_ELEM}[data-item="Младенцы"]`,
     ).value;
     const adult = this.dropdown.querySelector(
-      `.${COUNT_ELEM}[data-item="Взрослые"]`
+      `.${COUNT_ELEM}[data-item="Взрослые"]`,
     );
+    const adultCount = adult.value;
+
     const adultDecrementBtn = adult
       .closest('.dropdown__items-nav')
       .querySelector(`.${BUTTONS_DEC}`);
-    if (sum <= infantCount && sum !== 0 && infantCount !== 0) {
-      adult.value = Number(adult.value) + 1;
+    if (sum <= Number(infantCount) && sum !== 0 && Number(infantCount) !== 0) {
+      adult.value = Number(adultCount) + 1;
       adultDecrementBtn.classList.add(DISABLED);
       Dropdown.addDisabledForButton(adultDecrementBtn);
-    } else if (Number(adult.value) !== 0) {
+    } else if (Number(adultCount) !== 0) {
       adultDecrementBtn.classList.remove(DISABLED);
       Dropdown.removeDisabledForButton(adultDecrementBtn);
+    }
+
+    if (Number(infantCount) > 0 && Number(adultCount) === 1) {
+      adultDecrementBtn.classList.add(DISABLED);
+      Dropdown.addDisabledForButton(adultDecrementBtn);
     }
   }
 
@@ -270,26 +274,26 @@ class Dropdown {
 
     this.countsMap.forEach((key, value) => {
       if (
-        this.wordsMap.has(value) &&
-        !Dropdown.hasIsEqualKey(synthMap, this.wordsMap.get(value))
+        this.wordsMap.has(value)
+        && !Dropdown.hasIsEqualKey(synthMap, this.wordsMap.get(value))
       ) {
         synthMap.set(this.wordsMap.get(value), key);
       }
       if (
-        !this.wordsMap.has(value) &&
-        synthMap.has(this.wordsMap.get(DEFAULT_KEY))
+        !this.wordsMap.has(value)
+        && synthMap.has(this.wordsMap.get(DEFAULT_KEY))
       ) {
         const newValue = Dropdown.sumCounts(
           this.countsMap,
           this.wordsMap,
-          DEFAULT_KEY
+          DEFAULT_KEY,
         );
         synthMap.set(this.wordsMap.get(DEFAULT_KEY), newValue);
       }
 
       if (
-        !this.wordsMap.has(value) &&
-        !synthMap.has(this.wordsMap.get(DEFAULT_KEY))
+        !this.wordsMap.has(value)
+        && !synthMap.has(this.wordsMap.get(DEFAULT_KEY))
       ) {
         synthMap.set(this.wordsMap.get(DEFAULT_KEY), key);
       }
@@ -343,7 +347,7 @@ class Dropdown {
     });
     const result = arrKeys.reduce(
       (prev, curr) => Number(prev) + Number(curr),
-      0
+      0,
     );
     return result;
   }

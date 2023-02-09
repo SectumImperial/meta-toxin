@@ -64,7 +64,7 @@ block content
               .form-elements__dropdown
                 +dropdown({
                   label: 'Сколько гостей',
-                  type: 'guests-dropdown',
+                  type:'guests-dropdown-type',
                   placeholder: 'Сколько гостей',
                   items: [
                     'Взрослые', 'Дети', 'Младенцы',
@@ -294,7 +294,7 @@ block content
                 })
                 span.form-elements__status Expanded
               +dropdown({
-                type: 'amenities-dropdown',
+                type:'amenities-dropdown-type',
                 size: 'small',
                 isOpened: true,
                 placeholder: 'Удобства номера',
@@ -322,7 +322,7 @@ block content
                 })
                 span.form-elements__status Default
               +dropdown({
-              type: 'amenities-dropdown',
+              type:'amenities-dropdown-type',
               size: 'small',
               placeholder: 'Удобства номера',
               items: [
@@ -349,7 +349,7 @@ block content
                   text: 'dropdown'
                 })
               +dropdown({
-                type: 'guests-dropdown',
+                type:'guests-dropdown-type',
                 isOpened: true,
                 placeholder: 'Сколько гостей',
                 items: [
@@ -373,7 +373,7 @@ block content
                   text: 'dropdown'
                 })
               +dropdown({
-                type: 'guests-dropdown',
+                type:'guests-dropdown-type',
                 isOpened: true,
                 placeholder: 'Сколько гостей',
                 items: [
