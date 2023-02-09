@@ -16,12 +16,13 @@ mixin checkbox(options = {})
       checked = isChecked
       )
     span.checkbox__new-checkbox
-    if mod === 'simple'
-      span.checkbox__text= labelText
-    if mod === 'rich'
-      span.checkbox__rich-content
-        span.checkbox__title= checkboxTitle
-        span.checkbox__description= checkboxDescription
+    case mod
+      when 'simple' 
+        span.checkbox__text= labelText
+      when 'rich'
+        span.checkbox__rich-content
+          span.checkbox__title= checkboxTitle
+          span.checkbox__description= checkboxDescription
 
 
 
