@@ -4,7 +4,7 @@ mixin datepicker(options = {})
   -
     const { 
       isTwoInput = true,
-      isOnlyCal = false,
+      isOnlyCalendar = false,
       labelStart = 'Прибытие',
       labelEnd = 'Выезд',
       labelAlone = 'Даты пребывания в отеле',
@@ -20,11 +20,11 @@ mixin datepicker(options = {})
     .datepicker__fields(
       class = classModField
       class = {
-        datepicker__fields_hidden: isOnlyCal
+        datepicker__fields_hidden: isOnlyCalendar
       }
     )
 
-      if(isTwoInput && !isOnlyCal)
+      if(isTwoInput && !isOnlyCalendar)
         .datepicker__group.js-datepicker__group
           label.datepicker__label.js-datepicker__label= labelStart
             span.datepicker__input-container
@@ -65,7 +65,7 @@ mixin datepicker(options = {})
                 isBordered: false,
                 size: 'tiny', 
               })
-      else if(!isTwoInput && !isOnlyCal)
+      else if(!isTwoInput && !isOnlyCalendar)
         .datepicker__group.js-datepicker__group
           label.datepicker__label.js-datepicker__label= labelAlone
             span.datepicker__input-container.datepicker__input-container_wide
@@ -95,7 +95,7 @@ mixin datepicker(options = {})
                 size: 'tiny', 
               })
 
-      else if(isOnlyCal)
+      else if(isOnlyCalendar)
         .datepicker__group.js-datepicker__group.datepicker__group_hidden
           label.datepicker__label.js-datepicker__label Прибытие
             span.datepicker__input-container
@@ -120,7 +120,7 @@ mixin datepicker(options = {})
                 )
               span.datepicker__icon
                 include ../../assets/decorative/expand-more.svg
-        .datepicker__container.js-datepicker__container.datepicker__container_only-cal.datepicker_active-dp 
+        .datepicker__container.js-datepicker__container.datepicker__container_only-calendar.datepicker_active-dp 
           .datepicker__buttons
             .datepicker__button.datepicker__button_clear.js-datepicker__button_clear
               +button({
