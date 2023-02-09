@@ -110,6 +110,17 @@
 
     &_only-calendar {
       position: relative;
+      top: 0;
+      right: 0;
+    }
+
+    .air-datepicker--content {
+      padding: 0 20px 17px;
+
+      .-days- {
+        grid-template-columns: repeat(7, 40px);
+        grid-auto-rows: 40px;
+      }
     }
 
     &_small {
@@ -141,25 +152,16 @@
         }
       }
     }
+
+    &_active-dp {
+      display: flex;
+      flex-direction: column-reverse;
+      box-shadow: 0 4px 4px 0 rgb(#0000, 0.25);
+    }
   }
 
   &__button {
     margin: 0 18px 18px 15px;
-  }
-
-  .air-datepicker--content {
-    padding: 0 20px 17px;
-
-    .-days- {
-      grid-template-columns: repeat(7, 40px);
-      grid-auto-rows: 40px;
-    }
-  }
-
-  &_active-dp {
-    display: flex;
-    flex-direction: column-reverse;
-    box-shadow: 0 4px 4px 0 rgb(#0000, 0.25);
   }
 
   &__buttons {

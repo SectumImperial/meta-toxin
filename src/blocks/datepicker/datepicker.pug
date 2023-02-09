@@ -20,12 +20,14 @@ mixin datepicker(options = {})
     .datepicker__fields(
       class = classModField
       class = {
-        datepicker__fields_hidden: isOnlyCalendar
+        datepicker__fields_hidden: isOnlyCalendar,
       }
     )
-
-      if(isTwoInput && !isOnlyCalendar)
-        .datepicker__group.js-datepicker__group
+      if(isTwoInput)
+        .datepicker__group.js-datepicker__group(
+          class = {
+            datepicker__group_hidden: isOnlyCalendar
+          })
           label.datepicker__label.js-datepicker__label= labelStart
             span.datepicker__input-container
               input.datepicker__field.datepicker__field_readonly.js-datepicker__field_start.js-datepicker__field(
@@ -37,7 +39,10 @@ mixin datepicker(options = {})
               )
               span.datepicker__icon
                 include ../../assets/decorative/expand-more.svg
-        .datepicker__group.js-datepicker__group
+        .datepicker__group.js-datepicker__group(
+          class = {
+            datepicker__group_hidden: isOnlyCalendar
+          })
           label.datepicker__label.js-datepicker__label= labelEnd
             span.datepicker__input-container
               input.datepicker__field.datepicker__field_readonly.js-datepicker__field_end.js-datepicker__field(
@@ -49,7 +54,11 @@ mixin datepicker(options = {})
                 )
               span.datepicker__icon
                 include ../../assets/decorative/expand-more.svg
-        .datepicker__container.js-datepicker__container
+        .datepicker__container.js-datepicker__container(
+          class = {
+            'datepicker__container_active-dp': isOnlyCalendar,
+            'datepicker__container_only-calendar': isOnlyCalendar,
+          })
           .datepicker__buttons
             .datepicker__button.datepicker__button_clear.js-datepicker__button_clear
               +button({
@@ -65,6 +74,7 @@ mixin datepicker(options = {})
                 isBordered: false,
                 size: 'tiny', 
               })
+
       else if(!isTwoInput && !isOnlyCalendar)
         .datepicker__group.js-datepicker__group
           label.datepicker__label.js-datepicker__label= labelAlone
@@ -79,48 +89,6 @@ mixin datepicker(options = {})
               span.datepicker__icon
                 include ../../assets/decorative/expand-more.svg
         .datepicker__container.datepicker__container_small.js-datepicker__container
-          .datepicker__buttons
-            .datepicker__button.datepicker__button_clear.js-datepicker__button_clear
-              +button({
-                content: 'Очистить',
-                color: 'white',
-                isBordered: false,
-                size: 'tiny', 
-              })
-            .datepicker__button.datepicker__button_accept.js-datepicker__button_accept
-              +button({
-                content: 'Применить',
-                color: 'white',
-                isBordered: false,
-                size: 'tiny', 
-              })
-
-      else if(isOnlyCalendar)
-        .datepicker__group.js-datepicker__group.datepicker__group_hidden
-          label.datepicker__label.js-datepicker__label Прибытие
-            span.datepicker__input-container
-              input.datepicker__field.datepicker__field_readonly.js-datepicker__field_start.js-datepicker__field(
-                type = "text",
-                name = "datepicker-input-start",
-                placeholder = "ДД.ММ.ГГГГ",
-                pattern = "[0-9]{2}.[0-9]{2}.[0-9]{4}",
-                required
-              )
-              span.datepicker__icon
-                include ../../assets/decorative/expand-more.svg
-        .datepicker__group.js-datepicker__group.datepicker__group_hidden
-          label.datepicker__label.js-datepicker__label Выезд
-            span.datepicker__input-container
-              input.datepicker__field.datepicker__field_readonly.js-datepicker__field_end.js-datepicker__field(
-                type = "text",
-                name = "datepicker-input-end",
-                placeholder = "ДД.ММ.ГГГГ",
-                pattern = "[0-9]{2}.[0-9]{2}.[0-9]{4}",
-                required
-                )
-              span.datepicker__icon
-                include ../../assets/decorative/expand-more.svg
-        .datepicker__container.js-datepicker__container.datepicker__container_only-calendar.datepicker_active-dp 
           .datepicker__buttons
             .datepicker__button.datepicker__button_clear.js-datepicker__button_clear
               +button({
