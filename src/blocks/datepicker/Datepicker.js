@@ -305,8 +305,9 @@ class Datepicker {
       }
 
       this.#addDateCal();
+      this.#removeRange();
       this.#setPointRange();
-      this.#performRange(this.rangeFrom, this.rangeTo);
+      this.#performRange();
     }
   }
 
@@ -410,7 +411,7 @@ class Datepicker {
           mod: 'singleInputMod',
         });
         this.#setPointRange();
-        this.#performRange(this.rangeFrom, this.rangeTo);
+        this.#performRange();
       }
     }
   }
@@ -429,12 +430,12 @@ class Datepicker {
     if (!addedValue) this.buttonClear.style.visibility = 'hidden';
   }
 
-  #performRange(rangeFrom, rangeTo) {
+  #performRange() {
     this.#deleteRangePoint('start-range');
     this.#deleteRangePoint('end-range');
-    Datepicker.deletePointRange(rangeFrom);
-    Datepicker.deletePointRange(rangeTo);
-    this.#addPointRange(rangeFrom, rangeTo);
+    Datepicker.deletePointRange(this.rangeFrom);
+    Datepicker.deletePointRange(this.rangeTo);
+    this.#addPointRange(this.rangeFrom, this.rangeTo);
   }
 
   #deleteRangePoint(rangeLineClass) {
@@ -470,12 +471,18 @@ class Datepicker {
   #addPointRange() {
     if (Datepicker.isRangeSelecting(this.rangeFrom, 'start-range')) {
       this.rangeFrom.classList.add('start-range');
+      if (this.rangeFrom.classList.contains('end-range')) {
+        this.rangeFrom.classList.remove('end-range');
+      }
     }
 
     if (
       Datepicker.isRangeSelecting(this.rangeTo, 'end-range')
     ) {
       this.rangeTo.classList.add('end-range');
+      if (this.rangeTo.classList.contains('start-range')) {
+        this.rangeTo.classList.remove('start-range');
+      }
     }
   }
 
@@ -596,8 +603,7 @@ class Datepicker {
 
     this.#addDateCal();
     this.#setPointRange();
-
-    this.#performRange(this.rangeFrom, this.rangeTo);
+    this.#performRange();
   }
 
   #closeDp() {
@@ -670,10 +676,7 @@ class Datepicker {
   }
 
   static returnInputSibling(targetContainer, formGroups) {
-    const sibling = [
-      ...formGroups.filter((e) => e !== targetContainer),
-    ][0];
-
+    const sibling = formGroups.find((e) => e !== targetContainer);
     return sibling;
   }
 
@@ -733,8 +736,8 @@ class Datepicker {
 
   static changeSameData(secondItem) {
     const date = secondItem.value.split('.');
-    let day = Number(date[0]);
-    day += 1;
+    let [day] = date;
+    day = Number(day) + 1;
     date.splice(0, 1, day);
     return date.join('.');
   }

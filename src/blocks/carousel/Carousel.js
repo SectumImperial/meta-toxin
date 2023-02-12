@@ -146,7 +146,7 @@ class Carousel {
   }
 
   #handleCarouselPrevTouchStart(evt) {
-    const firstTouch = Carousel.getTouches(evt)[0];
+    const firstTouch = Carousel.getTouches(evt).item(0);
     this.xDown = firstTouch.clientX;
   }
 
@@ -154,7 +154,7 @@ class Carousel {
     if (!this.xDown) {
       return;
     }
-    const xUp = evt.touches[0].clientX;
+    const xUp = evt.touches.item(0).clientX;
     const xDiff = this.xDown - xUp;
 
     if (xDiff && xDiff > 0) {

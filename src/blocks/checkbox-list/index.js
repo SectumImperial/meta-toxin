@@ -1,4 +1,4 @@
-import CheckboxList from './Checkbox-list';
+import CheckboxList from './CheckboxList';
 import './checkbox-list.scss';
 
 document

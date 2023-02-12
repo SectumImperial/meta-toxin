@@ -172,11 +172,11 @@ class Slider {
 
   #performStartTouch(e) {
     const { target } = e;
-    const moved = e.touches[0].clientX - target.getBoundingClientRect().left;
+    const moved = e.touches.item(0).clientX - target.getBoundingClientRect().left;
     const handleToggleTouchMove = (event) => {
       e.stopImmediatePropagation();
       const sliderSize = this.slider.getBoundingClientRect().left;
-      const coordsMove = event.touches[0].clientX - moved - sliderSize;
+      const coordsMove = event.touches.item(0).clientX - moved - sliderSize;
       const percent = Slider.performMoveToPercent({
         coordsMove,
         scaleSize: this.sliderTrack.offsetWidth,
