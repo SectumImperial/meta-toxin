@@ -33,7 +33,7 @@ class Datepicker {
     this.#createDatepicker();
     this.#addButtonsArrow();
     this.#findElements();
-    this.#createId();
+    this.#createID();
     this.#configuratorDatepicker();
     this.#checkBtnVisibility([...this.fields]);
     this.#addListeners();
@@ -310,13 +310,13 @@ class Datepicker {
     }
   }
 
-  #createId() {
+  #createID() {
     this.formGroups.forEach((e) => {
       const label = e.querySelector(`.${LABEL}`);
       const input = e.querySelector(`.${FIELD}`);
-      const ID = uuidv4();
-      label.htmlFor = ID;
-      input.ID = ID;
+      const id = uuidv4();
+      label.htmlFor = id;
+      input.id = id;
     });
   }
 
