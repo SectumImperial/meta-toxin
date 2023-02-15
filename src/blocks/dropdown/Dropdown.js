@@ -107,8 +107,10 @@ class Dropdown {
   }
 
   #checkBtnVisibility() {
-    const countValues = [];
-    this.counts.forEach((e) => countValues.push(Number(e.value)));
+    let countValues = [];
+    this.counts.forEach((e) => {
+      countValues = [...countValues, Number(e.value)];
+    });
     const sum = countValues.reduce(
       (previousValue, currentValue) => previousValue + currentValue,
       0,
@@ -302,9 +304,9 @@ class Dropdown {
   }
 
   #createStrMap() {
-    const arrStrings = [];
+    let arrStrings = [];
     this.synthMap.forEach((key, value) => {
-      arrStrings.push(`${key} ${chooseWord(key, value)}`);
+      arrStrings = [...arrStrings, `${key} ${chooseWord(key, value)}`];
     });
 
     const result = arrStrings.join(', ');
@@ -339,10 +341,10 @@ class Dropdown {
   }
 
   static sumCounts(countsMap, wordsMap, indicator) {
-    const arrKeys = [];
+    let arrKeys = [];
     countsMap.forEach((key, value) => {
       if (value !== indicator && !wordsMap.has(value)) {
-        arrKeys.push(key);
+        arrKeys = [...arrKeys, key];
       }
     });
     const result = arrKeys.reduce(

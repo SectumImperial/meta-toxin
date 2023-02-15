@@ -735,11 +735,11 @@ class Datepicker {
   }
 
   static changeSameData(secondItem) {
-    const date = secondItem.value.split('.');
+    let date = secondItem.value.split('.');
     let [day] = date;
     day = Number(day) + 1;
-    date.splice(0, 1, day);
-    return date.join('.');
+    date = [day, date.slice(1, 3)].flat().join('.');
+    return date;
   }
 
   static deleteComma(elem) {

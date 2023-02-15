@@ -81,7 +81,7 @@ class Canvas {
         const unitedItem = this.#uniteItems(grade);
         const index = filteredOptions.findIndex((e) => e.grade === grade);
         filteredOptions = filteredOptions.filter((option) => option.grade !== grade);
-        filteredOptions.splice(index, 0, unitedItem);
+        filteredOptions = filteredOptions.slice(index, 0, unitedItem);
       }
     });
     return filteredOptions;
@@ -132,9 +132,9 @@ class Canvas {
   }
 
   #createCircles() {
-    const circles = [];
+    let circles = [];
     this.options.forEach((option) => {
-      circles.push(this.#createCircle(option));
+      circles = [...circles, this.#createCircle(option)];
     });
 
     return circles;
@@ -146,7 +146,7 @@ class Canvas {
       (curr, prev) => curr + prev,
       0,
     );
-    this.dashoffsets.push(dash);
+    this.dashoffsets = [...this.dashoffsets, dash];
 
     const dasharray = Canvas.createDash(dash);
     const url = Canvas.createURL(option);
@@ -166,9 +166,9 @@ class Canvas {
 
   #createList() {
     const ul = Canvas.createUl();
-    const items = [];
+    let items = [];
     this.options.forEach((option) => {
-      items.push(Canvas.createLi(option));
+      items = [...items, Canvas.createLi(option)];
     });
     items.forEach((e) => {
       ul.append(e);
@@ -230,9 +230,9 @@ class Canvas {
   }
 
   static addIdForOptions(items) {
-    const options = [];
+    let options = [];
     items.forEach((option) => {
-      options.push({ ...option, id: uuidv4() });
+      options = [...options, { ...option, id: uuidv4() }];
     });
     return options;
   }
