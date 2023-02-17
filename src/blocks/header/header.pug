@@ -21,9 +21,9 @@ mixin header(options = {})
         +logo({
           href: 'landing-page.html'
         })
-      .header__icon
+      .header__icon.js-header__icon
         span
-      .header__nav-wrapper
+      .header__nav-wrapper.js-header__nav-wrapper
         .header__nav 
           +nav(navigation)
         if !options.isLogged

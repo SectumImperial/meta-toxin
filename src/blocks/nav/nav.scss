@@ -53,23 +53,41 @@
   }
 
   &__sublist {
-    display: none;
     flex: 1 1 100%;
+    position: absolute;
+    z-index: 20;
+    display: block;
+    min-width: 120px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translate(0, 65%);
+
     padding: 2px;
     background-color: map.get(variables.$colors, 'primary');
     list-style: none;
     transition: all 0.3s ease 0s;
+
+    &__sublink:hover {
+      text-decoration: underline;
+    }
+
+    &:focus-within {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: all;
+      transform: translate(0, 58%);
+    }
   }
 
-  &__link:focus + &__sublist {
-    opacity: 1;
+  &__subitem_active &__sublist {
+    position: static;
     visibility: visible;
-    pointer-events: all;
-    transform: translate(0, 58%);
-  }
-
-  &__items > &__item_active &__sublist {
     display: block;
+    opacity: 1;
+    pointer-events: all;
+    transform: translate(0, -5%);
+    z-index: 50;
   }
 
   &__sublist &__subitem:last-child {
@@ -106,8 +124,23 @@
       padding: 0;
     }
 
+    &__link:focus + &__sublist {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: all;
+      transform: translate(0, 58%);
+  }
+
     &__subitem {
       padding-right: 6px;
+    }
+
+    &__subitem:hover .nav__sublist {
+      display: block;
+      opacity: 1;
+      visibility: visible;
+      pointer-events: all;
+      transform: translate(0, 58%);
     }
 
     &__link {
@@ -126,28 +159,6 @@
         padding-top: 1px;
       }
     }
-
-    &__sublist {
-      position: absolute;
-      z-index: 20;
-      display: block;
-      min-width: 120px;
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-      transform: translate(0, 65%);
-
-      &__sublink:hover {
-        text-decoration: underline;
-      }
-
-      &:focus-within {
-        opacity: 1;
-        visibility: visible;
-        pointer-events: all;
-        transform: translate(0, 58%);
-      }
-    }
   }
 
   @media (max-width: map.get(variables.$breakpoints, 'tablet')) {
@@ -157,20 +168,3 @@
   }
 }
 
-/* -------------------------------- */
-body._pc .nav__items > .nav__subitem:hover .nav__sublist {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: all;
-  transform: translate(0, 58%);
-}
-
-body._touch .nav__items > .nav__item_active .nav__sublist {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: all;
-  transform: translate(0, -5%);
-  z-index: 50;
-}
-
-/* -------------------------------- */

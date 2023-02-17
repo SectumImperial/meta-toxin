@@ -6,51 +6,21 @@ class Header {
 
   init() {
     this.#findElements();
-    this.mediaQueryList = window.matchMedia('(min-width: 960px)');
     this.#addListeners();
-    this.#changeScreenClass();
   }
 
   #addListeners() {
-    this.mediaQueryList.addEventListener('change', this.#handleChangeScreen.bind(this));
     this.iconMenu.addEventListener('click', this.#handleIconClick.bind(this));
-    this.subItems.forEach((element) => {
-      element.addEventListener('click', this.#handleNavSubItemClick.bind(this));
-    });
   }
 
   #findElements() {
-    this.page = document.querySelector('body');
-    this.subItems = this.header.querySelectorAll('.nav__subitem');
-    this.iconMenu = this.header.querySelector('.header__icon');
-    this.navWrapper = this.header.querySelector('.header__nav-wrapper');
-  }
-
-  #handleChangeScreen() {
-    this.#changeScreenClass();
-  }
-
-  #handleNavSubItemClick(e) {
-    if (this.page.classList.contains('_pc')) return;
-    if (e.target.closest('.nav__sublist')) return;
-    e.preventDefault();
-    const navItem = e.target.closest('.nav__item');
-    navItem.classList.toggle('nav__item_active');
+    this.iconMenu = this.header.querySelector('.js-header__icon');
+    this.navWrapper = this.header.querySelector('.js-header__nav-wrapper');
   }
 
   #handleIconClick() {
     this.iconMenu.classList.toggle('header__icon_active');
     this.navWrapper.classList.toggle('header__nav-wrapper_active');
-  }
-
-  #changeScreenClass() {
-    if (this.mediaQueryList.matches) {
-      this.page.classList.remove('_touch');
-      this.page.classList.add('_pc');
-    } else {
-      this.page.classList.remove('_pc');
-      this.page.classList.add('_touch');
-    }
   }
 }
 
