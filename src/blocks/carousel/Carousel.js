@@ -13,6 +13,20 @@ import {
 class Carousel {
   constructor(element) {
     this.carousel = element;
+
+    this.handleCarouselMouseOver = this.handleCarouselMouseOver.bind(this);
+    this.handleCarouselMouseOut = this.handleCarouselMouseOut.bind(this);
+    this.handlePervButtonClick = this.handlePervButtonClick.bind(this);
+    this.handleRightButtonClick = this.handleRightButtonClick.bind(this);
+    this.handleCarouselToggleClick = this.handleCarouselToggleClick.bind(this);
+    this.handleCarouselPrevTouchStart = this.handleCarouselPrevTouchStart.bind(this);
+    this.handleCarouselPrevTouchStart = this.handleCarouselPrevTouchStart.bind(this);
+    this.handleCarouselPrevTouchStart = this.handleCarouselPrevTouchStart.bind(this);
+    this.handleCarouselPrevTouchStart = this.handleCarouselPrevTouchStart.bind(this);
+    this.handleCarouselPrevTouchMove = this.handleCarouselPrevTouchMove.bind(this);
+    this.handleLinkKeyDown = this.handleLinkKeyDown.bind(this);
+    this.handleLinkKeyDown = this.handleLinkKeyDown.bind(this);
+
     this.init();
   }
 
@@ -50,39 +64,85 @@ class Carousel {
   }
 
   #addListeners() {
-    this.carousel.addEventListener('mouseover', this.#handleCarouselMouseOver.bind(this));
-    this.carousel.addEventListener('mouseout', this.#handleCarouselMouseOut.bind(this));
+    this.carousel.addEventListener('mouseover', this.handleCarouselMouseOver);
+    this.carousel.addEventListener('mouseout', this.handleCarouselMouseOut);
 
-    this.prev.addEventListener('click', this.#handlePervButtonClick.bind(this));
-    this.next.addEventListener('click', this.#handleRightButtonClick.bind(this));
+    this.prev.addEventListener('click', this.handlePervButtonClick);
+    this.next.addEventListener('click', this.handleRightButtonClick);
 
     this.toggles.forEach((element) => {
-      element.addEventListener('click', this.#handleCarouselToggleClick.bind(this));
+      element.addEventListener('click', this.handleCarouselToggleClick);
     });
     this.carousel.addEventListener(
       'touchstart',
-      this.#handleCarouselPrevTouchStart.bind(this),
+      this.handleCarouselPrevTouchStart,
       { passive: true },
     );
     this.carousel.addEventListener(
       'touchmove',
-      this.#handleCarouselPrevTouchMove.bind(this),
+      this.handleCarouselPrevTouchMove,
       { passive: true },
     );
 
-    this.link.addEventListener('keydown', this.#handleLinkKeyDown.bind(this));
+    this.link.addEventListener('keydown', this.handleLinkKeyDown);
   }
 
-  #handleCarouselMouseOver() {
+  handleCarouselMouseOver() {
     this.#checkBtnVisibility();
   }
 
-  #handlePervButtonClick() {
+  handlePervButtonClick() {
     this.#moveLeft();
   }
 
-  #handleRightButtonClick() {
+  handleRightButtonClick() {
     this.#moveRight();
+  }
+
+  handleCarouselMouseOut() {
+    this.next.style.visibility = 'hidden';
+    this.prev.style.visibility = 'hidden';
+  }
+
+  handleCarouselToggleClick(e) {
+    e.preventDefault();
+    const { target } = e;
+    const countImage = (this.position / this.width) * -1;
+    const move = -(target.dataset.toggleCount - countImage) * this.width;
+    this.position += move;
+    this.list.style.marginLeft = `${this.position}px`;
+    this.#checkActive();
+    this.#checkBtnVisibility();
+  }
+
+  handleCarouselPrevTouchStart(evt) {
+    const firstTouch = Carousel.getTouches(evt).item(0);
+    this.xDown = firstTouch.clientX;
+  }
+
+  handleCarouselPrevTouchMove(evt) {
+    if (!this.xDown) {
+      return;
+    }
+    const xUp = evt.touches.item(0).clientX;
+    const xDiff = this.xDown - xUp;
+
+    if (xDiff && xDiff > 0) {
+      this.#moveRight();
+    } else {
+      this.#moveLeft();
+    }
+    this.xDown = null;
+  }
+
+  handleLinkKeyDown({ code }) {
+    if (code === 'ArrowRight') {
+      this.#moveRight();
+    }
+
+    if (code === 'ArrowLeft') {
+      this.#moveLeft();
+    }
   }
 
   #moveLeft() {
@@ -126,52 +186,6 @@ class Carousel {
       this.prev.style.visibility = 'hidden';
     } else {
       this.prev.style.visibility = 'visible';
-    }
-  }
-
-  #handleCarouselMouseOut() {
-    this.next.style.visibility = 'hidden';
-    this.prev.style.visibility = 'hidden';
-  }
-
-  #handleCarouselToggleClick(e) {
-    e.preventDefault();
-    const { target } = e;
-    const countImage = (this.position / this.width) * -1;
-    const move = -(target.dataset.toggleCount - countImage) * this.width;
-    this.position += move;
-    this.list.style.marginLeft = `${this.position}px`;
-    this.#checkActive();
-    this.#checkBtnVisibility();
-  }
-
-  #handleCarouselPrevTouchStart(evt) {
-    const firstTouch = Carousel.getTouches(evt).item(0);
-    this.xDown = firstTouch.clientX;
-  }
-
-  #handleCarouselPrevTouchMove(evt) {
-    if (!this.xDown) {
-      return;
-    }
-    const xUp = evt.touches.item(0).clientX;
-    const xDiff = this.xDown - xUp;
-
-    if (xDiff && xDiff > 0) {
-      this.#moveRight();
-    } else {
-      this.#moveLeft();
-    }
-    this.xDown = null;
-  }
-
-  #handleLinkKeyDown({ code }) {
-    if (code === 'ArrowRight') {
-      this.#moveRight();
-    }
-
-    if (code === 'ArrowLeft') {
-      this.#moveLeft();
     }
   }
 

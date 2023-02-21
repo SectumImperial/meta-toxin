@@ -26,6 +26,20 @@ import {
 class Datepicker {
   constructor(element) {
     this.datepicker = element;
+
+    this.handleDatepickerClick = this.handleDatepickerClick.bind(this);
+    this.handleButtonClearClick = this.handleButtonClearClick.bind(this);
+    this.handleButtonAcceptClick = this.handleButtonAcceptClick.bind(this);
+    this.handleItemInput = this.handleItemInput.bind(this);
+    this.handleBodyClick = this.handleBodyClick.bind(this);
+    this.handleBodyKeyPress = this.handleBodyKeyPress.bind(this);
+    this.handleDocumentClick = this.handleDocumentClick.bind(this);
+    this.handleFieldKeyDown = this.handleFieldKeyDown.bind(this);
+    this.handleNavKeyPress = this.handleNavKeyPress.bind(this);
+    this.handleFocusAccept = this.handleFocusAccept.bind(this);
+    this.handleBodyFocus = this.handleBodyFocus.bind(this);
+    this.handleDatepickerMouseMove = this.handleDatepickerMouseMove.bind(this);
+
     this.init();
   }
 
@@ -64,29 +78,29 @@ class Datepicker {
   }
 
   #addListeners() {
-    this.datepicker.addEventListener('click', this.#handleDatepickerClick.bind(this));
-    this.buttonClear.addEventListener('click', this.#handleButtonClearClick.bind(this));
-    this.buttonAccept.addEventListener('click', this.#handleButtonAcceptClick.bind(this));
+    this.datepicker.addEventListener('click', this.handleDatepickerClick);
+    this.buttonClear.addEventListener('click', this.handleButtonClearClick);
+    this.buttonAccept.addEventListener('click', this.handleButtonAcceptClick);
     this.fields.forEach((item) => {
-      item.addEventListener('input', this.#handleItemInput.bind(this));
+      item.addEventListener('input', this.handleItemInput);
     });
-    this.datepickerBody.addEventListener('click', this.#handleBodyClick.bind(this));
-    this.datepickerBody.addEventListener('keydown', this.#handleBodyKeyPress.bind(this));
+    this.datepickerBody.addEventListener('click', this.handleBodyClick);
+    this.datepickerBody.addEventListener('keydown', this.handleBodyKeyPress);
 
-    document.addEventListener('click', this.#handleDocumentClick.bind(this));
+    document.addEventListener('click', this.handleDocumentClick);
 
-    this.fields.forEach((field) => field.addEventListener('keydown', this.#handleFieldKeyDown.bind(this)));
-    this.navButtons.forEach((item) => item.addEventListener('keydown', this.#handleNavKeyPress.bind(this)));
+    this.fields.forEach((field) => field.addEventListener('keydown', this.handleFieldKeyDown));
+    this.navButtons.forEach((item) => item.addEventListener('keydown', this.handleNavKeyPress));
 
-    this.lastDay.addEventListener('blur', this.#handleFocusAccept.bind(this));
+    this.lastDay.addEventListener('blur', this.handleFocusAccept);
   }
 
-  #handleFocusAccept() {
+  handleFocusAccept() {
     this.buttonAccept.querySelector('button').focus();
     this.buttonAccept.querySelector('button').tabIndex = '0';
   }
 
-  #handleNavKeyPress(e) {
+  handleNavKeyPress(e) {
     const { code } = e;
     const action = e.target.dataset.action === 'prev' ? 'prevNavButton' : 'nextNavButton';
     if (code === 'Enter' || code === 'Space') {
@@ -98,20 +112,20 @@ class Datepicker {
     }
   }
 
-  #handleDatepickerClick(e) {
+  handleDatepickerClick(e) {
     this.#clickInputOpen(e);
     this.#markOlderDays();
   }
 
-  #handleButtonClearClick(e) {
+  handleButtonClearClick(e) {
     this.#clear(e);
   }
 
-  #handleButtonAcceptClick(e) {
+  handleButtonAcceptClick(e) {
     this.#accept(e);
   }
 
-  #handleDocumentClick({ target }) {
+  handleDocumentClick({ target }) {
     if (target.closest(`.${DATEPICKER}`) || target.closest('.-other-month-')) return;
     this.datepicker.querySelectorAll(`.${GROUP}`).forEach((e) => {
       if (e.classList.contains(CLICKED)) e.classList.remove(CLICKED);
@@ -122,7 +136,7 @@ class Datepicker {
     });
   }
 
-  #handleFieldKeyDown(e) {
+  handleFieldKeyDown(e) {
     const { code } = e;
     if (code === 'Space' || code === 'Enter') {
       e.preventDefault();
@@ -130,7 +144,7 @@ class Datepicker {
     }
   }
 
-  #handleBodyKeyPress(e) {
+  handleBodyKeyPress(e) {
     const { code, target } = e;
     if (code === 'Enter' || code === 'Space') {
       e.preventDefault();
@@ -148,7 +162,7 @@ class Datepicker {
       this.dp.selectDate(dateTarget);
       this.#handleContainerClick(e);
       this.datepickerBody.querySelectorAll('.-day-').forEach((day) => {
-        day.addEventListener('focus', this.#handleBodyFocus.bind(this));
+        day.addEventListener('focus', this.handleBodyFocus);
       });
       this.#performRange();
       if (target.classList.contains('-other-month-')) this.#addTabIndex();
@@ -217,16 +231,16 @@ class Datepicker {
     this.#checkBtnVisibility([this.firstItem, this.secondItem]);
   }
 
-  #handleBodyFocus({ target }) {
+  handleBodyFocus({ target }) {
     this.#performSelectingRange(target, this.relatedTarget);
   }
 
-  #handleBodyClick(e) {
-    this.datepicker.addEventListener('mousemove', this.#handleDatepickerMouseMove.bind(this));
+  handleBodyClick(e) {
+    this.datepicker.addEventListener('mousemove', this.handleDatepickerMouseMove);
     this.#handleContainerClick(e);
   }
 
-  #handleDatepickerMouseMove({ target, relatedTarget }) {
+  handleDatepickerMouseMove({ target, relatedTarget }) {
     this.#performSelectingRange(target, relatedTarget);
   }
 
@@ -293,7 +307,7 @@ class Datepicker {
     }
   }
 
-  #handleItemInput() {
+  handleItemInput() {
     const correctDateFormat = Datepicker.correctDateFormat([...this.fields]);
 
     if (correctDateFormat) {

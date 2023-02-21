@@ -13,8 +13,11 @@ class Canvas {
     try {
       this.inputOptions = JSON.parse(this.canvas.dataset.canvas);
     } catch (err) {
-      throw new Error('Ошибка в опциях', err);
+      console.error('Ошибка в опциях', err);
     }
+
+    this.handleItemOver = this.handleItemOver.bind(this);
+    this.handleItemOut = this.handleItemOut.bind(this);
 
     this.init();
   }
@@ -44,15 +47,38 @@ class Canvas {
 
   #addListeners() {
     this.items.forEach((item) => {
-      item.addEventListener('mouseover', this.#handleItemOver.bind(this));
-      item.addEventListener('mouseout', this.#handleItemOut.bind(this));
+      item.addEventListener('mouseover', this.handleItemOver);
+      item.addEventListener('mouseout', this.handleItemOut);
     });
 
     this.circles.forEach((circle) => {
-      circle.addEventListener('mouseover', this.#handleItemOver.bind(this));
-      circle.addEventListener('mouseout', this.#handleItemOut.bind(this));
-      circle.addEventListener('focus', this.#handleItemOver.bind(this));
-      circle.addEventListener('blur', this.#handleItemOut.bind(this));
+      circle.addEventListener('mouseover', this.handleItemOver);
+      circle.addEventListener('mouseout', this.handleItemOut);
+      circle.addEventListener('focus', this.handleItemOver);
+      circle.addEventListener('blur', this.handleItemOut);
+    });
+  }
+
+  handleItemOut() {
+    this.#deleteText();
+    this.text = this.#createText();
+    this.#addText();
+    this.#resetLine();
+    this.#resetHoverText();
+  }
+
+  handleItemOver({ target }) {
+    const { line } = target.dataset;
+
+    this.options.forEach(({ count, stopFirst, grade = 'default' }) => {
+      if (grade === line) {
+        this.text = this.#createText(stopFirst, count);
+        this.#deleteText();
+        this.#addText();
+
+        if (target.classList.contains(ITEM)) this.#boldLine(grade);
+        if (target.classList.contains(UNIT)) this.#hoverText(grade);
+      }
     });
   }
 
@@ -69,7 +95,7 @@ class Canvas {
     this.inputOptions.forEach(({ grade }) => {
       if (grades.has(grade)) {
         const key = Number(grades.get(grade)) + 1;
-        if (Number.isNaN(key)) throw new Error('Ошибка в количестве оценок');
+        if (Number.isNaN(key)) console.error('Ошибка в количестве оценок');
         grades.set(grade, key);
       } else {
         grades.set(grade, 1);
@@ -88,7 +114,7 @@ class Canvas {
   }
 
   #uniteItems(grade) {
-    if (!grade) throw new Error('Cannot unite empty items');
+    if (!grade) console.error('Cannot unite empty items');
     const sameItems = this.inputOptions.filter((option) => option.grade === grade);
     const sumCounts = sameItems.reduce((p, c) => p.count + c.count, 0);
     const newItem = Object.assign(...sameItems, { count: sumCounts });
@@ -103,7 +129,7 @@ class Canvas {
     });
 
     if (Number.isNaN(sum)) {
-      throw new Error('Ошибка в подсчёте суммы голосов Canvas');
+      console.error('Ошибка в подсчёте суммы голосов Canvas');
     }
     return sum;
   }
@@ -125,7 +151,7 @@ class Canvas {
     this.options.forEach((option) => {
       items += Canvas.createDef(option);
     });
-    if (items.length === 0) throw new Error('Нет опций для defs');
+    if (items.length === 0) console.error('Нет опций для defs');
 
     const defs = `<defs>${items}</defs>`;
     return defs;
@@ -184,29 +210,6 @@ class Canvas {
   #deleteText() {
     const text = this.canvas.querySelector('.canvas__text-group');
     if (text !== '') text.remove();
-  }
-
-  #handleItemOver({ target }) {
-    const { line } = target.dataset;
-
-    this.options.forEach(({ count, stopFirst, grade = 'default' }) => {
-      if (grade === line) {
-        this.text = this.#createText(stopFirst, count);
-        this.#deleteText();
-        this.#addText();
-
-        if (target.classList.contains(ITEM)) this.#boldLine(grade);
-        if (target.classList.contains(UNIT)) this.#hoverText(grade);
-      }
-    });
-  }
-
-  #handleItemOut() {
-    this.#deleteText();
-    this.text = this.#createText();
-    this.#addText();
-    this.#resetLine();
-    this.#resetHoverText();
   }
 
   #boldLine(grade) {

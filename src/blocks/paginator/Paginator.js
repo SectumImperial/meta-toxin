@@ -16,8 +16,17 @@ class Paginator {
     try {
       this.options = JSON.parse(this.paginator.dataset.paginator);
     } catch (err) {
-      throw new Error(`Error in reading options ${err}`);
+      console.error(`Error in reading options ${err}`);
     }
+
+    this.handleButtonPrevClick = this.handleButtonPrevClick.bind(this);
+    this.handleButtonNextClick = this.handleButtonNextClick.bind(this);
+    this.handleItemClick = this.handleItemClick.bind(this);
+    this.handleButtonPrevPress = this.handleButtonPrevPress.bind(this);
+    this.handleButtonNextPress = this.handleButtonNextPress.bind(this);
+    this.handleItemPress = this.handleItemPress.bind(this);
+    this.handleChangeScreen = this.handleChangeScreen.bind(this);
+
     this.init();
   }
 
@@ -32,39 +41,39 @@ class Paginator {
   }
 
   #addListeners() {
-    this.buttonPrev.addEventListener('click', this.#handleButtonPrevClick.bind(this));
-    this.buttonNext.addEventListener('click', this.#handleButtonNextClick.bind(this));
-    this.itemsPaginator.addEventListener('click', this.#handleItemClick.bind(this));
+    this.buttonPrev.addEventListener('click', this.handleButtonPrevClick);
+    this.buttonNext.addEventListener('click', this.handleButtonNextClick);
+    this.itemsPaginator.addEventListener('click', this.handleItemClick);
 
-    this.buttonPrev.addEventListener('keydown', this.#handleButtonPrevPress.bind(this));
-    this.buttonNext.addEventListener('keydown', this.#handleButtonNextPress.bind(this));
-    this.itemsPaginator.addEventListener('keydown', this.#handleItemPress.bind(this));
-    this.mediaQueryList.addEventListener('change', this.#handleChangeScreen.bind(this));
+    this.buttonPrev.addEventListener('keydown', this.handleButtonPrevPress);
+    this.buttonNext.addEventListener('keydown', this.handleButtonNextPress);
+    this.itemsPaginator.addEventListener('keydown', this.handleItemPress);
+    this.mediaQueryList.addEventListener('change', this.handleChangeScreen);
   }
 
-  #handleButtonPrevClick() {
+  handleButtonPrevClick() {
     this.#decrementPage();
   }
 
-  #handleButtonNextClick() {
+  handleButtonNextClick() {
     this.#incrementPage();
   }
 
-  #handleButtonPrevPress(e) {
+  handleButtonPrevPress(e) {
     const { code } = e;
     if (code !== 'Space') return;
     e.preventDefault();
     this.#decrementPage();
   }
 
-  #handleButtonNextPress(e) {
+  handleButtonNextPress(e) {
     const { code } = e;
     if (code !== 'Space') return;
     e.preventDefault();
     this.#incrementPage();
   }
 
-  #handleItemPress(e) {
+  handleItemPress(e) {
     const { code, target } = e;
     if (code === 'Space' || code === 'Enter') {
       e.preventDefault();
@@ -72,8 +81,14 @@ class Paginator {
     }
   }
 
-  #handleItemClick({ target }) {
+  handleItemClick({ target }) {
     this.#changePage(target);
+  }
+
+  handleChangeScreen() {
+    this.#removePaginator();
+    this.#createPaginator();
+    this.#setCurrentPage();
   }
 
   #findElements() {
@@ -90,9 +105,9 @@ class Paginator {
     this.startPage = 1;
 
     this.itemsPerPage = this.options.itemsPerPage;
-    if (this.allItems <= 0) throw new Error('Zero or less items per page.');
+    if (this.allItems <= 0) console.error('Zero or less items per page.');
     this.allItems = this.options.allItems;
-    if (this.allItems <= 0) throw new Error('Zero or less counts.');
+    if (this.allItems <= 0) console.error('Zero or less counts.');
     this.text = this.options.text;
 
     this.pageCount = Math.ceil(this.allItems / this.itemsPerPage);
@@ -310,7 +325,7 @@ class Paginator {
     const page = this.itemsPaginator.querySelector(
       `.${LI_CLASS}[data-number="${this.currentPage}"]`,
     );
-    if (!page) throw new Error('Current page has not found');
+    if (!page) console.error('Current page has not found');
     return page;
   }
 
@@ -347,12 +362,6 @@ class Paginator {
 
   #removePaginator() {
     this.itemsPaginator.innerHTML = '';
-  }
-
-  #handleChangeScreen() {
-    this.#removePaginator();
-    this.#createPaginator();
-    this.#setCurrentPage();
   }
 }
 

@@ -3,11 +3,15 @@ import {
   UNLIKED__HEART,
   LIKED_COUNT,
   LIKED_BUTTON,
+  HEART,
+  COUNT,
+  BUTTON,
 } from './constants';
 
 class Like {
   constructor(element) {
     this.like = element;
+    this.handleLikeClick = this.handleLikeClick.bind(this);
     this.init();
   }
 
@@ -17,17 +21,17 @@ class Like {
   }
 
   #findElements() {
-    this.heart = this.like.querySelector('.like__heart');
-    this.count = this.like.querySelector('.like__count');
-    this.button = this.like.querySelector('.like__button');
+    this.heart = this.like.querySelector(`.${HEART}`);
+    this.count = this.like.querySelector(`.${COUNT}`);
+    this.button = this.like.querySelector(`.${BUTTON}`);
   }
 
   #addListeners() {
-    this.like.addEventListener('click', this.#handleLikeClick.bind(this));
+    this.like.addEventListener('click', this.handleLikeClick);
   }
 
-  #handleLikeClick({ target }) {
-    const btn = target.closest('.like__button');
+  handleLikeClick({ target }) {
+    const btn = target.closest(`.${BUTTON}`);
     if (btn.classList.contains(LIKED_BUTTON)) {
       this.#decrementLike();
     }
@@ -49,7 +53,7 @@ class Like {
     let val = Number(this.count.innerText);
     if (Number.isNaN(val)) {
       this.count.innerText = 0;
-      throw new Error('The like value MUST be number.');
+      console.error('The like value MUST be number.');
     }
     val -= 1;
     this.count.innerText = val;
@@ -59,7 +63,7 @@ class Like {
     let val = Number(this.count.innerText);
     if (Number.isNaN(val)) {
       this.count.innerText = 0;
-      throw new Error('The like value MUST be number.');
+      console.error('The like value MUST be number.');
     }
     val += 1;
     this.count.innerText = val;

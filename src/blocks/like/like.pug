@@ -6,12 +6,17 @@ mixin like(options = {})
     } = options
 
     const heartClass = isLiked ? 'like__heart_liked' : 'like__heart_unliked'
-    const btnClass = isLiked ? 'like__button like__button_liked' : 'like__button'
 
   .like
-    button(class = btnClass, name = "liked__btn", type = "button")
-      div.like__heart(class = heartClass)
-      span.like__count(class = {
-        'like__count_liked': isLiked,
+    button.like__button.js-like__button(
+      class = {
+      like__button_liked: isLiked,
+      }, 
+      name = "liked__btn", 
+      type = "button",
+    )
+      div.like__heart.js-like__heart(class = heartClass)
+      span.like__count.js-like__count(class = {
+        like__count_liked: isLiked,
       })= counts
 

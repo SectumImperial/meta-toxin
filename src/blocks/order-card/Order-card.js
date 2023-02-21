@@ -20,6 +20,17 @@ import {
 class OrderCard {
   constructor(element) {
     this.card = element;
+
+    this.handleDatepickerInput = this.handleDatepickerInput.bind(this);
+    this.handleDatepickerInput = this.handleDatepickerInput.bind(this);
+    this.handleDatepickerClick = this.handleDatepickerClick.bind(this);
+    this.handleDocumentClick = this.handleDocumentClick.bind(this);
+    this.handleDocumentScroll = this.handleDocumentScroll.bind(this);
+    OrderCard.handleTipMouseEnter = OrderCard.handleTipMouseEnter.bind(this);
+    OrderCard.handleTipMouseOut = OrderCard.handleTipMouseOut.bind(this);
+    OrderCard.handleTipFocus = OrderCard.handleTipFocus.bind(this);
+    OrderCard.handleTipBlur = OrderCard.handleTipBlur.bind(this);
+
     this.init();
   }
 
@@ -36,21 +47,21 @@ class OrderCard {
   }
 
   #addListeners() {
-    this.startDate.addEventListener('input', this.#handleDatepickerInput.bind(this));
-    this.endDate.addEventListener('input', this.#handleDatepickerInput.bind(this));
-    this.datepicker.addEventListener('click', this.#handleDatepickerClick.bind(this));
-    document.addEventListener('click', this.#handleDocumentClick.bind(this));
+    this.startDate.addEventListener('input', this.handleDatepickerInput);
+    this.endDate.addEventListener('input', this.handleDatepickerInput);
+    this.datepicker.addEventListener('click', this.handleDatepickerClick);
+    document.addEventListener('click', this.handleDocumentClick);
     this.card.querySelectorAll(`.${TIP}`).forEach((e) => {
-      e.addEventListener('mouseenter', OrderCard.handleTipMouseEnter.bind(this));
-      e.addEventListener('mouseout', OrderCard.handleTipMouseOut.bind(this));
-      e.addEventListener('focus', OrderCard.handleTipFocus.bind(this));
-      e.addEventListener('blur', OrderCard.handleTipBlur.bind(this));
+      e.addEventListener('mouseenter', OrderCard.handleTipMouseEnter);
+      e.addEventListener('mouseout', OrderCard.handleTipMouseOut);
+      e.addEventListener('focus', OrderCard.handleTipFocus);
+      e.addEventListener('blur', OrderCard.handleTipBlur);
     });
 
-    document.addEventListener('scroll', this.#handleDocumentScroll.bind(this));
+    document.addEventListener('scroll', this.handleDocumentScroll);
   }
 
-  #handleDocumentScroll() {
+  handleDocumentScroll() {
     this.card.querySelectorAll(`.${TIP}`).forEach((tip) => {
       const { idTip } = tip.dataset;
       if (idTip.length > 0) {
@@ -62,15 +73,15 @@ class OrderCard {
     });
   }
 
-  #handleDatepickerInput() {
+  handleDatepickerInput() {
     this.#updateCounting();
   }
 
-  #handleDatepickerClick() {
+  handleDatepickerClick() {
     this.#updateCounting();
   }
 
-  #handleDocumentClick() {
+  handleDocumentClick() {
     this.#updateCounting();
   }
 

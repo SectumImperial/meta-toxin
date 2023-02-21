@@ -1,6 +1,6 @@
 function isEqual(firstArr, secondArr) {
   if (!Array.isArray(firstArr) || !Array.isArray(secondArr)) {
-    throw new Error(
+    console.error(
       'В сравнение массивов isEqual() передан НЕ массив',
     );
   }

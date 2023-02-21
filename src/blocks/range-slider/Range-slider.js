@@ -13,8 +13,12 @@ class Slider {
     try {
       this.options = JSON.parse(this.slider.dataset.rangeoptions);
     } catch (err) {
-      throw new Error('Ошибка в чтении options');
+      console.error('Ошибка в чтении options');
     }
+
+    this.handleToggleMouseDown = this.handleToggleMouseDown.bind(this);
+    this.handleToggleTouchStart = this.handleToggleTouchStart.bind(this);
+    this.handleToggleKeyDown = this.handleToggleKeyDown.bind(this);
 
     this.init();
   }
@@ -33,27 +37,27 @@ class Slider {
 
   #addListeners() {
     this.toggles.forEach((e) => {
-      e.addEventListener('mousedown', this.#handleToggleMouseDown.bind(this));
+      e.addEventListener('mousedown', this.handleToggleMouseDown);
       e.addEventListener('dragstart', () => false);
       e.addEventListener(
         'touchstart',
-        this.#handleToggleTouchStart.bind(this),
+        this.handleToggleTouchStart,
         { passive: true },
       );
-      e.addEventListener('keydown', this.#handleToggleKeyDown.bind(this));
+      e.addEventListener('keydown', this.handleToggleKeyDown);
     });
   }
 
-  #handleToggleMouseDown(e) {
+  handleToggleMouseDown(e) {
     e.preventDefault();
     this.#performStartMove(e);
   }
 
-  #handleToggleTouchStart(e) {
+  handleToggleTouchStart(e) {
     this.#performStartTouch(e);
   }
 
-  #handleToggleKeyDown(e) {
+  handleToggleKeyDown(e) {
     const { key, target } = e;
     if (key === 'ArrowLeft') {
       e.preventDefault();
@@ -387,7 +391,7 @@ class Slider {
   }
 
   #updateMoved(val, percent, toggle) {
-    if (Number.isNaN(val) || percent === undefined) throw new Error('Something wrong with setting new values');
+    if (Number.isNaN(val) || percent === undefined) console.error('Something wrong with setting new values');
     this.#setToggleState({
       toggle,
       val,

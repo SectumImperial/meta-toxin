@@ -8,6 +8,9 @@ class CheckboxList {
   constructor(selector) {
     this.checkboxList = selector;
     this.init();
+
+    this.handleListClick = this.handleListClick.bind(this);
+    this.handleListKeyPress = this.handleListKeyPress.bind(this);
   }
 
   init() {
@@ -16,8 +19,27 @@ class CheckboxList {
   }
 
   #addListeners() {
-    this.checkboxList.addEventListener('click', this.#handleListClick.bind(this));
-    this.checkboxList.addEventListener('keydown', this.#handleListKeyPress.bind(this));
+    this.checkboxList.addEventListener('click', this.handleListClick);
+    this.checkboxList.addEventListener('keydown', this.handleListKeyPress);
+  }
+
+  handleListClick({ target }) {
+    if (target.closest(`.${ITEMS}`)) return;
+    this.#toggle();
+  }
+
+  handleListKeyPress(e) {
+    const { code } = e;
+    const { target } = e;
+
+    if (target.closest(`.${ITEMS}`) && code === 'Space') {
+      return;
+    }
+
+    if (code === 'Space') {
+      e.preventDefault();
+      this.#toggle();
+    }
   }
 
   #removeClasses() {
@@ -35,25 +57,6 @@ class CheckboxList {
       this.#removeClasses();
     } else {
       this.#addClasses();
-    }
-  }
-
-  #handleListClick({ target }) {
-    if (target.closest(`.${ITEMS}`)) return;
-    this.#toggle();
-  }
-
-  #handleListKeyPress(e) {
-    const { code } = e;
-    const { target } = e;
-
-    if (target.closest(`.${ITEMS}`) && code === 'Space') {
-      return;
-    }
-
-    if (code === 'Space') {
-      e.preventDefault();
-      this.#toggle();
     }
   }
 }

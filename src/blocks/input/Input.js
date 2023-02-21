@@ -3,15 +3,16 @@ import Inputmask from 'inputmask';
 class Input {
   constructor(element) {
     this.input = element;
+    this.handleInputClick = this.handleInputClick.bind(this);
     this.init();
   }
 
   init() {
-    this.input.addEventListener('click', this.#handleInputClick.bind(this));
+    this.input.addEventListener('click', this.handleInputClick);
     this.#addMask();
   }
 
-  #handleInputClick() {
+  handleInputClick() {
     if (this.input.querySelector('input[type="email"]')) return;
     const arrow = this.input.querySelector('._input_arrow');
     if (!arrow) return;

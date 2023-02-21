@@ -6,6 +6,8 @@ import {
 class Nav {
   constructor(element) {
     this.nav = element;
+    this.handleChangeScreen = this.handleChangeScreen.bind(this);
+    this.handleNavSubItemClick = this.handleNavSubItemClick.bind(this);
     this.init();
   }
 
@@ -20,25 +22,25 @@ class Nav {
   }
 
   #addListeners() {
-    this.mediaQueryList.addEventListener('change', this.#handleChangeScreen.bind(this));
+    this.mediaQueryList.addEventListener('change', this.handleChangeScreen);
     this.subItems.forEach((element) => {
-      element.addEventListener('click', this.#handleNavSubItemClick.bind(this));
+      element.addEventListener('click', this.handleNavSubItemClick);
     });
   }
 
-  #handleNavSubItemClick(e) {
-    if (!this.mediaQueryList.matches) {
-      e.preventDefault();
-      const subItem = e.target.closest(`.${SUBITEM}`);
-      subItem.classList.toggle('nav__subitem_active');
-    }
-  }
-
-  #handleChangeScreen() {
+  handleChangeScreen() {
     if (this.mediaQueryList.matches) {
       this.subItems.forEach((e) => {
         if (e.classList.contains('nav__subitem_active')) e.classList.remove('nav__subitem_active');
       });
+    }
+  }
+
+  handleNavSubItemClick(e) {
+    if (!this.mediaQueryList.matches) {
+      e.preventDefault();
+      const subItem = e.target.closest(`.${SUBITEM}`);
+      subItem.classList.toggle('nav__subitem_active');
     }
   }
 }

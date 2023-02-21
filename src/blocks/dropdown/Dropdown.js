@@ -29,8 +29,17 @@ class Dropdown {
     try {
       this.options = JSON.parse(this.dropdown.dataset.options);
     } catch (err) {
-      throw new Error('Ошибка в чтении options', err);
+      console.error('Ошибка в чтении options', err);
     }
+
+    this.handleFieldClick = this.handleFieldClick.bind(this);
+    this.handleInputKeyDown = this.handleInputKeyDown.bind(this);
+    this.handleDecrBtnClick = this.handleDecrBtnClick.bind(this);
+    this.handleIncrBtnClick = this.handleIncrBtnClick.bind(this);
+    this.handleBtnClearClick = this.handleBtnClearClick.bind(this);
+    this.handleBtnAcceptClick = this.handleBtnAcceptClick.bind(this);
+    this.handleDocumentClick = this.handleDocumentClick.bind(this);
+
     this.init();
   }
 
@@ -60,35 +69,23 @@ class Dropdown {
   }
 
   #addListeners() {
-    this.field.addEventListener('click', this.#handleFieldClick.bind(this));
-    this.field.addEventListener('click', () => {
-      this.dropdownContent.classList.toggle(ACTIVE);
-    });
-    if (this.label) {
-      this.label.addEventListener('click', (e) => e.preventDefault());
-    }
+    this.field.addEventListener('click', this.handleFieldClick);
 
     this.dropdownInput.addEventListener(
       'keydown',
-      this.#handleInputKeyDown.bind(this),
+      this.handleInputKeyDown,
     );
 
-    this.buttonsDecrement.forEach((item) => item.addEventListener('click', this.#handleDecrBtnClick.bind(this)));
-    this.buttonsIncrement.forEach((item) => item.addEventListener('click', this.#handleIncrBtnClick.bind(this)));
+    this.buttonsDecrement.forEach((item) => item.addEventListener('click', this.handleDecrBtnClick));
+    this.buttonsIncrement.forEach((item) => item.addEventListener('click', this.handleIncrBtnClick));
 
-    this.btnClear.addEventListener(
-      'click',
-      this.#handleBtnClearClick.bind(this),
-    );
-    this.btnAccept.addEventListener(
-      'click',
-      this.#handleBtnAcceptClick.bind(this),
-    );
+    this.btnClear.addEventListener('click', this.handleBtnClearClick);
+    this.btnAccept.addEventListener('click', this.handleBtnAcceptClick);
 
-    document.addEventListener('click', this.#handleDocumentClick.bind(this));
+    document.addEventListener('click', this.handleDocumentClick);
   }
 
-  #handleDocumentClick({ target }) {
+  handleDocumentClick({ target }) {
     if (target.closest('.dropdown')) return;
     if (this.field.classList.contains(OPENED)) {
       this.field.classList.remove(OPENED);
@@ -98,7 +95,7 @@ class Dropdown {
     }
   }
 
-  #handleInputKeyDown(e) {
+  handleInputKeyDown(e) {
     const { code } = e;
     if (code === 'Space' || code === 'Enter') {
       e.preventDefault();
@@ -106,21 +103,7 @@ class Dropdown {
     }
   }
 
-  #checkBtnVisibility() {
-    let countValues = [];
-    this.counts.forEach((e) => {
-      countValues = [...countValues, Number(e.value)];
-    });
-    const sum = countValues.reduce(
-      (previousValue, currentValue) => previousValue + currentValue,
-      0,
-    );
-
-    if (sum > 0) this.btnClear.classList.remove(HIDDEN);
-    if (sum === 0) this.btnClear.classList.add(HIDDEN);
-  }
-
-  #handleDecrBtnClick(e) {
+  handleDecrBtnClick(e) {
     e.preventDefault();
     const { target } = e;
     const container = target.closest(`.${ITEM}`);
@@ -134,7 +117,7 @@ class Dropdown {
     this.#checkBtnVisibility();
   }
 
-  #handleIncrBtnClick(e) {
+  handleIncrBtnClick(e) {
     e.preventDefault();
     const { target } = e;
     const container = target.closest(`.${ITEM}`);
@@ -153,7 +136,7 @@ class Dropdown {
     this.#checkBtnVisibility();
   }
 
-  #handleBtnClearClick(e) {
+  handleBtnClearClick(e) {
     e.preventDefault();
     let placeholderValue = 'Введите данные';
     this.options.forEach((element) => {
@@ -168,14 +151,29 @@ class Dropdown {
     this.#checkBtnVisibility();
   }
 
-  #handleBtnAcceptClick(e) {
+  handleBtnAcceptClick(e) {
     e.preventDefault();
     this.dropdownContent.classList.remove(ACTIVE);
     this.field.classList.remove(OPENED);
   }
 
-  #handleFieldClick() {
+  handleFieldClick() {
+    this.dropdownContent.classList.toggle(ACTIVE);
     this.field.classList.toggle(OPENED);
+  }
+
+  #checkBtnVisibility() {
+    let countValues = [];
+    this.counts.forEach((e) => {
+      countValues = [...countValues, Number(e.value)];
+    });
+    const sum = countValues.reduce(
+      (previousValue, currentValue) => previousValue + currentValue,
+      0,
+    );
+
+    if (sum > 0) this.btnClear.classList.remove(HIDDEN);
+    if (sum === 0) this.btnClear.classList.add(HIDDEN);
   }
 
   #addURLValues() {
@@ -234,7 +232,7 @@ class Dropdown {
 
     counts.forEach((count) => {
       if (Number.isNaN(Number(count.value))) {
-        throw new Error('Error in reading counter value');
+        console.error('Error in reading counter value');
       }
       countMap.set(count.dataset.item, Number(count.value));
     });
