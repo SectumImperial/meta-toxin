@@ -9,7 +9,7 @@ class StarRating {
     try {
       this.rateNum = JSON.parse(this.rating.dataset.rating);
     } catch (err) {
-      console.error('Ошибка в чтении options', err);
+      console.error('Error in reading options', err);
     }
 
     this.init();

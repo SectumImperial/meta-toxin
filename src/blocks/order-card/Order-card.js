@@ -46,6 +46,102 @@ class OrderCard {
     this.#addResizeObserver();
   }
 
+  static updateTipPosition(tip, message) {
+    const coords = {
+      x: tip.getBoundingClientRect().x,
+      y: tip.getBoundingClientRect().y,
+    };
+
+    OrderCard.setMessagePosition(coords, message);
+  }
+
+  static handleTipMouseEnter({ target }) {
+    OrderCard.handleShowMessage(target);
+  }
+
+  static handleTipMouseOut({ target }) {
+    OrderCard.handleHideMessage(target);
+  }
+
+  static handleTipFocus({ target }) {
+    OrderCard.handleShowMessage(target);
+  }
+
+  static handleTipBlur({ target }) {
+    OrderCard.handleHideMessage(target);
+  }
+
+  static handleShowMessage(target) {
+    const elemID = target.dataset.idTip;
+    const coords = {
+      x: target.getBoundingClientRect().x,
+      y: target.getBoundingClientRect().y,
+    };
+    OrderCard.showMessage(elemID, coords);
+  }
+
+  static handleHideMessage(target) {
+    const elemID = target.dataset.idTip;
+    const message = document.querySelector(`.order-card__tip-message[data-id-message="${elemID}"]`);
+    if (message.classList.contains('order-card__tip-message_show')) message.classList.remove('order-card__tip-message_show');
+  }
+
+  static formattedDate(date) {
+    const result = date.split('.').reverse().join('-');
+    return result;
+  }
+
+  static sumDiscount() {
+    return FEES_DISC - ADD_FEE;
+  }
+
+  static createTip() {
+    const el = document.createElement('div');
+    el.className = 'order-card__tip js-order-card__tip';
+    el.innerText = 'i';
+
+    el.style.width = '20px';
+    el.style.height = '20px';
+    el.style.borderRadius = '50%';
+    el.dataset.idTip = uuidv4();
+    el.tabIndex = 0;
+    return el;
+  }
+
+  static createMessageTip(information, tip) {
+    const el = document.createElement('div');
+    el.className = 'order-card__tip-message js-order-card__tip-message';
+    el.innerText = information;
+    el.dataset.idMessage = tip.dataset.idTip;
+
+    return el;
+  }
+
+  static showMessage(elemID, coords = {}) {
+    if (elemID === undefined || elemID === null) return;
+    const message = OrderCard.findMessage(elemID);
+    if (!message) return;
+    message.classList.add('order-card__tip-message_show');
+    OrderCard.setMessagePosition(coords, message);
+  }
+
+  static setMessagePosition(coords, message) {
+    const { x, y } = coords;
+    const messageTip = message;
+
+    if (window.innerWidth < 370) {
+      messageTip.style.left = `${x - 42}px`;
+      messageTip.style.top = `${y + 20}px`;
+    } else {
+      messageTip.style.left = `${x + 22}px`;
+      messageTip.style.top = `${y + 20}px`;
+    }
+  }
+
+  static findMessage(elemID) {
+    return document.querySelector(`.order-card__tip-message[data-id-message="${elemID}"]`);
+  }
+
   #addListeners() {
     this.startDate.addEventListener('input', this.handleDatepickerInput);
     this.endDate.addEventListener('input', this.handleDatepickerInput);
@@ -210,102 +306,6 @@ class OrderCard {
     this.card.querySelector(
       `.${SUM}`,
     ).innerText = `${finalSum}₽`;
-  }
-
-  static updateTipPosition(tip, message) {
-    const coords = {
-      x: tip.getBoundingClientRect().x,
-      y: tip.getBoundingClientRect().y,
-    };
-
-    OrderCard.setMessagePosition(coords, message);
-  }
-
-  static handleTipMouseEnter({ target }) {
-    OrderCard.handleShowMessage(target);
-  }
-
-  static handleTipMouseOut({ target }) {
-    OrderCard.handleHideMessage(target);
-  }
-
-  static handleTipFocus({ target }) {
-    OrderCard.handleShowMessage(target);
-  }
-
-  static handleTipBlur({ target }) {
-    OrderCard.handleHideMessage(target);
-  }
-
-  static handleShowMessage(target) {
-    const elemID = target.dataset.idTip;
-    const coords = {
-      x: target.getBoundingClientRect().x,
-      y: target.getBoundingClientRect().y,
-    };
-    OrderCard.showMessage(elemID, coords);
-  }
-
-  static handleHideMessage(target) {
-    const elemID = target.dataset.idTip;
-    const message = document.querySelector(`.order-card__tip-message[data-id-message="${elemID}"]`);
-    if (message.classList.contains('order-card__tip-message_show')) message.classList.remove('order-card__tip-message_show');
-  }
-
-  static formattedDate(date) {
-    const result = date.split('.').reverse().join('-');
-    return result;
-  }
-
-  static sumDiscount() {
-    return FEES_DISC - ADD_FEE;
-  }
-
-  static createTip() {
-    const el = document.createElement('div');
-    el.className = 'order-card__tip js-order-card__tip';
-    el.innerText = 'i';
-
-    el.style.width = '20px';
-    el.style.height = '20px';
-    el.style.borderRadius = '50%';
-    el.dataset.idTip = uuidv4();
-    el.tabIndex = 0;
-    return el;
-  }
-
-  static createMessageTip(information, tip) {
-    const el = document.createElement('div');
-    el.className = 'order-card__tip-message js-order-card__tip-message';
-    el.innerText = information;
-    el.dataset.idMessage = tip.dataset.idTip;
-
-    return el;
-  }
-
-  static showMessage(elemID, coords = {}) {
-    if (elemID === undefined || elemID === null) return;
-    const message = OrderCard.findMessage(elemID);
-    if (!message) return;
-    message.classList.add('order-card__tip-message_show');
-    OrderCard.setMessagePosition(coords, message);
-  }
-
-  static setMessagePosition(coords, message) {
-    const { x, y } = coords;
-    const messageTip = message;
-
-    if (window.innerWidth < 370) {
-      messageTip.style.left = `${x - 42}px`;
-      messageTip.style.top = `${y + 20}px`;
-    } else {
-      messageTip.style.left = `${x + 22}px`;
-      messageTip.style.top = `${y + 20}px`;
-    }
-  }
-
-  static findMessage(elemID) {
-    return document.querySelector(`.order-card__tip-message[data-id-message="${elemID}"]`);
   }
 }
 

@@ -1,6 +1,6 @@
 import AirDatepicker from 'air-datepicker';
 import { v4 as uuidv4 } from 'uuid';
-import Inputmask from 'inputmask';
+import addMask from './helpers';
 
 import {
   MONTHS,
@@ -52,7 +52,169 @@ class Datepicker {
     this.#checkBtnVisibility([...this.fields]);
     this.#addListeners();
     this.#addTabIndex();
-    this.#addMask();
+    addMask(this.fields, this.isTwoInputs);
+  }
+
+  static isOneInputClicked({ targetContainer, sibling, container }) {
+    return !targetContainer.classList.contains(CLICKED)
+      && sibling.classList.contains(CLICKED)
+      && container.classList.contains(ACTIVE);
+  }
+
+  static isAllInputClicked({ targetContainer, sibling, container }) {
+    return targetContainer.classList.contains(CLICKED)
+    && sibling.classList.contains(CLICKED)
+    && container.classList.contains(ACTIVE);
+  }
+
+  static returnInputSibling(targetContainer, formGroups) {
+    const sibling = formGroups.find((e) => e !== targetContainer);
+    return sibling;
+  }
+
+  static closeDpOnInputCLick(targetContainer, sibling, calContainer) {
+    targetContainer.classList.remove(CLICKED);
+    sibling.classList.remove(CLICKED);
+    calContainer.classList.remove(ACTIVE);
+  }
+
+  static isSelectedDates({ isSingleInput, rangeDateFrom, rangeDateTo }) {
+    return isSingleInput && rangeDateFrom && rangeDateTo;
+  }
+
+  static correctDateFormat(items) {
+    return items.every(({ value, pattern }) => value.match(pattern));
+  }
+
+  static getURLParams() {
+    const queryString = window.location.search;
+    const URLParams = new URLSearchParams(queryString);
+
+    const startURLDateString = URLParams.get('datepicker-input-start');
+    const endURLDateString = URLParams.get('datepicker-input-end');
+
+    if ((startURLDateString, endURLDateString)) {
+      return [startURLDateString, endURLDateString];
+    }
+    return false;
+  }
+
+  static formatDate({ firstDate, secondDate = '', mod = 'twoInputMod' }) {
+    let result;
+    if (secondDate !== '' && mod === 'singleInputMod') {
+      const firstDay = firstDate.getDate();
+      const secondDay = secondDate.getDate();
+      const fistMonth = firstDate
+        .toLocaleString('default', { month: 'long' })
+        .substring(0, 3);
+      const secondMonth = secondDate
+        .toLocaleString('default', { month: 'long' })
+        .substring(0, 3);
+
+      result = `${firstDay} ${fistMonth} - ${secondDay} ${secondMonth}`;
+    }
+    if (secondDate === '' && mod === 'twoInputMod') {
+      const day = `${firstDate.getDate()}`.length < 2
+        ? `0${firstDate.getDate()}`
+        : firstDate.getDate();
+      const month = `${firstDate.getMonth()}`.length < 2 && firstDate.getMonth() !== 9
+        ? `0${firstDate.getMonth() + 1}`
+        : firstDate.getMonth() + 1;
+      const year = firstDate.getFullYear();
+      result = `${day}.${month}.${year}`;
+    }
+    return result;
+  }
+
+  static changeSameData(secondItem) {
+    let date = secondItem.value.split('.');
+    let [day] = date;
+    day = Number(day) + 1;
+    date = [day, date.slice(1, 3)].flat().join('.');
+    return date;
+  }
+
+  static deleteComma(elem) {
+    let text = elem.innerText;
+    text = text.replace(',', '').replace('\n', ' ');
+    return text;
+  }
+
+  static recreateDate(invalidDate) {
+    const [day, month] = invalidDate.split(' ');
+    let formattedMonth = month.charAt(0).toUpperCase() + month.slice(1);
+    formattedMonth = MONTHS.indexOf(month);
+    const date = new Date(2022, formattedMonth, day);
+    return date;
+  }
+
+  static isNotRange({ target, to, from }) {
+    return target.classList.contains(to)
+    && !target.classList.contains(from)
+    && !target.classList.contains('-selected-');
+  }
+
+  static isRangeSelecting(point, classRange) {
+    return point
+      && point.classList.contains('-selected-')
+      && !point.classList.contains(classRange);
+  }
+
+  static isRangeSelected(point) {
+    return point
+      && point.classList.contains('end-range')
+      && point.classList.contains('start-range');
+  }
+
+  static deletePointRange(point) {
+    if (
+      Datepicker.isRangeSelected(point)
+    ) {
+      point.classList.remove('start-range');
+      point.classList.remove('end-range');
+    }
+  }
+
+  static isItemDateLessThanNow(target) {
+    const day = Number(target.dataset.date) < 10 ? `0${target.dataset.date}` : target.dataset.date;
+    const { month, year } = target.dataset;
+    const result = Datepicker.isDateBiggerThanNow({ year, month, day });
+    return result;
+  }
+
+  static isDateBiggerThanNow({ year, month, day }) {
+    const { currentYear, currentMonth, currentDay } = Datepicker.getCurrentDate();
+    const fullCurrentDate = new Date(`${currentMonth}-${currentDay}-${currentYear}`);
+    const date1 = new Date(`${month}-${day}-${year}`);
+    const date2 = new Date(fullCurrentDate);
+
+    const oneDay = 1000 * 60 * 60 * 24;
+    const diffInTime = date2.getTime() - date1.getTime();
+    const diffInDays = Math.round(diffInTime / oneDay);
+
+    if (diffInDays > 0) {
+      return true;
+    }
+    return false;
+  }
+
+  static getCurrentDate() {
+    const currentDate = new Date();
+    const currentDay = currentDate.getDate();
+    const currentMonth = currentDate.getMonth();
+    const currentYear = currentDate.getFullYear();
+
+    return { currentDay, currentMonth, currentYear };
+  }
+
+  static getFourAfter() {
+    const current = new Date();
+    const year = current.getFullYear();
+    const month = current.getMonth();
+    const day = current.getDate();
+    const fourAfter = new Date(year, month, day + 5);
+
+    return fourAfter;
   }
 
   #findElements() {
@@ -242,21 +404,6 @@ class Datepicker {
 
   handleDatepickerMouseMove({ target, relatedTarget }) {
     this.#performSelectingRange(target, relatedTarget);
-  }
-
-  #addMask() {
-    this.fields.forEach((e) => {
-      if (this.isTwoInputs) {
-        Inputmask('datetime', {
-          alias: 'datetime',
-          inputFormat: 'dd.mm.yyyy',
-          placeholder: '__.__.____',
-          showMaskOnHover: false,
-          showMaskOnFocus: false,
-          greedy: false,
-        }).mask(e);
-      }
-    });
   }
 
   #performSelectingRange(target, relatedTarget) {
@@ -675,168 +822,6 @@ class Datepicker {
 
     this.#performRange();
     this.#setPointRange();
-  }
-
-  static isOneInputClicked({ targetContainer, sibling, container }) {
-    return !targetContainer.classList.contains(CLICKED)
-      && sibling.classList.contains(CLICKED)
-      && container.classList.contains(ACTIVE);
-  }
-
-  static isAllInputClicked({ targetContainer, sibling, container }) {
-    return targetContainer.classList.contains(CLICKED)
-    && sibling.classList.contains(CLICKED)
-    && container.classList.contains(ACTIVE);
-  }
-
-  static returnInputSibling(targetContainer, formGroups) {
-    const sibling = formGroups.find((e) => e !== targetContainer);
-    return sibling;
-  }
-
-  static closeDpOnInputCLick(targetContainer, sibling, calContainer) {
-    targetContainer.classList.remove(CLICKED);
-    sibling.classList.remove(CLICKED);
-    calContainer.classList.remove(ACTIVE);
-  }
-
-  static isSelectedDates({ isSingleInput, rangeDateFrom, rangeDateTo }) {
-    return isSingleInput && rangeDateFrom && rangeDateTo;
-  }
-
-  static correctDateFormat(items) {
-    return items.every(({ value, pattern }) => value.match(pattern));
-  }
-
-  static getURLParams() {
-    const queryString = window.location.search;
-    const URLParams = new URLSearchParams(queryString);
-
-    const startURLDateString = URLParams.get('datepicker-input-start');
-    const endURLDateString = URLParams.get('datepicker-input-end');
-
-    if ((startURLDateString, endURLDateString)) {
-      return [startURLDateString, endURLDateString];
-    }
-    return false;
-  }
-
-  static formatDate({ firstDate, secondDate = '', mod = 'twoInputMod' }) {
-    let result;
-    if (secondDate !== '' && mod === 'singleInputMod') {
-      const firstDay = firstDate.getDate();
-      const secondDay = secondDate.getDate();
-      const fistMonth = firstDate
-        .toLocaleString('default', { month: 'long' })
-        .substring(0, 3);
-      const secondMonth = secondDate
-        .toLocaleString('default', { month: 'long' })
-        .substring(0, 3);
-
-      result = `${firstDay} ${fistMonth} - ${secondDay} ${secondMonth}`;
-    }
-    if (secondDate === '' && mod === 'twoInputMod') {
-      const day = `${firstDate.getDate()}`.length < 2
-        ? `0${firstDate.getDate()}`
-        : firstDate.getDate();
-      const month = `${firstDate.getMonth()}`.length < 2 && firstDate.getMonth() !== 9
-        ? `0${firstDate.getMonth() + 1}`
-        : firstDate.getMonth() + 1;
-      const year = firstDate.getFullYear();
-      result = `${day}.${month}.${year}`;
-    }
-    return result;
-  }
-
-  static changeSameData(secondItem) {
-    let date = secondItem.value.split('.');
-    let [day] = date;
-    day = Number(day) + 1;
-    date = [day, date.slice(1, 3)].flat().join('.');
-    return date;
-  }
-
-  static deleteComma(elem) {
-    let text = elem.innerText;
-    text = text.replace(',', '').replace('\n', ' ');
-    return text;
-  }
-
-  static recreateDate(invalidDate) {
-    const [day, month] = invalidDate.split(' ');
-    let formattedMonth = month.charAt(0).toUpperCase() + month.slice(1);
-    formattedMonth = MONTHS.indexOf(month);
-    const date = new Date(2022, formattedMonth, day);
-    return date;
-  }
-
-  static isNotRange({ target, to, from }) {
-    return target.classList.contains(to)
-    && !target.classList.contains(from)
-    && !target.classList.contains('-selected-');
-  }
-
-  static isRangeSelecting(point, classRange) {
-    return point
-      && point.classList.contains('-selected-')
-      && !point.classList.contains(classRange);
-  }
-
-  static isRangeSelected(point) {
-    return point
-      && point.classList.contains('end-range')
-      && point.classList.contains('start-range');
-  }
-
-  static deletePointRange(point) {
-    if (
-      Datepicker.isRangeSelected(point)
-    ) {
-      point.classList.remove('start-range');
-      point.classList.remove('end-range');
-    }
-  }
-
-  static isItemDateLessThanNow(target) {
-    const day = Number(target.dataset.date) < 10 ? `0${target.dataset.date}` : target.dataset.date;
-    const { month, year } = target.dataset;
-    const result = Datepicker.isDateBiggerThanNow({ year, month, day });
-    return result;
-  }
-
-  static isDateBiggerThanNow({ year, month, day }) {
-    const { currentYear, currentMonth, currentDay } = Datepicker.getCurrentDate();
-    const fullCurrentDate = new Date(`${currentMonth}-${currentDay}-${currentYear}`);
-    const date1 = new Date(`${month}-${day}-${year}`);
-    const date2 = new Date(fullCurrentDate);
-
-    const oneDay = 1000 * 60 * 60 * 24;
-    const diffInTime = date2.getTime() - date1.getTime();
-    const diffInDays = Math.round(diffInTime / oneDay);
-
-    if (diffInDays > 0) {
-      return true;
-    }
-    return false;
-  }
-
-  static getCurrentDate() {
-    const currentDate = new Date();
-    const currentDay = currentDate.getDate();
-    const currentMonth = currentDate.getMonth();
-    const currentYear = currentDate.getFullYear();
-
-    return { currentDay, currentMonth, currentYear };
-  }
-
-  static getFourAfter() {
-    const current = new Date();
-    const year = current.getFullYear();
-    const month = current.getMonth();
-    const day = current.getDate();
-    const fourAfter = new Date(year, month, day + 5);
-
-    return fourAfter;
   }
 }
 

@@ -13,7 +13,7 @@ class Slider {
     try {
       this.options = JSON.parse(this.slider.dataset.rangeoptions);
     } catch (err) {
-      console.error('Ошибка в чтении options');
+      console.error('Error in reading options');
     }
 
     this.handleToggleMouseDown = this.handleToggleMouseDown.bind(this);
@@ -33,6 +33,24 @@ class Slider {
     this.#setProgress();
     this.#addListeners();
     this.#setTogglesState();
+  }
+
+  static formatValue(value) {
+    const result = new Intl.NumberFormat('ru-RU').format(value);
+    return result;
+  }
+
+  static performMoveToPercent(data = {}) {
+    const {
+      coordsMove, scaleSize,
+    } = data;
+
+    const percent = scaleSize / 100;
+    let percentMove = Number((coordsMove / percent).toFixed(2));
+    if (percentMove < 0) percentMove = 0;
+    if (percentMove > 100) percentMove = 100;
+
+    return percentMove;
   }
 
   #addListeners() {
@@ -321,19 +339,6 @@ class Slider {
     }
   }
 
-  static performMoveToPercent(data = {}) {
-    const {
-      coordsMove, scaleSize,
-    } = data;
-
-    const percent = scaleSize / 100;
-    let percentMove = Number((coordsMove / percent).toFixed(2));
-    if (percentMove < 0) percentMove = 0;
-    if (percentMove > 100) percentMove = 100;
-
-    return percentMove;
-  }
-
   #findValPercent() {
     const range = this.#findRange();
     const percent = range / 100;
@@ -460,11 +465,6 @@ class Slider {
       this.toggleMin.style.zIndex = '5';
       this.toggleMax.style.zIndex = '10';
     }
-  }
-
-  static formatValue(value) {
-    const result = new Intl.NumberFormat('ru-RU').format(value);
-    return result;
   }
 }
 

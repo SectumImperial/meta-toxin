@@ -29,7 +29,7 @@ class Dropdown {
     try {
       this.options = JSON.parse(this.dropdown.dataset.options);
     } catch (err) {
-      console.error('Ошибка в чтении options', err);
+      console.error('Error in reading options', err);
     }
 
     this.handleFieldClick = this.handleFieldClick.bind(this);
@@ -50,6 +50,65 @@ class Dropdown {
     this.#addURLValues();
     this.#addPreset();
     this.#checkDecrementButtonDisabled();
+  }
+
+  static hasIsEqualKey(compareMap, arr) {
+    compareMap.forEach((_, value) => {
+      if (isEqual(value, arr)) return true;
+      return false;
+    });
+  }
+
+  static sumCounts(countsMap, wordsMap, indicator) {
+    let arrKeys = [];
+    countsMap.forEach((key, value) => {
+      if (value !== indicator && !wordsMap.has(value)) {
+        arrKeys = [...arrKeys, key];
+      }
+    });
+    const result = arrKeys.reduce(
+      (prev, curr) => Number(prev) + Number(curr),
+      0,
+    );
+    return result;
+  }
+
+  static checkLimits(countEl) {
+    if (Number(countEl.value) > 999) return 999;
+    if (Number(countEl.value) < 0) return 0;
+    return Number(countEl.value);
+  }
+
+  static checkDecrementDisabled(count, target) {
+    if (Number(count.value) === 0) {
+      target.classList.add(DISABLED);
+      Dropdown.addDisabledForButton(target);
+    } else {
+      Dropdown.removeDisabledForButton(target);
+    }
+  }
+
+  static decrementValue(count, target) {
+    if (Number(count.value) > 0 && target.classList.contains(DISABLED)) {
+      target.classList.remove(DISABLED);
+      Dropdown.removeDisabledForButton(target);
+    }
+    if (target.classList.contains(DISABLED)) return count.value;
+    return Number(count.value) - 1;
+  }
+
+  static removeDisabledForButton(target) {
+    const container = target.closest(`.${ITEM}`);
+    const button = container.querySelector(`.${BUTTONS_DEC}`);
+    button.disabled = false;
+    button.classList.remove(DISABLED);
+  }
+
+  static addDisabledForButton(target) {
+    const container = target.closest(`.${ITEM}`);
+    const button = container.querySelector(`.${BUTTONS_DEC}`);
+    button.disabled = true;
+    button.classList.add(DISABLED);
   }
 
   #findElements() {
@@ -329,65 +388,6 @@ class Dropdown {
         Dropdown.addDisabledForButton(countElement);
       }
     });
-  }
-
-  static hasIsEqualKey(compareMap, arr) {
-    compareMap.forEach((_, value) => {
-      if (isEqual(value, arr)) return true;
-      return false;
-    });
-  }
-
-  static sumCounts(countsMap, wordsMap, indicator) {
-    let arrKeys = [];
-    countsMap.forEach((key, value) => {
-      if (value !== indicator && !wordsMap.has(value)) {
-        arrKeys = [...arrKeys, key];
-      }
-    });
-    const result = arrKeys.reduce(
-      (prev, curr) => Number(prev) + Number(curr),
-      0,
-    );
-    return result;
-  }
-
-  static checkLimits(countEl) {
-    if (Number(countEl.value) > 999) return 999;
-    if (Number(countEl.value) < 0) return 0;
-    return Number(countEl.value);
-  }
-
-  static checkDecrementDisabled(count, target) {
-    if (Number(count.value) === 0) {
-      target.classList.add(DISABLED);
-      Dropdown.addDisabledForButton(target);
-    } else {
-      Dropdown.removeDisabledForButton(target);
-    }
-  }
-
-  static decrementValue(count, target) {
-    if (Number(count.value) > 0 && target.classList.contains(DISABLED)) {
-      target.classList.remove(DISABLED);
-      Dropdown.removeDisabledForButton(target);
-    }
-    if (target.classList.contains(DISABLED)) return count.value;
-    return Number(count.value) - 1;
-  }
-
-  static removeDisabledForButton(target) {
-    const container = target.closest(`.${ITEM}`);
-    const button = container.querySelector(`.${BUTTONS_DEC}`);
-    button.disabled = false;
-    button.classList.remove(DISABLED);
-  }
-
-  static addDisabledForButton(target) {
-    const container = target.closest(`.${ITEM}`);
-    const button = container.querySelector(`.${BUTTONS_DEC}`);
-    button.disabled = true;
-    button.classList.add(DISABLED);
   }
 }
 
