@@ -183,17 +183,25 @@ class Canvas {
         const unitedItem = this.#uniteItems(grade);
         const index = filteredOptions.findIndex((e) => e.grade === grade);
         filteredOptions = filteredOptions.filter((option) => option.grade !== grade);
-        filteredOptions = filteredOptions.slice(index, 0, unitedItem);
+        filteredOptions = [...filteredOptions.slice(0, index),
+          unitedItem, ...filteredOptions.slice(index)];
       }
     });
+
     return filteredOptions;
   }
 
   #uniteItems(grade) {
     if (!grade) console.error('Cannot unite empty items');
     const sameItems = this.inputOptions.filter((option) => option.grade === grade);
-    const sumCounts = sameItems.reduce((p, c) => p.count + c.count, 0);
-    const newItem = Object.assign(...sameItems, { count: sumCounts });
+    const sumCounts = sameItems.reduce((p, c) => p.count + c.count);
+
+    let collectOptions;
+    sameItems.forEach((object) => {
+      collectOptions = { ...object, ...collectOptions };
+    });
+
+    const newItem = { ...collectOptions, count: sumCounts };
     return newItem;
   }
 
@@ -214,7 +222,7 @@ class Canvas {
     this.options.forEach((option) => {
       items += Canvas.createDef(option);
     });
-    if (items.length === 0) console.error('Нет опций для defs');
+    if (items.length === 0) console.error('No options for the defs in the Canvas class');
 
     const defs = `<defs>${items}</defs>`;
     return defs;
