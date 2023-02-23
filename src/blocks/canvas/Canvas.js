@@ -48,6 +48,8 @@ class Canvas {
 
     this.circles = this.canvas.querySelectorAll(`.${UNIT}`);
     this.#addListeners();
+
+    return this;
   }
 
   static addIdForOptions(items) {
@@ -133,6 +135,8 @@ class Canvas {
       circle.addEventListener('focus', this.handleItemOver);
       circle.addEventListener('blur', this.handleItemOut);
     });
+
+    return this;
   }
 
   handleItemOut() {
@@ -141,6 +145,7 @@ class Canvas {
     addText(this.chart, this.text);
     this.#resetLine();
     this.#resetHoverText();
+    return this;
   }
 
   handleItemOver({ target }) {
@@ -156,6 +161,7 @@ class Canvas {
         if (target.classList.contains(UNIT)) this.#hoverText(grade);
       }
     });
+    return this;
   }
 
   #performOptions() {
@@ -215,6 +221,7 @@ class Canvas {
 
   #addSvg() {
     this.svgBlock.insertAdjacentHTML('beforeend', this.svgTmp);
+    return this;
   }
 
   #createDefs() {
@@ -277,26 +284,31 @@ class Canvas {
   #deleteText() {
     const text = this.canvas.querySelector('.canvas__text-group');
     if (text !== '') text.remove();
+    return this;
   }
 
   #boldLine(grade) {
     const circleLine = this.canvas.querySelector(`.${UNIT}_${grade}`);
     if (circleLine) circleLine.classList.add(`${UNIT}_hovered`);
+    return this;
   }
 
   #hoverText(grade) {
     const item = this.canvas.querySelector(`.${ITEM}_${grade}`);
     if (item) item.classList.add(`${ITEM}_hovered`);
+    return this;
   }
 
   #resetLine() {
     const hoveredLine = this.canvas.querySelector(`.${UNIT}_hovered`);
     if (hoveredLine) hoveredLine.classList.remove(`${UNIT}_hovered`);
+    return this;
   }
 
   #resetHoverText() {
     const item = this.canvas.querySelector(`.${ITEM}_hovered`);
     if (item) item.classList.remove(`${ITEM}_hovered`);
+    return this;
   }
 }
 

@@ -376,6 +376,7 @@ class Dropdown {
     } else {
       this.dropdownInput.innerText = cutString(str, 20);
     }
+    return this;
   }
 
   #checkDecrementButtonDisabled() {
@@ -388,6 +389,7 @@ class Dropdown {
         Dropdown.addDisabledForButton(countElement);
       }
     });
+    return this;
   }
 }
 

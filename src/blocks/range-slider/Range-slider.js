@@ -33,6 +33,7 @@ class Slider {
     this.#setProgress();
     this.#addListeners();
     this.#setTogglesState();
+    return this;
   }
 
   static formatValue(value) {
@@ -64,15 +65,18 @@ class Slider {
       );
       e.addEventListener('keydown', this.handleToggleKeyDown);
     });
+    return this;
   }
 
   handleToggleMouseDown(e) {
     e.preventDefault();
     this.#performStartMove(e);
+    return this;
   }
 
   handleToggleTouchStart(e) {
     this.#performStartTouch(e);
+    return this;
   }
 
   handleToggleKeyDown(e) {
@@ -86,6 +90,7 @@ class Slider {
       e.preventDefault();
       this.#performKeyDown('increment', target);
     }
+    return this;
   }
 
   #findElements() {
@@ -95,6 +100,7 @@ class Slider {
     this.toggleMin = this.slider.querySelector(`.${TOGGLE_MIN}`);
     this.toggleMax = this.slider.querySelector(`.${TOGGLE_MAX}`);
     this.rangeProgress = this.slider.querySelector(`.${RANGE_PROGRESS}`);
+    return this;
   }
 
   #createVars() {
@@ -109,6 +115,7 @@ class Slider {
 
     this.togglePercentFrom = 0;
     this.togglePercentTo = 100;
+    return this;
   }
 
   #validateRange() {
@@ -120,6 +127,7 @@ class Slider {
     if (this.min > this.max) {
       [this.min, this.max] = [this.max, this.min];
     }
+    return this;
   }
 
   #validateStep() {
@@ -129,6 +137,7 @@ class Slider {
       this.step = allRange;
     }
     if (!this.step) this.step = 1;
+    return this;
   }
 
   #checkValues() {
@@ -141,6 +150,7 @@ class Slider {
     if (this.valueTo !== undefined && this.valueFrom > this.valueTo && this.isRange) {
       [this.valueFrom, this.valueTo] = [this.valueTo, this.valueFrom];
     }
+    return this;
   }
 
   #checkValue(value) {
@@ -190,6 +200,7 @@ class Slider {
 
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
+    return this;
   }
 
   #performStartTouch(e) {
@@ -214,6 +225,7 @@ class Slider {
 
     document.addEventListener('touchmove', handleToggleTouchMove);
     document.addEventListener('touchend', handleToggleTouchEnd);
+    return this;
   }
 
   #performKeyDown(action, target) {
@@ -229,6 +241,7 @@ class Slider {
         ? 100 : this[togglePercent] + this.stepPercent;
       this.#performMove(percentMove, target);
     }
+    return this;
   }
 
   #performMove(percentMove, toggle) {
@@ -271,6 +284,7 @@ class Slider {
       toggle: toggleID,
       percent,
     });
+    return this;
   }
 
   #updatePosition(values = {}) {
@@ -295,6 +309,7 @@ class Slider {
         percent,
       });
     }
+    return this;
   }
 
   #handleMoveTo(values) {
@@ -317,6 +332,7 @@ class Slider {
     } else {
       this.#updateMoved(value, percent, toggle);
     }
+    return this;
   }
 
   #handleMoveFrom(values) {
@@ -337,6 +353,7 @@ class Slider {
     } else {
       this.#updateMoved(value, percent, toggle);
     }
+    return this;
   }
 
   #findValPercent() {
@@ -353,6 +370,7 @@ class Slider {
   #checkPercents() {
     this.togglePercentFrom = this.#checkPercent('valueFrom');
     this.togglePercentTo = this.#checkPercent('valueTo');
+    return this;
   }
 
   #checkPercent(value = 'valueFrom') {
@@ -404,6 +422,7 @@ class Slider {
     });
 
     this.#setProgress();
+    return this;
   }
 
   #setTogglesState() {
@@ -417,6 +436,7 @@ class Slider {
       val: this.valueTo,
       percent: this.togglePercentTo,
     });
+    return this;
   }
 
   #setToggleState(state = {}) {
@@ -444,6 +464,7 @@ class Slider {
     this.field.value = `${firstValue}${this.addedText} - ${secondValue}${this.addedText}`;
 
     this.#checkZIndex();
+    return this;
   }
 
   #setProgress() {
@@ -453,6 +474,7 @@ class Slider {
 
     this.rangeProgress.style.left = `${positionStart}%`;
     this.rangeProgress.style.width = `${positionEnd}%`;
+    return this;
   }
 
   #checkZIndex() {
@@ -465,6 +487,7 @@ class Slider {
       this.toggleMin.style.zIndex = '5';
       this.toggleMax.style.zIndex = '10';
     }
+    return this;
   }
 }
 

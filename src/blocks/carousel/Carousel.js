@@ -36,6 +36,7 @@ class Carousel {
     this.#markToggles();
     this.#checkActive();
     this.#addListeners();
+    return this;
   }
 
   #findElements() {
@@ -45,6 +46,7 @@ class Carousel {
     this.next = this.carousel.querySelector(`.${NEXT}`);
     this.toggles = this.carousel.querySelectorAll(`.${TOGGLE}`);
     this.link = this.carousel.querySelector(`.${LINK}`);
+    return this;
   }
 
   #createVars() {
@@ -52,6 +54,7 @@ class Carousel {
     this.count = COUNT;
     this.position = 0;
     this.xDown = null;
+    return this;
   }
 
   #markToggles() {
@@ -61,6 +64,7 @@ class Carousel {
       toggleElem.dataset.toggleCount = i;
       i += 1;
     });
+    return this;
   }
 
   #addListeners() {
@@ -85,23 +89,28 @@ class Carousel {
     );
 
     this.link.addEventListener('keydown', this.handleLinkKeyDown);
+    return this;
   }
 
   handleCarouselMouseOver() {
     this.#checkBtnVisibility();
+    return this;
   }
 
   handlePervButtonClick() {
     this.#moveLeft();
+    return this;
   }
 
   handleRightButtonClick() {
     this.#moveRight();
+    return this;
   }
 
   handleCarouselMouseOut() {
     this.next.style.visibility = 'hidden';
     this.prev.style.visibility = 'hidden';
+    return this;
   }
 
   handleCarouselToggleClick(e) {
@@ -113,11 +122,13 @@ class Carousel {
     this.list.style.marginLeft = `${this.position}px`;
     this.#checkActive();
     this.#checkBtnVisibility();
+    return this;
   }
 
   handleCarouselPrevTouchStart(evt) {
     const firstTouch = Carousel.getTouches(evt).item(0);
     this.xDown = firstTouch.clientX;
+    return this;
   }
 
   handleCarouselPrevTouchMove(evt) {
@@ -143,6 +154,7 @@ class Carousel {
     if (code === 'ArrowLeft') {
       this.#moveLeft();
     }
+    return this;
   }
 
   #moveLeft() {
@@ -151,6 +163,7 @@ class Carousel {
     this.list.style.marginLeft = `${this.position}px`;
     this.#checkActive();
     this.#checkBtnVisibility();
+    return this;
   }
 
   #moveRight() {
@@ -162,6 +175,7 @@ class Carousel {
     this.list.style.marginLeft = `${this.position}px`;
     this.#checkActive();
     this.#checkBtnVisibility();
+    return this;
   }
 
   #checkActive() {
@@ -187,6 +201,7 @@ class Carousel {
     } else {
       this.prev.style.visibility = 'visible';
     }
+    return this;
   }
 
   static getTouches(evt) {

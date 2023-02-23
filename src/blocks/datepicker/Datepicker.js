@@ -53,6 +53,7 @@ class Datepicker {
     this.#addListeners();
     this.#addTabIndex();
     addMask(this.fields, this.isTwoInputs);
+    return this;
   }
 
   static isOneInputClicked({ targetContainer, sibling, container }) {
@@ -76,6 +77,7 @@ class Datepicker {
     targetContainer.classList.remove(CLICKED);
     sibling.classList.remove(CLICKED);
     calContainer.classList.remove(ACTIVE);
+    return this;
   }
 
   static isSelectedDates({ isSingleInput, rangeDateFrom, rangeDateTo }) {
@@ -173,6 +175,7 @@ class Datepicker {
       point.classList.remove('start-range');
       point.classList.remove('end-range');
     }
+    return this;
   }
 
   static isItemDateLessThanNow(target) {
@@ -237,6 +240,7 @@ class Datepicker {
     this.relatedTarget = null;
 
     this.lastDay = this.datepicker.querySelector('.air-datepicker-body--cells').lastElementChild;
+    return this;
   }
 
   #addListeners() {
@@ -255,11 +259,13 @@ class Datepicker {
     this.navButtons.forEach((item) => item.addEventListener('keydown', this.handleNavKeyPress));
 
     this.lastDay.addEventListener('blur', this.handleFocusAccept);
+    return this;
   }
 
   handleFocusAccept() {
     this.buttonAccept.querySelector('button').focus();
     this.buttonAccept.querySelector('button').tabIndex = '0';
+    return this;
   }
 
   handleNavKeyPress(e) {
@@ -272,19 +278,23 @@ class Datepicker {
 
       this.#addTabIndex();
     }
+    return this;
   }
 
   handleDatepickerClick(e) {
     this.#clickInputOpen(e);
     this.#markOlderDays();
+    return this;
   }
 
   handleButtonClearClick(e) {
     this.#clear(e);
+    return this;
   }
 
   handleButtonAcceptClick(e) {
     this.#accept(e);
+    return this;
   }
 
   handleDocumentClick({ target }) {
@@ -304,6 +314,7 @@ class Datepicker {
       e.preventDefault();
       this.#clickInputOpen(e);
     }
+    return this;
   }
 
   handleBodyKeyPress(e) {
@@ -333,6 +344,8 @@ class Datepicker {
     if (code === 'Tab' && !this.isFirstPressOnDay) {
       this.relatedTarget = target;
     }
+
+    return this;
   }
 
   #handleContainerClick({ target }) {
@@ -395,15 +408,18 @@ class Datepicker {
 
   handleBodyFocus({ target }) {
     this.#performSelectingRange(target, this.relatedTarget);
+    return this;
   }
 
   handleBodyClick(e) {
     this.datepicker.addEventListener('mousemove', this.handleDatepickerMouseMove);
     this.#handleContainerClick(e);
+    return this;
   }
 
   handleDatepickerMouseMove({ target, relatedTarget }) {
     this.#performSelectingRange(target, relatedTarget);
+    return this;
   }
 
   #performSelectingRange(target, relatedTarget) {
@@ -470,6 +486,7 @@ class Datepicker {
       this.#setPointRange();
       this.#performRange();
     }
+    return this;
   }
 
   #createID() {
@@ -480,6 +497,7 @@ class Datepicker {
       label.htmlFor = id;
       input.id = id;
     });
+    return this;
   }
 
   #createDatepicker() {
@@ -493,6 +511,7 @@ class Datepicker {
       nextHtml: NAV_ARROW,
     });
     this.dp.show();
+    return this;
   }
 
   #configuratorDatepicker() {
@@ -513,6 +532,7 @@ class Datepicker {
     }
 
     this.#markOlderDays();
+    return this;
   }
 
   #markOlderDays() {
@@ -522,6 +542,7 @@ class Datepicker {
         e.classList.add('old-date');
       }
     });
+    return this;
   }
 
   #addTabIndex() {
@@ -538,6 +559,7 @@ class Datepicker {
     });
 
     this.buttonAccept.querySelector('button').tabIndex = '-1';
+    return this;
   }
 
   #addButtonsArrow() {
@@ -547,11 +569,13 @@ class Datepicker {
     navButtons.forEach((e) => {
       e.classList.add('datepicker__icon_forward');
     });
+    return this;
   }
 
   #formatTitle() {
     const navTitle = this.datepicker.querySelector('.air-datepicker-nav--title');
     navTitle.innerText = Datepicker.deleteComma(navTitle);
+    return this;
   }
 
   #getURLValues() {
@@ -575,6 +599,7 @@ class Datepicker {
         this.#performRange();
       }
     }
+    return this;
   }
 
   #checkBtnVisibility(itemsArr) {
@@ -589,6 +614,7 @@ class Datepicker {
 
     if (addedValue) this.buttonClear.style.visibility = 'visible';
     if (!addedValue) this.buttonClear.style.visibility = 'hidden';
+    return this;
   }
 
   #performRange() {
@@ -597,6 +623,7 @@ class Datepicker {
     Datepicker.deletePointRange(this.rangeFrom);
     Datepicker.deletePointRange(this.rangeTo);
     this.#addPointRange(this.rangeFrom, this.rangeTo);
+    return this;
   }
 
   #deleteRangePoint(rangeLineClass) {
@@ -622,11 +649,13 @@ class Datepicker {
   #removeRange() {
     this.rangeFrom.classList.remove('end-range');
     this.rangeFrom.classList.remove('start-range');
+    return this;
   }
 
   #setPointRange() {
     this.rangeFrom = this.datepicker.querySelector('.-range-from-');
     this.rangeTo = this.datepicker.querySelector('.-range-to-');
+    return this;
   }
 
   #addPointRange() {
@@ -645,6 +674,7 @@ class Datepicker {
         this.rangeTo.classList.remove('start-range');
       }
     }
+    return this;
   }
 
   #isSameDateHover() {
@@ -688,6 +718,7 @@ class Datepicker {
 
       this.dp.selectDate([firstDate, secondDate]);
     }
+    return this;
   }
 
   #clickInputOpen({ target }) {
@@ -732,6 +763,7 @@ class Datepicker {
       this.secondItem.value,
       this.firstItem.value,
     ];
+    return this;
   }
 
   #setPrev() {
@@ -765,6 +797,7 @@ class Datepicker {
     this.#addDateCal();
     this.#setPointRange();
     this.#performRange();
+    return this;
   }
 
   #closeDp() {
@@ -779,6 +812,7 @@ class Datepicker {
     if (this.dp.rangeDateFrom || this.dp.rangeDateTo) {
       this.#closeDp();
     }
+    return this;
   }
 
   #clear(e) {
@@ -795,12 +829,14 @@ class Datepicker {
     this.#deleteRangePoint('start-range');
     this.#deleteRangePoint('end-range');
     this.#checkBtnVisibility([...this.fields]);
+    return this;
   }
 
   #toggleDp(targetContainer, calContainer) {
     targetContainer.classList.toggle(CLICKED);
     calContainer.classList.toggle(ACTIVE);
     this.icons.forEach((icon) => icon.classList.toggle(ICON_ACTIVE));
+    return this;
   }
 
   #checkDateAfterClosing() {

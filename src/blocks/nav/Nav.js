@@ -15,10 +15,12 @@ class Nav {
     this.mediaQueryList = window.matchMedia(`(min-width: ${BREAKPOINT}px)`);
     this.#findElements();
     this.#addListeners();
+    return this;
   }
 
   #findElements() {
     this.subItems = this.nav.querySelectorAll(`.${SUBITEM}`);
+    return this;
   }
 
   #addListeners() {
@@ -26,6 +28,7 @@ class Nav {
     this.subItems.forEach((element) => {
       element.addEventListener('click', this.handleNavSubItemClick);
     });
+    return this;
   }
 
   handleChangeScreen() {
@@ -34,6 +37,7 @@ class Nav {
         if (e.classList.contains('nav__subitem_active')) e.classList.remove('nav__subitem_active');
       });
     }
+    return this;
   }
 
   handleNavSubItemClick(e) {
@@ -42,6 +46,7 @@ class Nav {
       const subItem = e.target.closest(`.${SUBITEM}`);
       subItem.classList.toggle('nav__subitem_active');
     }
+    return this;
   }
 }
 

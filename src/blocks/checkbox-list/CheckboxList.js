@@ -16,11 +16,13 @@ class CheckboxList {
   init() {
     this.list = this.checkboxList.querySelector(`.${ITEMS}`);
     this.#addListeners();
+    return this;
   }
 
   #addListeners() {
     this.checkboxList.addEventListener('click', this.handleListClick);
     this.checkboxList.addEventListener('keydown', this.handleListKeyPress);
+    return this;
   }
 
   handleListClick({ target }) {
@@ -45,11 +47,13 @@ class CheckboxList {
   #removeClasses() {
     this.checkboxList.classList.remove(ACTIVE);
     this.list.classList.remove(OPENED_LIST);
+    return this;
   }
 
   #addClasses() {
     this.checkboxList.classList.add(ACTIVE);
     this.list.classList.add(OPENED_LIST);
+    return this;
   }
 
   #toggle() {
@@ -58,6 +62,7 @@ class CheckboxList {
     } else {
       this.#addClasses();
     }
+    return this;
   }
 }
 

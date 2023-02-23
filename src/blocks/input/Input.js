@@ -10,6 +10,7 @@ class Input {
   init() {
     this.input.addEventListener('click', this.handleInputClick);
     this.#addMask();
+    return this;
   }
 
   handleInputClick() {

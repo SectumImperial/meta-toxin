@@ -44,6 +44,7 @@ class OrderCard {
     this.#insertFinalSum();
     this.#addListeners();
     this.#addResizeObserver();
+    return this;
   }
 
   static updateTipPosition(tip, message) {
@@ -53,22 +54,27 @@ class OrderCard {
     };
 
     OrderCard.setMessagePosition(coords, message);
+    return this;
   }
 
   static handleTipMouseEnter({ target }) {
     OrderCard.handleShowMessage(target);
+    return this;
   }
 
   static handleTipMouseOut({ target }) {
     OrderCard.handleHideMessage(target);
+    return this;
   }
 
   static handleTipFocus({ target }) {
     OrderCard.handleShowMessage(target);
+    return this;
   }
 
   static handleTipBlur({ target }) {
     OrderCard.handleHideMessage(target);
+    return this;
   }
 
   static handleShowMessage(target) {
@@ -78,12 +84,14 @@ class OrderCard {
       y: target.getBoundingClientRect().y,
     };
     OrderCard.showMessage(elemID, coords);
+    return this;
   }
 
   static handleHideMessage(target) {
     const elemID = target.dataset.idTip;
     const message = document.querySelector(`.order-card__tip-message[data-id-message="${elemID}"]`);
     if (message.classList.contains('order-card__tip-message_show')) message.classList.remove('order-card__tip-message_show');
+    return this;
   }
 
   static formattedDate(date) {
@@ -136,6 +144,7 @@ class OrderCard {
       messageTip.style.left = `${x + 22}px`;
       messageTip.style.top = `${y + 20}px`;
     }
+    return this;
   }
 
   static findMessage(elemID) {
@@ -155,6 +164,7 @@ class OrderCard {
     });
 
     document.addEventListener('scroll', this.handleDocumentScroll);
+    return this;
   }
 
   handleDocumentScroll() {
@@ -167,24 +177,29 @@ class OrderCard {
         }
       }
     });
+    return this;
   }
 
   handleDatepickerInput() {
     this.#updateCounting();
+    return this;
   }
 
   handleDatepickerClick() {
     this.#updateCounting();
+    return this;
   }
 
   handleDocumentClick() {
     this.#updateCounting();
+    return this;
   }
 
   #findElements() {
     this.startDate = this.card.querySelector(`.${START_DATE}`);
     this.endDate = this.card.querySelector(`.${END_DATE}`);
     this.datepicker = this.card.querySelector('.datepicker__container');
+    return this;
   }
 
   #addResizeObserver() {
@@ -207,6 +222,7 @@ class OrderCard {
     });
 
     resizeObserver.observe(document.querySelector('body'));
+    return this;
   }
 
   #updateCounting() {
@@ -214,6 +230,7 @@ class OrderCard {
     this.#createVars();
     this.#createRentString();
     this.#insertFinalSum();
+    return this;
   }
 
   #createVars() {
@@ -221,12 +238,14 @@ class OrderCard {
     this.days = this.#computeDays();
     this.price = PRICE;
     this.discounts = FEES_DISC;
+    return this;
   }
 
   #computeSum() {
     this.sumRent = this.#sumRent();
     this.sumDiscount = OrderCard.sumDiscount();
     this.finalSum = this.#computeFinal();
+    return this;
   }
 
   #computeDays() {
@@ -265,6 +284,7 @@ class OrderCard {
 
     this.card.querySelector(`.${DAYS_COMPUTE}`).innerText = string;
     this.card.querySelector(`.${DAYS_COMPUTED}`).innerText = sumString;
+    return this;
   }
 
   #createFeeString() {
@@ -284,6 +304,7 @@ class OrderCard {
     this.card.querySelector(
       `.${FEE_COMPUTED}`,
     ).innerText = '0₽';
+    return this;
   }
 
   #createAddFeeString() {
@@ -299,6 +320,7 @@ class OrderCard {
     this.card.querySelector(
       `.${ADD_FEE_COMPUTED}`,
     ).innerText = `${ADD_FEE}₽`;
+    return this;
   }
 
   #insertFinalSum() {
@@ -306,6 +328,7 @@ class OrderCard {
     this.card.querySelector(
       `.${SUM}`,
     ).innerText = `${finalSum}₽`;
+    return this;
   }
 }
 

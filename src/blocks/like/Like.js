@@ -18,16 +18,19 @@ class Like {
   init() {
     this.#findElements();
     this.#addListeners();
+    return this;
   }
 
   #findElements() {
     this.heart = this.like.querySelector(`.${HEART}`);
     this.count = this.like.querySelector(`.${COUNT}`);
     this.button = this.like.querySelector(`.${BUTTON}`);
+    return this;
   }
 
   #addListeners() {
     this.like.addEventListener('click', this.handleLikeClick);
+    return this;
   }
 
   handleLikeClick({ target }) {
@@ -40,6 +43,7 @@ class Like {
       this.#incrementLike();
     }
     this.#toggleClasses();
+    return this;
   }
 
   #toggleClasses() {
@@ -47,6 +51,7 @@ class Like {
     this.heart.classList.toggle(LIKED__HEART);
     this.heart.classList.toggle(UNLIKED__HEART);
     this.count.classList.toggle(LIKED_COUNT);
+    return this;
   }
 
   #decrementLike() {
@@ -57,6 +62,7 @@ class Like {
     }
     val -= 1;
     this.count.innerText = val;
+    return this;
   }
 
   #incrementLike() {
@@ -67,6 +73,7 @@ class Like {
     }
     val += 1;
     this.count.innerText = val;
+    return this;
   }
 }
 

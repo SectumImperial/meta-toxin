@@ -18,6 +18,7 @@ class StarRating {
   init() {
     this.stars = this.rating.querySelectorAll('.star-rating__star');
     this.#setRating();
+    return this;
   }
 
   #setRating() {
@@ -27,6 +28,7 @@ class StarRating {
         star.classList.add(FILL_STAR);
       }
     });
+    return this;
   }
 }
 

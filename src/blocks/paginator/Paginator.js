@@ -38,6 +38,7 @@ class Paginator {
     this.#checkVisibilityBtn();
     this.#addListeners();
     this.#createText();
+    return this;
   }
 
   #addListeners() {
@@ -49,14 +50,17 @@ class Paginator {
     this.buttonNext.addEventListener('keydown', this.handleButtonNextPress);
     this.itemsPaginator.addEventListener('keydown', this.handleItemPress);
     this.mediaQueryList.addEventListener('change', this.handleChangeScreen);
+    return this;
   }
 
   handleButtonPrevClick() {
     this.#decrementPage();
+    return this;
   }
 
   handleButtonNextClick() {
     this.#incrementPage();
+    return this;
   }
 
   handleButtonPrevPress(e) {
@@ -79,16 +83,19 @@ class Paginator {
       e.preventDefault();
       this.#changePage(target);
     }
+    return this;
   }
 
   handleItemClick({ target }) {
     this.#changePage(target);
+    return this;
   }
 
   handleChangeScreen() {
     this.#removePaginator();
     this.#createPaginator();
     this.#setCurrentPage();
+    return this;
   }
 
   #findElements() {
@@ -97,6 +104,7 @@ class Paginator {
     this.buttonNext = this.paginator.querySelector(`.${BTN_NEXT}`);
     this.liClass = LI_CLASS;
     this.textElement = this.paginator.querySelector(`.${TEXT}`);
+    return this;
   }
 
   #createVars() {
@@ -112,6 +120,7 @@ class Paginator {
 
     this.pageCount = Math.ceil(this.allItems / this.itemsPerPage);
     this.mediaQueryList = window.matchMedia('(min-width: 500px)');
+    return this;
   }
 
   #createPaginator() {
@@ -136,6 +145,7 @@ class Paginator {
     } else if (this.#isInMiddle()) {
       this.#createMiddle(prevPage, nextPage);
     }
+    return this;
   }
 
   #isInStart() {
@@ -164,6 +174,7 @@ class Paginator {
       this.#addFirstPage();
       this.#addLastPage();
     }
+    return this;
   }
 
   #createBeginning() {
@@ -176,6 +187,7 @@ class Paginator {
     if (this.mediaQueryList.matches) {
       this.#addLastPage();
     }
+    return this;
   }
 
   #createStart(end) {
@@ -188,6 +200,7 @@ class Paginator {
     if (this.mediaQueryList.matches) {
       this.#addLastPage();
     }
+    return this;
   }
 
   #createEnd(start) {
@@ -200,6 +213,7 @@ class Paginator {
     if (this.mediaQueryList.matches) {
       this.#addFirstPage();
     }
+    return this;
   }
 
   #createEnding() {
@@ -211,6 +225,7 @@ class Paginator {
     if (this.mediaQueryList.matches) {
       this.#addFirstPage();
     }
+    return this;
   }
 
   #isPageCountSmall() {
@@ -286,6 +301,7 @@ class Paginator {
       this.buttonNext.classList.remove(HIDE);
       this.buttonNext.tabIndex = '0';
     }
+    return this;
   }
 
   #decrementPage() {
@@ -297,6 +313,7 @@ class Paginator {
       this.#setCurrentPage();
       this.buttonPrev.focus();
     }
+    return this;
   }
 
   #incrementPage() {
@@ -308,6 +325,7 @@ class Paginator {
       this.#setCurrentPage();
       this.buttonNext.focus();
     }
+    return this;
   }
 
   #changePage(target) {
@@ -336,12 +354,14 @@ class Paginator {
 
     this.#checkVisibilityBtn();
     this.#createText();
+    return this;
   }
 
   #removePage() {
     const current = this.#findCurrentPage();
     current.classList.remove(ACTIVE_LI);
     current.classList.remove(ACTIVE_JS);
+    return this;
   }
 
   #createText() {
@@ -358,10 +378,12 @@ class Paginator {
 
     string = `${firstCount} - ${lastCount} из ${from} ${this.text}`;
     this.textElement.innerText = string;
+    return this;
   }
 
   #removePaginator() {
     this.itemsPaginator.innerHTML = '';
+    return this;
   }
 }
 
