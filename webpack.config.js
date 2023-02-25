@@ -4,16 +4,12 @@ const CopyPlugin = require('copy-webpack-plugin');
 const path = require('path');
 const fs = require('fs');
 
-let MODE = 'development';
-if (process.env.NODE_ENV === 'production') {
-  MODE = 'production';
-}
 
 const PAGES_DIR = path.resolve(__dirname, 'src/pages');
 const PAGES = fs.readdirSync(PAGES_DIR).map((filename) => filename);
 
 module.exports = {
-  mode: MODE,
+  mode: process.env.NODE_ENV ,
 
   entry: {
     scripts: './src/index.js',
@@ -78,7 +74,7 @@ module.exports = {
       {
         test: /\.(sa|sc|c)ss$/i,
         use: [
-          MODE === 'development' ? 'style-loader' : MiniCssExtractPlugin.loader,
+          process.env.NODE_ENV  === 'development' ? 'style-loader' : MiniCssExtractPlugin.loader,
           'css-loader',
           {
             loader: 'postcss-loader',
