@@ -154,7 +154,7 @@ class Datepicker {
     return date;
   }
 
-  static isNotRange({ target, to, from }) {
+  static isRange({ target, to, from }) {
     return target.classList.contains(to)
     && !target.classList.contains(from)
     && !target.classList.contains('-selected-');
@@ -442,7 +442,7 @@ class Datepicker {
       prevDay = relatedTarget;
     }
 
-    const isRangeStart = Datepicker.isNotRange({
+    const isRangeStart = Datepicker.isRange({
       target,
       to: '-range-to-',
       from: '-range-from-',
@@ -453,7 +453,7 @@ class Datepicker {
       if (prevDay) prevDay.classList.remove('end-range');
     }
 
-    const isRangeEnd = Datepicker.isNotRange({
+    const isRangeEnd = Datepicker.isRange({
       target,
       to: '-range-from-',
       from: '-range-to-',

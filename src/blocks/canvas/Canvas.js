@@ -6,6 +6,9 @@ import {
   SVG,
   ITEM,
   UNIT,
+  SVG_CLASS,
+  ITEM_CLASS,
+  UNIT_CLASS,
 } from './constants';
 
 import {
@@ -41,13 +44,13 @@ class Canvas {
     this.svgTmp = this.#createSvg();
     this.#addSvg();
 
-    this.chart = this.canvas.querySelector(`.${SVG}`);
+    this.chart = this.canvas.querySelector(`.${SVG_CLASS}`);
     addText(this.chart, this.text);
     this.list = this.#createList();
-    this.items = this.list.querySelectorAll(`.${ITEM}`);
+    this.items = this.list.querySelectorAll(`.${ITEM_CLASS}`);
     this.legendBlock.append(this.list);
 
-    this.circles = this.canvas.querySelectorAll(`.${UNIT}`);
+    this.circles = this.canvas.querySelectorAll(`.${UNIT_CLASS}`);
     this.#addListeners();
 
     return this;
@@ -85,7 +88,7 @@ class Canvas {
     stopSecond = '#1a0000',
   }) {
     const li = document.createElement('li');
-    const className = `${ITEM} ${ITEM}_${grade}`;
+    const className = `${ITEM_CLASS} ${ITEM} ${ITEM}_${grade}`;
     li.dataset.line = grade;
     li.className = className;
     li.innerText = name;
@@ -213,7 +216,7 @@ class Canvas {
   }
 
   #createSvg() {
-    const svgTemp = `<svg class="${SVG}" width="120" height="121" viewBox="0 0 33 32">
+    const svgTemp = `<svg class="${SVG_CLASS} ${SVG}" width="120" height="121" viewBox="0 0 33 32">
     ${this.defs}
     ${this.circles.join('')}
     </svg>`;
@@ -257,7 +260,7 @@ class Canvas {
     const url = Canvas.createURL(option);
     const dashoffset = Canvas.createDashOffset(dashoffsetVal);
     const className = option.grade ? `${UNIT}_${option.grade}` : `${UNIT}_default`;
-    const circle = `<circle class="${UNIT} ${className}" data-line="${option.grade}" 
+    const circle = `<circle class="${UNIT_CLASS} ${UNIT} ${className}" data-line="${option.grade}" 
     r="15.9" cx="50%" cy="50%" ${url} ${dasharray} ${dashoffset} tabindex="0"></circle>`;
     return circle;
   }
