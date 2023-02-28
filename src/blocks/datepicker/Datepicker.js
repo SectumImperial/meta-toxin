@@ -103,6 +103,7 @@ class Datepicker {
 
   static formatDate({ firstDate, secondDate = '', mod = 'twoInputMod' }) {
     let result;
+    if (firstDate.length === 0) return firstDate;
     if (secondDate !== '' && mod === 'singleInputMod') {
       const firstDay = firstDate.getDate();
       const secondDay = secondDate.getDate();
@@ -125,6 +126,7 @@ class Datepicker {
       const year = firstDate.getFullYear();
       result = `${day}.${month}.${year}`;
     }
+
     return result;
   }
 
@@ -322,7 +324,7 @@ class Datepicker {
     if (code === 'Enter' || code === 'Space') {
       e.preventDefault();
       this.relatedTarget = target;
-      if (this.rangeFrom) {
+      if (this.rangeFrom !== undefined && this.rangeFrom !== null) {
         target.classList.add('.-range-to-');
       } else {
         this.#deleteRangePoint('-range-from-');
@@ -359,8 +361,8 @@ class Datepicker {
       day: date.getDate(),
     });
 
-    if (this.isTwoInputs) {
-      if (this.dp.rangeDateFrom) {
+    if (this.isTwoInputs !== null && this.isTwoInputs !== undefined) {
+      if (this.dp.rangeDateFrom !== null && this.dp.rangeDateFrom !== undefined) {
         const currentDate = new Date();
         const firstDate = isLessThanNow ? currentDate : this.dp.rangeDateFrom;
         this.firstItem.value = Datepicker.formatDate({
@@ -369,7 +371,7 @@ class Datepicker {
         });
       }
 
-      if (this.dp.rangeDateTo) {
+      if (this.dp.rangeDateTo !== null && this.dp.rangeDateTo !== undefined) {
         const tomorrow = new Date();
         tomorrow.setDate(tomorrow.getDate() + 1);
         const firstDate = isLessThanNow ? tomorrow : this.dp.rangeDateTo;

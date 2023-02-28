@@ -289,25 +289,25 @@ class Canvas {
 
   #boldLine(grade) {
     const circleLine = this.canvas.querySelector(`.${UNIT}_${grade}`);
-    if (circleLine) circleLine.classList.add(`${UNIT}_hovered`);
+    if (circleLine !== undefined && circleLine !== null) circleLine.classList.add(`${UNIT}_hovered`);
     return this;
   }
 
   #hoverText(grade) {
     const item = this.canvas.querySelector(`.${ITEM}_${grade}`);
-    if (item) item.classList.add(`${ITEM}_hovered`);
+    if (item !== undefined && item !== null) item.classList.add(`${ITEM}_hovered`);
     return this;
   }
 
   #resetLine() {
     const hoveredLine = this.canvas.querySelector(`.${UNIT}_hovered`);
-    if (hoveredLine) hoveredLine.classList.remove(`${UNIT}_hovered`);
+    if (hoveredLine !== undefined && hoveredLine !== null) hoveredLine.classList.remove(`${UNIT}_hovered`);
     return this;
   }
 
   #resetHoverText() {
     const item = this.canvas.querySelector(`.${ITEM}_hovered`);
-    if (item) item.classList.remove(`${ITEM}_hovered`);
+    if (item !== undefined && item !== null) item.classList.remove(`${ITEM}_hovered`);
     return this;
   }
 }

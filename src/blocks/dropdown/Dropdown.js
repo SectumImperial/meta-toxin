@@ -259,7 +259,7 @@ class Dropdown {
       const count = this.dropdown.querySelector(
         `.${COUNT_ELEM}[data-item="${key}"]`,
       );
-      if (!count) return;
+      if (count === undefined || count === null) return;
       count.value = value;
       this.#performData();
       this.#checkBtnVisibility();
@@ -371,7 +371,7 @@ class Dropdown {
   }
 
   #addInputValue(str) {
-    if (str === '') {
+    if (str.length === 0) {
       this.dropdownInput.innerText = this.wordsMap.get('placeholder');
     } else {
       this.dropdownInput.innerText = cutString(str, 20);

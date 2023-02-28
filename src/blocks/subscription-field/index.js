@@ -4,7 +4,7 @@ import './subscription-field.scss';
 
 const inputMailSubscription = document.querySelectorAll('.subscription-field__input');
 
-if (inputMailSubscription) {
+if (inputMailSubscription !== undefined && inputMailSubscription !== null) {
   inputMailSubscription.forEach((e) => {
     Inputmask('email', {
       mask: '*{1,20}[.*{1,20}][.*{1,20}][.*{1,20}]@*{1,20}[.*{2,6}][.*{1,2}]',

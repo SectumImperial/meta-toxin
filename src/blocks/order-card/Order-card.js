@@ -126,9 +126,9 @@ class OrderCard {
   }
 
   static showMessage(elemID, coords = {}) {
-    if (elemID === undefined || elemID === null) return;
+    if (elemID === undefined && elemID === null) return;
     const message = OrderCard.findMessage(elemID);
-    if (!message) return;
+    if (message === undefined) return;
     message.classList.add('order-card__tip-message_show');
     OrderCard.setMessagePosition(coords, message);
   }

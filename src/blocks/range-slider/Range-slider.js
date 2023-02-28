@@ -136,7 +136,7 @@ class Slider {
     if (this.step > allRange) {
       this.step = allRange;
     }
-    if (!this.step) this.step = 1;
+    if (this.step === undefined && this.step === null) this.step = 1;
     return this;
   }
 
