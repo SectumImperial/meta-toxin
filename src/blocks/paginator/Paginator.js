@@ -79,7 +79,7 @@ class Paginator {
 
   handleItemPress(e) {
     const { code, target } = e;
-    if (code === 'Space' && code === 'Enter') {
+    if (code === 'Space' || code === 'Enter') {
       e.preventDefault();
       this.#changePage(target);
     }
@@ -260,14 +260,14 @@ class Paginator {
    * @param {number or string} content of li
    * @param {boolean} dot
    */
-  #createLiElement(className, content, dots = false) {
+  #createLiElement(className, content, isDots = false) {
     const el = document.createElement('li');
     el.className = className;
     el.innerText = content;
-    if (dots === undefined) {
+    if (!isDots) {
       el.tabIndex = 0;
     }
-    if (dots !== undefined) {
+    if (isDots) {
       el.dataset.dots = true;
       el.classList.add(`${this.liClass}_dots`);
     } else {
@@ -343,7 +343,7 @@ class Paginator {
     const page = this.itemsPaginator.querySelector(
       `.${LI_CLASS}[data-number="${this.currentPage}"]`,
     );
-    if (page === undefined && page === null) console.error('Current page has not found');
+    if (page === undefined || page === null) console.error('Current page has not found');
     return page;
   }
 

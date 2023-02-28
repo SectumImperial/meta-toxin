@@ -19,6 +19,7 @@ class Slider {
     this.handleToggleMouseDown = this.handleToggleMouseDown.bind(this);
     this.handleToggleTouchStart = this.handleToggleTouchStart.bind(this);
     this.handleToggleKeyDown = this.handleToggleKeyDown.bind(this);
+    Slider.handleDragStartEvent = Slider.handleDragStartEvent.bind(this);
 
     this.init();
   }
@@ -57,7 +58,7 @@ class Slider {
   #addListeners() {
     this.toggles.forEach((e) => {
       e.addEventListener('mousedown', this.handleToggleMouseDown);
-      e.addEventListener('dragstart', () => false);
+      e.addEventListener('dragstart', Slider.handleDragStartEvent);
       e.addEventListener(
         'touchstart',
         this.handleToggleTouchStart,
@@ -66,6 +67,10 @@ class Slider {
       e.addEventListener('keydown', this.handleToggleKeyDown);
     });
     return this;
+  }
+
+  static handleDragStartEvent() {
+    return false;
   }
 
   handleToggleMouseDown(e) {

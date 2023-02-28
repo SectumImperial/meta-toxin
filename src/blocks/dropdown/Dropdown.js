@@ -130,10 +130,7 @@ class Dropdown {
   #addListeners() {
     this.field.addEventListener('click', this.handleFieldClick);
 
-    this.dropdownInput.addEventListener(
-      'keydown',
-      this.handleInputKeyDown,
-    );
+    this.dropdownInput.addEventListener('keydown', this.handleInputKeyDown);
 
     this.buttonsDecrement.forEach((item) => item.addEventListener('click', this.handleDecrBtnClick));
     this.buttonsIncrement.forEach((item) => item.addEventListener('click', this.handleIncrBtnClick));
