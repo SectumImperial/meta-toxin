@@ -15,6 +15,7 @@ const DISABLED = 'dropdown__btn_disabled';
 const ACTIVE = 'dropdown__content_active';
 const OPENED = 'dropdown__output-field_opened';
 const HIDDEN = 'dropdown__button_hidden';
+const GUEST_TYPE = 'guests-dropdown-type';
 
 export {
   DEFAULT_KEY,
@@ -34,4 +35,5 @@ export {
   OPENED,
   HIDDEN,
   LABEL,
+  GUEST_TYPE,
 };

@@ -21,6 +21,8 @@ import {
   ICON,
   ICON_ACTIVE,
   NAV_ARROW,
+  PREV,
+  NEXT,
 } from './constants';
 
 class Datepicker {
@@ -272,11 +274,11 @@ class Datepicker {
 
   handleNavKeyPress(e) {
     const { code } = e;
-    const action = e.target.dataset.action === 'prev' ? 'prevNavButton' : 'nextNavButton';
+    const { action } = e.target.dataset;
     if (code === 'Enter' || code === 'Space') {
       e.preventDefault();
-      if (action === 'nextNavButton') this.dp.next();
-      if (action === 'prevNavButton') this.dp.prev();
+      if (action === PREV) this.dp.next();
+      if (action === NEXT) this.dp.prev();
 
       this.#addTabIndex();
     }

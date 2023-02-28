@@ -20,6 +20,7 @@ import {
   OPENED,
   HIDDEN,
   LABEL,
+  GUEST_TYPE,
 } from './constants';
 
 class Dropdown {
@@ -168,7 +169,7 @@ class Dropdown {
     count.value = Dropdown.decrementValue(count, target);
     Dropdown.checkDecrementDisabled(count, target);
 
-    if (this.type === 'guests-dropdown-type') this.#checkInfants();
+    if (this.type === GUEST_TYPE) this.#checkInfants();
     this.#performData();
     this.#checkBtnVisibility();
   }
@@ -187,14 +188,14 @@ class Dropdown {
       decrement.disabled = false;
     }
 
-    if (this.type === 'guests-dropdown-type') this.#checkInfants();
+    if (this.type === GUEST_TYPE) this.#checkInfants();
     this.#performData();
     this.#checkBtnVisibility();
   }
 
   handleBtnClearClick(e) {
     e.preventDefault();
-    let placeholderValue = 'Введите данные';
+    let placeholderValue = 'Enter the data';
     this.options.forEach((element) => {
       if (element.placeholder) placeholderValue = element.placeholder;
     });
@@ -243,7 +244,7 @@ class Dropdown {
         Dropdown.checkDecrementDisabled(e.value, e);
       }
     });
-    if (this.type === 'guests-dropdown-type') this.#checkInfants();
+    if (this.type === GUEST_TYPE) this.#checkInfants();
     this.#performData();
     this.#checkBtnVisibility();
   }
