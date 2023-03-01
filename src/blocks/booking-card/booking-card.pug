@@ -22,7 +22,7 @@ mixin booking-card(options = {})
         .booking-card__dropdown-input
           +dropdown({
             label: 'Гости',
-            type:'guests-dropdown-type',
+            isRestricted: true,
             placeholder: 'Сколько гостей',
             items: [
               'Взрослые', 'Дети', 'Младенцы',

@@ -8,14 +8,12 @@ const COUNT_ELEM = 'js-dropdown__count';
 const COUNTER = 'js-dropdown__counter';
 const BUTTONS_DEC = 'js-dropdown__btn_decrement';
 const BUTTONS_INC = 'js-dropdown__btn_increment';
-const TYPE = 'js-dropdown__type';
 const ITEM = 'js-dropdown__item';
 const LABEL = 'js-dropdown__label';
 const DISABLED = 'dropdown__btn_disabled';
 const ACTIVE = 'dropdown__content_active';
 const OPENED = 'dropdown__output-field_opened';
 const HIDDEN = 'dropdown__button_hidden';
-const GUEST_TYPE = 'guests-dropdown-type';
 
 export {
   DEFAULT_KEY,
@@ -28,12 +26,10 @@ export {
   COUNTER,
   BUTTONS_DEC,
   BUTTONS_INC,
-  TYPE,
   ITEM,
   DISABLED,
   ACTIVE,
   OPENED,
   HIDDEN,
   LABEL,
-  GUEST_TYPE,
 };

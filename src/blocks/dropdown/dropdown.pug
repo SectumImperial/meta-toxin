@@ -7,14 +7,14 @@ mixin dropdown(options = {})
       placeholder = 'Введите значение',
       plurals = {},
       preset = [],
-      type = 'guests-dropdown-type',
+      isRestricted = false,
       label = '',
       size = 'normal',
       isOpened = false,
     } = options
 
   section.dropdown.js-dropdown(
-    data-options = [...plurals, { placeholder: placeholder }]
+    data-options = [...plurals, { placeholder: placeholder }, {isRestricted: isRestricted}]
     data-preset = preset
   )
     .dropdown__output-field.js-dropdown__output-field(
@@ -53,14 +53,6 @@ mixin dropdown(options = {})
                   tabindex = -1,            
                   )
                 button.dropdown__btn.dropdown__btn_increment.js-dropdown__btn_increment +
-        input.dropdown__type.dropdown__type_hidden.js-dropdown__type(
-          type ="text"
-          name = "type",
-          value = type,
-          readonly,
-          tabindex = -1, 
-          )
-
       if(size === "normal")
         .dropdown__nav
           .dropdown__button.dropdown__button_clear.js-dropdown__button_clear

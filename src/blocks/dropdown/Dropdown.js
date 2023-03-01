@@ -13,14 +13,12 @@ import {
   COUNTER,
   BUTTONS_DEC,
   BUTTONS_INC,
-  TYPE,
   ITEM,
   DISABLED,
   ACTIVE,
   OPENED,
   HIDDEN,
   LABEL,
-  GUEST_TYPE,
 } from './constants';
 
 class Dropdown {
@@ -125,7 +123,10 @@ class Dropdown {
     this.buttonsIncrement = this.counter.querySelectorAll(`.${BUTTONS_INC}`);
 
     this.counts = this.dropdown.querySelectorAll(`.${COUNT_ELEM}`);
-    this.type = this.dropdown.querySelector(`.${TYPE}`).value;
+    this.isRestricted = false;
+    this.options.forEach((e) => {
+      if (e.isRestricted) this.isRestricted = true;
+    });
   }
 
   #addListeners() {
@@ -169,7 +170,7 @@ class Dropdown {
     count.value = Dropdown.decrementValue(count, target);
     Dropdown.checkDecrementDisabled(count, target);
 
-    if (this.type === GUEST_TYPE) this.#checkInfants();
+    if (this.isRestricted) this.#checkInfants();
     this.#performData();
     this.#checkBtnVisibility();
   }
@@ -188,7 +189,7 @@ class Dropdown {
       decrement.disabled = false;
     }
 
-    if (this.type === GUEST_TYPE) this.#checkInfants();
+    if (this.isRestricted) this.#checkInfants();
     this.#performData();
     this.#checkBtnVisibility();
   }
@@ -236,15 +237,14 @@ class Dropdown {
   #addURLValues() {
     const queryString = window.location.search;
     const URLParams = new URLSearchParams(queryString);
-    const type = URLParams.get('type');
 
     this.counts.forEach((e) => {
-      if (URLParams.get(e.dataset.item) && type === this.type) {
+      if (URLParams.get(e.dataset.item)) {
         e.value = URLParams.get(e.dataset.item);
         Dropdown.checkDecrementDisabled(e.value, e);
       }
     });
-    if (this.type === GUEST_TYPE) this.#checkInfants();
+    if (this.isRestricted) this.#checkInfants();
     this.#performData();
     this.#checkBtnVisibility();
   }
