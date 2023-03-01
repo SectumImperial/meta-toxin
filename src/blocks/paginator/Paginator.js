@@ -30,6 +30,23 @@ class Paginator {
     this.init();
   }
 
+  /**
+   *
+   * @param {string} className
+   * @param {number or string} content of li
+   * @param {boolean} dot
+   */
+
+  static createLiElement(className, content, isDots = false) {
+    const tabIndex = isDots ? 1 : 0;
+    const classElement = isDots ? `${className} ${className}_dots` : className;
+    const dataElement = isDots ? `data-dots = ${isDots}` : `data-number = ${content}`;
+    const element = `<li class = '${classElement}' ${dataElement}
+      tabindex = ${tabIndex}>${content}</li>`;
+
+    return element;
+  }
+
   init() {
     this.#findElements();
     this.#createVars();
@@ -165,66 +182,72 @@ class Paginator {
   }
 
   #createMiddle(start, end) {
+    let itemsLi = '';
+    if (this.mediaQueryList.matches) {
+      itemsLi += this.#addFirstPage();
+    }
     for (let i = start; i <= end; i += 1) {
-      const li = this.#createLiElement(this.liClass, i);
-      this.itemsPaginator.append(li);
+      itemsLi += Paginator.createLiElement(this.liClass, i);
+    }
+    if (this.mediaQueryList.matches) {
+      itemsLi += this.#addLastPage();
     }
 
-    if (this.mediaQueryList.matches) {
-      this.#addFirstPage();
-      this.#addLastPage();
-    }
+    this.itemsPaginator.insertAdjacentHTML('beforeend', itemsLi);
     return this;
   }
 
   #createBeginning() {
     const endCount = this.pageCount < COUNT_PAGE ? this.pageCount : COUNT_PAGE;
+    let itemsLi = '';
     for (let i = this.startPage; i <= endCount; i += 1) {
-      const li = this.#createLiElement(this.liClass, i);
-      this.itemsPaginator.append(li);
+      itemsLi += Paginator.createLiElement(this.liClass, i);
+    }
+    if (this.mediaQueryList.matches) {
+      itemsLi += this.#addLastPage();
     }
 
-    if (this.mediaQueryList.matches) {
-      this.#addLastPage();
-    }
+    this.itemsPaginator.insertAdjacentHTML('beforeend', itemsLi);
     return this;
   }
 
   #createStart(end) {
     const start = this.mediaQueryList.matches ? this.startPage : this.currentPage - 1;
+    let itemsLi = '';
     for (let i = start; i <= end; i += 1) {
-      const li = this.#createLiElement(this.liClass, i);
-      this.itemsPaginator.append(li);
+      itemsLi += Paginator.createLiElement(this.liClass, i);
+    }
+    if (this.mediaQueryList.matches) {
+      itemsLi += this.#addLastPage();
     }
 
-    if (this.mediaQueryList.matches) {
-      this.#addLastPage();
-    }
+    this.itemsPaginator.insertAdjacentHTML('beforeend', itemsLi);
     return this;
   }
 
   #createEnd(start) {
     const end = this.mediaQueryList.matches ? this.pageCount : this.currentPage + 1;
-    for (let i = start; i <= end; i += 1) {
-      const li = this.#createLiElement(this.liClass, i);
-      this.itemsPaginator.append(li);
-    }
-
+    let itemsLi = '';
     if (this.mediaQueryList.matches) {
-      this.#addFirstPage();
+      itemsLi += this.#addFirstPage();
     }
+    for (let i = start; i <= end; i += 1) {
+      itemsLi += Paginator.createLiElement(this.liClass, i);
+    }
+    this.itemsPaginator.insertAdjacentHTML('beforeend', itemsLi);
+
     return this;
   }
 
   #createEnding() {
-    for (let i = this.pageCount - (COUNT_PAGE - 1); i <= this.pageCount; i += 1) {
-      const li = this.#createLiElement(this.liClass, i);
-      this.itemsPaginator.append(li);
-    }
-
+    let itemsLi = '';
     if (this.mediaQueryList.matches) {
-      this.#addFirstPage();
+      itemsLi += this.#addFirstPage();
     }
+    for (let i = this.pageCount - (COUNT_PAGE - 1); i <= this.pageCount; i += 1) {
+      itemsLi += Paginator.createLiElement(this.liClass, i);
+    }
+    this.itemsPaginator.insertAdjacentHTML('beforeend', itemsLi);
     return this;
   }
 
@@ -233,47 +256,29 @@ class Paginator {
   }
 
   #addLastPage() {
-    if (this.#isPageCountSmall()) return;
-    const dots = this.#createLiElement(this.liClass, '...', true);
-    this.itemsPaginator.append(dots);
+    if (this.#isPageCountSmall()) return '';
+    let result = '';
+    result += Paginator.createLiElement(this.liClass, '...', true);
 
     if (this.mediaQueryList.matches) {
-      const lastLi = this.#createLiElement(this.liClass, this.pageCount);
-      this.itemsPaginator.append(lastLi);
+      const lastLi = Paginator.createLiElement(this.liClass, this.pageCount);
+      result += lastLi;
     }
+
+    return result;
   }
 
   #addFirstPage() {
-    if (this.#isPageCountSmall()) return;
-    const dots = this.#createLiElement(this.liClass, '...', true);
-    this.itemsPaginator.prepend(dots);
+    if (this.#isPageCountSmall()) return '';
+    let result = '';
 
     if (this.mediaQueryList.matches) {
-      const firstLi = this.#createLiElement(this.liClass, this.startPage);
-      this.itemsPaginator.prepend(firstLi);
+      const lastLi = Paginator.createLiElement(this.liClass, this.startPage);
+      result += lastLi;
     }
-  }
+    result += Paginator.createLiElement(this.liClass, '...', true);
 
-  /**
-   *
-   * @param {string} className
-   * @param {number or string} content of li
-   * @param {boolean} dot
-   */
-  #createLiElement(className, content, isDots = false) {
-    const el = document.createElement('li');
-    el.className = className;
-    el.innerText = content;
-    if (!isDots) {
-      el.tabIndex = 0;
-    }
-    if (isDots) {
-      el.dataset.dots = true;
-      el.classList.add(`${this.liClass}_dots`);
-    } else {
-      el.dataset.number = content;
-    }
-    return el;
+    return result;
   }
 
   #checkVisibilityBtn() {

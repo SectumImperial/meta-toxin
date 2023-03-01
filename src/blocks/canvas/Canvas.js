@@ -287,7 +287,7 @@ class Canvas {
 
   #deleteText() {
     const text = this.canvas.querySelector('.canvas__text-group');
-    if (text !== '') text.remove();
+    text.remove();
     return this;
   }
 
