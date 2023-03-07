@@ -8,7 +8,7 @@
   min-width: 380px;
   @include mixins.box-style;
 
-  padding: 39px 27px 30px 29px;
+  padding: 39px 28px 30px 29px;
 
   &__room-info {
     display: flex;
@@ -49,7 +49,7 @@
   }
 
   &__details {
-    margin-top: 20px;
+    margin-top: 21px;
     padding-left: 1px;
     display: flex;
     flex-direction: column;

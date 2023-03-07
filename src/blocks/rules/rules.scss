@@ -26,7 +26,8 @@
     &::before {
       content: '';
       display: flex;
-      align-self: center;
+
+      transform: translateY(50%);
 
       min-width: 10px;
       max-width: 10px;

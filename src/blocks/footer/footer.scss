@@ -40,7 +40,7 @@
   }
 
   &__social {
-    padding: 0 0 1px 0;
+    padding: 3px 0 0px 0;
   }
 
   @media (min-width: map.get(variables.$breakpoints, 'tablet')) {
@@ -61,7 +61,7 @@
       flex-direction: row;
       justify-content: space-between;
       width: 100%;
-      padding: 24px 142px 22px 119px;
+      padding: 21px 142px 22px 119px;
       border-top: 1px solid #e5e5e5;
     }
 

@@ -1,7 +1,7 @@
 @use 'sass:map';
 @use '@styles/variables';
 
-.search-room {
+.search-page {
   display: flex;
   max-width: map.get(variables.$layout-sizes, 'container');
   margin: 0 auto;
@@ -32,7 +32,7 @@
   }
 
   &__guests {
-    margin-top: 13px;
+    margin-top: 14px;
   }
 
   &__dropdown {
@@ -40,7 +40,7 @@
   }
 
   &__range {
-    margin-top: 28px;
+    margin-top: 29px;
   }
 
   &__rules {
@@ -51,7 +51,7 @@
     margin: 0;
     padding: 0;
     padding-top: 2px;
-    padding-right: 17px;
+    padding-right: 19px;
   }
 
   &__checkbox {
@@ -96,8 +96,9 @@
 
   &__rooms-content {
     padding-top: 21px;
+    padding-left: 2px;
     display: flex;
-    gap: 21px 12px;
+    gap: 24px 12px;
     flex-wrap: wrap;
   }
 
@@ -105,8 +106,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 41px;
-    padding-left: 58px;
+
+    margin-right: 14px;
+    padding-top: 45px;
   }
 
   @media (max-width: map.get(variables.$breakpoints, 'pc')) {

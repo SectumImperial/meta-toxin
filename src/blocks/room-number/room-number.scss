@@ -42,7 +42,7 @@
     color: map.get(variables.$colors, 'primary');
     font-size: map.get(variables.$font-sizes, 'xs');
     text-transform: uppercase;
-    padding-left: 2px;
+    padding-left: 12px;
     word-break: normal;
 
     align-self: end;

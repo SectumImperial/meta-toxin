@@ -84,21 +84,22 @@ $root: 'button';
       }
 
       &_large {
-        padding: 13px 0 12px 24px;
+        padding: 7px 0 8px 24px;
       }
     }
   }
 
   &__content {
     margin: 0 auto;
+
     &_gray {
       color: rgb(map.get(variables.$colors, 'dark'), 0.5);
     }
   }
 
   &__icon {
-    padding-right: 12px;
-    padding-top: 3px;
+    padding-right: 11px;
+    padding-top: 4px;
 
     svg,
     path {

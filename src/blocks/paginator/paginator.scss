@@ -12,8 +12,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
-    padding-right: 72px;
   }
 
   &__button {
@@ -107,7 +105,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-right: 71px;
     color: rgb(map.get(variables.$colors, 'dark'), 0.75);
   }
 

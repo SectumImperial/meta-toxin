@@ -48,7 +48,8 @@
     }
 
     &_sub {
-      gap: 5px;
+      gap: 6px;
+      padding-top: 1px;
     }
   }
 
@@ -129,7 +130,7 @@
       visibility: visible;
       pointer-events: all;
       transform: translate(0, 58%);
-  }
+    }
 
     &__subitem {
       padding-right: 6px;
@@ -145,7 +146,7 @@
 
     &__link {
       margin: 0;
-      padding: 0;
+      padding: 0 1px 0 0;
 
       &_active {
         font-weight: 700;
@@ -167,4 +168,3 @@
     }
   }
 }
-

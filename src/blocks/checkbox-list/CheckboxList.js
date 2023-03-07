@@ -7,10 +7,11 @@ import {
 class CheckboxList {
   constructor(selector) {
     this.checkboxList = selector;
-    this.init();
 
     this.handleListClick = this.handleListClick.bind(this);
     this.handleListKeyPress = this.handleListKeyPress.bind(this);
+
+    this.init();
   }
 
   init() {
@@ -44,6 +45,15 @@ class CheckboxList {
     }
   }
 
+  #toggle() {
+    if (this.checkboxList.classList.contains(ACTIVE)) {
+      this.#removeClasses();
+    } else {
+      this.#addClasses();
+    }
+    return this;
+  }
+
   #removeClasses() {
     this.checkboxList.classList.remove(ACTIVE);
     this.list.classList.remove(OPENED_LIST);
@@ -53,15 +63,6 @@ class CheckboxList {
   #addClasses() {
     this.checkboxList.classList.add(ACTIVE);
     this.list.classList.add(OPENED_LIST);
-    return this;
-  }
-
-  #toggle() {
-    if (this.checkboxList.classList.contains(ACTIVE)) {
-      this.#removeClasses();
-    } else {
-      this.#addClasses();
-    }
     return this;
   }
 }
