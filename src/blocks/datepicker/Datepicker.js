@@ -288,7 +288,6 @@ class Datepicker {
   }
 
   handleDatepickerKeyPress(e) {
-    console.log(e.code);
     if (e.code === 'Escape') {
       this.#closeDp();
     }
