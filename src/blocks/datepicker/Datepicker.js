@@ -41,6 +41,7 @@ class Datepicker {
     this.handleFocusAccept = this.handleFocusAccept.bind(this);
     this.handleBodyFocus = this.handleBodyFocus.bind(this);
     this.handleDatepickerMouseMove = this.handleDatepickerMouseMove.bind(this);
+    this.handleDatepickerKeyPress = this.handleDatepickerKeyPress.bind(this);
 
     this.init();
   }
@@ -249,6 +250,7 @@ class Datepicker {
 
   #addListeners() {
     this.datepicker.addEventListener('click', this.handleDatepickerClick);
+    this.datepicker.addEventListener('keydown', this.handleDatepickerKeyPress);
     this.buttonClear.addEventListener('click', this.handleButtonClearClick);
     this.buttonAccept.addEventListener('click', this.handleButtonAcceptClick);
     this.fields.forEach((item) => {
@@ -285,6 +287,13 @@ class Datepicker {
     return this;
   }
 
+  handleDatepickerKeyPress(e) {
+    console.log(e.code);
+    if (e.code === 'Escape') {
+      this.#closeDp();
+    }
+  }
+
   handleDatepickerClick(e) {
     this.#clickInputOpen(e);
     this.#markOlderDays();
@@ -303,13 +312,7 @@ class Datepicker {
 
   handleDocumentClick({ target }) {
     if (target.closest(`.${DATEPICKER}`) || target.closest('.-other-month-')) return;
-    this.datepicker.querySelectorAll(`.${GROUP}`).forEach((e) => {
-      if (e.classList.contains(CLICKED)) e.classList.remove(CLICKED);
-      if (this.calContainer.classList.contains(ACTIVE)) {
-        this.#closeDp();
-        this.icons.forEach((icon) => icon.classList.toggle(ICON_ACTIVE));
-      }
-    });
+    this.#closeDp();
   }
 
   handleFieldKeyDown(e) {
@@ -805,9 +808,14 @@ class Datepicker {
   }
 
   #closeDp() {
-    if (this.calContainer.classList.contains('datepicker__container_only-cal')) return;
+    if (this.calContainer.classList.contains('datepicker__container_only-calendar')) return;
     this.calContainer.classList.remove(ACTIVE);
     this.#checkDateAfterClosing();
+    this.datepicker.querySelectorAll(`.${GROUP}`).forEach((e) => {
+      if (e.classList.contains(CLICKED)) e.classList.remove(CLICKED);
+      const icon = e.querySelector(`.${ICON}`);
+      if (icon.classList.contains(ICON_ACTIVE)) icon.classList.remove(ICON_ACTIVE);
+    });
   }
 
   #accept(e) {
