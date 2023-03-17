@@ -27,6 +27,13 @@
     transform: rotate(180deg);
   }
 
+  &:hover {
+      .carousel__prev_visible,
+      .carousel__next_visible {
+        visibility: visible;
+      }
+    }
+
   &__images {
     overflow: hidden;
   }
@@ -84,13 +91,6 @@
   &__next {
     top: calc(50% - 22px);
     right: 0;
-  }
-
-  &:hover {
-    .carousel__prev,
-    .carousel__next {
-      visibility: visible;
-    }
   }
 
   &:hover::before {

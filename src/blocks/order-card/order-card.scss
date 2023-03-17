@@ -120,6 +120,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
     border: 1px solid rgb(map.get(variables.$colors, 'dark'), 0.25);
     color: rgb(map.get(variables.$colors, 'dark'), 0.25);
     cursor: pointer;

@@ -32,6 +32,8 @@ const NAV_ARROW = '<svg width="17" height="18" viewBox="0 0 17 18" fill="none" x
 const PREV = 'prev';
 const NEXT = 'next';
 
+const CLEAR_VISIBLE = 'datepicker__button_clear_visible';
+
 export {
   MONTHS,
   FIELD,
@@ -53,4 +55,5 @@ export {
   NAV_ARROW,
   PREV,
   NEXT,
+  CLEAR_VISIBLE,
 };

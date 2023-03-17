@@ -23,6 +23,7 @@ import {
   NAV_ARROW,
   PREV,
   NEXT,
+  CLEAR_VISIBLE,
 } from './constants';
 
 class Datepicker {
@@ -365,7 +366,7 @@ class Datepicker {
       day: date.getDate(),
     });
 
-    if (this.isTwoInputs !== null && this.isTwoInputs !== undefined) {
+    if (this.isTwoInputs) {
       if (this.dp.rangeDateFrom !== null && this.dp.rangeDateFrom !== undefined) {
         const currentDate = new Date();
         const firstDate = isLessThanNow ? currentDate : this.dp.rangeDateFrom;
@@ -618,8 +619,8 @@ class Datepicker {
       addedValue = this.singleItem.value !== '';
     }
 
-    if (addedValue) this.buttonClear.style.visibility = 'visible';
-    if (!addedValue) this.buttonClear.style.visibility = 'hidden';
+    if (addedValue) this.buttonClear.classList.add(CLEAR_VISIBLE);
+    if (!addedValue) this.buttonClear.classList.remove(CLEAR_VISIBLE);
     return this;
   }
 

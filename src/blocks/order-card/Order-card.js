@@ -107,10 +107,6 @@ class OrderCard {
     const el = document.createElement('div');
     el.className = 'order-card__tip js-order-card__tip';
     el.innerText = 'i';
-
-    el.style.width = '20px';
-    el.style.height = '20px';
-    el.style.borderRadius = '50%';
     el.dataset.idTip = uuidv4();
     el.tabIndex = 0;
     return el;

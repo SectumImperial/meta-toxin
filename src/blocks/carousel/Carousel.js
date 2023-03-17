@@ -8,6 +8,8 @@ import {
   TOGGLE,
   ACTIVE,
   LINK,
+  PREV_VISIBLE,
+  NEXT_VISIBLE,
 } from './constants';
 
 class Carousel {
@@ -36,6 +38,7 @@ class Carousel {
     this.#markToggles();
     this.#checkActive();
     this.#addListeners();
+    this.#checkBtnVisibility();
     return this;
   }
 
@@ -108,8 +111,8 @@ class Carousel {
   }
 
   handleCarouselMouseOut() {
-    this.next.style.visibility = 'hidden';
-    this.prev.style.visibility = 'hidden';
+    this.next.classList.add(NEXT_VISIBLE);
+    this.prev.classList.add(PREV_VISIBLE);
     return this;
   }
 
@@ -191,15 +194,15 @@ class Carousel {
 
   #checkBtnVisibility() {
     if (this.position === -this.width * (this.listElements.length - this.count)) {
-      this.next.style.visibility = 'hidden';
+      this.next.classList.remove(NEXT_VISIBLE);
     } else {
-      this.next.style.visibility = 'visible';
+      this.next.classList.add(NEXT_VISIBLE);
     }
 
     if (this.position === 0) {
-      this.prev.style.visibility = 'hidden';
+      this.prev.classList.remove(PREV_VISIBLE);
     } else {
-      this.prev.style.visibility = 'visible';
+      this.prev.classList.add(PREV_VISIBLE);
     }
     return this;
   }

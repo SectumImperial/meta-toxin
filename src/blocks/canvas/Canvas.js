@@ -95,10 +95,7 @@ class Canvas {
 
     const mark = document.createElement('div');
     mark.className = `${ITEM}-mark ${ITEM}-mark_${grade}`;
-    mark.style.width = '10px';
-    mark.style.height = '10px';
     mark.style.background = `linear-gradient(${stopFirst}, ${stopSecond})`;
-    mark.style.borderRadius = '50%';
 
     li.append(mark);
 
