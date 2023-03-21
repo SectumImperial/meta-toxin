@@ -130,18 +130,20 @@
         bottom: 0;
       }
 
-      &_active span {
-        transform: scale(0) translate(0, -50%);
-      }
+      &_active {
+        span {
+          transform: scale(0) translate(0, -50%);
+        }
 
-      &_active::before {
-        top: 50%;
-        transform: rotate(-45deg) translate(0, -50%);
-      }
+        &::before {
+          top: 50%;
+          transform: rotate(-45deg) translate(0, -50%);
+        }
 
-      &_active::after {
-        top: 50%;
-        transform: rotate(45deg) translate(0, -50%);
+        &::after {
+          top: 50%;
+          transform: rotate(45deg) translate(0, -50%);
+        }
       }
     }
   }
