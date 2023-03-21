@@ -27,7 +27,7 @@
     max-width: 50px;
 
     color: map.get(variables.$colors, 'dark');
-    font-size: functions.rem(19, variables.$base-font-size);
+    font-size: functions.rem(19);
     font-weight: 700;
 
     overflow: hidden;

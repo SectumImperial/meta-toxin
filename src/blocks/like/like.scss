@@ -37,7 +37,7 @@
 
   &__count {
     padding: 1px 1px 3px 0;
-    font-size: functions.rem(10, variables.$base-font-size);
+    font-size: functions.rem(10);
     color: rgb(map.get(variables.$colors, 'dark'), 0.25);
 
     &_liked {

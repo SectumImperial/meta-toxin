@@ -15,12 +15,11 @@ $layout-sizes: (
   'content': 1170px,
 );
 
-$base-font-size: 16;
 $font-sizes: (
-  'xs': functions.rem(12, $base-font-size),
-  'sm': functions.rem(14, $base-font-size),
-  'lg': functions.rem(19, $base-font-size),
-  '2xl': functions.rem(24, $base-font-size),
+  'xs': functions.rem(12),
+  'sm': functions.rem(14),
+  'lg': functions.rem(19),
+  '2xl': functions.rem(24),
 );
 
 $colors: (
