@@ -5,6 +5,7 @@
 .room-number {
   font-weight: 700;
   word-break: break-word;
+  
 
   &__number {
     font-size: map.get(variables.$font-sizes, 'sm');

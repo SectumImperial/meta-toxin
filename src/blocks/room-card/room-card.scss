@@ -16,33 +16,38 @@
   }
 
   &__information {
+    display: flex;
+    flex-direction: column;
+    gap: 21px;
     padding: 18px 13px 17px 19px;
+    position: relative;
+
+    &::before {
+    content: "";
+    background: rgb(map.get(variables.$colors, 'dark'), 0.1);
+    position: absolute;
+    width: 87%;
+    height: 1px;
+    top: 50%;
+
+    }
   }
 
   &__details,
   &__feedback {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     display: flex;
     gap: 5px;
   }
 
   &__number {
-    padding-top: 2px;
     max-width: 110px;
   }
 
-  &__price {
-    padding-top: 6px;
-  }
-
-  &__details {
-    padding-bottom: 10px;
-  }
-
   &__feedback {
-    padding: 11px 0 0 3px;
-    border-top: 1px solid rgb(map.get(variables.$colors, 'dark'), 0.1);
+    padding-left: 3px;
   }
 
   &__rating {
@@ -55,7 +60,6 @@
     gap: 4px;
     color: rgb(map.get(variables.$colors, 'dark'), 0.5);
     font-size: map.get(variables.$font-sizes, 'sm');
-    padding: 2px 2px 0 0;
   }
 
   &__reviews-count {

@@ -100,21 +100,22 @@ block content
                 level: 'h5',
                 text: 'Доступность'
               })
-            .search-page__checkbox.search-page__checkbox_wide-corr
-              +checkbox({
-                mod: 'rich',
-                checkboxTitle: 'Широкий коридор',
-                checkboxDescription: 'Ширина коридоров в номере не менее 91 см.',
-                name: 'search-page-wide-corr',
-              })
-            .search-page__checkbox.search-page__checkbox_inv-help
-              +checkbox({
-                mod: 'rich',
-                checkboxTitle: 'Помощник для инвалидов',
-                checkboxDescription: `На 1 этаже вас встретит специалист 
-                и проводит до номера.`,
-                name: 'search-page-inv-help',
-              })
+            .search-page__available-container
+              .search-page__checkbox.search-page__checkbox_wide-corr
+                +checkbox({
+                  mod: 'rich',
+                  checkboxTitle: 'Широкий коридор',
+                  checkboxDescription: 'Ширина коридоров в номере не менее 91 см.',
+                  name: 'search-page-wide-corr',
+                })
+              .search-page__checkbox.search-page__checkbox_inv-help
+                +checkbox({
+                  mod: 'rich',
+                  checkboxTitle: 'Помощник для инвалидов',
+                  checkboxDescription: `На 1 этаже вас встретит специалист 
+                  и проводит до номера.`,
+                  name: 'search-page-inv-help',
+                })
 
 
           .search-page__facilities

@@ -17,6 +17,7 @@
   &__items {
     display: flex;
     flex-direction: column;
+    gap: 6px;
     padding: 26px 0 0;
     margin: 0;
   }
@@ -26,7 +27,6 @@
     align-items: center;
     flex-wrap: nowrap;
     gap: 5px;
-    padding: 3px 0;
     color: rgb((map.get(variables.$colors, 'dark')), 0.75);
     list-style: none;
     cursor: pointer;
