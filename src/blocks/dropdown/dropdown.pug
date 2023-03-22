@@ -23,17 +23,17 @@ mixin dropdown(options = {})
       })
       if (label !== '')
         label.dropdown__label.js-dropdown__label= label
-          output.dropdown__output.dropdown__output_icon.js-dropdown__output(
+          output.dropdown__output.js-dropdown__output(
             name = "dropdown",
             tabindex = "0"
           )= placeholder
       else 
-        output.dropdown__output.dropdown__output_icon.js-dropdown__output(
+        output.dropdown__output.js-dropdown__output(
           name = "dropdown",
           tabindex = "0"
         )= placeholder
     div.dropdown__content.js-dropdown__content(class = {
-      dropdown__content_active: isOpened
+      dropdown__content_opened: isOpened
     })
       .dropdown__counter.js-dropdown__counter
         ul.dropdown__items

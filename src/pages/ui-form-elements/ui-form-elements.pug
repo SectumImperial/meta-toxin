@@ -90,20 +90,20 @@ block content
                 name: 'masked text',
                 pattern: '[0-9]{2}.[0-9]{2}.[0-9]{4}',
                 isRequired: true,
-                isDate: true,
+                isMasked: true,
               })
-            .form-elements__field.form-elements__field_bigger
+            .form-elements__field.form-elements__field_size_big
               +datepicker({
                 labelStart: 'date Dropdown',
                 labelEnd: 'date Dropdown'
               })
-            .form-elements__field.form-elements__field_bigger
+            .form-elements__field.form-elements__field_size_big
               +datepicker({
                 labelAlone: 'filter date dropdown',
                 isTwoInput: false,
               })
 
-            .form-elements__field.form-elements__field_bigger
+            .form-elements__field.form-elements__field_size_big
               .form-elements__subtitle 
                 +title({
                   level: 'h5',
@@ -226,7 +226,7 @@ block content
                   level: 'h5',
                   text: 'buttons',
                 })
-              .form-elements__elem-btn_medium 
+              .form-elements__elem-btn_size_medium 
                 .form-elements__elem-btn-cont
                   +button({
                     content: 'Click me',
@@ -265,7 +265,7 @@ block content
                     isGrey: true,
                   })
 
-              .form-elements__elem-btn_big 
+              .form-elements__elem-btn_size_big 
                 +button({
                   content: 'Перейти к оплате',
                   color: 'violet',
@@ -499,7 +499,7 @@ block content
               ]
             })
         .form-elements__details 
-            .form-elements__details-item.form-elements__details-item_small 
+            .form-elements__details-item.form-elements__details-item_size_small 
               +room-data({
                 items: [
                   {
@@ -514,7 +514,7 @@ block content
                   },
                 ]
                   })     
-            .form-elements__details-item.form-elements__details-item_comment
+            .form-elements__details-item.form-elements__details-item_size_medium
               +review({
                 src: 'tesak.jpg',
                 name: 'Мурад Сарафанов',

@@ -4,7 +4,7 @@ mixin datepicker(options = {})
   -
     const { 
       isTwoInput = true,
-      isOnlyCalendar = false,
+      isMaskedpickerHidden = false,
       labelStart = 'Прибытие',
       labelEnd = 'Выезд',
       labelAlone = 'Даты пребывания в отеле',
@@ -20,13 +20,13 @@ mixin datepicker(options = {})
     .datepicker__fields(
       class = classModField
       class = {
-        datepicker__fields_hidden: isOnlyCalendar,
+        datepicker__fields_hidden: isMaskedpickerHidden,
       }
     )
       if(isTwoInput)
         .datepicker__group.js-datepicker__group(
           class = {
-            datepicker__group_hidden: isOnlyCalendar
+            datepicker__group_hidden: isMaskedpickerHidden
           })
           label.datepicker__label.js-datepicker__label= labelStart
             span.datepicker__input-container
@@ -41,7 +41,7 @@ mixin datepicker(options = {})
                 include ../../assets/decorative/expand-more.svg
         .datepicker__group.js-datepicker__group(
           class = {
-            datepicker__group_hidden: isOnlyCalendar
+            datepicker__group_hidden: isMaskedpickerHidden
           })
           label.datepicker__label.js-datepicker__label= labelEnd
             span.datepicker__input-container
@@ -56,8 +56,8 @@ mixin datepicker(options = {})
                 include ../../assets/decorative/expand-more.svg
         .datepicker__container.js-datepicker__container(
           class = {
-            'datepicker__container_active-dp': isOnlyCalendar,
-            'datepicker__container_only-calendar': isOnlyCalendar,
+            'datepicker__container_active-dp': isMaskedpickerHidden,
+            'datepicker__container_only-calendar': isMaskedpickerHidden,
           })
           .datepicker__buttons
             .datepicker__button.datepicker__button_clear.js-datepicker__button_clear
@@ -75,7 +75,7 @@ mixin datepicker(options = {})
                 size: 'tiny', 
               })
 
-      else if(!isTwoInput && !isOnlyCalendar)
+      else if(!isTwoInput && !isMaskedpickerHidden)
         .datepicker__group.js-datepicker__group
           label.datepicker__label.js-datepicker__label= labelAlone
             span.datepicker__input-container.datepicker__input-container_wide

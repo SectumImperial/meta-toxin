@@ -187,11 +187,11 @@ class Datepicker {
   static isItemDateLessThanNow(target) {
     const day = Number(target.dataset.date) < 10 ? `0${target.dataset.date}` : target.dataset.date;
     const { month, year } = target.dataset;
-    const result = Datepicker.isDateBiggerThanNow({ year, month, day });
+    const result = Datepicker.isMaskedBiggerThanNow({ year, month, day });
     return result;
   }
 
-  static isDateBiggerThanNow({ year, month, day }) {
+  static isMaskedBiggerThanNow({ year, month, day }) {
     const { currentYear, currentMonth, currentDay } = Datepicker.getCurrentDate();
     const fullCurrentDate = new Date(`${currentMonth}-${currentDay}-${currentYear}`);
     const date1 = new Date(`${month}-${day}-${year}`);
@@ -360,7 +360,7 @@ class Datepicker {
     this.#formatTitle();
 
     const date = new Date(this.dp.rangeDateFrom);
-    const isLessThanNow = Datepicker.isDateBiggerThanNow({
+    const isLessThanNow = Datepicker.isMaskedBiggerThanNow({
       year: date.getFullYear(),
       month: date.getMonth(),
       day: date.getDate(),
@@ -699,7 +699,7 @@ class Datepicker {
         const [day, month, year] = e.split('.');
         const formattedMonth = Number(month) - 1;
 
-        if (Datepicker.isDateBiggerThanNow({ year, month: formattedMonth, day })) {
+        if (Datepicker.isMaskedBiggerThanNow({ year, month: formattedMonth, day })) {
           const { currentDay, currentMonth, currentYear } = Datepicker.getCurrentDate();
           return `${currentYear}-${currentMonth + 1}-${currentDay}`;
         }

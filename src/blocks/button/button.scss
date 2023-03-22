@@ -39,7 +39,7 @@ $root: 'button';
 
     &_color {
       @at-root .button {
-        &_transparent {
+        &_bordered {
           background: transparent;
 
           &:hover {
@@ -92,8 +92,10 @@ $root: 'button';
   &__content {
     margin: 0 auto;
 
-    &_gray {
-      color: rgb(map.get(variables.$colors, 'dark'), 0.5);
+    &_color {
+      &_gray {
+        color: rgb(map.get(variables.$colors, 'dark'), 0.5);
+      }
     }
   }
 

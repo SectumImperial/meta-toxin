@@ -15,8 +15,8 @@ import {
   BUTTONS_INC,
   ITEM,
   DISABLED,
-  ACTIVE,
-  OPENED,
+  OPENED_CONTENT,
+  OPENED_FIELD,
   HIDDEN,
   LABEL,
 } from './constants';
@@ -145,11 +145,11 @@ class Dropdown {
 
   handleDocumentClick({ target }) {
     if (target.closest('.dropdown')) return;
-    if (this.field.classList.contains(OPENED)) {
-      this.field.classList.remove(OPENED);
+    if (this.field.classList.contains(OPENED_FIELD)) {
+      this.field.classList.remove(OPENED_FIELD);
     }
-    if (this.dropdownContent.classList.contains(ACTIVE)) {
-      this.dropdownContent.classList.remove(ACTIVE);
+    if (this.dropdownContent.classList.contains(OPENED_CONTENT)) {
+      this.dropdownContent.classList.remove(OPENED_CONTENT);
     }
   }
 
@@ -157,7 +157,7 @@ class Dropdown {
     const { code } = e;
     if (code === 'Space' || code === 'Enter') {
       e.preventDefault();
-      this.dropdownContent.classList.toggle(ACTIVE);
+      this.dropdownContent.classList.toggle(OPENED_CONTENT);
     }
   }
 
@@ -211,13 +211,13 @@ class Dropdown {
 
   handleBtnAcceptClick(e) {
     e.preventDefault();
-    this.dropdownContent.classList.remove(ACTIVE);
-    this.field.classList.remove(OPENED);
+    this.dropdownContent.classList.remove(OPENED_CONTENT);
+    this.field.classList.remove(OPENED_FIELD);
   }
 
   handleFieldClick() {
-    this.dropdownContent.classList.toggle(ACTIVE);
-    this.field.classList.toggle(OPENED);
+    this.dropdownContent.classList.toggle(OPENED_CONTENT);
+    this.field.classList.toggle(OPENED_FIELD);
   }
 
   #checkBtnVisibility() {

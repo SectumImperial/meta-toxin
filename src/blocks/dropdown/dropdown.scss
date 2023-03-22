@@ -11,13 +11,14 @@
     cursor: pointer;
 
     &_opened {
-      .dropdown__output_icon {
+      .dropdown__output {
         &::before {
           transform: rotate(180deg) translateY(-20%);
           transform-origin: center center;
         }
       }
     }
+    
   }
 
   &__label {
@@ -45,6 +46,16 @@
     font-family: variables.$font;
     cursor: pointer;
 
+    &::before {
+      content: '';
+      background: url('@assets/decorative/expand-more.svg') no-repeat center;
+      display: block;
+      width: 15px;
+      height: 10px;
+      transform-origin: center;
+      transform: translateY(40%);
+    }
+
     &:hover,
     &:focus {
       border-color: rgb(map.get(variables.$colors, 'dark'), 0.5);
@@ -52,18 +63,6 @@
 
     &:focus {
       outline: none;
-    }
-
-    &_icon {
-      &::before {
-        content: '';
-        background: url('@assets/decorative/expand-more.svg') no-repeat center;
-        display: block;
-        width: 15px;
-        height: 10px;
-        transform-origin: center;
-        transform: translateY(40%);
-      }
     }
   }
 
@@ -78,7 +77,7 @@
     border-radius: 0 0 4px;
     box-shadow: 0 4px 4px 0 rgb(#000, 0.25);
 
-    &_active {
+    &_opened {
       display: flex;
       flex-direction: column;
       gap: 9px;

@@ -26,8 +26,10 @@
   &__field {
     max-width: 320px;
 
-    &_bigger {
-      padding-top: 20px;
+    &_size {
+      &_big {
+        padding-top: 20px;
+      }
     }
   }
 
@@ -107,19 +109,23 @@
       width: 266px;
     }
 
-    &_medium {
-      padding-top: 10px;
+    &_size {
+      &_medium {
+        padding-top: 10px;
+      }
     }
   }
 
   &__elem-btn {
     padding-top: 10px;
-  }
 
-  &__elem-btn_medium {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
+    &_size {
+      &_medium {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+      }
+    }
   }
 
   &__elem-btn-cont {
@@ -190,12 +196,14 @@
   }
 
   &__details-item {
-    &_small {
-      max-width: 432px;
-    }
+    &_size {
+      &_small {
+        max-width: 432px;
+      }
 
-    &_comment {
-      max-width: 715px;
+      &_medium {
+        max-width: 715px;
+      }
     }
   }
 }

@@ -1,7 +1,7 @@
 import {
   ITEMS,
   OPENED_LIST,
-  ACTIVE,
+  OPENED,
 } from './constants';
 
 class CheckboxList {
@@ -46,7 +46,7 @@ class CheckboxList {
   }
 
   #toggle() {
-    if (this.checkboxList.classList.contains(ACTIVE)) {
+    if (this.checkboxList.classList.contains(OPENED)) {
       this.#removeClasses();
     } else {
       this.#addClasses();
@@ -55,13 +55,13 @@ class CheckboxList {
   }
 
   #removeClasses() {
-    this.checkboxList.classList.remove(ACTIVE);
+    this.checkboxList.classList.remove(OPENED);
     this.list.classList.remove(OPENED_LIST);
     return this;
   }
 
   #addClasses() {
-    this.checkboxList.classList.add(ACTIVE);
+    this.checkboxList.classList.add(OPENED);
     this.list.classList.add(OPENED_LIST);
     return this;
   }

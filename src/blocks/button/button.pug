@@ -13,7 +13,7 @@ mixin button(options = {})
 
   .button(class = {
     button_hovered: isHovered,
-    button_transparent: !isBordered
+    button_bordered: !isBordered
   })
     if(href === '')
       button(
@@ -21,7 +21,7 @@ mixin button(options = {})
         type = btnType
         )
           span.button__content(class = {
-            button__content_gray: isGrey
+            button__content_color_gray: isGrey
           })= content
           - if (isRightPart) 
             .button__icon

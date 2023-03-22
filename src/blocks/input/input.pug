@@ -9,7 +9,7 @@ mixin input(options = {})
       pattern = '.*',
       arrow = false,
       isRequired = false,
-      isDate = false,
+      isMasked = false,
       isHovered = false,
       isAutocomplete = false,
     } = options
@@ -25,7 +25,7 @@ mixin input(options = {})
       type = type
       name = name
       class = {
-        input__field_masked: isDate,
+        input__field_masked: isMasked,
         input__field_hovered: isHovered
       }
       value = value 

@@ -11,8 +11,8 @@ const BUTTONS_INC = 'js-dropdown__btn_increment';
 const ITEM = 'js-dropdown__item';
 const LABEL = 'js-dropdown__label';
 const DISABLED = 'dropdown__btn_disabled';
-const ACTIVE = 'dropdown__content_active';
-const OPENED = 'dropdown__output-field_opened';
+const OPENED_CONTENT = 'dropdown__content_opened';
+const OPENED_FIELD = 'dropdown__output-field_opened';
 const HIDDEN = 'dropdown__button_hidden';
 
 export {
@@ -28,8 +28,8 @@ export {
   BUTTONS_INC,
   ITEM,
   DISABLED,
-  ACTIVE,
-  OPENED,
+  OPENED_CONTENT,
+  OPENED_FIELD,
   HIDDEN,
   LABEL,
 };

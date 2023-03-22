@@ -11,14 +11,14 @@ mixin checkbox-list(options = {})
   div.checkbox-list.js-checkbox-list(
     tabindex = 0
     class = { 
-      'checkbox-list_active': isOpened 
+      'checkbox-list_opened': isOpened 
     })
     .checkbox-list__head.js-checkbox-list__head
       span.checkbox-list__title= titleList
       span.checkbox-list__arrow-icon
         include ../../assets/decorative/expand-more.svg 
     ul.checkbox-list__items.js-checkbox-list__items(class = { 
-        'checkbox-list_opened-list': isOpened 
+        'checkbox-list__items_opened-list': isOpened 
       })
       each item in items 
         - 
