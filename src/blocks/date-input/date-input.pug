@@ -1,0 +1,24 @@
+include ../input/input.pug 
+
+mixin date-input(options ={})
+  - 
+    const {
+      type = 'text',
+      name = 'masked text',
+      value = '',
+      placeholder = 'ДД.ММ.ГГГГ',
+      readonly = false,
+      pattern = '[0-9]{2}.[0-9]{2}.[0-9]{4}',
+      isRequired = false,
+      isMasked = true,
+    } = options
+
+  +input({ 
+    type,
+    placeholder,
+    name,
+    pattern,
+    isRequired,
+    isMasked,
+    ...options,
+  })

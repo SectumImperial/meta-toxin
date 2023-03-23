@@ -18,7 +18,7 @@ include ../../blocks/rules/rules.pug
 include ../../blocks/room-data/room-data.pug
 include ../../blocks/review/review.pug
 include ../../blocks/subscription-field/subscription-field.pug
-
+include ../../blocks/date-input/date-input.pug
 
 block variables 
   - 
@@ -84,14 +84,7 @@ block content
                   text: 'masked text field',
                   level: 'h5',
                 })
-              +input({
-                type: 'text',
-                placeholder: 'ДД.ММ.ГГГГ',
-                name: 'masked text',
-                pattern: '[0-9]{2}.[0-9]{2}.[0-9]{4}',
-                isRequired: true,
-                isMasked: true,
-              })
+              +date-input()
             .form-elements__field.form-elements__field_size_big
               +datepicker({
                 labelStart: 'date Dropdown',
@@ -269,7 +262,7 @@ block content
                 +button({
                   content: 'Перейти к оплате',
                   color: 'violet',
-                  isRightPart: true,
+                  rightPart: 'arrow-forward',
                   size: 'large'
                 })
             .form-elements__btn 

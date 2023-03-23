@@ -1,6 +1,7 @@
 include ../button/button.pug
 include ../title/title.pug
 include ../input/input.pug
+include ../date-input/date-input.pug
 include ../radio/radio.pug
 include ../toggle/toggle.pug
 include ../text-element/text-element.pug
@@ -49,11 +50,9 @@ mixin registration-card()
             text: 'Дата рождения',
             level: 'h5',
           })
-        +input({
+        +date-input({
           type: 'text',
           name: 'birthday',
-          placeholder: 'ДД.ММ.ГГГГ',
-          pattern: '[0-9]{2}.[0-9]{2}.[0-9]{4}',
           isRequired: true,
           isMasked: true,
         })
@@ -88,7 +87,7 @@ mixin registration-card()
         +button({
           content: 'Зарегистрироваться',
           color: 'violet',
-          isRightPart: true,
+          rightPart: 'arrow-forward',
           size: 'large',
           type: 'submit',
         })

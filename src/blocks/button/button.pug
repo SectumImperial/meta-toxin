@@ -1,7 +1,7 @@
 mixin button(options = {}) 
   - 
     const {
-      isRightPart = false,
+      rightPart = '',
       color = 'white',
       size = 'small',
       href = '',
@@ -23,7 +23,7 @@ mixin button(options = {})
           span.button__content(class = {
             button__content_color_gray: isGrey
           })= content
-          - if (isRightPart) 
+          - if (rightPart === 'arrow-forward') 
             .button__icon
               include ../../assets/decorative/arrow-forward.svg 
     - if(href !== '')
@@ -34,7 +34,7 @@ mixin button(options = {})
           span.button__content(class = {
             button__content_gray: isGrey
           })= content
-          - if (isRightPart) 
+          - if (rightPart  === 'arrow-forward') 
             .button__icon
               include ../../assets/decorative/arrow-forward.svg 
 
