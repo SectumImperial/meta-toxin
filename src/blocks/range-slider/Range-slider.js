@@ -48,9 +48,9 @@ class Slider {
     } = data;
 
     const percent = scaleSize / 100;
-    let percentMove = Number((coordsMove / percent).toFixed(2));
-    if (percentMove < 0) percentMove = 0;
-    if (percentMove > 100) percentMove = 100;
+    const percentMove = Number((coordsMove / percent).toFixed(2));
+    if (percentMove < 0) return 0;
+    if (percentMove > 100) return 100;
 
     return percentMove;
   }
@@ -390,18 +390,8 @@ class Slider {
       toggle,
       percent,
     } = values;
-    let secondTogglePosition;
-    let secondToggleValue;
-
-    if (toggle === 'min') {
-      secondTogglePosition = this.togglePercentTo;
-      secondToggleValue = this.valueTo;
-    }
-
-    if (toggle === 'max') {
-      secondTogglePosition = this.togglePercentFrom;
-      secondToggleValue = this.valueFrom;
-    }
+    const secondTogglePosition = toggle === 'min' ? this.togglePercentTo : this.togglePercentFrom;
+    const secondToggleValue = toggle === 'min' ? this.valueTo : this.valueFrom;
 
     if (toggle === 'min'
     && Number(value) >= Number(secondToggleValue)

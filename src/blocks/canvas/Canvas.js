@@ -108,9 +108,8 @@ class Canvas {
   }
 
   static createDash(dash = 0) {
-    let strokeDasharray = dash;
-    if (dash >= 1) strokeDasharray -= 1;
-    const dasharray = `stroke-dasharray="${strokeDasharray} 100"`;
+    const strokeDasharray = dash;
+    const dasharray = dash >= 1 ? `stroke-dasharray="${strokeDasharray - 1} 100"` : `stroke-dasharray="${strokeDasharray} 100"`;
     return dasharray;
   }
 
@@ -119,9 +118,18 @@ class Canvas {
   }
 
   static createDashOffset(dashoffsetVal = 0) {
-    let strokeDashoffset = dashoffsetVal;
-    if (dashoffsetVal !== 0) strokeDashoffset *= -1;
-    return `stroke-dashoffset="${strokeDashoffset}"`;
+    const strokeDashoffset = dashoffsetVal;
+    const dashOffset = dashoffsetVal !== 0 ? `stroke-dashoffset="${strokeDashoffset * -1}"` : `stroke-dashoffset="${strokeDashoffset}"`;
+    return dashOffset;
+  }
+
+  static filterGrades(options, grade) {
+    return options.filter((option) => option.grade !== grade);
+  }
+
+  static flatOptions(options, unitedItem, index) {
+    return [...options.slice(0, index),
+      unitedItem, ...options.slice(index)];
   }
 
   #addListeners() {
@@ -172,8 +180,8 @@ class Canvas {
   }
 
   #makeGradeUnique() {
+    let resultOptions = [...this.inputOptions];
     const grades = new Map();
-    let filteredOptions = [...this.inputOptions];
 
     this.inputOptions.forEach(({ grade }) => {
       if (grades.has(grade)) {
@@ -188,14 +196,12 @@ class Canvas {
     grades.forEach((key, grade) => {
       if (key > 1) {
         const unitedItem = this.#uniteItems(grade);
-        const index = filteredOptions.findIndex((e) => e.grade === grade);
-        filteredOptions = filteredOptions.filter((option) => option.grade !== grade);
-        filteredOptions = [...filteredOptions.slice(0, index),
-          unitedItem, ...filteredOptions.slice(index)];
+        const index = this.inputOptions.findIndex((e) => e.grade === grade);
+        const filteredOptions = Canvas.filterGrades(this.inputOptions, grade);
+        resultOptions = Canvas.flatOptions(filteredOptions, unitedItem, index);
       }
     });
-
-    return filteredOptions;
+    return resultOptions;
   }
 
   #uniteItems(grade) {

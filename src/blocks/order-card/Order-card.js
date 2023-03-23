@@ -253,16 +253,13 @@ class OrderCard {
 
     const oneDay = 1000 * 60 * 60 * 24;
     const diffInTime = date2.getTime() - date1.getTime();
-    let diffInDays = Math.round(diffInTime / oneDay);
-
-    if (diffInDays < 1) diffInDays = DEFAULT_DAYS;
+    const diffInDays = Math.round(diffInTime / oneDay) < 1
+      ? DEFAULT_DAYS : Math.round(diffInTime / oneDay);
     return diffInDays;
   }
 
   #sumRent() {
-    let sum = 0;
-    sum = this.price * this.days;
-    return sum;
+    return this.price * this.days;
   }
 
   #computeFinal() {
@@ -284,13 +281,10 @@ class OrderCard {
   }
 
   #createFeeString() {
-    let discountStr = 'Сбор за услуги:';
-    let tip = null;
-    discountStr += ` скидка ${FEES_DISC.toLocaleString(
+    const discountStr = `Сбор за услуги: скидка ${FEES_DISC.toLocaleString(
       'ru-RU',
     )}₽`;
-
-    tip = OrderCard.createTip();
+    const tip = OrderCard.createTip();
 
     this.card.querySelector(`.${FEE_COMPUTE}`).innerText = discountStr;
     this.card.querySelector(`.${FEE_COMPUTE}`).append(tip);

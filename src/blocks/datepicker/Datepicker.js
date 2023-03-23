@@ -135,24 +135,22 @@ class Datepicker {
   }
 
   static changeSameData(secondItem) {
-    let date = secondItem.value.split('.');
-    let [day] = date;
-    day = Number(day) + 1;
-    date = [day, date.slice(1, 3)].flat().join('.');
-    return date;
+    const date = secondItem.value.split('.');
+    const [day] = date;
+    const result = [Number(day) + 1, date.slice(1, 3)].flat().join('.');
+    return result;
   }
 
   static deleteComma(elem) {
-    let text = elem.innerText;
-    text = text.replace(',', '').replace('\n', ' ');
-    return text;
+    const text = elem.innerText;
+    const result = text.replace(',', '').replace('\n', ' ');
+    return result;
   }
 
   static recreateDate(invalidDate) {
     const [day, month] = invalidDate.split(' ');
-    let formattedMonth = month.charAt(0).toUpperCase() + month.slice(1);
-    formattedMonth = MONTHS.indexOf(month);
-    const date = new Date(2022, formattedMonth, day);
+    const monthWord = MONTHS.indexOf(month);
+    const date = new Date(2022, monthWord, day);
     return date;
   }
 

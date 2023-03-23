@@ -55,24 +55,24 @@ class Like {
   }
 
   #decrementLike() {
-    let val = Number(this.count.innerText);
-    if (Number.isNaN(val)) {
+    const valueLike = Number(this.count.innerText);
+    if (Number.isNaN(valueLike)) {
       this.count.innerText = 0;
       console.error('The like value MUST be number.');
     }
-    val -= 1;
-    this.count.innerText = val;
+    const resultValue = Number(valueLike) - 1;
+    this.count.innerText = resultValue;
     return this;
   }
 
   #incrementLike() {
-    let val = Number(this.count.innerText);
-    if (Number.isNaN(val)) {
+    const valueLike = Number(this.count.innerText);
+    if (Number.isNaN(valueLike)) {
       this.count.innerText = 0;
       console.error('The like value MUST be number.');
     }
-    val += 1;
-    this.count.innerText = val;
+    const resultValue = Number(valueLike) + 1;
+    this.count.innerText = resultValue;
     return this;
   }
 }
