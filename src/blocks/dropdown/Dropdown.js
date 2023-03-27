@@ -221,10 +221,7 @@ class Dropdown {
   }
 
   #checkBtnVisibility() {
-    let countValues = [];
-    this.counts.forEach((e) => {
-      countValues = [...countValues, Number(e.value)];
-    });
+    const countValues = [...this.counts].map((e) => Number(e.value));
     const sum = countValues.reduce(
       (previousValue, currentValue) => previousValue + currentValue,
       0,

@@ -57,11 +57,8 @@ class Canvas {
   }
 
   static addIdForOptions(items) {
-    let options = [];
-    items.forEach((option) => {
-      options = [...options, { ...option, id: uuidv4() }];
-    });
-    return options;
+    const result = items.map((option) => ({ ...option, id: uuidv4() }));
+    return result;
   }
 
   static createDef({
@@ -208,12 +205,7 @@ class Canvas {
     if (!grade) console.error('Cannot unite empty items');
     const sameItems = this.inputOptions.filter((option) => option.grade === grade);
     const sumCounts = sameItems.reduce((p, c) => p.count + c.count);
-
-    let collectOptions;
-    sameItems.forEach((object) => {
-      collectOptions = { ...object, ...collectOptions };
-    });
-
+    const collectOptions = sameItems.map((object) => ({ ...object, ...collectOptions }));
     const newItem = { ...collectOptions, count: sumCounts };
     return newItem;
   }
@@ -232,22 +224,18 @@ class Canvas {
   }
 
   #createDefs() {
-    let items = '';
+    const items = [];
     this.options.forEach((option) => {
-      items += Canvas.createDef(option);
+      items.push(Canvas.createDef(option));
     });
     if (items.length === 0) console.error('No options for the defs in the Canvas class');
 
-    const defs = `<defs>${items}</defs>`;
+    const defs = `<defs>${items.join('')}</defs>`;
     return defs;
   }
 
   #createCircles() {
-    let circles = [];
-    this.options.forEach((option) => {
-      circles = [...circles, this.#createCircle(option)];
-    });
-
+    const circles = this.options.map((option) => this.#createCircle(option));
     return circles;
   }
 
@@ -277,10 +265,7 @@ class Canvas {
 
   #createList() {
     const ul = Canvas.createUl();
-    let items = [];
-    this.options.forEach((option) => {
-      items = [...items, Canvas.createLi(option)];
-    });
+    const items = this.options.map((option) => Canvas.createLi(option));
     items.forEach((e) => {
       ul.append(e);
     });

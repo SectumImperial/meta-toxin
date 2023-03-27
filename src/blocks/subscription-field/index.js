@@ -12,8 +12,7 @@ if (inputMailSubscription !== undefined && inputMailSubscription !== null) {
       showMaskOnHover: false,
       showMaskOnFocus: false,
       onBeforePaste(pastedValue) {
-        let value = pastedValue;
-        value = value.toLowerCase();
+        const value = pastedValue.toLowerCase();
         return value.replace('mailto:', '');
       },
       definitions: {
