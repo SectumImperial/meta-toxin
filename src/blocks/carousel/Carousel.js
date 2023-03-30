@@ -6,7 +6,7 @@ import {
   PREV,
   NEXT,
   TOGGLE,
-  ACTIVE,
+  CAROUSEL_TOGGLE_ACTIVE,
   LINK,
   PREV_VISIBLE,
   NEXT_VISIBLE,
@@ -185,9 +185,9 @@ class Carousel {
     const countImage = this.position / -this.width;
     this.toggles.forEach((toggle) => {
       if (Number(toggle.dataset.toggleCount) === countImage) {
-        toggle.classList.add(ACTIVE);
+        toggle.classList.add(CAROUSEL_TOGGLE_ACTIVE);
       } else {
-        toggle.classList.remove(ACTIVE);
+        toggle.classList.remove(CAROUSEL_TOGGLE_ACTIVE);
       }
     });
   }

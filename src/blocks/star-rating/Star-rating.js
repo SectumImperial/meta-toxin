@@ -1,6 +1,6 @@
 import {
-  EMPTY_STAR,
-  FILL_STAR,
+  STAR_EMPTY_TRUE,
+  STAR_EMPTY_FALSE,
 } from './constants';
 
 class StarRating {
@@ -24,8 +24,8 @@ class StarRating {
   #setRating() {
     this.stars.forEach((star) => {
       if (star.dataset['rate-сount'] <= this.rateNum) {
-        star.classList.remove(EMPTY_STAR);
-        star.classList.add(FILL_STAR);
+        star.classList.remove(STAR_EMPTY_TRUE);
+        star.classList.add(STAR_EMPTY_FALSE);
       }
     });
     return this;

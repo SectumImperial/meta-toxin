@@ -1,8 +1,8 @@
 import {
-  LIKED__HEART,
-  UNLIKED__HEART,
-  LIKED_COUNT,
-  LIKED_BUTTON,
+  LIKE_LIKEDHEART_TRUE,
+  LIKE_LIKEDHEART_FALSE,
+  LIKE_COUNTLIKED_TRUE,
+  LIKE_BUTTONLIKED_TRUE,
   HEART,
   COUNT,
   BUTTON,
@@ -35,11 +35,11 @@ class Like {
 
   handleLikeClick({ target }) {
     const btn = target.closest(`.${BUTTON}`);
-    if (btn.classList.contains(LIKED_BUTTON)) {
+    if (btn.classList.contains(LIKE_BUTTONLIKED_TRUE)) {
       this.#decrementLike();
     }
 
-    if (!btn.classList.contains(LIKED_BUTTON)) {
+    if (!btn.classList.contains(LIKE_BUTTONLIKED_TRUE)) {
       this.#incrementLike();
     }
     this.#toggleClasses();
@@ -47,10 +47,10 @@ class Like {
   }
 
   #toggleClasses() {
-    this.button.classList.toggle(LIKED_BUTTON);
-    this.heart.classList.toggle(LIKED__HEART);
-    this.heart.classList.toggle(UNLIKED__HEART);
-    this.count.classList.toggle(LIKED_COUNT);
+    this.button.classList.toggle(LIKE_BUTTONLIKED_TRUE);
+    this.heart.classList.toggle(LIKE_LIKEDHEART_TRUE);
+    this.heart.classList.toggle(LIKE_LIKEDHEART_FALSE);
+    this.count.classList.toggle(LIKE_COUNTLIKED_TRUE);
     return this;
   }
 

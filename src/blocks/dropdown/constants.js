@@ -10,10 +10,10 @@ const BUTTONS_DEC = 'js-dropdown__btn_decrement';
 const BUTTONS_INC = 'js-dropdown__btn_increment';
 const ITEM = 'js-dropdown__item';
 const LABEL = 'js-dropdown__label';
-const DISABLED = 'dropdown__btn_disabled';
-const OPENED_CONTENT = 'dropdown__content_opened';
-const OPENED_FIELD = 'dropdown__output-field_opened';
-const HIDDEN = 'dropdown__button_hidden';
+const DROPDOWN_DISABLED_TRUE = 'dropdown__btn_disabled';
+const DROPDOWN_OPENEDCONTENT_TRUE = 'dropdown__content_opened';
+const DROPDOWN_OPENEDFIELD_TRUE = 'dropdown__output-field_opened';
+const DROPDOWN_BUTTONHIDDEN_TRUE = 'dropdown__button_hidden';
 
 export {
   DEFAULT_KEY,
@@ -27,9 +27,9 @@ export {
   BUTTONS_DEC,
   BUTTONS_INC,
   ITEM,
-  DISABLED,
-  OPENED_CONTENT,
-  OPENED_FIELD,
-  HIDDEN,
+  DROPDOWN_DISABLED_TRUE,
+  DROPDOWN_OPENEDCONTENT_TRUE,
+  DROPDOWN_OPENEDFIELD_TRUE,
+  DROPDOWN_BUTTONHIDDEN_TRUE,
   LABEL,
 };

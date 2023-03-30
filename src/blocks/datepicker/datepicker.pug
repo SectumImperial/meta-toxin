@@ -11,7 +11,7 @@ mixin datepicker(options = {})
       } = options
 
 
-    let classModField = isTwoInput ? 'datepicker__fields_two-fields' : 'datepicker_fields_one-field'
+    const classModField = isTwoInput ? 'datepicker__fields_two-fields' : 'datepicker_fields_one-field'
     const datepickerClass = isTwoInput ? 'js-datepicker_two-fields' : 'js-datepicker_one-field'
 
   .datepicker.js-datepicker(

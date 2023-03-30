@@ -3,9 +3,9 @@ import { v4 as uuidv4 } from 'uuid';
 import {
   CHART,
   LEGEND,
-  SVG,
-  ITEM,
-  UNIT,
+  CANVAS_SVG,
+  CANVAS_ITEM,
+  CANVAS_UNIT,
   SVG_CLASS,
   ITEM_CLASS,
   UNIT_CLASS,
@@ -85,13 +85,13 @@ class Canvas {
     stopSecond = '#1a0000',
   }) {
     const li = document.createElement('li');
-    const className = `${ITEM_CLASS} ${ITEM} ${ITEM}_${grade}`;
+    const className = `${ITEM_CLASS} ${CANVAS_ITEM} ${CANVAS_ITEM}_${grade}`;
     li.dataset.line = grade;
     li.className = className;
     li.innerText = name;
 
     const mark = document.createElement('div');
-    mark.className = `${ITEM}-mark ${ITEM}-mark_${grade}`;
+    mark.className = `${CANVAS_ITEM}-mark ${CANVAS_ITEM}-mark_${grade}`;
     mark.style.background = `linear-gradient(${stopFirst}, ${stopSecond})`;
 
     li.append(mark);
@@ -163,8 +163,8 @@ class Canvas {
         this.#deleteText();
         addText(this.chart, this.text);
 
-        if (target.classList.contains(ITEM)) this.#boldLine(grade);
-        if (target.classList.contains(UNIT)) this.#hoverText(grade);
+        if (target.classList.contains(CANVAS_ITEM)) this.#boldLine(grade);
+        if (target.classList.contains(CANVAS_UNIT)) this.#hoverText(grade);
       }
     });
     return this;
@@ -211,7 +211,7 @@ class Canvas {
   }
 
   #createSvg() {
-    const svgTemp = `<svg class="${SVG_CLASS} ${SVG}" width="120" height="121" viewBox="0 0 33 32">
+    const svgTemp = `<svg class="${SVG_CLASS} ${CANVAS_SVG}" width="120" height="121" viewBox="0 0 33 32">
     ${this.defs}
     ${this.circles.join('')}
     </svg>`;
@@ -250,8 +250,8 @@ class Canvas {
     const dasharray = Canvas.createDash(dash);
     const url = Canvas.createURL(option);
     const dashoffset = Canvas.createDashOffset(dashoffsetVal);
-    const className = option.grade ? `${UNIT}_${option.grade}` : `${UNIT}_default`;
-    const circle = `<circle class="${UNIT_CLASS} ${UNIT} ${className}" data-line="${option.grade}" 
+    const className = option.grade ? `${CANVAS_UNIT}_${option.grade}` : `${CANVAS_UNIT}_default`;
+    const circle = `<circle class="${UNIT_CLASS} ${CANVAS_UNIT} ${className}" data-line="${option.grade}" 
     r="15.9" cx="50%" cy="50%" ${url} ${dasharray} ${dashoffset} tabindex="0"></circle>`;
     return circle;
   }
@@ -280,26 +280,26 @@ class Canvas {
   }
 
   #boldLine(grade) {
-    const circleLine = this.canvas.querySelector(`.${UNIT}_${grade}`);
-    if (circleLine !== undefined && circleLine !== null) circleLine.classList.add(`${UNIT}_hovered`);
+    const circleLine = this.canvas.querySelector(`.${CANVAS_UNIT}_${grade}`);
+    if (circleLine !== undefined && circleLine !== null) circleLine.classList.add(`${CANVAS_UNIT}_hovered`);
     return this;
   }
 
   #hoverText(grade) {
-    const item = this.canvas.querySelector(`.${ITEM}_${grade}`);
-    if (item !== undefined && item !== null) item.classList.add(`${ITEM}_hovered`);
+    const item = this.canvas.querySelector(`.${CANVAS_ITEM}_${grade}`);
+    if (item !== undefined && item !== null) item.classList.add(`${CANVAS_ITEM}_hovered`);
     return this;
   }
 
   #resetLine() {
-    const hoveredLine = this.canvas.querySelector(`.${UNIT}_hovered`);
-    if (hoveredLine !== undefined && hoveredLine !== null) hoveredLine.classList.remove(`${UNIT}_hovered`);
+    const hoveredLine = this.canvas.querySelector(`.${CANVAS_UNIT}_hovered`);
+    if (hoveredLine !== undefined && hoveredLine !== null) hoveredLine.classList.remove(`${CANVAS_UNIT}_hovered`);
     return this;
   }
 
   #resetHoverText() {
-    const item = this.canvas.querySelector(`.${ITEM}_hovered`);
-    if (item !== undefined && item !== null) item.classList.remove(`${ITEM}_hovered`);
+    const item = this.canvas.querySelector(`.${CANVAS_ITEM}_hovered`);
+    if (item !== undefined && item !== null) item.classList.remove(`${CANVAS_ITEM}_hovered`);
     return this;
   }
 }

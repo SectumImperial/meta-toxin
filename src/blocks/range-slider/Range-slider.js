@@ -1,8 +1,8 @@
 import {
   AMOUNT,
-  TOGGLE,
-  TOGGLE_MIN,
-  TOGGLE_MAX,
+  SLIDER_TOGGLE,
+  SLIDER_TOGGLE_MIN,
+  SLIDER_TOGGLE_MAX,
   RANGE_PROGRESS,
   SLIDER,
 } from './constants';
@@ -100,10 +100,10 @@ class Slider {
 
   #findElements() {
     this.field = this.slider.querySelector(`.${AMOUNT}`);
-    this.toggles = this.slider.querySelectorAll(`.${TOGGLE}`);
+    this.toggles = this.slider.querySelectorAll(`.${SLIDER_TOGGLE}`);
     this.sliderTrack = this.slider.querySelector(`.${SLIDER}`);
-    this.toggleMin = this.slider.querySelector(`.${TOGGLE_MIN}`);
-    this.toggleMax = this.slider.querySelector(`.${TOGGLE_MAX}`);
+    this.toggleMin = this.slider.querySelector(`.${SLIDER_TOGGLE_MIN}`);
+    this.toggleMax = this.slider.querySelector(`.${SLIDER_TOGGLE_MAX}`);
     this.rangeProgress = this.slider.querySelector(`.${RANGE_PROGRESS}`);
     return this;
   }
@@ -234,7 +234,7 @@ class Slider {
   }
 
   #performKeyDown(action, target) {
-    const togglePercent = target.classList.contains(TOGGLE_MIN) ? 'togglePercentFrom' : 'togglePercentTo';
+    const togglePercent = target.classList.contains(SLIDER_TOGGLE_MIN) ? 'togglePercentFrom' : 'togglePercentTo';
     if (action === 'decrement') {
       const percentMove = this[togglePercent] - this.stepPercent < 0
         ? 0 : this[togglePercent] - this.stepPercent;
@@ -283,7 +283,7 @@ class Slider {
     if (percent === undefined) percent = this.stepPercent * nearestPrevCountStep;
 
     percent = Number(percent.toFixed(3));
-    const toggleID = toggle.classList.contains(TOGGLE_MIN) ? 'min' : 'max';
+    const toggleID = toggle.classList.contains(SLIDER_TOGGLE_MIN) ? 'min' : 'max';
     this.#updatePosition({
       value,
       toggle: toggleID,

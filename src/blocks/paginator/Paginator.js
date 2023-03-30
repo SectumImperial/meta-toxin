@@ -1,8 +1,8 @@
 import {
-  ACTIVE_JS,
-  ACTIVE_LI,
-  LI_CLASS,
-  HIDE,
+  PAGINATOR_ACTIVE_TRUE,
+  PAGINATOR_LIACTIVE_TRUE,
+  PAGINATOR_ITEM,
+  PAGINATOR_BUTTONHIDDEN_TRUE,
   COUNT_PAGE,
   ITEMS,
   BTN_PREV,
@@ -119,7 +119,7 @@ class Paginator {
     this.itemsPaginator = this.paginator.querySelector(`.${ITEMS}`);
     this.buttonPrev = this.paginator.querySelector(`.${BTN_PREV}`);
     this.buttonNext = this.paginator.querySelector(`.${BTN_NEXT}`);
-    this.liClass = LI_CLASS;
+    this.liClass = PAGINATOR_ITEM;
     this.textElement = this.paginator.querySelector(`.${TEXT}`);
     return this;
   }
@@ -282,28 +282,28 @@ class Paginator {
   }
 
   #checkVisibilityBtn() {
-    const activeItem = this.itemsPaginator.querySelector(`.${ACTIVE_JS}`);
+    const activeItem = this.itemsPaginator.querySelector(`.${PAGINATOR_ACTIVE_TRUE}`);
     if (Number(activeItem.dataset.number) === 1) {
-      this.buttonPrev.classList.add(HIDE);
+      this.buttonPrev.classList.add(PAGINATOR_BUTTONHIDDEN_TRUE);
       this.buttonPrev.tabIndex = '-1';
     }
     if (
       Number(activeItem.dataset.number) !== 1
-      && this.buttonPrev.classList.contains(HIDE)
+      && this.buttonPrev.classList.contains(PAGINATOR_BUTTONHIDDEN_TRUE)
     ) {
-      this.buttonPrev.classList.remove(HIDE);
+      this.buttonPrev.classList.remove(PAGINATOR_BUTTONHIDDEN_TRUE);
       this.buttonPrev.tabIndex = '0';
     }
 
     if (Number(activeItem.dataset.number) === this.pageCount) {
-      this.buttonNext.classList.add(HIDE);
+      this.buttonNext.classList.add(PAGINATOR_BUTTONHIDDEN_TRUE);
       this.buttonNext.tabIndex = '-1';
     }
     if (
       Number(activeItem.dataset.number) !== this.pageCount
-      && this.buttonNext.classList.contains(HIDE)
+      && this.buttonNext.classList.contains(PAGINATOR_BUTTONHIDDEN_TRUE)
     ) {
-      this.buttonNext.classList.remove(HIDE);
+      this.buttonNext.classList.remove(PAGINATOR_BUTTONHIDDEN_TRUE);
       this.buttonNext.tabIndex = '0';
     }
     return this;
@@ -334,7 +334,7 @@ class Paginator {
   }
 
   #changePage(target) {
-    if (!target.classList.contains(LI_CLASS)) return;
+    if (!target.classList.contains(PAGINATOR_ITEM)) return;
     if (target.dataset.dots) return;
     this.#removePage();
     this.currentPage = Number(target.dataset.number);
@@ -346,7 +346,7 @@ class Paginator {
 
   #findCurrentPage() {
     const page = this.itemsPaginator.querySelector(
-      `.${LI_CLASS}[data-number="${this.currentPage}"]`,
+      `.${PAGINATOR_ITEM}[data-number="${this.currentPage}"]`,
     );
     if (page === undefined || page === null) console.error('Current page has not found');
     return page;
@@ -354,8 +354,8 @@ class Paginator {
 
   #setCurrentPage() {
     const page = this.#findCurrentPage();
-    page.classList.add(ACTIVE_LI);
-    page.classList.add(ACTIVE_JS);
+    page.classList.add(PAGINATOR_LIACTIVE_TRUE);
+    page.classList.add(PAGINATOR_ACTIVE_TRUE);
 
     this.#checkVisibilityBtn();
     this.#createText();
@@ -364,8 +364,8 @@ class Paginator {
 
   #removePage() {
     const current = this.#findCurrentPage();
-    current.classList.remove(ACTIVE_LI);
-    current.classList.remove(ACTIVE_JS);
+    current.classList.remove(PAGINATOR_LIACTIVE_TRUE);
+    current.classList.remove(PAGINATOR_ACTIVE_TRUE);
     return this;
   }
 

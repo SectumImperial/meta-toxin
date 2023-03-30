@@ -1,4 +1,4 @@
-const EMPTY_STAR = 'star-rating__star_empty';
-const FILL_STAR = 'star-rating__star_fill';
+const STAR_EMPTY_TRUE = 'star-rating__star_empty';
+const STAR_EMPTY_FALSE = 'star-rating__star_fill';
 
-export { EMPTY_STAR, FILL_STAR };
+export { STAR_EMPTY_TRUE, STAR_EMPTY_FALSE };

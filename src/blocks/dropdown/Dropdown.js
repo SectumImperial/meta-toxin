@@ -14,10 +14,10 @@ import {
   BUTTONS_DEC,
   BUTTONS_INC,
   ITEM,
-  DISABLED,
-  OPENED_CONTENT,
-  OPENED_FIELD,
-  HIDDEN,
+  DROPDOWN_DISABLED_TRUE,
+  DROPDOWN_OPENEDCONTENT_TRUE,
+  DROPDOWN_OPENEDFIELD_TRUE,
+  DROPDOWN_BUTTONHIDDEN_TRUE,
   LABEL,
 } from './constants';
 
@@ -80,7 +80,7 @@ class Dropdown {
 
   static checkDecrementDisabled(count, target) {
     if (Number(count.value) === 0) {
-      target.classList.add(DISABLED);
+      target.classList.add(DROPDOWN_DISABLED_TRUE);
       Dropdown.addDisabledForButton(target);
     } else {
       Dropdown.removeDisabledForButton(target);
@@ -88,11 +88,11 @@ class Dropdown {
   }
 
   static decrementValue(count, target) {
-    if (Number(count.value) > 0 && target.classList.contains(DISABLED)) {
-      target.classList.remove(DISABLED);
+    if (Number(count.value) > 0 && target.classList.contains(DROPDOWN_DISABLED_TRUE)) {
+      target.classList.remove(DROPDOWN_DISABLED_TRUE);
       Dropdown.removeDisabledForButton(target);
     }
-    if (target.classList.contains(DISABLED)) return count.value;
+    if (target.classList.contains(DROPDOWN_DISABLED_TRUE)) return count.value;
     return Number(count.value) - 1;
   }
 
@@ -100,14 +100,14 @@ class Dropdown {
     const container = target.closest(`.${ITEM}`);
     const button = container.querySelector(`.${BUTTONS_DEC}`);
     button.disabled = false;
-    button.classList.remove(DISABLED);
+    button.classList.remove(DROPDOWN_DISABLED_TRUE);
   }
 
   static addDisabledForButton(target) {
     const container = target.closest(`.${ITEM}`);
     const button = container.querySelector(`.${BUTTONS_DEC}`);
     button.disabled = true;
-    button.classList.add(DISABLED);
+    button.classList.add(DROPDOWN_DISABLED_TRUE);
   }
 
   #findElements() {
@@ -145,11 +145,11 @@ class Dropdown {
 
   handleDocumentClick({ target }) {
     if (target.closest('.dropdown')) return;
-    if (this.field.classList.contains(OPENED_FIELD)) {
-      this.field.classList.remove(OPENED_FIELD);
+    if (this.field.classList.contains(DROPDOWN_OPENEDFIELD_TRUE)) {
+      this.field.classList.remove(DROPDOWN_OPENEDFIELD_TRUE);
     }
-    if (this.dropdownContent.classList.contains(OPENED_CONTENT)) {
-      this.dropdownContent.classList.remove(OPENED_CONTENT);
+    if (this.dropdownContent.classList.contains(DROPDOWN_OPENEDCONTENT_TRUE)) {
+      this.dropdownContent.classList.remove(DROPDOWN_OPENEDCONTENT_TRUE);
     }
   }
 
@@ -157,7 +157,7 @@ class Dropdown {
     const { code } = e;
     if (code === 'Space' || code === 'Enter') {
       e.preventDefault();
-      this.dropdownContent.classList.toggle(OPENED_CONTENT);
+      this.dropdownContent.classList.toggle(DROPDOWN_OPENEDCONTENT_TRUE);
     }
   }
 
@@ -185,7 +185,7 @@ class Dropdown {
     if (Number(count.value) === 999) return;
     count.value = Number(count.value) + 1;
     if (Number(count.value) > 0) {
-      decrement.classList.remove(DISABLED);
+      decrement.classList.remove(DROPDOWN_DISABLED_TRUE);
       decrement.disabled = false;
     }
 
@@ -211,13 +211,13 @@ class Dropdown {
 
   handleBtnAcceptClick(e) {
     e.preventDefault();
-    this.dropdownContent.classList.remove(OPENED_CONTENT);
-    this.field.classList.remove(OPENED_FIELD);
+    this.dropdownContent.classList.remove(DROPDOWN_OPENEDCONTENT_TRUE);
+    this.field.classList.remove(DROPDOWN_OPENEDFIELD_TRUE);
   }
 
   handleFieldClick() {
-    this.dropdownContent.classList.toggle(OPENED_CONTENT);
-    this.field.classList.toggle(OPENED_FIELD);
+    this.dropdownContent.classList.toggle(DROPDOWN_OPENEDCONTENT_TRUE);
+    this.field.classList.toggle(DROPDOWN_OPENEDFIELD_TRUE);
   }
 
   #checkBtnVisibility() {
@@ -227,8 +227,8 @@ class Dropdown {
       0,
     );
 
-    if (sum > 0) this.btnClear.classList.remove(HIDDEN);
-    if (sum === 0) this.btnClear.classList.add(HIDDEN);
+    if (sum > 0) this.btnClear.classList.remove(DROPDOWN_BUTTONHIDDEN_TRUE);
+    if (sum === 0) this.btnClear.classList.add(DROPDOWN_BUTTONHIDDEN_TRUE);
   }
 
   #addURLValues() {
@@ -310,15 +310,15 @@ class Dropdown {
       .querySelector(`.${BUTTONS_DEC}`);
     if (sum <= Number(infantCount) && sum !== 0 && Number(infantCount) !== 0) {
       adult.value = Number(adultCount) + 1;
-      adultDecrementBtn.classList.add(DISABLED);
+      adultDecrementBtn.classList.add(DROPDOWN_DISABLED_TRUE);
       Dropdown.addDisabledForButton(adultDecrementBtn);
     } else if (Number(adultCount) !== 0) {
-      adultDecrementBtn.classList.remove(DISABLED);
+      adultDecrementBtn.classList.remove(DROPDOWN_DISABLED_TRUE);
       Dropdown.removeDisabledForButton(adultDecrementBtn);
     }
 
     if (Number(infantCount) > 0 && Number(adultCount) === 1) {
-      adultDecrementBtn.classList.add(DISABLED);
+      adultDecrementBtn.classList.add(DROPDOWN_DISABLED_TRUE);
       Dropdown.addDisabledForButton(adultDecrementBtn);
     }
   }

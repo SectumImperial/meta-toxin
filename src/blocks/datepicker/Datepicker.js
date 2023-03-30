@@ -19,7 +19,7 @@ import {
   CLICKED,
   LABEL,
   ICON,
-  ICON_ACTIVE,
+  DATEPICKER_ICON_ACTIVE,
   NAV_ARROW,
   PREV,
   NEXT,
@@ -812,7 +812,7 @@ class Datepicker {
     this.datepicker.querySelectorAll(`.${GROUP}`).forEach((e) => {
       if (e.classList.contains(CLICKED)) e.classList.remove(CLICKED);
       const icon = e.querySelector(`.${ICON}`);
-      if (icon.classList.contains(ICON_ACTIVE)) icon.classList.remove(ICON_ACTIVE);
+      if (icon.classList.contains(DATEPICKER_ICON_ACTIVE)) icon.classList.remove(DATEPICKER_ICON_ACTIVE);
     });
   }
 
@@ -845,7 +845,7 @@ class Datepicker {
   #toggleDp(targetContainer, calContainer) {
     targetContainer.classList.toggle(CLICKED);
     calContainer.classList.toggle(ACTIVE);
-    this.icons.forEach((icon) => icon.classList.toggle(ICON_ACTIVE));
+    this.icons.forEach((icon) => icon.classList.toggle(DATEPICKER_ICON_ACTIVE));
     return this;
   }
 
