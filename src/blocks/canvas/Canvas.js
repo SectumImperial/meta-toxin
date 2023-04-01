@@ -16,6 +16,20 @@ import {
   addText,
 } from './helpers';
 
+function addIdForOptions(items) {
+  const result = items.map((option) => ({ ...option, id: uuidv4() }));
+  return result;
+}
+
+function flatOptions(options, unitedItem, index) {
+  return [...options.slice(0, index),
+    unitedItem, ...options.slice(index)];
+}
+
+function filterGrades(options, grade) {
+  return options.filter((option) => option.grade !== grade);
+}
+
 class Canvas {
   constructor(element) {
     this.canvas = element;
@@ -56,12 +70,7 @@ class Canvas {
     return this;
   }
 
-  static addIdForOptions(items) {
-    const result = items.map((option) => ({ ...option, id: uuidv4() }));
-    return result;
-  }
-
-  static createDef({
+  static #createDef({
     id,
     stopFirst = '#6b0000',
     stopSecond = '#1a0000',
@@ -120,15 +129,6 @@ class Canvas {
     return dashOffset;
   }
 
-  static filterGrades(options, grade) {
-    return options.filter((option) => option.grade !== grade);
-  }
-
-  static flatOptions(options, unitedItem, index) {
-    return [...options.slice(0, index),
-      unitedItem, ...options.slice(index)];
-  }
-
   #addListeners() {
     this.items.forEach((item) => {
       item.addEventListener('mouseover', this.handleItemOver);
@@ -172,7 +172,7 @@ class Canvas {
 
   #performOptions() {
     const uniqueItems = this.#makeGradeUnique();
-    const options = Canvas.addIdForOptions(uniqueItems);
+    const options = addIdForOptions(uniqueItems);
     return options;
   }
 
@@ -194,8 +194,8 @@ class Canvas {
       if (key > 1) {
         const unitedItem = this.#uniteItems(grade);
         const index = this.inputOptions.findIndex((e) => e.grade === grade);
-        const filteredOptions = Canvas.filterGrades(this.inputOptions, grade);
-        resultOptions = Canvas.flatOptions(filteredOptions, unitedItem, index);
+        const filteredOptions = filterGrades(this.inputOptions, grade);
+        resultOptions = flatOptions(filteredOptions, unitedItem, index);
       }
     });
     return resultOptions;
@@ -226,7 +226,7 @@ class Canvas {
   #createDefs() {
     const items = [];
     this.options.forEach((option) => {
-      items.push(Canvas.createDef(option));
+      items.push(Canvas.#createDef(option));
     });
     if (items.length === 0) console.error('No options for the defs in the Canvas class');
 

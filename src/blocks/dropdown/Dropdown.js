@@ -21,6 +21,33 @@ import {
   LABEL,
 } from './constants';
 
+function hasIsEqualKey(compareMap, arr) {
+  compareMap.forEach((_, value) => {
+    if (isEqual(value, arr)) return true;
+    return false;
+  });
+}
+
+function sumCounts(countsMap, wordsMap, indicator) {
+  let arrKeys = [];
+  countsMap.forEach((key, value) => {
+    if (value !== indicator && !wordsMap.has(value)) {
+      arrKeys = [...arrKeys, key];
+    }
+  });
+  const result = arrKeys.reduce(
+    (prev, curr) => Number(prev) + Number(curr),
+    0,
+  );
+  return result;
+}
+
+function checkLimits(countEl) {
+  if (Number(countEl.value) > 999) return 999;
+  if (Number(countEl.value) < 0) return 0;
+  return Number(countEl.value);
+}
+
 class Dropdown {
   constructor(element) {
     this.dropdown = element;
@@ -49,33 +76,6 @@ class Dropdown {
     this.#addURLValues();
     this.#addPreset();
     this.#checkDecrementButtonDisabled();
-  }
-
-  static hasIsEqualKey(compareMap, arr) {
-    compareMap.forEach((_, value) => {
-      if (isEqual(value, arr)) return true;
-      return false;
-    });
-  }
-
-  static sumCounts(countsMap, wordsMap, indicator) {
-    let arrKeys = [];
-    countsMap.forEach((key, value) => {
-      if (value !== indicator && !wordsMap.has(value)) {
-        arrKeys = [...arrKeys, key];
-      }
-    });
-    const result = arrKeys.reduce(
-      (prev, curr) => Number(prev) + Number(curr),
-      0,
-    );
-    return result;
-  }
-
-  static checkLimits(countEl) {
-    if (Number(countEl.value) > 999) return 999;
-    if (Number(countEl.value) < 0) return 0;
-    return Number(countEl.value);
   }
 
   static checkDecrementDisabled(count, target) {
@@ -166,7 +166,7 @@ class Dropdown {
     const { target } = e;
     const container = target.closest(`.${ITEM}`);
     const count = container.querySelector(`.${COUNT_ELEM}`);
-    count.value = Dropdown.checkLimits(count);
+    count.value = checkLimits(count);
     count.value = Dropdown.decrementValue(count, target);
     Dropdown.checkDecrementDisabled(count, target);
 
@@ -181,7 +181,7 @@ class Dropdown {
     const container = target.closest(`.${ITEM}`);
     const count = container.querySelector(`.${COUNT_ELEM}`);
     const decrement = container.querySelector(`.${BUTTONS_DEC}`);
-    count.value = Dropdown.checkLimits(count);
+    count.value = checkLimits(count);
     if (Number(count.value) === 999) return;
     count.value = Number(count.value) + 1;
     if (Number(count.value) > 0) {
@@ -329,7 +329,7 @@ class Dropdown {
     this.countsMap.forEach((key, value) => {
       if (
         this.wordsMap.has(value)
-        && !Dropdown.hasIsEqualKey(synthMap, this.wordsMap.get(value))
+        && !hasIsEqualKey(synthMap, this.wordsMap.get(value))
       ) {
         synthMap.set(this.wordsMap.get(value), key);
       }
@@ -337,7 +337,7 @@ class Dropdown {
         !this.wordsMap.has(value)
         && synthMap.has(this.wordsMap.get(DEFAULT_KEY))
       ) {
-        const newValue = Dropdown.sumCounts(
+        const newValue = sumCounts(
           this.countsMap,
           this.wordsMap,
           DEFAULT_KEY,

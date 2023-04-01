@@ -60,16 +60,6 @@ class Carousel {
     return this;
   }
 
-  #markToggles() {
-    let i = 0;
-    this.toggles.forEach((toggle) => {
-      const toggleElem = toggle.closest(`.${TOGGLE}`);
-      toggleElem.dataset.toggleCount = i;
-      i += 1;
-    });
-    return this;
-  }
-
   #addListeners() {
     this.carousel.addEventListener('mouseover', this.handleCarouselMouseOver);
     this.carousel.addEventListener('mouseout', this.handleCarouselMouseOut);
@@ -157,6 +147,16 @@ class Carousel {
     if (code === 'ArrowLeft') {
       this.#moveLeft();
     }
+    return this;
+  }
+
+  #markToggles() {
+    let i = 0;
+    this.toggles.forEach((toggle) => {
+      const toggleElem = toggle.closest(`.${TOGGLE}`);
+      toggleElem.dataset.toggleCount = i;
+      i += 1;
+    });
     return this;
   }
 

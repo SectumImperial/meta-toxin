@@ -7,6 +7,15 @@ import {
   SLIDER,
 } from './constants';
 
+function formatValue(value) {
+  const result = new Intl.NumberFormat('ru-RU').format(value);
+  return result;
+}
+
+function handleDragStartEvent() {
+  return false;
+}
+
 class Slider {
   constructor(element) {
     this.slider = element;
@@ -19,7 +28,6 @@ class Slider {
     this.handleToggleMouseDown = this.handleToggleMouseDown.bind(this);
     this.handleToggleTouchStart = this.handleToggleTouchStart.bind(this);
     this.handleToggleKeyDown = this.handleToggleKeyDown.bind(this);
-    Slider.handleDragStartEvent = Slider.handleDragStartEvent.bind(this);
 
     this.init();
   }
@@ -35,11 +43,6 @@ class Slider {
     this.#addListeners();
     this.#setTogglesState();
     return this;
-  }
-
-  static formatValue(value) {
-    const result = new Intl.NumberFormat('ru-RU').format(value);
-    return result;
   }
 
   static performMoveToPercent(data = {}) {
@@ -58,7 +61,7 @@ class Slider {
   #addListeners() {
     this.toggles.forEach((e) => {
       e.addEventListener('mousedown', this.handleToggleMouseDown);
-      e.addEventListener('dragstart', Slider.handleDragStartEvent);
+      e.addEventListener('dragstart', handleDragStartEvent);
       e.addEventListener(
         'touchstart',
         this.handleToggleTouchStart,
@@ -67,10 +70,6 @@ class Slider {
       e.addEventListener('keydown', this.handleToggleKeyDown);
     });
     return this;
-  }
-
-  static handleDragStartEvent() {
-    return false;
   }
 
   handleToggleMouseDown(e) {
@@ -453,8 +452,8 @@ class Slider {
       this.toggleMax.style.left = `${percent}%`;
     }
 
-    const firstValue = Slider.formatValue(this.valueFrom);
-    const secondValue = Slider.formatValue(this.valueTo);
+    const firstValue = formatValue(this.valueFrom);
+    const secondValue = formatValue(this.valueTo);
 
     this.field.value = `${firstValue}${this.addedText} - ${secondValue}${this.addedText}`;
 

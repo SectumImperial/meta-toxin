@@ -26,6 +26,100 @@ import {
   CLEAR_VISIBLE,
 } from './constants';
 
+function changeSameData(item) {
+  const date = item.value.split('.');
+  const [day] = date;
+  const result = [Number(day) + 1, date.slice(1, 3)].flat().join('.');
+  return result;
+}
+
+function isOneInputClicked({ targetContainer, sibling, container }) {
+  return !targetContainer.classList.contains(CLICKED)
+    && sibling.classList.contains(CLICKED)
+    && container.classList.contains(ACTIVE);
+}
+
+function isAllInputClicked({ targetContainer, sibling, container }) {
+  return targetContainer.classList.contains(CLICKED)
+  && sibling.classList.contains(CLICKED)
+  && container.classList.contains(ACTIVE);
+}
+
+function returnInputSibling(targetContainer, formGroups) {
+  const sibling = formGroups.find((e) => e !== targetContainer);
+  return sibling;
+}
+
+function closeDpOnInputCLick(targetContainer, sibling, calContainer) {
+  targetContainer.classList.remove(CLICKED);
+  sibling.classList.remove(CLICKED);
+  calContainer.classList.remove(ACTIVE);
+  return this;
+}
+
+function isSelectedDates({ isSingleInput, rangeDateFrom, rangeDateTo }) {
+  return isSingleInput && rangeDateFrom && rangeDateTo;
+}
+
+function correctDateFormat(items) {
+  return items.every(({ value, pattern }) => value.match(pattern));
+}
+
+function deleteComma(elem) {
+  const text = elem.innerText;
+  const result = text.replace(',', '').replace('\n', ' ');
+  return result;
+}
+
+function recreateDate(invalidDate) {
+  const [day, month] = invalidDate.split(' ');
+  const monthWord = MONTHS.indexOf(month);
+  const date = new Date(2022, monthWord, day);
+  return date;
+}
+
+function getCurrentDate() {
+  const currentDate = new Date();
+  const currentDay = currentDate.getDate();
+  const currentMonth = currentDate.getMonth();
+  const currentYear = currentDate.getFullYear();
+
+  return { currentDay, currentMonth, currentYear };
+}
+
+function isMaskedBiggerThanNow({ year, month, day }) {
+  const { currentYear, currentMonth, currentDay } = getCurrentDate();
+  const fullCurrentDate = new Date(`${currentMonth}-${currentDay}-${currentYear}`);
+  const date1 = new Date(`${month}-${day}-${year}`);
+  const date2 = new Date(fullCurrentDate);
+
+  const oneDay = 1000 * 60 * 60 * 24;
+  const diffInTime = date2.getTime() - date1.getTime();
+  const diffInDays = Math.round(diffInTime / oneDay);
+
+  if (diffInDays > 0) {
+    return true;
+  }
+  return false;
+}
+
+function isItemDateLessThanNow(target) {
+  const day = Number(target.dataset.date) < 10 ? `0${target.dataset.date}` : target.dataset.date;
+  const { month, year } = target.dataset;
+  const result = isMaskedBiggerThanNow({ year, month, day });
+  return result;
+}
+
+function getFourAfter() {
+  const current = new Date();
+  const year = current.getFullYear();
+  const month = current.getMonth();
+  const day = current.getDate();
+  const fourAfter = new Date(year, month, day + 5);
+
+  return fourAfter;
+}
+
 class Datepicker {
   constructor(element) {
     this.datepicker = element;
@@ -60,49 +154,11 @@ class Datepicker {
     return this;
   }
 
-  static isOneInputClicked({ targetContainer, sibling, container }) {
-    return !targetContainer.classList.contains(CLICKED)
-      && sibling.classList.contains(CLICKED)
-      && container.classList.contains(ACTIVE);
-  }
-
-  static isAllInputClicked({ targetContainer, sibling, container }) {
-    return targetContainer.classList.contains(CLICKED)
-    && sibling.classList.contains(CLICKED)
-    && container.classList.contains(ACTIVE);
-  }
-
-  static returnInputSibling(targetContainer, formGroups) {
-    const sibling = formGroups.find((e) => e !== targetContainer);
-    return sibling;
-  }
-
   static closeDpOnInputCLick(targetContainer, sibling, calContainer) {
     targetContainer.classList.remove(CLICKED);
     sibling.classList.remove(CLICKED);
     calContainer.classList.remove(ACTIVE);
     return this;
-  }
-
-  static isSelectedDates({ isSingleInput, rangeDateFrom, rangeDateTo }) {
-    return isSingleInput && rangeDateFrom && rangeDateTo;
-  }
-
-  static correctDateFormat(items) {
-    return items.every(({ value, pattern }) => value.match(pattern));
-  }
-
-  static getURLParams() {
-    const queryString = window.location.search;
-    const URLParams = new URLSearchParams(queryString);
-
-    const startURLDateString = URLParams.get('datepicker-input-start');
-    const endURLDateString = URLParams.get('datepicker-input-end');
-
-    if ((startURLDateString, endURLDateString)) {
-      return [startURLDateString, endURLDateString];
-    }
-    return false;
   }
 
   static formatDate({ firstDate, secondDate = '', mod = 'twoInputMod' }) {
@@ -117,7 +173,6 @@ class Datepicker {
       const secondMonth = secondDate
         .toLocaleString('default', { month: 'long' })
         .substring(0, 3);
-
       result = `${firstDay} ${fistMonth} - ${secondDay} ${secondMonth}`;
     }
     if (secondDate === '' && mod === 'twoInputMod') {
@@ -130,28 +185,21 @@ class Datepicker {
       const year = firstDate.getFullYear();
       result = `${day}.${month}.${year}`;
     }
-
+  
     return result;
   }
 
-  static changeSameData(secondItem) {
-    const date = secondItem.value.split('.');
-    const [day] = date;
-    const result = [Number(day) + 1, date.slice(1, 3)].flat().join('.');
-    return result;
-  }
+  static getURLParams() {
+    const queryString = window.location.search;
+    const URLParams = new URLSearchParams(queryString);
 
-  static deleteComma(elem) {
-    const text = elem.innerText;
-    const result = text.replace(',', '').replace('\n', ' ');
-    return result;
-  }
+    const startURLDateString = URLParams.get('datepicker-input-start');
+    const endURLDateString = URLParams.get('datepicker-input-end');
 
-  static recreateDate(invalidDate) {
-    const [day, month] = invalidDate.split(' ');
-    const monthWord = MONTHS.indexOf(month);
-    const date = new Date(2022, monthWord, day);
-    return date;
+    if ((startURLDateString, endURLDateString)) {
+      return [startURLDateString, endURLDateString];
+    }
+    return false;
   }
 
   static isRange({ target, to, from }) {
@@ -180,48 +228,6 @@ class Datepicker {
       point.classList.remove('end-range');
     }
     return this;
-  }
-
-  static isItemDateLessThanNow(target) {
-    const day = Number(target.dataset.date) < 10 ? `0${target.dataset.date}` : target.dataset.date;
-    const { month, year } = target.dataset;
-    const result = Datepicker.isMaskedBiggerThanNow({ year, month, day });
-    return result;
-  }
-
-  static isMaskedBiggerThanNow({ year, month, day }) {
-    const { currentYear, currentMonth, currentDay } = Datepicker.getCurrentDate();
-    const fullCurrentDate = new Date(`${currentMonth}-${currentDay}-${currentYear}`);
-    const date1 = new Date(`${month}-${day}-${year}`);
-    const date2 = new Date(fullCurrentDate);
-
-    const oneDay = 1000 * 60 * 60 * 24;
-    const diffInTime = date2.getTime() - date1.getTime();
-    const diffInDays = Math.round(diffInTime / oneDay);
-
-    if (diffInDays > 0) {
-      return true;
-    }
-    return false;
-  }
-
-  static getCurrentDate() {
-    const currentDate = new Date();
-    const currentDay = currentDate.getDate();
-    const currentMonth = currentDate.getMonth();
-    const currentYear = currentDate.getFullYear();
-
-    return { currentDay, currentMonth, currentYear };
-  }
-
-  static getFourAfter() {
-    const current = new Date();
-    const year = current.getFullYear();
-    const month = current.getMonth();
-    const day = current.getDate();
-    const fourAfter = new Date(year, month, day + 5);
-
-    return fourAfter;
   }
 
   #findElements() {
@@ -358,7 +364,7 @@ class Datepicker {
     this.#formatTitle();
 
     const date = new Date(this.dp.rangeDateFrom);
-    const isLessThanNow = Datepicker.isMaskedBiggerThanNow({
+    const isLessThanNow = isMaskedBiggerThanNow({
       year: date.getFullYear(),
       month: date.getMonth(),
       day: date.getDate(),
@@ -385,7 +391,7 @@ class Datepicker {
       }
     }
 
-    const isSelDate = Datepicker.isSelectedDates({
+    const isSelDate = isSelectedDates({
       isSingleInput: this.isSingleInput,
       rangeDateFrom: this.dp.rangeDateFrom,
       rangeDateTo: this.dp.rangeDateTo,
@@ -476,11 +482,11 @@ class Datepicker {
   }
 
   handleItemInput() {
-    const correctDateFormat = Datepicker.correctDateFormat([...this.fields]);
+    const correctedDateFormat = correctDateFormat([...this.fields]);
 
-    if (correctDateFormat) {
+    if (correctedDateFormat) {
       if (this.firstItem.value === this.secondItem.value) {
-        this.secondItem.value = Datepicker.changeSameData(this.secondItem);
+        this.secondItem.value = changeSameData(this.secondItem);
       }
       if (this.firstItem.value > this.secondItem.value) {
         this.#swapDates();
@@ -543,7 +549,7 @@ class Datepicker {
   #markOlderDays() {
     const allDays = this.calContainer.querySelectorAll('.-day-');
     allDays.forEach((e) => {
-      if (Datepicker.isItemDateLessThanNow(e)) {
+      if (isItemDateLessThanNow(e)) {
         e.classList.add('old-date');
       }
     });
@@ -553,7 +559,7 @@ class Datepicker {
   #addTabIndex() {
     const allDays = this.calContainer.querySelectorAll('.-day-');
     allDays.forEach((e) => {
-      if (!Datepicker.isItemDateLessThanNow(e)) {
+      if (!isItemDateLessThanNow(e)) {
         e.tabIndex = '0';
       }
     });
@@ -579,7 +585,7 @@ class Datepicker {
 
   #formatTitle() {
     const navTitle = this.datepicker.querySelector('.air-datepicker-nav--title');
-    navTitle.innerText = Datepicker.deleteComma(navTitle);
+    navTitle.innerText = deleteComma(navTitle);
     return this;
   }
 
@@ -697,8 +703,8 @@ class Datepicker {
         const [day, month, year] = e.split('.');
         const formattedMonth = Number(month) - 1;
 
-        if (Datepicker.isMaskedBiggerThanNow({ year, month: formattedMonth, day })) {
-          const { currentDay, currentMonth, currentYear } = Datepicker.getCurrentDate();
+        if (isMaskedBiggerThanNow({ year, month: formattedMonth, day })) {
+          const { currentDay, currentMonth, currentYear } = getCurrentDate();
           return `${currentYear}-${currentMonth + 1}-${currentDay}`;
         }
         return `${year}-${month}-${day}`;
@@ -718,8 +724,8 @@ class Datepicker {
       const dates = this.singleItem.value.split(' - ');
       const [firstValue, secondValue] = dates;
 
-      const firstDate = Datepicker.recreateDate(firstValue);
-      const secondDate = Datepicker.recreateDate(secondValue);
+      const firstDate = recreateDate(firstValue);
+      const secondDate = recreateDate(secondValue);
 
       this.dp.selectDate([firstDate, secondDate]);
     }
@@ -732,9 +738,9 @@ class Datepicker {
     if (!targetContainer) return;
 
     if (this.isTwoInputs) {
-      const sibling = Datepicker.returnInputSibling(targetContainer, this.formGroups);
+      const sibling = returnInputSibling(targetContainer, this.formGroups);
 
-      const oneInpClick = Datepicker.isOneInputClicked({
+      const oneInpClick = isOneInputClicked({
         targetContainer,
         sibling,
         container: this.calContainer,
@@ -745,7 +751,7 @@ class Datepicker {
         return;
       }
 
-      const allClicked = Datepicker.isAllInputClicked({
+      const allClicked = isAllInputClicked({
         targetContainer,
         sibling,
         container: this.calContainer,
@@ -754,7 +760,7 @@ class Datepicker {
       this.#toggleDp(targetContainer, this.calContainer);
 
       if (allClicked) {
-        Datepicker.closeDpOnInputCLick(targetContainer, sibling, this.calContainer);
+        closeDpOnInputCLick(targetContainer, sibling, this.calContainer);
       }
     }
 
@@ -778,7 +784,7 @@ class Datepicker {
     const day = current.getDate();
 
     const tomorrow = new Date(year, month, day + 1);
-    const fourAfter = Datepicker.getFourAfter();
+    const fourAfter = getFourAfter();
 
     if (this.isTwoInputs) {
       this.firstItem.value = Datepicker.formatDate({
