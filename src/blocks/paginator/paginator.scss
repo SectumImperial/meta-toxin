@@ -44,7 +44,7 @@
     }
 
     &_hidden {
-      
+      visibility: hidden;
     }
   }
 
@@ -94,9 +94,13 @@
 
   &__description {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     color: rgb(map.get(variables.$colors, 'dark'), 0.75);
+  }
+
+  &__text {
+    padding-right: 7px;
   }
 
   @media (max-width: map.get(variables.$breakpoints, 'mobile')) {

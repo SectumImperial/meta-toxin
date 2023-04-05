@@ -18,18 +18,17 @@
   &__information {
     display: flex;
     flex-direction: column;
-    gap: 21px;
-    padding: 18px 13px 17px 19px;
+    gap: 22px;
+    padding: 20px 13px 21px 19px;
     position: relative;
 
     &::before {
-    content: "";
-    background: rgb(map.get(variables.$colors, 'dark'), 0.1);
-    position: absolute;
-    width: 87%;
-    height: 1px;
-    top: 50%;
-
+      content: '';
+      background: rgb(map.get(variables.$colors, 'dark'), 0.1);
+      position: absolute;
+      width: 87%;
+      height: 1px;
+      top: 50%;
     }
   }
 
@@ -72,6 +71,6 @@
 
   &__reviews-word {
     text-transform: capitalize;
-    padding-right: 3px;
+    padding-right: 8px;
   }
 }

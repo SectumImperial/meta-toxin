@@ -79,10 +79,9 @@
   &__feedback {
     grid-area: feedback;
     padding-left: 2px;
-  }
-
-  &__canvas {
-    margin-top: 19px;
+    display: flex;
+    flex-direction: column;
+    gap: 19px;
   }
 
   &__reviews {
@@ -117,23 +116,28 @@
   &__rules {
     grid-area: rules;
     padding-top: 11px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
   }
 
   &__rules-items {
-    padding-top: 17px;
     padding-left: 1px;
   }
 
   &__cancel {
     grid-area: cancel;
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
     max-width: 356px;
     padding-left: 2px;
   }
 
   &__cancel-text {
     margin: 0;
-    padding: 17px 10px 0 1px;
     line-height: 24px;
+    max-width: 345px;
     color: rgb(map.get(variables.$colors, 'dark'), 0.75);
   }
 

@@ -22,8 +22,8 @@
   }
 
   &__heart {
-    height: 20px;
-    width: 20px;
+    height: 18px;
+    width: 17px;
     padding: 0 4px;
 
     &_liked {
@@ -36,7 +36,6 @@
   }
 
   &__count {
-    padding: 1px 1px 3px 0;
     font-size: functions.rem(10);
     color: rgb(map.get(variables.$colors, 'dark'), 0.25);
 

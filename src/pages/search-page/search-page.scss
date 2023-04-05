@@ -45,13 +45,16 @@
 
   &__rules {
     margin-top: 31px;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
   }
 
   &__checkboxes {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    
+
     margin: 0;
     padding: 0;
     padding-top: 2px;
@@ -73,13 +76,14 @@
 
   &__available {
     margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 
     &-container {
       display: flex;
       flex-direction: column;
       gap: 9px;
-
-      padding-top: 12px;
     }
   }
 
@@ -107,7 +111,7 @@
     padding-top: 21px;
     padding-left: 2px;
     display: flex;
-    gap: 24px 12px;
+    gap: 21px 12px;
     flex-wrap: wrap;
   }
 
@@ -115,9 +119,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
-    margin-right: 14px;
-    padding-top: 45px;
+    padding-top: 41px;
+    padding-right: 53px;
   }
 
   @media (max-width: map.get(variables.$breakpoints, 'pc')) {

@@ -14,11 +14,17 @@
     border-radius: 50%;
   }
 
+  &__legend {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
   &__items {
     display: flex;
     flex-direction: column;
     gap: 6px;
-    padding: 26px 0 0;
+    padding: 0;
     margin: 0;
   }
 

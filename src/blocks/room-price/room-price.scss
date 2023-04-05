@@ -8,6 +8,8 @@
   grid-template-columns: 1fr 1fr;
   justify-items: center;
 
+  padding-right: 2px;
+
   &__price {
     font-size: map.get(variables.$font-sizes, 'sm');
     font-weight: 700;

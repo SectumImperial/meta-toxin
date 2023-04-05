@@ -26,8 +26,9 @@
     &::before {
       content: '';
       display: flex;
+      align-self: flex-start;
 
-      transform: translateY(50%);
+      transform: translateY(63%);
 
       min-width: 10px;
       max-width: 10px;

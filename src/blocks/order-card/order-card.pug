@@ -9,7 +9,7 @@ mixin order-card(options = {})
       method = "GET",
       action = "error-page.html",
     )
-      .order-card__room-info
+      .order-card__heading
         +room-number({
           number: '888',
           luxe: true,
@@ -17,47 +17,48 @@ mixin order-card(options = {})
         }) 
         .order-card__price
           +room-price('9 990')
-      .order-card__datepicker 
-        +datepicker()
-      .order-card__dropdown 
-        .order-card__dropdown-section
-          +dropdown({
-            label: 'Гости',
-            isRestricted: true,
-            placeholder: 'Сколько гостей',
-            items: [
-              'Взрослые', 'Дети', 'Младенцы'
-            ],
-            plurals: [
-              {
-                'default': ['гость', 'гостя', 'гостей']
-              },
-              {
-                'Младенцы': ['младенец', 'младенца', 'младенцев']
-              }
-            ]
-          })
-      .order-card__details 
-        .order-card__days 
-          span.order-card__days-compute.js-order-card__days-compute  
-          span.order-card__days-computed.js-order-card__days-computed
-        .order-card__fee.js-order-card__fee 
-          span.order-card__fee-compute.js-order-card__fee-compute
-          span.order-card__fee-computed.js-order-card__fee-computed
-        .order-card__add-fee 
-          span.order-card__add-fee-compute.js-order-card__add-fee-compute
-          span.order-card__add-fee-computed.js-order-card__add-fee-computed
-        .order-card__all 
-          span.order-card__word Итого
-          .order-card__decoration 
-          span.order-card__sum.js-order-card__sum
-        .order-card__button
-          +button({
-            content: 'Забронировать',
-            color: 'violet',
-            rightPart: 'arrow-forward',
-            size: 'large',
-            type: 'submit',
-          })
+      .order-card__body
+        .order-card__datepicker 
+          +datepicker()
+        .order-card__dropdown 
+          .order-card__dropdown-section
+            +dropdown({
+              label: 'Гости',
+              isRestricted: true,
+              placeholder: 'Сколько гостей',
+              items: [
+                'Взрослые', 'Дети', 'Младенцы'
+              ],
+              plurals: [
+                {
+                  'default': ['гость', 'гостя', 'гостей']
+                },
+                {
+                  'Младенцы': ['младенец', 'младенца', 'младенцев']
+                }
+              ]
+            })
+        .order-card__details 
+          .order-card__days 
+            span.order-card__days-compute.js-order-card__days-compute  
+            span.order-card__days-computed.js-order-card__days-computed
+          .order-card__fee.js-order-card__fee 
+            span.order-card__fee-compute.js-order-card__fee-compute
+            span.order-card__fee-computed.js-order-card__fee-computed
+          .order-card__add-fee 
+            span.order-card__add-fee-compute.js-order-card__add-fee-compute
+            span.order-card__add-fee-computed.js-order-card__add-fee-computed
+          .order-card__all 
+            span.order-card__word Итого
+            .order-card__decoration 
+            span.order-card__sum.js-order-card__sum
+          .order-card__button
+            +button({
+              content: 'Забронировать',
+              color: 'violet',
+              rightPart: 'arrow-forward',
+              size: 'large',
+              type: 'submit',
+            })
 
 
